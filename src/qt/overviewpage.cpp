@@ -187,10 +187,10 @@ void OverviewPage::updateDisplayUnit()
 
 /**** Blockchain Information *****/
 
-void OverviewPage::updatBlockChainInfo()
+void OverviewPage::updateBlockChainInfo()
 {
-    if(!masternodeSync.IsBlockchainSynced())
-    {  /* return; */
+    if (masternodeSync.IsBlockchainSynced())
+    {
 
     uint32_t tip_time = chainActive.Tip()->GetBlockTime();
 
