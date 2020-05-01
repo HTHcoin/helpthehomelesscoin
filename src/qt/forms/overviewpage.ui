@@ -44,9 +44,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>270</y>
+        <y>260</y>
         <width>451</width>
-        <height>261</height>
+        <height>271</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -73,7 +73,7 @@
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>2</height>
+           <height>8</height>
           </size>
          </property>
         </spacer>
@@ -134,7 +134,7 @@ font-size: 20px;</string>
          <property name="sizeHint" stdset="0">
           <size>
            <width>0</width>
-           <height>70</height>
+           <height>75</height>
           </size>
          </property>
         </spacer>
