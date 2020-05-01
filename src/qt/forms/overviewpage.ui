@@ -114,7 +114,7 @@ font-size: 20px;</string>
 font-size: 20px;</string>
            </property>
            <property name="text">
-            <string>Network Difficulty</string>
+            <string>Network Hashrate</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight</set>
@@ -215,7 +215,7 @@ font-size: 20px;</string>
              <string notr="true">font-size: 15px;</string>
             </property>
             <property name="text">
-             <string>Network Difficulty:</string>
+             <string>Network MHs:</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignVCenter</set>
