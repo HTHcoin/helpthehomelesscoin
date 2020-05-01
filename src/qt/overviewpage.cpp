@@ -196,7 +196,7 @@ void OverviewPage::updateBlockChainInfo()
 
     int CurrentBlock = (int)chainActive.Height();
   /*  int64_t BlockReward = GetBlockHash(chainActive.Height(), tip_time); */
-    double BlockRewardHTH =  static_cast<double>(BlockReward)/static_cast<double>(COIN);
+    double BlockRewardHTH =  static_cast<double>(BlockRewardHTH)/static_cast<double>(COIN);
     double CurrentDiff = GetDifficulty();
 
     ui->label_CurrentBlock_value_3->setText(QString::number(CurrentBlock));
