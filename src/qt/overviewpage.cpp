@@ -204,7 +204,6 @@ void OverviewPage::updatBlockChainInfo()
     ui->label_Nethash_value_3->setText(QString::number(CurrentDiff,'f',4));
     ui->label_CurrentBlockReward_value->setText(QString::number(BlockRewardHTH));
 }
-}
 
                 /**** End Blockchain Information ******/
 
