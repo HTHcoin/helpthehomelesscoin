@@ -7,11 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>560</height>
+    <height>702</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -73,7 +73,7 @@
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>3</height>
+           <height>2</height>
           </size>
          </property>
         </spacer>
@@ -128,16 +128,31 @@ font-size: 20px;</string>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>20</width>
-           <height>40</height>
+           <width>0</width>
+           <height>70</height>
           </size>
          </property>
         </spacer>
        </item>
        <item>
         <widget class="QFrame" name="frameBlockchainInfoData_3">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>125</height>
+          </size>
+         </property>
          <property name="styleSheet">
           <string notr="true">border: transparent;
 ; font-size: 15px;</string>
@@ -149,8 +164,30 @@ font-size: 20px;</string>
           <enum>QFrame::Raised</enum>
          </property>
          <layout class="QGridLayout" name="gridLayout_5">
-          <item row="3" column="0">
+          <item row="0" column="4">
+           <widget class="QLabel" name="label_Nethash_value_3">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>0</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
            <widget class="QLabel" name="label_CurrentBlock">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="minimumSize">
              <size>
               <width>110</width>
@@ -174,7 +211,7 @@ font-size: 20px;</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
+          <item row="0" column="2">
            <widget class="QLabel" name="label_CurrentBlock_value_3">
             <property name="minimumSize">
              <size>
@@ -199,18 +236,14 @@ font-size: 20px;</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="3" alignment="Qt::AlignRight">
-           <widget class="QLabel" name="label_Nethash_value_3">
-            <property name="text">
-             <string>0</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignVCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="2">
+          <item row="0" column="3">
            <widget class="QLabel" name="label_Nethash_3">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="styleSheet">
              <string notr="true">font-size: 15px;</string>
             </property>
@@ -219,6 +252,20 @@ font-size: 20px;</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLabel" name="label_CurrentBlockReward">
+            <property name="text">
+             <string>Block reward:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QLabel" name="label_CurrentBlockReward_value">
+            <property name="text">
+             <string>0</string>
             </property>
            </widget>
           </item>
@@ -236,7 +283,7 @@ font-size: 20px;</string>
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>99</height>
+           <height>65</height>
           </size>
          </property>
         </spacer>
