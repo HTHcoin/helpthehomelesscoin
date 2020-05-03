@@ -194,8 +194,8 @@ void OverviewPage::updateBlockChainInfo()
 
      uint32_t tip_time = chainActive.Tip()->GetBlockTime();
       
-    int CurrentBlock = (int)nBlockHeight();
-    int64_t BlockReward = GetBlockHash(nBlockHeight(), tip_time);
+    int CurrentBlock = (int)CBlockHeader();
+    int64_t BlockReward = GetBlockHash(CBlockHeader(), tip_time);
     double BlockRewardHTH =  static_cast<double>(BlockRewardHTH)/static_cast<double>(COIN);
     double CurrentDiff = GetDifficulty();
 
