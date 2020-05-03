@@ -40,7 +40,7 @@
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <widget class="QFrame" name="frameBlockchainInfo">
+     <widget class="QFrame" name="frameBlockChainInfo">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -108,7 +108,7 @@ font-size: 20px;</string>
           </spacer>
          </item>
          <item alignment="Qt::AlignLeft|Qt::AlignVCenter">
-          <widget class="QLabel" name="label_24hblockchaininfo_1">
+          <widget class="QLabel" name="label_24hBlockChainInfo_1">
            <property name="styleSheet">
             <string notr="true">border: transparent;
 font-size: 20px;</string>
@@ -140,7 +140,7 @@ font-size: 20px;</string>
         </spacer>
        </item>
        <item>
-        <widget class="QFrame" name="frameBlockchainInfoData_3">
+        <widget class="QFrame" name="frameBlockChainInfoData_3">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
            <horstretch>0</horstretch>
