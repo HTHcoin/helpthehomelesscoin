@@ -40,7 +40,7 @@
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <widget class="QFrame" name="frameBlockchainInfo_2">
+     <widget class="QFrame" name="frameBlockchainInfo">
       <property name="geometry">
        <rect>
         <x>0</x>
