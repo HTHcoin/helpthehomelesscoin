@@ -52,7 +52,6 @@ Q_SIGNALS:
 
 private:
     QTimer *timer;
-    QTimer* timerinfo_mn;
     QTimer* timerinfo_blockchain;
     Ui::OverviewPage *ui;
     ClientModel *clientModel;
@@ -90,7 +89,6 @@ private Q_SLOTS:
     void on_pushButton_Website_4_clicked();
     void on_pushButton_Website_5_clicked();
     void updateBlockChainInfo();
-    void updateMasternodeInfo();
     
  };
 
