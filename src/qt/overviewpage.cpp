@@ -198,7 +198,7 @@ if(!masternodeSync.IsBlockchainSynced())
         return;
 
   
-    int64_t blocktime = mapBlockIndex->GetBlockTime();
+    int64_t blocktime = chainActive.Tip()->GetBlockTime();
 
     int CurrentBlock = (int)chainActive.Height();
     int64_t BlockReward = GetBalance; (chainActive.Height(), blocktime);
