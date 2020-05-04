@@ -22,7 +22,7 @@
 #include "chainparams.h"
 #include "amount.h"
 #include "validation.h"
-#include "src/wallet/wallet.h"
+#include "wallet/wallet.h"
 
 #include "instantx.h"
 #include "masternode-sync.h"
