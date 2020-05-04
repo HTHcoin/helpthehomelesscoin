@@ -197,10 +197,10 @@ void OverviewPage::updateBlockChainInfo()
 if(!masternodeSync.IsBlockchainSynced())
         return;
 
-   /* uint32_t tip_time = chainActive.Tip()->GetBlockTime(); */
+  int64_t blocktime = mapBlockIndex[wtx.hashBlock]->GetBlockTime();
 
     int CurrentBlock = (int)chainActive.Height();
-    int64_t BlockReward = GetBalance;
+    int64_t BlockReward = GetBalance; (chainActive.Height(), blocktime);
     double BlockRewardHTH =  static_cast<double>(BlockReward)/static_cast<double>(COIN);
     double CurrentDiff = GetDifficulty();
   
