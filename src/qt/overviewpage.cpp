@@ -188,46 +188,14 @@ void OverviewPage::updateDisplayUnit()
 }
 
 /**** Blockchain Information *****/
-
-extern json_spirit::Value GetNetworkHashPS(int lookup, int height);
-extern double GetDifficulty(const CBlockIndex* blockindex = NULL);
-extern json_spirit::Value GetAvgBlockTime(int lookup, int height);
-
-void OverviewPage::updateInformation(){
-    int nBlocks = clientModel->getNumBlocks();
-    int64_t tfork = SOFTFORK1_TIME - GetAdjustedTime();   // 1531612800 = 2018-7-15
-    int tday  = tfork / (60*60*24);
-    int thour = (tfork / (60*60))%24;
-    int tmin  = (tfork / (60))%60;
-    int tsec  = tfork %60;
-    int64_t  LastBlockDate = chainActive.Tip()->GetBlockTime();
-    int64_t  nBlockTime = GetAvgBlockTime(30,-1).get_int64();
-    QString algo = "X25X";
-
-
-double hashrate =GetNetworkHashPS(30,-1).get_real();
-    hashrate = hashrate/1000000;
-
-    txt += tr("<li>Current Blocks: <span> %1</span> Average Block Time: <span> %2</span> sec</li>").arg(nBlocks).arg(nBlockTime); 
-    if(nBlocks <= Params().LAST_POW_BLOCK()){
-       txt += tr("<li>Difficulty: <span> %1</span> Mining Algorithm: <span> %2</span> </li>").arg(GetDifficulty(),0,'g',4).arg(algo); 
-       txt += tr("<li>Network Hash: <span> %3</span> MHash/s </li>").arg(hashrate,0,'f',4); 
-    }
-    txt += tr("<li>Connection : <span> %1</span> </li>").arg( clientModel->getNumConnections()); 
-
-
-ui->MessageLabel->setText(txt);    
-}
    
-   
-   
-   /* if (masternodeSync.IsBlockchainSynced())
+    if (masternodeSync.IsBlockchainSynced())
     {
 
-     uint32_t tip_time = chainActive.Tip()->GetBlockTime();
+   /*  uint32_t tip_time = chainActive.Tip()->GetBlockTime(); */
       
     int CurrentBlock = (int)chainActive.Height();
-    int64_t BlockReward = GetBlockHash(chainActive.Height(), tip_time); 
+  /*  int64_t BlockReward = GetBlockHash(chainActive.Height(), tip_time);  */
     double BlockRewardHTH =  static_cast<double>(BlockRewardHTH)/static_cast<double>(COIN);
     double CurrentDiff = GetDifficulty();
 
@@ -235,7 +203,7 @@ ui->MessageLabel->setText(txt);
     ui->label_Nethash_3->setText(tr("Difficulty:"));
     ui->label_Nethash_value_3->setText(QString::number(CurrentDiff,'f',4));
     ui->label_CurrentBlockReward_value->setText(QString::number(BlockRewardHTH));
-    } */
+    } 
 }
 
                 /**** End Blockchain Information ******/
