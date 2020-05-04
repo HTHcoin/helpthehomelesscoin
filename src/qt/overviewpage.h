@@ -62,8 +62,7 @@ private:
     CAmount currentWatchOnlyBalance;
     CAmount currentWatchUnconfBalance;
     CAmount currentWatchImmatureBalance;
-    CAmount GetBalance;
-    CAmount GetMasternodePayment;
+    CAmount GetBlockSubsidy;
     int nDisplayUnit;
   /*  bool fShowAdvancedPSUI; */
     int cachedNumISLocks;
