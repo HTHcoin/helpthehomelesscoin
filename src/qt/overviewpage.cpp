@@ -19,6 +19,9 @@
 #include "utilitydialog.h"
 #include "walletmodel.h"
 #include "rpc/blockchain.cpp"
+#include "masternodeman.h"
+#include "chainparams.h"
+#include "amount.h"
 
 #include "instantx.h"
 #include "masternode-sync.h"
