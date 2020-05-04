@@ -69,6 +69,10 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
   
     //information block update
    
+    timerinfo_mn = new QTimer(this);
+    connect(timerinfo_mn, SIGNAL(timeout()), this, SLOT(updateMasternodeInfo()));
+    timerinfo_mn->start(1000);  
+      
     timerinfo_blockchain = new QTimer(this);
     connect(timerinfo_blockchain, SIGNAL(timeout()), this, SLOT(updateBlockChainInfo()));
     timerinfo_blockchain->start(1000); //30sec      
@@ -187,7 +191,7 @@ void OverviewPage::updateDisplayUnit()
 
 /**** Blockchain Information *****/
 
-void OverviewPage::updateBlockChainInfo()
+/* void OverviewPage::updateBlockChainInfo()
 {
     if (masternodeSync.IsBlockchainSynced())
     {
@@ -195,8 +199,7 @@ void OverviewPage::updateBlockChainInfo()
      uint32_t tip_time = chainActive.Tip()->GetBlockTime();
       
     int CurrentBlock = (int)chainActive.Height();
-    int64_t BlockReward = GetBlockValue(chainActive.Height(), tip_time);  
-    /* int64_t BlockReward = GetBlockHash(chainActive.Height(), tip_time); */
+    int64_t BlockReward = GetBlockHash(chainActive.Height(), tip_time);
     double BlockRewardHTH =  static_cast<double>(BlockRewardHTH)/static_cast<double>(COIN);
     double CurrentDiff = GetDifficulty();
 
@@ -205,6 +208,61 @@ void OverviewPage::updateBlockChainInfo()
     ui->label_Nethash_value_3->setText(QString::number(CurrentDiff,'f',4));
     ui->label_CurrentBlockReward_value->setText(QString::number(BlockRewardHTH));
     }
+} */
+
+
+void OverviewPage::updateMasternodeInfo()
+{
+  if (masternodeSync.IsBlockchainSynced() && masternodeSync.IsSynced())
+  {
+
+   int mn1=0;
+   int mn2=0;
+   int mn3=0;
+   int totalmn=0;
+   std::vector<CMasternode> vMasternodes = mnodeman.GetFullMasternodeMap();
+    for(auto& mn : vMasternodes)
+    {
+       switch ( mn.Level())
+       {
+           case 1:
+           mn1++;break;
+           case 2:
+           mn2++;break;
+           case 3:
+           mn3++;break;
+       }
+
+    }
+    totalmn=mn1+mn2+mn3;
+    ui->labelMnTotal_Value->setText(QString::number(totalmn));
+
+    ui->graphMN1->setMaximum(totalmn);
+    ui->graphMN2->setMaximum(totalmn);
+    ui->graphMN3->setMaximum(totalmn);
+    ui->graphMN1->setValue(mn1);
+    ui->graphMN2->setValue(mn2);
+    ui->graphMN3->setValue(mn3);
+
+    if(timerinfo_mn->interval() == 1000)
+           timerinfo_mn->setInterval(180000);
+  }
+}
+
+void OverviewPage::updatBlockChainInfo()
+{
+    if(!masternodeSync.IsBlockchainSynced())
+        return;
+
+    uint32_t tip_time = chainActive.Tip()->GetBlockTime();
+
+    int CurrentBlock = (int)chainActive.Height();
+    int64_t BlockReward = GetBlockValue(chainActive.Height(), tip_time);
+    double BlockRewardHTH =  static_cast<double>(BlockReward)/static_cast<double>(COIN);
+
+    ui->label_CurrentBlock_value->setText(QString::number(CurrentBlock));
+
+    ui->label_CurrentBlockReward_value->setText(QString::number(BlockRewardHTH));
 }
 
                 /**** End Blockchain Information ******/
