@@ -201,7 +201,7 @@ if(!masternodeSync.IsBlockchainSynced())
     int64_t blocktime = chainActive.Tip()->GetBlockTime();
 
     int CurrentBlock = (int)chainActive.Height();
-    int64_t BlockReward = GetBalance; (chainActive.Height(), blocktime);
+    int64_t BlockReward = GetBalance(chainActive.Height(), blocktime);
     double BlockRewardHTH =  static_cast<double>(BlockReward)/static_cast<double>(COIN);
     double CurrentDiff = GetDifficulty();
   
