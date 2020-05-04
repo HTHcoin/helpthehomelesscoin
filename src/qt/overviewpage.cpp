@@ -19,7 +19,6 @@
 #include "utilitydialog.h"
 #include "walletmodel.h"
 #include "rpc/blockchain.cpp"
-/* #include "masternodeman.h" */
 #include "chainparams.h"
 #include "amount.h"
 
@@ -72,10 +71,6 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
   
     //information block update
    
-    timerinfo_mn = new QTimer(this);
-    connect(timerinfo_mn, SIGNAL(timeout()), this, SLOT(updateMasternodeInfo()));
-    timerinfo_mn->start(1000);  
-      
     timerinfo_blockchain = new QTimer(this);
     connect(timerinfo_blockchain, SIGNAL(timeout()), this, SLOT(updateBlockChainInfo()));
     timerinfo_blockchain->start(1000); //30sec      
@@ -212,45 +207,6 @@ void OverviewPage::updateDisplayUnit()
     ui->label_CurrentBlockReward_value->setText(QString::number(BlockRewardHTH));
     }
 } */
-
-
-void OverviewPage::updateMasternodeInfo()
-{
-  if (masternodeSync.IsBlockchainSynced() && masternodeSync.IsSynced())
-  {
-
-   int mn1=0;
-   int mn2=0;
-   int mn3=0;
-   int totalmn=0;
-   std::vector<CMasternode> vMasternodes = mnodeman.GetFullMasternodeMap();
-    for(auto& mn : vMasternodes)
-    {
-       switch ( mn.Level())
-       {
-           case 1:
-           mn1++;break;
-           case 2:
-           mn2++;break;
-           case 3:
-           mn3++;break;
-       }
-
-    }
-    totalmn=mn1+mn2+mn3;
-    ui->labelMnTotal_Value->setText(QString::number(totalmn));
-
-    ui->graphMN1->setMaximum(totalmn);
-    ui->graphMN2->setMaximum(totalmn);
-    ui->graphMN3->setMaximum(totalmn);
-    ui->graphMN1->setValue(mn1);
-    ui->graphMN2->setValue(mn2);
-    ui->graphMN3->setValue(mn3);
-
-    if(timerinfo_mn->interval() == 1000)
-           timerinfo_mn->setInterval(180000);
-  }
-}
 
 void OverviewPage::updatBlockChainInfo()
 {
