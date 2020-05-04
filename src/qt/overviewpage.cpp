@@ -200,10 +200,10 @@ void OverviewPage::updateDisplayUnit()
     uint32_t tip_time = chainActive.Tip()->GetBlockTime();
 
     int CurrentBlock = (int)chainActive.Height();
-    int64_t BlockReward = GetBlockValue(chainActive.Height(), tip_time);
+    int64_t BlockReward = GetBlockHash(chainActive.Height(), tip_time);
     double BlockRewardHTH =  static_cast<double>(BlockReward)/static_cast<double>(COIN);
 
-    ui->label_CurrentBlock_value->setText(QString::number(CurrentBlock));
+    ui->label_CurrentBlock_value_3->setText(QString::number(CurrentBlock));
 
     ui->label_CurrentBlockReward_value->setText(QString::number(BlockRewardHTH));
    
