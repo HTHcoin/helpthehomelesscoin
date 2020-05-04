@@ -19,7 +19,7 @@
 #include "utilitydialog.h"
 #include "walletmodel.h"
 #include "rpc/blockchain.cpp"
-#include "masternodeman.h"
+/* #include "masternodeman.h" */
 #include "chainparams.h"
 #include "amount.h"
 
