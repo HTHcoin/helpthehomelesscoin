@@ -21,6 +21,7 @@
 #include "rpc/blockchain.cpp"
 #include "chainparams.h"
 #include "amount.h"
+#include "validation.h"
 
 #include "instantx.h"
 #include "masternode-sync.h"
