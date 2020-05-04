@@ -62,7 +62,7 @@ private:
     CAmount currentWatchOnlyBalance;
     CAmount currentWatchUnconfBalance;
     CAmount currentWatchImmatureBalance;
-   
+    CAmount GetBlockSubsidy;
     int nDisplayUnit;
   /*  bool fShowAdvancedPSUI; */
     int cachedNumISLocks;
