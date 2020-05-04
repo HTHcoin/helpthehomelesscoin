@@ -197,7 +197,8 @@ void OverviewPage::updateBlockChainInfo()
 if(!masternodeSync.IsBlockchainSynced())
         return;
 
-  int64_t blocktime = mapBlockIndex[wtx.hashBlock]->GetBlockTime();
+  
+    int64_t blocktime = mapBlockIndex->GetBlockTime();
 
     int CurrentBlock = (int)chainActive.Height();
     int64_t BlockReward = GetBalance; (chainActive.Height(), blocktime);
