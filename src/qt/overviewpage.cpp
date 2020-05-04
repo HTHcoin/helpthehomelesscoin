@@ -195,10 +195,11 @@ void OverviewPage::updateDisplayUnit()
 {
     if (masternodeSync.IsBlockchainSynced())
     {
-          uint32_t tip_time = chainActive.Tip()->GetBlockTime(); 
+       /*   uint32_t tip_time = chainActive.Tip()->GetBlockTime();  */
       
     int CurrentBlock = (int)chainActive.Height();
-    int64_t BlockReward = GetBlockSubsidy(chainActive.Height(), tip_time);  
+    int64_t netHashRate = chainActive.GetBlockHash(24, CurrentBlock-1);  
+    int64_t BlockReward = GetBlockSubsidy;/*(chainActive.Height(), tip_time); */
     double BlockRewardHTH =  static_cast<double>(BlockReward)/static_cast<double>(COIN);
     double CurrentDiff = GetDifficulty();
 
