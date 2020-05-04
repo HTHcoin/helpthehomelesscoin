@@ -197,7 +197,7 @@ void OverviewPage::updateBlockChainInfo()
 if(!masternodeSync.IsBlockchainSynced())
         return;
 
-    uint32_t tip_time = chainActive.Tip()->GetBlockTime();
+   /* uint32_t tip_time = chainActive.Tip()->GetBlockTime(); */
 
     int CurrentBlock = (int)chainActive.Height();
     int64_t BlockReward = GetBalance;
