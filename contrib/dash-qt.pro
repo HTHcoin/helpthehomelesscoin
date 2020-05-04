@@ -23,4 +23,6 @@ FORMS += \
 RESOURCES += \
     ../src/qt/dash.qrc
     
-CONFIG+=c++11
+CONFIG += c++11
+
+
