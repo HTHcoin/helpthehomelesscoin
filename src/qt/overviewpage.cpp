@@ -197,12 +197,12 @@ void OverviewPage::updateBlockChainInfo()
     uint32_t tip_time = chainActive.Tip()->GetBlockTime();
 
     int CurrentBlock = (int)chainActive.Height();
-    int64_t BlockReward = BlockRewardHTH(chainActive.Height(), tip_time);
-    double BlockRewardHTH =  static_cast<double>(BlockReward)/static_cast<double>(COIN);
+    int64_t BlockReward = BlockReward(chainActive.Height(), tip_time);
+    double BlockReward =  static_cast<double>(BlockReward)/static_cast<double>(COIN);
     double CurrentDiff = GetDifficulty();
   
     ui->label_CurrentBlock_value_3->setText(QString::number(CurrentBlock));
-    ui->label_CurrentBlockReward_value->setText(QString::number(BlockRewardHTH));
+    ui->label_CurrentBlockReward_value->setText(QString::number(BlockReward));
     ui->label_Nethash_3->setText(tr("Difficulty:"));
     ui->label_Nethash_value_3->setText(QString::number(CurrentDiff,'f',4));
 }
