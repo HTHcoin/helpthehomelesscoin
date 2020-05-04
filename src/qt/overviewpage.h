@@ -43,7 +43,7 @@ public Q_SLOTS:
   
     void setBalance(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance, const CAmount& anonymizedBalance,
                     const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance);
-
+    void updateInformation();
   
 Q_SIGNALS:
 /*    void transactionClicked(const QModelIndex &index); */
@@ -88,7 +88,7 @@ private Q_SLOTS:
     void on_pushButton_Website_3_clicked();
     void on_pushButton_Website_4_clicked();
     void on_pushButton_Website_5_clicked();
-    void updateBlockChainInfo();
+   /* void updateBlockChainInfo(); */
     
  };
 
