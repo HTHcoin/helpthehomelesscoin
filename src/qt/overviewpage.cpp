@@ -188,7 +188,7 @@ void OverviewPage::updateDisplayUnit()
 }
 
 /**** Blockchain Information *****/
-   
+{
     if (masternodeSync.IsBlockchainSynced())
     {
 
