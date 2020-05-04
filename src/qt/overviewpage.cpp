@@ -191,15 +191,16 @@ void OverviewPage::updateDisplayUnit()
 
 /**** Blockchain Information *****/
 
-void OverviewPage::updateBlockChainInfo()
+void OverviewPage::updatBlockChainInfo()
 {
-    if(!masternodeSync.IsBlockchainSynced())
+
+if(!masternodeSync.IsBlockchainSynced())
         return;
 
-   /* uint32_t tip_time = chainActive.Tip()->GetBlockTime(); */
+    uint32_t tip_time = chainActive.Tip()->GetBlockTime();
 
     int CurrentBlock = (int)chainActive.Height();
-    int64_t BlockReward = GetBalance; /*(chainActive.Height(), tip_time); */
+    int64_t BlockReward = GetBlockValue(chainActive.Height(), tip_time);
     double BlockRewardHTH =  static_cast<double>(BlockReward)/static_cast<double>(COIN);
     double CurrentDiff = GetDifficulty();
   
@@ -208,7 +209,6 @@ void OverviewPage::updateBlockChainInfo()
     ui->label_Nethash_3->setText(tr("Difficulty:"));
     ui->label_Nethash_value_3->setText(QString::number(CurrentDiff,'f',4));
 }
-
 
 /* void OverviewPage::updateBlockChainInfo()
 {
