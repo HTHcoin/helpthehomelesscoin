@@ -203,7 +203,7 @@ void OverviewPage::updateBlockChainInfo()
     double BlockRewardHTH =  static_cast<double>(BlockReward)/static_cast<double>(COIN);
     double CurrentDiff = GetDifficulty();
   
-    ui->label_CurrentBlock_value->setText(QString::number(CurrentBlock));
+    ui->label_CurrentBlock_value_3->setText(QString::number(CurrentBlock));
     ui->label_Nethash_3->setText(tr("Difficulty:"));
     ui->label_Nethash_value_3->setText(QString::number(CurrentDiff,'f',4));
     ui->label_CurrentBlockReward_value->setText(QString::number(BlockRewardHTH));
