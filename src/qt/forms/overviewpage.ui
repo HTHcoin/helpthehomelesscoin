@@ -73,7 +73,7 @@
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>3</height>
+           <height>8</height>
           </size>
          </property>
         </spacer>
