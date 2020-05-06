@@ -101,14 +101,14 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     currentWatchUnconfBalance = watchUnconfBalance;
     currentWatchImmatureBalance = watchImmatureBalance;
     ui->labelBalanceText->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, balance, false, BitcoinUnits::separatorAlways));
-    ui->labelWatchPending->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, unconfirmedBalance, false, BitcoinUnits::separatorAlways));
+    ui->labelWatchPending_2->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, unconfirmedBalance, false, BitcoinUnits::separatorAlways));
     ui->labelImmatureText->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, immatureBalance, false, BitcoinUnits::separatorAlways));
  /*   ui->labelAnonymized->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, anonymizedBalance, false, BitcoinUnits::separatorAlways)); */
-    ui->labelTotal->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, balance + unconfirmedBalance + immatureBalance, false, BitcoinUnits::separatorAlways));
-    ui->labelWatchAvailable->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, watchOnlyBalance, false, BitcoinUnits::separatorAlways));
-    ui->labelWatchPending->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, watchUnconfBalance, false, BitcoinUnits::separatorAlways));
-    ui->labelWatchImmature->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, watchImmatureBalance, false, BitcoinUnits::separatorAlways));
-    ui->labelWatchTotal->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, watchOnlyBalance + watchUnconfBalance + watchImmatureBalance, false, BitcoinUnits::separatorAlways));
+    ui->labelTotalText->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, balance + unconfirmedBalance + immatureBalance, false, BitcoinUnits::separatorAlways));
+    ui->labelWatchAvailable_2->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, watchOnlyBalance, false, BitcoinUnits::separatorAlways));
+    ui->labelWatchPending_2->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, watchUnconfBalance, false, BitcoinUnits::separatorAlways));
+    ui->labelWatchImmature_2->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, watchImmatureBalance, false, BitcoinUnits::separatorAlways));
+    ui->labelWatchTotal_2->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, watchOnlyBalance + watchUnconfBalance + watchImmatureBalance, false, BitcoinUnits::separatorAlways));
 
     // only show immature (newly mined) balance if it's non-zero, so as not to complicate things
     // for the non-mining users
@@ -118,27 +118,27 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     // for symmetry reasons also show immature label when the watch-only one is shown
     ui->labelImmatureText->setVisible(showImmature || showWatchOnlyImmature);
     ui->labelImmatureText->setVisible(showImmature || showWatchOnlyImmature);
-    ui->labelWatchImmature->setVisible(showWatchOnlyImmature); // show watch-only immature balance
+    ui->labelWatchImmature_2->setVisible(showWatchOnlyImmature); // show watch-only immature balance
 }
 
 // show/hide watch-only labels
 void OverviewPage::updateWatchOnlyLabels(bool showWatchOnly)
 {
-   ui->labelTotal->setVisible(showWatchOnly);      // show spendable label (only when watch-only is active)
-    ui->labelWatchTotal->setVisible(showWatchOnly);      // show watch-only label
+   ui->labelTotalText->setVisible(showWatchOnly);      // show spendable label (only when watch-only is active)
+    ui->labelWatchTotal_2->setVisible(showWatchOnly);      // show watch-only label
  /*   ui->lineWatchBalance->setVisible(showWatchOnly);    // show watch-only balance separator line  */
-    ui->labelWatchAvailable->setVisible(showWatchOnly); // show watch-only available balance
-    ui->labelWatchPending->setVisible(showWatchOnly);   // show watch-only pending balance
-    ui->labelWatchTotal->setVisible(showWatchOnly);     // show watch-only total balance
+    ui->labelWatchAvailable_2->setVisible(showWatchOnly); // show watch-only available balance
+    ui->labelWatchPending_2->setVisible(showWatchOnly);   // show watch-only pending balance
+    ui->labelWatchTotal_2->setVisible(showWatchOnly);     // show watch-only total balance
 
     if (!showWatchOnly){
-        ui->labelWatchImmature->hide();
+        ui->labelWatchImmature_2->hide();
     }
     else{
         ui->labelBalanceText->setIndent(20);
-        ui->labelWatchPending->setIndent(20);
+        ui->labelWatchPending_2->setIndent(20);
         ui->labelImmatureText->setIndent(20);
-        ui->labelTotal->setIndent(20);
+        ui->labelTotalText->setIndent(20);
     }
 }
 
