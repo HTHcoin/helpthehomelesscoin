@@ -203,7 +203,6 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     coinbaseTx.vout[0].nValue = blockReward - GetDevelopersPayment(pindexPrev->nHeight, blockReward);
     coinbaseTx.vout[1].scriptPubKey = developersScript;
     coinbaseTx.vout[1].nValue =  GetDevelopersPayment(pindexPrev->nHeight, blockReward);
-    CAmount block_value = GetBlockValue(nHeight, pblock->nTime);
     ////////////////////////////////////////////////////////////////////////////////////
 
     if (!fDIP0003Active_context) {
