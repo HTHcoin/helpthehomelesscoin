@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>669</height>
+    <height>742</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -44,9 +44,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>270</y>
+        <y>330</y>
         <width>451</width>
-        <height>261</height>
+        <height>231</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -73,7 +73,7 @@
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>8</height>
+           <height>4</height>
           </size>
          </property>
         </spacer>
@@ -128,10 +128,13 @@ font-size: 20px;</string>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>40</height>
+           <height>104</height>
           </size>
          </property>
         </spacer>
@@ -236,7 +239,7 @@ font-size: 20px;</string>
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>99</height>
+           <height>30</height>
           </size>
          </property>
         </spacer>
@@ -246,8 +249,8 @@ font-size: 20px;</string>
      <widget class="QPushButton" name="pushButton_Website_4">
       <property name="geometry">
        <rect>
-        <x>470</x>
-        <y>430</y>
+        <x>480</x>
+        <y>550</y>
         <width>120</width>
         <height>30</height>
        </rect>
@@ -278,7 +281,7 @@ font-size: 20px;</string>
       <property name="geometry">
        <rect>
         <x>630</x>
-        <y>350</y>
+        <y>450</y>
         <width>120</width>
         <height>30</height>
        </rect>
@@ -314,8 +317,8 @@ font-size: 20px;</string>
      <widget class="QPushButton" name="pushButton_Website">
       <property name="geometry">
        <rect>
-        <x>470</x>
-        <y>350</y>
+        <x>480</x>
+        <y>450</y>
         <width>120</width>
         <height>30</height>
        </rect>
@@ -346,7 +349,7 @@ font-size: 20px;</string>
       <property name="geometry">
        <rect>
         <x>630</x>
-        <y>430</y>
+        <y>550</y>
         <width>120</width>
         <height>30</height>
        </rect>
@@ -376,8 +379,8 @@ font-size: 20px;</string>
      <widget class="QPushButton" name="pushButton_Website_2">
       <property name="geometry">
        <rect>
-        <x>800</x>
-        <y>350</y>
+        <x>790</x>
+        <y>450</y>
         <width>120</width>
         <height>30</height>
        </rect>
@@ -408,7 +411,7 @@ font-size: 20px;</string>
       <property name="geometry">
        <rect>
         <x>470</x>
-        <y>280</y>
+        <y>340</y>
         <width>151</width>
         <height>41</height>
        </rect>
@@ -424,7 +427,7 @@ font-size: 20px;</string>
       <property name="geometry">
        <rect>
         <x>650</x>
-        <y>280</y>
+        <y>340</y>
         <width>91</width>
         <height>41</height>
        </rect>
@@ -439,8 +442,8 @@ font-size: 20px;</string>
      <widget class="QLabel" name="label_4">
       <property name="geometry">
        <rect>
-        <x>790</x>
-        <y>280</y>
+        <x>780</x>
+        <y>340</y>
         <width>151</width>
         <height>41</height>
        </rect>
@@ -455,8 +458,8 @@ font-size: 20px;</string>
      <widget class="QPushButton" name="pushButton_Website_5">
       <property name="geometry">
        <rect>
-        <x>800</x>
-        <y>430</y>
+        <x>790</x>
+        <y>550</y>
         <width>120</width>
         <height>30</height>
        </rect>
@@ -483,257 +486,13 @@ font-size: 20px;</string>
        <string>NorthernEX</string>
       </property>
      </widget>
-     <widget class="QFrame" name="frame_blue_2">
-      <property name="geometry">
-       <rect>
-        <x>380</x>
-        <y>10</y>
-        <width>221</width>
-        <height>200</height>
-       </rect>
-      </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>220</width>
-        <height>200</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayout_2">
-         <item>
-          <widget class="QLabel" name="labelBalanceText">
-           <property name="text">
-            <string>Available:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_4">
-           <item>
-            <widget class="QLabel" name="labelWatchAvailable_2">
-             <property name="font">
-              <font>
-               <pointsize>-1</pointsize>
-              </font>
-             </property>
-             <property name="cursor">
-              <cursorShape>IBeamCursor</cursorShape>
-             </property>
-             <property name="toolTip">
-              <string>Your current balance in watch-only addresses</string>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">font-size: 15px</string>
-             </property>
-             <property name="text">
-              <string notr="true">0.000 000 00 BTC</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-             </property>
-             <property name="textInteractionFlags">
-              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer_3">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <widget class="QLabel" name="labelPendingText">
-           <property name="text">
-            <string>Pending:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_5">
-           <item>
-            <widget class="QLabel" name="labelWatchPending_2">
-             <property name="font">
-              <font>
-               <pointsize>-1</pointsize>
-              </font>
-             </property>
-             <property name="cursor">
-              <cursorShape>IBeamCursor</cursorShape>
-             </property>
-             <property name="toolTip">
-              <string>Unconfirmed transactions to watch-only addresses</string>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">font-size: 15px</string>
-             </property>
-             <property name="text">
-              <string notr="true">0.000 000 00 BTC</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-             </property>
-             <property name="textInteractionFlags">
-              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer_4">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <widget class="QLabel" name="labelImmatureText">
-           <property name="text">
-            <string>Immature:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_6">
-           <item>
-            <widget class="QLabel" name="labelWatchImmature_2">
-             <property name="font">
-              <font>
-               <pointsize>-1</pointsize>
-              </font>
-             </property>
-             <property name="cursor">
-              <cursorShape>IBeamCursor</cursorShape>
-             </property>
-             <property name="toolTip">
-              <string>Mined balance in watch-only addresses that has not yet matured</string>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">font-size: 15px</string>
-             </property>
-             <property name="text">
-              <string notr="true">0.000 000 00 BTC</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-             </property>
-             <property name="textInteractionFlags">
-              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer_5">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="QLabel" name="labelTotalText_2">
-         <property name="text">
-          <string>Total:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_7">
-         <item>
-          <widget class="QLabel" name="labelWatchTotal_2">
-           <property name="font">
-            <font>
-             <pointsize>-1</pointsize>
-            </font>
-           </property>
-           <property name="cursor">
-            <cursorShape>IBeamCursor</cursorShape>
-           </property>
-           <property name="toolTip">
-            <string>Current total balance in watch-only addresses</string>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font-size: 15px</string>
-           </property>
-           <property name="text">
-            <string notr="true">0.000 000 00 BTC</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-           <property name="textInteractionFlags">
-            <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_6">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
-      </layout>
-     </widget>
      <widget class="QLabel" name="label_6">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>210</y>
+        <x>270</x>
+        <y>260</y>
         <width>371</width>
-        <height>51</height>
+        <height>41</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -763,13 +522,311 @@ color: #debf12;</string>
        <enum>QFrame::Raised</enum>
       </property>
      </widget>
-     <widget class="QLabel" name="labelBalance">
+     <widget class="QLabel" name="labelWatchonly">
+      <property name="geometry">
+       <rect>
+        <x>459</x>
+        <y>40</y>
+        <width>81</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Watch-only:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelWatchAvailable">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>70</y>
+        <width>140</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="cursor">
+       <cursorShape>IBeamCursor</cursorShape>
+      </property>
+      <property name="toolTip">
+       <string>Your current balance in watch-only addresses</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 15px;</string>
+      </property>
+      <property name="text">
+       <string notr="true">0.000 000 00</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="textInteractionFlags">
+       <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelWatchPending">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>110</y>
+        <width>140</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="cursor">
+       <cursorShape>IBeamCursor</cursorShape>
+      </property>
+      <property name="toolTip">
+       <string>Unconfirmed transactions to watch-only addresses</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 15px;</string>
+      </property>
+      <property name="text">
+       <string notr="true">0.000 000 00</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="textInteractionFlags">
+       <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelWatchImmature">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>150</y>
+        <width>140</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="cursor">
+       <cursorShape>IBeamCursor</cursorShape>
+      </property>
+      <property name="toolTip">
+       <string>Mined balance in watch-only addresses that has not yet matured</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 15px;</string>
+      </property>
+      <property name="text">
+       <string notr="true">0.000 000 00</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="textInteractionFlags">
+       <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelWatchTotal">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>190</y>
+        <width>181</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="cursor">
+       <cursorShape>IBeamCursor</cursorShape>
+      </property>
+      <property name="toolTip">
+       <string>Current total balance in watch-only addresses</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 25px;</string>
+      </property>
+      <property name="text">
+       <string notr="true">0.000 000 00</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="textInteractionFlags">
+       <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+      </property>
+     </widget>
+     <widget class="Line" name="lineWatchBalance">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>170</y>
+        <width>140</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>140</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelTotal">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>130</y>
-        <width>331</width>
-        <height>61</height>
+        <y>190</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="cursor">
+       <cursorShape>IBeamCursor</cursorShape>
+      </property>
+      <property name="toolTip">
+       <string>Your current total balance</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 25px</string>
+      </property>
+      <property name="text">
+       <string notr="true">0.000 000 00</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="textInteractionFlags">
+       <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelTotalText_3">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>190</y>
+        <width>50</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Total:</string>
+      </property>
+     </widget>
+     <widget class="Line" name="lineSpendableBalance">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>170</y>
+        <width>156</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelImmature">
+      <property name="geometry">
+       <rect>
+        <x>93</x>
+        <y>140</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="cursor">
+       <cursorShape>IBeamCursor</cursorShape>
+      </property>
+      <property name="toolTip">
+       <string>Mined balance that has not yet matured</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 15px</string>
+      </property>
+      <property name="text">
+       <string notr="true">0.000 000 00</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="textInteractionFlags">
+       <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelUnconfirmed">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>110</y>
+        <width>111</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="cursor">
+       <cursorShape>IBeamCursor</cursorShape>
+      </property>
+      <property name="toolTip">
+       <string>Total of transactions that have yet to be confirmed, and do not yet count toward the spendable balance</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 15px</string>
+      </property>
+      <property name="text">
+       <string notr="true">0.000 000 00</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="textInteractionFlags">
+       <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelBalance_2">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>70</y>
+        <width>131</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="font">
@@ -784,10 +841,10 @@ color: #debf12;</string>
        <string>Your current spendable balance</string>
       </property>
       <property name="styleSheet">
-       <string notr="true">font-size: 35px</string>
+       <string notr="true">font-size: 15px;</string>
       </property>
       <property name="text">
-       <string notr="true">0.000 000 00 BTC</string>
+       <string notr="true">0.000 000 00</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -796,85 +853,111 @@ color: #debf12;</string>
        <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
       </property>
      </widget>
-     <widget class="QFrame" name="frame_3">
+     <widget class="QLabel" name="labelImmatureText_2">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>10</y>
-        <width>301</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_4">
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_8">
-         <item>
-          <widget class="QLabel" name="label_5">
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Balances</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="labelWalletStatus">
-           <property name="toolTip">
-            <string>The displayed information may be out of date. Your wallet automatically synchronizes with the Dash network after a connection is established, but this process has not completed yet.</string>
-           </property>
-           <property name="text">
-            <string notr="true">(out of sync)</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_8">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QLabel" name="labelTotalText">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>90</y>
-        <width>101</width>
+        <x>300</x>
+        <y>150</y>
+        <width>50</width>
         <height>16</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">font-size: 15px</string>
+      <property name="text">
+       <string>Immature:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelPendingText_2">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>110</y>
+        <width>50</width>
+        <height>16</height>
+       </rect>
       </property>
       <property name="text">
-       <string>Total:</string>
+       <string>Pending:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelBalanceText_2">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>80</y>
+        <width>50</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Available:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelSpendable">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>40</y>
+        <width>94</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Spendable:</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignCenter</set>
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>115</x>
+        <y>10</y>
+        <width>471</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_9">
+       <item>
+        <widget class="QLabel" name="label_7">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Balances</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelWalletStatus_2">
+         <property name="toolTip">
+          <string>The displayed information may be out of date. Your wallet automatically synchronizes with the Dash network after a connection is established, but this process has not completed yet.</string>
+         </property>
+         <property name="text">
+          <string notr="true">(out of sync)</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_9">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>
