@@ -19,6 +19,10 @@
 #include "utilitydialog.h"
 #include "walletmodel.h"
 #include "rpc/blockchain.cpp"
+#include "chainparams.h"
+#include "amount.h"
+#include "validation.h"
+#include "wallet/wallet.h"
 
 #include "instantx.h"
 #include "masternode-sync.h"
@@ -37,6 +41,7 @@
 #define DECORATION_SIZE 54
 #define NUM_ITEMS 5
 #define NUM_ITEMS_ADV 7
+
 
 #include "overviewpage.moc"
 
@@ -63,6 +68,10 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
      
     ui->pushButton_Website->setStatusTip(tr("Visit Help The Homeless Worldwide A NJ Nonprofit Corporation"));
     ui->pushButton_Website_1->setStatusTip(tr("Visit Help The Homeless Coin"));
+    ui->pushButton_Website_2->setStatusTip(tr("Visit AltMarkets.io to trade Help The Homeless Coin"));
+    ui->pushButton_Website_3->setStatusTip(tr("Visit Open Chainz to see the Help The Homeless Coin Explorer"));  
+    ui->pushButton_Website_4->setStatusTip(tr("Visit Help The Homeless Worldwide A NJ Nonprofit Corporation Partners"));
+    ui->pushButton_Website_5->setStatusTip(tr("Visit AltMarkets.io to trade Help The Homeless Coin"));  
         
     // init "out of sync" warning labels
     ui->labelWalletStatus->setText("(" + tr("out of sync") + ")");
@@ -96,13 +105,13 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     currentBalance = balance;
     currentUnconfirmedBalance = unconfirmedBalance;
     currentImmatureBalance = immatureBalance;
-  /*  currentAnonymizedBalance = anonymizedBalance; */
+    currentAnonymizedBalance = anonymizedBalance;
     currentWatchOnlyBalance = watchOnlyBalance;
     currentWatchUnconfBalance = watchUnconfBalance;
     currentWatchImmatureBalance = watchImmatureBalance;
-    ui->labelBalanceText->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, balance, false, BitcoinUnits::separatorAlways));
-    ui->labelWatchPending->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, unconfirmedBalance, false, BitcoinUnits::separatorAlways));
-    ui->labelImmatureText->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, immatureBalance, false, BitcoinUnits::separatorAlways));
+    ui->labelBalance->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, balance, false, BitcoinUnits::separatorAlways));
+    ui->labelUnconfirmed->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, unconfirmedBalance, false, BitcoinUnits::separatorAlways));
+    ui->labelImmature->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, immatureBalance, false, BitcoinUnits::separatorAlways));
  /*   ui->labelAnonymized->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, anonymizedBalance, false, BitcoinUnits::separatorAlways)); */
     ui->labelTotal->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, balance + unconfirmedBalance + immatureBalance, false, BitcoinUnits::separatorAlways));
     ui->labelWatchAvailable->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, watchOnlyBalance, false, BitcoinUnits::separatorAlways));
@@ -116,17 +125,27 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     bool showWatchOnlyImmature = watchImmatureBalance != 0;
 
     // for symmetry reasons also show immature label when the watch-only one is shown
-    ui->labelImmatureText->setVisible(showImmature || showWatchOnlyImmature);
+    ui->labelImmature->setVisible(showImmature || showWatchOnlyImmature);
     ui->labelImmatureText->setVisible(showImmature || showWatchOnlyImmature);
     ui->labelWatchImmature->setVisible(showWatchOnlyImmature); // show watch-only immature balance
+
+  /*  updatePrivateSendProgress(); */
+
+    if (walletModel) {
+        int numISLocks = walletModel->getNumISLocks();
+        if(cachedNumISLocks != numISLocks) {
+            cachedNumISLocks = numISLocks;
+         /*   ui->listTransactions->update(); */
+        }
+    }
 }
 
 // show/hide watch-only labels
 void OverviewPage::updateWatchOnlyLabels(bool showWatchOnly)
 {
-   ui->labelTotal->setVisible(showWatchOnly);      // show spendable label (only when watch-only is active)
-    ui->labelWatchTotal->setVisible(showWatchOnly);      // show watch-only label
- /*   ui->lineWatchBalance->setVisible(showWatchOnly);    // show watch-only balance separator line  */
+    ui->labelSpendable->setVisible(showWatchOnly);      // show spendable label (only when watch-only is active)
+    ui->labelWatchonly->setVisible(showWatchOnly);      // show watch-only label
+    ui->lineWatchBalance->setVisible(showWatchOnly);    // show watch-only balance separator line
     ui->labelWatchAvailable->setVisible(showWatchOnly); // show watch-only available balance
     ui->labelWatchPending->setVisible(showWatchOnly);   // show watch-only pending balance
     ui->labelWatchTotal->setVisible(showWatchOnly);     // show watch-only total balance
@@ -135,9 +154,9 @@ void OverviewPage::updateWatchOnlyLabels(bool showWatchOnly)
         ui->labelWatchImmature->hide();
     }
     else{
-        ui->labelBalanceText->setIndent(20);
-        ui->labelWatchPending->setIndent(20);
-        ui->labelImmatureText->setIndent(20);
+        ui->labelBalance->setIndent(20);
+        ui->labelUnconfirmed->setIndent(20);
+        ui->labelImmature->setIndent(20);
         ui->labelTotal->setIndent(20);
     }
 }
@@ -148,8 +167,8 @@ void OverviewPage::setClientModel(ClientModel *model)
     if(model)
     {
         // Show warning if this is a prerelease version
-       /* connect(model, SIGNAL(alertsChanged(QString)), this, SLOT(updateAlerts(QString)));
-         updateAlerts(model->getStatusBarWarnings()); */
+     /*   connect(model, SIGNAL(alertsChanged(QString)), this, SLOT(updateAlerts(QString)));
+        updateAlerts(model->getStatusBarWarnings()); */
     }
 }
 
@@ -158,7 +177,7 @@ void OverviewPage::setWalletModel(WalletModel *model)
     this->walletModel = model;
     if(model && model->getOptionsModel())
     {
-        // update the display unit, to not use the default ("HTH")
+        // update the display unit, to not use the default ("DASH")
         updateDisplayUnit();
         // Keep up to date with wallet
         setBalance(model->getBalance(), model->getUnconfirmedBalance(), model->getImmatureBalance(), model->getAnonymizedBalance(),
@@ -167,11 +186,10 @@ void OverviewPage::setWalletModel(WalletModel *model)
 
         connect(model->getOptionsModel(), SIGNAL(displayUnitChanged(int)), this, SLOT(updateDisplayUnit()));
         updateWatchOnlyLabels(model->haveWatchOnly());
-        connect(model, SIGNAL(notifyWatchonlyChanged(bool)), this, SLOT(updateWatchOnlyLabels(bool)));    
+        connect(model, SIGNAL(notifyWatchonlyChanged(bool)), this, SLOT(updateWatchOnlyLabels(bool)));
+
     }
 }
-
-
 
 void OverviewPage::updateDisplayUnit()
 {
@@ -185,7 +203,16 @@ void OverviewPage::updateDisplayUnit()
     }
 }
 
-/**** Blockchain Information *****/
+
+void OverviewPage::showOutOfSyncWarning(bool fShow)
+{
+    ui->labelWalletStatus->setVisible(fShow);  
+
+ /*   ui->labelTransactionsStatus->setVisible(fShow);  */
+}
+    
+    
+    /**** Blockchain Information *****/
 
 void OverviewPage::updateBlockChainInfo()
 {
@@ -209,13 +236,6 @@ void OverviewPage::updateBlockChainInfo()
                 /**** End Blockchain Information ******/
 
 
-
-void OverviewPage::showOutOfSyncWarning(bool fShow)
-{
-    ui->labelWalletStatus->setVisible(fShow);  
-
- /*   ui->labelTransactionsStatus->setVisible(fShow);  */
-}
 
 /************** HTH Worldwide Button ******************/
  
