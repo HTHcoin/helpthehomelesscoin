@@ -200,8 +200,8 @@ void OverviewPage::updateBlockChainInfo()
     int CurrentBlock = clientModel->getNumBlocks();
     /*int CurrentBlock = (int)chainActive.Height(); */
     int64_t BlockReward = GetBlockSubsidy/*(chainActive.Height(), tip_time)*/;
-    int64_t MasternodePayment = GetMasternodePayment(nHeight, BlockReward);
-    int64_t DevelopersPayement = GetDevelopersPayment(nHeight, BlockReward);
+    int64_t MasternodePayment = GetMasternodePayment(height, BlockReward);
+    int64_t DevelopersPayement = GetDevelopersPayment(height, BlockReward);
     double BlockRewardHTH =  static_cast<double>(BlockReward)/static_cast<double>(COIN);
     double CurrentDiff = GetDifficulty();
     
