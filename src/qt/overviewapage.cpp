@@ -121,14 +121,14 @@ OverviewAPage::OverviewAPage(const PlatformStyle *platformStyle, QWidget *parent
     timer(nullptr),
     ui(new Ui::OverviewAPage),
     clientModel(0),
-    walletModel(0)
+    walletModel(0),
     currentBalance(-1),
     currentUnconfirmedBalance(-1),
     currentImmatureBalance(-1),
     currentWatchOnlyBalance(-1),
     currentWatchUnconfBalance(-1),
     currentWatchImmatureBalance(-1),
-    cachedNumISLocks(-1),
+    cachedNumISLocks(-1)
  /*   txdelegate(new TxViewDelegate(platformStyle, this)) */
 {
     nDisplayUnit = 0; // just make sure it's not unitialized   
@@ -240,20 +240,21 @@ void OverviewAPage::setBalance(const CAmount& balance, const CAmount& unconfirme
 }
 
 // show/hide watch-only labels
- void OverviewAPage::updateWatchOnlyLabels(bool showWatchOnly)
+void OverviewPage::updateWatchOnlyLabels(bool showWatchOnly)
 {
-    ui->labelTotal->setVisible(showWatchOnly);      // show spendable label (only when watch-only is active)
-    ui->labelTotal->setVisible(showWatchOnly);      // show watch-only label
-    ui->labelBalance->setVisible(showWatchOnly);    // show watch-only balance separator line
-    ui->labelWatchImmature->setVisible(showWatchOnly); // show watch-only available balance
-    ui->labelWatchImmature->setVisible(showWatchOnly);   // show watch-only pending balance
-    ui->labelTotal->setVisible(showWatchOnly);     // show watch-only total balance
+   ui->labelTotal->setVisible(showWatchOnly);      // show spendable label (only when watch-only is active)
+    ui->labelWatchTotal->setVisible(showWatchOnly);      // show watch-only label
+ /*   ui->lineWatchBalance->setVisible(showWatchOnly);    // show watch-only balance separator line  */
+    ui->labelWatchAvailable->setVisible(showWatchOnly); // show watch-only available balance
+    ui->labelWatchPending->setVisible(showWatchOnly);   // show watch-only pending balance
+    ui->labelWatchTotal->setVisible(showWatchOnly);     // show watch-only total balance
+
     if (!showWatchOnly){
         ui->labelWatchImmature->hide();
     }
     else{
-        ui->labelBalance->setIndent(20);
-        ui->labelUnconfirmed->setIndent(20);
+        ui->labelBalanceText->setIndent(20);
+        ui->labelWatchPending->setIndent(20);
         ui->labelImmatureText->setIndent(20);
         ui->labelTotal->setIndent(20);
     }
