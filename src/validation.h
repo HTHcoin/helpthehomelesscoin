@@ -293,7 +293,7 @@ CAmount GetBlockSubsidy(int nBits, int nHeight, const Consensus::Params& consens
 CAmount GetMasternodePayment(int nHeight, CAmount blockValue);
 CAmount GetDevelopersPayment(int nHeight, CAmount blockValue);
 CAmount GetBlockSubsidy(int nHeight, CAmount blockValue); 
-
+CAmount GetConsensus(CAmount blockReward = nFees + GetBlockSubsidy, CAmount blockRewardNoFees = GetBlockSubsidy);
 
 /** Guess verification progress (as a fraction between 0.0=genesis and 1.0=current tip). */
 double GuessVerificationProgress(const ChainTxData& data, CBlockIndex* pindex);
