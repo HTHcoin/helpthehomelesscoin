@@ -184,14 +184,14 @@ color: #debf12;</string>
                </widget>
               </item>
               <item row="2" column="0">
-               <widget class="QLabel" name="labelAnonymizedText_2">
+               <widget class="QLabel" name="labelAnonymizedText">
                 <property name="text">
                  <string>PrivateSend Balance:</string>
                 </property>
                </widget>
               </item>
               <item row="2" column="1">
-               <widget class="QLabel" name="labelAnonymized_2">
+               <widget class="QLabel" name="labelAnonymized">
                 <property name="font">
                  <font>
                   <weight>75</weight>
