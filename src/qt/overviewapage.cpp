@@ -240,7 +240,7 @@ void OverviewAPage::setBalance(const CAmount& balance, const CAmount& unconfirme
 }
 
 // show/hide watch-only labels
-void OverviewPage::updateWatchOnlyLabels(bool showWatchOnly)
+void OverviewAPage::updateWatchOnlyLabels(bool showWatchOnly)
 {
    ui->labelTotal->setVisible(showWatchOnly);      // show spendable label (only when watch-only is active)
     ui->labelWatchTotal->setVisible(showWatchOnly);      // show watch-only label
