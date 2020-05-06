@@ -80,7 +80,7 @@ private Q_SLOTS:
     void updateAdvancedPSUI(bool fShowAdvancedPSUI); 
   /*  void handleTransactionClicked(const QModelIndex &index);
    void updateAlerts(const QString &warnings); */
-    void updateWatchOnlyLabels(bool showWatchOnly);
+  /*  void updateWatchOnlyLabels(bool showWatchOnly); */
     void handleOutOfSyncWarningClicks();
     void on_pushButton_Website_clicked();
     void on_pushButton_Website_1_clicked();
