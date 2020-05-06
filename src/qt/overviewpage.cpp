@@ -202,8 +202,8 @@ void OverviewPage::updateBlockChainInfo()
     int64_t BlockReward = GetBlockSubsidy/*(chainActive.Height(), tip_time)*/;
     double BlockRewardHTH =  static_cast<double>(BlockReward)/static_cast<double>(COIN);
     double CurrentDiff = GetDifficulty();
-    double MasternodePayment = GetMasternodePayment(int nHeight, CAmount blockValue);
-    double DevelopersPayement = GetDevelopersPayment(int nHeight, CAmount blockValue);
+    double MasternodePayment = GetMasternodePayment(/*int nHeight, CAmount blockValue*/);
+    double DevelopersPayement = GetDevelopersPayment(/*int nHeight, CAmount blockValue*/);
   
     ui->label_CurrentBlock_value_3->setText(QString::number(CurrentBlock));
     ui->label_Nethash_3->setText(tr("Difficulty:"));
