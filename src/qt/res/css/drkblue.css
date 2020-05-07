@@ -2043,21 +2043,12 @@ QStatusBar QLabel {
 
    /********** HTH AREA **********/
 
-.QPushButton#pushButton_Website {
-	
-              onClicked: {
-            Qt.openUrlExternally("https://helpthehomelessworldwide.org/");
-              }
-	
-          }
 
-.QPushButton#pushButton_Website_1 {
-	
-              onClicked: {
-            Qt.openUrlExternally("https://hth.world/");
-              }
-	
-          }
+QWidget .QFrame#frame .QLabel#label_6 {
+        border: transparent;
+        font-size: 25px;
+	color: #debf12;
+    }
 
 QWidget .QFrame#frame .QLabel#label_2 {
         border: transparent;
