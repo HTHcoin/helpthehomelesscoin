@@ -1,13 +1,15 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
-// Copyright (c) 2014-2020 The Dash Core developers
+// Copyright (c) 2014-2018 The Dash Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "overviewpage.h"
 #include "ui_overviewpage.h"
 
+
 #include "bitcoinunits.h"
 #include "clientmodel.h"
+#include "guiconstants.h"
 #include "guiutil.h"
 #include "init.h"
 #include "optionsmodel.h"
@@ -16,19 +18,30 @@
 #include "transactiontablemodel.h"
 #include "utilitydialog.h"
 #include "walletmodel.h"
+#include "rpc/blockchain.cpp"
+#include "chainparams.h"
+#include "amount.h"
+#include "validation.h"
+#include "wallet/wallet.h"
 
-#include "masternode/masternode-sync.h"
-#include "privatesend/privatesend-client.h"
+#include "instantx.h"
+#include "masternode-sync.h"
+
 
 #include <QAbstractItemDelegate>
 #include <QPainter>
 #include <QSettings>
 #include <QTimer>
+#include <QUrl>
+#include <QDesktopServices>
+#include <QtNetwork/QNetworkAccessManager>	
+#include <QtNetwork/QNetworkReply>
 
 #define ICON_OFFSET 16
 #define DECORATION_SIZE 54
 #define NUM_ITEMS 5
 #define NUM_ITEMS_ADV 7
+
 
 /*class TxViewDelegate : public QAbstractItemDelegate
 {
