@@ -80,11 +80,10 @@
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_14">
-         <item alignment="Qt::AlignLeft|Qt::AlignVCenter">
-          <widget class="QLabel" name="label">
+         <item alignment="Qt::AlignHCenter">
+          <widget class="QLabel" name="label_7">
            <property name="styleSheet">
-            <string notr="true">border: transparent;
-font-size: 20px;</string>
+            <string notr="true"/>
            </property>
            <property name="text">
             <string>Block Height</string>
@@ -107,11 +106,10 @@ font-size: 20px;</string>
            </property>
           </spacer>
          </item>
-         <item alignment="Qt::AlignLeft|Qt::AlignVCenter">
+         <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
           <widget class="QLabel" name="label_24hblockchaininfo_1">
            <property name="styleSheet">
-            <string notr="true">border: transparent;
-font-size: 20px;</string>
+            <string notr="true"/>
            </property>
            <property name="text">
             <string>Network Hashrate</string>
@@ -167,7 +165,7 @@ font-size: 20px;</string>
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">font-size: 15px</string>
+             <string notr="true"/>
             </property>
             <property name="text">
              <string>Current block:</string>
@@ -192,7 +190,7 @@ font-size: 20px;</string>
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">font-size: 15px;</string>
+             <string notr="true"/>
             </property>
             <property name="text">
              <string>0</string>
@@ -215,7 +213,7 @@ font-size: 20px;</string>
           <item row="3" column="2">
            <widget class="QLabel" name="label_Nethash_3">
             <property name="styleSheet">
-             <string notr="true">font-size: 15px;</string>
+             <string notr="true"/>
             </property>
             <property name="text">
              <string>Network MHs:</string>
@@ -417,7 +415,7 @@ font-size: 20px;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font-size: 20px;</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>HTH Worldwide</string>
@@ -433,7 +431,7 @@ font-size: 20px;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font-size: 20px;</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>HTH Coin</string>
@@ -449,7 +447,7 @@ font-size: 20px;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font-size: 20px;</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>HTH Exchanges</string>
@@ -496,8 +494,7 @@ font-size: 20px;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font-size: 30px;
-color: #debf12;</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>HTH Information</string>
