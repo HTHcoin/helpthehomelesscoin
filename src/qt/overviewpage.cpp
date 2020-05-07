@@ -65,7 +65,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     ui->pushButton_Website_1->setStatusTip(tr("Visit Help The Homeless Coin"));
         
     // init "out of sync" warning labels
-    ui->labelWalletStatus_2->setText("(" + tr("out of sync") + ")");
+    ui->labelWalletStatus->setText("(" + tr("out of sync") + ")");
   
     //information block update
    
@@ -100,11 +100,11 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     currentWatchOnlyBalance = watchOnlyBalance;
     currentWatchUnconfBalance = watchUnconfBalance;
     currentWatchImmatureBalance = watchImmatureBalance;
-    ui->labelBalanceText_2->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, balance, false, BitcoinUnits::separatorAlways));
+    ui->labelBalanceText->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, balance, false, BitcoinUnits::separatorAlways));
     ui->labelWatchPending->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, unconfirmedBalance, false, BitcoinUnits::separatorAlways));
-    ui->labelImmatureText_2->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, immatureBalance, false, BitcoinUnits::separatorAlways));
+    ui->labelImmatureText->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, immatureBalance, false, BitcoinUnits::separatorAlways));
  /*   ui->labelAnonymized->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, anonymizedBalance, false, BitcoinUnits::separatorAlways)); */
-    ui->labelTotalText_3->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, balance + unconfirmedBalance + immatureBalance, false, BitcoinUnits::separatorAlways));
+    ui->labelTotalText->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, balance + unconfirmedBalance + immatureBalance, false, BitcoinUnits::separatorAlways));
     ui->labelWatchAvailable->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, watchOnlyBalance, false, BitcoinUnits::separatorAlways));
     ui->labelWatchPending->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, watchUnconfBalance, false, BitcoinUnits::separatorAlways));
     ui->labelWatchImmature->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, watchImmatureBalance, false, BitcoinUnits::separatorAlways));
@@ -116,15 +116,15 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     bool showWatchOnlyImmature = watchImmatureBalance != 0;
 
     // for symmetry reasons also show immature label when the watch-only one is shown
-    ui->labelImmatureText_2->setVisible(showImmature || showWatchOnlyImmature);
-    ui->labelImmatureText_2->setVisible(showImmature || showWatchOnlyImmature);
+    ui->labelImmatureText->setVisible(showImmature || showWatchOnlyImmature);
+    ui->labelImmatureText->setVisible(showImmature || showWatchOnlyImmature);
     ui->labelWatchImmature->setVisible(showWatchOnlyImmature); // show watch-only immature balance
 }
 
 // show/hide watch-only labels
 void OverviewPage::updateWatchOnlyLabels(bool showWatchOnly)
 {
-   ui->labelTotalText_3->setVisible(showWatchOnly);      // show spendable label (only when watch-only is active)
+   ui->labelTotalText->setVisible(showWatchOnly);      // show spendable label (only when watch-only is active)
     ui->labelWatchTotal->setVisible(showWatchOnly);      // show watch-only label
  /*   ui->lineWatchBalance->setVisible(showWatchOnly);    // show watch-only balance separator line  */
     ui->labelWatchAvailable->setVisible(showWatchOnly); // show watch-only available balance
@@ -135,10 +135,10 @@ void OverviewPage::updateWatchOnlyLabels(bool showWatchOnly)
         ui->labelWatchImmature->hide();
     }
     else{
-        ui->labelBalanceText_2->setIndent(20);
+        ui->labelBalanceText->setIndent(20);
         ui->labelWatchPending->setIndent(20);
-        ui->labelImmatureText_2->setIndent(20);
-        ui->labelTotalText_3->setIndent(20);
+        ui->labelImmatureText->setIndent(20);
+        ui->labelTotalText->setIndent(20);
     }
 }
 
@@ -212,7 +212,7 @@ void OverviewPage::updateBlockChainInfo()
 
 void OverviewPage::showOutOfSyncWarning(bool fShow)
 {
-    ui->labelWalletStatus_2->setVisible(fShow);  
+    ui->labelWalletStatus->setVisible(fShow);  
 
  /*   ui->labelTransactionsStatus->setVisible(fShow);  */
 }
