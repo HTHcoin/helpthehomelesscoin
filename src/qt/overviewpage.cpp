@@ -143,7 +143,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     currentWatchOnlyBalance(-1),
     currentWatchUnconfBalance(-1),
     currentWatchImmatureBalance(-1),
-    cachedNumISLocks(-1),
+    cachedNumISLocks(-1)
    /* txdelegate(new TxViewDelegate(platformStyle, this)) */
 {
     ui->setupUi(this);
@@ -158,8 +158,8 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
 
     // init "out of sync" warning labels
     ui->labelWalletStatus->setText("(" + tr("out of sync") + ")");
-    ui->labelPrivateSendSyncStatus->setText("(" + tr("out of sync") + ")");
-   /* ui->labelTransactionsStatus->setText("(" + tr("out of sync") + ")"); */
+  /*  ui->labelPrivateSendSyncStatus->setText("(" + tr("out of sync") + ")");
+    ui->labelTransactionsStatus->setText("(" + tr("out of sync") + ")"); */
 
     // hide PS frame (helps to preserve saved size)
     // we'll setup and make it visible in updateAdvancedPSUI() later if we are not in litemode
