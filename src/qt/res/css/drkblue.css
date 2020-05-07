@@ -615,7 +615,7 @@ color:#34bcaa;
 
 QToolBar > QToolButton:checked {
 background-color: #181728;
-color:#34bcaa;
+color:#debf12;
 font-weight:bold;
 }
 
@@ -2058,3 +2058,16 @@ QStatusBar QLabel {
               }
 	
           }
+
+
+
+			/********* Blockchain Information **********/
+
+
+
+QWidget .QFrame#frame .QLabel#label_CurrentBlock {
+        font-size:15px;
+        color: #debf12;
+    }
+
+
