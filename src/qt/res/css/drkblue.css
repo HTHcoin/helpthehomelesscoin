@@ -508,8 +508,8 @@ font-weight: bold;
         min-height:15px;
         outline:0;
         padding:3px;
-        background-color:#1e1d32;
-        color:#34bcaa;
+        background-color:#fff;
+        color:#000;
 
         border-bottom-color:#4d458c;
         border-top-color:#4d458c;
@@ -530,7 +530,7 @@ font-weight: bold;
 
 
     .QValidatedLineEdit, .QLineEdit:focus{
-        background-color:#1e1d32;
+        background-color:#fff;
         font-size:12px;
     }
 
@@ -1368,6 +1368,11 @@ QStatusBar QLabel {
 
 
     /*************** ######## TRANSACTION DETAILS DIALOG ########*****************/
+
+    QDialog#TransactionDescDialog {
+	background-color:#1e1d32;
+}
+
     QDialog#TransactionDescDialog QTextEdit { /* Contents of Receive Coin Dialog */
         background-color: #1e1d32;
         color: #34bcaa;
