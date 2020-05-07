@@ -43,95 +43,10 @@
 #define NUM_ITEMS_ADV 7
 
 
-/*class TxViewDelegate : public QAbstractItemDelegate
-{
-    Q_OBJECT
-public:
-    TxViewDelegate(const PlatformStyle *_platformStyle, QObject *parent=nullptr):
-        QAbstractItemDelegate(), unit(BitcoinUnits::DASH),
-        platformStyle(_platformStyle)
-    {
-
-    }
-
-    inline void paint(QPainter *painter, const QStyleOptionViewItem &option,
-                      const QModelIndex &index ) const
-    {
-        painter->save();
-
-        QIcon icon = qvariant_cast<QIcon>(index.data(TransactionTableModel::RawDecorationRole));
-        QRect mainRect = option.rect;
-        mainRect.moveLeft(ICON_OFFSET);
-        QRect decorationRect(mainRect.topLeft(), QSize(DECORATION_SIZE, DECORATION_SIZE));
-        int xspace = DECORATION_SIZE + 8;
-        int ypad = 6;
-        int halfheight = (mainRect.height() - 2*ypad)/2;
-        QRect amountRect(mainRect.left() + xspace, mainRect.top()+ypad, mainRect.width() - xspace - ICON_OFFSET, halfheight);
-        QRect addressRect(mainRect.left() + xspace, mainRect.top()+ypad+halfheight, mainRect.width() - xspace, halfheight);
-        icon = platformStyle->SingleColorIcon(icon);
-        icon.paint(painter, decorationRect);
-
-        QDateTime date = index.data(TransactionTableModel::DateRole).toDateTime();
-        QString address = index.data(Qt::DisplayRole).toString();
-        qint64 amount = index.data(TransactionTableModel::AmountRole).toLongLong();
-        bool confirmed = index.data(TransactionTableModel::ConfirmedRole).toBool();
-        QVariant value = index.data(Qt::ForegroundRole);
-        QColor foreground = option.palette.color(QPalette::Text);
-        if(value.canConvert<QBrush>())
-        {
-            QBrush brush = qvariant_cast<QBrush>(value);
-            foreground = brush.color();
-        }
-
-        painter->setPen(foreground);
-        QRect boundingRect;
-        painter->drawText(addressRect, Qt::AlignLeft|Qt::AlignVCenter, address, &boundingRect);
-
-        if (index.data(TransactionTableModel::WatchonlyRole).toBool())
-        {
-            QIcon iconWatchonly = qvariant_cast<QIcon>(index.data(TransactionTableModel::WatchonlyDecorationRole));
-            QRect watchonlyRect(boundingRect.right() + 5, mainRect.top()+ypad+halfheight, 16, halfheight);
-            iconWatchonly.paint(painter, watchonlyRect);
-        }
-
-        if(amount < 0)
-        {
-            foreground = GUIUtil::getThemedQColor(GUIUtil::ThemedColor::NEGATIVE);
-        }
-        else if(!confirmed)
-        {
-            foreground = GUIUtil::getThemedQColor(GUIUtil::ThemedColor::UNCONFIRMED);
-        }
-        else
-        {
-            foreground = option.palette.color(QPalette::Text);
-        }
-        painter->setPen(foreground);
-        QString amountText = BitcoinUnits::floorWithUnit(unit, amount, true, BitcoinUnits::separatorAlways);
-        if(!confirmed)
-        {
-            amountText = QString("[") + amountText + QString("]");
-        }
-        painter->drawText(amountRect, Qt::AlignRight|Qt::AlignVCenter, amountText);
-
-        painter->setPen(option.palette.color(QPalette::Text));
-        painter->drawText(amountRect, Qt::AlignLeft|Qt::AlignVCenter, GUIUtil::dateTimeStr(date));
-
-        painter->restore();
-    }
-
-    inline QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
-    {
-        return QSize(DECORATION_SIZE, DECORATION_SIZE);
-    }
-
-    int unit;
-    const PlatformStyle *platformStyle;
-
-}; */
 #include "overviewpage.moc"
 
 OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) :
+  
     QWidget(parent),
     timer(nullptr),
     ui(new Ui::OverviewPage),
@@ -144,59 +59,35 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     currentWatchUnconfBalance(-1),
     currentWatchImmatureBalance(-1),
     cachedNumISLocks(-1)
-   /* txdelegate(new TxViewDelegate(platformStyle, this)) */
+    
 {
+               
     ui->setupUi(this);
+    QString theme = GUIUtil::getThemeName();
 
-  /*  // Recent transactions
-    ui->listTransactions->setItemDelegate(txdelegate);
-    ui->listTransactions->setIconSize(QSize(DECORATION_SIZE, DECORATION_SIZE));
-    // Note: minimum height of listTransactions will be set later in updateAdvancedPSUI() to reflect actual settings
-    ui->listTransactions->setAttribute(Qt::WA_MacShowFocusRect, false);
-
-    connect(ui->listTransactions, SIGNAL(clicked(QModelIndex)), this, SLOT(handleTransactionClicked(QModelIndex))); */
-
+     
+    ui->pushButton_Website->setStatusTip(tr("Visit Help The Homeless Worldwide A NJ Nonprofit Corporation"));
+    ui->pushButton_Website_1->setStatusTip(tr("Visit Help The Homeless Coin"));
+    ui->pushButton_Website_2->setStatusTip(tr("Visit AltMarkets.io to trade Help The Homeless Coin"));
+    ui->pushButton_Website_3->setStatusTip(tr("Visit Open Chainz to see the Help The Homeless Coin Explorer"));  
+    ui->pushButton_Website_4->setStatusTip(tr("Visit Help The Homeless Worldwide A NJ Nonprofit Corporation Partners"));
+    ui->pushButton_Website_5->setStatusTip(tr("Visit AltMarkets.io to trade Help The Homeless Coin"));  
+        
     // init "out of sync" warning labels
     ui->labelWalletStatus->setText("(" + tr("out of sync") + ")");
-  /*  ui->labelPrivateSendSyncStatus->setText("(" + tr("out of sync") + ")");
-    ui->labelTransactionsStatus->setText("(" + tr("out of sync") + ")"); */
-
-    // hide PS frame (helps to preserve saved size)
-    // we'll setup and make it visible in updateAdvancedPSUI() later if we are not in litemode
-  /*  ui->framePrivateSend->setVisible(false); */
-
+  
+    //information block update
+   
+    timerinfo_blockchain = new QTimer(this);
+    connect(timerinfo_blockchain, SIGNAL(timeout()), this, SLOT(updateBlockChainInfo()));
+    timerinfo_blockchain->start(1000); //30sec      
+              
     // start with displaying the "out of sync" warnings
     showOutOfSyncWarning(true);
 
-  /*  if(!privateSendClient.fEnablePrivateSend) return;
-
-    // Disable any PS UI for masternode or when autobackup is disabled or failed for whatever reason
-    if(fMasternodeMode || nWalletBackups <= 0){
-        DisablePrivateSendCompletely();
-        if (nWalletBackups <= 0) {
-            ui->labelPrivateSendEnabled->setToolTip(tr("Automatic backups are disabled, no mixing available!"));
-        }
-    } else {
-        if(!privateSendClient.fPrivateSendRunning){
-            ui->togglePrivateSend->setText(tr("Start Mixing"));
-        } else {
-            ui->togglePrivateSend->setText(tr("Stop Mixing"));
-        }
-        // Disable privateSendClient builtin support for automatic backups while we are in GUI,
-        // we'll handle automatic backups and user warnings in privateSendStatus()
-        privateSendClient.fCreateAutoBackups = false;
-
-        timer = new QTimer(this);
-        connect(timer, SIGNAL(timeout()), this, SLOT(privateSendStatus()));
-        timer->start(1000);
-    }
-} 
-
-void OverviewPage::handleTransactionClicked(const QModelIndex &index)
-{
-    if(filter)
-        Q_EMIT transactionClicked(filter->mapToSource(index));
-} */
+    // that's it for litemode
+    if(fLiteMode) return;
+}
 
 void OverviewPage::handleOutOfSyncWarningClicks()
 {
@@ -205,7 +96,7 @@ void OverviewPage::handleOutOfSyncWarningClicks()
 
 OverviewPage::~OverviewPage()
 {
- /*   if(timer) disconnect(timer, SIGNAL(timeout()), this, SLOT(privateSendStatus()));
+    /*if(timer) disconnect(timer, SIGNAL(timeout()), this, SLOT(privateSendStatus()));
     delete ui; */
 }
 
