@@ -2061,19 +2061,19 @@ QStatusBar QLabel {
 
 QWidget .QFrame#frame .QLabel#label_2 {
         border: transparent;
-        font-size: 30px;
+        font-size: 20px;
 	color: #debf12;
     }
 
 QWidget .QFrame#frame .QLabel#label_3 {
         border: transparent;
-        font-size: 30px;
+        font-size: 20px;
 	color: #debf12;
     }
 
 QWidget .QFrame#frame .QLabel#label_4 {
         border: transparent;
-        font-size: 30px;
+        font-size: 20px;
 	color: #debf12;
     }
 
@@ -2081,7 +2081,7 @@ QWidget .QFrame#frame .QLabel#label_4 {
 
 QWidget .QFrame#frame .QLabel#label_7 {
         border: transparent;
-        font-size: 30px;
+        font-size: 20px;
 	color: #debf12;
     }
 
