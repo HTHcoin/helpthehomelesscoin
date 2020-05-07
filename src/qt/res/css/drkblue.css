@@ -2062,19 +2062,19 @@ QStatusBar QLabel {
 QWidget .QFrame#frame .QLabel#label_2 {
         border: transparent;
         font-size: 30px;
-	color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #debf12, stop: .1 #debf12, stop: .95 #34bcaa, stop: 1 #34bcaa);
+	color: #debf12;
     }
 
 QWidget .QFrame#frame .QLabel#label_3 {
         border: transparent;
         font-size: 30px;
-	color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #debf12, stop: .1 #debf12, stop: .95 #34bcaa, stop: 1 #34bcaa);
+	ccolor: #debf12;
     }
 
 QWidget .QFrame#frame .QLabel#label_4 {
         border: transparent;
         font-size: 30px;
-	color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #debf12, stop: .1 #debf12, stop: .95 #34bcaa, stop: 1 #34bcaa);
+	color: #debf12;
     }
 
 			/********* Blockchain Information **********/
@@ -2086,13 +2086,13 @@ QWidget .QFrame#frame .QLabel#label_6 {
 QWidget .QFrame#frame .QLabel#label_Block_Height {
         border: transparent;
         font-size: 20px;
-	color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #debf12, stop: .1 #debf12, stop: .95 #34bcaa, stop: 1 #34bcaa);
+	color: #debf12;
     }
 
 QWidget .QFrame#frame .QLabel#label_24hblockchaininfo_1 {
         border: transparent;
         font-size: 20px;
-	color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #debf12, stop: .1 #debf12, stop: .95 #34bcaa, stop: 1 #34bcaa);
+	color: #debf12;
     }
 
 QWidget .QFrame#frame .QLabel#label_CurrentBlock {
