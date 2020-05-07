@@ -73,7 +73,7 @@
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>4</height>
+           <height>3</height>
           </size>
          </property>
         </spacer>
@@ -134,7 +134,7 @@ font-size: 20px;</string>
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>104</height>
+           <height>105</height>
           </size>
          </property>
         </spacer>
@@ -574,7 +574,7 @@ color: #debf12;</string>
             <string>The displayed information may be out of date. Your wallet automatically synchronizes with the Dash network after a connection is established, but this process has not completed yet.</string>
            </property>
            <property name="styleSheet">
-            <string notr="true">font-size: 15px</string>
+            <string notr="true">font-size: 15px; color:rgb(255, 15, 15); </string>
            </property>
            <property name="text">
             <string notr="true">(out of sync)</string>
