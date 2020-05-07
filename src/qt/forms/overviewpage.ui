@@ -118,28 +118,22 @@
            </property>
           </spacer>
          </item>
-         <item alignment="Qt::AlignLeft|Qt::AlignVCenter">
+         <item alignment="Qt::AlignHCenter">
           <widget class="QLabel" name="label_24hblockchaininfo_1">
            <property name="minimumSize">
             <size>
-             <width>113</width>
+             <width>100</width>
              <height>0</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>150</width>
+             <width>70</width>
              <height>16777215</height>
             </size>
            </property>
-           <property name="styleSheet">
-            <string notr="true"/>
-           </property>
            <property name="text">
-            <string>Network Hashrate</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignRight</set>
+            <string>Network </string>
            </property>
           </widget>
          </item>
@@ -444,6 +438,9 @@
       <property name="text">
        <string>HTH Worldwide</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
      <widget class="QLabel" name="label_3">
       <property name="geometry">
@@ -460,6 +457,9 @@
       <property name="text">
        <string>HTH Coin</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
      <widget class="QLabel" name="label_4">
       <property name="geometry">
@@ -470,11 +470,20 @@
         <height>41</height>
        </rect>
       </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="styleSheet">
        <string notr="true"/>
       </property>
       <property name="text">
        <string>HTH Exchanges</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_Website_5">
