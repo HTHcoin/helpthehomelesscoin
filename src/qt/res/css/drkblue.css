@@ -2068,7 +2068,7 @@ QWidget .QFrame#frame .QLabel#label_2 {
 QWidget .QFrame#frame .QLabel#label_3 {
         border: transparent;
         font-size: 30px;
-	ccolor: #debf12;
+	color: #debf12;
     }
 
 QWidget .QFrame#frame .QLabel#label_4 {
@@ -2083,7 +2083,7 @@ QWidget .QFrame#frame .QLabel#label_6 {
         color: #debf12;
     }
 
-QWidget .QFrame#frame .QLabel#label_Block_Height {
+QWidget .QFrame#frame .QLabel#label_BlockHeight {
         border: transparent;
         font-size: 20px;
 	color: #debf12;
