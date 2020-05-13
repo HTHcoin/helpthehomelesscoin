@@ -209,7 +209,9 @@ void OverviewPage::updateDisplayUnit()
   {
           (timerinfo_mn->interval() == 1000);
            timerinfo_mn->setInterval(180000);
-        ui->countLabelDIP3->setText(NumConnections);
+        
+           int MNCount = clientModel->getNumConnections();
+           ui->label_count_2->setText(QString::number(MNCount));
   }
 }
 
