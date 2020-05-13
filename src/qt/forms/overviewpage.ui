@@ -275,20 +275,20 @@
             </property>
            </spacer>
           </item>
-          <item row="0" column="2">
+          <item row="0" column="3" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
            <widget class="QLabel" name="label_count_2">
             <property name="styleSheet">
-             <string notr="true"/>
+             <string notr="true">font-size: 10px;</string>
             </property>
             <property name="text">
-             <string>Node Count:</string>
+             <string>Please Wait...</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="3" alignment="Qt::AlignRight">
-           <widget class="QLabel" name="countLabelDIP3">
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelMN">
             <property name="text">
-             <string>0</string>
+             <string>Masternodes:</string>
             </property>
            </widget>
           </item>
