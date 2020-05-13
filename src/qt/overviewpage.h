@@ -12,6 +12,9 @@
 #include <memory>
 #include <QDesktopServices>
 
+#define MASTERNODELIST_UPDATE_SECONDS 3
+#define MASTERNODELIST_FILTER_COOLDOWN_SECONDS 3
+
 class ClientModel;
 class TransactionFilterProxy;
 /* class TxViewDelegate; */
@@ -80,7 +83,7 @@ private:
     std::unique_ptr<TransactionFilterProxy> filter; */
     
  /*   void SetupTransactionList(int nNumItems); */
-
+    QString strCurrentFilterDIP3;
 
 
 private Q_SLOTS:
