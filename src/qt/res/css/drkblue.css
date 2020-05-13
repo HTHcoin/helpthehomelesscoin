@@ -673,11 +673,11 @@ QStatusBar QLabel {
 
   
     /*************** Watch Only Section*****************/
-    QWidget .QFrame#frame_3 { /*blue frame 2 - detail balance */
+ /*   QWidget .QFrame#frame_3 { 
 
         background-color:transparent;
         border-style: 1px solid;
-     }
+     } */
 
 
      QWidget .QFrame#frame_3 .QLabel#labelBalanceText { /*available text */
@@ -693,7 +693,7 @@ QStatusBar QLabel {
      }
 
 
-     QWidget .QFrame#frame_3 .QLabel#labelSpendable { /*esbcoin */
+     QWidget .QFrame#frame_3 .QLabel#labelSpendable { 
         background-color:transparent;
         color:#34bcaa;
         font-size:15px;
@@ -711,7 +711,7 @@ QStatusBar QLabel {
         font-size:15px;
      }
 
-     QWidget .QFrame#frame_3 .QLabel#labelWatchAvailble { /*esbcoin */
+     QWidget .QFrame#frame_3 .QLabel#labelWatchAvailable { /*esbcoin */
         background-color:transparent;
         color:#34bcaa;
         font-size:15px;
@@ -755,17 +755,6 @@ QStatusBar QLabel {
         font-size:15px;
      } 
 
- QWidget .QFrame#frame_3 .QLabel#lineSpendableBalance { 
-        background-color:transparent;
-        color:#34bcaa;
-        font-size:15px;
-     } 
-
- QWidget .QFrame#frame_3 .QLabel#labelWatchBalance {
-        background-color:transparent;
-        color:#34bcaa;
-        font-size:15px;
-     } 
 	 
         /*************** ########bottom status bar########*****************/
 
