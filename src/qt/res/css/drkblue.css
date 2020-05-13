@@ -671,15 +671,6 @@ QStatusBar QLabel {
             font-size:15px;
          }
 
-  
-    /*************** Watch Only Section*****************/
- /*   QWidget .QFrame#frame_3 { 
-
-        background-color:transparent;
-        border-style: 1px solid;
-     } */
-
-
      QWidget .QFrame#frame_3 .QLabel#labelBalanceText { /*available text */
         background-color:transparent;
         color:#34bcaa;
