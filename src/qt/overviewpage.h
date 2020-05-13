@@ -7,9 +7,13 @@
 
 #include "amount.h"
 
+#include <QMenu>
 #include <QWidget>
 #include <memory>
 #include <QDesktopServices>
+
+#define MASTERNODELIST_UPDATE_SECONDS 3
+#define MASTERNODELIST_FILTER_COOLDOWN_SECONDS 3
 
 class ClientModel;
 class TransactionFilterProxy;
@@ -17,9 +21,11 @@ class TransactionFilterProxy;
 class PlatformStyle;
 class WalletModel;
 
+
 namespace Ui {
     class OverviewPage;
 }
+
 
 QT_BEGIN_NAMESPACE
 class QModelIndex;
@@ -38,12 +44,13 @@ public:
     void setWalletModel(WalletModel *walletModel);
     void showOutOfSyncWarning(bool fShow);
     
+        
+    
 
 public Q_SLOTS:
   
     void setBalance(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance, const CAmount& anonymizedBalance,
                     const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance);
-
   
 Q_SIGNALS:
 /*    void transactionClicked(const QModelIndex &index); */
@@ -51,6 +58,10 @@ Q_SIGNALS:
    
 
 private:
+
+    int64_t nTimeFilterUpdatedDIP3;
+    int64_t nTimeUpdatedDIP3;
+    bool fFilterUpdatedDIP3;
     QTimer *timer;
     QTimer* timerinfo_blockchain;
     Ui::OverviewPage *ui;
@@ -63,6 +74,7 @@ private:
     CAmount currentWatchOnlyBalance;
     CAmount currentWatchUnconfBalance;
     CAmount currentWatchImmatureBalance;
+    CAmount GetBlockSubsidy;
     int nDisplayUnit;
   /*  bool fShowAdvancedPSUI; */
     int cachedNumISLocks;
@@ -71,6 +83,7 @@ private:
     std::unique_ptr<TransactionFilterProxy> filter; */
     
  /*   void SetupTransactionList(int nNumItems); */
+    QString strCurrentFilterDIP3;
 
 
 private Q_SLOTS:
@@ -89,6 +102,8 @@ private Q_SLOTS:
     void on_pushButton_Website_4_clicked();
     void on_pushButton_Website_5_clicked();
     void updateBlockChainInfo();
+    
+    
     
  };
 
