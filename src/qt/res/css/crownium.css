@@ -1,6 +1,6 @@
- /*************** Frame_3 Logo section*****************/
+/*************** Frame_3 Logo section*****************/
 
-    QWidget .QFrame#frame_2 { /* logo */
+   QWidget .QFrame#frame_2 { /* logo */
         border-image: url(':/images/drkblue/drkblue_walletFrame_bgA');
         border-style:none;
 }
@@ -18,7 +18,6 @@ background-color: transparent;
 padding-top: 20px;  /* Originally 20px */
 padding-bottom: 50px;  /* Originally 20px */
 }
-
 
 QStatusBar {
 background-color: transparent;
@@ -801,23 +800,23 @@ padding-right:5px;
 
 /* OVERVIEW SCREEN */
 
-/*************** Frame_blue_4 section*****************/
+ /*************** Frame_3 section*****************/
 
 
-    QWidget .QFrame#frame_blue_4 { /*blue frame 1 - total balance */
+    QWidget .QFrame#frame_3 { /*blue frame 1 - total balance */
 
         background-color:transparent;
         border-style: none;
      }
 
 
-     QWidget .QFrame#frame_blue_4 .QLabel#label_5 { /* Balance Label */
+     QWidget .QFrame#frame_3 .QLabel#label_5 { /* Balance Label */
             background-color:transparent;
             color:#000;
             font-size:20px;
           }
 
-    QWidget .QFrame#frame_blue_4 .QLabel#labelWalletStatus { /* out of sync */
+    QWidget .QFrame#frame_3 .QLabel#labelWalletStatus { /* out of sync */
             background-color:transparent;
             color:rgb(255, 15, 15);
             margin-top: 2px;
@@ -826,25 +825,25 @@ padding-right:5px;
          }
 
 
-    QWidget .QFrame#frame_blue_4 .QLabel#labelTotalText { /* Total text Label */
+    QWidget .QFrame#frame_3 .QLabel#labelTotalText { /* Total text Label */
             background-color:transparent;
             color:#000;
             font-size:15px;
          }
 
 
-    QWidget .QFrame#frame_blue_4 .QLabel#labelTotal { /* Total balance count Label */
+    QWidget .QFrame#frame_3 .QLabel#labelTotal { /* Total balance count Label */
             background-color:transparent;
             color:#000;
             font-weight: 100;
             font-size:55px;
          }
 
-    /* QWidget .QPushButton#blabel_esbcoin {
+    /* QWidget .QFrame#frame_3 {
             background-color: transparent;
             border:0;
             border-radius:0px;
-            color: #fff;
+            color: #000;
             font-size:35px;
             padding-left:0px;
             padding-right:0px;
@@ -854,65 +853,65 @@ padding-right:5px;
 
 
     /*************** Frame_blue_2 section*****************/
-    QWidget .QFrame#frame_blue_2 { /*blue frame 2 - detail balance */
+    QWidget .QFrame#frame_3 { /*blue frame 2 - detail balance */
 
         background-color:transparent;
         border-style: 1px solid;
      }
 
 
-     QWidget .QFrame#frame_blue_2 .QLabel#labelBalanceText { /*available text */
+     QWidget .QFrame#frame_3 .QLabel#labelBalanceText { /*available text */
         background-color:transparent;
         color:#000;
         font-size:15px;
      }
 
-     QWidget .QFrame#frame_blue_2 .QLabel#labelBalance {/*available */
+     QWidget .QFrame#frame_3 .QLabel#labelBalance {/*available */
         background-color:transparent;
         color:#000;
         font-size:30px;
      }
 
 
-     QWidget .QFrame#frame_blue_2 .QLabel#label_esbcoin2 { /*esbcoin */
+     QWidget .QFrame#frame_3 .QLabel#label_esbcoin2 { /*esbcoin */
         background-color:transparent;
         color:#000;
         font-size:15px;
      }
 
-     QWidget .QFrame#frame_blue_2 .QLabel#labelPendingText { /*pending text */
+     QWidget .QFrame#frame_3 .QLabel#labelPendingText { /*pending text */
         background-color:transparent;
         color:#000;
         font-size:15px;
      }
 
-     QWidget .QFrame#frame_blue_2 .QLabel#labelUnconfirmed { /*pending(unconfirmed) */
+     QWidget .QFrame#frame_3 .QLabel#labelUnconfirmed { /*pending(unconfirmed) */
         background-color:transparent;
         color:#000;
         font-size:15px;
      }
 
-     QWidget .QFrame#frame_blue_2 .QLabel#label_esbcoin3 { /*esbcoin */
+     QWidget .QFrame#frame_3 .QLabel#label_esbcoin3 { /*esbcoin */
         background-color:transparent;
         color:#000;
         font-size:15px;
      }
 
-     QWidget .QFrame#frame_blue_2 .QLabel#labelImmatureText { /*Immature text */
+     QWidget .QFrame#frame_3 .QLabel#labelImmatureText { /*Immature text */
         background-color:transparent;
         color:#000;
         font-size:15px;
      }
 
 
-     QWidget .QFrame#frame_blue_2 .QLabel#labelImmature { /*Immature */
+     QWidget .QFrame#frame_3 .QLabel#labelImmature { /*Immature */
         background-color:transparent;
         color:#000;
         font-size:30px;
      }
 
 
-     QWidget .QFrame#frame_blue_2 .QLabel#label_esbcoin4 { /*esbcoin */
+     QWidget .QFrame#frame_3 .QLabel#label_esbcoin4 { /*esbcoin */
         background-color:transparent;
         color:#000;
         font-size:15px;
