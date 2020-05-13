@@ -205,7 +205,7 @@ void OverviewPage::updateBlockChainInfo()
     {
         int CurrentBlock = clientModel->getNumBlocks();
        /* int64_t netHashRate = chainActive.GetNetworkHashPS(24, CurrentBlock-1); */
-          double MNCount = GetNodeCount;
+          double MNCount = GetNodeCount(NumConnections num);
        /*  double BlockRewardHTH =  static_cast<double>(BlockRewardHTH/COIN); */
         double CurrentDiff = GetDifficulty();
       
