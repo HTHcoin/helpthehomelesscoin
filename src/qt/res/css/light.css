@@ -803,20 +803,20 @@ padding-right:5px;
 /*************** Frame_blue_4 section*****************/
 
 
-    QWidget .QFrame#frame_blue_4 { /*blue frame 1 - total balance */
+    QWidget .QFrame#frame_3 { /*blue frame 1 - total balance */
 
         background-color:transparent;
         border-style: none;
      }
 
 
-     QWidget .QFrame#frame_blue_4 .QLabel#label_5 { /* Balance Label */
+     QWidget .QFrame#frame_3 .QLabel#label_5 { /* Balance Label */
             background-color:transparent;
             color:#000;
             font-size:20px;
           }
 
-    QWidget .QFrame#frame_blue_4 .QLabel#labelWalletStatus { /* out of sync */
+    QWidget .QFrame#frame_3 .QLabel#labelWalletStatus { /* out of sync */
             background-color:transparent;
             color:rgb(255, 15, 15);
             margin-top: 2px;
@@ -825,14 +825,14 @@ padding-right:5px;
          }
 
 
-    QWidget .QFrame#frame_blue_4 .QLabel#labelTotalText { /* Total text Label */
+    QWidget .QFrame#frame_3 .QLabel#labelTotalText { /* Total text Label */
             background-color:transparent;
             color:#000;
             font-size:15px;
          }
 
 
-    QWidget .QFrame#frame_blue_4 .QLabel#labelTotal { /* Total balance count Label */
+    QWidget .QFrame#frame_3 .QLabel#labelTotal { /* Total balance count Label */
             background-color:transparent;
             color:#000;
             font-weight: 100;
