@@ -60,8 +60,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     currentWatchUnconfBalance(-1),
     currentWatchImmatureBalance(-1),
     cachedNumISLocks(-1),
-    nTimeUpdatedDIP3(0),
-    mnListChanged(true)
+    nTimeUpdatedDIP3(0)
     
 {
                
