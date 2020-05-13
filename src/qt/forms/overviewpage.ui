@@ -529,7 +529,7 @@ font-size: 11px;</string>
        <string>NorthernEX</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_6">
+     <widget class="QLabel" name="labelHTHInfo">
       <property name="geometry">
        <rect>
         <x>700</x>
