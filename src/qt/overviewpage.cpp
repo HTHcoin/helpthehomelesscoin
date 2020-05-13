@@ -217,6 +217,13 @@ void OverviewPage::updateBlockChainInfo()
     }
 }
 
+
+size_t GetNodeCount(NumConnections num);
+    void GetNodeStats(std::vector<CNodeStats>& vstats);
+    bool DisconnectNode(const std::string& node);
+    bool DisconnectNode(NodeId id);
+
+
                 /**** End Blockchain Information ******/
 
 
