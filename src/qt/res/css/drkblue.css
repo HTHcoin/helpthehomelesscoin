@@ -651,32 +651,35 @@ QStatusBar QLabel {
      /*************** ########Frame_blue section########*****************/
 
  /*    QWidget .QFrame#frame {  blue frame 
+
         border-image: url(':/images_dblue/frame_blue') 0 0 0 0 stretch stretch;
         background-repeat:none;
+
         background-image: url(':/images_dblue/frame_blue');
         background-repeat: repeat-xy;
         background-position: left center;
+
         border-style: none; 
      } */
 
 
-    /*************** Frame_blue_4 section*****************/
+    /*************** Balances Section*****************/
 
 
-    QWidget .QFrame#frame_blue_4 { /*blue frame 1 - total balance */
+    QWidget .QFrame#frame_3 { /* total balance */
 
         background-color:transparent;
         border-style: none;
      }
 
 
-     QWidget .QFrame#frame_blue_4 .QLabel#label_5 { /* Balance Label */
+     QWidget .QFrame#frame_3 .QLabel#label_5 { /* Balance Label */
             background-color:transparent;
             color:#34bcaa;
             font-size:20px;
           }
 
-    QWidget .QFrame#frame_blue_4 .QLabel#labelWalletStatus { /* out of sync */
+    QWidget .QFrame#frame_3 .QLabel#labelWalletStatus { /* out of sync */
             background-color:transparent;
             color:rgb(255, 15, 15);
             margin-top: 2px;
@@ -685,21 +688,21 @@ QStatusBar QLabel {
          }
 
 
-    QWidget .QFrame#frame_blue_4 .QLabel#labelTotalText { /* Total text Label */
+    QWidget .QFrame#frame_3 .QLabel#labelTotalText { /* Total text Label */
             background-color:transparent;
             color:#34bcaa;
             font-size:15px;
          }
 
 
-    QWidget .QFrame#frame_blue_4 .QLabel#labelTotal { /* Total balance count Label */
+    QWidget .QFrame#frame_3 .QLabel#labelTotal { /* Total balance count Label */
             background-color:transparent;
             color:#34bcaa;
             font-weight: 100;
             font-size:55px;
          }
 
-    /* QWidget .QPushButton#blabel_esbcoin {
+    /* QWidget .QFrame#frame_3 {
             background-color: transparent;
             border:0;
             border-radius:0px;
@@ -712,72 +715,100 @@ QStatusBar QLabel {
          } */
 
 
-    /*************** Frame_blue_2 section*****************/
-    QWidget .QFrame#frame_blue_2 { /*blue frame 2 - detail balance */
+    /*************** Watch Only Section*****************/
+    QWidget .QFrame#frame_3 { /*blue frame 2 - detail balance */
 
         background-color:transparent;
         border-style: 1px solid;
      }
 
 
-     QWidget .QFrame#frame_blue_2 .QLabel#labelBalanceText { /*available text */
+     QWidget .QFrame#frame_3 .QLabel#labelBalanceText { /*available text */
         background-color:transparent;
         color:#34bcaa;
         font-size:15px;
      }
 
-     QWidget .QFrame#frame_blue_2 .QLabel#labelBalance {/*available */
+     QWidget .QFrame#frame_3 .QLabel#labelBalance {/*available */
         background-color:transparent;
         color:#34bcaa;
         font-size:30px;
      }
 
 
-     QWidget .QFrame#frame_blue_2 .QLabel#label_esbcoin2 { /*esbcoin */
+     QWidget .QFrame#frame_3 .QLabel#labelSpendable { /*esbcoin */
+        background-color:transparent;
+        color:#34bcaa;
+        font-size:15px;
+     } // this one above
+
+     QWidget .QFrame#frame_3 .QLabel#labelPendingText { /*pending text */
         background-color:transparent;
         color:#34bcaa;
         font-size:15px;
      }
 
-     QWidget .QFrame#frame_blue_2 .QLabel#labelPendingText { /*pending text */
+     QWidget .QFrame#frame_3 .QLabel#labelUnconfirmed { /*pending(unconfirmed) */
         background-color:transparent;
         color:#34bcaa;
         font-size:15px;
      }
 
-     QWidget .QFrame#frame_blue_2 .QLabel#labelUnconfirmed { /*pending(unconfirmed) */
+     QWidget .QFrame#frame_3 .QLabel#labelWatchAvailble { /*esbcoin */
         background-color:transparent;
         color:#34bcaa;
         font-size:15px;
-     }
+     } // this one above
 
-     QWidget .QFrame#frame_blue_2 .QLabel#label_esbcoin3 { /*esbcoin */
-        background-color:transparent;
-        color:#34bcaa;
-        font-size:15px;
-     }
-
-     QWidget .QFrame#frame_blue_2 .QLabel#labelImmatureText { /*Immature text */
+     QWidget .QFrame#frame_3 .QLabel#labelImmatureText { /*Immature text */
         background-color:transparent;
         color:#34bcaa;
         font-size:15px;
      }
 
 
-     QWidget .QFrame#frame_blue_2 .QLabel#labelImmature { /*Immature */
+     QWidget .QFrame#frame_3 .QLabel#labelImmature { /*Immature */
         background-color:transparent;
         color:#34bcaa;
         font-size:30px;
      }
 
 
-     QWidget .QFrame#frame_blue_2 .QLabel#label_esbcoin4 { /*esbcoin */
+     QWidget .QFrame#frame_3 .QLabel#labelWatchImmature { /*esbcoin */
         background-color:transparent;
         color:#34bcaa;
         font-size:15px;
-     }
+     } // this one above
 
+ QWidget .QFrame#frame_3 .QLabel#labelWatchPending { /*esbcoin */
+        background-color:transparent;
+        color:#34bcaa;
+        font-size:15px;
+     } // this one above
 
+ QWidget .QFrame#frame_3 .QLabel#labelWatchTotal { /*esbcoin */
+        background-color:transparent;
+        color:#34bcaa;
+        font-size:15px;
+     } // this one above
+
+ QWidget .QFrame#frame_3 .QLabel#labelWatchonly { /*esbcoin */
+        background-color:transparent;
+        color:#34bcaa;
+        font-size:15px;
+     } // this one above
+
+ QWidget .QFrame#frame_3 .QLabel#lineSpendableBalance { /*esbcoin */
+        background-color:transparent;
+        color:#34bcaa;
+        font-size:15px;
+     } // this one above
+
+ QWidget .QFrame#frame_3 .QLabel#labelWatchBalance { /*esbcoin */
+        background-color:transparent;
+        color:#34bcaa;
+        font-size:15px;
+     } // this one above
 	 
         /*************** ########bottom status bar########*****************/
 
@@ -2033,20 +2064,64 @@ QStatusBar QLabel {
         border-color: #4D458C;
     }
 
+ /********* HTH Information Area ***********/
 
 
-.QPushButton#pushButton_Website {
-	
-              onClicked: {
-            Qt.openUrlExternally("https://helpthehomelessworldwide.org/");
-              }
-	
-          }
+ QWidget .QFrame#frameBlockchainInfo_2 .QLabel#label_7 { 
+        background-color:transparent;
+        color:#34bcaa;
+        font-size:15px;
+     }
 
-.QPushButton#pushButton_Website_1 {
-	
-              onClicked: {
-            Qt.openUrlExternally("https://hth.world/");
-              }
-	
-          }
+QWidget .QFrame#frameBlockchainInfo_2 .QLabel#countLabelDIP3 { 
+        background-color:transparent;
+        color:#34bcaa;
+        font-size:15px;
+     }
+
+QWidget .QFrame#frameBlockchainInfo_2 .QLabel#label_Algo { 
+        background-color:transparent;
+        color:#34bcaa;
+        font-size:15px;
+     }
+
+QWidget .QFrame#frameBlockchainInfo_2 .QLabel#label_Algo_1 { 
+        background-color:transparent;
+        color:#34bcaa;
+        font-size:15px;
+     }
+
+QWidget .QFrame#frameBlockchainInfo_2 .QLabel#label_CurrentBlock { 
+        background-color:transparent;
+        color:#34bcaa;
+        font-size:15px;
+     }
+
+QWidget .QFrame#frameBlockchainInfo_2 .QLabel#label_CurrentBlock_value_3 { 
+        background-color:transparent;
+        color:#34bcaa;
+        font-size:15px;
+     }
+
+QWidget .QFrame#frameBlockchainInfo_2 .QLabel#label_Nethash_3 { 
+        background-color:transparent;
+        color:#34bcaa;
+        font-size:15px;
+     }
+
+QWidget .QFrame#frameBlockchainInfo_2 .QLabel#label_Nethash_value_3 { 
+        background-color:transparent;
+        color:#34bcaa;
+        font-size:15px;
+     }
+QWidget .QFrame#frameBlockchainInfo_2 .QLabel#label_count_2 { 
+        background-color:transparent;
+        color:#34bcaa;
+        font-size:15px;
+     }
+
+QWidget .QFrame#frameBlockchainInfo_2 .QLabel#label_6 { 
+        background-color:transparent;
+        color:#34bcaa;
+        font-size:15px;
+     }
