@@ -59,7 +59,10 @@ Q_SIGNALS:
 
 private:
 
-    
+    QMenu* contextMenuDIP3;
+    int64_t nTimeFilterUpdatedDIP3;
+    int64_t nTimeUpdatedDIP3;
+    bool fFilterUpdatedDIP3;
     QTimer *timer;
     QTimer* timerinfo_mn;
     QTimer* timerinfo_blockchain;
