@@ -41,7 +41,9 @@ ClientModel::ClientModel(OptionsModel *_optionsModel, QObject *parent) :
     optionsModel(_optionsModel),
     peerTableModel(0),
     banTableModel(0),
-    pollTimer(0)
+    pollTimer(0),
+    nTimeUpdatedDIP3(0),
+    mnListChanged(true)
 {
     cachedBestHeaderHeight = -1;
     cachedBestHeaderTime = -1;
@@ -79,23 +81,13 @@ int ClientModel::getNumConnections(unsigned int flags) const
 
 void ClientModel::GetValidMNsCount()
 {
-    
-    
+     
     nTimeUpdatedDIP3 = GetTime();
     auto projectedPayees = mnList.GetProjectedMNPayees(mnList.GetValidMNsCount());
     std::map<uint256, int> nextPayments;
     for (size_t i = 0; i < projectedPayees.size(); i++) {
         const auto& dmn = projectedPayees[i];
         nextPayments.emplace(dmn->proTxHash, mnList.GetHeight() + (int)i + 1);
-    }
-
-    std::set<COutPoint> setOutpts;
-    if (walletModel && ui->checkBoxMyMasternodesOnly->isChecked()) {
-        std::vector<COutPoint> vOutpts;
-        walletModel->listProTxCoins(vOutpts);
-        for (const auto& outpt : vOutpts) {
-            setOutpts.emplace(outpt);
-        }
     }
 }        
 
