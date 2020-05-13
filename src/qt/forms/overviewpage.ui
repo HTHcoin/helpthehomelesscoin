@@ -136,7 +136,7 @@
           <enum>QFrame::Raised</enum>
          </property>
          <layout class="QGridLayout" name="gridLayout_5">
-          <item row="3" column="1">
+          <item row="4" column="1">
            <widget class="QLabel" name="label_CurrentBlock_value_3">
             <property name="minimumSize">
              <size>
@@ -161,7 +161,7 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
+          <item row="4" column="0">
            <widget class="QLabel" name="label_CurrentBlock">
             <property name="minimumSize">
              <size>
@@ -186,7 +186,7 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="3" alignment="Qt::AlignRight">
+          <item row="4" column="3" alignment="Qt::AlignRight">
            <widget class="QLabel" name="label_Nethash_value_3">
             <property name="text">
              <string>0</string>
@@ -196,7 +196,7 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="2" alignment="Qt::AlignHCenter">
+          <item row="4" column="2" alignment="Qt::AlignHCenter">
            <widget class="QLabel" name="label_Nethash_3">
             <property name="styleSheet">
              <string notr="true"/>
@@ -259,7 +259,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
+          <item row="2" column="0">
            <spacer name="verticalSpacer_4">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
@@ -275,13 +275,20 @@
             </property>
            </spacer>
           </item>
-          <item row="0" column="2" colspan="2">
+          <item row="0" column="2">
            <widget class="QLabel" name="label_count_2">
             <property name="styleSheet">
              <string notr="true"/>
             </property>
             <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-family:'SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace'; font-size:12px; color:#6a737d; background-color:#ffffff;&quot;&gt;&amp;lt;li&amp;gt;Master Nodes &amp;lt;span&amp;gt; %1&amp;lt;/span&amp;gt;&amp;lt;br&amp;gt; &amp;lt;/li&amp;gt;&amp;quot;).arg( clientModel-&amp;gt;getNumConnections());&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>Node Count:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QLabel" name="countLabelDIP3">
+            <property name="text">
+             <string>0</string>
             </property>
            </widget>
           </item>
@@ -989,19 +996,6 @@ font-size: 11px;</string>
         </layout>
        </item>
       </layout>
-     </widget>
-     <widget class="QLabel" name="countLabelDIP3">
-      <property name="geometry">
-       <rect>
-        <x>390</x>
-        <y>630</y>
-        <width>8</width>
-        <height>18</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>0</string>
-      </property>
      </widget>
     </widget>
    </item>
