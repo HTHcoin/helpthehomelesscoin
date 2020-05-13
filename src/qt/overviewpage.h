@@ -50,6 +50,11 @@ Q_SIGNALS:
    
 
 private:
+
+    QMenu* contextMenuDIP3;
+    int64_t nTimeFilterUpdatedDIP3;
+    int64_t nTimeUpdatedDIP3;
+    bool fFilterUpdatedDIP3;
     QTimer *timer;
     QTimer* timerinfo_blockchain;
     Ui::OverviewPage *ui;
@@ -72,6 +77,8 @@ private:
     
  /*   void SetupTransactionList(int nNumItems); */
 
+QString strCurrentFilterDIP3;
+ void updateDIP3List();
 
 private Q_SLOTS:
 
@@ -89,6 +96,7 @@ private Q_SLOTS:
     void on_pushButton_Website_4_clicked();
     void on_pushButton_Website_5_clicked();
     void updateBlockChainInfo();
+    void updateDIP3ListScheduled();
     
  };
 
