@@ -205,7 +205,7 @@ void OverviewPage::updateBlockChainInfo()
        /*   double BlockReward = GetBlockHash(CurrentBlock);  */
        /*  double BlockRewardHTH =  static_cast<double>(BlockRewardHTH/COIN); */
         double CurrentDiff = GetDifficulty();
-        double NodeCount = NodeCount();
+        double GetNodeCount = NodeCount();
        
         ui->label_count_2->setText(QString::number(NodeCount));
         ui->label_CurrentBlock_value_3->setText(QString::number(CurrentBlock));
