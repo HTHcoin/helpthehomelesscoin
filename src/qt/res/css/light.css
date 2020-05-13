@@ -853,65 +853,65 @@ padding-right:5px;
 
 
     /*************** Frame_blue_2 section*****************/
-    QWidget .QFrame#frame_blue_2 { /*blue frame 2 - detail balance */
+    QWidget .QFrame#frame_3 { /*blue frame 2 - detail balance */
 
         background-color:transparent;
         border-style: 1px solid;
      }
 
 
-     QWidget .QFrame#frame_blue_2 .QLabel#labelBalanceText { /*available text */
+     QWidget .QFrame#frame_3 .QLabel#labelBalanceText { /*available text */
         background-color:transparent;
         color:#000;
         font-size:15px;
      }
 
-     QWidget .QFrame#frame_blue_2 .QLabel#labelBalance {/*available */
+     QWidget .QFrame#frame_3 .QLabel#labelBalance {/*available */
         background-color:transparent;
         color:#000;
         font-size:30px;
      }
 
 
-     QWidget .QFrame#frame_blue_2 .QLabel#label_esbcoin2 { /*esbcoin */
+     QWidget .QFrame#frame_3 .QLabel#label_esbcoin2 { /*esbcoin */
         background-color:transparent;
         color:#000;
         font-size:15px;
      }
 
-     QWidget .QFrame#frame_blue_2 .QLabel#labelPendingText { /*pending text */
+     QWidget .QFrame#frame_3 .QLabel#labelPendingText { /*pending text */
         background-color:transparent;
         color:#000;
         font-size:15px;
      }
 
-     QWidget .QFrame#frame_blue_2 .QLabel#labelUnconfirmed { /*pending(unconfirmed) */
+     QWidget .QFrame#frame_3 .QLabel#labelUnconfirmed { /*pending(unconfirmed) */
         background-color:transparent;
         color:#000;
         font-size:15px;
      }
 
-     QWidget .QFrame#frame_blue_2 .QLabel#label_esbcoin3 { /*esbcoin */
+     QWidget .QFrame#frame_3 .QLabel#label_esbcoin3 { /*esbcoin */
         background-color:transparent;
         color:#000;
         font-size:15px;
      }
 
-     QWidget .QFrame#frame_blue_2 .QLabel#labelImmatureText { /*Immature text */
+     QWidget .QFrame#frame_3 .QLabel#labelImmatureText { /*Immature text */
         background-color:transparent;
         color:#000;
         font-size:15px;
      }
 
 
-     QWidget .QFrame#frame_blue_2 .QLabel#labelImmature { /*Immature */
+     QWidget .QFrame#frame_3 .QLabel#labelImmature { /*Immature */
         background-color:transparent;
         color:#000;
         font-size:30px;
      }
 
 
-     QWidget .QFrame#frame_blue_2 .QLabel#label_esbcoin4 { /*esbcoin */
+     QWidget .QFrame#frame_3 .QLabel#label_esbcoin4 { /*esbcoin */
         background-color:transparent;
         color:#000;
         font-size:15px;
