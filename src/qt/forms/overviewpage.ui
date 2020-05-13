@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>635</height>
+    <height>765</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -299,8 +299,8 @@
      <widget class="QPushButton" name="pushButton_Website_4">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>470</y>
+        <x>520</x>
+        <y>520</y>
         <width>120</width>
         <height>30</height>
        </rect>
@@ -321,7 +321,11 @@
        <string>Visit HTH Partners and Donate Today!!!!!!!!</string>
       </property>
       <property name="styleSheet">
-       <string notr="true">&lt;a href=&quot;https://hth.world/partners.html&quot;&gt;&lt;/a&gt;</string>
+       <string notr="true">border-style: solid;
+border-width: 2px;
+border-color: black;
+border-radius: 15px;
+font-size: 11px;</string>
       </property>
       <property name="text">
        <string>Partners</string>
@@ -330,8 +334,8 @@
      <widget class="QPushButton" name="pushButton_Website_1">
       <property name="geometry">
        <rect>
-        <x>630</x>
-        <y>420</y>
+        <x>680</x>
+        <y>460</y>
         <width>120</width>
         <height>30</height>
        </rect>
@@ -358,7 +362,11 @@
        <string>Visit Help The Homeless Coin Website</string>
       </property>
       <property name="styleSheet">
-       <string notr="true">&lt;a href=&quot;https://hth.world&quot;&gt;&lt;/a&gt;</string>
+       <string notr="true">border-style: solid;
+border-width: 2px;
+border-color: black;
+border-radius: 15px;
+font-size: 11px;</string>
       </property>
       <property name="text">
        <string>HTH Coin</string>
@@ -367,9 +375,9 @@
      <widget class="QPushButton" name="pushButton_Website">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>420</y>
-        <width>100</width>
+        <x>690</x>
+        <y>700</y>
+        <width>111</width>
         <height>30</height>
        </rect>
       </property>
@@ -392,7 +400,8 @@
        <string notr="true">border-style: solid;
 border-width: 2px;
 border-color: black;
-border-radius: 15px;</string>
+border-radius: 15px;
+font-size: 11px;</string>
       </property>
       <property name="text">
        <string>Nonprofit</string>
@@ -401,8 +410,8 @@ border-radius: 15px;</string>
      <widget class="QPushButton" name="pushButton_Website_3">
       <property name="geometry">
        <rect>
-        <x>630</x>
-        <y>470</y>
+        <x>520</x>
+        <y>630</y>
         <width>120</width>
         <height>30</height>
        </rect>
@@ -423,7 +432,11 @@ border-radius: 15px;</string>
        <string>Visit Help The Homeless Coin Explorer and Track Your HTH Coins</string>
       </property>
       <property name="styleSheet">
-       <string notr="true">&lt;a href=&quot;https://chainz.cryptoid.info/hth&quot;&gt;&lt;/a&gt;</string>
+       <string notr="true">border-style: solid;
+border-width: 2px;
+border-color: black;
+border-radius: 15px;
+font-size: 11px;</string>
       </property>
       <property name="text">
        <string>Explorer</string>
@@ -432,8 +445,8 @@ border-radius: 15px;</string>
      <widget class="QPushButton" name="pushButton_Website_2">
       <property name="geometry">
        <rect>
-        <x>780</x>
-        <y>420</y>
+        <x>840</x>
+        <y>520</y>
         <width>120</width>
         <height>30</height>
        </rect>
@@ -454,7 +467,11 @@ border-radius: 15px;</string>
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Visit AltMarkets Exchange and Trade Help The Homeless Coin Today!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="styleSheet">
-       <string notr="true">&lt;a href=&quot;https://altmarkets.io/trading/hthbtc&quot;&gt;&lt;/a&gt;</string>
+       <string notr="true">border-style: solid;
+border-width: 2px;
+border-color: black;
+border-radius: 15px;
+font-size: 11px;</string>
       </property>
       <property name="text">
        <string>AltMarkets</string>
@@ -463,8 +480,8 @@ border-radius: 15px;</string>
      <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
-        <x>470</x>
-        <y>340</y>
+        <x>490</x>
+        <y>330</y>
         <width>151</width>
         <height>41</height>
        </rect>
@@ -482,8 +499,8 @@ border-radius: 15px;</string>
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>650</x>
-        <y>340</y>
+        <x>670</x>
+        <y>330</y>
         <width>91</width>
         <height>41</height>
        </rect>
@@ -501,8 +518,8 @@ border-radius: 15px;</string>
      <widget class="QLabel" name="label_4">
       <property name="geometry">
        <rect>
-        <x>780</x>
-        <y>340</y>
+        <x>790</x>
+        <y>330</y>
         <width>121</width>
         <height>41</height>
        </rect>
@@ -526,8 +543,8 @@ border-radius: 15px;</string>
      <widget class="QPushButton" name="pushButton_Website_5">
       <property name="geometry">
        <rect>
-        <x>780</x>
-        <y>470</y>
+        <x>840</x>
+        <y>640</y>
         <width>120</width>
         <height>30</height>
        </rect>
@@ -548,7 +565,11 @@ border-radius: 15px;</string>
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Visit Northern Exchange and Trade Help The Homeless Coin Today!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="styleSheet">
-       <string notr="true">&lt;a href=&quot;https://nortexchange.com/exchange/?market=HTH_BTC&quot;&gt;&lt;/a&gt;</string>
+       <string notr="true">border-style: solid;
+border-width: 2px;
+border-color: black;
+border-radius: 15px;
+font-size: 11px;</string>
       </property>
       <property name="text">
        <string>NorthernEX</string>
@@ -557,9 +578,9 @@ border-radius: 15px;</string>
      <widget class="QLabel" name="label_6">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>280</y>
-        <width>371</width>
+        <x>680</x>
+        <y>560</y>
+        <width>131</width>
         <height>41</height>
        </rect>
       </property>
@@ -1012,25 +1033,6 @@ border-radius: 15px;</string>
         </layout>
        </item>
       </layout>
-     </widget>
-     <widget class="QPushButton" name="pushButton">
-      <property name="geometry">
-       <rect>
-        <x>630</x>
-        <y>520</y>
-        <width>81</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border-style: solid;
-border-width: 2px;
-border-color: black;
-border-radius: 15px;</string>
-      </property>
-      <property name="text">
-       <string>PushButton</string>
-      </property>
      </widget>
     </widget>
    </item>
