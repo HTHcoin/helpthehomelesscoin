@@ -800,7 +800,7 @@ padding-right:5px;
 
 /* OVERVIEW SCREEN */
 
-/*************** Frame_blue_4 section*****************/
+ /*************** Frame_3 section*****************/
 
 
     QWidget .QFrame#frame_3 { /*blue frame 1 - total balance */
@@ -839,11 +839,11 @@ padding-right:5px;
             font-size:55px;
          }
 
-    /* QWidget .QPushButton#blabel_esbcoin {
+    /* QWidget .QFrame#frame_3 {
             background-color: transparent;
             border:0;
             border-radius:0px;
-            color: #fff;
+            color: #000;
             font-size:35px;
             padding-left:0px;
             padding-right:0px;
@@ -916,7 +916,6 @@ padding-right:5px;
         color:#000;
         font-size:15px;
      }
-
 
 /* PRIVATESEND WIDGET */
 
