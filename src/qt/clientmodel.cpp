@@ -42,8 +42,7 @@ ClientModel::ClientModel(OptionsModel *_optionsModel, QObject *parent) :
     peerTableModel(0),
     banTableModel(0),
     pollTimer(0),
-    nTimeUpdatedDIP3(0),
-    mnListChanged(true)
+    nTimeUpdatedDIP3(0)
 {
     cachedBestHeaderHeight = -1;
     cachedBestHeaderTime = -1;
