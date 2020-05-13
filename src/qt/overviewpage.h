@@ -32,12 +32,6 @@ class QModelIndex;
 QT_END_NAMESPACE
 
 
-enum NumConnections {
-    CONNECTIONS_NONE = 0,
-    CONNECTIONS_IN   = (1U << 0),
-    CONNECTIONS_OUT  = (1U << 1),
-    CONNECTIONS_ALL  = (CONNECTIONS_IN | CONNECTIONS_OUT),
-};
 
 
 /** Overview ("home") page widget */
@@ -54,7 +48,7 @@ public:
     void showOutOfSyncWarning(bool fShow);
     
     
-    int getNumConnections(unsigned int flags = CONNECTIONS_ALL) const;
+    
     
         
     
@@ -64,13 +58,13 @@ public Q_SLOTS:
     void setBalance(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance, const CAmount& anonymizedBalance,
                     const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance);
   
-    void updateNumConnections(int numConnections);
+    
   
 Q_SIGNALS:
 /*    void transactionClicked(const QModelIndex &index); */
     void outOfSyncWarningClicked();
     
-    void numConnectionsChanged(int count);
+    
    
 
 private:
