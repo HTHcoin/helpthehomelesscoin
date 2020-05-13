@@ -131,7 +131,7 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     bool showWatchOnlyImmature = watchImmatureBalance != 0;
 
     // for symmetry reasons also show immature label when the watch-only one is shown
-    ui->labelImmatureText->setVisible(showImmature || showWatchOnlyImmature);
+    ui->labelImmature->setVisible(showImmature || showWatchOnlyImmature);
     ui->labelImmatureText->setVisible(showImmature || showWatchOnlyImmature);
     ui->labelWatchImmature->setVisible(showWatchOnlyImmature); // show watch-only immature balance
 }
@@ -139,12 +139,12 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
 // show/hide watch-only labels
 void OverviewPage::updateWatchOnlyLabels(bool showWatchOnly)
 {
-    ui->labelTotal->setVisible(showWatchOnly);      // show spendable label (only when watch-only is active)
-    ui->labelTotal->setVisible(showWatchOnly);      // show watch-only label
-    ui->labelBalance->setVisible(showWatchOnly);    // show watch-only balance separator line
-    ui->labelWatchImmature->setVisible(showWatchOnly); // show watch-only available balance
-    ui->labelWatchImmature->setVisible(showWatchOnly);   // show watch-only pending balance
-    ui->labelTotal->setVisible(showWatchOnly);     // show watch-only total balance
+    ui->labelSpendable->setVisible(showWatchOnly);      // show spendable label (only when watch-only is active)
+    ui->labelWatchonly->setVisible(showWatchOnly);      // show watch-only label
+    ui->labelwatchBalance->setVisible(showWatchOnly);    // show watch-only balance separator line
+    ui->labelWatchAvailable->setVisible(showWatchOnly); // show watch-only available balance
+    ui->labelWatchPending->setVisible(showWatchOnly);   // show watch-only pending balance
+    ui->labelWatchTotal->setVisible(showWatchOnly);     // show watch-only total balance
 
     if (!showWatchOnly){
         ui->labelWatchImmature->hide();
