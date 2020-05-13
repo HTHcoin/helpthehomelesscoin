@@ -299,9 +299,9 @@
      <widget class="QPushButton" name="pushButton_Website_4">
       <property name="geometry">
        <rect>
-        <x>560</x>
+        <x>549</x>
         <y>400</y>
-        <width>100</width>
+        <width>111</width>
         <height>30</height>
        </rect>
       </property>
@@ -336,7 +336,7 @@ font-size: 11px;</string>
        <rect>
         <x>820</x>
         <y>400</y>
-        <width>100</width>
+        <width>120</width>
         <height>30</height>
        </rect>
       </property>
@@ -375,9 +375,9 @@ font-size: 11px;</string>
      <widget class="QPushButton" name="pushButton_Website">
       <property name="geometry">
        <rect>
-        <x>690</x>
+        <x>670</x>
         <y>330</y>
-        <width>100</width>
+        <width>120</width>
         <height>30</height>
        </rect>
       </property>
@@ -410,9 +410,9 @@ font-size: 11px;</string>
      <widget class="QPushButton" name="pushButton_Website_3">
       <property name="geometry">
        <rect>
-        <x>690</x>
+        <x>679</x>
         <y>550</y>
-        <width>100</width>
+        <width>111</width>
         <height>30</height>
        </rect>
       </property>
@@ -447,7 +447,7 @@ font-size: 11px;</string>
        <rect>
         <x>820</x>
         <y>470</y>
-        <width>100</width>
+        <width>120</width>
         <height>30</height>
        </rect>
       </property>
@@ -480,9 +480,9 @@ font-size: 11px;</string>
      <widget class="QPushButton" name="pushButton_Website_5">
       <property name="geometry">
        <rect>
-        <x>560</x>
+        <x>549</x>
         <y>470</y>
-        <width>100</width>
+        <width>111</width>
         <height>30</height>
        </rect>
       </property>
