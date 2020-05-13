@@ -217,7 +217,7 @@ void OverviewPage::updateBlockChainInfo()
        /*ui->label_CurrentBlockReward_value_3->setText(QString::number(BlockRewardHTH, 'f', 1)); */
        /* ui->label_CurrentBlock_value_3->setText(QString::number(block24hCount)); */
       
-      strCurrentFilterDIP3 = strFilterIn;
+    /*  strCurrentFilterDIP3 = strFilterIn; */
       nTimeFilterUpdatedDIP3 = GetTime();
       fFilterUpdatedDIP3 = true;
       ui->countLabelDIP3->setText(QString::fromStdString(strprintf("Please wait... %d", MASTERNODELIST_FILTER_COOLDOWN_SECONDS)));
