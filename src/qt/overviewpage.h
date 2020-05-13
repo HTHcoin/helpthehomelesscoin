@@ -7,6 +7,7 @@
 
 #include "amount.h"
 
+#include <QMenu>
 #include <QWidget>
 #include <memory>
 #include <QDesktopServices>
