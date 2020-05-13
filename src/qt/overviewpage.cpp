@@ -203,15 +203,15 @@ void OverviewPage::updateDisplayUnit()
 /**** Blockchain Information *****/
 
 
-/* void OverviewPage::updateMasternodeInfo()
+ void OverviewPage::updateMasternodeInfo()
 {
   if (masternodeSync.IsBlockchainSynced() && masternodeSync.IsSynced())
   {
           (timerinfo_mn->interval() == 1000);
            timerinfo_mn->setInterval(180000);
-        ui->countLabelDIP3->setText(QString::fromStdString(strprintf("Please wait... %d", MASTERNODELIST_FILTER_COOLDOWN_SECONDS)));
+        ui->countLabelDIP3->setText(getNumConnections);
   }
-} */
+}
 
 /* txt += tr("<li>Master Nodes <span> %1</span><br> </li>").arg( clientModel->getNumConnections()); */
 
