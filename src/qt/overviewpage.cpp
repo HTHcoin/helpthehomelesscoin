@@ -58,7 +58,10 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     currentWatchOnlyBalance(-1),
     currentWatchUnconfBalance(-1),
     currentWatchImmatureBalance(-1),
-    cachedNumISLocks(-1)
+    cachedNumISLocks(-1),
+    fFilterUpdatedDIP3(true),
+    nTimeFilterUpdatedDIP3(0),
+    nTimeUpdatedDIP3(0)
     
 {
                
@@ -81,6 +84,10 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     timerinfo_blockchain = new QTimer(this);
     connect(timerinfo_blockchain, SIGNAL(timeout()), this, SLOT(updateBlockChainInfo()));
     timerinfo_blockchain->start(1000); //30sec      
+      
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(updateDIP3ListScheduled()));
+    timer->start(1000);  
               
     // start with displaying the "out of sync" warnings
     showOutOfSyncWarning(true);
@@ -214,6 +221,16 @@ void OverviewPage::updateBlockChainInfo()
   
     }
 }
+
+
+void MasternodeList::on_filterLineEditDIP3_textChanged(const QString& strFilterIn)
+{
+    strCurrentFilterDIP3 = strFilterIn;
+    nTimeFilterUpdatedDIP3 = GetTime();
+    fFilterUpdatedDIP3 = true;
+    ui->countLabelDIP3->setText(QString::fromStdString(strprintf("Please wait... %d", MASTERNODELIST_FILTER_COOLDOWN_SECONDS)));
+}
+
 
                 /**** End Blockchain Information ******/
 
