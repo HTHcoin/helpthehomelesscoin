@@ -632,37 +632,6 @@ QStatusBar QLabel {
 }
 
 
-  /*  QWidget  .QPushButton#ConnectionsIcon {
-        background-color:transparent;
-    }
-    QWidget  .QPushButton#ConnectionsIcon:pressed {
-        background-color:transparent;
-        border : none;
-    }
-    QWidget  .QPushButton#EncryptionIcon {
-        background-color:transparent;
-    }
-    QWidget  .QPushButton#EncryptionIcon:pressed {
-        background-color:transparent;
-        border : none;
-    }
-*/
-
-     /*************** ########Frame_blue section########*****************/
-
- /*    QWidget .QFrame#frame {  blue frame 
-
-        border-image: url(':/images_dblue/frame_blue') 0 0 0 0 stretch stretch;
-        background-repeat:none;
-
-        background-image: url(':/images_dblue/frame_blue');
-        background-repeat: repeat-xy;
-        background-position: left center;
-
-        border-style: none; 
-     } */
-
-
     /*************** Balances Section*****************/
 
 
@@ -676,7 +645,7 @@ QStatusBar QLabel {
      QWidget .QFrame#frame_3 .QLabel#label_5 { /* Balance Label */
             background-color:transparent;
             color:#34bcaa;
-            font-size:20px;
+            font-size:15px;
           }
 
     QWidget .QFrame#frame_3 .QLabel#labelWalletStatus { /* out of sync */
@@ -698,23 +667,11 @@ QStatusBar QLabel {
     QWidget .QFrame#frame_3 .QLabel#labelTotal { /* Total balance count Label */
             background-color:transparent;
             color:#34bcaa;
-            font-weight: 100;
-            font-size:55px;
+            font-weight: bold;
+            font-size:15px;
          }
 
-    /* QWidget .QFrame#frame_3 {
-            background-color: transparent;
-            border:0;
-            border-radius:0px;
-            color: #fff;
-            font-size:35px;
-            padding-left:0px;
-            padding-right:0px;
-            padding-top:0px;
-            padding-bottom:0px;
-         } */
-
-
+  
     /*************** Watch Only Section*****************/
     QWidget .QFrame#frame_3 { /*blue frame 2 - detail balance */
 
@@ -732,7 +689,7 @@ QStatusBar QLabel {
      QWidget .QFrame#frame_3 .QLabel#labelBalance {/*available */
         background-color:transparent;
         color:#34bcaa;
-        font-size:30px;
+        font-size:15px;
      }
 
 
@@ -740,7 +697,7 @@ QStatusBar QLabel {
         background-color:transparent;
         color:#34bcaa;
         font-size:15px;
-     } // this one above
+     }
 
      QWidget .QFrame#frame_3 .QLabel#labelPendingText { /*pending text */
         background-color:transparent;
@@ -758,7 +715,7 @@ QStatusBar QLabel {
         background-color:transparent;
         color:#34bcaa;
         font-size:15px;
-     } // this one above
+     } 
 
      QWidget .QFrame#frame_3 .QLabel#labelImmatureText { /*Immature text */
         background-color:transparent;
@@ -770,7 +727,7 @@ QStatusBar QLabel {
      QWidget .QFrame#frame_3 .QLabel#labelImmature { /*Immature */
         background-color:transparent;
         color:#34bcaa;
-        font-size:30px;
+        font-size:15px;
      }
 
 
@@ -778,37 +735,37 @@ QStatusBar QLabel {
         background-color:transparent;
         color:#34bcaa;
         font-size:15px;
-     } // this one above
+     } 
 
  QWidget .QFrame#frame_3 .QLabel#labelWatchPending { /*esbcoin */
         background-color:transparent;
         color:#34bcaa;
         font-size:15px;
-     } // this one above
+     } 
 
  QWidget .QFrame#frame_3 .QLabel#labelWatchTotal { /*esbcoin */
         background-color:transparent;
         color:#34bcaa;
         font-size:15px;
-     } // this one above
+     }
 
- QWidget .QFrame#frame_3 .QLabel#labelWatchonly { /*esbcoin */
+ QWidget .QFrame#frame_3 .QLabel#labelWatchonly {
         background-color:transparent;
         color:#34bcaa;
         font-size:15px;
-     } // this one above
+     } 
 
- QWidget .QFrame#frame_3 .QLabel#lineSpendableBalance { /*esbcoin */
+ QWidget .QFrame#frame_3 .QLabel#lineSpendableBalance { 
         background-color:transparent;
         color:#34bcaa;
         font-size:15px;
-     } // this one above
+     } 
 
- QWidget .QFrame#frame_3 .QLabel#labelWatchBalance { /*esbcoin */
+ QWidget .QFrame#frame_3 .QLabel#labelWatchBalance {
         background-color:transparent;
         color:#34bcaa;
         font-size:15px;
-     } // this one above
+     } 
 	 
         /*************** ########bottom status bar########*****************/
 
