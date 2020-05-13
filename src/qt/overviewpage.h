@@ -31,6 +31,9 @@ QT_BEGIN_NAMESPACE
 class QModelIndex;
 QT_END_NAMESPACE
 
+
+
+
 /** Overview ("home") page widget */
 class OverviewPage : public QWidget
 {
@@ -44,6 +47,9 @@ public:
     void setWalletModel(WalletModel *walletModel);
     void showOutOfSyncWarning(bool fShow);
     
+    
+    
+    
         
     
 
@@ -52,17 +58,23 @@ public Q_SLOTS:
     void setBalance(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance, const CAmount& anonymizedBalance,
                     const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance);
   
+    
+  
 Q_SIGNALS:
 /*    void transactionClicked(const QModelIndex &index); */
     void outOfSyncWarningClicked();
+    
+    
    
 
 private:
 
+    QMenu* contextMenuDIP3;
     int64_t nTimeFilterUpdatedDIP3;
     int64_t nTimeUpdatedDIP3;
     bool fFilterUpdatedDIP3;
     QTimer *timer;
+    QTimer* timerinfo_mn;
     QTimer* timerinfo_blockchain;
     Ui::OverviewPage *ui;
     ClientModel *clientModel;
@@ -102,6 +114,7 @@ private Q_SLOTS:
     void on_pushButton_Website_4_clicked();
     void on_pushButton_Website_5_clicked();
     void updateBlockChainInfo();
+    void updateMasternodeInfo();
     
     
     
