@@ -217,6 +217,27 @@ void OverviewPage::updateDisplayUnit()
   }
 }
 
+
+void OverviewPage::updateDIP3List()
+{
+   
+    LOCK(cs_dip3list);
+
+   
+
+    auto mnList = clientModel->getMasternodeList();
+    nTimeUpdatedDIP3 = GetTime();
+
+    auto projectedPayees = mnList.GetProjectedMNPayees(mnList.GetValidMNsCount());
+    std::map<uint256, int> nextPayments;
+    for (size_t i = 0; i < projectedPayees.size(); i++) {
+        const auto& dmn = projectedPayees[i];
+        nextPayments.emplace(dmn->proTxHash, mnList.GetHeight() + (int)i + 1);
+    }
+ }
+
+
+
 /* txt += tr("<li>Master Nodes <span> %1</span><br> </li>").arg( clientModel->getNumConnections()); */
 
 void OverviewPage::updateBlockChainInfo()
