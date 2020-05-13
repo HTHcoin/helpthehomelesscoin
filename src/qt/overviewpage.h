@@ -95,7 +95,12 @@ private:
     std::unique_ptr<TransactionFilterProxy> filter; */
     
  /*   void SetupTransactionList(int nNumItems); */
+ 
+    CCriticalSection cs_dip3list;
+
     QString strCurrentFilterDIP3;
+    
+    void updateDIP3List();
 
 
 private Q_SLOTS:
