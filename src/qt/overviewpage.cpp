@@ -213,7 +213,7 @@ void OverviewPage::updateDisplayUnit()
   }
 } */
 
-txt += tr("<li>Master Nodes <span> %1</span><br> </li>").arg( clientModel->getNumConnections());
+/* txt += tr("<li>Master Nodes <span> %1</span><br> </li>").arg( clientModel->getNumConnections()); */
 
 void OverviewPage::updateBlockChainInfo()
 {
