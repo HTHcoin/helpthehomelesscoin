@@ -323,7 +323,7 @@
       <property name="styleSheet">
        <string notr="true">border-style: solid;
 border-width: 2px;
-border-color: black;
+border-color: #34bcaa;
 border-radius: 10px;
 font-size: 11px;</string>
       </property>
@@ -364,7 +364,7 @@ font-size: 11px;</string>
       <property name="styleSheet">
        <string notr="true">border-style: solid;
 border-width: 2px;
-border-color: black;
+border-color: #34bcaa;
 border-radius: 10px;
 font-size: 11px;</string>
       </property>
@@ -399,7 +399,7 @@ font-size: 11px;</string>
       <property name="styleSheet">
        <string notr="true">border-style: solid;
 border-width: 2px;
-border-color: black;
+border-color: #34bcaa;
 border-radius: 10px;
 font-size: 11px;</string>
       </property>
@@ -434,7 +434,7 @@ font-size: 11px;</string>
       <property name="styleSheet">
        <string notr="true">border-style: solid;
 border-width: 2px;
-border-color: black;
+border-color: #34bcaa;
 border-radius: 10px;
 font-size: 11px;</string>
       </property>
@@ -469,7 +469,7 @@ font-size: 11px;</string>
       <property name="styleSheet">
        <string notr="true">border-style: solid;
 border-width: 2px;
-border-color: black;
+border-color: #34bcaa;
 border-radius: 10px;
 font-size: 11px;</string>
       </property>
@@ -504,7 +504,7 @@ font-size: 11px;</string>
       <property name="styleSheet">
        <string notr="true">border-style: solid;
 border-width: 2px;
-border-color: black;
+border-color: #34bcaa;
 border-radius: 10px;
 font-size: 11px;</string>
       </property>
