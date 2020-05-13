@@ -23,7 +23,7 @@
 #include "amount.h"
 #include "validation.h"
 #include "wallet/wallet.h"
-#include "src/net.h"
+#include "net.h"
 
 #include "instantx.h"
 #include "masternode-sync.h"
