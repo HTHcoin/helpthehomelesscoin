@@ -206,7 +206,21 @@ void OverviewPage::updateDisplayUnit()
  void OverviewPage::updateMasternodeInfo()
 {
   if (masternodeSync.IsBlockchainSynced() && masternodeSync.IsSynced())
+   
   {
+    
+    CConnman::NumConnections connections = CConnman::CONNECTIONS_NONE;
+
+    if(flags == CONNECTIONS_IN)
+        connections = CConnman::CONNECTIONS_IN;
+    else if (flags == CONNECTIONS_OUT)
+        connections = CConnman::CONNECTIONS_OUT;
+    else if (flags == CONNECTIONS_ALL)
+        connections = CConnman::CONNECTIONS_ALL;
+
+    if(g_connman)
+         return g_connman->GetNodeCount(connections);
+    return 0;
           (timerinfo_mn->interval() == 1000);
            timerinfo_mn->setInterval(180000);
         
