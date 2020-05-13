@@ -209,7 +209,7 @@ void OverviewPage::updateDisplayUnit()
   {
           (timerinfo_mn->interval() == 1000);
            timerinfo_mn->setInterval(180000);
-        ui->countLabelDIP3->setText(getNumConnections);
+        ui->countLabelDIP3->setText(NumConnections);
   }
 }
 
@@ -234,8 +234,6 @@ void OverviewPage::updateBlockChainInfo()
   
     }
 }
-
-
 
                 /**** End Blockchain Information ******/
 
