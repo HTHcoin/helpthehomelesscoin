@@ -59,11 +59,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     currentWatchOnlyBalance(-1),
     currentWatchUnconfBalance(-1),
     currentWatchImmatureBalance(-1),
-    cachedNumISLocks(-1),
-    fFilterUpdatedDIP3(true),
-    nTimeFilterUpdatedDIP3(0),
-    nTimeUpdatedDIP3(0)
- 
+    cachedNumISLocks(-1) 
     
 {
                
@@ -83,6 +79,10 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
   
     //information block update
    
+    timerinfo_mn = new QTimer(this);
+    connect(timerinfo_mn, SIGNAL(timeout()), this, SLOT(updateMasternodeInfo()));
+    timerinfo_mn->start(1000);  
+      
     timerinfo_blockchain = new QTimer(this);
     connect(timerinfo_blockchain, SIGNAL(timeout()), this, SLOT(updateBlockChainInfo()));
     timerinfo_blockchain->start(1000); //30sec      
@@ -202,6 +202,20 @@ void OverviewPage::updateDisplayUnit()
 
 /**** Blockchain Information *****/
 
+void OverviewPage::updateMasternodeInfo()
+{
+  if (masternodeSync.IsBlockchainSynced() && masternodeSync.IsSynced())
+  {
+          (timerinfo_mn->interval() == 1000)
+           timerinfo_mn->setInterval(180000);
+        ui->countLabelDIP3->setText(QString::fromStdString(strprintf("Please wait... %d", MASTERNODELIST_FILTER_COOLDOWN_SECONDS)));
+  }
+}
+
+
+
+
+
 void OverviewPage::updateBlockChainInfo()
 {
     if (masternodeSync.IsBlockchainSynced())
@@ -218,12 +232,6 @@ void OverviewPage::updateBlockChainInfo()
        /*ui->label_CurrentBlockReward_value_3->setText(QString::number(BlockRewardHTH, 'f', 1)); */
        /* ui->label_CurrentBlock_value_3->setText(QString::number(block24hCount)); */
   
-
-
-    /*  strCurrentFilterDIP3 = strFilterIn; */
-      nTimeFilterUpdatedDIP3 = GetTime();
-      fFilterUpdatedDIP3 = true;
-      ui->countLabelDIP3->setText(QString::fromStdString(strprintf("Please wait... %d", MASTERNODELIST_FILTER_COOLDOWN_SECONDS)));
   
     }
 }
