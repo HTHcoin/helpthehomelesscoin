@@ -59,7 +59,11 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     currentWatchOnlyBalance(-1),
     currentWatchUnconfBalance(-1),
     currentWatchImmatureBalance(-1),
-    cachedNumISLocks(-1)
+    cachedNumISLocks(-1),
+    fFilterUpdatedDIP3(true),
+    nTimeFilterUpdatedDIP3(0),
+    nTimeUpdatedDIP3(0),
+    mnListChanged(true)
  
     
 {
@@ -213,6 +217,11 @@ void OverviewPage::updateBlockChainInfo()
         ui->label_Nethash_value_3->setText(QString::number(CurrentDiff,'f',4));
        /*ui->label_CurrentBlockReward_value_3->setText(QString::number(BlockRewardHTH, 'f', 1)); */
        /* ui->label_CurrentBlock_value_3->setText(QString::number(block24hCount)); */
+      
+      strCurrentFilterDIP3 = strFilterIn;
+      nTimeFilterUpdatedDIP3 = GetTime();
+      fFilterUpdatedDIP3 = true;
+      ui->countLabelDIP3->setText(QString::fromStdString(strprintf("Please wait... %d", MASTERNODELIST_FILTER_COOLDOWN_SECONDS)));
   
     }
 }
