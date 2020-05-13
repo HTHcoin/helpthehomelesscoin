@@ -42,8 +42,7 @@ public:
     void showOutOfSyncWarning(bool fShow);
     size_t GetNodeCount();
     void GetNodeStats();
-    bool DisconnectNode();
-    bool DisconnectNode();
+    
     
 
 public Q_SLOTS:
