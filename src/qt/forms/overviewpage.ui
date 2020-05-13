@@ -534,9 +534,9 @@ font-size: 11px;</string>
      <widget class="QFrame" name="frame_2">
       <property name="geometry">
        <rect>
-        <x>639</x>
-        <y>79</y>
-        <width>331</width>
+        <x>600</x>
+        <y>80</y>
+        <width>371</width>
         <height>111</height>
        </rect>
       </property>
@@ -552,7 +552,7 @@ font-size: 11px;</string>
        <rect>
         <x>14</x>
         <y>4</y>
-        <width>611</width>
+        <width>571</width>
         <height>241</height>
        </rect>
       </property>
