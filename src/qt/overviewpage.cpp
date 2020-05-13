@@ -219,7 +219,8 @@ void OverviewPage::updateDisplayUnit()
     std::map<uint256, int> nextPayments;
     for (size_t i = 0; i < projectedPayees.size(); i++) {
         const auto& dmn = projectedPayees[i];
-        nextPayments.emplace(dmn->proTxHash, mnList.GetHeight() + (int)i + 1);
+        nextPayments.emplace(dmn->proTxHash, mnList.GetHeight() + (int)i + 1); 
+    }
     
            int MNCount = clientModel->GetValidMNsCount();
            ui->label_count_2->setText(QString::number(MNCount));
