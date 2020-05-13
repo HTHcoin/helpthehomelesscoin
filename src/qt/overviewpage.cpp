@@ -208,13 +208,9 @@ void OverviewPage::updateMasternodeInfo()
   {
           (timerinfo_mn->interval() == 1000);
            timerinfo_mn->setInterval(180000);
-        ui->countLabelDIP3->setText(QString::fromStdString(strprintf("Please wait... %d", MASTERNODELIST_FILTER_COOLDOWN_SECONDS)));
+        ui->countLabelDIP3->setText(QString::fromStdString(strprintf(/*"Please wait... %d", MASTERNODELIST_FILTER_COOLDOWN_SECONDS,*/ GetNodeCount)));
   }
 }
-
-
-
-
 
 void OverviewPage::updateBlockChainInfo()
 {
