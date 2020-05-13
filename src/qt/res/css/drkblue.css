@@ -78,7 +78,7 @@ font-weight: bold;
 
     /* Base Text Size & Color */
     QLabel {
-        font-size:12px;
+        font-size:15px;
         color: #34bcaa;
     }
 
@@ -2069,9 +2069,3 @@ QWidget .QFrame#frameBlockchainInfo_2 .QLabel#label_6 {
         color:#34bcaa;
         font-size:15px;
      }
-
-QLabel  .QLabel#labelHTHInfo {
-        font-size:15px;
-        color: #34bcaa;
-    }
-
