@@ -62,8 +62,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     cachedNumISLocks(-1),
     fFilterUpdatedDIP3(true),
     nTimeFilterUpdatedDIP3(0),
-    nTimeUpdatedDIP3(0),
-    mnListChanged(true)
+    nTimeUpdatedDIP3(0)
  
     
 {
