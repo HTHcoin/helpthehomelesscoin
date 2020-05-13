@@ -40,10 +40,10 @@ public:
     void setClientModel(ClientModel *clientModel);
     void setWalletModel(WalletModel *walletModel);
     void showOutOfSyncWarning(bool fShow);
-    size_t GetNodeCount(NumConnections num);
-    void GetNodeStats(std::vector<CNodeStats>& vstats);
-    bool DisconnectNode(const std::string& node);
-    bool DisconnectNode(NodeId id);
+    size_t GetNodeCount();
+    void GetNodeStats();
+    bool DisconnectNode();
+    bool DisconnectNode();
     
 
 public Q_SLOTS:
