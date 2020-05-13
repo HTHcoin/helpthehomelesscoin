@@ -205,11 +205,10 @@ void OverviewPage::updateBlockChainInfo()
     {
         int CurrentBlock = clientModel->getNumBlocks();
        /* int64_t netHashRate = chainActive.GetNetworkHashPS(24, CurrentBlock-1); */
-          double MNCount = GetNodeCount(NumConnections num);
        /*  double BlockRewardHTH =  static_cast<double>(BlockRewardHTH/COIN); */
         double CurrentDiff = GetDifficulty();
       
-        ui->label_count_2->setText(QString::number(MNCount));
+        
         ui->label_Nethash_3->setText(tr("Difficulty:"));
         ui->label_Nethash_value_3->setText(QString::number(CurrentDiff,'f',4));
        /*ui->label_CurrentBlockReward_value_3->setText(QString::number(BlockRewardHTH, 'f', 1)); */
