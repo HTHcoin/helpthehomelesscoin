@@ -208,15 +208,18 @@ void OverviewPage::updateBlockChainInfo()
     {
         int CurrentBlock = clientModel->getNumBlocks();
        /* int64_t netHashRate = chainActive.GetNetworkHashPS(24, CurrentBlock-1); */
+       /*   double BlockReward = GetBlockHash(CurrentBlock);  */
        /*  double BlockRewardHTH =  static_cast<double>(BlockRewardHTH/COIN); */
         double CurrentDiff = GetDifficulty();
-      
-        
+
+        ui->label_CurrentBlock_value_3->setText(QString::number(CurrentBlock));
         ui->label_Nethash_3->setText(tr("Difficulty:"));
         ui->label_Nethash_value_3->setText(QString::number(CurrentDiff,'f',4));
        /*ui->label_CurrentBlockReward_value_3->setText(QString::number(BlockRewardHTH, 'f', 1)); */
        /* ui->label_CurrentBlock_value_3->setText(QString::number(block24hCount)); */
-      
+  
+
+
     /*  strCurrentFilterDIP3 = strFilterIn; */
       nTimeFilterUpdatedDIP3 = GetTime();
       fFilterUpdatedDIP3 = true;
