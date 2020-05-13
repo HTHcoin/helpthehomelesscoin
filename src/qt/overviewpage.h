@@ -21,6 +21,9 @@ class WalletModel;
 namespace Ui {
     class OverviewPage;
 }
+{
+class MasternodeList;
+}
 
 QT_BEGIN_NAMESPACE
 class QModelIndex;
