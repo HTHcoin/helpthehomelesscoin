@@ -17,13 +17,12 @@ class TransactionFilterProxy;
 /* class TxViewDelegate; */
 class PlatformStyle;
 class WalletModel;
+class MasternodeList;
 
 namespace Ui {
     class OverviewPage;
 }
-{
-class MasternodeList;
-}
+
 
 QT_BEGIN_NAMESPACE
 class QModelIndex;
