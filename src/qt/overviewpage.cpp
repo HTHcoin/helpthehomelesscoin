@@ -212,20 +212,7 @@ void OverviewPage::updateDisplayUnit()
           (timerinfo_mn->interval() == 1000);
            timerinfo_mn->setInterval(180000);
         
-           int MNCount = clientModel->GetValidMNsCount();
-           ui->label_count_2->setText(QString::number(MNCount));
-  }
-}
-
-
-void OverviewPage::updateDIP3List()
-{
-   
-    LOCK(cs_dip3list);
-
-   
-
-    auto mnList = clientModel->getMasternodeList();
+     auto mnList = clientModel->getMasternodeList();
     nTimeUpdatedDIP3 = GetTime();
 
     auto projectedPayees = mnList.GetProjectedMNPayees(mnList.GetValidMNsCount());
@@ -233,8 +220,11 @@ void OverviewPage::updateDIP3List()
     for (size_t i = 0; i < projectedPayees.size(); i++) {
         const auto& dmn = projectedPayees[i];
         nextPayments.emplace(dmn->proTxHash, mnList.GetHeight() + (int)i + 1);
-    }
- }
+    
+           int MNCount = clientModel->GetValidMNsCount();
+           ui->label_count_2->setText(QString::number(MNCount));
+  }
+}
 
 
 
