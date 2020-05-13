@@ -203,30 +203,13 @@ void OverviewPage::updateDisplayUnit()
 /**** Blockchain Information *****/
 
 
-void OverviewPage::getNumConnections(unsigned int flags) const
-{
-    CConnman::NumConnections connections = CConnman::CONNECTIONS_NONE;
-
-    if(flags == CONNECTIONS_IN)
-        connections = CConnman::CONNECTIONS_IN;
-    else if (flags == CONNECTIONS_OUT)
-        connections = CConnman::CONNECTIONS_OUT;
-    else if (flags == CONNECTIONS_ALL)
-        connections = CConnman::CONNECTIONS_ALL;
-
-    if(g_connman)
-         return g_connman->GetNodeCount(connections);
-    return 0;
-}
-
-
 void OverviewPage::updateMasternodeInfo()
 {
   if (masternodeSync.IsBlockchainSynced() && masternodeSync.IsSynced())
   {
           (timerinfo_mn->interval() == 1000);
            timerinfo_mn->setInterval(180000);
-        ui->countLabelDIP3->setText(QString::fromStdString(strprintf("Please wait... %d", MASTERNODELIST_FILTER_COOLDOWN_SECONDS, GetNodeCount)));
+        ui->countLabelDIP3->setText(QString::fromStdString(strprintf("Please wait... %d", MASTERNODELIST_FILTER_COOLDOWN_SECONDS)));
   }
 }
 
