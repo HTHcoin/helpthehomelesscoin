@@ -2051,6 +2051,13 @@ QWidget .QFrame#frameBlockchainInfo_2 .QLabel#label_Nethash_value_3 {
         color:#34bcaa;
         font-size:15px;
      }
+
+QWidget .QFrame#frameBlockchainInfo_2 .QLabel#labelMN { 
+        background-color:transparent;
+        color:#34bcaa;
+        font-size:15px;
+     }
+
 QWidget .QFrame#frameBlockchainInfo_2 .QLabel#label_count_2 { 
         background-color:transparent;
         color:#34bcaa;
