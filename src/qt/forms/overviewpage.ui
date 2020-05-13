@@ -275,13 +275,13 @@
             </property>
            </spacer>
           </item>
-          <item row="0" column="2">
+          <item row="0" column="2" colspan="2">
            <widget class="QLabel" name="label_count_2">
             <property name="styleSheet">
-             <string notr="true">txt += tr(&quot;&lt;li&gt;Master Nodes &lt;span&gt; %1&lt;/span&gt;&lt;br&gt; &lt;/li&gt;&quot;).arg( clientModel-&gt;getNumConnections());</string>
+             <string notr="true"/>
             </property>
             <property name="text">
-             <string>Node Count:</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-family:'SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace'; font-size:12px; color:#6a737d; background-color:#ffffff;&quot;&gt;&amp;lt;li&amp;gt;Master Nodes &amp;lt;span&amp;gt; %1&amp;lt;/span&amp;gt;&amp;lt;br&amp;gt; &amp;lt;/li&amp;gt;&amp;quot;).arg( clientModel-&amp;gt;getNumConnections());&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
            </widget>
           </item>
