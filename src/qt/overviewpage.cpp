@@ -205,7 +205,7 @@ void OverviewPage::updateBlockChainInfo()
        /*   double BlockReward = GetBlockHash(CurrentBlock);  */
        /*  double BlockRewardHTH =  static_cast<double>(BlockRewardHTH/COIN); */
         double CurrentDiff = GetDifficulty();
-        double NodeCount = GetNodeCount();
+        double NodeCount = NodeCount();
        
         ui->label_count_2->setText(QString::number(NodeCount));
         ui->label_CurrentBlock_value_3->setText(QString::number(CurrentBlock));
@@ -216,13 +216,6 @@ void OverviewPage::updateBlockChainInfo()
   
     }
 }
-
-
-size_t GetNodeCount(NumConnections num);
-    void GetNodeStats(std::vector<CNodeStats>& vstats);
-    bool DisconnectNode(const std::string& node);
-    bool DisconnectNode(NodeId id);
-
 
                 /**** End Blockchain Information ******/
 
