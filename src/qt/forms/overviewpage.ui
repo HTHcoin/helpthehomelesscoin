@@ -136,7 +136,7 @@
           <enum>QFrame::Raised</enum>
          </property>
          <layout class="QGridLayout" name="gridLayout_5">
-          <item row="3" column="1">
+          <item row="4" column="1">
            <widget class="QLabel" name="label_CurrentBlock_value_3">
             <property name="minimumSize">
              <size>
@@ -161,7 +161,7 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
+          <item row="4" column="0">
            <widget class="QLabel" name="label_CurrentBlock">
             <property name="minimumSize">
              <size>
@@ -186,23 +186,10 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="3" alignment="Qt::AlignRight">
+          <item row="4" column="3" alignment="Qt::AlignRight">
            <widget class="QLabel" name="label_Nethash_value_3">
             <property name="text">
              <string>0</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignVCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="2" alignment="Qt::AlignHCenter">
-           <widget class="QLabel" name="label_Nethash_3">
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-            <property name="text">
-             <string>Network MHs:</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignVCenter</set>
@@ -259,7 +246,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
+          <item row="2" column="0">
            <spacer name="verticalSpacer_4">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
@@ -275,17 +262,33 @@
             </property>
            </spacer>
           </item>
-          <item row="0" column="2">
+          <item row="0" column="3" alignment="Qt::AlignRight|Qt::AlignVCenter">
            <widget class="QLabel" name="label_count_2">
+            <property name="styleSheet">
+             <string notr="true">;</string>
+            </property>
             <property name="text">
-             <string>Node Count:</string>
+             <string>Please Wait...</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="3" alignment="Qt::AlignRight">
-           <widget class="QLabel" name="countLabelDIP3">
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelMN">
             <property name="text">
-             <string>0</string>
+             <string>Masternodes:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <widget class="QLabel" name="label_Nethash_3">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string>Difficulty:</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignVCenter</set>
             </property>
            </widget>
           </item>
@@ -526,7 +529,7 @@ font-size: 11px;</string>
        <string>NorthernEX</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_6">
+     <widget class="QLabel" name="labelHTHInfo">
       <property name="geometry">
        <rect>
         <x>700</x>
