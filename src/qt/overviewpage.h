@@ -40,9 +40,8 @@ public:
     void setClientModel(ClientModel *clientModel);
     void setWalletModel(WalletModel *walletModel);
     void showOutOfSyncWarning(bool fShow);
-    size_t GetNodeCount();
-    void GetNodeStats();
-    
+    void GetNodeCount();
+        
     
 
 public Q_SLOTS:
