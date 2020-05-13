@@ -59,10 +59,9 @@ Q_SIGNALS:
 
 private:
 
-    int64_t nTimeFilterUpdatedDIP3;
-    int64_t nTimeUpdatedDIP3;
-    bool fFilterUpdatedDIP3;
+    
     QTimer *timer;
+    QTimer* timerinfo_mn;
     QTimer* timerinfo_blockchain;
     Ui::OverviewPage *ui;
     ClientModel *clientModel;
@@ -102,6 +101,7 @@ private Q_SLOTS:
     void on_pushButton_Website_4_clicked();
     void on_pushButton_Website_5_clicked();
     void updateBlockChainInfo();
+    void updateMasternodeInfo();
     
     
     
