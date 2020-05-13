@@ -96,7 +96,7 @@ private:
     
  /*   void SetupTransactionList(int nNumItems); */
  
-    CCriticalSection cs_dip3list;
+
 
     QString strCurrentFilterDIP3;
     
