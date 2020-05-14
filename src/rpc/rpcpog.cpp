@@ -42,7 +42,7 @@
 #include "netbase.h" // for LookupHost
 #include "wallet/wallet.h"
 #include <sstream>
-#include "randomx_bbp.h"
+
 
 #ifdef ENABLE_WALLET
 extern CWallet* pwalletMain;
@@ -1028,9 +1028,6 @@ int64_t GetFileSize(std::string sPath)
 bool CheckNonce(bool f9000, unsigned int nNonce, int nPrevHeight, int64_t nPrevBlockTime, int64_t nBlockTime, const Consensus::Params& params)
 {
 	if (!f9000 || nPrevHeight > params.EVOLUTION_CUTOVER_HEIGHT && nPrevHeight <= params.ANTI_GPU_HEIGHT) 
-		return true;
-
-	if (nPrevHeight >= params.RANDOMX_HEIGHT)
 		return true;
 
 	int64_t MAX_AGE = 30 * 60;
@@ -3871,42 +3868,6 @@ std::string GenerateFaucetCode()
 	return sResponse;
 }
 
-uint256 ComputeRandomXTarget(uint256 dac_hash, int64_t nPrevBlockTime, int64_t nBlockTime)
-{
-	static int MAX_AGE = 60 * 30;
-	static int MAX_AGE2 = 60 * 45;
-	static int MAX_AGE3 = 60 * 15;
-	static int64_t nDivisor = 8400;
-	int64_t nElapsed = nBlockTime - nPrevBlockTime;
-	if (nElapsed > MAX_AGE)
-	{
-		arith_uint256 bnHash = UintToArith256(dac_hash);
-		bnHash *= 700;
-		bnHash /= nDivisor;
-		uint256 nBH = ArithToUint256(bnHash);
-		return nBH;
-	}
-
-	if (nElapsed > MAX_AGE2)
-	{
-		arith_uint256 bnHash = UintToArith256(dac_hash);
-		bnHash *= 200;
-		bnHash /= nDivisor;
-		uint256 nBH = ArithToUint256(bnHash);
-		return nBH;
-	}
-	
-	if (nElapsed > MAX_AGE3 && !fProd)
-	{
-		arith_uint256 bnHash = UintToArith256(dac_hash);
-		bnHash *= 10;
-		bnHash /= nDivisor;
-		uint256 nBH = ArithToUint256(bnHash);
-		return nBH;
-	}
-
-	return dac_hash;
-}
 
 std::string ReverseHex(std::string const & src)
 {
@@ -3924,19 +3885,3 @@ std::string ReverseHex(std::string const & src)
 }
 
 static std::map<int, std::mutex> cs_rxhash;
-uint256 GetRandomXHash(std::string sHeaderHex, uint256 key, uint256 hashPrevBlock, int iThreadID)
-{
-	// *****************************************                      RandomX                                    ************************************************************************
-	// Starting at RANDOMX_HEIGHT, we now solve for an equation, rather than simply the difficulty and target.  (See prevention of preimage attacks in our wiki https://wiki.biblepay.org/Preventing_Preimage_Attacks)
-	// This is so our miners may earn a dual revenue stream (RandomX coins + DAC/BiblePay Coins).
-	// The equation is:  BlakeHash(Previous_DAC_Hash + RandomX_Hash(RandomX_Coin_Header)) < Current_DAC_Block_Difficulty
-	// **********************************************************************************************************************************************************************************
-	std::unique_lock<std::mutex> lock(cs_rxhash[iThreadID]);
-	std::vector<unsigned char> vch(160);
-	CVectorWriter ss(SER_NETWORK, PROTOCOL_VERSION, vch, 0);
-	std::string randomXBlockHeader = ExtractXML(sHeaderHex, "<rxheader>", "</rxheader>");
-	std::vector<unsigned char> data0 = ParseHex(randomXBlockHeader);
-	uint256 uRXMined = RandomX_Hash(data0, key, iThreadID);
-	ss << hashPrevBlock << uRXMined;
-	return HashBlake((const char *)vch.data(), (const char *)vch.data() + vch.size());
-}
