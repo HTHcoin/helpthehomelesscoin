@@ -73,7 +73,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     transactionsPage->setLayout(vbox);
 
         proposalAddPage = new ProposalAddDialog(platformStyle);
-	proposalListPage = new Proposals(platformStyle);
+	
     receiveCoinsPage = new ReceiveCoinsDialog(platformStyle);
     sendCoinsPage = new SendCoinsDialog(platformStyle);
 
@@ -86,7 +86,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(sendCoinsPage);
     addWidget(overviewAPage);  
         addWidget(proposalAddPage);
-	addWidget(proposalListPage);
+	
 
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
@@ -181,7 +181,7 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
     usedReceivingAddressesPage->setModel(_walletModel->getAddressTableModel());
     usedSendingAddressesPage->setModel(_walletModel->getAddressTableModel());
     proposalAddPage->setModel(_walletModel);
-	proposalListPage->setModel(_walletModel);
+	
 
     if (_walletModel)
     {
@@ -241,12 +241,6 @@ void WalletView::gotoProposalAddPage()
 {
 	setCurrentWidget(proposalAddPage);
 	proposalAddPage->UpdateDisplay();
-}
-
-void WalletView::gotoProposalListPage()
-{
-	setCurrentWidget(proposalListPage);
-	proposalListPage->UpdateDisplay();
 }
 
 
