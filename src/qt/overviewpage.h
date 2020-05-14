@@ -100,7 +100,7 @@ private:
 
     QString strCurrentFilterDIP3;
     
-    void updateDIP3List();
+    
 
 
 private Q_SLOTS:
