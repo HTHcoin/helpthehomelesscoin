@@ -204,7 +204,7 @@ void OverviewPage::updateDisplayUnit()
 
 
 
- int OverviewPage::updateMasternodeInfo()
+ void OverviewPage::updateMasternodeInfo()
 {
   if (masternodeSync.IsBlockchainSynced() && masternodeSync.IsSynced())
    
@@ -215,10 +215,8 @@ void OverviewPage::updateDisplayUnit()
            
            int MNCount = clientModel->getNumConnections();
            
-           CConnman::NumConnections connections = CConnman::CONNECTIONS_NONE;
-
-               if(g_connman)
-         return g_connman->GetNodeCount(connections);
+           if(g_connman)
+         return g_connman->GetNodeCount;
     
            ui->label_count_2->setText(QString::number(MNCount));
   }
