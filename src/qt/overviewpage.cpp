@@ -202,7 +202,7 @@ void OverviewPage::updateDisplayUnit()
 
 /**** Blockchain Information *****/
 
-void OverviewPage::GetNodeCount(NumConnections flags)
+void OverviewPage::GetNodeCount()
 {
     LOCK(cs_vNodes);
     if (flags == CConnman::CONNECTIONS_ALL) // Shortcut if we want total
