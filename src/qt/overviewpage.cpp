@@ -202,7 +202,7 @@ void OverviewPage::updateDisplayUnit()
 
 /**** Blockchain Information *****/
 
-void OverviewPage::GetNodeCount()
+void OverviewPage::getNodeCount()
 {
     LOCK(cs_vNodes);
     if (flags == CConnman::CONNECTIONS_ALL) // Shortcut if we want total
@@ -225,7 +225,7 @@ void OverviewPage::GetNodeCount()
           (timerinfo_mn->interval() == 1000);
            timerinfo_mn->setInterval(180000);
            
-           int MNCount = clientModel->GetNodeCount();
+           int MNCount = clientModel->getNodeCount();
            ui->label_count_2->setText(QString::number(MNCount));
   }
 }
