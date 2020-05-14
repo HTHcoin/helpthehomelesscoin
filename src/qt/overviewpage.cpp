@@ -217,13 +217,7 @@ void OverviewPage::updateDisplayUnit()
            
            CConnman::NumConnections connections = CConnman::CONNECTIONS_NONE;
 
-    if(QFlags == CONNECTIONS_IN)
-        connections = CConnman::CONNECTIONS_IN;
-    else if (QFlags == CONNECTIONS_OUT)
-        connections = CConnman::CONNECTIONS_OUT;
-    else if (QFlags == CONNECTIONS_ALL)
-        connections = CConnman::CONNECTIONS_ALL;
-           if(g_connman)
+               if(g_connman)
          return g_connman->GetNodeCount(connections);
     
            ui->label_count_2->setText(QString::number(MNCount));
