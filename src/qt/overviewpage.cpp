@@ -202,7 +202,19 @@ void OverviewPage::updateDisplayUnit()
 
 /**** Blockchain Information *****/
 
+void OverviewPage::GetNodeCount(NumConnections flags)
+{
+    LOCK(cs_vNodes);
+    if (flags == CConnman::CONNECTIONS_ALL) // Shortcut if we want total
+        return vNodes.size();
 
+    int nNum = 0;
+    for(std::vector<CNode*>::const_iterator it = vNodes.begin(); it != vNodes.end(); ++it)
+        if (flags & ((*it)->fInbound ? CONNECTIONS_IN : CONNECTIONS_OUT))
+            nNum++;
+
+    return nNum;
+}
 
  void OverviewPage::updateMasternodeInfo()
 {
@@ -213,11 +225,7 @@ void OverviewPage::updateDisplayUnit()
           (timerinfo_mn->interval() == 1000);
            timerinfo_mn->setInterval(180000);
            
-           int MNCount = clientModel->getNumConnections();
-           
-           if(g_connman)
-         return g_connman->GetNodeCount;
-    
+           int MNCount = clientModel->GetNodeCount();
            ui->label_count_2->setText(QString::number(MNCount));
   }
 }
