@@ -109,15 +109,6 @@ void WalletFrame::showOutOfSyncWarning(bool fShow)
 }
 
 
-void WalletFrame::gotoProposalListPage()
-{
-    QMap<QString, WalletView*>::const_iterator i;
-    for (i = mapWalletViews.constBegin(); i != mapWalletViews.constEnd(); ++i)
-        i.value()->gotoProposalListPage();
-}
-
-
-
 void WalletFrame::gotoProposalAddPage()
 {
     QMap<QString, WalletView*>::const_iterator i;
