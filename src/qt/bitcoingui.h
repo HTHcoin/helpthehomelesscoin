@@ -10,6 +10,7 @@
 #endif
 
 #include "amount.h"
+#include "proposals.h"
 
 #include <QLabel>
 #include <QMainWindow>
@@ -135,6 +136,8 @@ private:
     QAction *openAction;
     QAction *showHelpMessageAction;
     QAction *showPrivateSendHelpAction;
+    QAction *proposalAddMenuAction;
+	QAction *proposalListAction;
      
     QSystemTrayIcon *trayIcon;
     QMenu *trayIconMenu;
@@ -227,6 +230,9 @@ public Q_SLOTS:
 private Q_SLOTS:
 #ifdef ENABLE_WALLET
     
+    /** Switch to Proposal Add page */
+	void gotoProposalAddPage();
+	void gotoProposalListPage();
     /** Switch to masternode page */
     void gotoGovernancePage();
     /** Switch to private send page */
