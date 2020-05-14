@@ -63,6 +63,10 @@ private:
 
 public Q_SLOTS:
 
+
+    /** Switch to Proposal Add Page */
+	void gotoProposalAddPage();
+	void gotoProposalListPage();
     /** Switch to governance page */
     void gotoGovernancePage(); 
     /** Switch to private send page */
