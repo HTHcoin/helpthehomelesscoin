@@ -5,7 +5,7 @@
 #include "ui_secdialog.h"
 #include "walletmodel.h"
 #include "guiutil.h"
-#include "rpcpog.h"
+#include "rpc/rpcpog.h"
 #include <QPainter>
 #include <QTableWidget>
 #include <QGridLayout>
