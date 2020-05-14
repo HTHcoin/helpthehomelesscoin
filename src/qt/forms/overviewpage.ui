@@ -275,7 +275,7 @@
           <item row="0" column="2">
            <widget class="QLabel" name="labelMN">
             <property name="text">
-             <string>Masternodes:</string>
+             <string>Peers:</string>
             </property>
            </widget>
           </item>
