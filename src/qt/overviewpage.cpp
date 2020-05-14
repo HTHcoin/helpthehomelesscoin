@@ -203,6 +203,25 @@ void OverviewPage::updateDisplayUnit()
 /**** Blockchain Information *****/
 
 
+void OverviewPage::getNodeCount() {
+
+CConnman::NumConnections connections = CConnman::CONNECTIONS_NONE;
+
+    if(flags == CONNECTIONS_IN)
+        connections = CConnman::CONNECTIONS_IN;
+    else if (flags == CONNECTIONS_OUT)
+        connections = CConnman::CONNECTIONS_OUT;
+    else if (flags == CONNECTIONS_ALL)
+        connections = CConnman::CONNECTIONS_ALL;
+
+    if(g_connman)
+         return g_connman->GetNodeCount(connections);
+    return 0;
+
+}
+
+
+
  void OverviewPage::updateMasternodeInfo()
 {
   if (masternodeSync.IsBlockchainSynced() && masternodeSync.IsSynced())
