@@ -10,7 +10,7 @@
 #endif
 
 #include "amount.h"
-#include "proposals.h"
+#include "governancelist.h"
 
 #include <QLabel>
 #include <QMainWindow>
