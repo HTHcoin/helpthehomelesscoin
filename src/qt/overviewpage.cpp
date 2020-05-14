@@ -214,9 +214,17 @@ void OverviewPage::updateDisplayUnit()
            timerinfo_mn->setInterval(180000);
            
            int MNCount = clientModel->getNumConnections();
-    
+           
+           CConnman::NumConnections connections = CConnman::CONNECTIONS_NONE;
+
+    if(flags == CONNECTIONS_IN)
+        connections = CConnman::CONNECTIONS_IN;
+    else if (flags == CONNECTIONS_OUT)
+        connections = CConnman::CONNECTIONS_OUT;
+    else if (flags == CONNECTIONS_ALL)
+        connections = CConnman::CONNECTIONS_ALL;
            if(g_connman)
-         return g_connman->GetNodeCount();
+         return g_connman->GetNodeCount(connections);
     
            ui->label_count_2->setText(QString::number(MNCount));
   }
