@@ -20,8 +20,8 @@
 
 #include "walletmodel.h"
 #include "validation.h"
-#include "rpcpodc.h"
-#include "rpcpog.h"
+#include "rpc/rpcpodc.h"
+#include "rpc/rpcpog.h"
 #include <QAction>
 #include <QCursor>
 #include <QItemSelection>
