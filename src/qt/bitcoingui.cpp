@@ -1621,7 +1621,7 @@ void BitcoinGUI::detectShutdown()
 
 
 // Governance - Check to see if we should submit a proposal
-    nProposalModulus++;
+  /*  nProposalModulus++;
     if (nProposalModulus % 15 == 0 && !fLoadingIndex)
     {
         nProposalModulus = 0;
@@ -1654,7 +1654,7 @@ void BitcoinGUI::detectShutdown()
         }
     }
 
-}
+} */
 
 
 void BitcoinGUI::showProgress(const QString &title, int nProgress)
