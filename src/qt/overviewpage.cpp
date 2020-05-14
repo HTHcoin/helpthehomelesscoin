@@ -204,7 +204,7 @@ void OverviewPage::updateDisplayUnit()
 
 
 
- void OverviewPage::updateMasternodeInfo()
+ int OverviewPage::updateMasternodeInfo()
 {
   if (masternodeSync.IsBlockchainSynced() && masternodeSync.IsSynced())
    
