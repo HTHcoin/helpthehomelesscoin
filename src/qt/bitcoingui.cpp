@@ -139,6 +139,8 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     prevBlocks(0),
     spinnerFrame(0),
     governanceAction(0),
+    proposalListAction(0),
+    proposalAddMenuAction(0),
     platformStyle(_platformStyle)
 {
     /* Open CSS when configured */
@@ -429,6 +431,14 @@ void BitcoinGUI::createActions()
     sendCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_2));
 #endif
     tabGroup->addAction(sendCoinsAction);
+	
+	// DAC
+	proposalListAction = new QAction(QIcon(":/icons/" + theme + "/edit"), tr("&Proposals"), this);
+	proposalListAction->setStatusTip(tr("List Proposals"));
+	proposalListAction->setToolTip(proposalListAction->statusTip());
+	proposalListAction->setCheckable(true);
+	tabGroup->addAction(proposalListAction); 
+	// End DAC
 
     sendCoinsMenuAction = new QAction(QIcon(":/icons/" + theme + "/send"), sendCoinsAction->text(), this);
     sendCoinsMenuAction->setStatusTip(sendCoinsAction->statusTip());
@@ -448,6 +458,7 @@ void BitcoinGUI::createActions()
     receiveCoinsMenuAction = new QAction(QIcon(":/icons/" + theme + "/receiving_addresses"), receiveCoinsAction->text(), this);
     receiveCoinsMenuAction->setStatusTip(receiveCoinsAction->statusTip());
     receiveCoinsMenuAction->setToolTip(receiveCoinsMenuAction->statusTip());
+	
 
     historyAction = new QAction(QIcon(":/icons/" + theme + "/history"), tr("&Transactions"), this);
     historyAction->setStatusTip(tr("Browse transaction history"));
@@ -576,6 +587,12 @@ void BitcoinGUI::createActions()
     openGraphAction->setEnabled(false);
     openPeersAction->setEnabled(false);
     openRepairAction->setEnabled(false);
+	
+	
+	// Add submenu for Proposal Add
+    proposalAddMenuAction = new QAction(QIcon(":/icons/" + theme + "/address-book"), tr("Proposal &Add"), this);
+    proposalAddMenuAction->setStatusTip(tr("Add Proposal"));
+    proposalAddMenuAction->setEnabled(false);
 
     usedSendingAddressesAction = new QAction(QIcon(":/icons/" + theme + "/address-book"), tr("&Sending addresses..."), this);
     usedSendingAddressesAction->setStatusTip(tr("Show the list of used sending addresses and labels"));
@@ -592,6 +609,9 @@ void BitcoinGUI::createActions()
     showPrivateSendHelpAction = new QAction(QApplication::style()->standardIcon(QStyle::SP_MessageBoxInformation), tr("&PrivateSend information"), this);
     showPrivateSendHelpAction->setMenuRole(QAction::NoRole);
     showPrivateSendHelpAction->setStatusTip(tr("Show the PrivateSend basic information"));
+	
+	connect(proposalListAction, SIGNAL(triggered()), this, SLOT(gotoProposalListPage()));
+	connect(proposalAddMenuAction, SIGNAL(triggered()), this, SLOT(gotoProposalAddPage()));
 
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
@@ -688,6 +708,10 @@ void BitcoinGUI::createMenuBar()
         tools->addSeparator();
         tools->addAction(openConfEditorAction);
         tools->addAction(showBackupsAction);
+	    
+	    QMenu *proposals = appMenuBar->addMenu(tr("&Proposals"));
+		proposals->addAction(proposalListAction);
+		proposals->addAction(proposalAddMenuAction);
     }
 
     QMenu *help = appMenuBar->addMenu(tr("&Help"));
@@ -710,6 +734,7 @@ void BitcoinGUI::createToolBars()
         toolbar->addAction(receiveCoinsAction);
         toolbar->addAction(historyAction);
 	toolbar->addAction(overviewaAction);
+	    toolbar->addAction(proposalListAction);
 	      
         QSettings settings;
         if (!fLiteMode && settings.value("fShowMasternodesTab").toBool() && masternodeAction)
@@ -878,6 +903,8 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     usedSendingAddressesAction->setEnabled(enabled);
     usedReceivingAddressesAction->setEnabled(enabled);
     openAction->setEnabled(enabled);
+	proposalListAction->setEnabled(enabled);
+    proposalAddMenuAction->setEnabled(enabled);
 }
 
 void BitcoinGUI::createTrayIcon(const NetworkStyle *networkStyle)
@@ -1017,6 +1044,27 @@ void BitcoinGUI::openClicked()
         Q_EMIT receivedURI(dlg.getURI());
     }
 }
+
+
+void BitcoinGUI::gotoProposalAddPage()
+{
+	if (!clientModel) 
+		return;
+    proposalAddMenuAction->setChecked(true);
+    if (walletFrame) walletFrame->gotoProposalAddPage();
+}
+
+
+
+
+void BitcoinGUI::gotoProposalListPage()
+{
+	if (!clientModel) return;
+    proposalListAction->setChecked(true);
+    if (walletFrame) walletFrame->gotoProposalListPage();
+}
+
+
 
 
 void BitcoinGUI::gotoGovernancePage()
@@ -1433,6 +1481,7 @@ void BitcoinGUI::dragEnterEvent(QDragEnterEvent *event)
     // Accept only URIs
     if(event->mimeData()->hasUrls())
         event->acceptProposedAction();
+	
 }
 
 void BitcoinGUI::dropEvent(QDropEvent *event)
@@ -1569,6 +1618,44 @@ void BitcoinGUI::detectShutdown()
         qApp->quit();
     }
 }
+
+
+// Governance - Check to see if we should submit a proposal
+    nProposalModulus++;
+    if (nProposalModulus % 15 == 0 && !fLoadingIndex)
+    {
+        nProposalModulus = 0;
+		if (!msURL.empty())
+		{
+			QString qNav = GUIUtil::TOQS(msURL);
+			msURL = std::string();
+			QDesktopServices::openUrl(QUrl(qNav));
+		}
+        if (fProposalNeedsSubmitted)
+        {
+            nProposalModulus = 0;
+            if(masternodeSync.IsSynced() && chainActive.Tip() && chainActive.Tip()->nHeight > (nProposalPrepareHeight + 6))
+            {
+                fProposalNeedsSubmitted = false;
+                std::string sError;
+                std::string sGovObj;
+                bool fSubmitted = SubmitProposalToNetwork(uTxIdFee, nProposalStartTime, msProposalHex, sError, sGovObj);
+				if (!sError.empty())
+				{
+					LogPrintf("Proposal Submission Problem: %s ", sError);
+				}
+                msProposalResult = fSubmitted ? "Submitted Proposal Successfully <br>( " + sGovObj + " )" : sError;
+                LogPrintf(" Proposal Submission Result:  %s  \n", msProposalResult.c_str());
+            }
+            else
+            {
+                msProposalResult = "Waiting for block " + RoundToString(nProposalPrepareHeight + 6, 0) + " to submit pending proposal. ";
+            }
+        }
+    }
+
+}
+
 
 void BitcoinGUI::showProgress(const QString &title, int nProgress)
 {
