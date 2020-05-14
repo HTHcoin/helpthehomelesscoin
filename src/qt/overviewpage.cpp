@@ -213,7 +213,11 @@ void OverviewPage::updateDisplayUnit()
           (timerinfo_mn->interval() == 1000);
            timerinfo_mn->setInterval(180000);
            
-           int MNCount = clientModel->getNumConnections(getNodeCount);
+           int MNCount = clientModel->getNumConnections();
+    
+           if(g_connman)
+         return g_connman->GetNodeCount(connections);
+    
            ui->label_count_2->setText(QString::number(MNCount));
   }
 }
