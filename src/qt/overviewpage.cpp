@@ -216,7 +216,7 @@ void OverviewPage::updateDisplayUnit()
            int MNCount = clientModel->getNumConnections();
     
            if(g_connman)
-         return g_connman->GetNodeCount(connections);
+         return g_connman->GetNodeCount();
     
            ui->label_count_2->setText(QString::number(MNCount));
   }
