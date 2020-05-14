@@ -20,8 +20,8 @@
 
 #include "walletmodel.h"
 #include "validation.h"
-#include "rpcpodc.h"
-#include "rpcpog.h"
+#include "rpc/rpcpodc.h"
+#include "rpc/rpcpog.h"
 #include <QAction>
 #include <QCursor>
 #include <QItemSelection>
@@ -56,7 +56,7 @@ void ProposalAddDialog::UpdateDisplay()
 {
 	int nNextHeight = GetNextSuperblock();
 
-	std::string sInfo = "Note: Proposal Cost is 2500 " + CURRENCY_NAME + ".  Next Superblock at height: " + RoundToString(nNextHeight, 0) + "<br>Warning: You must unlock the wallet before submitting the proposal.";
+	std::string sInfo = "Note: Proposal Cost is 2500 " + HTH Coin + ".  Next Superblock at height: " + RoundToString(nNextHeight, 0) + "<br>Warning: You must unlock the wallet before submitting the proposal.";
 
 	if (fProposalNeedsSubmitted)
 	{
