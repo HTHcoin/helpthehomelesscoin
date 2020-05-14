@@ -42,6 +42,7 @@ QT_FORMS_UI = \
   qt/forms/modaloverlay.ui \
   qt/forms/masternodelist.ui \
   qt/forms/proposals.ui \
+  qt/forms/proposaladddialog.ui \
   qt/forms/qrdialog.ui \
   qt/forms/openuridialog.ui \
   qt/forms/optionsdialog.ui \
@@ -80,6 +81,7 @@ QT_MOC_CPP = \
   qt/moc_masternodelist.cpp \
   qt/moc_notificator.cpp \
   qt/moc_proposals.cpp \
+  qt/moc_proposaladddialog.cpp \
   qt/moc_openuridialog.cpp \
   qt/moc_optionsdialog.cpp \
   qt/moc_optionsmodel.cpp \
@@ -159,6 +161,7 @@ BITCOIN_QT_H = \
   qt/networkstyle.h \
   qt/notificator.h \
   qt/proposals.h \
+  qt/proposaladddialog.h \
   qt/openuridialog.h \
   qt/optionsdialog.h \
   qt/optionsmodel.h \
@@ -516,6 +519,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/paymentrequestplus.cpp \
   qt/paymentserver.cpp \
   qt/proposals.cpp \
+  qt/proposaladddialog.cpp \
   qt/qrdialog.cpp \
   qt/receivecoinsdialog.cpp \
   qt/receiverequestdialog.cpp \
