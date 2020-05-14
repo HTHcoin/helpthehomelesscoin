@@ -139,7 +139,6 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     prevBlocks(0),
     spinnerFrame(0),
     governanceAction(0),
-    proposalListAction(0),
     proposalAddMenuAction(0),
     platformStyle(_platformStyle)
 {
@@ -432,14 +431,6 @@ void BitcoinGUI::createActions()
 #endif
     tabGroup->addAction(sendCoinsAction);
 	
-	// DAC
-	proposalListAction = new QAction(QIcon(":/icons/" + theme + "/edit"), tr("&Proposals"), this);
-	proposalListAction->setStatusTip(tr("List Proposals"));
-	proposalListAction->setToolTip(proposalListAction->statusTip());
-	proposalListAction->setCheckable(true);
-	tabGroup->addAction(proposalListAction); 
-	// End DAC
-
     sendCoinsMenuAction = new QAction(QIcon(":/icons/" + theme + "/send"), sendCoinsAction->text(), this);
     sendCoinsMenuAction->setStatusTip(sendCoinsAction->statusTip());
     sendCoinsMenuAction->setToolTip(sendCoinsMenuAction->statusTip());
@@ -610,7 +601,7 @@ void BitcoinGUI::createActions()
     showPrivateSendHelpAction->setMenuRole(QAction::NoRole);
     showPrivateSendHelpAction->setStatusTip(tr("Show the PrivateSend basic information"));
 	
-	connect(proposalListAction, SIGNAL(triggered()), this, SLOT(gotoProposalListPage()));
+	
 	connect(proposalAddMenuAction, SIGNAL(triggered()), this, SLOT(gotoProposalAddPage()));
 
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
@@ -710,7 +701,7 @@ void BitcoinGUI::createMenuBar()
         tools->addAction(showBackupsAction);
 	    
 	    QMenu *proposals = appMenuBar->addMenu(tr("&Proposals"));
-		proposals->addAction(proposalListAction);
+		
 		proposals->addAction(proposalAddMenuAction);
     }
 
@@ -734,7 +725,7 @@ void BitcoinGUI::createToolBars()
         toolbar->addAction(receiveCoinsAction);
         toolbar->addAction(historyAction);
 	toolbar->addAction(overviewaAction);
-	    toolbar->addAction(proposalListAction);
+	    
 	      
         QSettings settings;
         if (!fLiteMode && settings.value("fShowMasternodesTab").toBool() && masternodeAction)
@@ -903,7 +894,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     usedSendingAddressesAction->setEnabled(enabled);
     usedReceivingAddressesAction->setEnabled(enabled);
     openAction->setEnabled(enabled);
-	proposalListAction->setEnabled(enabled);
+	
     proposalAddMenuAction->setEnabled(enabled);
 }
 
@@ -1053,19 +1044,6 @@ void BitcoinGUI::gotoProposalAddPage()
     proposalAddMenuAction->setChecked(true);
     if (walletFrame) walletFrame->gotoProposalAddPage();
 }
-
-
-
-
-void BitcoinGUI::gotoProposalListPage()
-{
-	if (!clientModel) return;
-    proposalListAction->setChecked(true);
-    if (walletFrame) walletFrame->gotoProposalListPage();
-}
-
-
-
 
 void BitcoinGUI::gotoGovernancePage()
 {
