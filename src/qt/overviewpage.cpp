@@ -217,11 +217,11 @@ void OverviewPage::updateDisplayUnit()
            
            CConnman::NumConnections connections = CConnman::CONNECTIONS_NONE;
 
-    if(flags == CONNECTIONS_IN)
+    if(QFlags == CONNECTIONS_IN)
         connections = CConnman::CONNECTIONS_IN;
-    else if (flags == CONNECTIONS_OUT)
+    else if (QFlags == CONNECTIONS_OUT)
         connections = CConnman::CONNECTIONS_OUT;
-    else if (flags == CONNECTIONS_ALL)
+    else if (QFlags == CONNECTIONS_ALL)
         connections = CConnman::CONNECTIONS_ALL;
            if(g_connman)
          return g_connman->GetNodeCount(connections);
