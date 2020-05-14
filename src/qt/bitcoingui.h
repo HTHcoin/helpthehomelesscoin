@@ -137,7 +137,7 @@ private:
     QAction *showHelpMessageAction;
     QAction *showPrivateSendHelpAction;
     QAction *proposalAddMenuAction;
-	QAction *proposalListAction;
+	
      
     QSystemTrayIcon *trayIcon;
     QMenu *trayIconMenu;
@@ -232,7 +232,7 @@ private Q_SLOTS:
     
     /** Switch to Proposal Add page */
 	void gotoProposalAddPage();
-	void gotoProposalListPage();
+	
     /** Switch to masternode page */
     void gotoGovernancePage();
     /** Switch to private send page */
