@@ -56,7 +56,7 @@ void ProposalAddDialog::UpdateDisplay()
 {
 	int nNextHeight = GetBestSuperblock();
 
-	std::string sInfo = "Note: Proposal Cost is 2500 " + HTH Coin + ".  Next Superblock at height: " + RoundToString(nNextHeight, 0) + "<br>Warning: You must unlock the wallet before submitting the proposal.";
+	std::string sInfo = "Note: Proposal Cost is 2500 HTH Coin" + ".  Next Superblock at height: " + RoundToString(nNextHeight, 0) + "<br>Warning: You must unlock the wallet before submitting the proposal.";
 
 	if (fProposalNeedsSubmitted)
 	{
