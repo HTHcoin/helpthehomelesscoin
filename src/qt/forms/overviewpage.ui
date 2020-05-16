@@ -971,7 +971,7 @@ font-size: 11px;</string>
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true"/>
+            <string notr="true">background-color: transparent</string>
            </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -981,7 +981,7 @@ font-size: 11px;</string>
          <item row="4" column="0" colspan="2">
           <widget class="Line" name="lineSpendableBalance">
            <property name="styleSheet">
-            <string notr="true"/>
+            <string notr="true">background-color: transparent</string>
            </property>
            <property name="lineWidth">
             <number>1</number>
