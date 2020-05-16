@@ -83,6 +83,10 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
   
     //information block update
    
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(updateDIP3ListScheduled()));
+    timer->start(1000);  
+      
     timerinfo_mn = new QTimer(this);
     connect(timerinfo_mn, SIGNAL(timeout()), this, SLOT(updateMasternodeInfo()));
     timerinfo_mn->start(1000);  
@@ -387,11 +391,7 @@ int GetOffsetFromUtc()
     connect(copyProTxHashAction, SIGNAL(triggered()), this, SLOT(copyProTxHash_clicked()));
     connect(copyCollateralOutpointAction, SIGNAL(triggered()), this, SLOT(copyCollateralOutpoint_clicked())); */
 
-    timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(updateDIP3ListScheduled()));
-    timer->start(1000);
-}
-
+  
 /*void OverviewPage::showContextMenuDIP3(const QPoint& point)
 {
     QTableWidgetItem* item = ui->tableWidgetMasternodesDIP3->itemAt(point);
