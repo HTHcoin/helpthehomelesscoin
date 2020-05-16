@@ -62,7 +62,8 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     cachedNumISLocks(-1),
     fFilterUpdatedDIP3(true),
     nTimeFilterUpdatedDIP3(0),
-    nTimeUpdatedDIP3(0)
+    nTimeUpdatedDIP3(0),
+    mnListChanged(true)
     
 {
                
@@ -107,6 +108,8 @@ OverviewPage::~OverviewPage()
 {
     /*if(timer) disconnect(timer, SIGNAL(timeout()), this, SLOT(privateSendStatus()));
     delete ui; */
+  
+  delete ui;
 }
 
 void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance, const CAmount& anonymizedBalance, const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance)
@@ -349,18 +352,6 @@ int GetOffsetFromUtc()
 #endif
 }
 
-OverviewPage::OverviewPage(const PlatformStyle* platformStyle, QWidget* parent) :
-    QWidget(parent),
-    ui(new Ui::OverviewPage),
-    clientModel(0),
-    walletModel(0),
-    fFilterUpdatedDIP3(true),
-    nTimeFilterUpdatedDIP3(0),
-    nTimeUpdatedDIP3(0),
-    mnListChanged(true)
-{
-    ui->setupUi(this);
-
     int columnAddressWidth = 200;
     int columnStatusWidth = 80;
     int columnPoSeScoreWidth = 80;
@@ -370,18 +361,18 @@ OverviewPage::OverviewPage(const PlatformStyle* platformStyle, QWidget* parent) 
     int columnPayeeWidth = 130;
     int columnOperatorRewardWidth = 130;
 
-    ui->tableWidgetMasternodesDIP3->setColumnWidth(0, columnAddressWidth);
+ /*   ui->tableWidgetMasternodesDIP3->setColumnWidth(0, columnAddressWidth);
     ui->tableWidgetMasternodesDIP3->setColumnWidth(1, columnStatusWidth);
     ui->tableWidgetMasternodesDIP3->setColumnWidth(2, columnPoSeScoreWidth);
     ui->tableWidgetMasternodesDIP3->setColumnWidth(3, columnRegisteredWidth);
     ui->tableWidgetMasternodesDIP3->setColumnWidth(4, columnLastPaidWidth);
     ui->tableWidgetMasternodesDIP3->setColumnWidth(5, columnNextPaymentWidth);
     ui->tableWidgetMasternodesDIP3->setColumnWidth(6, columnPayeeWidth);
-    ui->tableWidgetMasternodesDIP3->setColumnWidth(7, columnOperatorRewardWidth);
+    ui->tableWidgetMasternodesDIP3->setColumnWidth(7, columnOperatorRewardWidth); */
 
     // dummy column for proTxHash
     // TODO use a proper table model for the MN list
-    ui->tableWidgetMasternodesDIP3->insertColumn(8);
+  /*  ui->tableWidgetMasternodesDIP3->insertColumn(8);
     ui->tableWidgetMasternodesDIP3->setColumnHidden(8, true);
 
     ui->tableWidgetMasternodesDIP3->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -394,23 +385,18 @@ OverviewPage::OverviewPage(const PlatformStyle* platformStyle, QWidget* parent) 
     connect(ui->tableWidgetMasternodesDIP3, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(showContextMenuDIP3(const QPoint&)));
     connect(ui->tableWidgetMasternodesDIP3, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(extraInfoDIP3_clicked()));
     connect(copyProTxHashAction, SIGNAL(triggered()), this, SLOT(copyProTxHash_clicked()));
-    connect(copyCollateralOutpointAction, SIGNAL(triggered()), this, SLOT(copyCollateralOutpoint_clicked()));
+    connect(copyCollateralOutpointAction, SIGNAL(triggered()), this, SLOT(copyCollateralOutpoint_clicked())); */
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(updateDIP3ListScheduled()));
     timer->start(1000);
 }
 
-OverviewPage::~MasternodeList()
-{
-    delete ui;
-}
-
-void OverviewPage::showContextMenuDIP3(const QPoint& point)
+/*void OverviewPage::showContextMenuDIP3(const QPoint& point)
 {
     QTableWidgetItem* item = ui->tableWidgetMasternodesDIP3->itemAt(point);
     if (item) contextMenuDIP3->exec(QCursor::pos());
-}
+} */
 
 void OverviewPage::handleMasternodeListChanged()
 {
@@ -457,9 +443,9 @@ void OverviewPage::updateDIP3List()
 
     QString strToFilter;
     ui->countLabelDIP3->setText("Updating...");
-    ui->tableWidgetMasternodesDIP3->setSortingEnabled(false);
+ /*   ui->tableWidgetMasternodesDIP3->setSortingEnabled(false);
     ui->tableWidgetMasternodesDIP3->clearContents();
-    ui->tableWidgetMasternodesDIP3->setRowCount(0);
+    ui->tableWidgetMasternodesDIP3->setRowCount(0); */
 
     auto mnList = clientModel->getMasternodeList();
     nTimeUpdatedDIP3 = GetTime();
@@ -540,7 +526,7 @@ void OverviewPage::updateDIP3List()
             if (!strToFilter.contains(strCurrentFilterDIP3)) return;
         }
 
-        ui->tableWidgetMasternodesDIP3->insertRow(0);
+    /*   ui->tableWidgetMasternodesDIP3->insertRow(0);
         ui->tableWidgetMasternodesDIP3->setItem(0, 0, addressItem);
         ui->tableWidgetMasternodesDIP3->setItem(0, 1, statusItem);
         ui->tableWidgetMasternodesDIP3->setItem(0, 2, PoSeScoreItem);
@@ -549,11 +535,11 @@ void OverviewPage::updateDIP3List()
         ui->tableWidgetMasternodesDIP3->setItem(0, 5, nextPaymentItem);
         ui->tableWidgetMasternodesDIP3->setItem(0, 6, payeeItem);
         ui->tableWidgetMasternodesDIP3->setItem(0, 7, operatorRewardItem);
-        ui->tableWidgetMasternodesDIP3->setItem(0, 8, proTxHashItem);
+        ui->tableWidgetMasternodesDIP3->setItem(0, 8, proTxHashItem); */
     });
 
     ui->countLabelDIP3->setText(QString::number(ui->tableWidgetMasternodesDIP3->rowCount()));
-    ui->tableWidgetMasternodesDIP3->setSortingEnabled(true);
+ /*   ui->tableWidgetMasternodesDIP3->setSortingEnabled(true);  */
 }
 
 void OverviewPage::on_filterLineEditDIP3_textChanged(const QString& strFilterIn)
@@ -588,7 +574,7 @@ CDeterministicMNCPtr OverviewPage::GetSelectedDIP3MN()
 
         QModelIndex index = selected.at(0);
         int nSelectedRow = index.row();
-        strProTxHash = ui->tableWidgetMasternodesDIP3->item(nSelectedRow, 8)->text().toStdString();
+    /*    strProTxHash = ui->tableWidgetMasternodesDIP3->item(nSelectedRow, 8)->text().toStdString();  */
     }
 
     uint256 proTxHash;
