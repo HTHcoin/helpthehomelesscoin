@@ -259,9 +259,11 @@ void OverviewPage::updateBlockChainInfo()
        /*   double BlockReward = GetBlockHash(CurrentBlock);  */
        /*  double BlockRewardHTH =  static_cast<double>(BlockRewardHTH/COIN); */
         double CurrentDiff = GetDifficulty();
+        double NetHashRate = GetPoWHash();
       
         ui->label_CurrentBlock_value_3->setText(QString::number(CurrentBlock));
         ui->label_Nethash_3->setText(tr("Difficulty:"));
+        ui->NetHashRate->setText(QString::number(NetHashRate));
         ui->label_Nethash_value_3->setText(QString::number(CurrentDiff,'f',4));
        /*ui->label_CurrentBlockReward_value_3->setText(QString::number(BlockRewardHTH, 'f', 1)); */
       /* ui->label_CurrentBlock_value_3->setText(QString::number(block24hCount)); */
