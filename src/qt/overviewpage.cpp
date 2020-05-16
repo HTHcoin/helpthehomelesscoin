@@ -538,8 +538,8 @@ void OverviewPage::updateDIP3List()
         ui->tableWidgetMasternodesDIP3->setItem(0, 8, proTxHashItem); */
     });
 
-    ui->countLabelDIP3->setText(QString::number(ui->countLabelDIP3/*->rowCount()*/));
- /*   ui->tableWidgetMasternodesDIP3->setSortingEnabled(true);  */
+  /*  ui->countLabelDIP3->setText(QString::number(ui->countLabelDIP3->rowCount()));
+    ui->tableWidgetMasternodesDIP3->setSortingEnabled(true);  */
 }
 
 
