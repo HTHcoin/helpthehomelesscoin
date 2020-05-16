@@ -225,7 +225,7 @@ void OverviewPage::updateMasternodeInfo()  /** MN Info **/
           (timerinfo_mn->interval() == 1000);
            timerinfo_mn->setInterval(180000);
            
-           int MNCount = clientModel->getValidMNsCount();
+           int MNCount = clientModel->getMasternodeList();
            ui->countLabelDIP3->setText(QString::number(MNCount));
   }
 }
