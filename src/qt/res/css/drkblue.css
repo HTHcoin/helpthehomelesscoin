@@ -747,11 +747,11 @@ QStatusBar QLabel {
      } 
 
 QWidget .QFrame#frame_3 .QLabel#labelLineSpendableBalance {
-        background-color: #debf12;
+        background-color: #debf12 !important;
      } 
 
 QWidget .QFrame#frame_3 .QLabel#labelLineWatchBalance {
-        background-color: #debf12;
+        background-color: #debf12 !important;
      } 
 	 
         /*************** ########bottom status bar########*****************/
