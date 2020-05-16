@@ -331,7 +331,7 @@ void OverviewPage::on_pushButton_Website_5_clicked() {  // HTH Partners
 
 /****** Masternode Count Information Area *******/
 
-void MasternodeList::updateDIP3ListScheduled()
+void OverviewPage::updateDIP3ListScheduled()
 {
 /*    TRY_LOCK(cs_dip3list, fLockAcquired);
     if (!fLockAcquired) return;
