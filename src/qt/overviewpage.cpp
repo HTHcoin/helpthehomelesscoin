@@ -538,7 +538,7 @@ void OverviewPage::updateDIP3List()
         ui->tableWidgetMasternodesDIP3->setItem(0, 8, proTxHashItem); */
     });
 
-    ui->countLabelDIP3->setText(QString::number(ui->countLabeIP3->rowCount()));
+    ui->countLabelDIP3->setText(QString::number(ui->countLabeDIP3->rowCount()));
  /*   ui->tableWidgetMasternodesDIP3->setSortingEnabled(true);  */
 }
 
@@ -568,7 +568,7 @@ CDeterministicMNCPtr OverviewPage::GetSelectedDIP3MN()
         QModelIndex index = selected.at(0);
         int nSelectedRow = index.row();
         strProTxHash = ui->tableWidgetMasternodesDIP3->item(nSelectedRow, 8)->text().toStdString();
-    } /*
+    } 
 
     uint256 proTxHash;
     proTxHash.SetHex(strProTxHash);
@@ -613,7 +613,7 @@ void OverviewPage::copyCollateralOutpoint_clicked()
 
     QApplication::clipboard()->setText(QString::fromStdString(dmn->collateralOutpoint.ToStringShort()));
 }
-
+ */
 
 
 
