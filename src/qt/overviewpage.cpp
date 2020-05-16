@@ -203,7 +203,7 @@ void OverviewPage::updateDisplayUnit()
 /**** Blockchain Information *****/
 
 
-void MasternodeList::on_filterLineEditDIP3_textChanged(const QString& strFilterIn)
+void OverviewPage::on_filterLineEditDIP3_textChanged(const QString& strFilterIn)
 {
     strCurrentFilterDIP3 = strFilterIn;
     nTimeFilterUpdatedDIP3 = GetTime();
