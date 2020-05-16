@@ -32,7 +32,7 @@
 
 #include "instantx.h"
 #include "masternode-sync.h"
-#include "masternodelist.h"
+
 
 #include <univalue.h>
 
