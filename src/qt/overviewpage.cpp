@@ -6,6 +6,11 @@
 #include "overviewpage.h"
 #include "ui_overviewpage.h"
 
+#include "activemasternode.h"
+#include "clientversion.h"
+#include "netbase.h"
+#include "sync.h"
+#include "walletmodel.h"
 
 #include "bitcoinunits.h"
 #include "clientmodel.h"
@@ -29,7 +34,10 @@
 #include "masternode-sync.h"
 #include "masternodelist.h"
 
+#include <univalue.h>
 
+#include <QMessageBox>
+#include <QtGui/QClipboard>
 #include <QAbstractItemDelegate>
 #include <QPainter>
 #include <QSettings>
@@ -325,36 +333,8 @@ void OverviewPage::on_pushButton_Website_5_clicked() {  // HTH Partners
 /****** Masternode Count Information Area *******/
 
 
-#include "masternodelist.h"
-#include "ui_masternodelist.h"
 
-#include "activemasternode.h"
-#include "clientmodel.h"
-#include "clientversion.h"
-#include "guiutil.h"
-#include "init.h"
-#include "masternode-sync.h"
-#include "netbase.h"
-#include "sync.h"
-#include "wallet/wallet.h"
-#include "walletmodel.h"
 
-#include <univalue.h>
-
-#include <QMessageBox>
-#include <QTimer>
-#include <QtGui/QClipboard>
-
-int GetOffsetFromUtc()
-{
-#if QT_VERSION < 0x050200
-    const QDateTime dateTime1 = QDateTime::currentDateTime();
-    const QDateTime dateTime2 = QDateTime(dateTime1.date(), dateTime1.time(), Qt::UTC);
-    return dateTime1.secsTo(dateTime2);
-#else
-    return QDateTime::currentDateTime().offsetFromUtc();
-#endif
-}
 
     int columnAddressWidth = 200;
     int columnStatusWidth = 80;
