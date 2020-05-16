@@ -24,7 +24,6 @@ class WalletModel;
 class AddressBookPage;
 class OverviewAPage;
 class GovernancePage;
-class ProposalAddDialog;
 
 
 
