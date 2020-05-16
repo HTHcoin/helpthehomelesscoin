@@ -746,6 +746,13 @@ QStatusBar QLabel {
         font-size:15px;
      } 
 
+QWidget .QFrame#frame_3 .QLabel#lineSpendableBalance {
+        background-color: #debf12;
+     } 
+
+QWidget .QFrame#frame_3 .QLabel#lineWatchBalance {
+        background-color: #debf12;
+     } 
 	 
         /*************** ########bottom status bar########*****************/
 
