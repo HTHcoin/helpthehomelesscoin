@@ -5,8 +5,16 @@
 #ifndef BITCOIN_QT_OVERVIEWPAGE_H
 #define BITCOIN_QT_OVERVIEWPAGE_H
 
-#include "amount.h"
+#include "platformstyle.h"
+#include "primitives/transaction.h"
+#include "sync.h"
+#include "util.h"
 
+#include "evo/deterministicmns.h"
+
+
+#include "amount.h"
+#include <QTimer>
 #include <QMenu>
 #include <QWidget>
 #include <memory>
@@ -130,47 +138,12 @@ private Q_SLOTS:
 
 
 
-#include "platformstyle.h"
-#include "primitives/transaction.h"
-#include "sync.h"
-#include "util.h"
-
-#include "evo/deterministicmns.h"
-
-#include <QMenu>
-#include <QTimer>
-#include <QWidget>
-
-#define MASTERNODELIST_UPDATE_SECONDS 3
-#define MASTERNODELIST_FILTER_COOLDOWN_SECONDS 3
 
 
-QT_BEGIN_NAMESPACE
-class QModelIndex;
-QT_END_NAMESPACE
 
-/** Masternode Manager page widget */
-class OverviewPage : public QWidget
-{
-    Q_OBJECT
 
-public:
-    explicit OverviewPage(const PlatformStyle* platformStyle, QWidget* parent = 0);
-    ~OverviewPage();
 
-    void setClientModel(ClientModel* clientModel);
-    void setWalletModel(WalletModel* walletModel);
 
-private:
-    QMenu* contextMenuDIP3;
-    int64_t nTimeFilterUpdatedDIP3;
-    int64_t nTimeUpdatedDIP3;
-    bool fFilterUpdatedDIP3;
-
-    QTimer* timer;
-    Ui::OverviewPage* ui;
-    ClientModel* clientModel;
-    WalletModel* walletModel;
 
     // Protects tableWidgetMasternodesDIP3
     CCriticalSection cs_dip3list;
