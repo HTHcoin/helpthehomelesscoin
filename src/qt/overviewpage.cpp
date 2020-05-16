@@ -203,6 +203,16 @@ void OverviewPage::updateDisplayUnit()
 /**** Blockchain Information *****/
 
 
+void MasternodeList::on_filterLineEditDIP3_textChanged(const QString& strFilterIn)
+{
+    strCurrentFilterDIP3 = strFilterIn;
+    nTimeFilterUpdatedDIP3 = GetTime();
+    fFilterUpdatedDIP3 = true;
+    ui->countLabelDIP3->setText(QString::fromStdString(strprintf("Please wait... %d", MASTERNODELIST_FILTER_COOLDOWN_SECONDS)));
+}
+
+
+
 
  void OverviewPage::updateMasternodeInfo()  /** Peer Info for now **/
 {
