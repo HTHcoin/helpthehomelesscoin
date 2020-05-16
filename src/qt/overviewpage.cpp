@@ -259,7 +259,7 @@ void OverviewPage::updateBlockChainInfo()
        /*   double BlockReward = GetBlockHash(CurrentBlock);  */
        /*  double BlockRewardHTH =  static_cast<double>(BlockRewardHTH/COIN); */
         double CurrentDiff = GetDifficulty();
-        double NetHashRate = GetPoWHash();
+        double NetHashRate = getPoWHash();
       
         ui->label_CurrentBlock_value_3->setText(QString::number(CurrentBlock));
         ui->label_Nethash_3->setText(tr("Difficulty:"));
