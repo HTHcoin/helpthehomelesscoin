@@ -136,7 +136,6 @@ private:
     QAction *openAction;
     QAction *showHelpMessageAction;
     QAction *showPrivateSendHelpAction;
-    QAction *proposalAddMenuAction;
 	
      
     QSystemTrayIcon *trayIcon;
@@ -229,10 +228,7 @@ public Q_SLOTS:
 
 private Q_SLOTS:
 #ifdef ENABLE_WALLET
-    
-    /** Switch to Proposal Add page */
-	void gotoProposalAddPage();
-	
+ 	
     /** Switch to masternode page */
     void gotoGovernancePage();
     /** Switch to private send page */
