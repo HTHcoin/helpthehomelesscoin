@@ -95,7 +95,11 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
       
     timerinfo_blockchain = new QTimer(this);
     connect(timerinfo_blockchain, SIGNAL(timeout()), this, SLOT(updateBlockChainInfo()));
-    timerinfo_blockchain->start(1000); //30sec      
+    timerinfo_blockchain->start(1000); //30sec    
+      
+    timerinfo_peers = new QTimer(this);
+    connect(timerinfo_peers, SIGNAL(timeout()), this, SLOT(updatePeersInfo()));
+    timerinfo_peers->start(1000); 
       
                   
     // start with displaying the "out of sync" warnings
@@ -234,8 +238,8 @@ void OverviewPage::updateDisplayUnit()
    
   {
     
-          (timerinfo_mn->interval() == 1000);
-           timerinfo_mn->setInterval(180000);
+          (timerinfo_peers->interval() == 1000);
+           timerinfo_peers->setInterval(180000);
            
            int PeerCount = clientModel->getNumConnections();
            ui->label_count_2->setText(QString::number(PeerCount));
