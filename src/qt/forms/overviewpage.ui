@@ -44,9 +44,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>330</y>
+        <y>300</y>
         <width>451</width>
-        <height>231</height>
+        <height>261</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -62,22 +62,6 @@
        <property name="bottomMargin">
         <number>0</number>
        </property>
-       <item>
-        <spacer name="verticalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Fixed</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>3</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_14">
          <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
@@ -118,7 +102,7 @@
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>36</height>
+           <height>20</height>
           </size>
          </property>
         </spacer>
@@ -136,57 +120,7 @@
           <enum>QFrame::Raised</enum>
          </property>
          <layout class="QGridLayout" name="gridLayout_5">
-          <item row="4" column="1">
-           <widget class="QLabel" name="label_CurrentBlock_value_3">
-            <property name="minimumSize">
-             <size>
-              <width>110</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>130</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-            <property name="text">
-             <string>0</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignVCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="label_CurrentBlock">
-            <property name="minimumSize">
-             <size>
-              <width>110</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>130</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-            <property name="text">
-             <string>Current block:</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignVCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="3" alignment="Qt::AlignRight">
+          <item row="6" column="4" alignment="Qt::AlignRight">
            <widget class="QLabel" name="label_Nethash_value_3">
             <property name="text">
              <string>0</string>
@@ -246,7 +180,94 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
+          <item row="6" column="1">
+           <widget class="QLabel" name="label_CurrentBlock_value_3">
+            <property name="minimumSize">
+             <size>
+              <width>110</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>130</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string>0</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_CurrentBlock">
+            <property name="minimumSize">
+             <size>
+              <width>110</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>130</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string>Current block:</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QLabel" name="labelMN">
+            <property name="text">
+             <string>Peers:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="3">
+           <widget class="QLabel" name="label_Nethash_3">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string>Difficulty:</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4" alignment="Qt::AlignRight|Qt::AlignVCenter">
+           <widget class="QLabel" name="label_count_2">
+            <property name="styleSheet">
+             <string notr="true">;</string>
+            </property>
+            <property name="text">
+             <string>Please Wait...</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_count_3">
+            <property name="text">
+             <string>Node Count:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
            <spacer name="verticalSpacer_4">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
@@ -257,38 +278,18 @@
             <property name="sizeHint" stdset="0">
              <size>
               <width>20</width>
-              <height>28</height>
+              <height>63</height>
              </size>
             </property>
            </spacer>
           </item>
-          <item row="0" column="3" alignment="Qt::AlignRight|Qt::AlignVCenter">
-           <widget class="QLabel" name="label_count_2">
-            <property name="styleSheet">
-             <string notr="true">;</string>
-            </property>
+          <item row="1" column="1">
+           <widget class="QLabel" name="countLabelDIP3">
             <property name="text">
-             <string>Please Wait...</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <widget class="QLabel" name="labelMN">
-            <property name="text">
-             <string>Peers:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="2">
-           <widget class="QLabel" name="label_Nethash_3">
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-            <property name="text">
-             <string>Difficulty:</string>
+             <string>0</string>
             </property>
             <property name="alignment">
-             <set>Qt::AlignVCenter</set>
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
             </property>
            </widget>
           </item>
@@ -306,7 +307,7 @@
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>52</height>
+           <height>35</height>
           </size>
          </property>
         </spacer>
