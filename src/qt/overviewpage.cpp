@@ -11,6 +11,7 @@
 #include "netbase.h"
 #include "sync.h"
 #include "walletmodel.h"
+#include "evo/deterministicmns.h"
 
 #include "bitcoinunits.h"
 #include "clientmodel.h"
@@ -212,46 +213,6 @@ void OverviewPage::updateDisplayUnit()
 }
 
 /**** Blockchain Information *****/
-
-
-/** MN Count **/
-
-UniValue masternode_count(const JSONRPCRequest& request)
-{
-    if (request.fHelp || request.params.size() > 2)
-        masternode_count();
-
-    auto mnList = deterministicMNManager->GetListAtChainTip();
-    int total = mnList.GetAllMNsCount();
-    int enabled = mnList.GetValidMNsCount();
-
-    if (request.params.size() == 1) {
-        UniValue obj(UniValue::VOBJ);
-
-        obj.push_back(Pair("total", total));
-        obj.push_back(Pair("enabled", enabled));
-
-        return obj;
-    }
-
-    std::string strMode = request.params[1].get_str();
-
-    if (strMode == "total")
-        return total;
-
-    if (strMode == "enabled")
-        return enabled;
-
-    if (strMode == "all")
-        return strprintf("Total: %d (Enabled: %d)",
-            total, enabled);
-
-    throw JSONRPCError(RPC_INVALID_PARAMETER, "Unknown mode value");
-}
-
-
-
-/** MN Count **/
 
 
  void OverviewPage::updateMasternodeInfo()  
