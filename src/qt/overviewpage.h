@@ -78,10 +78,7 @@ Q_SIGNALS:
 
 private:
 
-    QMenu* contextMenuDIP3;
-    int64_t nTimeFilterUpdatedDIP3;
-    int64_t nTimeUpdatedDIP3;
-    bool fFilterUpdatedDIP3;
+  
     QTimer *timer;
     QTimer* timerinfo_mn;
     QTimer* timerinfo_blockchain;
@@ -104,20 +101,7 @@ private:
     std::unique_ptr<TransactionFilterProxy> filter; */
     
  /*   void SetupTransactionList(int nNumItems); */
-   // Protects tableWidgetMasternodesDIP3
-    CCriticalSection cs_dip3list; 
-
-    
-    bool mnListChanged;
-
-    CDeterministicMNCPtr GetSelectedDIP3MN();
-
-    void updateDIP3List();
-
-
-    QString strCurrentFilterDIP3;
-    
-    
+       
 
 
 private Q_SLOTS:
@@ -137,11 +121,9 @@ private Q_SLOTS:
     void on_pushButton_Website_5_clicked();
     void updateBlockChainInfo();
     void updateMasternodeInfo();
-    
+    void updatePeersInfo();
    
-    void on_filterLineEditDIP3_textChanged(const QString& strFilterIn);
-    void updateDIP3ListScheduled();
-       
+         
  };
 
 #endif // BITCOIN_QT_OVERVIEWPAGE_H
