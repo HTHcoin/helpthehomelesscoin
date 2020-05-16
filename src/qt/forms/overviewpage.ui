@@ -285,11 +285,17 @@
           </item>
           <item row="1" column="1">
            <widget class="QLabel" name="countLabelDIP3">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>0</string>
             </property>
             <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignRight|Qt::AlignVCenter</set>
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
            </widget>
           </item>
