@@ -331,7 +331,14 @@ void OverviewPage::on_pushButton_Website_5_clicked() {  // HTH Partners
 
 /****** Masternode Count Information Area *******/
 
+void MasternodeList::updateDIP3ListScheduled()
+{
+/*    TRY_LOCK(cs_dip3list, fLockAcquired);
+    if (!fLockAcquired) return;
 
+    if (!clientModel || ShutdownRequested()) {
+        return; 
+    } */
 
     // To prevent high cpu usage update only once in MASTERNODELIST_FILTER_COOLDOWN_SECONDS seconds
     // after filter was last changed unless we want to force the update.
