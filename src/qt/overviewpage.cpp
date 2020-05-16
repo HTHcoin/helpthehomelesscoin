@@ -446,8 +446,8 @@ void OverviewPage::updateDIP3List()
         }
     } */
 
-    mnList.ForEachMN(false, [&](const CDeterministicMNCPtr& dmn) {
-   /*     if (walletModel && ui->checkBoxMyMasternodesOnly->isChecked()) {
+   /* mnList.ForEachMN(false, [&](const CDeterministicMNCPtr& dmn) {
+       if (walletModel && ui->checkBoxMyMasternodesOnly->isChecked()) {
             bool fMyMasternode = setOutpts.count(dmn->collateralOutpoint) ||
                 walletModel->havePrivKey(dmn->pdmnState->keyIDOwner) ||
                 walletModel->havePrivKey(dmn->pdmnState->keyIDVoting) ||
@@ -493,7 +493,7 @@ void OverviewPage::updateDIP3List()
         QTableWidgetItem* operatorRewardItem = new QTableWidgetItem(operatorRewardStr);
         QTableWidgetItem* proTxHashItem = new QTableWidgetItem(QString::fromStdString(dmn->proTxHash.ToString())); */
 
-        if (strCurrentFilterDIP3 != "") {
+       /* if (strCurrentFilterDIP3 != "") {
             strToFilter = addressItem->text() + " " +
                           statusItem->text() + " " +
                           PoSeScoreItem->text() + " " +
@@ -502,9 +502,9 @@ void OverviewPage::updateDIP3List()
                           nextPaymentItem->text() + " " +
                           payeeItem->text() + " " +
                           operatorRewardItem->text() + " " +
-                          proTxHashItem->text();
-            if (!strToFilter.contains(strCurrentFilterDIP3)) return;
-        }
+                          proTxHashItem->text();  
+            if (!strToFilter.contains(strCurrentFilterDIP3)) return; 
+        } */
 
     /*   ui->tableWidgetMasternodesDIP3->insertRow(0);
         ui->tableWidgetMasternodesDIP3->setItem(0, 0, addressItem);
