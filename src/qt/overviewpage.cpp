@@ -219,7 +219,7 @@ void OverviewPage::updateDisplayUnit()
 UniValue masternode_count(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() > 2)
-        masternode_count_help();
+        masternode_count();
 
     auto mnList = deterministicMNManager->GetListAtChainTip();
     int total = mnList.GetAllMNsCount();
