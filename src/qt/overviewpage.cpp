@@ -170,14 +170,12 @@ void OverviewPage::updateWatchOnlyLabels(bool showWatchOnly)
 
 void OverviewPage::setClientModel(ClientModel *model)
 {
-            // Show warning if this is a prerelease version
+    this->clientModel = model;
+    if(model)
+    {
+        // Show warning if this is a prerelease version
        /* connect(model, SIGNAL(alertsChanged(QString)), this, SLOT(updateAlerts(QString)));
          updateAlerts(model->getStatusBarWarnings()); */
-      
-       this->clientModel = model;
-    if (model) {
-        // try to update list when masternode count changes
-        connect(clientModel, SIGNAL(masternodeListChanged()), this, SLOT(handleMasternodeListChanged()));
     }
 }
 
