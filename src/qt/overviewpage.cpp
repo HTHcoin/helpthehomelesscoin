@@ -70,7 +70,8 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     cachedNumISLocks(-1),
     fFilterUpdatedDIP3(true),
     nTimeFilterUpdatedDIP3(0),
-    nTimeUpdatedDIP3(0)
+    nTimeUpdatedDIP3(0),
+    mnListChanged(true)
     
 {
                
@@ -333,12 +334,12 @@ void OverviewPage::on_pushButton_Website_5_clicked() {  // HTH Partners
 
 void OverviewPage::updateDIP3ListScheduled()
 {
-/*    TRY_LOCK(cs_dip3list, fLockAcquired);
+    TRY_LOCK(cs_dip3list, fLockAcquired);
     if (!fLockAcquired) return;
 
     if (!clientModel || ShutdownRequested()) {
         return; 
-    } */
+    } 
 
     // To prevent high cpu usage update only once in MASTERNODELIST_FILTER_COOLDOWN_SECONDS seconds
     // after filter was last changed unless we want to force the update.
@@ -355,7 +356,7 @@ void OverviewPage::updateDIP3ListScheduled()
 
         if (nSecondsToWait <= 0) {
             updateDIP3List();
-        /*    mnListChanged = false; */
+           mnListChanged = false;
         }
     }
 }
@@ -366,7 +367,7 @@ void OverviewPage::updateDIP3List()
         return;
     }
 
-  /*  LOCK(cs_dip3list); */
+    LOCK(cs_dip3list);
 
     QString strToFilter;
     ui->countLabelDIP3->setText("Updating...");
@@ -384,10 +385,3 @@ void OverviewPage::updateDIP3List()
 
 
 }
-
-
-
-
-
-
-
