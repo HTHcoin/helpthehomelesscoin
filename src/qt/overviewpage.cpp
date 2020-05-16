@@ -216,7 +216,7 @@ void OverviewPage::updateDisplayUnit()
 /**** Blockchain Information *****/
 
 
-/* void OverviewPage::updateMasternodeInfo()  
+ void OverviewPage::updateMasternodeInfo()  
 {
   if (masternodeSync.IsBlockchainSynced() && masternodeSync.IsSynced())
    
@@ -225,10 +225,10 @@ void OverviewPage::updateDisplayUnit()
           (timerinfo_mn->interval() == 1000);
            timerinfo_mn->setInterval(180000);
            
-          auto MNCount = clientModel->getMasternodeList();
+           int MNCount = clientModel->GetProjectedMNPayees();
            ui->countLabelDIP3->setText(QString::number(MNCount));
   }
-} */
+} 
 
 
  void OverviewPage::updatePeersInfo()  /** Peer Info  **/
@@ -258,14 +258,12 @@ void OverviewPage::updateBlockChainInfo()
        /*   double BlockReward = GetBlockHash(CurrentBlock);  */
        /*  double BlockRewardHTH =  static_cast<double>(BlockRewardHTH/COIN); */
         double CurrentDiff = GetDifficulty();
-        double MNCount = getMasternodeList();
-
+      
         ui->label_CurrentBlock_value_3->setText(QString::number(CurrentBlock));
         ui->label_Nethash_3->setText(tr("Difficulty:"));
         ui->label_Nethash_value_3->setText(QString::number(CurrentDiff,'f',4));
-        ui->countLabelDIP3->setText(QString::number(MNCount));
        /*ui->label_CurrentBlockReward_value_3->setText(QString::number(BlockRewardHTH, 'f', 1)); */
-       /* ui->label_CurrentBlock_value_3->setText(QString::number(block24hCount)); */
+      /* ui->label_CurrentBlock_value_3->setText(QString::number(block24hCount)); */
   
   
     }
