@@ -233,8 +233,22 @@ void OverviewPage::on_filterLineEditDIP3_textChanged(const QString& strFilterIn)
 
 
 
+void OverviewPage::updateMasternodeInfo()  /** MN Info **/
+{
+  if (masternodeSync.IsBlockchainSynced() && masternodeSync.IsSynced())
+   
+  {
+    
+          (timerinfo_mn->interval() == 1000);
+           timerinfo_mn->setInterval(180000);
+           
+           int MNCount = clientModel->GetValidMNsCount();
+           ui->countLabelDIP3->setText(QString::number(MNCount));
+  }
+}
 
- void OverviewPage::updateMasternodeInfo()  /** Peer Info for now **/
+
+ void OverviewPage::updatePeersInfo()  /** Peer Info  **/
 {
   if (masternodeSync.IsBlockchainSynced() && masternodeSync.IsSynced())
    
@@ -324,64 +338,4 @@ void OverviewPage::on_pushButton_Website_5_clicked() {  // HTH Partners
 }
 
 
-/************** HTH Worldwide Button ******************/
-
-
-
-
-
-/****** Masternode Count Information Area *******/
-
-void OverviewPage::updateDIP3ListScheduled()
-{
-    TRY_LOCK(cs_dip3list, fLockAcquired);
-    if (!fLockAcquired) return;
-
-    if (!clientModel || ShutdownRequested()) {
-        return; 
-    } 
-
-    // To prevent high cpu usage update only once in MASTERNODELIST_FILTER_COOLDOWN_SECONDS seconds
-    // after filter was last changed unless we want to force the update.
-    if (fFilterUpdatedDIP3) {
-        int64_t nSecondsToWait = nTimeFilterUpdatedDIP3 - GetTime() + MASTERNODELIST_FILTER_COOLDOWN_SECONDS;
-        ui->countLabelDIP3->setText(QString::fromStdString(strprintf("Please wait... %d", nSecondsToWait)));
-
-        if (nSecondsToWait <= 0) {
-            updateDIP3List();
-            fFilterUpdatedDIP3 = false;
-        }
-    } else if (mnListChanged) {
-        int64_t nSecondsToWait = nTimeUpdatedDIP3 - GetTime() + MASTERNODELIST_UPDATE_SECONDS;
-
-        if (nSecondsToWait <= 0) {
-            updateDIP3List();
-           mnListChanged = false;
-        }
-    }
-}
-
-void OverviewPage::updateDIP3List()
-{
-    if (!clientModel || ShutdownRequested()) {
-        return;
-    }
-
-    LOCK(cs_dip3list);
-
-    QString strToFilter;
-    ui->countLabelDIP3->setText("Updating...");
-
-
-    auto mnList = clientModel->getMasternodeList();
-    nTimeUpdatedDIP3 = GetTime();
-
-    auto projectedPayees = mnList.GetProjectedMNPayees(mnList.GetValidMNsCount());
-    std::map<uint256, int> nextPayments;
-    for (size_t i = 0; i < projectedPayees.size(); i++) {
-        const auto& dmn = projectedPayees[i];
-        nextPayments.emplace(dmn->proTxHash, mnList.GetHeight() + (int)i + 1);
-    }
-
-
-}
+/************** HTH Worldwide Button *****************/
