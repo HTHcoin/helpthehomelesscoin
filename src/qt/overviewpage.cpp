@@ -215,7 +215,7 @@ void OverviewPage::updateDisplayUnit()
 /**** Blockchain Information *****/
 
 
- void RPCConsole::updateMasternodeInfo()
+ void OverviewPage::updateMasternodeInfo()
 {
     if (!clientModel) {
         return;
