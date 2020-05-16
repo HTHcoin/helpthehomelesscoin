@@ -105,10 +105,10 @@ private:
     
  /*   void SetupTransactionList(int nNumItems); */
    // Protects tableWidgetMasternodesDIP3
-    CCriticalSection cs_dip3list;
+ /*   CCriticalSection cs_dip3list; 
 
     
-    bool mnListChanged;
+    bool mnListChanged; */
 
     CDeterministicMNCPtr GetSelectedDIP3MN();
 
