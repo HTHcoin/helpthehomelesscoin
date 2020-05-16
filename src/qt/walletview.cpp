@@ -21,7 +21,6 @@
 #include "transactionview.h"
 #include "walletmodel.h"
 #include "overviewapage.h"
-#include "proposaladddialog.h"
 
 #include "ui_interface.h"
 
@@ -71,8 +70,6 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     hbox_buttons->addWidget(exportButton);
     vbox->addLayout(hbox_buttons);
     transactionsPage->setLayout(vbox);
-
-        proposalAddPage = new ProposalAddDialog(platformStyle);
 	
     receiveCoinsPage = new ReceiveCoinsDialog(platformStyle);
     sendCoinsPage = new SendCoinsDialog(platformStyle);
@@ -85,7 +82,6 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(receiveCoinsPage);
     addWidget(sendCoinsPage);
     addWidget(overviewAPage);  
-        addWidget(proposalAddPage);
 	
 
     QSettings settings;
@@ -180,8 +176,7 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
     sendCoinsPage->setModel(_walletModel);
     usedReceivingAddressesPage->setModel(_walletModel->getAddressTableModel());
     usedSendingAddressesPage->setModel(_walletModel->getAddressTableModel());
-    proposalAddPage->setModel(_walletModel);
-	
+   	
 
     if (_walletModel)
     {
@@ -234,13 +229,6 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
     QString label = ttm->data(index, TransactionTableModel::LabelRole).toString();
 
     Q_EMIT incomingTransaction(date, walletModel->getOptionsModel()->getDisplayUnit(), amount, type, address, label);
-}
-
-
-void WalletView::gotoProposalAddPage()
-{
-	setCurrentWidget(proposalAddPage);
-	proposalAddPage->UpdateDisplay();
 }
 
 
