@@ -216,16 +216,6 @@ void OverviewPage::updateDisplayUnit()
 /**** Blockchain Information *****/
 
 
-void OverviewPage::on_filterLineEditDIP3_textChanged(const QString& strFilterIn)
-{
-    strCurrentFilterDIP3 = strFilterIn;
-    nTimeFilterUpdatedDIP3 = GetTime();
-    fFilterUpdatedDIP3 = true;
-    ui->countLabelDIP3->setText(QString::fromStdString(strprintf("Please wait... %d", MASTERNODELIST_FILTER_COOLDOWN_SECONDS)));
-}
-
-
-
 void OverviewPage::updateMasternodeInfo()  /** MN Info **/
 {
   if (masternodeSync.IsBlockchainSynced() && masternodeSync.IsSynced())
@@ -235,7 +225,7 @@ void OverviewPage::updateMasternodeInfo()  /** MN Info **/
           (timerinfo_mn->interval() == 1000);
            timerinfo_mn->setInterval(180000);
            
-           int MNCount = clientModel->GetValidMNsCount();
+           int MNCount = clientModel->getValidMNsCount();
            ui->countLabelDIP3->setText(QString::number(MNCount));
   }
 }
