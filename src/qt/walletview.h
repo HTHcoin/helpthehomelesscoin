@@ -75,9 +75,7 @@ private:
     MasternodeList *masternodeListPage;
     OverviewAPage *overviewAPage;
     GovernanceList *governanceListPage;
-    ProposalAddDialog *proposalAddPage;
-	
-    
+      
     TransactionView *transactionView;
 
     QProgressDialog *progressDialog;
@@ -86,9 +84,7 @@ private:
 
 public Q_SLOTS:
 
-    /** Switch to Proposal Add Page */
-	void gotoProposalAddPage();
-	
+   	
     /** Switch to governance page */
     void gotoGovernancePage();
     /** Switch to private send page */	
