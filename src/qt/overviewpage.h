@@ -120,7 +120,7 @@ private Q_SLOTS:
     void on_pushButton_Website_5_clicked();
     void updateBlockChainInfo();
     void updateMasternodeInfo();
-   
+    void on_filterLineEditDIP3_textChanged(const QString& strFilterIn);
  
     
     
