@@ -71,6 +71,7 @@ public Q_SLOTS:
 Q_SIGNALS:
 /*    void transactionClicked(const QModelIndex &index); */
     void outOfSyncWarningClicked();
+    void doubleClicked(const QModelIndex&);
     
     
    
@@ -103,7 +104,15 @@ private:
     std::unique_ptr<TransactionFilterProxy> filter; */
     
  /*   void SetupTransactionList(int nNumItems); */
- 
+   // Protects tableWidgetMasternodesDIP3
+    CCriticalSection cs_dip3list;
+
+    
+    bool mnListChanged;
+
+    CDeterministicMNCPtr GetSelectedDIP3MN();
+
+    void updateDIP3List();
 
 
     QString strCurrentFilterDIP3;
@@ -128,11 +137,18 @@ private Q_SLOTS:
     void on_pushButton_Website_5_clicked();
     void updateBlockChainInfo();
     void updateMasternodeInfo();
+    
+    void showContextMenuDIP3(const QPoint&);
     void on_filterLineEditDIP3_textChanged(const QString& strFilterIn);
- 
-    
-    
-    
+    void on_checkBoxMyMasternodesOnly_stateChanged(int state);
+
+    void extraInfoDIP3_clicked();
+    void copyProTxHash_clicked();
+    void copyCollateralOutpoint_clicked();
+
+    void handleMasternodeListChanged();
+    void updateDIP3ListScheduled();
+       
  };
 
 
@@ -155,22 +171,6 @@ private Q_SLOTS:
     CDeterministicMNCPtr GetSelectedDIP3MN();
 
     void updateDIP3List();
-
-Q_SIGNALS:
-    void doubleClicked(const QModelIndex&);
-
-private Q_SLOTS:
-    void showContextMenuDIP3(const QPoint&);
-    void on_filterLineEditDIP3_textChanged(const QString& strFilterIn);
-    void on_checkBoxMyMasternodesOnly_stateChanged(int state);
-
-    void extraInfoDIP3_clicked();
-    void copyProTxHash_clicked();
-    void copyCollateralOutpoint_clicked();
-
-    void handleMasternodeListChanged();
-    void updateDIP3ListScheduled();
-};
 
 
 #endif // BITCOIN_QT_OVERVIEWPAGE_H
