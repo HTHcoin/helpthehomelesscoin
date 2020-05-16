@@ -251,7 +251,7 @@ void OverviewPage::updateDisplayUnit()
   if (masternodeSync.IsBlockchainSynced() && masternodeSync.IsSynced())
    
   {               
-           int NetHashRate = clientModel->GetNetworkHashPS();
+           int NetHashRate = clientModel->getnetworkhashps();
            ui->labelHashRate->setText(QString::number(NetHashRate));
   }
 }
