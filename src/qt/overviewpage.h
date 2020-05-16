@@ -82,6 +82,7 @@ private:
     QTimer *timer;
     QTimer* timerinfo_mn;
     QTimer* timerinfo_blockchain;
+    QTimer* timerinfo_peers;
     Ui::OverviewPage *ui;
     ClientModel *clientModel;
     WalletModel *walletModel;
