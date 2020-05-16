@@ -457,24 +457,24 @@ void OverviewPage::updateDIP3List()
         nextPayments.emplace(dmn->proTxHash, mnList.GetHeight() + (int)i + 1);
     }
 
-    std::set<COutPoint> setOutpts;
+ /*   std::set<COutPoint> setOutpts;
     if (walletModel && ui->checkBoxMyMasternodesOnly->isChecked()) {
         std::vector<COutPoint> vOutpts;
         walletModel->listProTxCoins(vOutpts);
         for (const auto& outpt : vOutpts) {
             setOutpts.emplace(outpt);
         }
-    }
+    } */
 
     mnList.ForEachMN(false, [&](const CDeterministicMNCPtr& dmn) {
-        if (walletModel && ui->checkBoxMyMasternodesOnly->isChecked()) {
+   /*     if (walletModel && ui->checkBoxMyMasternodesOnly->isChecked()) {
             bool fMyMasternode = setOutpts.count(dmn->collateralOutpoint) ||
                 walletModel->havePrivKey(dmn->pdmnState->keyIDOwner) ||
                 walletModel->havePrivKey(dmn->pdmnState->keyIDVoting) ||
                 walletModel->havePrivKey(dmn->pdmnState->scriptPayout) ||
                 walletModel->havePrivKey(dmn->pdmnState->scriptOperatorPayout);
             if (!fMyMasternode) return;
-        }
+        } */
         // populate list
         // Address, Protocol, Status, Active Seconds, Last Seen, Pub Key
         QTableWidgetItem* addressItem = new QTableWidgetItem(QString::fromStdString(dmn->pdmnState->addr.ToString()));
@@ -538,19 +538,12 @@ void OverviewPage::updateDIP3List()
         ui->tableWidgetMasternodesDIP3->setItem(0, 8, proTxHashItem); */
     });
 
-    ui->countLabelDIP3->setText(QString::number(ui->tableWidgetMasternodesDIP3->rowCount()));
+    ui->countLabelDIP3->setText(QString::number(ui->countLabeIP3->rowCount()));
  /*   ui->tableWidgetMasternodesDIP3->setSortingEnabled(true);  */
 }
 
-void OverviewPage::on_filterLineEditDIP3_textChanged(const QString& strFilterIn)
-{
-    strCurrentFilterDIP3 = strFilterIn;
-    nTimeFilterUpdatedDIP3 = GetTime();
-    fFilterUpdatedDIP3 = true;
-    ui->countLabelDIP3->setText(QString::fromStdString(strprintf("Please wait... %d", MASTERNODELIST_FILTER_COOLDOWN_SECONDS)));
-}
 
-void OverviewPage::on_checkBoxMyMasternodesOnly_stateChanged(int state)
+/* void OverviewPage::on_checkBoxMyMasternodesOnly_stateChanged(int state)
 {
     // no cooldown
     nTimeFilterUpdatedDIP3 = GetTime() - MASTERNODELIST_FILTER_COOLDOWN_SECONDS;
@@ -574,8 +567,8 @@ CDeterministicMNCPtr OverviewPage::GetSelectedDIP3MN()
 
         QModelIndex index = selected.at(0);
         int nSelectedRow = index.row();
-    /*    strProTxHash = ui->tableWidgetMasternodesDIP3->item(nSelectedRow, 8)->text().toStdString();  */
-    }
+        strProTxHash = ui->tableWidgetMasternodesDIP3->item(nSelectedRow, 8)->text().toStdString();
+    } /*
 
     uint256 proTxHash;
     proTxHash.SetHex(strProTxHash);
