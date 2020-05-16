@@ -345,7 +345,7 @@
            </spacer>
           </item>
           <item row="2" column="1">
-           <widget class="QLabel" name="NetHashRate">
+           <widget class="QLabel" name="labelHashRate">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
               <horstretch>0</horstretch>
