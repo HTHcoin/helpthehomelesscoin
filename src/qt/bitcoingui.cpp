@@ -139,7 +139,6 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     prevBlocks(0),
     spinnerFrame(0),
     governanceAction(0),
-    proposalAddMenuAction(0),
     platformStyle(_platformStyle)
 {
     /* Open CSS when configured */
@@ -580,11 +579,6 @@ void BitcoinGUI::createActions()
     openRepairAction->setEnabled(false);
 	
 	
-	// Add submenu for Proposal Add
-    proposalAddMenuAction = new QAction(QIcon(":/icons/" + theme + "/address-book"), tr("Proposal &Add"), this);
-    proposalAddMenuAction->setStatusTip(tr("Add Proposal"));
-    proposalAddMenuAction->setEnabled(false);
-
     usedSendingAddressesAction = new QAction(QIcon(":/icons/" + theme + "/address-book"), tr("&Sending addresses..."), this);
     usedSendingAddressesAction->setStatusTip(tr("Show the list of used sending addresses and labels"));
     usedReceivingAddressesAction = new QAction(QIcon(":/icons/" + theme + "/address-book"), tr("&Receiving addresses..."), this);
@@ -602,8 +596,6 @@ void BitcoinGUI::createActions()
     showPrivateSendHelpAction->setStatusTip(tr("Show the PrivateSend basic information"));
 	
 	
-	connect(proposalAddMenuAction, SIGNAL(triggered()), this, SLOT(gotoProposalAddPage()));
-
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
     connect(aboutQtAction, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
@@ -700,9 +692,6 @@ void BitcoinGUI::createMenuBar()
         tools->addAction(openConfEditorAction);
         tools->addAction(showBackupsAction);
 	    
-	    QMenu *proposals = appMenuBar->addMenu(tr("&Proposals"));
-		
-		proposals->addAction(proposalAddMenuAction);
     }
 
     QMenu *help = appMenuBar->addMenu(tr("&Help"));
@@ -894,8 +883,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     usedSendingAddressesAction->setEnabled(enabled);
     usedReceivingAddressesAction->setEnabled(enabled);
     openAction->setEnabled(enabled);
-	
-    proposalAddMenuAction->setEnabled(enabled);
+
 }
 
 void BitcoinGUI::createTrayIcon(const NetworkStyle *networkStyle)
@@ -1036,14 +1024,6 @@ void BitcoinGUI::openClicked()
     }
 }
 
-
-void BitcoinGUI::gotoProposalAddPage()
-{
-	if (!clientModel) 
-		return;
-    proposalAddMenuAction->setChecked(true);
-    if (walletFrame) walletFrame->gotoProposalAddPage();
-}
 
 void BitcoinGUI::gotoGovernancePage()
 {
