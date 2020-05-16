@@ -957,7 +957,7 @@ font-size: 11px;</string>
           </spacer>
          </item>
          <item row="4" column="3">
-          <widget class="Line" name="labelLineWatchBalance">
+          <widget class="Line" name="lineWatchBalance">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -979,7 +979,7 @@ font-size: 11px;</string>
           </widget>
          </item>
          <item row="4" column="0" colspan="2">
-          <widget class="Line" name="labelLineSpendableBalance">
+          <widget class="Line" name="lineSpendableBalance">
            <property name="styleSheet">
             <string notr="true"/>
            </property>
