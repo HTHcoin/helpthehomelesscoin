@@ -215,19 +215,17 @@ void OverviewPage::updateDisplayUnit()
 /**** Blockchain Information *****/
 
 
- void OverviewPage::updateMasternodeInfo()  
+ void RPCConsole::updateMasternodeInfo()
 {
-  if (masternodeSync.IsBlockchainSynced() && masternodeSync.IsSynced())
-   
-  {
-    
-          (timerinfo_mn->interval() == 1000);
-           timerinfo_mn->setInterval(180000);
-           
-           int MNCount = clientModel->GetValidMNsCount();
-           ui->countLabelDIP3->setText(QString::number(MNCount));
-  }
-} 
+    if (!clientModel) {
+        return;
+    }
+    auto mnList = clientModel->getMasternodeList();
+    QString strMasternodeCount = tr("Total: %1 (Enabled: %2)")
+        .arg(QString::number(mnList.GetAllMNsCount()))
+        .arg(QString::number(mnList.GetValidMNsCount()));
+    ui->countLabelDIP3->setText(strMasternodeCount);
+}
 
 
  void OverviewPage::updatePeersInfo()  /** Peer Info  **/
