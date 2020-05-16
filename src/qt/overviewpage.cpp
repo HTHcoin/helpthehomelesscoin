@@ -221,9 +221,9 @@ void OverviewPage::updateDisplayUnit()
         return;
     }
     auto mnList = clientModel->getMasternodeList();
-    QString strMasternodeCount = tr("Total: %1 (Enabled: %2)")
+    QString strMasternodeCount = tr("%1")
         .arg(QString::number(mnList.GetAllMNsCount()))
-        .arg(QString::number(mnList.GetValidMNsCount()));
+     /*   .arg(QString::number(mnList.GetValidMNsCount())); */
     ui->countLabelDIP3->setText(strMasternodeCount);
 }
 
