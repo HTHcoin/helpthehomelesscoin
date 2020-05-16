@@ -515,8 +515,8 @@ void OverviewPage::updateDIP3List()
         ui->tableWidgetMasternodesDIP3->setItem(0, 5, nextPaymentItem);
         ui->tableWidgetMasternodesDIP3->setItem(0, 6, payeeItem);
         ui->tableWidgetMasternodesDIP3->setItem(0, 7, operatorRewardItem);
-        ui->tableWidgetMasternodesDIP3->setItem(0, 8, proTxHashItem); */
-    });
+        ui->tableWidgetMasternodesDIP3->setItem(0, 8, proTxHashItem); 
+    }); */
 
   /*  ui->countLabelDIP3->setText(QString::number(ui->countLabelDIP3->rowCount()));
     ui->tableWidgetMasternodesDIP3->setSortingEnabled(true);  */
