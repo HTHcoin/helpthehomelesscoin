@@ -77,7 +77,6 @@ QT_MOC_CPP = \
   qt/moc_modaloverlay.cpp \
   qt/moc_masternodelist.cpp \
   qt/moc_notificator.cpp \
-  qt/moc_proposaladddialog.cpp \
   qt/moc_openuridialog.cpp \
   qt/moc_optionsdialog.cpp \
   qt/moc_optionsmodel.cpp \
