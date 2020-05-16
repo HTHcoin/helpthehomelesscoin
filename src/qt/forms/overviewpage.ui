@@ -289,7 +289,7 @@
              <string>0</string>
             </property>
             <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+             <set>Qt::AlignLeading|Qt::AlignRight|Qt::AlignVCenter</set>
             </property>
            </widget>
           </item>
