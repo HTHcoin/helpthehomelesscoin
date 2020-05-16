@@ -67,11 +67,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     currentWatchOnlyBalance(-1),
     currentWatchUnconfBalance(-1),
     currentWatchImmatureBalance(-1),
-    cachedNumISLocks(-1),
-    fFilterUpdatedDIP3(true),
-    nTimeFilterUpdatedDIP3(0),
-    nTimeUpdatedDIP3(0),
-    mnListChanged(true)
+    cachedNumISLocks(-1)
     
 {
                
@@ -91,9 +87,6 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
   
     //information block update
    
-    timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(updateDIP3ListScheduled()));
-    timer->start(1000);  
       
     timerinfo_mn = new QTimer(this);
     connect(timerinfo_mn, SIGNAL(timeout()), this, SLOT(updateMasternodeInfo()));
