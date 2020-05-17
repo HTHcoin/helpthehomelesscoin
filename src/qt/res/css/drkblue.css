@@ -659,14 +659,14 @@ QStatusBar QLabel {
 
     QWidget .QFrame#frame_3 .QLabel#labelTotalText { /* Total text Label */
             background-color:transparent;
-            color:#debf12;
+            color:#34bcaa;
             font-size:15px;
          }
 
 
     QWidget .QFrame#frame_3 .QLabel#labelTotal { /* Total balance count Label */
             background-color:transparent;
-            color:#34bcaa;
+            color:#debf12;
             font-weight: bold;
             font-size:25px;
          }
