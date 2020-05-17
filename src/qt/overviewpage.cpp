@@ -324,7 +324,7 @@ void OverviewPage::updateBlockChainInfo()
     if (masternodeSync.IsBlockchainSynced())
     {
         int CurrentBlock = clientModel->getNumBlocks();
-        int NetHashRate = clientModel->GetNetworkHashPS(24, CurrentBlock-1);
+        int NetHashRate = chainActive.Tip(GetNetworkHashPS(24, CurrentBlock-1));
        /*   double BlockReward = GetBlockHash(CurrentBlock);  */
        /*  double BlockRewardHTH =  static_cast<double>(BlockRewardHTH/COIN); */
         double CurrentDiff = GetDifficulty();
