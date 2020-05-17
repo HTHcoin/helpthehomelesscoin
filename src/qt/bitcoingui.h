@@ -103,6 +103,7 @@ private:
 
     QMenuBar *appMenuBar;
     
+    QAction *proposalAddMenuAction;
     QAction *governanceAction;
     QAction* overviewaAction;
     QAction *overviewAction;
@@ -229,6 +230,8 @@ public Q_SLOTS:
 private Q_SLOTS:
 #ifdef ENABLE_WALLET
  	
+    /** Switch to Proposal Add page */
+	void gotoProposalAddPage();
     /** Switch to masternode page */
     void gotoGovernancePage();
     /** Switch to private send page */
