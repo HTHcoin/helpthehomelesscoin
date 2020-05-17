@@ -42,6 +42,7 @@
 #include "netbase.h" // for LookupHost
 #include "wallet/wallet.h"
 #include <sstream>
+#include "random.h"
 
 
 #ifdef ENABLE_WALLET
