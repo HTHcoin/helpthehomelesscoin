@@ -232,6 +232,11 @@ public:
         consensus.devAddress = "hWrjjP7w4iE5tezxDG3jD7xCTmikw3Kgoy";
         consensus.devAddressPubKey = "b027849d3febd03af8063fc9f1f1226fbe3eb74c";
         consensus.nDevelopersFeeBegin = 250;
+	   
+/*	consensus.FoundationAddress = "BB2BwSbDCqCqNsfc7FgWFJn4sRgnUt4tsM";
+	consensus.FoundationPODSAddress = "BScSypUZVEEY4TMz1ehyyPcS5wrnMM7WPB";
+	consensus.FoundationQTAddress = "BDcNYc8tGXmwD7QmLXbR1rk1qteTDVEjUD";
+	consensus.BurnAddress = "B4T5ciTCkWauSqVAcVKy88ofjcSasUkSYU";    */
 
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1544655600;
@@ -410,6 +415,11 @@ public:
         consensus.devAddress = "yUDp1tj5hnnVYaZxpA94k2ZyDiG3hD46it";
         consensus.devAddressPubKey = "56b02e0c24998c6d27a7603cc17be9cd62643825";
         consensus.nDevelopersFeeBegin = 250;
+	    
+	consensus.FoundationAddress = "yg7cUN19J8puigMMXfhv193S92EiSNe3Ag";
+	consensus.FoundationPODSAddress = "ycGfUKh4itBzi4EGj2W8gxSEbLUGJqLFBZ";
+	consensus.FoundationQTAddress = "yeKHKjBRDpcz6Ec8pHQhQXpkszJLp9ykMo";
+	consensus.BurnAddress = "yTQvV7JLSpjtUXteGGaR3SXKV5tRqe9U1e";    
 
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
