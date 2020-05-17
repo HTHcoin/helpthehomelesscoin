@@ -33,10 +33,9 @@ QT_TS = \
 QT_FORMS_UI = \
   qt/forms/addressbookpage.ui \
   qt/forms/askpassphrasedialog.ui \
+  qt/forms/businessobjectlist.ui \
   qt/forms/coincontroldialog.ui \
   qt/forms/editaddressdialog.ui \
-  qt/forms/governancelist.ui \
-  qt/forms/governancedialog.ui \
   qt/forms/helpmessagedialog.ui \
   qt/forms/intro.ui \
   qt/forms/modaloverlay.ui \
@@ -45,13 +44,14 @@ QT_FORMS_UI = \
   qt/forms/openuridialog.ui \
   qt/forms/optionsdialog.ui \
   qt/forms/overviewpage.ui \
-  qt/forms/overviewapage.ui \
-  qt/forms/proposaladddialog.ui \
   qt/forms/receivecoinsdialog.ui \
   qt/forms/receiverequestdialog.ui \
   qt/forms/debugwindow.ui \
   qt/forms/sendcoinsdialog.ui \
   qt/forms/sendcoinsentry.ui \
+  qt/forms/proposals.ui \
+  qt/forms/secdialog.ui \
+  qt/forms/proposaladddialog.ui \
   qt/forms/signverifymessagedialog.ui \
   qt/forms/transactiondescdialog.ui
 
@@ -60,6 +60,7 @@ QT_MOC_CPP = \
   qt/moc_addresstablemodel.cpp \
   qt/moc_askpassphrasedialog.cpp \
   qt/moc_bantablemodel.cpp \
+  qt/moc_businessobjectlist.cpp \
   qt/moc_bitcoinaddressvalidator.cpp \
   qt/moc_bitcoinamountfield.cpp \
   qt/moc_bitcoingui.cpp \
@@ -69,8 +70,6 @@ QT_MOC_CPP = \
   qt/moc_coincontroltreewidget.cpp \
   qt/moc_csvmodelwriter.cpp \
   qt/moc_editaddressdialog.cpp \
-  qt/moc_governancelist.cpp \
-  qt/moc_governancedialog.cpp \
   qt/moc_guiutil.cpp \
   qt/moc_intro.cpp \
   qt/moc_macdockiconhandler.cpp \
@@ -82,10 +81,8 @@ QT_MOC_CPP = \
   qt/moc_optionsdialog.cpp \
   qt/moc_optionsmodel.cpp \
   qt/moc_overviewpage.cpp \
-  qt/moc_overviewapage.cpp \
   qt/moc_peertablemodel.cpp \
   qt/moc_paymentserver.cpp \
-  qt/moc_proposaladddialog.cpp \
   qt/moc_qrdialog.cpp \
   qt/moc_qvalidatedlineedit.cpp \
   qt/moc_qvaluecombobox.cpp \
@@ -106,6 +103,9 @@ QT_MOC_CPP = \
   qt/moc_utilitydialog.cpp \
   qt/moc_walletframe.cpp \
   qt/moc_walletmodel.cpp \
+  qt/moc_proposaladddialog.cpp \
+  qt/moc_secdialog.cpp \
+  qt/moc_proposals.cpp \
   qt/moc_walletview.cpp
 
 BITCOIN_MM = \
@@ -135,6 +135,7 @@ BITCOIN_QT_H = \
   qt/addresstablemodel.h \
   qt/askpassphrasedialog.h \
   qt/bantablemodel.h \
+  qt/businessobjectlist.h \
   qt/bitcoinaddressvalidator.h \
   qt/bitcoinamountfield.h \
   qt/bitcoingui.h \
@@ -144,8 +145,6 @@ BITCOIN_QT_H = \
   qt/coincontroltreewidget.h \
   qt/csvmodelwriter.h \
   qt/editaddressdialog.h \
-  qt/governancelist.h \
-  qt/governancedialog.h \
   qt/guiconstants.h \
   qt/guiutil.h \
   qt/intro.h \
@@ -156,12 +155,10 @@ BITCOIN_QT_H = \
   qt/masternodelist.h \
   qt/networkstyle.h \
   qt/notificator.h \
-  qt/proposaladddialog.h \
   qt/openuridialog.h \
   qt/optionsdialog.h \
   qt/optionsmodel.h \
   qt/overviewpage.h \
-  qt/overviewapage.h \
   qt/paymentrequestplus.h \
   qt/paymentserver.h \
   qt/peertablemodel.h \
@@ -190,6 +187,9 @@ BITCOIN_QT_H = \
   qt/walletmodel.h \
   qt/walletmodeltransaction.h \
   qt/walletview.h \
+  qt/proposaladddialog.h \
+  qt/proposals.h \
+  qt/secdialog.h \
   qt/winshutdownmonitor.h
 
 RES_ICONS = \
@@ -197,7 +197,6 @@ RES_ICONS = \
   qt/res/icons/bitcoin_testnet.ico \
   qt/res/icons/bitcoin.png \
   qt/res/icons/chevron.png \
-  qt/res/icons/governance.png \
   qt/res/icons/warning.png \
   qt/res/icons/drkblue/add.png \
   qt/res/icons/drkblue/address-book.png \
@@ -253,60 +252,60 @@ RES_ICONS = \
   qt/res/icons/drkblue/fontbigger.png \
   qt/res/icons/drkblue/fontsmaller.png \
   qt/res/icons/drkblue/network_disabled.png \
-  qt/res/icons/crownium/add.png \
-  qt/res/icons/crownium/address-book.png \
-  qt/res/icons/crownium/browse.png \
-  qt/res/icons/crownium/clock1.png \
-  qt/res/icons/crownium/clock2.png \
-  qt/res/icons/crownium/clock3.png \
-  qt/res/icons/crownium/clock4.png \
-  qt/res/icons/crownium/clock5.png \
-  qt/res/icons/crownium/configure.png \
-  qt/res/icons/crownium/connect0_16.png \
-  qt/res/icons/crownium/connect1_16.png \
-  qt/res/icons/crownium/connect2_16.png \
-  qt/res/icons/crownium/connect3_16.png \
-  qt/res/icons/crownium/connect4_16.png \
-  qt/res/icons/crownium/debugwindow.png \
-  qt/res/icons/crownium/drkblue_editpaste.png \
-  qt/res/icons/crownium/drkblue_address-book.png \
-  qt/res/icons/crownium/drkblue_editcopy.png \
-  qt/res/icons/crownium/drkblue_remove.png \
-  qt/res/icons/crownium/edit.png \
-  qt/res/icons/crownium/editcopy.png \
-  qt/res/icons/crownium/editpaste.png \
-  qt/res/icons/crownium/export.png \
-  qt/res/icons/crownium/eye.png \
-  qt/res/icons/crownium/eye_minus.png \
-  qt/res/icons/crownium/eye_plus.png \
-  qt/res/icons/crownium/filesave.png \
-  qt/res/icons/crownium/hd_disabled.png \
-  qt/res/icons/crownium/hd_enabled.png \
-  qt/res/icons/crownium/history.png \
-  qt/res/icons/crownium/key.png \
-  qt/res/icons/crownium/lock_closed.png \
-  qt/res/icons/crownium/lock_open.png \
-  qt/res/icons/crownium/masternodes.png \
-  qt/res/icons/crownium/overview.png \
-  qt/res/icons/crownium/quit.png \
-  qt/res/icons/crownium/receive.png \
-  qt/res/icons/crownium/remove.png \
-  qt/res/icons/crownium/send.png \
-  qt/res/icons/crownium/synced.png \
-  qt/res/icons/crownium/transaction0.png \
-  qt/res/icons/crownium/transaction2.png \
-  qt/res/icons/crownium/transaction_abandoned.png \
-  qt/res/icons/crownium/transaction_conflicted.png \
-  qt/res/icons/crownium/tx_inout.png \
-  qt/res/icons/crownium/tx_input.png \
-  qt/res/icons/crownium/tx_output.png \
-  qt/res/icons/crownium/tx_mined.png \
-  qt/res/icons/crownium/about.png \
-  qt/res/icons/crownium/about_qt.png \
-  qt/res/icons/crownium/verify.png \
-  qt/res/icons/crownium/fontbigger.png \
-  qt/res/icons/crownium/fontsmaller.png \
-  qt/res/icons/crownium/network_disabled.png \
+  qt/res/icons/bezaleel/add.png \
+  qt/res/icons/bezaleel/address-book.png \
+  qt/res/icons/bezaleel/browse.png \
+  qt/res/icons/bezaleel/clock1.png \
+  qt/res/icons/bezaleel/clock2.png \
+  qt/res/icons/bezaleel/clock3.png \
+  qt/res/icons/bezaleel/clock4.png \
+  qt/res/icons/bezaleel/clock5.png \
+  qt/res/icons/bezaleel/configure.png \
+  qt/res/icons/bezaleel/connect0_16.png \
+  qt/res/icons/bezaleel/connect1_16.png \
+  qt/res/icons/bezaleel/connect2_16.png \
+  qt/res/icons/bezaleel/connect3_16.png \
+  qt/res/icons/bezaleel/connect4_16.png \
+  qt/res/icons/bezaleel/debugwindow.png \
+  qt/res/icons/bezaleel/drkblue_editpaste.png \
+  qt/res/icons/bezaleel/drkblue_address-book.png \
+  qt/res/icons/bezaleel/drkblue_editcopy.png \
+  qt/res/icons/bezaleel/drkblue_remove.png \
+  qt/res/icons/bezaleel/edit.png \
+  qt/res/icons/bezaleel/editcopy.png \
+  qt/res/icons/bezaleel/editpaste.png \
+  qt/res/icons/bezaleel/export.png \
+  qt/res/icons/bezaleel/eye.png \
+  qt/res/icons/bezaleel/eye_minus.png \
+  qt/res/icons/bezaleel/eye_plus.png \
+  qt/res/icons/bezaleel/filesave.png \
+  qt/res/icons/bezaleel/hd_disabled.png \
+  qt/res/icons/bezaleel/hd_enabled.png \
+  qt/res/icons/bezaleel/history.png \
+  qt/res/icons/bezaleel/key.png \
+  qt/res/icons/bezaleel/lock_closed.png \
+  qt/res/icons/bezaleel/lock_open.png \
+  qt/res/icons/bezaleel/masternodes.png \
+  qt/res/icons/bezaleel/overview.png \
+  qt/res/icons/bezaleel/quit.png \
+  qt/res/icons/bezaleel/receive.png \
+  qt/res/icons/bezaleel/remove.png \
+  qt/res/icons/bezaleel/send.png \
+  qt/res/icons/bezaleel/synced.png \
+  qt/res/icons/bezaleel/transaction0.png \
+  qt/res/icons/bezaleel/transaction2.png \
+  qt/res/icons/bezaleel/transaction_abandoned.png \
+  qt/res/icons/bezaleel/transaction_conflicted.png \
+  qt/res/icons/bezaleel/tx_inout.png \
+  qt/res/icons/bezaleel/tx_input.png \
+  qt/res/icons/bezaleel/tx_output.png \
+  qt/res/icons/bezaleel/tx_mined.png \
+  qt/res/icons/bezaleel/about.png \
+  qt/res/icons/bezaleel/about_qt.png \
+  qt/res/icons/bezaleel/verify.png \
+  qt/res/icons/bezaleel/fontbigger.png \
+  qt/res/icons/bezaleel/fontsmaller.png \
+  qt/res/icons/bezaleel/network_disabled.png \
   qt/res/icons/light/add.png \
   qt/res/icons/light/address-book.png \
   qt/res/icons/light/browse.png \
@@ -501,18 +500,15 @@ BITCOIN_QT_WALLET_CPP = \
   qt/addressbookpage.cpp \
   qt/addresstablemodel.cpp \
   qt/askpassphrasedialog.cpp \
+  qt/businessobjectlist.cpp \
   qt/coincontroldialog.cpp \
   qt/coincontroltreewidget.cpp \
   qt/editaddressdialog.cpp \
-  qt/governancelist.cpp \
-  qt/governancedialog.cpp \
   qt/masternodelist.cpp \
   qt/openuridialog.cpp \
   qt/overviewpage.cpp \
-  qt/overviewapage.cpp \
   qt/paymentrequestplus.cpp \
   qt/paymentserver.cpp \
-  qt/proposaladddialog.cpp \
   qt/qrdialog.cpp \
   qt/receivecoinsdialog.cpp \
   qt/receiverequestdialog.cpp \
@@ -528,6 +524,9 @@ BITCOIN_QT_WALLET_CPP = \
   qt/transactionview.cpp \
   qt/walletframe.cpp \
   qt/walletmodel.cpp \
+  qt/proposaladddialog.cpp \
+  qt/proposals.cpp \
+  qt/secdialog.cpp \
   qt/walletmodeltransaction.cpp \
   qt/walletview.cpp
 
@@ -543,7 +542,7 @@ RES_IMAGES = \
   qt/res/images/drkblue/about.png \
   qt/res/images/drkblue/splash.png \
   qt/res/images/drkblue/splash_testnet.png \
-  qt/res/images/drkblue/helpthehomeless_logo_horizontal.png \
+  qt/res/images/drkblue/biblepay_logo_horizontal.png \
   qt/res/images/drkblue/unchecked.png \
   qt/res/images/drkblue/checked.png \
   qt/res/images/drkblue/drkblue_downArrow.png \
@@ -553,23 +552,23 @@ RES_IMAGES = \
   qt/res/images/drkblue/drkblue_rightArrow_small.png \
   qt/res/images/drkblue/drkblue_qtreeview_selected.png \
   qt/res/images/drkblue/drkblue_walletFrame_bg.png \
-  qt/res/images/crownium/about.png \
-  qt/res/images/crownium/splash.png \
-  qt/res/images/crownium/splash_testnet.png \
-  qt/res/images/crownium/helpthehomeless_logo_horizontal.png \
-  qt/res/images/crownium/unchecked.png \
-  qt/res/images/crownium/checked.png \
-  qt/res/images/crownium/drkblue_downArrow.png \
-  qt/res/images/crownium/drkblue_downArrow_small.png \
-  qt/res/images/crownium/drkblue_upArrow_small.png \
-  qt/res/images/crownium/drkblue_leftArrow_small.png \
-  qt/res/images/crownium/drkblue_rightArrow_small.png \
-  qt/res/images/crownium/drkblue_qtreeview_selected.png \
-  qt/res/images/crownium/drkblue_walletFrame_bg.png \
+  qt/res/images/bezaleel/about.png \
+  qt/res/images/bezaleel/splash.png \
+  qt/res/images/bezaleel/splash_testnet.png \
+  qt/res/images/bezaleel/biblepay_logo_horizontal.png \
+  qt/res/images/bezaleel/unchecked.png \
+  qt/res/images/bezaleel/checked.png \
+  qt/res/images/bezaleel/drkblue_downArrow.png \
+  qt/res/images/bezaleel/drkblue_downArrow_small.png \
+  qt/res/images/bezaleel/drkblue_upArrow_small.png \
+  qt/res/images/bezaleel/drkblue_leftArrow_small.png \
+  qt/res/images/bezaleel/drkblue_rightArrow_small.png \
+  qt/res/images/bezaleel/drkblue_qtreeview_selected.png \
+  qt/res/images/bezaleel/drkblue_walletFrame_bg.png \
   qt/res/images/light/about.png \
   qt/res/images/light/splash.png \
   qt/res/images/light/splash_testnet.png \
-  qt/res/images/light/helpthehomeless_logo_horizontal.png \
+  qt/res/images/light/biblepay_logo_horizontal.png \
   qt/res/images/light/unchecked.png \
   qt/res/images/light/checked.png \
   qt/res/images/light/drkblue_downArrow.png \
@@ -582,7 +581,7 @@ RES_IMAGES = \
   qt/res/images/light-retro/about.png \
   qt/res/images/light-retro/splash.png \
   qt/res/images/light-retro/splash_testnet.png \
-  qt/res/images/light-retro/helpthehomeless_logo_horizontal.png \
+  qt/res/images/light-retro/biblepay_logo_horizontal.png \
   qt/res/images/light-retro/unchecked.png \
   qt/res/images/light-retro/checked.png \
   qt/res/images/light-retro/drkblue_downArrow.png \
@@ -595,7 +594,7 @@ RES_IMAGES = \
   qt/res/images/trad/about.png \
   qt/res/images/trad/splash.png \
   qt/res/images/trad/splash_testnet.png \
-  qt/res/images/trad/helpthehomeless_logo_horizontal.png \
+  qt/res/images/trad/biblepay_logo_horizontal.png \
   qt/res/images/trad/drkblue_downArrow.png \
   qt/res/images/trad/drkblue_downArrow_small.png \
   qt/res/images/trad/drkblue_upArrow_small.png \
@@ -606,7 +605,7 @@ RES_IMAGES = \
 
 RES_CSS = \
   qt/res/css/drkblue.css \
-  qt/res/css/crownium.css \
+  qt/res/css/bezaleel.css \
   qt/res/css/light.css \
   qt/res/css/light-hires.css \
   qt/res/css/light-retro.css \
