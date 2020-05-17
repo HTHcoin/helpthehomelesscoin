@@ -53,7 +53,7 @@ SendCoinsEntry::SendCoinsEntry(const PlatformStyle *_platformStyle, QWidget *par
     connect(ui->deleteButton_is, SIGNAL(clicked()), this, SLOT(deleteClicked()));
     connect(ui->deleteButton_s, SIGNAL(clicked()), this, SLOT(deleteClicked()));
     connect(ui->chkDonate, SIGNAL(toggled(bool)), this, SLOT(updateFoundationAddress()));
-    onnect(ui->chkDiary, SIGNAL(toggled(bool)), this, SLOT(diaryEntry()));
+    connect(ui->chkDiary, SIGNAL(toggled(bool)), this, SLOT(diaryEntry()));
 }
 
 void SendCoinsEntry::diaryEntry()
