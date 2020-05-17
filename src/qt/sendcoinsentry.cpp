@@ -52,7 +52,33 @@ SendCoinsEntry::SendCoinsEntry(const PlatformStyle *_platformStyle, QWidget *par
     connect(ui->deleteButton, SIGNAL(clicked()), this, SLOT(deleteClicked()));
     connect(ui->deleteButton_is, SIGNAL(clicked()), this, SLOT(deleteClicked()));
     connect(ui->deleteButton_s, SIGNAL(clicked()), this, SLOT(deleteClicked()));
+    connect(ui->chkDonate, SIGNAL(toggled(bool)), this, SLOT(updateFoundationAddress()));
+    onnect(ui->chkDiary, SIGNAL(toggled(bool)), this, SLOT(diaryEntry()));
 }
+
+void SendCoinsEntry::diaryEntry()
+{
+	const CChainParams& chainparams = Params();
+	bool bChecked = (ui->chkDiary->checkState() == Qt::Checked);
+	if (bChecked)
+	{
+		ui->payTo->setText(GUIUtil::TOQS(chainparams.GetConsensus().FoundationPODSAddress));
+		ui->payAmount->setValue(1*COIN);
+	}
+}
+
+void SendCoinsEntry::updateFoundationAddress()
+{
+	const CChainParams& chainparams = Params();
+	bool bCheckedF = (ui->chkDonate->checkState() == Qt::Checked);
+
+	if (bCheckedF)
+	{
+		ui->payTo->setText(GUIUtil::TOQS(chainparams.GetConsensus().FoundationPODSAddress));
+	    ui->payAmount->setFocus();
+	}
+}
+
 
 SendCoinsEntry::~SendCoinsEntry()
 {
@@ -172,7 +198,10 @@ SendCoinsRecipient SendCoinsEntry::getValue()
     recipient.amount = ui->payAmount->value();
     recipient.message = ui->messageTextLabel->text();
     recipient.fSubtractFeeFromAmount = (ui->checkboxSubtractFeeFromAmount->checkState() == Qt::Checked);
-
+    recipient.fDonate = (ui->chkDonate->checkState() == Qt::Checked);
+	recipient.fTithe = (ui->chkTithe->checkState() == Qt::Checked);
+	recipient.fPrayer = (ui->chkPrayer->checkState() == Qt::Checked);
+	recipient.fDiary = (ui->chkDiary->checkState() == Qt::Checked);
     return recipient;
 }
 
@@ -186,6 +215,7 @@ QWidget *SendCoinsEntry::setupTabChain(QWidget *prev)
     QWidget::setTabOrder(ui->addressBookButton, ui->pasteButton);
     QWidget::setTabOrder(ui->pasteButton, ui->deleteButton);
     return ui->deleteButton;
+    
 }
 
 void SendCoinsEntry::setValue(const SendCoinsRecipient &value)
