@@ -246,33 +246,26 @@ void OverviewPage::updateDisplayUnit()
   }
 }
 
-/* void OverviewPage::updateHashRateInfo()
+ void OverviewPage::updateHashRateInfo()
 {
   if (masternodeSync.IsBlockchainSynced() && masternodeSync.IsSynced())
    
   {               
-           int NetHashRate = clientModel->getnetworkhashps();
+           int NetHashRate = clientModel->GetNetworkHashPS();
            ui->labelHashRate->setText(QString::number(NetHashRate));
   }
-}  */
+}
 
 void OverviewPage::updateBlockChainInfo()
 {
     if (masternodeSync.IsBlockchainSynced())
     {
         int CurrentBlock = clientModel->getNumBlocks();
-        int NetHashRate = chainActive.Tip(GetNetworkHashPS(24, CurrentBlock-1));
         double CurrentDiff = GetDifficulty();
-        
-       
-        ui->labelHashRate->setText(QString::number(NetHashRate));
       
         ui->label_CurrentBlock_value_3->setText(QString::number(CurrentBlock));
         ui->label_Nethash_3->setText(tr("Difficulty:"));
-        ui->label_Nethash_value_3->setText(QString::number(CurrentDiff,'f',4));
-     
-  
-  
+        ui->label_Nethash_value_3->setText(QString::number(CurrentDiff,'f',4));    
     }
 }
 
