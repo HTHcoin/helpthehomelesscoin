@@ -256,77 +256,12 @@ void OverviewPage::updateDisplayUnit()
   }
 }  */
 
-
-
-    UniValue GetNetworkHashPS(int lookup, int height) {
-    CBlockIndex *pb = chainActive.Tip();
-
-    if (height >= 0 && height < chainActive.Height())
-        pb = chainActive[height];
-
-    if (pb == NULL || !pb->nHeight)
-        return 0;
-
-    // If lookup is -1, then use blocks since last difficulty change.
-    if (lookup <= 0)
-        lookup = pb->nHeight % Params().GetConsensus().DifficultyAdjustmentInterval() + 1;
-
-    // If lookup is larger than chain, then set it to chain length.
-    if (lookup > pb->nHeight)
-        lookup = pb->nHeight;
-
-    CBlockIndex *pb0 = pb;
-    int64_t minTime = pb0->GetBlockTime();
-    int64_t maxTime = minTime;
-    for (int i = 0; i < lookup; i++) {
-        pb0 = pb0->pprev;
-        int64_t time = pb0->GetBlockTime();
-        minTime = std::min(time, minTime);
-        maxTime = std::max(time, maxTime);
-    }
-
-    // In case there's a situation where minTime == maxTime, we don't want a divide by zero exception.
-    if (minTime == maxTime)
-        return 0;
-
-    arith_uint256 workDiff = pb->nChainWork - pb0->nChainWork;
-    int64_t timeDiff = maxTime - minTime;
-
-    return workDiff.getdouble() / timeDiff;
-}
-
-UniValue getnetworkhashps(const JSONRPCRequest& request)
-{
-    if (request.fHelp || request.params.size() > 2)
-        throw std::runtime_error(
-            "getnetworkhashps ( nblocks height )\n"
-            "\nReturns the estimated network hashes per second based on the last n blocks.\n"
-            "Pass in [blocks] to override # of blocks, -1 specifies since last difficulty change.\n"
-            "Pass in [height] to estimate the network speed at the time when a certain block was found.\n"
-            "\nArguments:\n"
-            "1. nblocks     (numeric, optional, default=120) The number of blocks, or -1 for blocks since last difficulty change.\n"
-            "2. height      (numeric, optional, default=-1) To estimate at the time of the given height.\n"
-            "\nResult:\n"
-            "x             (numeric) Hashes per second estimated\n"
-            "\nExamples:\n"
-            + HelpExampleCli("getnetworkhashps", "")
-            + HelpExampleRpc("getnetworkhashps", "")
-       );
-
-    LOCK(cs_main);
-    return GetNetworkHashPS(request.params.size() > 0 ? request.params[0].get_int() : 120, request.params.size() > 1 ? request.params[1].get_int() : -1);
-}
-
-
-
 void OverviewPage::updateBlockChainInfo()
 {
     if (masternodeSync.IsBlockchainSynced())
     {
         int CurrentBlock = clientModel->getNumBlocks();
         int NetHashRate = chainActive.Tip(GetNetworkHashPS(24, CurrentBlock-1));
-       /*   double BlockReward = GetBlockHash(CurrentBlock);  */
-       /*  double BlockRewardHTH =  static_cast<double>(BlockRewardHTH/COIN); */
         double CurrentDiff = GetDifficulty();
         
        
@@ -335,8 +270,7 @@ void OverviewPage::updateBlockChainInfo()
         ui->label_CurrentBlock_value_3->setText(QString::number(CurrentBlock));
         ui->label_Nethash_3->setText(tr("Difficulty:"));
         ui->label_Nethash_value_3->setText(QString::number(CurrentDiff,'f',4));
-       /*ui->label_CurrentBlockReward_value_3->setText(QString::number(BlockRewardHTH, 'f', 1)); */
-      /* ui->label_CurrentBlock_value_3->setText(QString::number(block24hCount)); */
+     
   
   
     }
