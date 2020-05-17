@@ -109,6 +109,7 @@ BITCOIN_CORE_H = \
   alert.h \
   base58.h \
   batchedlogger.h \
+  bbpsocket.h \
   bip39.h \
   bip39_english.h \
   blockencodings.h \
@@ -265,6 +266,7 @@ libhelpthehomeless_server_a_SOURCES = \
   addrdb.cpp \
   alert.cpp \
   batchedlogger.cpp \
+  bbpsocket.cpp \
   bloom.cpp \
   blockencodings.cpp \
   chain.cpp \
