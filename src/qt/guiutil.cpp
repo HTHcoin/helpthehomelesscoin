@@ -920,9 +920,9 @@ QString getThemeName()
 	// DAC - Since we only have one theme so far... Use DAC for DAC, otherwise pass through to use the selected BiblePay theme:
 	 QString theme = settings.value("theme", "").toString();
 
-	if (CURRENCY_NAME == "DAC")
+	if (CURRENCY_NAME == "HTH")
 	{
-		return QString("dac");
+		return QString("hth");
 	}
 
     if(!theme.isEmpty()){
@@ -939,8 +939,8 @@ QString loadStyleSheet()
     QString cssName;
     QString theme = settings.value("theme", "").toString();
 	// DAC - Override style sheet
-	if (CURRENCY_NAME == "DAC")
-		theme = "dac";
+	if (CURRENCY_NAME == "HTH")
+		theme = "hth";
 
     if(!theme.isEmpty()){
         cssName = QString(":/css/") + theme; 

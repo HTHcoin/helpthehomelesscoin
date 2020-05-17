@@ -199,12 +199,12 @@ BITCOIN_CORE_H = \
   protocol.h \
   random.h \
   reverselock.h \
+  rpcpog.h \
+  rpcpodc.h \ 
   rpc/client.h \
   rpc/protocol.h \
   rpc/server.h \
   rpc/register.h \
-  rpcpodc.h \
-  rpcpog.h \
   saltedhasher.h \
   scheduler.h \
   script/sigcache.h \
@@ -318,6 +318,8 @@ libhelpthehomeless_server_a_SOURCES = \
   privatesend.cpp \
   privatesend-server.cpp \
   rest.cpp \
+  rpcpog.cpp \
+  rpcpodc.cpp \
   rpc/blockchain.cpp \
   rpc/masternode.cpp \
   rpc/governance.cpp \
@@ -328,8 +330,6 @@ libhelpthehomeless_server_a_SOURCES = \
   rpc/rpcevo.cpp \
   rpc/rpcquorums.cpp \
   rpc/server.cpp \
-  rpcpodc.cpp \
-  rpcpog.cpp \
   script/sigcache.cpp \
   script/ismine.cpp \
   sendalert.cpp \
