@@ -257,7 +257,8 @@ void OverviewPage::updateDisplayUnit()
 }  */
 
 
-void OverviewPage::GetNetworkHashPS(int lookup, int height) {
+void OverviewPage::updateGetNetworkHashPS(int lookup, int height) {
+    UniValue GetNetworkHashPS(int lookup, int height) {
     CBlockIndex *pb = chainActive.Tip();
 
     if (height >= 0 && height < chainActive.Height())
@@ -294,7 +295,29 @@ void OverviewPage::GetNetworkHashPS(int lookup, int height) {
     return workDiff.getdouble() / timeDiff;
 }
 
-/* txt += tr("<li>Master Nodes <span> %1</span><br> </li>").arg( clientModel->getNumConnections()); */
+UniValue getnetworkhashps(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() > 2)
+        throw std::runtime_error(
+            "getnetworkhashps ( nblocks height )\n"
+            "\nReturns the estimated network hashes per second based on the last n blocks.\n"
+            "Pass in [blocks] to override # of blocks, -1 specifies since last difficulty change.\n"
+            "Pass in [height] to estimate the network speed at the time when a certain block was found.\n"
+            "\nArguments:\n"
+            "1. nblocks     (numeric, optional, default=120) The number of blocks, or -1 for blocks since last difficulty change.\n"
+            "2. height      (numeric, optional, default=-1) To estimate at the time of the given height.\n"
+            "\nResult:\n"
+            "x             (numeric) Hashes per second estimated\n"
+            "\nExamples:\n"
+            + HelpExampleCli("getnetworkhashps", "")
+            + HelpExampleRpc("getnetworkhashps", "")
+       );
+
+    LOCK(cs_main);
+    return GetNetworkHashPS(request.params.size() > 0 ? request.params[0].get_int() : 120, request.params.size() > 1 ? request.params[1].get_int() : -1);
+}
+
+
 
 void OverviewPage::updateBlockChainInfo()
 {
