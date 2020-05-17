@@ -257,7 +257,7 @@ void OverviewPage::updateDisplayUnit()
 }  */
 
 
-void OverviewPage::updateGetNetworkHashPS(int lookup, int height) {
+
     UniValue GetNetworkHashPS(int lookup, int height) {
     CBlockIndex *pb = chainActive.Tip();
 
