@@ -246,15 +246,6 @@ void OverviewPage::updateDisplayUnit()
   }
 }
 
- void OverviewPage::updateHashRateInfo()
-{
-  if (masternodeSync.IsBlockchainSynced() && masternodeSync.IsSynced())
-   
-  {        uint32_t tip_time = chainActive.Tip()->GetBlockTime();      
-           ui->labelHashRate->setText(QString::number(GetBlockTime));
-  }
-}
-
 void OverviewPage::updateBlockChainInfo()
 {
     if (masternodeSync.IsBlockchainSynced())
