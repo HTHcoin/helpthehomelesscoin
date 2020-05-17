@@ -1,7 +1,7 @@
 HelpTheHomeless staging tree 0.14.0
 ===================================
 
-`master:` [![Build Status](https://travis-ci.org/dashpay/dash.svg?branch=master)](https://travis-ci.org/dashpay/dash) `develop:` [![Build Status](https://travis-ci.org/dashpay/dash.svg?branch=develop)](https://travis-ci.org/dashpay/dash/branches)
+`master:` [![Build Status](https://api.travis-ci.com/HTHcoin/Help-The-Homeless-Coin-0.14.svg?branch=master)](https://travis-ci.com/github/HTHcoin/Help-The-Homeless-Coin-0.14) `develop:` [![Build Status](https://api.travis-ci.com/HTHcoin/Help-The-Homeless-Coin-0.14.svg?branch=code-clean-up)](https://travis-ci.com/github/HTHcoin/Help-The-Homeless-Coin-0.14/branches)
 
 https://hth.world
 
