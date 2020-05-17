@@ -54,7 +54,7 @@ ProposalAddDialog::ProposalAddDialog(const PlatformStyle *platformStyle, QWidget
 
 void ProposalAddDialog::UpdateDisplay()
 {
-	int nNextHeight = CSuperblock();
+	int nNextHeight = GetNextSuperblock();
 
 	std::string sInfo = "Note: Proposal Cost is 2500 " + CURRENCY_UNIT + ".  Next Superblock at height: " + RoundToString(nNextHeight, 0) + "<br>Warning: You must unlock the wallet before submitting the proposal.";
 
