@@ -6,6 +6,12 @@
 #include "overviewpage.h"
 #include "ui_overviewpage.h"
 
+#include "activemasternode.h"
+#include "clientversion.h"
+#include "netbase.h"
+#include "sync.h"
+#include "walletmodel.h"
+#include "evo/deterministicmns.h"
 
 #include "bitcoinunits.h"
 #include "clientmodel.h"
@@ -27,9 +33,12 @@
 
 #include "instantx.h"
 #include "masternode-sync.h"
-#include "masternodelist.h"
 
 
+#include <univalue.h>
+
+#include <QMessageBox>
+#include <QtGui/QClipboard>
 #include <QAbstractItemDelegate>
 #include <QPainter>
 #include <QSettings>
@@ -59,7 +68,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     currentWatchOnlyBalance(-1),
     currentWatchUnconfBalance(-1),
     currentWatchImmatureBalance(-1),
-    cachedNumISLocks(-1) 
+    cachedNumISLocks(-1)
     
 {
                
@@ -79,13 +88,18 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
   
     //information block update
    
+      
     timerinfo_mn = new QTimer(this);
     connect(timerinfo_mn, SIGNAL(timeout()), this, SLOT(updateMasternodeInfo()));
     timerinfo_mn->start(1000);  
       
     timerinfo_blockchain = new QTimer(this);
     connect(timerinfo_blockchain, SIGNAL(timeout()), this, SLOT(updateBlockChainInfo()));
-    timerinfo_blockchain->start(1000); //30sec      
+    timerinfo_blockchain->start(1000); //30sec    
+      
+    timerinfo_peers = new QTimer(this);
+    connect(timerinfo_peers, SIGNAL(timeout()), this, SLOT(updatePeersInfo()));
+    timerinfo_peers->start(1000); 
       
                   
     // start with displaying the "out of sync" warnings
@@ -104,6 +118,8 @@ OverviewPage::~OverviewPage()
 {
     /*if(timer) disconnect(timer, SIGNAL(timeout()), this, SLOT(privateSendStatus()));
     delete ui; */
+  
+  delete ui;
 }
 
 void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance, const CAmount& anonymizedBalance, const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance)
@@ -205,35 +221,41 @@ void OverviewPage::updateDisplayUnit()
 
  void OverviewPage::updateMasternodeInfo()
 {
+    if (!clientModel) {
+        return;
+    }
+    auto mnList = clientModel->getMasternodeList();
+    QString strMasternodeCount = tr("%1")
+        .arg(QString::number(mnList.GetAllMNsCount()))
+     /*   .arg(QString::number(mnList.GetValidMNsCount()))*/;
+    ui->countLabelDIP3->setText(strMasternodeCount);
+}
+
+
+ void OverviewPage::updatePeersInfo()  /** Peer Info  **/
+{
   if (masternodeSync.IsBlockchainSynced() && masternodeSync.IsSynced())
+   
   {
-          (timerinfo_mn->interval() == 1000);
-           timerinfo_mn->setInterval(180000);
-        
+    
+          (timerinfo_peers->interval() == 1000);
+           timerinfo_peers->setInterval(180000);
+           
            int PeerCount = clientModel->getNumConnections();
            ui->label_count_2->setText(QString::number(PeerCount));
   }
 }
-
-/* txt += tr("<li>Master Nodes <span> %1</span><br> </li>").arg( clientModel->getNumConnections()); */
 
 void OverviewPage::updateBlockChainInfo()
 {
     if (masternodeSync.IsBlockchainSynced())
     {
         int CurrentBlock = clientModel->getNumBlocks();
-       /* int64_t netHashRate = chainActive.GetNetworkHashPS(24, CurrentBlock-1); */
-       /*   double BlockReward = GetBlockHash(CurrentBlock);  */
-       /*  double BlockRewardHTH =  static_cast<double>(BlockRewardHTH/COIN); */
         double CurrentDiff = GetDifficulty();
-
+      
         ui->label_CurrentBlock_value_3->setText(QString::number(CurrentBlock));
         ui->label_Nethash_3->setText(tr("Difficulty:"));
-        ui->label_Nethash_value_3->setText(QString::number(CurrentDiff,'f',4));
-       /*ui->label_CurrentBlockReward_value_3->setText(QString::number(BlockRewardHTH, 'f', 1)); */
-       /* ui->label_CurrentBlock_value_3->setText(QString::number(block24hCount)); */
-  
-  
+        ui->label_Nethash_value_3->setText(QString::number(CurrentDiff,'f',4));    
     }
 }
 
@@ -289,4 +311,4 @@ void OverviewPage::on_pushButton_Website_5_clicked() {  // HTH Partners
 }
 
 
-/************** HTH Worldwide Button ******************/
+/************** HTH Worldwide Button *****************/
