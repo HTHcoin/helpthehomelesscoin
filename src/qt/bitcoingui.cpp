@@ -139,6 +139,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     prevBlocks(0),
     spinnerFrame(0),
     governanceAction(0),
+    proposalAddMenuAction(0),
     platformStyle(_platformStyle)
 {
     /* Open CSS when configured */
@@ -578,6 +579,10 @@ void BitcoinGUI::createActions()
     openPeersAction->setEnabled(false);
     openRepairAction->setEnabled(false);
 	
+    proposalAddMenuAction = new QAction(QIcon(":/icons/" + theme + "/address-book"), tr("Governance &Add"), this);
+    proposalAddMenuAction->setStatusTip(tr("Add Proposal"));
+    proposalAddMenuAction->setEnabled(false);
+	
 	
     usedSendingAddressesAction = new QAction(QIcon(":/icons/" + theme + "/address-book"), tr("&Sending addresses..."), this);
     usedSendingAddressesAction->setStatusTip(tr("Show the list of used sending addresses and labels"));
@@ -603,6 +608,7 @@ void BitcoinGUI::createActions()
     connect(toggleHideAction, SIGNAL(triggered()), this, SLOT(toggleHidden()));
     connect(showHelpMessageAction, SIGNAL(triggered()), this, SLOT(showHelpMessageClicked()));
     connect(showPrivateSendHelpAction, SIGNAL(triggered()), this, SLOT(showPrivateSendHelpClicked()));
+	connect(proposalAddMenuAction, SIGNAL(triggered()), this, SLOT(gotoProposalAddPage()));
 
     // Jump directly to tabs in RPC-console
     connect(openInfoAction, SIGNAL(triggered()), this, SLOT(showInfo()));
@@ -691,9 +697,15 @@ void BitcoinGUI::createMenuBar()
         tools->addSeparator();
         tools->addAction(openConfEditorAction);
         tools->addAction(showBackupsAction);
-	    
+	        
     }
 
+	if (walletFrame)
+	{
+		QMenu *proposals = appMenuBar->addMenu(tr("&Proposals"));
+		proposals->addAction(proposalAddMenuAction);
+	}
+	
     QMenu *help = appMenuBar->addMenu(tr("&Help"));
     help->addAction(showHelpMessageAction);
     help->addAction(showPrivateSendHelpAction);
@@ -883,6 +895,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     usedSendingAddressesAction->setEnabled(enabled);
     usedReceivingAddressesAction->setEnabled(enabled);
     openAction->setEnabled(enabled);
+	proposalAddMenuAction->setEnabled(enabled);
 
 }
 
@@ -1024,6 +1037,13 @@ void BitcoinGUI::openClicked()
     }
 }
 
+void BitcoinGUI::gotoProposalAddPage()
+{
+	if (!clientModel) 
+		return;
+    proposalAddMenuAction->setChecked(true);
+    if (walletFrame) walletFrame->gotoProposalAddPage();
+}
 
 void BitcoinGUI::gotoGovernancePage()
 {
