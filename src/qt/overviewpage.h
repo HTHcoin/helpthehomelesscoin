@@ -123,8 +123,7 @@ private Q_SLOTS:
     void updateBlockChainInfo();
     void updateMasternodeInfo(); 
     void updatePeersInfo();
-    void updateGetNetworkHashPS();
-    /*void updateHashRateInfo(); */
+  /*void updateHashRateInfo(); */
    
          
  };
