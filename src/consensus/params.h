@@ -147,6 +147,12 @@ struct Params {
     const char *devAddress;
     const char *devAddressPubKey;
     int nDevelopersFeeBegin;
+    
+    std::string FoundationAddress;
+	std::string FoundationPODSAddress;
+	std::string FoundationQTAddress;
+	std::string BurnAddress;
+    
     /** Block height and hash at which BIP34 becomes active */
     int BIP34Height;
     uint256 BIP34Hash;
