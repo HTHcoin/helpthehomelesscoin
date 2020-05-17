@@ -12,7 +12,8 @@
 #include "paymentserver.h"
 #include "recentrequeststablemodel.h"
 #include "transactiontablemodel.h"
-
+#include "rpcpog.h"
+#include "smartcontract-client.h"
 #include "base58.h"
 #include "keystore.h"
 #include "validation.h"
@@ -252,19 +253,20 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
         return OK;
     }
 
-    // This should never really happen, yet another safety check, just in case.
-    if(wallet->IsLocked()) {
-        return TransactionCreationFailed;
-    }
-
     QSet<QString> setAddress; // Used to detect duplicates
     int nAddresses = 0;
-
+	std::string sOptPrayer;
+	bool fDiaryEntry = false;
+    const Consensus::Params& consensusParams = Params().GetConsensus();
+	CAmount nSundries = 0;
     // Pre-check input data for validity
     Q_FOREACH(const SendCoinsRecipient &rcp, recipients)
     {
         if (rcp.fSubtractFeeFromAmount)
             fSubtractFeeFromAmount = true;
+
+		if (rcp.fDiary)
+			fDiaryEntry = true;
 
         if (rcp.paymentRequest.IsInitialized())
         {   // PaymentRequest...
@@ -288,7 +290,7 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
             total += subtotal;
         }
         else
-        {   // User-entered dash address / amount:
+        {   // User-entered an address / amount:
             if(!validateAddress(rcp.address))
             {
                 return InvalidAddress;
@@ -302,11 +304,64 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
 
             CScript scriptPubKey = GetScriptForDestination(CBitcoinAddress(rcp.address.toStdString()).Get());
             CRecipient recipient = {scriptPubKey, rcp.amount, rcp.fSubtractFeeFromAmount};
-            vecSend.push_back(recipient);
+			recipient.txtMessage = GUIUtil::FROMQS(rcp.txtMessage);
+			if (rcp.fDiary)
+			{
+				sOptPrayer = GUIUtil::FROMQS(rcp.txtMessage);
+			}
+            if (rcp.fPrayer)
+			{
+				sOptPrayer += "<MT>PRAYER</MT><MK>OUT_TX</MK><MV>" + GUIUtil::FROMQS(rcp.txtMessage) + "</MV>";
+			}
+			else if (!rcp.txtMessage.isEmpty() && !rcp.fPrayer && !rcp.fDiary)
+			{
+				sOptPrayer += "<MT>MESSAGE</MT><MK>OUT_TX</MK><MV>" + GUIUtil::FROMQS(rcp.txtMessage) + "</MV>";
+			}
+			vecSend.push_back(recipient);
+			// If the user wants to add 10% Tithe -> Foundation
+			if (rcp.fTithe)
+			{
+				CAmount aTitheAmount = rcp.amount * .10;
+				CScript spkFoundation = GetScriptForDestination(CBitcoinAddress(consensusParams.FoundationAddress).Get());
+				CRecipient recFoundation = {spkFoundation, aTitheAmount, rcp.fSubtractFeeFromAmount};
+				recFoundation.txtMessage = GUIUtil::FROMQS(rcp.txtMessage);
+				std::string sAddrF = PubKeyToAddress(spkFoundation);
+				setAddress.insert(GUIUtil::TOQS(sAddrF));
+           		++nAddresses;
+				LogPrint("net", "\nAdded 10percent Tithe to the transaction for %f to address %s ",(double)aTitheAmount/COIN, sAddrF);
+				nSundries += aTitheAmount;
+				vecSend.push_back(recFoundation);
+			}
 
             total += rcp.amount;
         }
     }
+
+	// This should never really happen, yet another safety check, just in case.
+    if (wallet->IsLocked() && !fDiaryEntry)
+	{
+        return TransactionCreationFailed;
+    }
+
+	if (fDiaryEntry)
+	{
+		LogPrintf("WalletModel::CreateDiaryEntry::Creating diary entry ... %s ", sOptPrayer);
+		// Create the client side transaction here
+		std::string sError;
+		std::string sWarning;
+		bool fCreated = CreateGSCTransmission(true, sOptPrayer, sError, "HEALING", sWarning);
+		int iMsg = fCreated ? CClientUIInterface::MSG_INFORMATION : CClientUIInterface::MSG_ERROR;
+		std::string sNarr = fCreated ? "Created Diary Entry for GSC Transmission" : sError;
+		LogPrintf("WalletModel::CreateDiaryEntry Results Narr %s, Error %s", sNarr, sError);
+
+		if (!sError.empty() || !fCreated)
+		{
+			return TransactionCreationFailed;
+		}
+	    Q_EMIT message(tr("Create Diary Entry"), QString::fromStdString(sNarr), iMsg);
+	    return SendCoinsReturn(TransactionCommitFailed, QString::fromStdString("GSC_SUCCESS"));
+	}
+
     if(setAddress.size() != nAddresses)
     {
         return DuplicateAddress;
@@ -319,8 +374,8 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
         return AmountExceedsBalance;
     }
 
-    if(recipients[0].fUseInstantSend && IsOldInstantSendEnabled() && total > sporkManager.GetSporkValue(SPORK_5_INSTANTSEND_MAX_VALUE)*COIN) {
-        Q_EMIT message(tr("Send Coins"), tr("InstantSend doesn't support sending values that high yet. Transactions are currently limited to %1 HTH.").arg(sporkManager.GetSporkValue(SPORK_5_INSTANTSEND_MAX_VALUE)),
+    if(recipients[0].fUseInstantSend && total > sporkManager.GetSporkValue(SPORK_5_INSTANTSEND_MAX_VALUE)*COIN) {
+        Q_EMIT message(tr("Send Coins"), tr("InstantSend doesn't support sending values that high yet. Transactions are currently limited to %1 Coins.").arg(sporkManager.GetSporkValue(SPORK_5_INSTANTSEND_MAX_VALUE)),
                      CClientUIInterface::MSG_ERROR);
         return TransactionCreationFailed;
     }
@@ -339,19 +394,17 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
 
         CWalletTx* newTx = transaction.getTransaction();
         CReserveKey *keyChange = transaction.getPossibleKeyChange();
-
-        fCreated = wallet->CreateTransaction(vecSend, *newTx, *keyChange, nFeeRequired, nChangePosRet, strFailReason, coinControl, true, recipients[0].inputType, recipients[0].fUseInstantSend);
+		fCreated = wallet->CreateTransaction(vecSend, *newTx, *keyChange, nFeeRequired, nChangePosRet, strFailReason, coinControl, true, recipients[0].inputType, recipients[0].fUseInstantSend, 0, sOptPrayer);
         transaction.setTransactionFee(nFeeRequired);
         if (fSubtractFeeFromAmount && fCreated)
             transaction.reassignAmounts();
-
-        nValueOut = newTx->tx->GetValueOut();
+	    nValueOut = newTx->tx->GetValueOut();
         nVinSize = newTx->tx->vin.size();
     }
 
     if(recipients[0].fUseInstantSend && IsOldInstantSendEnabled()) {
         if(nValueOut > sporkManager.GetSporkValue(SPORK_5_INSTANTSEND_MAX_VALUE)*COIN) {
-            Q_EMIT message(tr("Send Coins"), tr("InstantSend doesn't support sending values that high yet. Transactions are currently limited to %1 HTH.").arg(sporkManager.GetSporkValue(SPORK_5_INSTANTSEND_MAX_VALUE)),
+            Q_EMIT message(tr("Send Coins"), tr("InstantSend doesn't support sending values that high yet. Transactions are currently limited to %1 Coins.").arg(sporkManager.GetSporkValue(SPORK_5_INSTANTSEND_MAX_VALUE)),
                          CClientUIInterface::MSG_ERROR);
             return TransactionCreationFailed;
         }
@@ -405,7 +458,7 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(WalletModelTransaction &tran
                 rcp.paymentRequest.SerializeToString(&value);
                 newTx->vOrderForm.push_back(make_pair(key, value));
             }
-            else if (!rcp.message.isEmpty()) // Message from normal dash:URI (dash:XyZ...?message=example)
+            else if (!rcp.message.isEmpty()) // Message from normal URI (dac:XyZ...?message=example)
             {
                 newTx->vOrderForm.push_back(make_pair("Message", rcp.message.toStdString()));
             }

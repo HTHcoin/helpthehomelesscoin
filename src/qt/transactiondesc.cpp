@@ -1,5 +1,4 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
-// Copyright (c) 2014-2017 The Dash Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -9,7 +8,7 @@
 #include "guiutil.h"
 #include "paymentserver.h"
 #include "transactionrecord.h"
-
+#include "guiutil.h"
 #include "base58.h"
 #include "consensus/consensus.h"
 #include "validation.h"
@@ -18,7 +17,9 @@
 #include "util.h"
 #include "wallet/db.h"
 #include "wallet/wallet.h"
-
+#include "rpcpog.h"
+#include "rpcpodc.h"
+#include "kjv.h"
 #include "instantx.h"
 
 #include <stdint.h>
@@ -27,12 +28,12 @@
 QString TransactionDesc::FormatTxStatus(const CWalletTx& wtx)
 {
     AssertLockHeld(cs_main);
-    if (!CheckFinalTx(wtx))
+	if (!CheckFinalTx(wtx))
     {
         if (wtx.tx->nLockTime < LOCKTIME_THRESHOLD)
             return tr("Open for %n more block(s)", "", wtx.tx->nLockTime - chainActive.Height());
         else
-            return tr("Open until %1").arg(GUIUtil::dateTimeStr(wtx.tx->nLockTime));
+			return tr("Open until %1").arg(GUIUtil::dateTimeStr(wtx.tx->nLockTime));
     }
     else
     {
@@ -81,6 +82,29 @@ QString TransactionDesc::FormatTxStatus(const CWalletTx& wtx)
     }
 }
 
+QString GetFormattedVerses(std::string sVerses)
+{
+	QString sFormatted;
+	QString sCross = QChar(0x0002020);          // †
+	QString sParagraph = QChar(0x0000b6);       // ¶
+	QString sCrown = QChar(0x0002655);          // ♕
+	std::vector<std::string> vVerses = Split(sVerses.c_str(), "\n");
+	for (int i = 0; i < vVerses.size(); i++)
+	{
+		std::string sRow = vVerses[i];
+		std::vector<std::string> vRow = Split(sRow.c_str(), "|");
+		// R Andrews:  Book, Chapter, Verse No, Verse
+		if (vRow.size() >= 3)
+		{
+			QString sSection = sCrown + " " + GUIUtil::TOQS(vRow[0]) + " "
+				+ GUIUtil::TOQS(vRow[1]) 
+				+ ":" + GUIUtil::TOQS(vRow[2]) + " - " + GUIUtil::TOQS(vRow[3]);
+			sFormatted += sSection + "<br>";
+		}
+	}
+	return sFormatted;
+}
+
 QString TransactionDesc::toHTML(CWallet *wallet, CWalletTx &wtx, TransactionRecord *rec, int unit)
 {
     QString strHTML;
@@ -110,7 +134,31 @@ QString TransactionDesc::toHTML(CWallet *wallet, CWalletTx &wtx, TransactionReco
     //
     // From
     //
-    if (wtx.IsCoinBase())
+	if (wtx.tx->IsGSCTransmission())
+	{
+	     strHTML += "<b>" + tr("Source") + ":</b> " + tr("GSC-Transmission") + "<br>";
+	}
+	else if (wtx.tx->IsCPKAssociation())
+	{
+	     strHTML += "<b>" + tr("Source") + ":</b> " + tr("Christian-Keypair-Association") + "<br>";
+	}
+	else if (wtx.tx->IsABN())
+	{
+		strHTML += "<b>" + tr("Source") + ":</b> " + tr("Anti-BotNet-Transaction") + "<br>";
+	}
+	else if (wtx.tx->IsSuperblockPayment())
+	{
+	     strHTML += "<b>" + tr("Source") + ":</b> " + tr("Superblock-Payment") + "<br>";
+	}
+	else if (wtx.tx->IsWhaleReward())
+	{
+	     strHTML += "<b>" + tr("Source") + ":</b> " + tr("Dynamic-Whale-Reward") + "<br>";
+	}
+	else if (wtx.tx->IsGSCPayment())
+	{
+	     strHTML += "<b>" + tr("Source") + ":</b> " + tr("Smart-Contract-Payment") + "<br>";
+	}
+	else if (wtx.IsCoinBase())
     {
         strHTML += "<b>" + tr("Source") + ":</b> " + tr("Generated") + "<br>";
     }
@@ -278,7 +326,7 @@ QString TransactionDesc::toHTML(CWallet *wallet, CWalletTx &wtx, TransactionReco
     strHTML += "<b>" + tr("Output index") + ":</b> " + QString::number(rec->getOutputIndex()) + "<br>";
     strHTML += "<b>" + tr("Transaction total size") + ":</b> " + QString::number(wtx.tx->GetTotalSize()) + " bytes<br>";
 
-    // Message from normal dash:URI (dash:XyZ...?message=example)
+    // Message from normal URI (bible_pay:XyZ...?message=example)
     Q_FOREACH (const PAIRTYPE(std::string, std::string)& r, wtx.vOrderForm)
         if (r.first == "Message")
             strHTML += "<br><b>" + tr("Message") + ":</b><br>" + GUIUtil::HtmlEscape(r.second, true) + "<br>";
@@ -307,49 +355,114 @@ QString TransactionDesc::toHTML(CWallet *wallet, CWalletTx &wtx, TransactionReco
     //
     // Debug view
     //
-    if (fDebug)
+	bool fShowAdvView = true;
+	int nDepth = wtx.GetDepthInMainChain();
+    std::string sStripped;
+	std::string sObjType;
+	const CBlockIndex* pindexTxList;
+    if (fShowAdvView)
     {
-        strHTML += "<hr><br>" + tr("Debug information") + "<br><br>";
+		// In Network Messages or Prayers
+
+		std::string sNetworkMessage;
+		for (unsigned int i1 = 0; i1 < wtx.tx->vout.size(); i1++)
+		{
+			sNetworkMessage += wtx.tx->vout[i1].sTxOutMessage;
+		}
+
+		// DAC - Read actual block, so we can give the user even more information
+		
+		if (nDepth > 0)
+		{
+			pindexTxList = GetBlockIndexByTransactionHash(wtx.GetHash());
+			const Consensus::Params& consensusParams = Params().GetConsensus();
+			if (pindexTxList != NULL)
+			{
+				CBlock blockTxList;
+				if (ReadBlockFromDisk(blockTxList, pindexTxList, consensusParams)) 
+				{
+					strHTML += "<br><span>Height: " + QString::fromStdString(RoundToString((double)pindexTxList->nHeight,0)) + "</span></b>";
+					strHTML += "<br><span>Difficulty: " + QString::fromStdString(RoundToString(GetDifficulty(pindexTxList), 2)) + "</span></b>";
+					strHTML += "<br><span>Time: " + QString::fromStdString(TimestampToHRDate(blockTxList.GetBlockTime())) + "</span></b>";
+					strHTML += "<br><span>Subsidy: " + QString::fromStdString(RoundToString((double)blockTxList.vtx[0]->vout[0].nValue / COIN, 4)) + "</span></b>";
+				}
+			}
+		}
+
+		sStripped = ExtractXML(sNetworkMessage, "<MV>", "</MV>");
+		sObjType = ExtractXML(sNetworkMessage, "<MT>", "</MT>");
+		std::string sDiary = ExtractXML(sNetworkMessage, "<diary>", "</diary>");
+
+        if (false)
+			strHTML += "<hr><br>" + tr("Debug information") + "<br><br>";
+		else
+			strHTML += "<br><br>";
+
         BOOST_FOREACH(const CTxIn& txin, wtx.tx->vin)
             if(wallet->IsMine(txin))
                 strHTML += "<b>" + tr("Debit") + ":</b> " + BitcoinUnits::formatHtmlWithUnit(unit, -wallet->GetDebit(txin, ISMINE_ALL)) + "<br>";
         BOOST_FOREACH(const CTxOut& txout, wtx.tx->vout)
-            if(wallet->IsMine(txout))
+		{
+            std::string sDest = PubKeyToAddress(txout.scriptPubKey);
+			if(wallet->IsMine(txout))
+			{
                 strHTML += "<b>" + tr("Credit") + ":</b> " + BitcoinUnits::formatHtmlWithUnit(unit, wallet->GetCredit(txout, ISMINE_ALL)) + "<br>";
+				strHTML += "<b>To:<b> " + QString::fromStdString(sDest) + " " + QString::fromStdString(RoundToString(txout.nValue / COIN, 4)) + " " + QString::fromStdString(CURRENCY_NAME) + "<br>";
+			}
+			
+		}
 
         strHTML += "<br><b>" + tr("Transaction") + ":</b><br>";
         strHTML += GUIUtil::HtmlEscape(wtx.tx->ToString(), true);
 
-        strHTML += "<br><b>" + tr("Inputs") + ":</b>";
-        strHTML += "<ul>";
+        QString sInputsHeader = "<br><b>" + tr("Inputs") + ":</b><ul>";
 
-        BOOST_FOREACH(const CTxIn& txin, wtx.tx->vin)
-        {
-            COutPoint prevout = txin.prevout;
+		int iRow = 0;
+		if (nDepth > 0 && pindexTxList != NULL)
+		{
+			BOOST_FOREACH(const CTxIn& txin, wtx.tx->vin)
+			{
+				COutPoint prevout = txin.prevout;
 
-            Coin prev;
-            if(pcoinsTip->GetCoin(prevout, prev))
-            {
-                {
-                    strHTML += "<li>";
-                    const CTxOut& txout = prev.out;
-                    CTxDestination address;
-                    if (ExtractDestination(txout.scriptPubKey, address))
-                    {
-                        if (wallet->mapAddressBook.count(address) && !wallet->mapAddressBook[address].name.empty())
-                            strHTML += GUIUtil::HtmlEscape(wallet->mapAddressBook[address].name) + " ";
-                        strHTML += QString::fromStdString(CBitcoinAddress(address).ToString());
-                    }
-                    strHTML = strHTML + " " + tr("Amount") + "=" + BitcoinUnits::formatHtmlWithUnit(unit, txout.nValue);
-                    strHTML = strHTML + " IsMine=" + (wallet->IsMine(txout) & ISMINE_SPENDABLE ? tr("true") : tr("false"));
-                    strHTML = strHTML + " IsWatchOnly=" + (wallet->IsMine(txout) & ISMINE_WATCH_ONLY ? tr("true") : tr("false")) + "</li>";
-                }
-            }
-        }
+				Coin prev;
+				if(pcoinsTip->GetCoin(prevout, prev))
+				{
+					{
+						iRow++;
+						if (iRow==1)
+							strHTML += sInputsHeader;
+						strHTML += "<li>";
+						const CTxOut &vout = prev.out;
+						CTxDestination address;
+						if (ExtractDestination(vout.scriptPubKey, address))
+						{
+							if (wallet->mapAddressBook.count(address) && !wallet->mapAddressBook[address].name.empty())
+								strHTML += GUIUtil::HtmlEscape(wallet->mapAddressBook[address].name) + " ";
+							strHTML += QString::fromStdString(CBitcoinAddress(address).ToString());
+						}
+						strHTML = strHTML + " " + tr("Amount") + "=" + BitcoinUnits::formatHtmlWithUnit(unit, vout.nValue);
+						strHTML = strHTML + " IsMine=" + (wallet->IsMine(vout) & ISMINE_SPENDABLE ? tr("true") : tr("false"));
+						strHTML = strHTML + " IsWatchOnly=" + (wallet->IsMine(vout) & ISMINE_WATCH_ONLY ? tr("true") : tr("false")) + "</li>";
+					}
+				}
+			}
+		}
 
         strHTML += "</ul>";
-    }
+		if (!sStripped.empty()) 
+			strHTML += "<br><b>"+ GUIUtil::TOQS(sObjType) + ":</b> " + GUIUtil::TOQS(sStripped) + "<br>";
 
+		if (!sDiary.empty())
+			strHTML += "<br><b>Diary:</b> " + GUIUtil::TOQS(sDiary) + "<br>";
+    }
+	// Bible Verses
+	if (nDepth > 0 && pindexTxList != NULL)
+	{
+		std::string sVerses = GetBibleHashVerses(pindexTxList->GetBlockHash(), pindexTxList->GetBlockTime(), pindexTxList->pprev->nTime, pindexTxList->pprev->nHeight, pindexTxList->pprev);
+		QString v = GetFormattedVerses(sVerses);
+		strHTML = strHTML + "<br><b>Verses:<body style=font-family:MS Shell Dlg 2; font-size:8.25pt; font-weight:400;font-style:normal;><br></b> " + v + "</br>";
+	}
     strHTML += "</font></html>";
+
     return strHTML;
 }

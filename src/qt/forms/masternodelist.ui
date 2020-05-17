@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>762</width>
+    <width>813</width>
     <height>457</height>
    </rect>
   </property>
@@ -14,16 +14,7 @@
    <string>Form</string>
   </property>
   <layout class="QVBoxLayout" name="topLayout">
-   <property name="leftMargin">
-    <number>0</number>
-   </property>
-   <property name="topMargin">
-    <number>0</number>
-   </property>
-   <property name="rightMargin">
-    <number>0</number>
-   </property>
-   <property name="bottomMargin">
+   <property name="margin">
     <number>0</number>
    </property>
    <item>
@@ -51,7 +42,7 @@
        </property>
        <widget class="QWidget" name="tabDIP3Masternodes">
         <attribute name="title">
-         <string>DIP3 Masternodes</string>
+         <string>DIP3 Sanctuaries</string>
         </attribute>
         <layout class="QGridLayout" name="gridLayout_3">
          <item row="0" column="0">
@@ -69,17 +60,17 @@
            <item>
             <widget class="QLineEdit" name="filterLineEditDIP3">
              <property name="toolTip">
-              <string>Filter masternode list</string>
+              <string>Filter Sanctuary list</string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QCheckBox" name="checkBoxMyMasternodesOnly">
              <property name="toolTip">
-              <string>Show only masternodes this wallet has keys for.</string>
+              <string>Show only Sanctuaries this wallet has keys for.</string>
              </property>
              <property name="text">
-              <string>My masternodes only</string>
+              <string>My Sanctuaries only</string>
              </property>
             </widget>
            </item>

@@ -4,7 +4,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/helpthehomeless-config.h"
+#include "config/coin-config.h"
 #endif
 
 #include "splashscreen.h"
@@ -38,20 +38,21 @@ SplashScreen::SplashScreen(Qt::WindowFlags f, const NetworkStyle *networkStyle) 
     setWindowFlags(Qt::FramelessWindowHint);
 
     // set reference point, paddings
-    int paddingLeft             = 14;
+	bool nOffset = CURRENCY_NAME == "DAC" ? 35 : 0;
+    int paddingLeft             = 25 + nOffset;
     int paddingTop              = 470;
-    int titleVersionVSpace      = 17;
-    int titleCopyrightVSpace    = 22;
+    int titleVersionVSpace      = 19;
+    int titleCopyrightVSpace    = 25;
 
-    float fontFactor            = 0.5;
+    float fontFactor            = 1.25;
 
-    // define text to place
-    QString titleText       = tr("");
+    // define text to place (String(tr(PACKAGE_NAME));
+	QString titleText       = GUIUtil::TOQS(CURRENCY_NAME + " Core");
     QString versionText     = QString(tr("Version %1")).arg(QString::fromStdString(FormatFullVersion()));
-    QString copyrightText   = QString::fromUtf8(CopyrightHolders("\xc2\xA9", 2014, COPYRIGHT_YEAR).c_str());
+    QString copyrightText   = QString::fromUtf8(CopyrightHolders("\xc2\xA9", 2020, COPYRIGHT_YEAR).c_str());
     QString titleAddText    = networkStyle->getTitleAddText();
     // networkstyle.cpp can't (yet) read themes, so we do it here to get the correct Splash-screen
-    QString splashScreenPath = ":/images/" + GUIUtil::getThemeName() + "/splash";
+	QString splashScreenPath = ":/images/" + GUIUtil::getThemeName() + "/splash";
     if(GetBoolArg("-regtest", false))
         splashScreenPath = ":/images/" + GUIUtil::getThemeName() + "/splash_testnet";
     if(GetBoolArg("-testnet", false))
@@ -65,10 +66,21 @@ SplashScreen::SplashScreen(Qt::WindowFlags f, const NetworkStyle *networkStyle) 
     pixmap = QPixmap(splashScreenPath);
 
     QPainter pixPaint(&pixmap);
-    pixPaint.setPen(QColor(52,188,170));
+	// gold: 255,215,0 (Bezaleel)
+	// If Bezaleel (or DAC):
+	if (true)
+	{
+		pixPaint.setPen(QColor(100,100,100));
+		pixPaint.setPen(QColor(255,0,0)); // Red (Version)
+		pixPaint.setPen(QColor(192,192,192)); // Silver
+	}
+	else
+	{
+		pixPaint.setPen(QColor(0,0,5)); // Black
+	}
 
     // check font size and drawing with
-    pixPaint.setFont(QFont(font, 28*fontFactor));
+    pixPaint.setFont(QFont(font, 28 * fontFactor));
     QFontMetrics fm = pixPaint.fontMetrics();
     int titleTextWidth = fm.width(titleText);
     if (titleTextWidth > 160) {
@@ -147,7 +159,7 @@ static void InitMessage(SplashScreen *splash, const std::string &message)
         Qt::QueuedConnection,
         Q_ARG(QString, QString::fromStdString(message)),
         Q_ARG(int, Qt::AlignBottom|Qt::AlignHCenter),
-        Q_ARG(QColor, QColor(222,191,18)));
+        Q_ARG(QColor, QColor(255,215,0))); //DAC - Gold / Bezaleel
 }
 
 static void ShowProgress(SplashScreen *splash, const std::string &title, int nProgress)

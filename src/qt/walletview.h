@@ -7,8 +7,6 @@
 
 #include "amount.h"
 #include "masternodelist.h"
-#include "governancelist.h"
-
 
 #include <QStackedWidget>
 
@@ -22,12 +20,9 @@ class SendCoinsRecipient;
 class TransactionView;
 class WalletModel;
 class AddressBookPage;
-class OverviewAPage;
-class GovernancePage;
+class BusinessObjectList;
 class ProposalAddDialog;
-
-
-
+class Proposals;
 
 QT_BEGIN_NAMESPACE
 class QLabel;
@@ -67,6 +62,7 @@ public:
 private:
     ClientModel *clientModel;
     WalletModel *walletModel;
+
     OverviewPage *overviewPage;
     QWidget *transactionsPage;
     ReceiveCoinsDialog *receiveCoinsPage;
@@ -74,24 +70,17 @@ private:
     AddressBookPage *usedSendingAddressesPage;
     AddressBookPage *usedReceivingAddressesPage;
     MasternodeList *masternodeListPage;
-    OverviewAPage *overviewAPage;
-    GovernanceList *governanceListPage;
-    ProposalAddDialog *proposalAddPage;
-      
     TransactionView *transactionView;
+
+	ProposalAddDialog *proposalAddPage;
+	Proposals *proposalListPage;
+	BusinessObjectList *businessObjectListPage;
 
     QProgressDialog *progressDialog;
     QLabel *transactionSum;
     const PlatformStyle *platformStyle;
 
 public Q_SLOTS:
-
-   	/** Switch to Proposal Add Page */
-	  void gotoProposalAddPage();
-    /** Switch to governance page */
-    void gotoGovernancePage();
-    /** Switch to private send page */	
-    void gotoOverviewAPage();
     /** Switch to overview (home) page */
     void gotoOverviewPage();
     /** Switch to history (transactions) page */
@@ -102,6 +91,12 @@ public Q_SLOTS:
     void gotoReceiveCoinsPage();
     /** Switch to send coins page */
     void gotoSendCoinsPage(QString addr = "");
+
+	/** Switch to Proposal Add Page */
+	void gotoProposalAddPage();
+	void gotoProposalListPage();
+	/** Switch to Business Object List Page */
+	void gotoBusinessObjectListPage();
 
     /** Show Sign/Verify Message dialog and switch to sign message tab */
     void gotoSignMessageTab(QString addr = "");
@@ -139,7 +134,7 @@ public Q_SLOTS:
     void requestedSyncWarningInfo();
 
 
-    /** Update selected HTH amount from transactionview */
+    /** Update selected amount from transactionview */
     void trxAmount(QString amount);
 Q_SIGNALS:
     /** Signal that we want to show the main window */

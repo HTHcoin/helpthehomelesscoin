@@ -2,7 +2,6 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-
 #include "walletview.h"
 
 #include "addressbookpage.h"
@@ -20,11 +19,9 @@
 #include "transactiontablemodel.h"
 #include "transactionview.h"
 #include "walletmodel.h"
-#include "overviewapage.h"
 #include "proposaladddialog.h"
-
+#include "businessobjectlist.h"
 #include "ui_interface.h"
-
 #include <QAction>
 #include <QActionGroup>
 #include <QFileDialog>
@@ -43,7 +40,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
 {
     // Create tabs
     overviewPage = new OverviewPage(platformStyle);
-    overviewAPage = new OverviewAPage(platformStyle);    
+
     transactionsPage = new QWidget(this);
     QVBoxLayout *vbox = new QVBoxLayout();
     QHBoxLayout *hbox_buttons = new QHBoxLayout();
@@ -52,7 +49,8 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     QPushButton *exportButton = new QPushButton(tr("&Export"), this);
     exportButton->setToolTip(tr("Export the data in the current tab to a file"));
     if (platformStyle->getImagesOnButtons()) {
-        exportButton->setIcon(QIcon(":/icons/export"));
+        QString theme = GUIUtil::getThemeName();
+        exportButton->setIcon(QIcon(":/icons/" + theme + "/export"));
     }
     hbox_buttons->addStretch();
 
@@ -71,38 +69,34 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     hbox_buttons->addWidget(exportButton);
     vbox->addLayout(hbox_buttons);
     transactionsPage->setLayout(vbox);
-	
+
     receiveCoinsPage = new ReceiveCoinsDialog(platformStyle);
+	proposalAddPage = new ProposalAddDialog(platformStyle);
+	proposalListPage = new Proposals(platformStyle);
+    businessObjectListPage = new BusinessObjectList(platformStyle);
+    
     sendCoinsPage = new SendCoinsDialog(platformStyle);
-    proposalAddPage = new ProposalAddDialog(platformStyle);
-	    
+
     usedSendingAddressesPage = new AddressBookPage(platformStyle, AddressBookPage::ForEditing, AddressBookPage::SendingTab, this);
     usedReceivingAddressesPage = new AddressBookPage(platformStyle, AddressBookPage::ForEditing, AddressBookPage::ReceivingTab, this);
 
-    addWidget(proposalAddPage);
     addWidget(overviewPage);
     addWidget(transactionsPage);
     addWidget(receiveCoinsPage);
     addWidget(sendCoinsPage);
-    addWidget(overviewAPage);  
-	
+	addWidget(proposalAddPage);
+	addWidget(proposalListPage);
+	addWidget(businessObjectListPage);
 
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
         masternodeListPage = new MasternodeList(platformStyle);
         addWidget(masternodeListPage);
     }
-        governanceListPage = new GovernanceList(platformStyle);
-    addWidget(governanceListPage);
-        
+
     // Clicking on a transaction on the overview pre-selects the transaction on the transaction history page
     connect(overviewPage, SIGNAL(transactionClicked(QModelIndex)), transactionView, SLOT(focusTransaction(QModelIndex)));
     connect(overviewPage, SIGNAL(outOfSyncWarningClicked()), this, SLOT(requestedSyncWarningInfo()));
-        
-    // Clicking on a transaction on the overview pre-selects the transaction on the transaction history page
-    connect(overviewAPage, SIGNAL(transactionClicked(QModelIndex)), transactionView, SLOT(focusTransaction(QModelIndex)));
-    connect(overviewAPage, SIGNAL(outOfSyncWarningClicked()), this, SLOT(requestedSyncWarningInfo()));
-    
 
     // Double-clicking on a transaction on the transaction history page shows details
     connect(transactionView, SIGNAL(doubleClicked(QModelIndex)), transactionView, SLOT(showDetails()));
@@ -130,9 +124,6 @@ void WalletView::setBitcoinGUI(BitcoinGUI *gui)
     {
         // Clicking on a transaction on the overview page simply sends you to transaction history page
         connect(overviewPage, SIGNAL(transactionClicked(QModelIndex)), gui, SLOT(gotoHistoryPage()));
-        
-        // Clicking on a transaction on the overview page simply sends you to transaction history page
-        connect(overviewAPage, SIGNAL(transactionClicked(QModelIndex)), gui, SLOT(gotoHistoryPage()));
 
         // Receive and report messages
         connect(this, SIGNAL(message(QString,QString,unsigned int)), gui, SLOT(message(QString,QString,unsigned int)));
@@ -153,13 +144,11 @@ void WalletView::setClientModel(ClientModel *_clientModel)
     this->clientModel = _clientModel;
 
     overviewPage->setClientModel(_clientModel);
-    overviewAPage->setClientModel(_clientModel);
     sendCoinsPage->setClientModel(_clientModel);
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
         masternodeListPage->setClientModel(_clientModel);
     }
-    governanceListPage->setClientModel(_clientModel);
 }
 
 void WalletView::setWalletModel(WalletModel *_walletModel)
@@ -169,18 +158,18 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
     // Put transaction list in tabs
     transactionView->setModel(_walletModel);
     overviewPage->setWalletModel(_walletModel);
-    overviewAPage->setWalletModel(_walletModel);
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
         masternodeListPage->setWalletModel(_walletModel);
     }
-    governanceListPage->setWalletModel(_walletModel);
     receiveCoinsPage->setModel(_walletModel);
     sendCoinsPage->setModel(_walletModel);
 	proposalAddPage->setModel(_walletModel);
+	proposalListPage->setModel(_walletModel);
+	businessObjectListPage->setModel(_walletModel);
+
     usedReceivingAddressesPage->setModel(_walletModel->getAddressTableModel());
     usedSendingAddressesPage->setModel(_walletModel->getAddressTableModel());
-   	
 
     if (_walletModel)
     {
@@ -225,6 +214,13 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
             nType == TransactionRecord::PrivateSendMakeCollaterals ||
             nType == TransactionRecord::PrivateSendCreateDenominations) return;
     }
+	// Nuisance 1 - Don't inundate UI with massive quantity of balloons until chain is synced
+	static int64_t nLastPopup = 0;
+	static int64_t nPopupThreshhold = 7;
+	int64_t nAge = GetTime() - nLastPopup;
+	nLastPopup = GetTime();
+	if (nAge < nPopupThreshhold) return;
+	// End of Nuisance 1
 
     QString date = ttm->index(start, TransactionTableModel::Date, parent).data().toString();
     qint64 amount = ttm->index(start, TransactionTableModel::Amount, parent).data(Qt::EditRole).toULongLong();
@@ -233,23 +229,6 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
     QString label = ttm->data(index, TransactionTableModel::LabelRole).toString();
 
     Q_EMIT incomingTransaction(date, walletModel->getOptionsModel()->getDisplayUnit(), amount, type, address, label);
-}
-
-void WalletView::gotoProposalAddPage()
-{
-	setCurrentWidget(proposalAddPage);
-	proposalAddPage->UpdateDisplay();
-}
-
-void WalletView::gotoGovernancePage()
-{
-    QSettings settings;
-    setCurrentWidget(governanceListPage);
-}
-
-void WalletView::gotoOverviewAPage()
-{
-    setCurrentWidget(overviewAPage);
 }
 
 void WalletView::gotoOverviewPage()
@@ -268,6 +247,24 @@ void WalletView::gotoMasternodePage()
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
         setCurrentWidget(masternodeListPage);
     }
+}
+
+void WalletView::gotoBusinessObjectListPage()
+{
+	setCurrentWidget(businessObjectListPage);
+	businessObjectListPage->UpdateObject("pog_leaderboard");
+}
+
+void WalletView::gotoProposalAddPage()
+{
+	setCurrentWidget(proposalAddPage);
+	proposalAddPage->UpdateDisplay();
+}
+
+void WalletView::gotoProposalListPage()
+{
+	setCurrentWidget(proposalListPage);
+	proposalListPage->UpdateDisplay();
 }
 
 void WalletView::gotoReceiveCoinsPage()
@@ -337,7 +334,7 @@ void WalletView::backupWallet()
 {
     QString filename = GUIUtil::getSaveFileName(this,
         tr("Backup Wallet"), QString(),
-        tr("Wallet Data (*.dat)"), nullptr);
+        tr("Wallet Data (*.dat)"), NULL);
 
     if (filename.isEmpty())
         return;
@@ -406,7 +403,6 @@ void WalletView::showProgress(const QString &title, int nProgress)
     if (nProgress == 0)
     {
         progressDialog = new QProgressDialog(title, "", 0, 100);
-        progressDialog->setStyleSheet(GUIUtil::loadStyleSheet());
         progressDialog->setWindowModality(Qt::ApplicationModal);
         progressDialog->setMinimumDuration(0);
         progressDialog->setCancelButton(0);

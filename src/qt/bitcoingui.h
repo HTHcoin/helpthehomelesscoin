@@ -6,11 +6,11 @@
 #define BITCOIN_QT_BITCOINGUI_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/helpthehomeless-config.h"
+#include "config/coin-config.h"
 #endif
 
 #include "amount.h"
-#include "governancelist.h"
+#include "proposals.h"
 
 #include <QLabel>
 #include <QMainWindow>
@@ -36,8 +36,6 @@ class WalletFrame;
 class WalletModel;
 class HelpMessageDialog;
 class ModalOverlay;
-class QNetworkAccessManager;
-class QNetworkRequest;
 
 class CWallet;
 
@@ -45,8 +43,6 @@ QT_BEGIN_NAMESPACE
 class QAction;
 class QProgressBar;
 class QProgressDialog;
-class QNetworkAccessManager;
-class QNetworkRequest;
 QT_END_NAMESPACE
 
 /**
@@ -91,7 +87,6 @@ protected:
 private:
     ClientModel *clientModel;
     WalletFrame *walletFrame;
-    
     UnitDisplayStatusBarControl *unitDisplayControl;
     QLabel *labelWalletEncryptionIcon;
     QLabel *labelWalletHDStatusIcon;
@@ -100,12 +95,7 @@ private:
     QLabel *progressBarLabel;
     QProgressBar *progressBar;
     QProgressDialog *progressDialog;
-
     QMenuBar *appMenuBar;
-    
-    QAction *proposalAddMenuAction;
-    QAction *governanceAction;
-    QAction* overviewaAction;
     QAction *overviewAction;
     QAction *historyAction;
     QAction *masternodeAction;
@@ -117,8 +107,26 @@ private:
     QAction *signMessageAction;
     QAction *verifyMessageAction;
     QAction *aboutAction;
+	// DAC - Add Read Bible
+	QAction *orphanAction;
+	QAction *webAction;
+	QAction *OneClickMiningAction;
+	QAction *sinnerAction;
+	QAction *TheLordsPrayerAction;
+	QAction *TheApostlesCreedAction;
+	QAction *TheNiceneCreedAction;
+	QAction *ReadBibleAction;
+	QAction *TheTenCommandmentsAction;
+	QAction *JesusConciseCommandmentsAction;
+	QAction *proposalAddMenuAction;
+	QAction *proposalListAction;
+	QAction *businessObjectListMenuAction;
+	// Note: Any orphaned Action results in a crash (pun intended)
+	// END OF DAC
+
     QAction *receiveCoinsAction;
     QAction *receiveCoinsMenuAction;
+
     QAction *optionsAction;
     QAction *toggleHideAction;
     QAction *encryptWalletAction;
@@ -137,8 +145,7 @@ private:
     QAction *openAction;
     QAction *showHelpMessageAction;
     QAction *showPrivateSendHelpAction;
-	
-     
+  
     QSystemTrayIcon *trayIcon;
     QMenu *trayIconMenu;
     QMenu *dockIconMenu;
@@ -207,7 +214,7 @@ public Q_SLOTS:
        @param[in] ret       pointer to a bool that will be modified to whether Ok was clicked (modal only)
     */
     void message(const QString &title, const QString &message, unsigned int style, bool *ret = NULL);
-       
+
 #ifdef ENABLE_WALLET
     /** Set the hd-enabled status as shown in the UI.
      @param[in] status            current hd enabled status
@@ -229,17 +236,11 @@ public Q_SLOTS:
 
 private Q_SLOTS:
 #ifdef ENABLE_WALLET
- 	
-    /** Switch to Proposal Add page */
-	void gotoProposalAddPage();
-    /** Switch to masternode page */
-    void gotoGovernancePage();
-    /** Switch to private send page */
-    void gotoOverviewAPage();
     /** Switch to overview (home) page */
     void gotoOverviewPage();
     /** Switch to history (transactions) page */
     void gotoHistoryPage();
+
     /** Switch to masternode page */
     void gotoMasternodePage();
     /** Switch to receive coins page */
@@ -254,11 +255,34 @@ private Q_SLOTS:
 
     /** Show open dialog */
     void openClicked();
+
+	/** Switch to Proposal Add page */
+	void gotoProposalAddPage();
+	void gotoProposalListPage();
+	void OneClickMiningClicked();
+	void gotoBusinessObjectListPage();
+
+
 #endif // ENABLE_WALLET
+
+
     /** Show configuration dialog */
     void optionsClicked();
     /** Show about dialog */
     void aboutClicked();
+
+	/** DAC - Show built-in prayers or commandments **/
+	void sinnerClicked();
+	void TheLordsPrayerClicked();
+	void TheApostlesCreedClicked();
+	void TheNiceneCreedClicked();
+	void ReadBibleClicked();
+	void TheTenCommandmentsClicked();
+	void JesusConciseCommandmentsClicked();
+	
+	void showAccountability();
+	void showDecentralizedWeb();
+
     /** Show debug window */
     void showDebugWindow();
 
@@ -269,7 +293,7 @@ private Q_SLOTS:
     void showPeers();
     void showRepair();
 
-    /** Open external (default) editor with dash.conf */
+    /** Open external (default) editor for .conf */
     void showConfEditor();
     /** Show folder with wallet backups in default file browser */
     void showBackups();

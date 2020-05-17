@@ -5,42 +5,24 @@
 #ifndef BITCOIN_QT_OVERVIEWPAGE_H
 #define BITCOIN_QT_OVERVIEWPAGE_H
 
-#include "platformstyle.h"
-#include "primitives/transaction.h"
-#include "sync.h"
-#include "util.h"
-
-#include "evo/deterministicmns.h"
-
-
 #include "amount.h"
-#include <QTimer>
-#include <QMenu>
+
 #include <QWidget>
 #include <memory>
-#include <QDesktopServices>
-
-#define MASTERNODELIST_UPDATE_SECONDS 3
-#define MASTERNODELIST_FILTER_COOLDOWN_SECONDS 3
 
 class ClientModel;
 class TransactionFilterProxy;
-/* class TxViewDelegate; */
+class TxViewDelegate;
 class PlatformStyle;
 class WalletModel;
-
 
 namespace Ui {
     class OverviewPage;
 }
 
-
 QT_BEGIN_NAMESPACE
 class QModelIndex;
 QT_END_NAMESPACE
-
-
-
 
 /** Overview ("home") page widget */
 class OverviewPage : public QWidget
@@ -54,35 +36,19 @@ public:
     void setClientModel(ClientModel *clientModel);
     void setWalletModel(WalletModel *walletModel);
     void showOutOfSyncWarning(bool fShow);
-    
-    
-    
-    
-        
-    
+	void updatePrayers();
 
 public Q_SLOTS:
-  
+    void privateSendStatus();
     void setBalance(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance, const CAmount& anonymizedBalance,
                     const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance);
-  
-    
-  
+
 Q_SIGNALS:
-/*    void transactionClicked(const QModelIndex &index); */
+    void transactionClicked(const QModelIndex &index);
     void outOfSyncWarningClicked();
-    void doubleClicked(const QModelIndex&);
-    
-    
-   
 
 private:
-
-  
     QTimer *timer;
-    QTimer* timerinfo_mn;
-    QTimer* timerinfo_blockchain;
-    QTimer* timerinfo_peers;
     Ui::OverviewPage *ui;
     ClientModel *clientModel;
     WalletModel *walletModel;
@@ -93,36 +59,28 @@ private:
     CAmount currentWatchOnlyBalance;
     CAmount currentWatchUnconfBalance;
     CAmount currentWatchImmatureBalance;
-    CAmount GetBlockSubsidy;
     int nDisplayUnit;
-  /*  bool fShowAdvancedPSUI; */
+    bool fShowAdvancedPSUI;
     int cachedNumISLocks;
-        
-/*    TxViewDelegate *txdelegate;
-    std::unique_ptr<TransactionFilterProxy> filter; */
-    
- /*   void SetupTransactionList(int nNumItems); */
-       
 
+    TxViewDelegate *txdelegate;
+    std::unique_ptr<TransactionFilterProxy> filter;
+
+    void SetupTransactionList(int nNumItems);
+    void DisablePrivateSendCompletely();
 
 private Q_SLOTS:
-
+    void togglePrivateSend();
+    void privateSendAuto();
+    void privateSendReset();
+    void privateSendInfo();
     void updateDisplayUnit();
- 
-  /*  void updateAdvancedPSUI(bool fShowAdvancedPSUI);  */
-  /*  void handleTransactionClicked(const QModelIndex &index); */
-   /* void updateAlerts(const QString &warnings); */
+    void updatePrivateSendProgress();
+    void updateAdvancedPSUI(bool fShowAdvancedPSUI);
+    void handleTransactionClicked(const QModelIndex &index);
+    void updateAlerts(const QString &warnings);
     void updateWatchOnlyLabels(bool showWatchOnly);
     void handleOutOfSyncWarningClicks();
-    void on_pushButton_Website_clicked();
-    void on_pushButton_Website_1_clicked();
-    void on_pushButton_Website_2_clicked();
-    void on_pushButton_Website_3_clicked();
-    void on_pushButton_Website_4_clicked();
-    void on_pushButton_Website_5_clicked();
-    void updateBlockChainInfo();
-    void updateMasternodeInfo(); 
-    void updatePeersInfo();      
- };
+};
 
 #endif // BITCOIN_QT_OVERVIEWPAGE_H

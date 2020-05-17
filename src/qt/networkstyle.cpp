@@ -1,5 +1,4 @@
 // Copyright (c) 2014 The Bitcoin Core developers
-// Copyright (c) 2014-2017 The Dash Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,6 +6,7 @@
 
 #include "guiconstants.h"
 #include "guiutil.h"
+#include "validation.h"
 
 #include "chainparams.h"
 #include "tinyformat.h"
@@ -73,7 +73,8 @@ NetworkStyle::NetworkStyle(const QString &_appName, const int iconColorHueShift,
     // Grab theme from settings
     QString theme = GUIUtil::getThemeName();
     // load pixmap
-    QPixmap appIconPixmap(":/icons/bitcoin");
+	QString toolbarIcon = GUIUtil::TOQS(":icons/toolbaricon_" + CURRENCY_NAME);
+    QPixmap appIconPixmap(toolbarIcon);
     QPixmap splashImagePixmap(":/images/" + theme + "/splash");
 
     if(iconColorHueShift != 0 && iconColorSaturationReduction != 0)
@@ -82,8 +83,10 @@ NetworkStyle::NetworkStyle(const QString &_appName, const int iconColorHueShift,
         QImage appIconImg = appIconPixmap.toImage();
         QImage splashImageImg = splashImagePixmap.toImage();
 
+		/*
         rotateColors(appIconImg, iconColorHueShift, iconColorSaturationReduction);
         rotateColors(splashImageImg, iconColorHueShift, iconColorSaturationReduction);
+		*/
 
         //convert back to QPixmap
 #if QT_VERSION >= 0x040700

@@ -15,8 +15,9 @@
 #include <QString>
 #include <QTableView>
 #include <QLabel>
-#include <QNetworkAccessManager>
-#include <QNetworkReply>
+#include <QTableWidget>
+#include <QTableWidgetItem>
+
 
 #include <boost/filesystem.hpp>
 
@@ -32,13 +33,13 @@ class QUrl;
 class QWidget;
 QT_END_NAMESPACE
 
-/** Utility functions used by the Dash Qt UI.
+/** Utility functions used by the DAC Qt UI.
  */
 namespace GUIUtil
 {
 	QString TOQS(std::string s);
 	std::string FROMQS(QString qs);
-	
+
     // Create human-readable string from date
     QString dateTimeStr(const QDateTime &datetime);
     QString dateTimeStr(qint64 nTime);
@@ -50,7 +51,7 @@ namespace GUIUtil
     void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent);
     void setupAmountWidget(QLineEdit *widget, QWidget *parent);
 
-    // Parse "dash:" URI into recipient object, return true on successful parsing
+    // Parse "dac:" URI into recipient object, return true on successful parsing
     bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out);
     bool parseBitcoinURI(QString uri, SendCoinsRecipient *out);
     QString formatBitcoinURI(const SendCoinsRecipient &info);
@@ -119,7 +120,7 @@ namespace GUIUtil
     // Open debug.log
     void openDebugLogfile();
 	
-    // Open dash.conf
+    // Open .conf
     void openConfigfile();	
 
     // Browse backup folder
@@ -207,7 +208,6 @@ namespace GUIUtil
 
     /* Convert OS specific boost path to QString through UTF-8 */
     QString boostPathToQString(const boost::filesystem::path &path);
-	
 
     /* Convert seconds into a QString with days, hours, mins, secs */
     QString formatDurationStr(int secs);
@@ -263,6 +263,21 @@ namespace GUIUtil
     typedef ClickableProgressBar ProgressBar;
 #endif
 
-}; // namespace GUIUtil
+} // namespace GUIUtil
+
+// subclass for ordering numeric columns in QTableWidget
+class NumericTableWidgetItem : public QTableWidgetItem {
+    public:
+        NumericTableWidgetItem(const QString &s):QTableWidgetItem(s) {
+        }
+        NumericTableWidgetItem(double d):QTableWidgetItem(d) {
+        }
+
+        bool operator <(const QTableWidgetItem &other) const
+        {
+            return text().toDouble() < other.text().toDouble();
+        }
+};
+
 
 #endif // BITCOIN_QT_GUIUTIL_H

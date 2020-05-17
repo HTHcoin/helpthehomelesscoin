@@ -60,6 +60,8 @@ private Q_SLOTS:
     void on_addressBookButton_clicked();
     void on_pasteButton_clicked();
     void updateDisplayUnit();
+	void updateFoundationAddress();
+	void diaryEntry();
 
 private:
     SendCoinsRecipient recipient;

@@ -98,7 +98,8 @@ public:
      */
     void updateWallet(const uint256 &hash, int status, bool showTransaction)
     {
-        qDebug() << "TransactionTablePriv::updateWallet: " + QString::fromStdString(hash.ToString()) + " " + QString::number(status);
+        if (fDebugSpam)
+			qDebug() << "TransactionTablePriv::updateWallet: " + QString::fromStdString(hash.ToString()) + " " + QString::number(status);
 
         // Find bounds of this transaction in model
         QList<TransactionRecord>::iterator lower = qLowerBound(
@@ -117,7 +118,8 @@ public:
                 status = CT_DELETED; /* In model, but want to hide, treat as deleted */
         }
 
-        qDebug() << "    inModel=" + QString::number(inModel) +
+        if (fDebugSpam)
+			qDebug() << "    inModel=" + QString::number(inModel) +
                     " Index=" + QString::number(lowerIndex) + "-" + QString::number(upperIndex) +
                     " showTransaction=" + QString::number(showTransaction) + " derivedStatus=" + QString::number(status);
 
@@ -139,20 +141,19 @@ public:
                     qWarning() << "TransactionTablePriv::updateWallet: Warning: Got CT_NEW, but transaction is not in wallet";
                     break;
                 }
-                // Added -- insert at the right position
-                QList<TransactionRecord> toInsert =
-                        TransactionRecord::decomposeTransaction(wallet, mi->second);
-                if(!toInsert.isEmpty()) /* only if something to insert */
-                {
-                    parent->beginInsertRows(QModelIndex(), lowerIndex, lowerIndex+toInsert.size()-1);
-                    int insert_idx = lowerIndex;
-                    Q_FOREACH(const TransactionRecord &rec, toInsert)
-                    {
-                        cachedWallet.insert(insert_idx, rec);
-                        insert_idx += 1;
-                    }
-                    parent->endInsertRows();
-                }
+				// Added -- insert at the right position
+				QList<TransactionRecord> toInsert =	TransactionRecord::decomposeTransaction(wallet, mi->second);
+				if(!toInsert.isEmpty()) /* only if something to insert */
+				{
+					parent->beginInsertRows(QModelIndex(), lowerIndex, lowerIndex+toInsert.size()-1);
+					int insert_idx = lowerIndex;
+					Q_FOREACH(const TransactionRecord &rec, toInsert)
+					{
+						cachedWallet.insert(insert_idx, rec);
+						insert_idx += 1;
+					}
+					parent->endInsertRows();
+				}
             }
             break;
         case CT_DELETED:
@@ -397,14 +398,25 @@ QString TransactionTableModel::formatTxType(const TransactionRecord *wtx) const
         return tr("Received from");
     case TransactionRecord::RecvWithPrivateSend:
         return tr("Received via PrivateSend");
+	case TransactionRecord::WhaleStake:
+		return tr("Dynamic Whale Stake");
+	case TransactionRecord::WhaleReward:
+		return tr("Dynamic Whale Reward");
+	case TransactionRecord::GSCTransmission:
+		return tr("GSC Transmission");
     case TransactionRecord::SendToAddress:
     case TransactionRecord::SendToOther:
         return tr("Sent to");
     case TransactionRecord::SendToSelf:
         return tr("Payment to yourself");
-    case TransactionRecord::Generated:
+	case TransactionRecord::CPKAssociation:
+		return tr("Christian Public Keypair Association");
+	case TransactionRecord::SuperBlockPayment:
+		return tr("Superblock Payment");
+	case TransactionRecord::GSCPayment:
+		return tr("Smart-Contract Reward");
+	case TransactionRecord::Generated:
         return tr("Mined");
-
     case TransactionRecord::PrivateSendDenominate:
         return tr("PrivateSend Denominate");
     case TransactionRecord::PrivateSendCollateralPayment:
@@ -426,18 +438,30 @@ QVariant TransactionTableModel::txAddressDecoration(const TransactionRecord *wtx
     QString theme = GUIUtil::getThemeName();
     switch(wtx->type)
     {
-    case TransactionRecord::Generated:
-        return QIcon(":/icons/" + theme + "/tx_mined");
-    case TransactionRecord::RecvWithPrivateSend:
-    case TransactionRecord::RecvWithAddress:
-    case TransactionRecord::RecvFromOther:
-        return QIcon(":/icons/" + theme + "/tx_input");
-    case TransactionRecord::PrivateSend:
-    case TransactionRecord::SendToAddress:
-    case TransactionRecord::SendToOther:
-        return QIcon(":/icons/" + theme + "/tx_output");
-    default:
-        return QIcon(":/icons/" + theme + "/tx_inout");
+		case TransactionRecord::WhaleReward:
+			return QIcon(":/icons/drkblue/whale3232");
+		case TransactionRecord::WhaleStake:
+			return QIcon(":/icons/drkblue/whale3232");
+		case TransactionRecord::SuperBlockPayment:
+			return QIcon(":/icons/drkblue/account32");
+		case TransactionRecord::GSCPayment:
+			return QIcon(":/icons/drkblue/donation32");
+		case TransactionRecord::CPKAssociation:
+			return QIcon(":/icons/drkblue/cross3232");
+		case TransactionRecord::GSCTransmission:
+			return QIcon(":/icons/drkblue/donation32");
+	    case TransactionRecord::Generated:
+		    return QIcon(":/icons/" + theme + "/tx_mined");
+		case TransactionRecord::RecvWithPrivateSend:
+		case TransactionRecord::RecvWithAddress:
+		case TransactionRecord::RecvFromOther:
+			return QIcon(":/icons/" + theme + "/tx_input");
+		case TransactionRecord::PrivateSend:
+		case TransactionRecord::SendToAddress:
+		case TransactionRecord::SendToOther:
+			return QIcon(":/icons/" + theme + "/tx_output");
+		default:
+			return QIcon(":/icons/" + theme + "/tx_inout");
     }
 }
 
@@ -462,6 +486,8 @@ QString TransactionTableModel::formatTxToAddress(const TransactionRecord *wtx, b
     case TransactionRecord::SendToOther:
         return QString::fromStdString(wtx->address) + watchAddress;
     case TransactionRecord::SendToSelf:
+	case TransactionRecord::GSCTransmission:
+        return QString::fromStdString(wallet->mapWallet[wtx->hash].tx->GetCampaignName());
     default:
         return tr("(n/a)") + watchAddress;
     }
@@ -790,7 +816,8 @@ public:
     void invoke(QObject *ttm)
     {
         QString strHash = QString::fromStdString(hash.GetHex());
-        qDebug() << "NotifyTransactionChanged: " + strHash + " status= " + QString::number(status);
+		if (fDebugSpam)
+			qDebug() << "NotifyTransactionChanged: " + strHash + " status= " + QString::number(status);
         QMetaObject::invokeMethod(ttm, "updateTransaction", Qt::QueuedConnection,
                                   Q_ARG(QString, strHash),
                                   Q_ARG(int, status),

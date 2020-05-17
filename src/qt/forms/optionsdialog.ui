@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>576</width>
-    <height>402</height>
+    <height>496</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tabMain">
       <attribute name="title">
@@ -156,10 +156,10 @@
           <item>
            <widget class="QCheckBox" name="showMasternodesTab">
             <property name="toolTip">
-             <string>Show additional tab listing all your masternodes in first sub-tab&lt;br/&gt;and all masternodes on the network in second sub-tab.</string>
+             <string>Show additional tab listing all your Sanctuaries in first sub-tab&lt;br/&gt;and all Sanctuaries on the network in second sub-tab.</string>
             </property>
             <property name="text">
-             <string>Show Masternodes Tab</string>
+             <string>Show Sanctuaries Tab</string>
             </property>
            </widget>
           </item>
@@ -221,7 +221,7 @@
          <item>
           <widget class="QLabel" name="label">
            <property name="toolTip">
-            <string>This setting determines the amount of individual masternodes that an input will be anonymized through.&lt;br/&gt;More rounds of anonymization gives a higher degree of privacy, but also costs more in fees.</string>
+            <string>This setting determines the amount of individual Sanctuaries that an input will be anonymized through.&lt;br/&gt;More rounds of anonymization gives a higher degree of privacy, but also costs more in fees.</string>
            </property>
            <property name="text">
             <string>PrivateSend rounds to use</string>
@@ -263,7 +263,7 @@
             <string notr="true"/>
            </property>
            <property name="text">
-            <string>Amount of HTH to keep anonymized</string>
+            <string>Amount of coins to keep anonymized</string>
            </property>
           </widget>
          </item>
@@ -273,13 +273,13 @@
             <number>2</number>
            </property>
            <property name="maximum">
-            <number>2000</number>
+            <number>5000000</number>
            </property>
            <property name="singleStep">
             <number>10</number>
            </property>
            <property name="value">
-            <number>1000</number>
+            <number>100000</number>
            </property>
           </widget>
          </item>
@@ -308,7 +308,7 @@
        <item>
         <widget class="QCheckBox" name="mapPortUpnp">
          <property name="toolTip">
-          <string>Automatically open the HelpTheHomeless client port on the router. This only works when your router supports UPnP and it is enabled.</string>
+          <string>Automatically open the core client port on the router. This only works when your router supports UPnP and it is enabled.</string>
          </property>
          <property name="text">
           <string>Map port using &amp;UPnP</string>
@@ -328,7 +328,7 @@
        <item>
         <widget class="QCheckBox" name="connectSocks">
          <property name="toolTip">
-          <string>Connect to the HelpTheHomeless network through a SOCKS5 proxy.</string>
+          <string>Connect to the network through a SOCKS5 proxy.</string>
          </property>
          <property name="text">
           <string>&amp;Connect through SOCKS5 proxy (default proxy):</string>
@@ -515,7 +515,7 @@
        <item>
         <widget class="QCheckBox" name="connectSocksTor">
          <property name="toolTip">
-          <string>Connect to the HelpTheHomeless network through a separate SOCKS5 proxy for Tor hidden services.</string>
+          <string>Connect to the network through a separate SOCKS5 proxy for Tor hidden services.</string>
          </property>
          <property name="text">
           <string>Use separate SOCKS5 proxy to reach peers via Tor hidden services:</string>
@@ -713,7 +713,7 @@
          </property>
          <property name="text">
           <string>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/projects/p/dash/</string>
+https://www.transifex.com/projects/p/biblepay/</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>

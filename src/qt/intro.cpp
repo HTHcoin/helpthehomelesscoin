@@ -4,11 +4,12 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/helpthehomeless-config.h"
+#include "config/coin-config.h"
 #endif
 
 #include "intro.h"
 #include "ui_intro.h"
+#include "validation.h"
 
 #include "guiutil.h"
 
@@ -209,7 +210,8 @@ bool Intro::pickDataDirectory()
         /* Let the user choose one */
         Intro intro;
         intro.setDataDirectory(dataDirDefaultCurrent);
-        intro.setWindowIcon(QIcon(":icons/bitcoin"));
+		// DAC - Choose the toolbaricon
+        intro.setWindowIcon(QIcon(GUIUtil::TOQS(":icons/toolbaricon_" + CURRENCY_NAME)));
 
         while(true)
         {
@@ -233,8 +235,8 @@ bool Intro::pickDataDirectory()
         settings.setValue("strDataDirDefault", dataDirDefaultCurrent);
     }
     /* Only override -datadir if different from the default, to make it possible to
-     * override -datadir in the dash.conf file in the default data directory
-     * (to be consistent with dashd behavior)
+     * override -datadir in the .conf file in the default data directory
+     * (to be consistent with dacd behavior)
      */
     if(dataDir != dataDirDefaultCurrent)
         SoftSetArg("-datadir", GUIUtil::qstringToBoostPath(dataDir).string()); // use OS locale for path setting

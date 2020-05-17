@@ -62,13 +62,6 @@ private:
     WalletView *currentWalletView();
 
 public Q_SLOTS:
-
-    /** Switch to Proposal Add Page */
-	void gotoProposalAddPage();
-    /** Switch to governance page */
-    void gotoGovernancePage(); 
-    /** Switch to private send page */
-    void gotoOverviewAPage();
     /** Switch to overview (home) page */
     void gotoOverviewPage();
     /** Switch to history (transactions) page */
@@ -77,6 +70,14 @@ public Q_SLOTS:
     void gotoMasternodePage();
     /** Switch to receive coins page */
     void gotoReceiveCoinsPage();
+	
+	/** Switch to Business Object List page */
+	void gotoBusinessObjectListPage();
+
+	/** Switch to Proposal Add Page */
+	void gotoProposalAddPage();
+	void gotoProposalListPage();
+
     /** Switch to send coins page */
     void gotoSendCoinsPage(QString addr = "");
 

@@ -6,6 +6,8 @@
 #include "bitcoinunits.h"
 #include "chainparams.h"
 #include "primitives/transaction.h"
+#include "validation.h"
+#include "guiutil.h"
 
 #include <QSettings>
 #include <QStringList>
@@ -19,9 +21,9 @@ BitcoinUnits::BitcoinUnits(QObject *parent):
 QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(HTH);
-    unitlist.append(mHTH);
-    unitlist.append(uHTH);
+    unitlist.append(COIN_UNIT);
+    unitlist.append(mCOIN_UNIT);
+    unitlist.append(uCOIN_UNIT);
     unitlist.append(duffs);
     return unitlist;
 }
@@ -30,9 +32,9 @@ bool BitcoinUnits::valid(int unit)
 {
     switch(unit)
     {
-    case HTH:
-    case mHTH:
-    case uHTH:
+    case COIN_UNIT:
+    case mCOIN_UNIT:
+    case uCOIN_UNIT:
     case duffs:
         return true;
     default:
@@ -46,9 +48,9 @@ QString BitcoinUnits::name(int unit)
     {
         switch(unit)
         {
-            case HTH: return QString("HTH");
-            case mHTH: return QString("mHTH");
-            case uHTH: return QString::fromUtf8("μHTH");
+            case COIN_UNIT: return GUIUtil::TOQS(CURRENCY_TICKER);
+            case mCOIN_UNIT: return GUIUtil::TOQS("m" + CURRENCY_TICKER);
+            case uCOIN_UNIT: return GUIUtil::TOQS("μ" + CURRENCY_TICKER);
             case duffs: return QString("duffs");
             default: return QString("???");
         }
@@ -57,9 +59,9 @@ QString BitcoinUnits::name(int unit)
     {
         switch(unit)
         {
-            case HTH: return QString("tHTH");
-            case mHTH: return QString("mtHTH");
-            case uHTH: return QString::fromUtf8("μtHTH");
+			case COIN_UNIT: return GUIUtil::TOQS("t" + CURRENCY_TICKER);
+            case mCOIN_UNIT: return GUIUtil::TOQS("mt" + CURRENCY_TICKER);
+            case uCOIN_UNIT: return GUIUtil::TOQS("μt" + CURRENCY_TICKER);
             case duffs: return QString("tduffs");
             default: return QString("???");
         }
@@ -72,10 +74,10 @@ QString BitcoinUnits::description(int unit)
     {
         switch(unit)
         {
-            case HTH: return QString("HTH");
-            case mHTH: return QString("Milli-HTH (1 / 1" THIN_SP_UTF8 "000)");
-            case uHTH: return QString("Micro-HTH (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
-            case duffs: return QString("Ten Nano-HTH (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case COIN_UNIT: return GUIUtil::TOQS(CURRENCY_NAME);
+            case mCOIN_UNIT: return GUIUtil::TOQS("Milli-" + CURRENCY_NAME + " (1 / 1" THIN_SP_UTF8 "000)");
+            case uCOIN_UNIT: return GUIUtil::TOQS("Micro-" + CURRENCY_NAME + " (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case duffs: return GUIUtil::TOQS("Ten Nano-" + CURRENCY_NAME + " (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
             default: return QString("???");
         }
     }
@@ -83,10 +85,10 @@ QString BitcoinUnits::description(int unit)
     {
         switch(unit)
         {
-            case HTH: return QString("TestHTHd");
-            case mHTH: return QString("Milli-TestHTH (1 / 1" THIN_SP_UTF8 "000)");
-            case uHTH: return QString("Micro-TestHTH (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
-            case duffs: return QString("Ten Nano-TestHTH (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case COIN_UNIT: return GUIUtil::TOQS("Test" + CURRENCY_NAME);
+            case mCOIN_UNIT: return GUIUtil::TOQS("Milli-Test" + CURRENCY_NAME + " (1 / 1" THIN_SP_UTF8 "000)");
+            case uCOIN_UNIT: return GUIUtil::TOQS("Micro-Test" + CURRENCY_NAME + " (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case duffs: return GUIUtil::TOQS("Ten Nano-Test" + CURRENCY_NAME + " (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
             default: return QString("???");
         }
     }
@@ -96,9 +98,9 @@ qint64 BitcoinUnits::factor(int unit)
 {
     switch(unit)
     {
-    case HTH:  return 100000000;
-    case mHTH: return 100000;
-    case uHTH: return 100;
+    case COIN_UNIT:  return 100000000;
+    case mCOIN_UNIT: return 100000;
+    case uCOIN_UNIT: return 100;
     case duffs: return 1;
     default:   return 100000000;
     }
@@ -108,9 +110,9 @@ int BitcoinUnits::decimals(int unit)
 {
     switch(unit)
     {
-    case HTH: return 8;
-    case mHTH: return 5;
-    case uHTH: return 2;
+    case COIN_UNIT: return 8;
+    case mCOIN_UNIT: return 5;
+    case uCOIN_UNIT: return 2;
     case duffs: return 0;
     default: return 0;
     }
@@ -233,7 +235,7 @@ QString BitcoinUnits::getAmountColumnTitle(int unit)
     QString amountTitle = QObject::tr("Amount");
     if (BitcoinUnits::valid(unit))
     {
-        amountTitle += " ("+BitcoinUnits::name(unit) + ")";
+        amountTitle += " (" + BitcoinUnits::name(unit) + ")";
     }
     return amountTitle;
 }

@@ -1,5 +1,6 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2018 The Dash Core developers
+// Copyright (c) 2017-2019 The DAC Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -68,7 +69,7 @@ SendCoinsDialog::SendCoinsDialog(const PlatformStyle *_platformStyle, QWidget *p
     connect(ui->checkBoxCoinControlChange, SIGNAL(stateChanged(int)), this, SLOT(coinControlChangeChecked(int)));
     connect(ui->lineEditCoinControlChange, SIGNAL(textEdited(const QString &)), this, SLOT(coinControlChangeEdited(const QString &)));
 
-    // Dash specific
+    // DAC specific
     QSettings settings;
     if (!settings.contains("bUseDarkSend"))
         settings.setValue("bUseDarkSend", false);
@@ -233,11 +234,18 @@ void SendCoinsDialog::on_sendButton_clicked()
     QList<SendCoinsRecipient> recipients;
     bool valid = true;
 
+	bool fDiary = false;
     for(int i = 0; i < ui->entries->count(); ++i)
     {
         SendCoinsEntry *entry = qobject_cast<SendCoinsEntry*>(ui->entries->itemAt(i)->widget());
         if(entry)
         {
+			if(!entry->isHidden())
+			{
+				SendCoinsRecipient rcp = entry->getValue();
+        		if (rcp.fDiary)
+					fDiary = true;
+			}
             if(entry->validate())
             {
                 recipients.append(entry->getValue());
@@ -285,7 +293,7 @@ void SendCoinsDialog::on_sendButton_clicked()
     // and make many transactions while unlocking through this dialog
     // will call relock
     WalletModel::EncryptionStatus encStatus = model->getEncryptionStatus();
-    if(encStatus == model->Locked || encStatus == model->UnlockedForMixingOnly)
+    if(!fDiary && (encStatus == model->Locked || encStatus == model->UnlockedForMixingOnly))
     {
         WalletModel::UnlockContext ctx(model->requestUnlock());
         if(!ctx.isValid())
@@ -318,6 +326,13 @@ void SendCoinsDialog::send(QList<SendCoinsRecipient> recipients, QString strFee,
 
     prepareStatus = model->prepareTransaction(currentTransaction, &ctrl);
 
+	// DAC - If this was a diary entry, dont send real Coins after the entry is stored.
+	if (prepareStatus.status == WalletModel::TransactionCommitFailed && prepareStatus.reasonCommitFailed == "GSC_SUCCESS")
+	{
+		clear();
+		return;
+	}
+
     // process prepareStatus and on error generate message shown to user
     processSendCoinsReturn(prepareStatus,
         BitcoinUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), currentTransaction.getTransactionFee()));
@@ -328,6 +343,7 @@ void SendCoinsDialog::send(QList<SendCoinsRecipient> recipients, QString strFee,
     }
 
     CAmount txFee = currentTransaction.getTransactionFee();
+	CAmount nTitheAmount = 0;
 
     // Format confirmation message
     QStringList formatted;
@@ -336,7 +352,9 @@ void SendCoinsDialog::send(QList<SendCoinsRecipient> recipients, QString strFee,
         // generate bold amount string
         QString amount = "<b>" + BitcoinUnits::formatHtmlWithUnit(model->getOptionsModel()->getDisplayUnit(), rcp.amount);
         amount.append("</b> ").append(strFunds);
-
+		if (rcp.fTithe)
+			nTitheAmount += rcp.amount * .10;
+    
         // generate monospace address string
         QString address = "<span style='font-family: monospace;'>" + rcp.address;
         address.append("</span>");
@@ -384,9 +402,19 @@ void SendCoinsDialog::send(QList<SendCoinsRecipient> recipients, QString strFee,
         questionString.append(" (" + QString::number((double)currentTransaction.getTransactionSize() / 1000) + " kB)");
     }
 
+	if (nTitheAmount > 0)
+	{
+		// Append Tithe
+		questionString.append("<hr /><span style='color:#aa0000;'>");
+		questionString.append(BitcoinUnits::formatHtmlWithUnit(model->getOptionsModel()->getDisplayUnit(), nTitheAmount));
+		questionString.append("</span> ");
+		questionString.append(tr(" added as a Foundation Tithe"));
+		questionString.append(" ");
+	}
+
     // add total amount in all subdivision units
     questionString.append("<hr />");
-    CAmount totalAmount = currentTransaction.getTotalTransactionAmount() + txFee;
+    CAmount totalAmount = currentTransaction.getTotalTransactionAmount() + txFee + nTitheAmount;
     QStringList alternativeUnits;
     Q_FOREACH(BitcoinUnits::Unit u, BitcoinUnits::availableUnits())
     {
@@ -881,7 +909,7 @@ void SendCoinsDialog::coinControlChangeEdited(const QString& text)
         }
         else if (!addr.IsValid()) // Invalid address
         {
-            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid HelpTheHomeless address"));
+            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid address"));
         }
         else // Valid address
         {

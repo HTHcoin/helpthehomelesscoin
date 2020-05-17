@@ -75,7 +75,6 @@ int ClientModel::getNumConnections(unsigned int flags) const
     return 0;
 }
 
-
 void ClientModel::setMasternodeList(const CDeterministicMNList& mnList)
 {
     LOCK(cs_mnlinst);

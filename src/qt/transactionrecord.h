@@ -91,7 +91,13 @@ public:
         PrivateSendCollateralPayment,
         PrivateSendMakeCollaterals,
         PrivateSendCreateDenominations,
-        PrivateSend
+        PrivateSend,
+		CPKAssociation,
+		GSCPayment,
+		SuperBlockPayment,
+		GSCTransmission,
+		WhaleStake,
+		WhaleReward
     };
 
     /** Number of confirmation recommended for accepting a transaction */
@@ -139,6 +145,24 @@ public:
 
     /** Whether the transaction was sent/received with a watch-only address */
     bool involvesWatchAddress;
+
+	/** If this is a Dynamic Whale Reward */
+	bool IsWhaleReward;
+
+	/** If this is a Dynamic Whale Stake */
+	bool IsWhaleStake;
+
+	/** If this is a PODC Research Payment */
+	bool IsGSCPayment;
+
+	/** If this is a Superblock Payment */
+	bool IsSuperblockPayment;
+
+	/** If this is an Anti-Bot-Net Tx */
+	bool IsABN;
+
+	/** If this is a GSC Transmission Tx */
+	bool IsGSCTransmission;
 
     /** Return the unique identifier for this transaction (part) */
     QString getTxID() const;

@@ -22,7 +22,7 @@
 #endif
 
 #if defined(HAVE_CONFIG_H)
-#include "config/helpthehomeless-config.h" /* for USE_QRCODE */
+#include "config/coin-config.h" /* for USE_QRCODE */
 #endif
 
 #ifdef USE_QRCODE

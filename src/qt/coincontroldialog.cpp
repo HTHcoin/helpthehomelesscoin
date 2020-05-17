@@ -131,7 +131,10 @@ CoinControlDialog::CoinControlDialog(const PlatformStyle *_platformStyle, QWidge
     // (un)select all
     connect(ui->pushButtonSelectAll, SIGNAL(clicked()), this, SLOT(buttonSelectAllClicked()));
 
-    // Toggle lock state
+	// Select Some 
+	connect(ui->pushButtonSelectSome, SIGNAL(clicked()), this, SLOT(buttonSelectSomeClicked()));
+    
+	// Toggle lock state
     connect(ui->pushButtonToggleLock, SIGNAL(clicked()), this, SLOT(buttonToggleLockClicked()));
 
     // change coin control first column label due Qt4 bug.
@@ -187,6 +190,25 @@ void CoinControlDialog::buttonBoxClicked(QAbstractButton* button)
     if (ui->buttonBox->buttonRole(button) == QDialogButtonBox::AcceptRole)
         done(QDialog::Accepted); // closes the dialog
 }
+
+// Select Some
+void CoinControlDialog::buttonSelectSomeClicked()
+{
+    Qt::CheckState state = Qt::Checked;
+    ui->treeWidget->setEnabled(false);
+    for (int i = 0; i < ui->treeWidget->topLevelItemCount(); i++)
+	{
+		if (ui->treeWidget->topLevelItem(i)->checkState(COLUMN_CHECKBOX) != state)
+		{
+			// Select 3% of the checkboxes
+			if (GetRandInt(100) <= 3)
+				ui->treeWidget->topLevelItem(i)->setCheckState(COLUMN_CHECKBOX, state);
+		}
+	}
+    ui->treeWidget->setEnabled(true);
+    CoinControlDialog::updateLabels(model, this);
+}
+
 
 // (un)select all
 void CoinControlDialog::buttonSelectAllClicked()
@@ -600,7 +622,7 @@ void CoinControlDialog::updateLabels(WalletModel *model, QDialog* dialog)
     }
 
     // actually update labels
-    int nDisplayUnit = BitcoinUnits::HTH;
+    int nDisplayUnit = BitcoinUnits::COIN_UNIT;
     if (model && model->getOptionsModel())
         nDisplayUnit = model->getOptionsModel()->getDisplayUnit();
 
@@ -728,7 +750,7 @@ void CoinControlDialog::updateView()
             {
                 sAddress = QString::fromStdString(CBitcoinAddress(outputAddress).ToString());
 
-                // if listMode or change => show dash address. In tree mode, address is not shown again for direct wallet address outputs
+                // if listMode or change => show address. In tree mode, address is not shown again for direct wallet address outputs
                 if (!treeMode || (!(sAddress == sWalletAddress)))
                     itemOutput->setText(COLUMN_ADDRESS, sAddress);
 

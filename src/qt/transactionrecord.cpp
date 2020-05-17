@@ -29,6 +29,10 @@ bool TransactionRecord::showTransaction(const CWalletTx &wtx)
             return false;
         }
     }
+	else if (wtx.IsABN())
+	{
+		return false;
+	}
     return true;
 }
 
@@ -61,9 +65,16 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                 sub.idx = i; // vout index
                 sub.credit = txout.nValue;
                 sub.involvesWatchAddress = mine & ISMINE_WATCH_ONLY;
+				sub.IsGSCPayment = wtx.tx->IsGSCPayment();
+				sub.IsSuperblockPayment = wtx.tx->IsSuperblockPayment();
+				sub.IsABN = wtx.tx->IsABN();
+				sub.IsWhaleStake = wtx.tx->IsWhaleStake();
+				std::string sAmount = RoundToString((double)wtx.tx->vout[i].nValue/COIN, 4);
+				sub.IsWhaleReward = Contains(sAmount, ".1527");
+		
                 if (ExtractDestination(txout.scriptPubKey, address) && IsMine(*wallet, address))
                 {
-                    // Received by Dash Address
+                    // Received by Address
                     sub.type = TransactionRecord::RecvWithAddress;
                     sub.address = CBitcoinAddress(address).ToString();
                 }
@@ -75,10 +86,24 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                 }
                 if (wtx.IsCoinBase())
                 {
-                    // Generated
-                    sub.type = TransactionRecord::Generated;
+                    // Check if one of our DAC subtypes
+					if (sub.IsWhaleReward && i != 0)
+					{
+						sub.type = TransactionRecord::WhaleReward;
+					}
+					else if (sub.IsGSCPayment && i != 0)
+					{
+						sub.type = TransactionRecord::GSCPayment;
+					}
+					else if (sub.IsSuperblockPayment && i != 0) 
+					{
+                        sub.type = TransactionRecord::SuperBlockPayment;  
+                    }
+                    else
+                    {
+						sub.type = TransactionRecord::Generated;
+                	}
                 }
-
                 parts.append(sub);
             }
         }
@@ -134,7 +159,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                 CTxDestination address;
                 if (ExtractDestination(wtx.tx->vout[0].scriptPubKey, address))
                 {
-                    // Sent to Dash Address
+                    // Sent to DAC Address
                     sub.address = CBitcoinAddress(address).ToString();
                 }
                 else
@@ -152,7 +177,9 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                     && CPrivateSend::IsCollateralAmount(-nNet))
                 {
                     sub.type = TransactionRecord::PrivateSendCollateralPayment;
-                } else {
+                }
+				else 
+				{
                     for (const auto& txout : wtx.tx->vout) {
                         if (txout.nValue == CPrivateSend::GetMaxCollateralAmount()) {
                             sub.type = TransactionRecord::PrivateSendMakeCollaterals;
@@ -163,6 +190,15 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                         }
                     }
                 }
+				if (wtx.tx->IsCPKAssociation())
+					sub.type = TransactionRecord::CPKAssociation;  
+				if (wtx.tx->IsGSCTransmission())
+					sub.type = TransactionRecord::GSCTransmission;
+				if (wtx.tx->IsWhaleStake())
+					sub.type = TransactionRecord::WhaleStake;
+				if (wtx.tx->IsWhaleReward())
+					sub.type = TransactionRecord::WhaleReward;
+
             }
 
             CAmount nChange = wtx.GetChange();
@@ -210,10 +246,22 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                 CTxDestination address;
                 if (ExtractDestination(txout.scriptPubKey, address))
                 {
-                    // Sent to Dash Address
+                    // Sent to DAC Address
                     sub.type = TransactionRecord::SendToAddress;
                     sub.address = CBitcoinAddress(address).ToString();
-                }
+					if (wtx.tx->IsCPKAssociation()) 
+					{
+                        sub.type = TransactionRecord::CPKAssociation;  
+					}
+					else if (wtx.tx->IsGSCTransmission())
+					{
+						sub.type = TransactionRecord::GSCTransmission;
+					}
+					else if (wtx.tx->IsWhaleStake())
+					{
+						sub.type = TransactionRecord::WhaleStake;
+					}
+			    }
                 else
                 {
                     // Sent to IP, or other non-address transaction like OP_EVAL
@@ -288,8 +336,8 @@ void TransactionRecord::updateStatus(const CWalletTx &wtx, int numISLocks, int c
         }
     }
     // For generated transactions, determine maturity
-    else if(type == TransactionRecord::Generated)
-    {
+    else if (type == TransactionRecord::Generated || type == TransactionRecord::SuperBlockPayment || type == TransactionRecord::GSCPayment || type == TransactionRecord::WhaleReward)
+	{
         if (wtx.GetBlocksToMaturity() > 0)
         {
             status.status = TransactionStatus::Immature;
@@ -315,7 +363,11 @@ void TransactionRecord::updateStatus(const CWalletTx &wtx, int numISLocks, int c
     else
     {
         status.lockedByInstantSend = wtx.IsLockedByInstantSend();
-        if (status.depth < 0)
+		if (wtx.IsABN())
+		{
+			status.status = TransactionStatus::Abandoned;
+		}
+		else if (status.depth < 0)
         {
             status.status = TransactionStatus::Conflicted;
         }

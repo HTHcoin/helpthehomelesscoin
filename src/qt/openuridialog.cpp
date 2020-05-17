@@ -5,7 +5,7 @@
 
 #include "openuridialog.h"
 #include "ui_openuridialog.h"
-
+#include "validation.h"
 #include "guiutil.h"
 #include "walletmodel.h"
 
@@ -17,7 +17,7 @@ OpenURIDialog::OpenURIDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 #if QT_VERSION >= 0x040700
-    ui->uriEdit->setPlaceholderText("dash:");
+    ui->uriEdit->setPlaceholderText(GUIUtil::TOQS(CURRENCY_NAME + ":"));
 #endif
 }
 
@@ -49,5 +49,5 @@ void OpenURIDialog::on_selectFileButton_clicked()
     if(filename.isEmpty())
         return;
     QUrl fileUri = QUrl::fromLocalFile(filename);
-    ui->uriEdit->setText("dash:?r=" + QUrl::toPercentEncoding(fileUri.toString()));
+    ui->uriEdit->setText(GUIUtil::TOQS(CURRENCY_NAME + ":?r=") + QUrl::toPercentEncoding(fileUri.toString()));
 }

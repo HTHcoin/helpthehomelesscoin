@@ -12,7 +12,7 @@ static const int MODEL_UPDATE_DELAY = 250;
 /* AskPassphraseDialog -- Maximum passphrase length */
 static const int MAX_PASSPHRASE_SIZE = 1024;
 
-/* DashGUI -- Size of icons in status bar */
+/* GUI -- Size of icons in status bar */
 static const int STATUSBAR_ICONSIZE = 16;
 
 static const bool DEFAULT_SPLASHSCREEN = true;
@@ -51,10 +51,10 @@ static const int MAX_URI_LENGTH = 255;
 /* Number of frames in spinner animation */
 #define SPINNER_FRAMES 36
 
-#define QAPP_ORG_NAME "helpthehomeless"
-#define QAPP_ORG_DOMAIN "helpthehomeless.org"
-#define QAPP_APP_NAME_DEFAULT "helpthehomeless-Qt"
-#define QAPP_APP_NAME_TESTNET "helpthehomeless-Qt-testnet"
-#define QAPP_APP_NAME_DEVNET "helpthehomeless-Qt-%s"
+#define QAPP_ORG_NAME "Biblepay"
+#define QAPP_ORG_DOMAIN "biblepay.org"
+#define QAPP_APP_NAME_DEFAULT "Biblepay-Qt"
+#define QAPP_APP_NAME_TESTNET "Biblepay-Qt-testnet"
+#define QAPP_APP_NAME_DEVNET "Biblepay-Qt-%s"
 
 #endif // BITCOIN_QT_GUICONSTANTS_H
