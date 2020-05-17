@@ -109,6 +109,7 @@ BITCOIN_CORE_H = \
   alert.h \
   base58.h \
   batchedlogger.h \
+  bbpsocket.h \
   bip39.h \
   bip39_english.h \
   blockencodings.h \
@@ -211,6 +212,8 @@ BITCOIN_CORE_H = \
   script/sign.h \
   script/standard.h \
   script/ismine.h \
+  smartcontract-client.h \
+  smartcontract-server.h \
   spork.h \
   stacktraces.h \
   streams.h \
@@ -265,6 +268,7 @@ libhelpthehomeless_server_a_SOURCES = \
   addrdb.cpp \
   alert.cpp \
   batchedlogger.cpp \
+  bbpsocket.cpp \
   bloom.cpp \
   blockencodings.cpp \
   chain.cpp \
@@ -333,6 +337,8 @@ libhelpthehomeless_server_a_SOURCES = \
   script/sigcache.cpp \
   script/ismine.cpp \
   sendalert.cpp \
+  smartcontract-client.cpp \
+  smartcontract-server.cpp \
   spork.cpp \
   timedata.cpp \
   torcontrol.cpp \
