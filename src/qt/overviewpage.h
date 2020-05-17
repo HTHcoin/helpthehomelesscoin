@@ -122,9 +122,7 @@ private Q_SLOTS:
     void on_pushButton_Website_5_clicked();
     void updateBlockChainInfo();
     void updateMasternodeInfo(); 
-    void updatePeersInfo();
-    void updateHashRateInfo();
-      
+    void updatePeersInfo();      
  };
 
 #endif // BITCOIN_QT_OVERVIEWPAGE_H
