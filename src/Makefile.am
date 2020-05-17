@@ -209,6 +209,8 @@ BITCOIN_CORE_H = \
   script/sign.h \
   script/standard.h \
   script/ismine.h \
+  smartcontract-client.h \
+  smartcontract-server.h \
   spork.h \
   stacktraces.h \
   streams.h \
@@ -329,6 +331,8 @@ libhelpthehomeless_server_a_SOURCES = \
   script/sigcache.cpp \
   script/ismine.cpp \
   sendalert.cpp \
+  smartcontract-client.cpp \
+  smartcontract-server.cpp \
   spork.cpp \
   timedata.cpp \
   torcontrol.cpp \
