@@ -246,7 +246,7 @@ void OverviewPage::updateDisplayUnit()
   }
 }
 
- void OverviewPage::updateHashRateInfo()  /** Peer Info  **/
+/* void OverviewPage::updateHashRateInfo()
 {
   if (masternodeSync.IsBlockchainSynced() && masternodeSync.IsSynced())
    
@@ -254,7 +254,7 @@ void OverviewPage::updateDisplayUnit()
            int NetHashRate = clientModel->getnetworkhashps();
            ui->labelHashRate->setText(QString::number(NetHashRate));
   }
-}
+}  /*
 
 /* txt += tr("<li>Master Nodes <span> %1</span><br> </li>").arg( clientModel->getNumConnections()); */
 
@@ -267,7 +267,9 @@ void OverviewPage::updateBlockChainInfo()
        /*   double BlockReward = GetBlockHash(CurrentBlock);  */
        /*  double BlockRewardHTH =  static_cast<double>(BlockRewardHTH/COIN); */
         double CurrentDiff = GetDifficulty();
+        double NetHashRate = GetNetworkHashPS();
        
+        ui->labelHashRate->setText(QString::number(NetHashRate));
       
         ui->label_CurrentBlock_value_3->setText(QString::number(CurrentBlock));
         ui->label_Nethash_3->setText(tr("Difficulty:"));
