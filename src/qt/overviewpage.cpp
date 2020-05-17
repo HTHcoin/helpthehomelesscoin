@@ -328,7 +328,7 @@ void OverviewPage::updateBlockChainInfo()
        /*   double BlockReward = GetBlockHash(CurrentBlock);  */
        /*  double BlockRewardHTH =  static_cast<double>(BlockRewardHTH/COIN); */
         double CurrentDiff = GetDifficulty();
-        double NetHashRate = GetNetworkHashPS();
+        double NetHashRate = GetNetworkHashPS;
        
         ui->labelHashRate->setText(QString::number(NetHashRate));
       
