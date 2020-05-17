@@ -5,8 +5,16 @@
 #ifndef BITCOIN_QT_OVERVIEWPAGE_H
 #define BITCOIN_QT_OVERVIEWPAGE_H
 
-#include "amount.h"
+#include "platformstyle.h"
+#include "primitives/transaction.h"
+#include "sync.h"
+#include "util.h"
 
+#include "evo/deterministicmns.h"
+
+
+#include "amount.h"
+#include <QTimer>
 #include <QMenu>
 #include <QWidget>
 #include <memory>
@@ -63,19 +71,18 @@ public Q_SLOTS:
 Q_SIGNALS:
 /*    void transactionClicked(const QModelIndex &index); */
     void outOfSyncWarningClicked();
+    void doubleClicked(const QModelIndex&);
     
     
    
 
 private:
 
-    QMenu* contextMenuDIP3;
-    int64_t nTimeFilterUpdatedDIP3;
-    int64_t nTimeUpdatedDIP3;
-    bool fFilterUpdatedDIP3;
+  
     QTimer *timer;
     QTimer* timerinfo_mn;
     QTimer* timerinfo_blockchain;
+    QTimer* timerinfo_peers;
     Ui::OverviewPage *ui;
     ClientModel *clientModel;
     WalletModel *walletModel;
@@ -95,7 +102,7 @@ private:
     std::unique_ptr<TransactionFilterProxy> filter; */
     
  /*   void SetupTransactionList(int nNumItems); */
-    QString strCurrentFilterDIP3;
+       
 
 
 private Q_SLOTS:
@@ -114,10 +121,8 @@ private Q_SLOTS:
     void on_pushButton_Website_4_clicked();
     void on_pushButton_Website_5_clicked();
     void updateBlockChainInfo();
-    void updateMasternodeInfo();
-    
-    
-    
+    void updateMasternodeInfo(); 
+    void updatePeersInfo();      
  };
 
 #endif // BITCOIN_QT_OVERVIEWPAGE_H
