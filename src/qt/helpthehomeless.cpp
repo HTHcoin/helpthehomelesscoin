@@ -4,7 +4,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/coin-config.h"
+#include "config/helpthehomeless-config.h"
 #endif
 
 #include "bitcoingui.h"
@@ -263,7 +263,7 @@ private:
     void startThread();
 };
 
-#include "biblepay.moc"
+#include "helpthehomeless.moc"
 
 BitcoinCore::BitcoinCore():
     QObject()

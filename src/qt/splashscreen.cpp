@@ -4,7 +4,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/coin-config.h"
+#include "config/helpthehomeless-config.h"
 #endif
 
 #include "splashscreen.h"
@@ -38,7 +38,7 @@ SplashScreen::SplashScreen(Qt::WindowFlags f, const NetworkStyle *networkStyle) 
     setWindowFlags(Qt::FramelessWindowHint);
 
     // set reference point, paddings
-	bool nOffset = CURRENCY_NAME == "DAC" ? 35 : 0;
+	bool nOffset = CURRENCY_NAME == "HTH" ? 35 : 0;
     int paddingLeft             = 25 + nOffset;
     int paddingTop              = 470;
     int titleVersionVSpace      = 19;

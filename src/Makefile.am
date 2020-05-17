@@ -203,6 +203,8 @@ BITCOIN_CORE_H = \
   rpc/protocol.h \
   rpc/server.h \
   rpc/register.h \
+  rpcpodc.h \
+  rpcpog.h \
   saltedhasher.h \
   scheduler.h \
   script/sigcache.h \
@@ -326,6 +328,8 @@ libhelpthehomeless_server_a_SOURCES = \
   rpc/rpcevo.cpp \
   rpc/rpcquorums.cpp \
   rpc/server.cpp \
+  rpcpodc.cpp \
+  rpcpog.cpp \
   script/sigcache.cpp \
   script/ismine.cpp \
   sendalert.cpp \
