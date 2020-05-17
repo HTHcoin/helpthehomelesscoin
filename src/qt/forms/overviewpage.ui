@@ -549,9 +549,9 @@ font-size: 11px;</string>
      <widget class="QFrame" name="frame_3">
       <property name="geometry">
        <rect>
-        <x>14</x>
-        <y>4</y>
-        <width>571</width>
+        <x>70</x>
+        <y>10</y>
+        <width>461</width>
         <height>241</height>
        </rect>
       </property>
@@ -840,7 +840,7 @@ font-size: 11px;</string>
             <string>Your current total balance</string>
            </property>
            <property name="styleSheet">
-            <string notr="true">font-size: 15px</string>
+            <string notr="true">font-size: 25px</string>
            </property>
            <property name="text">
             <string notr="true">0.000 000 00</string>
@@ -887,7 +887,7 @@ font-size: 11px;</string>
             <string>Current total balance in watch-only addresses</string>
            </property>
            <property name="styleSheet">
-            <string notr="true">font-size: 15px</string>
+            <string notr="true">font-size: 25px</string>
            </property>
            <property name="text">
             <string notr="true">0.000 000 00</string>
