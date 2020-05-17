@@ -659,14 +659,14 @@ QStatusBar QLabel {
 
     QWidget .QFrame#frame_3 .QLabel#labelTotalText { /* Total text Label */
             background-color:transparent;
-            color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #34bcaa, stop: .1 #34bcaa, stop: .95 #debf12, stop: 1 #debf12);
+            color:#debf12;
             font-size:15px;
          }
 
 
     QWidget .QFrame#frame_3 .QLabel#labelTotal { /* Total balance count Label */
             background-color:transparent;
-            color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #34bcaa, stop: .1 #34bcaa, stop: .95 #debf12, stop: 1 #debf12);
+            color:#debf12;
             font-weight: bold;
             font-size:25px;
          }
