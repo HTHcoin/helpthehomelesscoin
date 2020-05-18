@@ -36,75 +36,6 @@
     <property name="verticalSpacing">
      <number>8</number>
     </property>
-    <item row="4" column="1">
-     <widget class="QFrame" name="frameDonate">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>665</width>
-        <height>50</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>400</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <widget class="QWidget" name="layoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>60</x>
-         <y>9</y>
-         <width>571</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayoutCheckboxes2">
-        <item>
-         <widget class="QCheckBox" name="chkDonate">
-          <property name="maximumSize">
-           <size>
-            <width>258</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="toolTip">
-           <string>Use your HTH Coins to Donate Today!</string>
-          </property>
-          <property name="layoutDirection">
-           <enum>Qt::LeftToRight</enum>
-          </property>
-          <property name="text">
-           <string>Donate to Help The Homeless Worldwide!</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
-    </item>
-    <item row="6" column="0">
-     <widget class="QLabel" name="messageLabel">
-      <property name="text">
-       <string>Message:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-    </item>
     <item row="0" column="1">
      <layout class="QHBoxLayout" name="payToLayout">
       <property name="spacing">
@@ -173,6 +104,19 @@
       </item>
      </layout>
     </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="payToLabel">
+      <property name="text">
+       <string>Pay &amp;To:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="buddy">
+       <cstring>payTo</cstring>
+      </property>
+     </widget>
+    </item>
     <item row="3" column="1">
      <spacer name="verticalSpacer">
       <property name="orientation">
@@ -189,20 +133,23 @@
       </property>
      </spacer>
     </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="amountLabel">
+      <property name="text">
+       <string>A&amp;mount:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="buddy">
+       <cstring>payAmount</cstring>
+      </property>
+     </widget>
+    </item>
     <item row="7" column="0" colspan="2">
      <widget class="Line" name="line">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="1">
-     <widget class="QLabel" name="messageTextLabel">
-      <property name="toolTip">
-       <string>A message that was attached to the HTH: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the HelpTheHomeless network.</string>
-      </property>
-      <property name="textFormat">
-       <enum>Qt::PlainText</enum>
       </property>
      </widget>
     </item>
@@ -216,19 +163,6 @@
       </property>
       <property name="wordWrap">
        <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0">
-     <widget class="QLabel" name="amountLabel">
-      <property name="text">
-       <string>A&amp;mount:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-      <property name="buddy">
-       <cstring>payAmount</cstring>
       </property>
      </widget>
     </item>
@@ -258,6 +192,16 @@
       </property>
      </widget>
     </item>
+    <item row="6" column="1">
+     <widget class="QLabel" name="messageTextLabel">
+      <property name="toolTip">
+       <string>A message that was attached to the HTH: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the HelpTheHomeless network.</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::PlainText</enum>
+      </property>
+     </widget>
+    </item>
     <item row="2" column="1">
      <layout class="QHBoxLayout" name="horizontalLayoutAmount" stretch="0,1">
       <item>
@@ -275,24 +219,86 @@
       </item>
      </layout>
     </item>
-    <item row="0" column="0">
-     <widget class="QLabel" name="payToLabel">
-      <property name="text">
-       <string>Pay &amp;To:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-      <property name="buddy">
-       <cstring>payTo</cstring>
-      </property>
-     </widget>
-    </item>
     <item row="1" column="1">
      <widget class="QLineEdit" name="addAsLabel">
       <property name="toolTip">
        <string>Enter a label for this address to add it to the list of used addresses</string>
       </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="QLabel" name="messageLabel">
+      <property name="text">
+       <string>Message:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QFrame" name="frameDonate">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>675</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Sunken</enum>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>10</y>
+         <width>291</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayoutCheckboxes2">
+        <property name="spacing">
+         <number>6</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QCheckBox" name="chkDonate">
+          <property name="maximumSize">
+           <size>
+            <width>258</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="toolTip">
+           <string>Use your HTH Coins to Donate Today!</string>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="text">
+           <string>Donate to Help The Homeless Worldwide!</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>
