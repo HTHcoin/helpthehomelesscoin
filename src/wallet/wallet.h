@@ -174,6 +174,13 @@ struct CRecipient
     CScript scriptPubKey;
     CAmount nAmount;
     bool fSubtractFeeFromAmount;
+    // DAC:
+	bool fTithe;
+	bool fDonate;
+	bool fPrayer;
+	bool fDiary;
+	std::string txtMessage;
+	// END OF DAC
 };
 
 typedef std::map<std::string, std::string> mapValue_t;
