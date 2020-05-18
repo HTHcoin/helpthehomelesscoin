@@ -36,6 +36,9 @@ QT_END_NAMESPACE
  */
 namespace GUIUtil
 {
+	QString TOQS(std::string s);
+	std::string FROMQS(QString qs);
+	
     // Create human-readable string from date
     QString dateTimeStr(const QDateTime &datetime);
     QString dateTimeStr(qint64 nTime);
@@ -204,6 +207,7 @@ namespace GUIUtil
 
     /* Convert OS specific boost path to QString through UTF-8 */
     QString boostPathToQString(const boost::filesystem::path &path);
+	
 
     /* Convert seconds into a QString with days, hours, mins, secs */
     QString formatDurationStr(int secs);

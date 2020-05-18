@@ -2,10 +2,11 @@
                     /*************** GLOBAL STYLE*****************/
 /****************************************************************************************/
 
+    
     * {
         font-size: 12px;
 	color: #34bcaa;;
-    }
+      }
 
 
 QMainWindow {
@@ -433,7 +434,7 @@ font-weight: bold;
     }
 
     QComboBox:editable {
-        background:#977336;
+        background:#1e1d32;
         color:#34bcaa;
         border:0px solid transparent;
     }
@@ -453,7 +454,7 @@ font-weight: bold;
         border-color: #4D458C;
         padding-right:1px;
         padding-left:1px;
-        color:#7E7E7E;
+        color:#debf12;
     }
 
     QComboBox QAbstractItemView::item {
@@ -546,7 +547,7 @@ font-weight: bold;
     QAbstractSpinBox {
         border: 1px solid;
         padding: 3px 5px 3px 5px;
-        background: #1e1d32c;
+        background-color: #1e1d32c;
         min-height: 16px;
         color: #34bcaa;
         border-color: #1e1d32;
@@ -746,6 +747,13 @@ QStatusBar QLabel {
         font-size:15px;
      } 
 
+QWidget .QFrame#frame_3 .QLine#lineSpendableBalance {
+        background-color: #debf12 !important;
+     } 
+
+QWidget .QFrame#frame_3 .QLine#lineWatchBalance {
+        background-color: #debf12 !important;
+     } 
 	 
         /*************** ########bottom status bar########*****************/
 
@@ -1072,6 +1080,17 @@ QStatusBar QLabel {
         border-color: #616161;
     }
 
+
+/*** Donate Today **/
+
+ QStackedWidget#SendCoinsEntry .QFrame#frameDonate { 
+	 
+	 border: 1px solid;
+         border-color: #4D458C; 
+
+    }
+
+/** End Donate Today **/
 
     /*************** ########scrollArea########*****************/
 

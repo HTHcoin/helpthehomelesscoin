@@ -108,6 +108,7 @@ void WalletFrame::showOutOfSyncWarning(bool fShow)
         i.value()->showOutOfSyncWarning(fShow);
 }
 
+
 void WalletFrame::gotoGovernancePage()
 {
     QMap<QString, WalletView*>::const_iterator i;

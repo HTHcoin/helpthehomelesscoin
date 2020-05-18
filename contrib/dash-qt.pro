@@ -12,7 +12,6 @@ FORMS += \
     ../src/qt/forms/openuridialog.ui \
     ../src/qt/forms/optionsdialog.ui \
     ../src/qt/forms/overviewpage.ui \
-    ../src/qt/forms/overviewapage.ui \
     ../src/qt/forms/receivecoinsdialog.ui \
     ../src/qt/forms/receiverequestdialog.ui \
     ../src/qt/forms/sendcoinsdialog.ui \
@@ -23,4 +22,6 @@ FORMS += \
 RESOURCES += \
     ../src/qt/dash.qrc
     
-CONFIG+=c++11
+CONFIG += c++11
+
+
