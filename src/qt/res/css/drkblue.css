@@ -546,7 +546,7 @@ font-weight: bold;
     QAbstractSpinBox {
         border: 1px solid;
         padding: 3px 5px 3px 5px;
-        background: #1e1d32c;
+        background-color: #1e1d32c;
         min-height: 16px;
         color: #34bcaa;
         border-color: #1e1d32;
@@ -999,11 +999,6 @@ QWidget .QFrame#frame_3 .QLine#lineWatchBalance {
 
     QStackedWidget#SendCoinsEntry .QFrame#SendCoins .QLabel#amountLabel {
 
-    }
-
-    QStackedWidget#SendCoinsEntry .QValidatedLineEdit#payAmount { /* Pay To Input Field */
-	    
-	    background-color: #1e1d32;
     }
 
     QStackedWidget#SendCoinsEntry .QValidatedLineEdit#payTo { /* Pay To Input Field */
