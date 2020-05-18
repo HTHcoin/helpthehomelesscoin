@@ -27,6 +27,7 @@ class GovernancePage;
 
 
 
+
 QT_BEGIN_NAMESPACE
 class QLabel;
 class QModelIndex;
@@ -74,7 +75,7 @@ private:
     MasternodeList *masternodeListPage;
     OverviewAPage *overviewAPage;
     GovernanceList *governanceListPage;
-    
+      
     TransactionView *transactionView;
 
     QProgressDialog *progressDialog;
@@ -82,6 +83,7 @@ private:
     const PlatformStyle *platformStyle;
 
 public Q_SLOTS:
+
 
     /** Switch to governance page */
     void gotoGovernancePage();

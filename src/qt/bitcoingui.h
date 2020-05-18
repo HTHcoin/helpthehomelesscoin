@@ -10,6 +10,7 @@
 #endif
 
 #include "amount.h"
+#include "governancelist.h"
 
 #include <QLabel>
 #include <QMainWindow>
@@ -135,6 +136,7 @@ private:
     QAction *openAction;
     QAction *showHelpMessageAction;
     QAction *showPrivateSendHelpAction;
+	
      
     QSystemTrayIcon *trayIcon;
     QMenu *trayIconMenu;
@@ -226,6 +228,7 @@ public Q_SLOTS:
 
 private Q_SLOTS:
 #ifdef ENABLE_WALLET
+ 	
     
     /** Switch to masternode page */
     void gotoGovernancePage();

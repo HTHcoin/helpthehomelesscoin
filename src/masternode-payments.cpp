@@ -181,6 +181,7 @@ bool IsBlockPayeeValid(const CTransaction& txNew, int nBlockHeight, CAmount bloc
         return true;
     }
 
+        
     // superblocks started
     // SEE IF THIS IS A VALID SUPERBLOCK
 
