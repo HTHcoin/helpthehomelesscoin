@@ -53,18 +53,7 @@ SendCoinsEntry::SendCoinsEntry(const PlatformStyle *_platformStyle, QWidget *par
     connect(ui->deleteButton_is, SIGNAL(clicked()), this, SLOT(deleteClicked()));
     connect(ui->deleteButton_s, SIGNAL(clicked()), this, SLOT(deleteClicked()));
     connect(ui->chkDonate, SIGNAL(toggled(bool)), this, SLOT(updateFoundationAddress()));
-    connect(ui->chkDiary, SIGNAL(toggled(bool)), this, SLOT(diaryEntry()));
-}
-
-void SendCoinsEntry::diaryEntry()
-{
-	const CChainParams& chainparams = Params();
-	bool bChecked = (ui->chkDiary->checkState() == Qt::Checked);
-	if (bChecked)
-	{
-		ui->payTo->setText(GUIUtil::TOQS(chainparams.GetConsensus().FoundationPODSAddress));
-		ui->payAmount->setValue(1*COIN);
-	}
+ 
 }
 
 void SendCoinsEntry::updateFoundationAddress()
@@ -199,9 +188,7 @@ SendCoinsRecipient SendCoinsEntry::getValue()
     recipient.message = ui->messageTextLabel->text();
     recipient.fSubtractFeeFromAmount = (ui->checkboxSubtractFeeFromAmount->checkState() == Qt::Checked);
     recipient.fDonate = (ui->chkDonate->checkState() == Qt::Checked);
-	recipient.fTithe = (ui->chkTithe->checkState() == Qt::Checked);
-	recipient.fPrayer = (ui->chkPrayer->checkState() == Qt::Checked);
-	recipient.fDiary = (ui->chkDiary->checkState() == Qt::Checked);
+
     return recipient;
 }
 
