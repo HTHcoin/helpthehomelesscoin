@@ -1082,6 +1082,17 @@ QWidget .QFrame#frame_3 .QLine#lineWatchBalance {
     }
 
 
+/*** Donate Today **/
+
+ QStackedWidget#SendCoinsEntry .QFrame#frameDonate { 
+	 
+	 border: 1px solid;
+         border-color: #4D458C; 
+
+    }
+
+/** End Donate Today **/
+
     /*************** ########scrollArea########*****************/
 
     QDialog#SendCoinsDialog .QScrollArea#scrollArea .QWidget#scrollAreaWidgetContents { /* Send To Widget */
