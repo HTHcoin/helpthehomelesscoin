@@ -52,18 +52,18 @@ SendCoinsEntry::SendCoinsEntry(const PlatformStyle *_platformStyle, QWidget *par
     connect(ui->deleteButton, SIGNAL(clicked()), this, SLOT(deleteClicked()));
     connect(ui->deleteButton_is, SIGNAL(clicked()), this, SLOT(deleteClicked()));
     connect(ui->deleteButton_s, SIGNAL(clicked()), this, SLOT(deleteClicked()));
-    connect(ui->chkDonate, SIGNAL(toggled(bool)), this, SLOT(updateHTHNonprofitAddress()));
+    connect(ui->chkDonate, SIGNAL(toggled(bool)), this, SLOT(updateFoundationAddress()));
  
 }
 
-void SendCoinsEntry::updateHTHNonprofitAddress()
+void SendCoinsEntry::updateFoundationAddress()
 {
 	const CChainParams& chainparams = Params();
 	bool bCheckedF = (ui->chkDonate->checkState() == Qt::Checked);
 
 	if (bCheckedF)
 	{
-		ui->payTo->setText(GUIUtil::TOQS(chainparams.GetConsensus().HTHNonprofitAddress));
+		ui->payTo->setText(GUIUtil::TOQS(chainparams.GetConsensus().FoundationPODSAddress));
 	    ui->payAmount->setFocus();
 	}
 }
