@@ -1001,6 +1001,11 @@ QWidget .QFrame#frame_3 .QLine#lineWatchBalance {
 
     }
 
+    QStackedWidget#SendCoinsEntry .QValidatedLineEdit#payAmount { /* Pay To Input Field */
+	    
+	    background-color: #1e1d32;
+    }
+
     QStackedWidget#SendCoinsEntry .QValidatedLineEdit#payTo { /* Pay To Input Field */
     }
 
