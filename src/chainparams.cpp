@@ -417,7 +417,7 @@ public:
         consensus.nDevelopersFeeBegin = 250;
 	    
 	consensus.FoundationAddress = "yg7cUN19J8puigMMXfhv193S92EiSNe3Ag";
-	consensus.HTHNonprofitAddress = "ycGfUKh4itBzi4EGj2W8gxSEbLUGJqLFBZ";
+	consensus.FoundationPODSAddress = "ycGfUKh4itBzi4EGj2W8gxSEbLUGJqLFBZ";
 	consensus.FoundationQTAddress = "yeKHKjBRDpcz6Ec8pHQhQXpkszJLp9ykMo";
 	consensus.BurnAddress = "yTQvV7JLSpjtUXteGGaR3SXKV5tRqe9U1e";    
 
