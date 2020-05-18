@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>779</width>
-    <height>460</height>
+    <width>743</width>
+    <height>447</height>
    </rect>
   </property>
   <property name="focusPolicy">
@@ -36,8 +36,8 @@
     <property name="verticalSpacing">
      <number>8</number>
     </property>
-    <item row="3" column="0" colspan="2">
-     <widget class="QFrame" name="frame">
+    <item row="4" column="1">
+     <widget class="QFrame" name="frameDonate">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -46,7 +46,7 @@
       </property>
       <property name="minimumSize">
        <size>
-        <width>248</width>
+        <width>665</width>
         <height>50</height>
        </size>
       </property>
@@ -66,9 +66,9 @@
        <property name="geometry">
         <rect>
          <x>60</x>
-         <y>20</y>
-         <width>281</width>
-         <height>20</height>
+         <y>9</y>
+         <width>511</width>
+         <height>31</height>
         </rect>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayoutCheckboxes2">
@@ -93,48 +93,38 @@
         </item>
        </layout>
       </widget>
-      <widget class="QLabel" name="messageCaption">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>51</width>
-         <height>61</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Donate:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-       <property name="wordWrap">
-        <bool>true</bool>
-       </property>
-      </widget>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="labellLabel">
+    <item row="3" column="1">
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Fixed</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>85</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="messageCaption">
       <property name="text">
-       <string>&amp;Label:</string>
+       <string>Donate:</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
-      <property name="buddy">
-       <cstring>addAsLabel</cstring>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="0" colspan="2">
-     <widget class="Line" name="line">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+      <property name="wordWrap">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
-    <item row="4" column="1">
+    <item row="6" column="1">
      <widget class="QLabel" name="messageTextLabel">
       <property name="toolTip">
        <string>A message that was attached to the HTH: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the HelpTheHomeless network.</string>
@@ -212,31 +202,27 @@
       </item>
      </layout>
     </item>
-    <item row="1" column="1">
-     <widget class="QLineEdit" name="addAsLabel">
-      <property name="toolTip">
-       <string>Enter a label for this address to add it to the list of used addresses</string>
+    <item row="1" column="0">
+     <widget class="QLabel" name="labellLabel">
+      <property name="text">
+       <string>&amp;Label:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="buddy">
+       <cstring>addAsLabel</cstring>
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
-     <layout class="QHBoxLayout" name="horizontalLayoutAmount" stretch="0,1">
-      <item>
-       <widget class="BitcoinAmountField" name="payAmount"/>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="checkboxSubtractFeeFromAmount">
-        <property name="toolTip">
-         <string>The fee will be deducted from the amount being sent. The recipient will receive a lower amount of HTH than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</string>
-        </property>
-        <property name="text">
-         <string>S&amp;ubtract fee from amount</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+    <item row="7" column="0" colspan="2">
+     <widget class="Line" name="line">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
     </item>
-    <item row="4" column="0">
+    <item row="6" column="0">
      <widget class="QLabel" name="messageLabel">
       <property name="text">
        <string>Message:</string>
@@ -271,6 +257,43 @@
        <cstring>payTo</cstring>
       </property>
      </widget>
+    </item>
+    <item row="2" column="1">
+     <layout class="QHBoxLayout" name="horizontalLayoutAmount" stretch="0,1">
+      <item>
+       <widget class="BitcoinAmountField" name="payAmount"/>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkboxSubtractFeeFromAmount">
+        <property name="toolTip">
+         <string>The fee will be deducted from the amount being sent. The recipient will receive a lower amount of HTH than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</string>
+        </property>
+        <property name="text">
+         <string>S&amp;ubtract fee from amount</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="addAsLabel">
+      <property name="toolTip">
+       <string>Enter a label for this address to add it to the list of used addresses</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <spacer name="verticalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
     </item>
    </layout>
   </widget>
@@ -1304,14 +1327,15 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QValidatedLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>qvalidatedlineedit.h</header>
-  </customwidget>
-  <customwidget>
    <class>BitcoinAmountField</class>
    <extends>QLineEdit</extends>
    <header>bitcoinamountfield.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QValidatedLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>qvalidatedlineedit.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>
