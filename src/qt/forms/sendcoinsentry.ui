@@ -81,7 +81,7 @@
            </size>
           </property>
           <property name="toolTip">
-           <string>Send Coins to Orphan Foundation to Support Orphans?</string>
+           <string>Use your HTH Coins to Donate Today!</string>
           </property>
           <property name="layoutDirection">
            <enum>Qt::LeftToRight</enum>
