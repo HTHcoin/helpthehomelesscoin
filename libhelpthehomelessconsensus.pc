@@ -1,4 +1,5 @@
-prefix=/home/devilking6105/HTH0.14/depends/x86_64-w64-mingw32
+prefix=/home/devilking6105/Help-The-Homeless-Coin-0.14/depends/x86_64-w64-mingw32
+
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
