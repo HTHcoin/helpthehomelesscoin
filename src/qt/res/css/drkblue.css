@@ -434,7 +434,7 @@ font-weight: bold;
     }
 
     QComboBox:editable {
-        background:#977336;
+        background:#1e1d32;
         color:#34bcaa;
         border:0px solid transparent;
     }
@@ -454,7 +454,7 @@ font-weight: bold;
         border-color: #4D458C;
         padding-right:1px;
         padding-left:1px;
-        color:#7E7E7E;
+        color:#debf12;
     }
 
     QComboBox QAbstractItemView::item {
@@ -996,6 +996,11 @@ QWidget .QFrame#frame_3 .QLine#lineWatchBalance {
     background-color:transparent;
     border-style: none;
 
+    }
+
+    QStackedWidget#SendCoinsEntry .QFrame#SendCoins .QLabel#amountLabel {
+
+	    payAmount
     }
 
     QStackedWidget#SendCoinsEntry .QFrame#SendCoins .QLabel#amountLabel {
