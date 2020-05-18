@@ -1000,11 +1000,6 @@ QWidget .QFrame#frame_3 .QLine#lineWatchBalance {
 
     QStackedWidget#SendCoinsEntry .QFrame#SendCoins .QLabel#amountLabel {
 
-	    payAmount
-    }
-
-    QStackedWidget#SendCoinsEntry .QFrame#SendCoins .QLabel#amountLabel {
-
     }
 
     QStackedWidget#SendCoinsEntry .QValidatedLineEdit#payTo { /* Pay To Input Field */
