@@ -175,10 +175,9 @@ struct CRecipient
     CAmount nAmount;
     bool fSubtractFeeFromAmount;
     // DAC:
-	bool fTithe;
+	
 	bool fDonate;
-	bool fPrayer;
-	bool fDiary;
+	
 	std::string txtMessage;
 	// END OF DAC
 };
