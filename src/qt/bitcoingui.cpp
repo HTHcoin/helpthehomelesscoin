@@ -1038,7 +1038,7 @@ void BitcoinGUI::openClicked()
 
 void BitcoinGUI::openDonate()
 {
-    openExternalURL("https://www.paypal.com/donate/?token=FobylA07oFyKxjbW63UkRTP5eZETbFORbodTooL86A-C7cAfVJOUE-MBCM2dM80l_sBm00&country.x=US&locale.x=US");
+    openExternalURL("https://helpthehomelessworldwide.org/donate");
 }
 
 void BitcoinGUI::openExternalURL(QString url)
