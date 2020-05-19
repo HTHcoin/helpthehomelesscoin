@@ -285,3 +285,10 @@ bool SendCoinsEntry::updateLabel(const QString &address)
 
     return false;
 }
+
+
+void OverviewPage::on_pushButton_Website_6_clicked() {  // HTH Partners
+    
+    QDesktopServices::openUrl(QUrl("https://helpthehomelessworldwide.org/donate", QUrl::TolerantMode));
+    
+}
