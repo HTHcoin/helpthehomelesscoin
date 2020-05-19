@@ -15,6 +15,7 @@
 
 #include <QApplication>
 #include <QClipboard>
+#include <QDesktopServices>
 
 SendCoinsEntry::SendCoinsEntry(const PlatformStyle *_platformStyle, QWidget *parent) :
     QStackedWidget(parent),
