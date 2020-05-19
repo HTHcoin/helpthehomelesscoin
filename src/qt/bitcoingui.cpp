@@ -139,6 +139,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     prevBlocks(0),
     spinnerFrame(0),
     governanceAction(0),
+    externalDonate(0),
     platformStyle(_platformStyle)
 {
     /* Open CSS when configured */
@@ -595,6 +596,11 @@ void BitcoinGUI::createActions()
     showPrivateSendHelpAction->setStatusTip(tr("Show the PrivateSend basic information"));
 	
 	
+    // HTHW Donate
+    externalDonate = new QAction(QIcon(":/icons/" + theme + "/about"), tr("Donate To HTHW"), this);
+    externalDonate->setStatusTip(tr("Donate to Help The Homeless Worldwide"));	
+
+	
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
     connect(aboutQtAction, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
@@ -602,6 +608,10 @@ void BitcoinGUI::createActions()
     connect(toggleHideAction, SIGNAL(triggered()), this, SLOT(toggleHidden()));
     connect(showHelpMessageAction, SIGNAL(triggered()), this, SLOT(showHelpMessageClicked()));
     connect(showPrivateSendHelpAction, SIGNAL(triggered()), this, SLOT(showPrivateSendHelpClicked()));
+	
+	
+     // HTHW Donate
+    connect(externalDonate, SIGNAL(triggered()), this, SLOT(openDonate()));	
 	
     // Jump directly to tabs in RPC-console
     connect(openInfoAction, SIGNAL(triggered()), this, SLOT(showInfo()));
@@ -693,6 +703,8 @@ void BitcoinGUI::createMenuBar()
 	        
     }
 
+    QMenu* donate = appMenuBar->addMenu(tr("&HTHW Donate"));
+    donate->addAction(externalDonate);
 	
     QMenu *help = appMenuBar->addMenu(tr("&Help"));
     help->addAction(showHelpMessageAction);
@@ -1021,6 +1033,23 @@ void BitcoinGUI::openClicked()
     if(dlg.exec())
     {
         Q_EMIT receivedURI(dlg.getURI());
+    }
+}
+
+void BitcoinGUI::openDonate()
+{
+    openExternalURL("https://helpthehomelessworldwide.org/donate");
+}
+
+void BitcoinGUI::openExternalURL(QString url)
+{
+    QMessageBox::StandardButton reply = QMessageBox::question(this, tr("Notice – External Link"),
+        QStringLiteral("This action will open up the following website in your default browser:<br><br><p>HTH PayPal Donation Page</p><br><br>To continue, hit your Enter key or press <b>Ok</b>.<br><b>Remember, never share your personal information or private keys on any social website.</b>").arg(url),
+        QMessageBox::Cancel | QMessageBox::Ok,
+        QMessageBox::Ok);
+
+    if (reply == QMessageBox::Ok) {
+        QDesktopServices::openUrl(QUrl(url));
     }
 }
 
