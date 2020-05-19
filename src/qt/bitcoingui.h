@@ -103,6 +103,7 @@ private:
 
     QMenuBar *appMenuBar;
     
+    QAction* externalDonate;
     QAction *governanceAction;
     QAction* overviewaAction;
     QAction *overviewAction;
@@ -259,6 +260,9 @@ private Q_SLOTS:
     void aboutClicked();
     /** Show debug window */
     void showDebugWindow();
+    /** Open external URL */
+    void openDonate();
+    void openExternalURL(QString url = "");
 
     /** Show debug window and set focus to the appropriate tab */
     void showInfo();
