@@ -61,7 +61,7 @@ private Q_SLOTS:
     void on_pasteButton_clicked();
     void updateDisplayUnit();
     void updateFoundationAddress();
-    void on_pushButton_Website_6_clicked();
+    void on_pushButton_Donate_clicked();
 
 private:
     SendCoinsRecipient recipient;
