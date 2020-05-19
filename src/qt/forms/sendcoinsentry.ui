@@ -268,7 +268,7 @@
       <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
-         <x>260</x>
+         <x>10</x>
          <y>10</y>
          <width>291</width>
          <height>31</height>
@@ -301,6 +301,57 @@
          </widget>
         </item>
        </layout>
+      </widget>
+      <widget class="QPushButton" name="pushButton_Donate">
+       <property name="geometry">
+        <rect>
+         <x>380</x>
+         <y>10</y>
+         <width>120</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>120</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string>Visit Help The Homeless Coin Explorer and Track Your HTH Coins</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-style: solid;
+border-width: 2px;
+border-color: #34bcaa;
+border-radius: 10px;
+font-size: 11px;</string>
+       </property>
+       <property name="text">
+        <string>HTH PayPal</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>510</x>
+         <y>15</y>
+         <width>161</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Donate using PayPal!</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
      </widget>
     </item>
