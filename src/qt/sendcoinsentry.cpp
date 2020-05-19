@@ -15,6 +15,7 @@
 
 #include <QApplication>
 #include <QClipboard>
+#include <QDesktopServices>
 
 SendCoinsEntry::SendCoinsEntry(const PlatformStyle *_platformStyle, QWidget *parent) :
     QStackedWidget(parent),
@@ -284,4 +285,11 @@ bool SendCoinsEntry::updateLabel(const QString &address)
     }
 
     return false;
+}
+
+
+void SendCoinsEntry::on_pushButton_Donate_clicked() {  // HTH Partners
+    
+    QDesktopServices::openUrl(QUrl("https://www.paypal.com/donate/?token=FobylA07oFyKxjbW63UkRTP5eZETbFORbodTooL86A-C7cAfVJOUE-MBCM2dM80l_sBm00&country.x=US&locale.x=US", QUrl::TolerantMode));
+    
 }
