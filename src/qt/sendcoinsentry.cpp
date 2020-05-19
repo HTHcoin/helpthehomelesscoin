@@ -287,7 +287,7 @@ bool SendCoinsEntry::updateLabel(const QString &address)
 }
 
 
-void OverviewPage::on_pushButton_Donate_clicked() {  // HTH Partners
+void SendCoinsEntry::on_pushButton_Donate_clicked() {  // HTH Partners
     
     QDesktopServices::openUrl(QUrl("https://www.paypal.com/donate/?token=FobylA07oFyKxjbW63UkRTP5eZETbFORbodTooL86A-C7cAfVJOUE-MBCM2dM80l_sBm00&country.x=US&locale.x=US", QUrl::TolerantMode));
     
