@@ -1045,7 +1045,7 @@ void BitcoinGUI::openDonate()
 void BitcoinGUI::openExternalURL(QString url)
 {
     QMessageBox::StandardButton reply = QMessageBox::question(this, tr("Notice – External Link"),
-        QStringLiteral("This action will open up the following website in your default browser:<br><br><p>HTH PayPal Donation Page</p><br><br>To continue, hit your Enter key or press <b>Ok</b>.<br><b>Remember, never share your personal information or private keys on any social website.</b>").arg(url),
+        QStringLiteral("This action will open up the following website in your default browser:<br><br><p>Help The Homeless Worldwide A NJ Nonprofit Corporation's Donation Page</p><br><br>To continue, hit your Enter key or press <b>Ok</b>.<br><b>Remember, never share your personal information or private keys on any social website.</b>").arg(url),
         QMessageBox::Cancel | QMessageBox::Ok,
         QMessageBox::Ok);
 
