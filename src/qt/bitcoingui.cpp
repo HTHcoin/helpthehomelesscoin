@@ -1038,13 +1038,13 @@ void BitcoinGUI::openClicked()
 
 void BitcoinGUI::openDonate()
 {
-    openExternalURL("https://odinblockchain.org");
+    openExternalURL("https://www.paypal.com/donate/?token=FobylA07oFyKxjbW63UkRTP5eZETbFORbodTooL86A-C7cAfVJOUE-MBCM2dM80l_sBm00&country.x=US&locale.x=US");
 }
 
 void BitcoinGUI::openExternalURL(QString url)
 {
     QMessageBox::StandardButton reply = QMessageBox::question(this, tr("Notice – External Link"),
-        QStringLiteral("This action will open up the following website in your default browser:<br><br><u>%1</u><br><br>To continue, hit your Enter key or press <b>Ok</b>.<br><b>Remember, never share your personal information or private keys on any social website.</b>").arg(url),
+        QStringLiteral("This action will open up the following website in your default browser:<br><br><p>HTH PayPal Donation Page</p><br><br>To continue, hit your Enter key or press <b>Ok</b>.<br><b>Remember, never share your personal information or private keys on any social website.</b>").arg(url),
         QMessageBox::Cancel | QMessageBox::Ok,
         QMessageBox::Ok);
 
