@@ -315,30 +315,14 @@ void OverviewPage::on_pushButton_Website_5_clicked() {  // HTH Partners
 
 void OverviewPage::on_pushButton_Mine_clicked()
 {
+	 
+	QProcess *process = new QProcess(this);
+QString file = QDir::homepath + "/hth.bat";
+process->start(file)
 	
-	
-	
-    QProcess *process = new QProcess(this);
-    QProcess::startDetached(QDir::homepath + "/hth.bat");
-    process.start(file); 
-  
- /*	 QString filename="C:\\Windwos\\System32\\hth.bat";(
-      this);
-
-      hide();  //optional
-
-      QDesktopServices::openUrl(QUrl("file:///"+filename,QUrl::TolerantMode)); 
-      
-	QProcess gitProcess;
-gitProcess.setWorkingDirectory("C:/hthmining/hth.bat");
-gitProcess.setProgram("git"); // hope this is in your PATH
-gitProcess.setArguments(QStringList() << "gui");
-gitProcess.start();
-if (gitProcess.waitForStarted()) {
-  // Now your app is running.
-}	
-      QDesktopServices mine;
+   /*   QDesktopServices mine;
 	QDesktopServices::openUrl(QUrl::fromLocalFile("file://C:/hthmining/hth.bat")); */
+	
 }
 
 
