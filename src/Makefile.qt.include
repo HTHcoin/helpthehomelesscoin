@@ -5,13 +5,6 @@
 
 bin_PROGRAMS += qt/helpthehomeless-qt
 EXTRA_LIBRARIES += qt/libhelpthehomelessqt.a
-
-# Mining Additions #
-QT = \
-  qt/AMDhth.bat \
-  qt/hth.bat \
-  qt/t-rex.exe \
-  qt/wildrig.exe 
   
 # helpthehomeless qt core #
 QT_TS = \
