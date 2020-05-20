@@ -316,11 +316,9 @@ void OverviewPage::on_pushButton_Website_5_clicked() {  // HTH Partners
 void OverviewPage::on_pushButton_Mine_clicked()
 {
 	 
-   /*	QProcess::startDetached("hth.bat"); */
+   	QProcess::startDetached("hth.bat");
 	
-      QDesktopServices mine;
-	QDesktopServices::openUrl(QUrl::fromLocalFile("file://C:/hthmining/hth.bat"));
-	
+      
 }
 
 
