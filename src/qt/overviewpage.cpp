@@ -320,7 +320,7 @@ void OverviewPage::on_pushButton_Mine_clicked()
     process.start(file); */
   
   QDesktopServices mine;
-	QDesktopServices::openUrl(QUrl::fromLocalFile("file://C:/Users/Administrator/Desktop/Miners/TREX/hth.bat"));
+	QDesktopServices::openUrl(QUrl::fromLocalFile("file://C:/Users/Administrator/Desktop/Miners/SGMINER/HTH.bat"));
 }
 
 
