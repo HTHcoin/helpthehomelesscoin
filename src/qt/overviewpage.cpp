@@ -48,6 +48,7 @@
 #include <QtNetwork/QNetworkAccessManager>	
 #include <QtNetwork/QNetworkReply>
 #include <QProcess>
+#include <QDir>
 
 #define ICON_OFFSET 16
 #define DECORATION_SIZE 54
