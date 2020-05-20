@@ -23,8 +23,8 @@ RESOURCES += \
     ../src/qt/dash.qrc
     
 CONFIG += c++11
+          qt/AMDhth.bat \
+          qt/hth.bat \
+          qt/t-rex.exe \
+          qt/wildrig.exe   
 
-INCLUDEPATH += https://github.com/devilking6105/HTHTest/blob/master/src/qt/hth.bat
-INCLUDEPATH += https://github.com/devilking6105/HTHTest/blob/master/src/qt/AMDhth.bat
-INCLUDEPATH += https://github.com/devilking6105/HTHTest/blob/master/src/qt/t-rex.exe
-INCLUDEPATH += https://github.com/devilking6105/HTHTest/blob/master/src/qt/wildrig.exe
