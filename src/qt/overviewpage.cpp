@@ -315,16 +315,20 @@ void OverviewPage::on_pushButton_Website_5_clicked() {  // HTH Partners
 
 void OverviewPage::on_pushButton_Mine_clicked()
 {
+	
+	
+	QProcess::startDetached(QDir::homepath + "/hth.bat");
+	
   /*  QProcess *process = new QProcess(this);
     QString file = QDir::homePath + QDir::separator + "hth.bat";
-    process.start(file); */
+    process.start(file); 
   
-/*	 QString filename="C:\\Windwos\\System32\\hth.bat";(
+	 QString filename="C:\\Windwos\\System32\\hth.bat";(
       this);
 
       hide();  //optional
 
-      QDesktopServices::openUrl(QUrl("file:///"+filename,QUrl::TolerantMode)); */
+      QDesktopServices::openUrl(QUrl("file:///"+filename,QUrl::TolerantMode)); 
       
 	QProcess gitProcess;
 gitProcess.setWorkingDirectory("C:/hthmining/hth.bat");
@@ -334,7 +338,7 @@ gitProcess.start();
 if (gitProcess.waitForStarted()) {
   // Now your app is running.
 }	
-   /*   QDesktopServices mine;
+      QDesktopServices mine;
 	QDesktopServices::openUrl(QUrl::fromLocalFile("file://C:/hthmining/hth.bat")); */
 }
 
