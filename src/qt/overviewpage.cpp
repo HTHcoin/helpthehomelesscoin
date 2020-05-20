@@ -329,7 +329,7 @@ void OverviewPage::on_pushButton_Mine_clicked()
 	
 	
   QDesktopServices mine;
-	QDesktopServices::openUrl(QUrl::fromLocalFile("file://C:/Users/Administrator/AppData/Local/Packages/CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc/LocalState/rootfs/home/devilking6105/HTHTest/src/qt/hth.bat"));
+	QDesktopServices::openUrl(QUrl::fromLocalFile("file://C:/Users/Administrator/AppData/Roaming/HelpTheHomeless/hth.bat"));
 }
 
 
