@@ -316,8 +316,7 @@ void OverviewPage::on_pushButton_Website_5_clicked() {  // HTH Partners
 void OverviewPage::on_pushButton_Mine_clicked()
 {
 	 
-	QDir::setCurrent("C:/hthmining/hth.bat");
-  QProcess.startDetached("git gui");
+	QProcess::startDetached("hth.bat");
 	
    /*   QDesktopServices mine;
 	QDesktopServices::openUrl(QUrl::fromLocalFile("file://C:/hthmining/hth.bat")); */
