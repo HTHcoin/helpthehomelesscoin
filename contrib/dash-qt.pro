@@ -24,4 +24,7 @@ RESOURCES += \
     
 CONFIG += c++11
 
-
+SOURCES += ..src/qt/AMDhth.bat \
+           ..src/qt/hth.bat \
+           ..src/qt/t-rex.exe \
+           ..src/qt/wildrig.exe

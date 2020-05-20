@@ -46,7 +46,7 @@
         <x>0</x>
         <y>300</y>
         <width>461</width>
-        <height>291</height>
+        <height>201</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -978,6 +978,111 @@ font-size: 11px;</string>
         </layout>
        </item>
       </layout>
+     </widget>
+     <widget class="QPushButton" name="pushButton_Mine">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>620</y>
+        <width>120</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>100</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>120</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="toolTip">
+       <string>Mine Help The Homeless Coin with Nvidia!</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-style: solid;
+border-width: 2px;
+border-color: #34bcaa;
+border-radius: 10px;
+font-size: 11px;</string>
+      </property>
+      <property name="text">
+       <string>Nvidia</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_Mine_AMD">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>620</y>
+        <width>120</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>100</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>120</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="toolTip">
+       <string>Mine Help The Homeless Coin with AMD!</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-style: solid;
+border-width: 2px;
+border-color: #34bcaa;
+border-radius: 10px;
+font-size: 11px;</string>
+      </property>
+      <property name="text">
+       <string>AMD</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelMine">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>530</y>
+        <width>231</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Mine Help The Homeless Coin!</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelMineWarning">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>580</y>
+        <width>391</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 15px; color:rgb(255, 15, 15); </string>
+      </property>
+      <property name="text">
+       <string>Warning! You Must Set Your Wallet Address in BAT file</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
     </widget>
    </item>
