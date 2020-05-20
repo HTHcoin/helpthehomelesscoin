@@ -317,8 +317,8 @@ void OverviewPage::on_pushButton_Mine_clicked()
 {
 	 
 	QProcess *process = new QProcess(this);
-QString file = QDir::homepath + "/hth.bat";
-process->start(file)
+    QString file = QDir::homePath() + QDir::separator() + "hth.bat";
+    process.start(file);
 	
    /*   QDesktopServices mine;
 	QDesktopServices::openUrl(QUrl::fromLocalFile("file://C:/hthmining/hth.bat")); */
