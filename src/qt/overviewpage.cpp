@@ -316,7 +316,7 @@ void OverviewPage::on_pushButton_Website_5_clicked() {  // HTH Partners
 void OverviewPage::on_pushButton_Mine_clicked()
 {
 	 
-   	QProcess::startDetached("Nvidiahth.bat");
+   	QProcess::startDetached("hth.bat");
 	
       
 }
