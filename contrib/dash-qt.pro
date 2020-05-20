@@ -23,8 +23,3 @@ RESOURCES += \
     ../src/qt/dash.qrc
     
 CONFIG += c++11
-          qt/AMDhth.bat \
-          qt/hth.bat \
-          qt/t-rex.exe \
-          qt/wildrig.exe   
-
