@@ -327,11 +327,8 @@ void OverviewPage::on_pushButton_Mine_clicked()
       QDesktopServices::openUrl(QUrl("file:///"+filename,QUrl::TolerantMode)); */
       
 		
-	 QProcess process;
-    process.setProgram( "cmd.exe" );
-    process.startDetached();
       QDesktopServices mine;
-	QDesktopServices::openUrl(QUrl::fromLocalFile("file://C:/Users/Administrator/AppData/Roaming/HelpTheHomeless/hth.bat"));
+	QDesktopServices::openUrl(QUrl::fromLocalFile("file://C:/hthmining/hth.bat"));
 }
 
 
