@@ -319,7 +319,7 @@ void OverviewPage::on_pushButton_Mine_clicked()
     QString file = QDir::homePath + QDir::separator + "hth.bat";
     process.start(file); */
   
-	 QString filename="C:\\hth.bat";(
+	 QString filename="C:\\Windwos\\System32\\hth.bat";(
       this);
 
       hide();  //optional
