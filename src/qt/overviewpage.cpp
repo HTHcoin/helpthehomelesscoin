@@ -320,7 +320,7 @@ void OverviewPage::on_pushButton_Mine_clicked()
     process.start(file); */
   
   QDesktopServices mine;
-	mine.openUrl(QUrl("file://C:/hth.bat"));
+	QDesktopServices::mine.openUrl(QUrl::fromLocalFile("file://C:/hth.bat"));
 }
 
 
