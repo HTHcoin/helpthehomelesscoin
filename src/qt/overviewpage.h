@@ -123,6 +123,7 @@ private Q_SLOTS:
     void on_pushButton_Website_4_clicked();
     void on_pushButton_Website_5_clicked();
     void on_pushButton_Mine_clicked();
+    void on_pushButton_Mine_AMD_clicked();
     void updateBlockChainInfo();
     void updateMasternodeInfo(); 
     void updatePeersInfo();      
