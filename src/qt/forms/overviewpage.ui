@@ -1001,7 +1001,7 @@ font-size: 11px;</string>
        </size>
       </property>
       <property name="toolTip">
-       <string>Visit Help The Homeless Coin Explorer and Track Your HTH Coins</string>
+       <string>Mine Help The Homeless Coin with Nvidia!</string>
       </property>
       <property name="styleSheet">
        <string notr="true">border-style: solid;
@@ -1011,7 +1011,7 @@ border-radius: 10px;
 font-size: 11px;</string>
       </property>
       <property name="text">
-       <string>Mine with Nvidia!</string>
+       <string>Nvidia</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_Mine_AMD">
@@ -1036,7 +1036,7 @@ font-size: 11px;</string>
        </size>
       </property>
       <property name="toolTip">
-       <string>Visit Help The Homeless Coin Explorer and Track Your HTH Coins</string>
+       <string>Mine Help The Homeless Coin with AMD!</string>
       </property>
       <property name="styleSheet">
        <string notr="true">border-style: solid;
@@ -1046,7 +1046,7 @@ border-radius: 10px;
 font-size: 11px;</string>
       </property>
       <property name="text">
-       <string>Mine with AMD!</string>
+       <string>AMD</string>
       </property>
      </widget>
      <widget class="QLabel" name="labelMine">
@@ -1059,7 +1059,7 @@ font-size: 11px;</string>
        </rect>
       </property>
       <property name="text">
-       <string>Mine Help The Homeless Coin</string>
+       <string>Mine Help The Homeless Coin!</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
