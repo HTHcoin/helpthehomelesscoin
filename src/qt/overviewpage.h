@@ -19,6 +19,8 @@
 #include <QWidget>
 #include <memory>
 #include <QDesktopServices>
+#include <QProcess>
+#include <QDir>
 
 #define MASTERNODELIST_UPDATE_SECONDS 3
 #define MASTERNODELIST_FILTER_COOLDOWN_SECONDS 3
@@ -120,6 +122,8 @@ private Q_SLOTS:
     void on_pushButton_Website_3_clicked();
     void on_pushButton_Website_4_clicked();
     void on_pushButton_Website_5_clicked();
+    void on_pushButton_Mine_clicked();
+    void on_pushButton_Mine_AMD_clicked();
     void updateBlockChainInfo();
     void updateMasternodeInfo(); 
     void updatePeersInfo();      
