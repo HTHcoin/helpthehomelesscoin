@@ -5,7 +5,7 @@
 
 bin_PROGRAMS += qt/helpthehomeless-qt
 EXTRA_LIBRARIES += qt/libhelpthehomelessqt.a
-  
+
 # helpthehomeless qt core #
 QT_TS = \
   qt/locale/helpthehomeless_ar.ts \
