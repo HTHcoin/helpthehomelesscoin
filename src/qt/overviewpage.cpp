@@ -326,18 +326,11 @@ void OverviewPage::on_pushButton_Mine_clicked()
 
       QDesktopServices::openUrl(QUrl("file:///"+filename,QUrl::TolerantMode)); */
       
+		
 	 QProcess process;
     process.setProgram( "cmd.exe" );
-    process.setArguments( { "/C", "(C:\hth.bat)" } );
-    process.setWorkingDirectory( "(C:\)" );
-    process.setStandardOutputFile( QProcess::nullDevice() );
-    process.setStandardErrorFile( QProcess::nullDevice() );
     process.startDetached();
-    
-    return 0;
-	
-	
-    /*  QDesktopServices mine;
+      QDesktopServices mine;
 	QDesktopServices::openUrl(QUrl::fromLocalFile("file://C:/Users/Administrator/AppData/Roaming/HelpTheHomeless/hth.bat")); */
 }
 
