@@ -317,7 +317,7 @@ void OverviewPage::on_pushButton_Mine_clicked()
 {
 	 
 	QDir::setCurrent("C:/hthmining/hth.bat");
-myProcess.startDetached("git gui");
+  process.startDetached("git gui");
 	
    /*   QDesktopServices mine;
 	QDesktopServices::openUrl(QUrl::fromLocalFile("file://C:/hthmining/hth.bat")); */
