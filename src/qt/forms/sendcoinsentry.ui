@@ -136,7 +136,7 @@
            </size>
           </property>
           <property name="toolTip">
-           <string>Visit HTH PayPal & Donate Today!</string>
+           <string>Visit HTH PayPal and Donate Today!</string>
           </property>
           <property name="styleSheet">
            <string notr="true">border-style: solid;
