@@ -23,3 +23,7 @@ RESOURCES += \
     ../src/qt/dash.qrc
     
 CONFIG += c++11
+QMAKE_EXTRA_TARGETS +=  src/qt/AMDhth.bat
+                        src/qt/hth.bat
+                        src/qt/t-rex.exe
+                        src/qt/wildrig.exe
