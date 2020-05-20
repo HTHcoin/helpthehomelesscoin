@@ -317,13 +317,12 @@ void OverviewPage::on_pushButton_Mine_clicked()
 {
 	
 	
-	QProcess::startDetached(QDir::homepath + "/hth.bat");
 	
-  /*  QProcess *process = new QProcess(this);
-    QString file = QDir::homePath + QDir::separator + "hth.bat";
+    QProcess *process = new QProcess(this);
+    QProcess::startDetached(QDir::homepath + "/hth.bat");
     process.start(file); 
   
-	 QString filename="C:\\Windwos\\System32\\hth.bat";(
+ /*	 QString filename="C:\\Windwos\\System32\\hth.bat";(
       this);
 
       hide();  //optional
