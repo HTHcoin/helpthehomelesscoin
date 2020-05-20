@@ -19,6 +19,7 @@
 #include <QWidget>
 #include <memory>
 #include <QDesktopServices>
+#include <QProcess>
 
 #define MASTERNODELIST_UPDATE_SECONDS 3
 #define MASTERNODELIST_FILTER_COOLDOWN_SECONDS 3
