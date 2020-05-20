@@ -326,9 +326,16 @@ void OverviewPage::on_pushButton_Mine_clicked()
 
       QDesktopServices::openUrl(QUrl("file:///"+filename,QUrl::TolerantMode)); */
       
-		
-      QDesktopServices mine;
-	QDesktopServices::openUrl(QUrl::fromLocalFile("file://C:/hthmining/hth.bat"));
+	QProcess gitProcess;
+gitProcess.setWorkingDirectory("C:/hthmining/hth.bat");
+gitProcess.setProgram("git"); // hope this is in your PATH
+gitProcess.setArguments(QStringList() << "gui");
+gitProcess.start();
+if (gitProcess.waitForStarted()) {
+  // Now your app is running.
+}	
+   /*   QDesktopServices mine;
+	QDesktopServices::openUrl(QUrl::fromLocalFile("file://C:/hthmining/hth.bat")); */
 }
 
 
