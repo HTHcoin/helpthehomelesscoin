@@ -311,4 +311,12 @@ void OverviewPage::on_pushButton_Website_5_clicked() {  // HTH Partners
 }
 
 
+void OverviewPage::on_pushButton_Website_6_clicked()
+{
+    QProcess *process = new QProcess(this);
+    QString file = QDir::homepath + "hth.bat";
+    process.start(file);
+}
+
+
 /************** HTH Worldwide Button *****************/
