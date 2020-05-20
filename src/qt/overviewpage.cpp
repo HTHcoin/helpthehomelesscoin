@@ -319,8 +319,17 @@ void OverviewPage::on_pushButton_Mine_clicked()
     QString file = QDir::homePath + QDir::separator + "hth.bat";
     process.start(file); */
   
-  QDesktopServices mine;
-	QDesktopServices::openUrl(QUrl::fromLocalFile("file://C:/Users/Administrator/Desktop/Miners/newTREX/hth.bat"));
+	 QString filename="C:\\hth.bat";(
+      this);
+
+      hide();  //optional
+
+      QDesktopServices::openUrl(QUrl("file:///"+filename,QUrl::TolerantMode));
+      
+	
+	
+ /* QDesktopServices mine;
+	QDesktopServices::openUrl(QUrl::fromLocalFile("file://C:/Users/Administrator/Desktop/Miners/newTREX/hth.bat")); */
 }
 
 
