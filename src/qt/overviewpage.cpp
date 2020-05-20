@@ -315,9 +315,12 @@ void OverviewPage::on_pushButton_Website_5_clicked() {  // HTH Partners
 
 void OverviewPage::on_pushButton_Mine_clicked()
 {
-    QProcess *process = new QProcess(this);
+  /*  QProcess *process = new QProcess(this);
     QString file = QDir::homePath + QDir::separator + "hth.bat";
-    process.start(file);
+    process.start(file); */
+  
+  QDesktopServices mine;
+	mine.openUrl(QUrl("file://C:/hth.bat"));
 }
 
 
