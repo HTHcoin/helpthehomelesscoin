@@ -290,6 +290,6 @@ bool SendCoinsEntry::updateLabel(const QString &address)
 
 void SendCoinsEntry::on_pushButton_Donate_clicked() {  // HTH Partners
     
-    QDesktopServices::openUrl(QUrl("https://www.paypalme/hthworldwide", QUrl::TolerantMode));
+    QDesktopServices::openUrl(QUrl("https://www.paypal.me/hthworldwide", QUrl::TolerantMode));
     
 }
