@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_OVERVIEWAPAGE_H
-#define BITCOIN_QT_OVERVIEWAPAGE_H
+#ifndef BITCOIN_QT_PRIVATESENDPAGE_H
+#define BITCOIN_QT_PRIVATESENDPAGE_H
 
 #include "amount.h"
 
@@ -18,21 +18,21 @@ class PlatformStyle;
 class WalletModel;
 
 namespace Ui {
-    class OverviewAPage;
+    class PrivateSendPage;
 }
 
 QT_BEGIN_NAMESPACE
 class QModelIndex;
 QT_END_NAMESPACE
 
-/** Overview ("home") page widget */
-class OverviewAPage : public QWidget
+/** Private Send ("PrivateSendPage") page widget */
+class PrivateSendPage : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit OverviewAPage(const PlatformStyle *platformStyle, QWidget *parent = 0);
-    ~OverviewAPage();
+    explicit PrivateSendPage(const PlatformStyle *platformStyle, QWidget *parent = 0);
+    ~PrivateSendPage();
 
     void setClientModel(ClientModel *clientModel);
     void setWalletModel(WalletModel *walletModel);
@@ -50,7 +50,7 @@ Q_SIGNALS:
 private:
     QTimer *timer;
     
-    Ui::OverviewAPage *ui;
+    Ui::PrivateSendPage *ui;
     ClientModel *clientModel;
     WalletModel *walletModel;
     CAmount currentBalance;
@@ -90,4 +90,4 @@ private Q_SLOTS:
     
 };
 
-#endif // BITCOIN_QT_OVERVIEWAPAGE_H
+#endif // BITCOIN_QT_PRIVATESENDPAGE_H
