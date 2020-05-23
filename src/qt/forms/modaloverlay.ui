@@ -264,7 +264,7 @@
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
-                 <width>130</width>
+                 <width>160</width>
                  <height>20</height>
                 </size>
                </property>
@@ -290,22 +290,6 @@
                   <bool>true</bool>
                  </property>
                 </widget>
-               </item>
-               <item>
-                <spacer name="verticalSpacerInTextSpace_2">
-                 <property name="orientation">
-                  <enum>Qt::Vertical</enum>
-                 </property>
-                 <property name="sizeType">
-                  <enum>QSizePolicy::Fixed</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>20</width>
-                   <height>5</height>
-                  </size>
-                 </property>
-                </spacer>
                </item>
               </layout>
              </item>
