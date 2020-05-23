@@ -247,6 +247,16 @@ BITCOIN_CORE_H = \
   zmq/zmqnotificationinterface.h \
   zmq/zmqpublishnotifier.h
 
+JSON_H = \
+  json/json_spirit.h \
+  json/json_spirit_error_position.h \
+  json/json_spirit_reader.h \
+  json/json_spirit_reader_template.h \
+  json/json_spirit_stream_reader.h \
+  json/json_spirit_utils.h \
+  json/json_spirit_value.h \
+  json/json_spirit_writer.h \
+  json/json_spirit_writer_template.h
 
 obj/build.h: FORCE
 	@$(MKDIR_P) $(builddir)/obj
@@ -338,6 +348,7 @@ libhelpthehomeless_server_a_SOURCES = \
   validation.cpp \
   validationinterface.cpp \
   versionbits.cpp \
+  $(JSON_H) \
   $(BITCOIN_CORE_H)
 
 if ENABLE_ZMQ
@@ -436,6 +447,13 @@ crypto_libhelpthehomeless_crypto_a_SOURCES = \
   crypto/SWIFFTX/lane.h \
   crypto/SWIFFTX/blake2s.h
 
+# univalue JSON library
+univalue_libbitcoin_univalue_a_SOURCES = \
+  univalue/univalue.cpp \
+  univalue/univalue_read.cpp \
+  univalue/univalue_write.cpp \
+  univalue/univalue_escapes.h \
+  univalue/univalue.h
 
 # consensus: shared between all executables that validate any consensus rules.
 libhelpthehomeless_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
