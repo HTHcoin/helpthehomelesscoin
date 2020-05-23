@@ -24,9 +24,6 @@ class WalletModel;
 class AddressBookPage;
 class PrivateSendPage;
 class GovernancePage;
-class AnnouncementView;
-
-
 
 
 QT_BEGIN_NAMESPACE
@@ -75,9 +72,7 @@ private:
     AddressBookPage *usedReceivingAddressesPage;
     MasternodeList *masternodeListPage;
     PrivateSendPage *privateSendPage;
-    GovernanceList *governanceListPage;
-    AnnouncementView* annView;
-      
+    GovernanceList *governanceListPage;      
     TransactionView *transactionView;
 
     QProgressDialog *progressDialog;
@@ -86,8 +81,6 @@ private:
 
 public Q_SLOTS:
 
-    /** Switch to annoucement page */
-    void gotoAnnView();
     /** Switch to governance page */
     void gotoGovernancePage();
     /** Switch to private send page */	
