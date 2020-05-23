@@ -105,7 +105,6 @@ private:
     
     QAction* externalDonate;
     QAction *governanceAction;
-    QAction* annAction;
   /*  QAction* privatesendAction; */
     QAction *overviewAction;
     QAction *historyAction;
@@ -231,8 +230,7 @@ public Q_SLOTS:
 private Q_SLOTS:
 #ifdef ENABLE_WALLET
  	
-    /** Switch to announcement page */
-    void gotoAnnView();
+
     /** Switch to masternode page */
     void gotoGovernancePage();
     /** Switch to private send page */
