@@ -24,6 +24,7 @@ class WalletModel;
 class AddressBookPage;
 class PrivateSendPage;
 class GovernancePage;
+class AnnouncementView;
 
 
 
@@ -75,6 +76,7 @@ private:
     MasternodeList *masternodeListPage;
     PrivateSendPage *privateSendPage;
     GovernanceList *governanceListPage;
+    AnnouncementView* annView;
       
     TransactionView *transactionView;
 
@@ -84,7 +86,8 @@ private:
 
 public Q_SLOTS:
 
-
+    /** Switch to annoucement page */
+    void gotoAnnView();
     /** Switch to governance page */
     void gotoGovernancePage();
     /** Switch to private send page */	
