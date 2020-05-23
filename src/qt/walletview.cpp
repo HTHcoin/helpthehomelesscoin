@@ -22,7 +22,7 @@
 #include "walletmodel.h"
 #include "privatesendpage.h"
 
-#include "announcementview."
+#include "announcementview.h"
 #include "ui_interface.h"
 
 #include <QAction>
