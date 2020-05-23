@@ -37,7 +37,7 @@ private:
     Ui::AnnouncementView *ui;
     QList<AnnData> annList;
     int annNumber = 0;
-private slots:
+private Q_SLOTS:
     void replyFinished (QNetworkReply *reply);
     void replyFinishedImage (QNetworkReply *reply);
 
