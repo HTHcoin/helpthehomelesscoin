@@ -196,7 +196,7 @@ PrivateSendPage::PrivateSendPage(const PlatformStyle *platformStyle, QWidget *pa
 }
 
 
- void PrivateSendPage::~PrivateSendPage()
+ PrivateSendPage::~PrivateSendPage()
 {
     if(timer) disconnect(timer, SIGNAL(timeout()), this, SLOT(privateSendStatus()));
     delete ui;
