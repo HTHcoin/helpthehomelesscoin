@@ -144,10 +144,11 @@ AnnouncementView::AnnouncementView(QWidget *parent) :   QWidget(parent),
     ui->mainTitleLable->setText(tr("HTH Worldwide Announcements"));
     ui->pushButton->setText(tr("Refresh"));
     //Load Announcement data
-    QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+    QDesktopServices::openUrl(QUrl("https://wp.me/Pauece-7W/", QUrl::TolerantMode));
+  /*  QNetworkAccessManager *manager = new QNetworkAccessManager(this);
     connect(manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
 
-    manager->get(QNetworkRequest(QUrl("https://wp.me/Pauece-7W/")));
+    manager->get(QNetworkRequest(QUrl("https://wp.me/Pauece-7W/"))); */
 
     /* Load delegate
     ui->annList->setItemDelegate(anndelegate);
@@ -181,7 +182,7 @@ void AnnouncementView::on_annList_currentItemChanged(QListWidgetItem *current, Q
 }
 */
 
-void AnnouncementView::on_pushButton_clicked()
+/* void AnnouncementView::on_pushButton_clicked()
 {
     annList.clear();
     annNumber=0;
@@ -192,4 +193,9 @@ void AnnouncementView::on_pushButton_clicked()
 
     manager->get(QNetworkRequest(QUrl("https://wp.me/Pauece-7W/")));
     ui->pushButton->setEnabled(false);
+} */
+void AnnouncementView::on_pushButton_clicked() {  // Nonprofit Wesbite
+    
+    QDesktopServices::openUrl(QUrl("https://wp.me/Pauece-7W/", QUrl::TolerantMode));
+    
 }
