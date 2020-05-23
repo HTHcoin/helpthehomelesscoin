@@ -201,9 +201,9 @@
             <property name="geometry">
              <rect>
               <x>0</x>
-              <y>10</y>
+              <y>6</y>
               <width>571</width>
-              <height>87</height>
+              <height>81</height>
              </rect>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayoutIconText_2" stretch="0,0,1">
@@ -308,7 +308,7 @@
            <property name="sizeHint" stdset="0">
             <size>
              <width>20</width>
-             <height>30</height>
+             <height>25</height>
             </size>
            </property>
           </spacer>
