@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>713</width>
-    <height>505</height>
+    <width>797</width>
+    <height>605</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -55,7 +55,7 @@
         <property name="styleSheet">
          <string notr="true"/>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayoutSub" stretch="1,0,0,0,0">
+        <layout class="QVBoxLayout" name="verticalLayoutSub" stretch="1,0,0,0,0,0">
          <property name="spacing">
           <number>0</number>
          </property>
@@ -180,15 +180,15 @@
          <item>
           <widget class="QFrame" name="frame">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
            <property name="minimumSize">
             <size>
-             <width>570</width>
-             <height>98</height>
+             <width>657</width>
+             <height>87</height>
             </size>
            </property>
            <property name="frameShape">
@@ -202,8 +202,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>571</width>
-              <height>91</height>
+              <width>661</width>
+              <height>81</height>
              </rect>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayoutIconText_2" stretch="0,0,1">
@@ -280,6 +280,12 @@
                </property>
                <item>
                 <widget class="QLabel" name="infoText_2">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">color: red;</string>
                  </property>
@@ -299,6 +305,22 @@
             </layout>
            </widget>
           </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>90</height>
+            </size>
+           </property>
+          </spacer>
          </item>
          <item>
           <layout class="QFormLayout" name="formLayout">
@@ -473,10 +495,13 @@
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
              <property name="sizeHint" stdset="0">
               <size>
                <width>20</width>
-               <height>40</height>
+               <height>10</height>
               </size>
              </property>
             </spacer>
