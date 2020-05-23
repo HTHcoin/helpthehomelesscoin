@@ -64,16 +64,16 @@ font-weight: bold;
         border: 1px solid;
         border-color: #64a19d;
         border-radius:0px;
-        background-color: #34bcaa;
+        background-color: #1e1d32;
         font-size: 12px;
         text-align: center;
     }
 
 
     QProgressBar::chunk {
-        background-color: #34bcaa;
+        background-color: #debf12;
         width: 20px;
-        color: #debf12;
+        color: #000;
     }
 
 
@@ -2112,11 +2112,6 @@ height:64px;
 padding:5px;
 background-color:transparent;
 }
-
-QWidget#contentWidget .infoText_2 {
-color: #debf12;
-}
-
 
 QWidget#contentWidget { /* The actual content with the text/buttons/etc... */
 /* border-image: url(':/images/light/drkblue_walletFrame_bg') 0 0 0 0 stretch stretch;
