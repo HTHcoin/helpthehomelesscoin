@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "overviewapage.h"
-#include "ui_overviewapage.h"
+#include "privatesendpage.h"
+#include "ui_privatesendpage.h"
 
 
 #include "bitcoinunits.h"
@@ -112,14 +112,14 @@ public:
     const PlatformStyle *platformStyle;
 }; */
 
- #include "overviewapage.moc"
+ #include "privatesendpage.moc"
 
 
 
-OverviewAPage::OverviewAPage(const PlatformStyle *platformStyle, QWidget *parent) :
+PrivateSendPage::PrivateSendPage(const PlatformStyle *platformStyle, QWidget *parent) :
     QWidget(parent),
     timer(nullptr),
-    ui(new Ui::OverviewAPage),
+    ui(new Ui::PrivateSendPage),
     clientModel(0),
     walletModel(0),
 /*    currentBalance(-1),
@@ -183,26 +183,26 @@ OverviewAPage::OverviewAPage(const PlatformStyle *platformStyle, QWidget *parent
     }
 }
 
-/* void OverviewAPage::handleTransactionClicked(const QModelIndex &index)
+/* void PrivateSendPage::handleTransactionClicked(const QModelIndex &index)
 {
     if(filter)
         Q_EMIT transactionClicked(filter->mapToSource(index));
 }
 */
 
- void OverviewAPage::handleOutOfSyncWarningClicks()
+ void PrivateSendPage::handleOutOfSyncWarningClicks()
 {
     Q_EMIT outOfSyncWarningClicked();
 }
 
 
- OverviewAPage::~OverviewAPage()
+ PrivateSendPage::~PrivateSendPage()
 {
     if(timer) disconnect(timer, SIGNAL(timeout()), this, SLOT(privateSendStatus()));
     delete ui;
 }
 
-void OverviewAPage::setBalance(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance, const CAmount& anonymizedBalance, const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance)
+void PrivateSendPage::setBalance(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance, const CAmount& anonymizedBalance, const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance)
 {
     currentBalance = balance;
     currentUnconfirmedBalance = unconfirmedBalance;
@@ -240,7 +240,7 @@ void OverviewAPage::setBalance(const CAmount& balance, const CAmount& unconfirme
 }
 
 // show/hide watch-only labels
-/*void OverviewAPage::updateWatchOnlyLabels(bool showWatchOnly)
+/*void PrivateSendPage::updateWatchOnlyLabels(bool showWatchOnly)
 {
    ui->labelTotal->setVisible(showWatchOnly);      // show spendable label (only when watch-only is active)
     ui->labelWatchTotal->setVisible(showWatchOnly);      // show watch-only label
@@ -248,7 +248,6 @@ void OverviewAPage::setBalance(const CAmount& balance, const CAmount& unconfirme
     ui->labelWatchAvailable->setVisible(showWatchOnly); // show watch-only available balance
     ui->labelWatchPending->setVisible(showWatchOnly);   // show watch-only pending balance
     ui->labelWatchTotal->setVisible(showWatchOnly);     // show watch-only total balance
-
     if (!showWatchOnly){
         ui->labelWatchImmature->hide();
     }
@@ -261,7 +260,7 @@ void OverviewAPage::setBalance(const CAmount& balance, const CAmount& unconfirme
 } */
 
 
-void OverviewAPage::setClientModel(ClientModel *model)
+void PrivateSendPage::setClientModel(ClientModel *model)
 {
     this->clientModel = model;
     if(model)
@@ -272,7 +271,7 @@ void OverviewAPage::setClientModel(ClientModel *model)
     }
 } 
 
-void OverviewAPage::setWalletModel(WalletModel *model)
+void PrivateSendPage::setWalletModel(WalletModel *model)
 {
     this->walletModel = model;
     if(model && model->getOptionsModel())
@@ -311,7 +310,7 @@ void OverviewAPage::setWalletModel(WalletModel *model)
 
 
 
- void OverviewAPage::updateDisplayUnit()
+ void PrivateSendPage::updateDisplayUnit()
 {
     if(walletModel && walletModel->getOptionsModel())
     {
@@ -327,7 +326,7 @@ void OverviewAPage::setWalletModel(WalletModel *model)
 }
 
 
- /* void OverviewAPage::updateAlerts(const QString &warnings)
+ /* void PrivateSendPage::updateAlerts(const QString &warnings)
 {
    this->ui->labelAlerts->setVisible(!warnings.isEmpty());
     this->ui->labelAlerts->setText(warnings);
@@ -335,14 +334,14 @@ void OverviewAPage::setWalletModel(WalletModel *model)
 
 
 
-void OverviewAPage::showOutOfSyncWarning(bool fShow)
+void PrivateSendPage::showOutOfSyncWarning(bool fShow)
 {
     ui->listTransactions_2->setVisible(fShow);  
     ui->labelPrivateSendEnabled_2->setVisible(fShow);   
     ui->listTransactions_2->setVisible(fShow);  
 }
 
-void OverviewAPage::updatePrivateSendProgress()
+void PrivateSendPage::updatePrivateSendProgress()
 {
     if(!masternodeSync.IsBlockchainSynced() || ShutdownRequested()) return;
     if(!pwalletMain) return;
@@ -439,7 +438,7 @@ void OverviewAPage::updatePrivateSendProgress()
     ui->privateSendProgress_2->setToolTip(strToolPip);
 }
 
-void OverviewAPage::updateAdvancedPSUI(bool fShowAdvancedPSUI) {
+void PrivateSendPage::updateAdvancedPSUI(bool fShowAdvancedPSUI) {
     this->fShowAdvancedPSUI = fShowAdvancedPSUI;
     int nNumItems = (fLiteMode || !fShowAdvancedPSUI) ? NUM_ITEMS : NUM_ITEMS_ADV;
   /*  SetupTransactionList(nNumItems); */
@@ -459,7 +458,7 @@ void OverviewAPage::updateAdvancedPSUI(bool fShowAdvancedPSUI) {
 }
 
 
-void OverviewAPage::privateSendStatus()
+void PrivateSendPage::privateSendStatus()
 {
     if(!masternodeSync.IsBlockchainSynced() || ShutdownRequested()) return;
     static int64_t nLastDSProgressBlockTime = 0;
@@ -496,24 +495,24 @@ void OverviewAPage::privateSendStatus()
                                    "saved in some safe place</span>!") + "<br><br>" +
                                 tr("Note: You can turn this message off in options.");
             ui->labelPrivateSendEnabled_2->setToolTip(strWarn);
-            LogPrintf("OverviewAPage::privateSendStatus -- Very low number of keys left since last automatic backup, warning user and trying to create new backup...\n");
+            LogPrintf("PrivateSendPage::privateSendStatus -- Very low number of keys left since last automatic backup, warning user and trying to create new backup...\n");
             QMessageBox::warning(this, tr("PrivateSend"), strWarn, QMessageBox::Ok, QMessageBox::Ok);
         } else {
-            LogPrintf("OverviewAPage::privateSendStatus -- Very low number of keys left since last automatic backup, skipping warning and trying to create new backup...\n");
+            LogPrintf("PrivateSendPage::privateSendStatus -- Very low number of keys left since last automatic backup, skipping warning and trying to create new backup...\n");
         }
         std::string strBackupWarning;
         std::string strBackupError;
         if(!AutoBackupWallet(pwalletMain, "", strBackupWarning, strBackupError)) {
             if (!strBackupWarning.empty()) {
                 // It's still more or less safe to continue but warn user anyway
-                LogPrintf("OverviewAPage::privateSendStatus -- WARNING! Something went wrong on automatic backup: %s\n", strBackupWarning);
+                LogPrintf("PrivateSendPage::privateSendStatus -- WARNING! Something went wrong on automatic backup: %s\n", strBackupWarning);
                 QMessageBox::warning(this, tr("PrivateSend"),
                     tr("WARNING! Something went wrong on automatic backup") + ":<br><br>" + strBackupWarning.c_str(),
                     QMessageBox::Ok, QMessageBox::Ok);
             }
             if (!strBackupError.empty()) {
                 // Things are really broken, warn user and stop mixing immediately
-                LogPrintf("OverviewAPage::privateSendStatus -- ERROR! Failed to create automatic backup: %s\n", strBackupError);
+                LogPrintf("PrivateSendPage::privateSendStatus -- ERROR! Failed to create automatic backup: %s\n", strBackupError);
                 QMessageBox::warning(this, tr("PrivateSend"),
                     tr("ERROR! Failed to create automatic backup") + ":<br><br>" + strBackupError.c_str() + "<br>" +
                     tr("Mixing is disabled, please close your wallet and fix the issue!"),
@@ -547,24 +546,24 @@ void OverviewAPage::privateSendStatus()
     QString strStatus = QString(privateSendClient.GetStatuses().c_str());
     QString s = tr("Last PrivateSend message:\n") + strStatus;
     if(s != ui->labelPrivateSendLastMessage_2->text())
-        LogPrint("privatesend", "OverviewAPage::privateSendStatus -- Last PrivateSend message: %s\n", strStatus.toStdString());
+        LogPrint("privatesend", "PrivateSendPage::privateSendStatus -- Last PrivateSend message: %s\n", strStatus.toStdString());
     ui->labelPrivateSendLastMessage_2->setText(s);
     ui->labelSubmittedDenom_2->setText(QString(privateSendClient.GetSessionDenoms().c_str()));
 }
-void OverviewAPage::privateSendAuto_2(){
+void PrivateSendPage::privateSendAuto_2(){
     privateSendClient.DoAutomaticDenominating(*g_connman);
 }
-void OverviewAPage::privateSendReset_2(){
+void PrivateSendPage::privateSendReset_2(){
     privateSendClient.ResetPool();
     QMessageBox::warning(this, tr("PrivateSend"),
         tr("PrivateSend was successfully reset."),
         QMessageBox::Ok, QMessageBox::Ok);
 }
-void OverviewAPage::privateSendInfo_2(){
+void PrivateSendPage::privateSendInfo_2(){
     HelpMessageDialog dlg(this, HelpMessageDialog::pshelp);
     dlg.exec();
 }
-void OverviewAPage::togglePrivateSend(){
+void PrivateSendPage::togglePrivateSend(){
     QSettings settings;
     // Popup some information on first mixing
     QString hasMixed = settings.value("hasMixed").toString();
@@ -594,7 +593,7 @@ void OverviewAPage::togglePrivateSend(){
                 QMessageBox::warning(this, tr("PrivateSend"),
                     tr("Wallet is locked and user declined to unlock. Disabling PrivateSend."),
                     QMessageBox::Ok, QMessageBox::Ok);
-                LogPrint("privatesend", "OverviewAPage::togglePrivateSend -- Wallet is locked and user declined to unlock. Disabling PrivateSend.\n");
+                LogPrint("privatesend", "PrivateSendPage::togglePrivateSend -- Wallet is locked and user declined to unlock. Disabling PrivateSend.\n");
                 return;
             }
         }
@@ -609,7 +608,7 @@ void OverviewAPage::togglePrivateSend(){
     }   
 } 
 
-/* void OverviewAPage::SetupTransactionList(int nNumItems) {
+/* void PrivateSendPage::SetupTransactionList(int nNumItems) {
     ui->listTransactions->setMinimumHeight(nNumItems * (DECORATION_SIZE + 2));
     if(walletModel && walletModel->getOptionsModel()) {
         // Set up transaction list
@@ -626,7 +625,7 @@ void OverviewAPage::togglePrivateSend(){
 }
 */
 
-  void OverviewAPage::DisablePrivateSendCompletely() {
+  void PrivateSendPage::DisablePrivateSendCompletely() {
     ui->togglePrivateSend_2->setText("(" + tr("Disabled") + ")");
     ui->privateSendAuto_2->setText("(" + tr("Disabled") + ")");
     ui->privateSendReset_2->setText("(" + tr("Disabled") + ")");
@@ -639,32 +638,32 @@ void OverviewAPage::togglePrivateSend(){
  
 /************** HTH Worldwide Button ******************/
  
-void OverviewAPage::on_pushButton_Website_clicked() {  // Nonprofit Wesbite
+void PrivateSendPage::on_pushButton_Website_clicked() {  // Nonprofit Wesbite
     
     QDesktopServices::openUrl(QUrl("https://www.helpthehomelessworldwide.org/", QUrl::TolerantMode));
     
 }
 
-void OverviewAPage::on_pushButton_Website_1_clicked() {  // HTH Coin Wesbite
+void PrivateSendPage::on_pushButton_Website_1_clicked() {  // HTH Coin Wesbite
     
     QDesktopServices::openUrl(QUrl("https://hth.world", QUrl::TolerantMode));
     
 }
 
 
-void OverviewAPage::on_pushButton_Website_2_clicked() {  // HTH Exchanges
+void PrivateSendPage::on_pushButton_Website_2_clicked() {  // HTH Exchanges
     
     QDesktopServices::openUrl(QUrl("https://hth.world/exchanges.html", QUrl::TolerantMode));
     
 }
 
-void OverviewAPage::on_pushButton_Website_3_clicked() {  // HTH Explorer
+void PrivateSendPage::on_pushButton_Website_3_clicked() {  // HTH Explorer
     
     QDesktopServices::openUrl(QUrl("https://chainz.cryptoid.info/hth", QUrl::TolerantMode));
     
 }
 
-void OverviewAPage::on_pushButton_Website_4_clicked() {  // HTH Partners
+void PrivateSendPage::on_pushButton_Website_4_clicked() {  // HTH Partners
     
     QDesktopServices::openUrl(QUrl("https://hth.world/partners.html", QUrl::TolerantMode));
     

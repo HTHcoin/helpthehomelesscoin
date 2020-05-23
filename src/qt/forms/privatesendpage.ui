@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>OverviewAPage</class>
- <widget class="QWidget" name="OverviewAPage">
+ <class>PrivateSendPage</class>
+ <widget class="QWidget" name="PrivateSendPage">
   <property name="geometry">
    <rect>
     <x>0</x>

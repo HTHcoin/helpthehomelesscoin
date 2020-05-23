@@ -45,7 +45,7 @@ QT_FORMS_UI = \
   qt/forms/openuridialog.ui \
   qt/forms/optionsdialog.ui \
   qt/forms/overviewpage.ui \
-  qt/forms/overviewapage.ui \
+  qt/forms/privatesendpage.ui \
   qt/forms/receivecoinsdialog.ui \
   qt/forms/receiverequestdialog.ui \
   qt/forms/debugwindow.ui \
@@ -81,7 +81,7 @@ QT_MOC_CPP = \
   qt/moc_optionsdialog.cpp \
   qt/moc_optionsmodel.cpp \
   qt/moc_overviewpage.cpp \
-  qt/moc_overviewapage.cpp \
+  qt/moc_privatesendpage.cpp \
   qt/moc_peertablemodel.cpp \
   qt/moc_paymentserver.cpp \
   qt/moc_qrdialog.cpp \
@@ -116,7 +116,7 @@ QT_MOC = \
   qt/bitcoinamountfield.moc \
   qt/intro.moc \
   qt/overviewpage.moc \
-  qt/overviewapage.moc \
+  qt/privatesendpage.moc \
   qt/rpcconsole.moc
 
 QT_QRC_CPP = qt/qrc_helpthehomeless.cpp
@@ -158,7 +158,7 @@ BITCOIN_QT_H = \
   qt/optionsdialog.h \
   qt/optionsmodel.h \
   qt/overviewpage.h \
-  qt/overviewapage.h \
+  qt/privatesendpage.h \
   qt/paymentrequestplus.h \
   qt/paymentserver.h \
   qt/peertablemodel.h \
@@ -506,7 +506,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/masternodelist.cpp \
   qt/openuridialog.cpp \
   qt/overviewpage.cpp \
-  qt/overviewapage.cpp \
+  qt/privatesendpage.cpp \
   qt/paymentrequestplus.cpp \
   qt/paymentserver.cpp \
   qt/qrdialog.cpp \
