@@ -128,7 +128,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     openRPCConsoleAction(0),
     openAction(0),
     showHelpMessageAction(0),
-    showPrivateSendHelpAction(0),
+  /*  showPrivateSendHelpAction(0), */
     trayIcon(0),
     trayIconMenu(0),
     dockIconMenu(0),
@@ -1018,14 +1018,14 @@ void BitcoinGUI::showHelpMessageClicked()
     helpMessageDialog->show();
 }
 
-void BitcoinGUI::showPrivateSendHelpClicked()
+/*void BitcoinGUI::showPrivateSendHelpClicked()
 {
     if(!clientModel)
         return;
 
     HelpMessageDialog dlg(this, HelpMessageDialog::pshelp);
     dlg.exec();
-}
+} */
 
 #ifdef ENABLE_WALLET
 void BitcoinGUI::openClicked()
