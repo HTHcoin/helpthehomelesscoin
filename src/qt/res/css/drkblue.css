@@ -71,7 +71,7 @@ font-weight: bold;
     
 
     QProgressBar::chunk {
-        QLinearGradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #00CCFF, stop: 1 #33CCFF);
+        background-color: QLinearGradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #00CCFF, stop: 1 #33CCFF);
         width: 20px;
         color: #000;
     }
