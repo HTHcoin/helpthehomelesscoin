@@ -264,7 +264,7 @@
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
-                 <width>160</width>
+                 <width>180</width>
                  <height>20</height>
                 </size>
                </property>
@@ -280,8 +280,11 @@
                </property>
                <item>
                 <widget class="QLabel" name="infoText_2">
+                 <property name="styleSheet">
+                  <string notr="true">color: red;</string>
+                 </property>
                  <property name="text">
-                  <string>Important Mining Info!! Once THE AMD &amp; NVIDIA MINING SOFTWARE IS STARTED, they will continue to run even if you choose to close the HTH Wallet.  User MUST add their HTH Wallet Address to the BAT Files. </string>
+                  <string>Before starting THE AMD &amp; NVIDIA MINING SOFTWARE,  User MUST add their HTH Wallet Address &amp; Pool Info to the BAT Files. Default Pool Settings Apply</string>
                  </property>
                  <property name="textFormat">
                   <enum>Qt::RichText</enum>
