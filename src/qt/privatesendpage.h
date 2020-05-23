@@ -25,7 +25,7 @@ QT_BEGIN_NAMESPACE
 class QModelIndex;
 QT_END_NAMESPACE
 
-/** Private Send ("PrivateSendPage") page widget */
+/** PrivateSend ("home") page widget */
 class PrivateSendPage : public QWidget
 {
     Q_OBJECT
@@ -66,7 +66,6 @@ private:
 
   /*  TxViewDelegate *txdelegate;
     std::unique_ptr<TransactionFilterProxy> filter; 
-
     void SetupTransactionList(int nNumItems); */
     void DisablePrivateSendCompletely(); 
 
@@ -82,7 +81,12 @@ private Q_SLOTS:
    void updateAlerts(const QString &warnings); */
   /*  void updateWatchOnlyLabels(bool showWatchOnly); */
     void handleOutOfSyncWarningClicks();
-      
+    void on_pushButton_Website_clicked();
+    void on_pushButton_Website_1_clicked();
+    void on_pushButton_Website_2_clicked();
+    void on_pushButton_Website_3_clicked();
+    void on_pushButton_Website_4_clicked();
+    
 };
 
 #endif // BITCOIN_QT_PRIVATESENDPAGE_H
