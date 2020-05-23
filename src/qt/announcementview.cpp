@@ -2,6 +2,10 @@
 #include "ui_announcementview.h"
 #include <QMessageBox>
 #include <QModelIndex>
+#include <QUrl>
+#include <QDesktopServices>
+#include <QtNetwork/QNetworkAccessManager>	
+#include <QtNetwork/QNetworkReply>
 
 void AnnouncementView::replyFinished(QNetworkReply *reply)
 {
