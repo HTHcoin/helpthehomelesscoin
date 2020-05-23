@@ -105,7 +105,7 @@ private:
     
     QAction* externalDonate;
     QAction *governanceAction;
-    QAction* privatesendAction;
+  /*  QAction* privatesendAction; */
     QAction *overviewAction;
     QAction *historyAction;
     QAction *masternodeAction;
@@ -136,7 +136,7 @@ private:
     QAction *showBackupsAction;
     QAction *openAction;
     QAction *showHelpMessageAction;
-    QAction *showPrivateSendHelpAction;
+/*    QAction *showPrivateSendHelpAction; */
 	
      
     QSystemTrayIcon *trayIcon;
@@ -234,7 +234,7 @@ private Q_SLOTS:
     /** Switch to masternode page */
     void gotoGovernancePage();
     /** Switch to private send page */
-    void gotoPrivateSendPage();
+ /*   void gotoPrivateSendPage(); */
     /** Switch to overview (home) page */
     void gotoOverviewPage();
     /** Switch to history (transactions) page */
@@ -279,7 +279,7 @@ private Q_SLOTS:
     /** Show help message dialog */
     void showHelpMessageClicked();
     /** Show PrivateSend help message dialog */
-    void showPrivateSendHelpClicked();
+/*    void showPrivateSendHelpClicked(); */
 #ifndef Q_OS_MAC
     /** Handle tray icon clicked */
     void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
