@@ -1,32 +1,7 @@
-// Copyright (c) 2018 The Social Send developers
-// Copyright (c) 2019 The Crypto Dezire Cash developers
-// Distributed under the MIT/X11 software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
-
 #include "announcementview.h"
 #include "ui_announcementview.h"
 #include <QMessageBox>
 #include <QModelIndex>
-
-AnnouncementView::AnnouncementView(QWidget *parent) :   QWidget(parent),
-                                                        ui(new Ui::AnnouncementView)
-{
-    ui->setupUi(this);
-    ui->verticalLayout_3->setAlignment(Qt::AlignTop);
-    lastUpdate = 0;
-    ui->mainTitleLable->setText(tr("HTH Worldwide Announcements"));
-    ui->pushButton->setText(tr("Refresh"));
-    //Load Announcement data
-    QNetworkAccessManager *manager = new QNetworkAccessManager(this);
-    connect(manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
-
-    manager->get(QNetworkRequest(QUrl("https://wp.me/Pauece-7W/")));
-}
-
-AnnouncementView::~AnnouncementView()
-{
-    delete ui;
-}
 
 void AnnouncementView::replyFinished(QNetworkReply *reply)
 {
@@ -55,21 +30,26 @@ void AnnouncementView::replyFinished(QNetworkReply *reply)
             return;
         }
 
-        QJsonArray jsonANNs = response["posts"].toArray();
+        QJsonArray jsonANNs = response["data"].toArray();
         annList.clear();
         annNumber = 0;
 
-        int i = 0;
-        Q_FOREACH(QJsonValue obj, jsonANNs){
-            if (i > 5) break;
+        foreach(QJsonValue obj, jsonANNs){
             QJsonObject ann = obj.toObject();
             AnnData a;
             a.title = ann["title"].toString();
-            a.info = ann["content"].toString();
-            a.imageURL = ann["thumbnail"].toString();
-            a.link =ann["url"].toString();
+            a.info = ann["info"].toString();
+            a.imageURL = ann["url"].toString();
+            a.link =ann["link"].toString();
+            //a.image = Null;
             annList << a;
-            i++;
+            /*
+            annWidget *ann_item = new annWidget(this);
+            ann_item->setData(a);
+            QListWidgetItem *item = new QListWidgetItem();
+            item->setSizeHint(QSize(0, 75));
+            ui->annList->addItem(item);
+            ui->annList->setItemWidget(item, ann_item );*/
         }
 
         if(annList.isEmpty()){
@@ -123,6 +103,15 @@ void AnnouncementView::replyFinishedImage(QNetworkReply *reply)
             annList[annNumber].height = ann_item->getSize().height();
             ann_item->setData(annList[annNumber]);
 
+            /*QListWidgetItem *item = new QListWidgetItem();
+            int listWidth = ui->annList->width();
+            //ann_item->setFixedSize(QSize(listWidth,200));
+            //item->setSizeHint(ann_item->getSize());
+            //item->setSizeHint(QSize(0, 75));
+            ui->annList->addItem(item);
+            ui->annList->setItemWidget(item, ann_item );
+*/
+
             ui->verticalLayout->addWidget(ann_item);
 
             annNumber++;
@@ -142,8 +131,51 @@ void AnnouncementView::replyFinishedImage(QNetworkReply *reply)
     reply->deleteLater();
 }
 
+AnnouncementView::AnnouncementView(QWidget *parent) :   QWidget(parent),
+                                                        ui(new Ui::AnnouncementView)
+{
+    ui->setupUi(this);
+    ui->verticalLayout_3->setAlignment(Qt::AlignTop);
+    lastUpdate = 0;
+    ui->mainTitleLable->setText(tr("HTH Worldwide Announcements"));
+    ui->pushButton->setText(tr("Refresh"));
+    //Load Announcement data
+    QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+    connect(manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
+
+    manager->get(QNetworkRequest(QUrl("https://wp.me/Pauece-7W/")));
+
+    /* Load delegate
+    ui->annList->setItemDelegate(anndelegate);
+    model = new QStandardItemModel();
+    ui->annList->setModel(model);//connect the model to view.
+*/
+}
+
+AnnouncementView::~AnnouncementView()
+{
+    delete ui;
+}
 
 
+/*
+void AnnouncementView::on_annList_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
+{
+    if(previous) previous->setSizeHint(QSize(0, 75));
+    if(current){
+        int index = ui->annList->row(current);
+        annWidget dummyAnn;
+        dummyAnn.setData(annList[index]);
+        int listWidth = ui->annList->width();
+        dummyAnn.setFixedSize(QSize(listWidth,500));
+        QSize s = dummyAnn.getSize();
+        if(s.height()<75)
+            current->setSizeHint(QSize(listWidth,75));
+        else
+            current->setSizeHint(QSize(listWidth,s.height()));
+    }
+}
+*/
 
 void AnnouncementView::on_pushButton_clicked()
 {
