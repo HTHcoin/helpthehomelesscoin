@@ -60,18 +60,18 @@ font-weight: bold;
 
     /* Global ProgressBar Style */
     QProgressBar {
-        color: #34bcaa;
+        color: #debf12;
         border: 1px solid;
         border-color: #64a19d;
         border-radius:0px;
-        background-color: #000;
+        background-color: #34bcaa;
         font-size: 12px;
         text-align: center;
     }
 
 
     QProgressBar::chunk {
-        background-color: #000;
+        background-color: #34bcaa;
         width: 20px;
         color: #debf12;
     }
