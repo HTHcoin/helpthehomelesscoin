@@ -112,7 +112,7 @@ public:
     const PlatformStyle *platformStyle;
 }; */
 
- #include "privatepage.moc"
+ #include "privatesendpage.moc"
 
 
 
