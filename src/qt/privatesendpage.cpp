@@ -4,7 +4,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "privatesendpage.h"
-#include "ui_privatesendpage.h"
+#include "ui_privatepage.h"
 
 
 #include "bitcoinunits.h"
@@ -112,7 +112,7 @@ public:
     const PlatformStyle *platformStyle;
 }; */
 
- #include "privatesendpage.moc"
+ #include "privatepage.moc"
 
 
 
@@ -248,7 +248,6 @@ void PrivateSendPage::setBalance(const CAmount& balance, const CAmount& unconfir
     ui->labelWatchAvailable->setVisible(showWatchOnly); // show watch-only available balance
     ui->labelWatchPending->setVisible(showWatchOnly);   // show watch-only pending balance
     ui->labelWatchTotal->setVisible(showWatchOnly);     // show watch-only total balance
-
     if (!showWatchOnly){
         ui->labelWatchImmature->hide();
     }
@@ -636,3 +635,38 @@ void PrivateSendPage::togglePrivateSend(){
     }
     privateSendClient.fEnablePrivateSend = false;
 }
+ 
+/************** HTH Worldwide Button ******************/
+ 
+void PrivateSendPage::on_pushButton_Website_clicked() {  // Nonprofit Wesbite
+    
+    QDesktopServices::openUrl(QUrl("https://www.helpthehomelessworldwide.org/", QUrl::TolerantMode));
+    
+}
+
+void PrivateSendPage::on_pushButton_Website_1_clicked() {  // HTH Coin Wesbite
+    
+    QDesktopServices::openUrl(QUrl("https://hth.world", QUrl::TolerantMode));
+    
+}
+
+
+void PrivateSendPage::on_pushButton_Website_2_clicked() {  // HTH Exchanges
+    
+    QDesktopServices::openUrl(QUrl("https://hth.world/exchanges.html", QUrl::TolerantMode));
+    
+}
+
+void PrivateSendPage::on_pushButton_Website_3_clicked() {  // HTH Explorer
+    
+    QDesktopServices::openUrl(QUrl("https://chainz.cryptoid.info/hth", QUrl::TolerantMode));
+    
+}
+
+void PrivateSendPage::on_pushButton_Website_4_clicked() {  // HTH Partners
+    
+    QDesktopServices::openUrl(QUrl("https://hth.world/partners.html", QUrl::TolerantMode));
+    
+}
+
+/************** HTH Worldwide Button ******************/
