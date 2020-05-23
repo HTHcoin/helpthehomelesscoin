@@ -19,7 +19,7 @@ bestHeaderHeight(0),
 bestHeaderDate(QDateTime()),
 layerIsVisible(false),
 userClosed(false),
-foreverHidden(true)
+foreverHidden(false)
 {
     ui->setupUi(this);
     connect(ui->closeButton, SIGNAL(clicked()), this, SLOT(closeClicked()));
