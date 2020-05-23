@@ -2113,6 +2113,11 @@ padding:5px;
 background-color:transparent;
 }
 
+QWidget#bgWidget .infoText_2 {
+color: #debf12;
+}
+
+
 QWidget#contentWidget { /* The actual content with the text/buttons/etc... */
 /* border-image: url(':/images/light/drkblue_walletFrame_bg') 0 0 0 0 stretch stretch;
 border-top:0px solid #000; */
