@@ -105,7 +105,7 @@ private:
     
     QAction* externalDonate;
     QAction *governanceAction;
-    QAction* overviewaAction;
+    QAction* privatesendAction;
     QAction *overviewAction;
     QAction *historyAction;
     QAction *masternodeAction;
@@ -234,7 +234,7 @@ private Q_SLOTS:
     /** Switch to masternode page */
     void gotoGovernancePage();
     /** Switch to private send page */
-    void gotoOverviewAPage();
+    void gotoPrivateSendPage();
     /** Switch to overview (home) page */
     void gotoOverviewPage();
     /** Switch to history (transactions) page */
