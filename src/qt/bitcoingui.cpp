@@ -494,16 +494,16 @@ void BitcoinGUI::createActions()
         connect(governanceAction, SIGNAL(triggered()), this, SLOT(gotoGovernancePage()));
     }
      	 
-    overviewaAction = new QAction(QIcon(":/icons/coinmix"), tr("&Private Send"), this);
-    overviewaAction->setStatusTip(tr("Show Private Send of wallet"));
-    overviewaAction->setToolTip(overviewaAction->statusTip());
-    overviewaAction->setCheckable(true);
+    privatesendAction = new QAction(QIcon(":/icons/coinmix"), tr("&Private Send"), this);
+    privatesendAction->setStatusTip(tr("Show Private Send of wallet"));
+    privatesendAction->setToolTip(privatesendAction->statusTip());
+    privatesendAction->setCheckable(true);
 #ifdef Q_OS_MAC
-    overviewaAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_7));
+    privatesendAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_7));
 #else
-    overviewaAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
+    privatesendAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
 #endif
-    tabGroup->addAction(overviewaAction);
+    tabGroup->addAction(privatesendAction);
 	
 		
     // These showNormalIfMinimized are needed because Send Coins and Receive Coins
@@ -520,8 +520,8 @@ void BitcoinGUI::createActions()
     connect(receiveCoinsMenuAction, SIGNAL(triggered()), this, SLOT(gotoReceiveCoinsPage()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(gotoHistoryPage()));
-    connect(overviewaAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
-    connect(overviewaAction, SIGNAL(triggered()), this, SLOT(gotoOverviewAPage()));	
+    connect(privatesebdAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+    connect(privatesendAction, SIGNAL(triggered()), this, SLOT(gotoPrivateSendPage()));	
         
 #endif // ENABLE_WALLET
 
@@ -1060,10 +1060,10 @@ void BitcoinGUI::gotoGovernancePage()
     if (walletFrame) walletFrame->gotoGovernancePage();
 }
 
-void BitcoinGUI::gotoOverviewAPage()
+void BitcoinGUI::gotoPrivateSendPagee()
 {
-    overviewaAction->setChecked(true);
-    if (walletFrame) walletFrame->gotoOverviewAPage();
+    privatesendAction->setChecked(true);
+    if (walletFrame) walletFrame->gotoPrivateSendPage();
 }
 
 void BitcoinGUI::gotoOverviewPage()
