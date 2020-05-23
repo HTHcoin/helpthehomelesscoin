@@ -32,13 +32,13 @@
       <widget class="QLabel" name="imageLabel">
        <property name="minimumSize">
         <size>
-         <width>75</width>
+         <width>300</width>
          <height>75</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>75</width>
+         <width>300</width>
          <height>75</height>
         </size>
        </property>
