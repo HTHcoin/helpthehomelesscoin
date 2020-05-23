@@ -45,7 +45,7 @@ font-size:19px;
 font-weight:700;</string>
        </property>
        <property name="text">
-        <string>Crypto Dezire Cash Announcement</string>
+        <string>Social Send Announcement</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
