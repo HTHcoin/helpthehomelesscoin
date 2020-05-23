@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
-    <height>401</height>
+    <width>713</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -128,8 +128,7 @@
              <item>
               <widget class="QLabel" name="infoText">
                <property name="text">
-                 <string>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the HelpTheHomeless network, as detailed below.</string>
-                
+                <string>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the HelpTheHomeless network, as detailed below.</string>
                </property>
                <property name="textFormat">
                 <enum>Qt::RichText</enum>
@@ -148,9 +147,7 @@
                 </font>
                </property>
                <property name="text">
-                
-                 <string>Attempting to spend HTH that are affected by not-yet-displayed transactions will not be accepted by the network.</string>
-               
+                <string>Attempting to spend HTH that are affected by not-yet-displayed transactions will not be accepted by the network.</string>
                </property>
                <property name="textFormat">
                 <enum>Qt::RichText</enum>
@@ -178,17 +175,48 @@
           </layout>
          </item>
          <item>
-          <spacer name="verticalSpacerAfterText">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
+          <widget class="QFrame" name="frame">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
            </property>
-           <property name="sizeHint" stdset="0">
+           <property name="minimumSize">
             <size>
-             <width>20</width>
-             <height>40</height>
+             <width>570</width>
+             <height>98</height>
             </size>
            </property>
-          </spacer>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <widget class="QLabel" name="infoText_2">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>10</y>
+              <width>571</width>
+              <height>71</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font-weight: bold;</string>
+            </property>
+            <property name="text">
+             <string>Important Mining Info!! Once THE AMD &amp; NVIDIA MINING SOFTWARE ARE STARTED, they will continue to run if you choose to close the HTH Wallet.  User MUST add their HTH Wallet Address to the BAT Files. </string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::RichText</enum>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </widget>
          </item>
          <item>
           <layout class="QFormLayout" name="formLayout">
