@@ -230,7 +230,7 @@ public Q_SLOTS:
 private Q_SLOTS:
 #ifdef ENABLE_WALLET
  	
-    
+
     /** Switch to masternode page */
     void gotoGovernancePage();
     /** Switch to private send page */
