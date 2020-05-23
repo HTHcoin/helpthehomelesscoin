@@ -35,7 +35,7 @@ public:
     QSize getSize();
     QSize sizeHint() const;
 
-private Q_SLOTS:
+private slots:
     void on_linkButton_clicked();
 
 private:
