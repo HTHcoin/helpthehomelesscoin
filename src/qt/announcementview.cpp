@@ -34,7 +34,7 @@ void AnnouncementView::replyFinished(QNetworkReply *reply)
         annList.clear();
         annNumber = 0;
 
-        QT_FOREACH(QJsonValue obj, jsonANNs){
+        Q_FOREACH(QJsonValue obj, jsonANNs){
             QJsonObject ann = obj.toObject();
             AnnData a;
             a.title = ann["title"].toString();
