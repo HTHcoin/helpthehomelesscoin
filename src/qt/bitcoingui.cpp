@@ -1071,6 +1071,7 @@ void BitcoinGUI::gotoAnnView()
 {
     annAction->setChecked(true);
     if (walletFrame) walletFrame->gotoAnnView();
+}	
 
 void BitcoinGUI::gotoGovernancePage()
 {
