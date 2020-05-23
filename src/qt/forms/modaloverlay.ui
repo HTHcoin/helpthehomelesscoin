@@ -203,7 +203,7 @@
               <x>0</x>
               <y>6</y>
               <width>571</width>
-              <height>81</height>
+              <height>85</height>
              </rect>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayoutIconText_2" stretch="0,0,1">
@@ -290,6 +290,19 @@
                   <bool>true</bool>
                  </property>
                 </widget>
+               </item>
+               <item>
+                <spacer name="verticalSpacer_3">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
                </item>
               </layout>
              </item>
