@@ -520,7 +520,7 @@ void BitcoinGUI::createActions()
     connect(receiveCoinsMenuAction, SIGNAL(triggered()), this, SLOT(gotoReceiveCoinsPage()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(gotoHistoryPage()));
-    connect(privatesebdAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+    connect(privatesendAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(privatesendAction, SIGNAL(triggered()), this, SLOT(gotoPrivateSendPage()));	
         
 #endif // ENABLE_WALLET
@@ -726,7 +726,7 @@ void BitcoinGUI::createToolBars()
         toolbar->addAction(sendCoinsAction);
         toolbar->addAction(receiveCoinsAction);
         toolbar->addAction(historyAction);
-	toolbar->addAction(overviewaAction);
+	toolbar->addAction(privatesendAction);
 	    
 	      
         QSettings settings;
@@ -1060,7 +1060,7 @@ void BitcoinGUI::gotoGovernancePage()
     if (walletFrame) walletFrame->gotoGovernancePage();
 }
 
-void BitcoinGUI::gotoPrivateSendPagee()
+void BitcoinGUI::gotoPrivateSendPage()
 {
     privatesendAction->setChecked(true);
     if (walletFrame) walletFrame->gotoPrivateSendPage();
