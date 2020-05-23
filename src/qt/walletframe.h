@@ -63,8 +63,6 @@ private:
 
 public Q_SLOTS:
 
-    /** Switch to announcement page */
-    void gotoAnnView();
     /** Switch to governance page */
     void gotoGovernancePage(); 
     /** Switch to private send page */
