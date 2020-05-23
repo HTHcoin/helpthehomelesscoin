@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">font-weight: bold;</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout" stretch="0">
    <property name="sizeConstraint">
     <enum>QLayout::SetDefaultConstraint</enum>
@@ -52,7 +55,7 @@
         <property name="styleSheet">
          <string notr="true"/>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayoutSub" stretch="1,0,0,0,0">
+        <layout class="QVBoxLayout" name="verticalLayoutSub" stretch="1,0,0,0,0,0">
          <property name="spacing">
           <number>0</number>
          </property>
@@ -194,29 +197,97 @@
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
            </property>
-           <widget class="QLabel" name="infoText_2">
+           <widget class="QWidget" name="layoutWidget">
             <property name="geometry">
              <rect>
               <x>0</x>
               <y>10</y>
               <width>571</width>
-              <height>71</height>
+              <height>87</height>
              </rect>
             </property>
-            <property name="styleSheet">
-             <string notr="true">font-weight: bold;</string>
-            </property>
-            <property name="text">
-             <string>Important Mining Info!! Once THE AMD &amp; NVIDIA MINING SOFTWARE ARE STARTED, they will continue to run if you choose to close the HTH Wallet.  User MUST add their HTH Wallet Address to the BAT Files. </string>
-            </property>
-            <property name="textFormat">
-             <enum>Qt::RichText</enum>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
+            <layout class="QHBoxLayout" name="horizontalLayoutIconText_2" stretch="0,1">
+             <property name="topMargin">
+              <number>20</number>
+             </property>
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayoutIcon_2">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <spacer name="verticalSpacerWarningIcon_2">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayoutInfoText_2">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="infoText_2">
+                 <property name="text">
+                  <string>Important Mining Info!! Once THE AMD &amp; NVIDIA MINING SOFTWARE ARE STARTED, they will continue to run if you choose to close the HTH Wallet.  User MUST add their HTH Wallet Address to the BAT Files. </string>
+                 </property>
+                 <property name="textFormat">
+                  <enum>Qt::RichText</enum>
+                 </property>
+                 <property name="wordWrap">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="verticalSpacerInTextSpace_2">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::Fixed</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>16</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+            </layout>
            </widget>
           </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Minimum</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>30</height>
+            </size>
+           </property>
+          </spacer>
          </item>
          <item>
           <layout class="QFormLayout" name="formLayout">
