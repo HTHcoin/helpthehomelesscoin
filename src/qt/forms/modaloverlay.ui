@@ -206,7 +206,7 @@
               <height>87</height>
              </rect>
             </property>
-            <layout class="QHBoxLayout" name="horizontalLayoutIconText_2" stretch="0,1">
+            <layout class="QHBoxLayout" name="horizontalLayoutIconText_2" stretch="0,0,1">
              <property name="topMargin">
               <number>20</number>
              </property>
@@ -255,6 +255,22 @@
               </layout>
              </item>
              <item>
+              <spacer name="horizontalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Fixed</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>90</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
               <layout class="QVBoxLayout" name="verticalLayoutInfoText_2">
                <property name="leftMargin">
                 <number>0</number>
@@ -265,7 +281,7 @@
                <item>
                 <widget class="QLabel" name="infoText_2">
                  <property name="text">
-                  <string>Important Mining Info!! Once THE AMD &amp; NVIDIA MINING SOFTWARE ARE STARTED, they will continue to run if you choose to close the HTH Wallet.  User MUST add their HTH Wallet Address to the BAT Files. </string>
+                  <string>Important Mining Info!! Once THE AMD &amp; NVIDIA MINING SOFTWARE IS STARTED, they will continue to run even if you choose to close the HTH Wallet.  User MUST add their HTH Wallet Address to the BAT Files. </string>
                  </property>
                  <property name="textFormat">
                   <enum>Qt::RichText</enum>
