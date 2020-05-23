@@ -492,6 +492,17 @@ void BitcoinGUI::createActions()
         tabGroup->addAction(governanceAction);
         connect(governanceAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
         connect(governanceAction, SIGNAL(triggered()), this, SLOT(gotoGovernancePage()));
+		
+	annAction = new QAction(QIcon(":/icons/announcement"), tr("Announcements"), this);
+   /* annAction->setStatusTip(tr("Last announcement")); */
+    annAction->setToolTip(annAction->statusTip());
+    annAction->setCheckable(true);
+    #ifdef Q_OS_MAC
+        annAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_6));
+    #else
+        annAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_6));
+    #endif
+    tabGroup->addAction(annAction);	
     }
      	 
  /*   privatesendAction = new QAction(QIcon(":/icons/coinmix"), tr("&Private Send"), this);
@@ -520,6 +531,7 @@ void BitcoinGUI::createActions()
     connect(receiveCoinsMenuAction, SIGNAL(triggered()), this, SLOT(gotoReceiveCoinsPage()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(gotoHistoryPage()));
+    connect(annAction, SIGNAL(triggered()), this, SLOT(gotoAnnView()));	
  /*   connect(privatesendAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(privatesendAction, SIGNAL(triggered()), this, SLOT(gotoPrivateSendPage()));	 */
         
@@ -726,6 +738,7 @@ void BitcoinGUI::createToolBars()
         toolbar->addAction(sendCoinsAction);
         toolbar->addAction(receiveCoinsAction);
         toolbar->addAction(historyAction);
+	toolbar->addAction(annAction);    
 /*	toolbar->addAction(privatesendAction); */
 	    
 	      
@@ -1053,6 +1066,11 @@ void BitcoinGUI::openExternalURL(QString url)
         QDesktopServices::openUrl(QUrl(url));
     }
 }
+
+void BitcoinGUI::gotoAnnView()
+{
+    annAction->setChecked(true);
+    if (walletFrame) walletFrame->gotoAnnView();
 
 void BitcoinGUI::gotoGovernancePage()
 {
