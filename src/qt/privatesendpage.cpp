@@ -4,7 +4,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "privatesendpage.h"
-#include "ui_privatepage.h"
+#include "ui_privatesendpage.h"
 
 
 #include "bitcoinunits.h"
