@@ -71,7 +71,6 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     currentWatchUnconfBalance(-1),
     currentWatchImmatureBalance(-1),
     pricingTimer(0),
-    labelCurrentPrice(0),
     networkManager(0),
     request(0),
     cachedNumISLocks(-1)
@@ -119,7 +118,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     timerinfo_peers->start(1000); 
 	    
     // Create the timer
-	labelCurrentMarket = new QLabel();			 
+		 
 	pricingTimer = new QTimer();
         connect(pricingTimer, SIGNAL(timeout()), this, SLOT(getPriceInfo()));
         pricingTimer->start(10000);
