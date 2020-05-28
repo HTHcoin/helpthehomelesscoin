@@ -29,6 +29,10 @@
 
 #include <QDebug>
 #include <QTimer>
+#include <QtNetwork/QNetworkAccessManager>	
+#include <QtNetwork/QNetworkReply>
+#include <QUrl>
+#include <QDesktopServices>
 
 class CBlockIndex;
 
