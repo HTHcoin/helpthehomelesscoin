@@ -23,7 +23,6 @@
 //#endif // ENABLE_WALLET
 #include "validation.h"
 #include "ui_newproposaldialog.h"
-#include "smessage.h"
 
 #include "masternodeconfig.h"
 #include "messagesigner.h"
@@ -69,7 +68,7 @@ NewProposalDialog::NewProposalDialog(const std::string idx, QWidget *parent) :
         if (!pGovObj) return; //only GOVERNANCE_OBJECT_PROPOSAL can be opened
         UniValue objJSON = pGovObj->GetJSONObject();
         std::string strName = objJSON["name"].get_str();
-        std::string strWindowTitle = "Aywa Core - Proposal "+strName;
+        std::string strWindowTitle = "HTH - Proposal "+strName;
         int nEnd_epoch = objJSON["end_epoch"].get_int();
         std::string strPayment_address = objJSON["payment_address"].get_str();
         int nPayment_amount = objJSON["payment_amount"].get_int();
