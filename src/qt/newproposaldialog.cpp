@@ -24,7 +24,7 @@
 #include "validation.h"
 #include "ui_newproposaldialog.h"
 
-#include "masternodeconfig.h"
+#include "masternode-utils.h"
 #include "messagesigner.h"
 
 
