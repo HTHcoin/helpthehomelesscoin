@@ -260,10 +260,10 @@ void OverviewPage::updateDisplayUnit()
 }
 
 
-void OverviewPage::updatePriceInfo;
+void OverviewPage::updatePriceInfo();
 {
 	
-   	int PriceInfo = clientModel->getPriceInfo;
+   	int PriceInfo = clientModel->getPriceInfo();
 	ui->labelCurrentPrice->setText(QString::number(PriceInfo));
 	
 }
