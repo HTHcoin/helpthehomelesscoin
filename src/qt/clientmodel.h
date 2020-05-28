@@ -19,6 +19,8 @@ class BanTableModel;
 class OptionsModel;
 class PeerTableModel;
 class TransactionTableModel;
+class QNetworkAccessManager;
+class QNetworkRequest;
 
 class CWallet;
 class CBlockIndex;
@@ -101,6 +103,8 @@ private:
     OptionsModel *optionsModel;
     PeerTableModel *peerTableModel;
     BanTableModel *banTableModel;
+    QNetworkAccessManager* networkManager;
+    QNetworkRequest* request;
 
     QTimer *pollTimer;
 
