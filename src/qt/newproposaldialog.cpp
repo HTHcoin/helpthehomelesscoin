@@ -8,7 +8,7 @@
 #include "utilstrencodings.h"
 #include "addressbookpage.h"
 #include "masternode-sync.h"
-#include "masternodeman.h"
+/* #include "masternodeman.h" */
 #include "activemasternode.h"
 #include "walletmodel.h"
 #include "bitcoingui.h"
