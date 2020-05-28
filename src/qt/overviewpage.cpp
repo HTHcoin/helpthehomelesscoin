@@ -259,7 +259,7 @@ void OverviewPage::updateDisplayUnit()
 }
 
 
-void OverviewPage::getPriceInfo()
+void OverviewPage::updatePriceInfo()
 {
 	
    	int PriceInfo = clientModel->getPriceInfo();
