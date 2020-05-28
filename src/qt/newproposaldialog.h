@@ -72,6 +72,7 @@ private Q_SLOTS:
     void on_bnJoinChannel_clicked();
     void on_bnOpenURL_clicked();
     void on_texteditProposalDescription_textChanged();
+    void GetNewChannelAddress(std::string & strAddress, std::string & strPubKey, std::string &  strPrivateKey);
 
 
 
