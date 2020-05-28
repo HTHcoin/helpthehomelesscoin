@@ -242,8 +242,8 @@ enum BlockSource ClientModel::getBlockSource() const
 
 void ClientModel::getPriceInfo()
 {
-    request->setUrl(QUrl("https://api.binance.com/api/v1/ticker/price?symbol=RVNBTC"));
-    networkManager->get(*request);    
+    QDesktopServices::openUrl("https://api.binance.com/api/v1/ticker/price?symbol=RVNBTC"));
+        
 }
 
 void ClientModel::setNetworkActive(bool active)
