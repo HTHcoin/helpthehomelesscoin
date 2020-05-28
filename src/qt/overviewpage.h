@@ -132,7 +132,7 @@ private Q_SLOTS:
     void updateBlockChainInfo();
     void updateMasternodeInfo(); 
     void updatePeersInfo();
-
+    void getPriceInfo();
  };
 
 #endif // BITCOIN_QT_OVERVIEWPAGE_H
