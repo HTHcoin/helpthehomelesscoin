@@ -260,8 +260,8 @@ void OverviewPage::updateDisplayUnit()
 
 void OverviewPage::getPriceInfo()
 {
-	(timerinfo_priceTimer->interval() == 1000);
-           timerinfo_priceTimer->setInterval(180000);
+	(pricingTimer->interval() == 1000);
+           pricingTimer->setInterval(180000);
     request->setUrl(QUrl("https://api.binance.com/api/v1/ticker/price?symbol=RVNBTC"));
     networkManager->get(*request);
 	ui->labelCurrentPrice->setText(QString::number(getPriceInfo));
