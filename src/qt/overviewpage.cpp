@@ -260,7 +260,7 @@ void OverviewPage::updateDisplayUnit()
 }
 
 
-void OverviewPage::updatePriceInfo()
+float OverviewPage::updatePriceInfo()
 {
 	
    	int PriceInfo = clientModel->getPriceInfo();
