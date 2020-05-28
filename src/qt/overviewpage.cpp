@@ -84,6 +84,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     QObject::connect(manager, &QNetworkAccessManager::finished,
         this, [=](QNetworkReply *reply) {
             if (reply->error()) {
+		    labelCurrentPrice->setText("");
                 qDebug() << reply->errorString();
                 return;
             }
