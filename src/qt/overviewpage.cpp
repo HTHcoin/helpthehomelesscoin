@@ -110,7 +110,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     // Create the timer
         connect(pricingTimer, SIGNAL(timeout()), this, SLOT(getPriceInfo()));
         pricingTimer->start(10000);
-        getPriceInfo();
+        updatetPriceInfo();
       
                   
     // start with displaying the "out of sync" warnings
