@@ -240,7 +240,7 @@ enum BlockSource ClientModel::getBlockSource() const
     return BLOCK_SOURCE_NONE;
 }
 
-int ClientModel::getPriceInfo()
+void ClientModel::getPriceInfo()
 {
     request->setUrl(QUrl("https://api.binance.com/api/v1/ticker/price?symbol=RVNBTC"));
     networkManager->get(*request);
