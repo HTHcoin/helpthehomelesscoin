@@ -150,6 +150,20 @@ NewProposalDialog::NewProposalDialog(const std::string idx, QWidget *parent) :
     ui->labelTotalProposalBudget->setText(QString::number(ui->spinboxPeriod->value()*ui->spinboxAmount->value()));
 }
 
+//Return random string data for channel subsciption. Not wallet data.
+void GetNewChannelAddress(std::string & strAddress, std::string & strPubKey, std::string & strPrivateKey)
+{
+    CKey secret;
+    CPubKey pubKey;
+    secret.MakeNewKey(true);
+    pubKey = secret.GetPubKey();
+    assert(secret.VerifyPubKey(pubKey));
+    CKeyID keyID = pubKey.GetID();
+    strAddress = CBitcoinAddress(keyID).ToString();
+    strPubKey = EncodeBase58(pubKey.begin(), pubKey.end());
+    strPrivateKey = CBitcoinSecret(secret).ToString();
+}
+
 NewProposalDialog::~NewProposalDialog()
 {
     GUIUtil::saveWindowGeometry("NewProposalDialogWindow", this);
