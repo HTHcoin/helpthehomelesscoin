@@ -88,7 +88,6 @@ private:
     QTimer* timerinfo_blockchain;
     QTimer* timerinfo_peers;
     QTimer *pricingTimer;
-    QLabel *labelCurrentPrice;
     QNetworkAccessManager* networkManager;
     QNetworkRequest* request;
     Ui::OverviewPage *ui;
