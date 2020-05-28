@@ -70,7 +70,6 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     currentWatchOnlyBalance(-1),
     currentWatchUnconfBalance(-1),
     currentWatchImmatureBalance(-1),
-    labelCurrentPrice(0),
     pricingTimer(0),
     networkManager(0),
     request(0),
@@ -80,7 +79,6 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
                
     ui->setupUi(this);
     QString theme = GUIUtil::getThemeName();
-    labelCurrentPrice = new QLabel();
     pricingTimer = new QTimer();	    
 
      
