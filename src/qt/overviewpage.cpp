@@ -80,20 +80,14 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     ui->setupUi(this);
     QString theme = GUIUtil::getThemeName();
 	    
-	     request = new QNetworkRequest();
-    QObject::connect(request, &QNetworkRequest::finished,
-        this, [=](QNetworkReply *reply) {
-            if (reply->error()) {
-		    labelCurrentPrice->setText("");
-                qDebug() << reply->errorString();
-                return;
-            }
-
-            QString answer = reply->readAll();
-
-            qDebug() << answer;
-        }
-    );
+	     QObject::connect(networkManager, &QNetworkAccessManager::finished,
+                         this, [=](QNetworkReply *reply) {
+                    if (reply->error()) {
+                        labelCurrentPrice->setText("");
+                        qDebug() << reply->errorString();
+                        return;
+                    }
+				 );
     	    
 
      
