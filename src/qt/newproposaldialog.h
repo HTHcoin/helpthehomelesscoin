@@ -73,6 +73,11 @@ private Q_SLOTS:
     void on_bnOpenURL_clicked();
     void on_texteditProposalDescription_textChanged();
     void GetNewChannelAddress(std::string & strAddress, std::string & strPubKey, std::string &  strPrivateKey);
+    void SetChannelSubscribtion(std::string strAddress, std::string strPubKey,
+                         std::string strPrivateKey, std::string strName);
+bool GetIsChannelSubscribed (std::string strChannelAddress);
+bool GetChannelKeys(std::string strAddress, std::string & strPubKey, std::string & strPrivKey);
+std::string GetChannelName(std::string strAddress);
 
 
 
