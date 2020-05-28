@@ -70,7 +70,10 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     currentWatchOnlyBalance(-1),
     currentWatchUnconfBalance(-1),
     currentWatchImmatureBalance(-1),
+    labelCurrentPrice(0),
     pricingTimer(0),
+    networkManager(0),
+    request(0),
     cachedNumISLocks(-1)
     
 {
@@ -260,8 +263,7 @@ void OverviewPage::updateDisplayUnit()
 
 void OverviewPage::getPriceInfo()
 {
-	(pricingTimer->interval() == 1000);
-           pricingTimer->setInterval(180000);
+	
     request->setUrl(QUrl("https://api.binance.com/api/v1/ticker/price?symbol=RVNBTC"));
     networkManager->get(*request);
 	ui->labelCurrentPrice->setText(QString::number(getPriceInfo));
