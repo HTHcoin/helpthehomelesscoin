@@ -164,6 +164,81 @@ void GetNewChannelAddress(std::string & strAddress, std::string & strPubKey, std
     strPrivateKey = CBitcoinSecret(secret).ToString();
 }
 
+void SetChannelSubscribtion(std::string strAddress, std::string strPubKey,
+                         std::string strPrivateKey, std::string strName = std::string(""))
+{
+
+    if (GetIsChannelSubscribed (strAddress))
+        return;
+
+    smsgChannels.push_back(SecMsgChannel(std::string(strAddress), std::string(strPubKey),
+                                         std::string(strPrivateKey), true, true,
+                                         strName));//TODO:add name
+
+    if (!SecureMsgWriteIni())
+        return;
+
+//    static boost::thread_group* scanBucketsThreads = NULL;
+
+//    if (scanBucketsThreads != NULL)
+//    {
+//        scanBucketsThreads->interrupt_all();
+//        delete scanBucketsThreads;
+//        scanBucketsThreads = NULL;
+//    }
+
+//    scanBucketsThreads = new boost::thread_group();
+//    int nThreads = 1;
+//    for (int i = 0; i < nThreads; i++)
+//        scanBucketsThreads->create_thread(boost::bind(&SecureMsgScanBuckets));
+
+//    SecureMsgScanBuckets();
+
+}
+
+bool GetIsChannelSubscribed (std::string strChannelAddress)
+{
+    BOOST_FOREACH(SecMsgChannel curChannel, smsgChannels) {
+        if (curChannel.sAddress==strChannelAddress)
+            return true;
+    };
+    return false;
+}
+
+bool GetChannelKeys(std::string strAddress, std::string & strPubKey, std::string & strPrivKey)
+{
+    //std::string strPrivKev;
+    //TODO:
+    BOOST_FOREACH(SecMsgChannel curChannel, smsgChannels) {
+        if (curChannel.sAddress==strAddress) {
+            strPubKey = curChannel.sPubKey;
+            strPrivKey = curChannel.sPrivKey;
+            break;
+        }
+    };
+    CBitcoinSecret vchSecret;
+    if (!vchSecret.SetString(strPrivKey))
+    {
+        error("%s: Could not get private key for addressFrom.", __func__);
+        return false; }
+    CKey keyFrom = vchSecret.GetKey();
+    if (!keyFrom.IsValid()){
+        error("%s: Could not get private key for addressFrom.", __func__);
+        return false;
+    }
+    return true;
+}
+
+std::string GetChannelName(std::string strAddress)
+{
+    BOOST_FOREACH(SecMsgChannel curChannel, smsgChannels) {
+        if (curChannel.sAddress==strAddress) {
+            return (curChannel.sName);
+         }
+    };
+    return std::string("");
+}
+
 NewProposalDialog::~NewProposalDialog()
 {
     GUIUtil::saveWindowGeometry("NewProposalDialogWindow", this);
