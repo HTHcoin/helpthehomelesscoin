@@ -79,7 +79,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
                
     ui->setupUi(this);
     QString theme = GUIUtil::getThemeName();
-    pricingTimer = new QTimer();	    
+    	    
 
      
     ui->pushButton_Website->setStatusTip(tr("Visit Help The Homeless Worldwide A NJ Nonprofit Corporation"));
@@ -108,9 +108,10 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     timerinfo_peers->start(1000); 
 	    
     // Create the timer
+	pricingTimer = new QTimer();
         connect(pricingTimer, SIGNAL(timeout()), this, SLOT(getPriceInfo()));
         pricingTimer->start(10000);
-        updatetPriceInfo();
+        
       
                   
     // start with displaying the "out of sync" warnings
