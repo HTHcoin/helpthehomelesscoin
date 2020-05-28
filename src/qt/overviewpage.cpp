@@ -275,7 +275,7 @@ void OverviewPage::updateDisplayUnit()
                         }
                     }
                 }
-        );
+        )
 
 
 void OverviewPage::getPriceInfo()
