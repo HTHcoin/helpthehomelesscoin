@@ -262,9 +262,7 @@ void OverviewPage::updateDisplayUnit()
 void OverviewPage::getPriceInfo()
 {
 	
-    request->setUrl(QUrl("https://api.binance.com/api/v1/ticker/price?symbol=RVNBTC"));
-    networkManager->get(*request);
-	int PriceInfo = clientModel->getPriceInfo();
+   	int PriceInfo = clientModel->getPriceInfo();
 	ui->labelCurrentPrice->setText(QString::number(PriceInfo));
 	
 }
