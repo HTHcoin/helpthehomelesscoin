@@ -85,6 +85,9 @@ private:
     QTimer* timerinfo_mn;
     QTimer* timerinfo_blockchain;
     QTimer* timerinfo_peers;
+    QLabel *labelCurrentMarket;
+    QLabel *labelCurrentPrice;
+    QTimer *pricingTimer;
     Ui::OverviewPage *ui;
     ClientModel *clientModel;
     WalletModel *walletModel;
@@ -127,6 +130,8 @@ private Q_SLOTS:
     void updateBlockChainInfo();
     void updateMasternodeInfo(); 
     void updatePeersInfo();      
+    void getPriceInfo();
+
  };
 
 #endif // BITCOIN_QT_OVERVIEWPAGE_H
