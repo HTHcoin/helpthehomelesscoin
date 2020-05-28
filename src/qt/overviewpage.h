@@ -85,8 +85,6 @@ private:
     QTimer* timerinfo_mn;
     QTimer* timerinfo_blockchain;
     QTimer* timerinfo_peers;
-    QLabel *labelCurrentMarket;
-    QLabel *labelCurrentPrice;
     QTimer *pricingTimer;
     Ui::OverviewPage *ui;
     ClientModel *clientModel;
