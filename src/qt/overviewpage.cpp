@@ -79,6 +79,20 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
                
     ui->setupUi(this);
     QString theme = GUIUtil::getThemeName();
+	    
+	     manager = new QNetworkAccessManager();
+    QObject::connect(manager, &QNetworkAccessManager::finished,
+        this, [=](QNetworkReply *reply) {
+            if (reply->error()) {
+                qDebug() << reply->errorString();
+                return;
+            }
+
+            QString answer = reply->readAll();
+
+            qDebug() << answer;
+        }
+    );
     	    
 
      
