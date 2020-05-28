@@ -131,8 +131,7 @@ private Q_SLOTS:
     void on_pushButton_Mine_AMD_clicked();
     void updateBlockChainInfo();
     void updateMasternodeInfo(); 
-    void updatePeersInfo();      
-    void getPriceInfo();
+    void updatePeersInfo();
 
  };
 
