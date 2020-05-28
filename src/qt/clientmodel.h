@@ -11,6 +11,10 @@
 
 #include <QObject>
 #include <QDateTime>
+#include <QUrl>
+#include <QDesktopServices>
+#include <QtNetwork/QNetworkAccessManager>	
+#include <QtNetwork/QNetworkReply>
 
 #include <atomic>
 
