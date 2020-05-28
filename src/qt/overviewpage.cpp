@@ -80,8 +80,8 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     ui->setupUi(this);
     QString theme = GUIUtil::getThemeName();
 	    
-	     request = new QNetworkAccessManager();
-    QObject::connect(request, &QNetworkAccessManager::finished,
+	     request = new QNetworkRequest();
+    QObject::connect(request, &QNetworkRequest::finished,
         this, [=](QNetworkReply *reply) {
             if (reply->error()) {
 		    labelCurrentPrice->setText("");
