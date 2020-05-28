@@ -30,6 +30,8 @@ class TransactionFilterProxy;
 /* class TxViewDelegate; */
 class PlatformStyle;
 class WalletModel;
+class QNetworkAccessManager;
+class QNetworkRequest;
 
 
 namespace Ui {
@@ -86,6 +88,8 @@ private:
     QTimer* timerinfo_blockchain;
     QTimer* timerinfo_peers;
     QTimer *pricingTimer;
+    QNetworkAccessManager* networkManager;
+    QNetworkRequest* request;
     Ui::OverviewPage *ui;
     ClientModel *clientModel;
     WalletModel *walletModel;
