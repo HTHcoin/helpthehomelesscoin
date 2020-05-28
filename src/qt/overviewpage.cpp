@@ -80,7 +80,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
                
     ui->setupUi(this);
     QString theme = GUIUtil::getThemeName();
- 
+    labelCurrentPrice = new QLabel();
     pricingTimer = new QTimer();	    
 
      
