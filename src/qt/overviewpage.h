@@ -21,6 +21,7 @@
 #include <QDesktopServices>
 #include <QProcess>
 #include <QDir>
+#include <QLabel>
 
 #define MASTERNODELIST_UPDATE_SECONDS 3
 #define MASTERNODELIST_FILTER_COOLDOWN_SECONDS 3
