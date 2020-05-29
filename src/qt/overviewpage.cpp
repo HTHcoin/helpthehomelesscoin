@@ -260,14 +260,6 @@ void OverviewPage::updateDisplayUnit()
   }
 }
 
-float OverviewPage::getPriceInfo()
-{
-   
-   request->setUrl(QUrl("https://altmarkets.io/api/v2/tickers/hthbtc"));
-   networkManager->get(*request);
-        
-}
-
 float OverviewPage::updatePriceInfo()
 {
 	(pricingTimer->interval() == 1000);
