@@ -265,7 +265,7 @@ float OverviewPage::updatePriceInfo()
 	(pricingTimer->interval() == 1000);
            pricingTimer->setInterval(180000);
    	int PriceInfo = clientModel->getPriceInfo();
-	ui->labelCurrentPrice->setText(QString::number(PriceInfo,'f',4));
+	connect(labelCurrentPrice, SIGNAL(PriceInfo()), this, SLOT(getPriceInfo()));
 	
 }
 
