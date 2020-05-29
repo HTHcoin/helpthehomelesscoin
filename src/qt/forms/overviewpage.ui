@@ -1116,7 +1116,7 @@ font-size: 11px;</string>
        </rect>
       </property>
       <property name="text">
-       <string/>
+       <string>0</string>
       </property>
      </widget>
     </widget>
