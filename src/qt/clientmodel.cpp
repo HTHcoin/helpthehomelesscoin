@@ -240,14 +240,6 @@ enum BlockSource ClientModel::getBlockSource() const
     return BLOCK_SOURCE_NONE;
 }
 
-float ClientModel::getPriceInfo()
-{
-   
-   request->setUrl(QUrl("https://altmarkets.io/api/v2/tickers/hthbtc"));
-   networkManager->get(*request);
-        
-}
-
 void ClientModel::setNetworkActive(bool active)
 {
     if (g_connman) {
