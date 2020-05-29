@@ -95,7 +95,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
                         return;
 }
     	    
-
+    }
      
     ui->pushButton_Website->setStatusTip(tr("Visit Help The Homeless Worldwide A NJ Nonprofit Corporation"));
     ui->pushButton_Website_1->setStatusTip(tr("Visit Help The Homeless Coin"));
