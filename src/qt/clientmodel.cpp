@@ -196,14 +196,6 @@ void ClientModel::updateTimer()
     Q_EMIT bytesChanged(getTotalBytesRecv(), getTotalBytesSent());
 }
 
-float ClientModel::getPriceInfo()
-{
-   
-   request->setUrl(QUrl("https://altmarkets.io/api/v2/tickers/hthbtc"));
-   networkManager->get(*request);
-        
-}
-
 void ClientModel::updateNumConnections(int numConnections)
 {
     Q_EMIT numConnectionsChanged(numConnections);
