@@ -263,9 +263,8 @@ void OverviewPage::updateDisplayUnit()
 
 float OverviewPage::updatePriceInfo()
 {
-	if (!clientModel) {
-        return;
-    }
+	(pricingTimer->interval() == 1000);
+           pricingTimer->setInterval(180000);
    	int PriceInfo = clientModel->getPriceInfo();
 	ui->labelCurrentPrice->setText(QString::number(PriceInfo,'f',4));
 	
