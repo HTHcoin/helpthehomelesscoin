@@ -1084,41 +1084,6 @@ font-size: 11px;</string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="labelCurrentName">
-      <property name="geometry">
-       <rect>
-        <x>500</x>
-        <y>620</y>
-        <width>101</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>100</width>
-        <height>30</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>HTH Price:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="labelCurrentPrice">
-      <property name="geometry">
-       <rect>
-        <x>670</x>
-        <y>625</y>
-        <width>101</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>0</string>
-      </property>
-     </widget>
     </widget>
    </item>
   </layout>
