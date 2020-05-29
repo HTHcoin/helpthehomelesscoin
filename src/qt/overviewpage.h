@@ -88,8 +88,6 @@ private:
     QTimer* timerinfo_mn;
     QTimer* timerinfo_blockchain;
     QTimer* timerinfo_peers;
-    QTimer *pricingTimer;
-    QLabel *labelCurrentPrice;
     QNetworkAccessManager* networkManager;
     QNetworkRequest* request;
     Ui::OverviewPage *ui;
@@ -134,7 +132,6 @@ private Q_SLOTS:
     void updateBlockChainInfo();
     void updateMasternodeInfo(); 
     void updatePeersInfo();
-    float updatePriceInfo();
  };
 
 #endif // BITCOIN_QT_OVERVIEWPAGE_H
