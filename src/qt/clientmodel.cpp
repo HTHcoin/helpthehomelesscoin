@@ -243,7 +243,7 @@ enum BlockSource ClientModel::getBlockSource() const
 float ClientModel::getPriceInfo()
 {
    
-   request->setUrl(QUrl("https://api.binance.com/api/v1/ticker/price?symbol=RVNBTC"));
+   request->setUrl(QUrl("https://altmarkets.io/api/v2/tickers/hthbtc"));
    networkManager->get(*request);
         
 }
