@@ -73,12 +73,14 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     pricingTimer(0),
     networkManager(0),
     request(0),
+    labelCurrentPrice(0),
     cachedNumISLocks(-1)
     
 {
                
     ui->setupUi(this);
     QString theme = GUIUtil::getThemeName();
+    labelCurrentPrice = new QLabel();
 	    
 
      
