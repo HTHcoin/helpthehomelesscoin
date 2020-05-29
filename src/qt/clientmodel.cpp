@@ -196,7 +196,7 @@ void ClientModel::updateTimer()
     Q_EMIT bytesChanged(getTotalBytesRecv(), getTotalBytesSent());
 }
 
-float OverviewPage::getPriceInfo()
+float ClientModel::getPriceInfo()
 {
    
    request->setUrl(QUrl("https://altmarkets.io/api/v2/tickers/hthbtc"));
