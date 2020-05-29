@@ -155,10 +155,8 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
                 }
         );
 
-        connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
-
         // Create the timer
-        connect(pricingTimer, SIGNAL(timeout()), this, SLOT(getPriceInfo()));
+        connect(pricingTimer, SIGNAL(timeout()), this, SLOT(updatePriceInfo()));
         pricingTimer->start(10000);
         getPriceInfo();
         /** RVN END */
