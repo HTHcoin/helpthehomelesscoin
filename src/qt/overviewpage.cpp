@@ -158,7 +158,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
         // Create the timer
         connect(pricingTimer, SIGNAL(timeout()), this, SLOT(updatePriceInfo()));
         pricingTimer->start(10000);
-        getPriceInfo();
+        updatePriceInfo();
         /** RVN END */
         
       
