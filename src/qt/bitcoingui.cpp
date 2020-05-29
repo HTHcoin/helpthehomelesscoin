@@ -600,6 +600,10 @@ void BitcoinGUI::createActions()
     // HTHW Donate
     externalDonate = new QAction(QIcon(":/icons/" + theme + "/about"), tr("Donate To HTHW"), this);
     externalDonate->setStatusTip(tr("Donate to Help The Homeless Worldwide"));	
+	
+    // HTH Create Proposal	
+    createProposal = new QAction(QIcon(":/icons/" + theme + "/about"), tr("Create Proposals"), this);
+    createProposal->setStatusTip(tr("Create a HTH Proposal"));
 
 	
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
@@ -613,6 +617,10 @@ void BitcoinGUI::createActions()
 	
      // HTHW Donate
     connect(externalDonate, SIGNAL(triggered()), this, SLOT(openDonate()));	
+	
+    // HTH Create Proposal
+	
+    connect(createProposal, SIGNAL(clicked()), this, SLOT(createProposal()));
 	
     // Jump directly to tabs in RPC-console
     connect(openInfoAction, SIGNAL(triggered()), this, SLOT(showInfo()));
@@ -713,6 +721,9 @@ void BitcoinGUI::createMenuBar()
 	
     QMenu* donate = appMenuBar->addMenu(tr("&Donate"));
     donate->addAction(externalDonate);
+	
+    QMenu* proposals = appMenuBar->addMenu(tr("&Create Proposals"));
+    proposals->addAction(createProposal);	
 	
 }
 
@@ -1035,6 +1046,15 @@ void BitcoinGUI::openClicked()
     if(dlg.exec())
     {
         Q_EMIT receivedURI(dlg.getURI());
+    }
+}
+
+void BitcoinGUI::createProposal()
+{
+    ProposalDialog dlg(ProposalDialog::PrepareProposal, this);
+    if (QDialog::Accepted == dlg.exec())
+    {
+        refreshProposals(true);
     }
 }
 
