@@ -80,22 +80,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     ui->setupUi(this);
     QString theme = GUIUtil::getThemeName();
 	    
-	     
-    int main(int argc, char *argv[])
-{
-    QCoreApplication a(argc, argv);
 
-    QNetworkAccessManager *manager = new QNetworkAccessManager;
-    QEventLoop loop;
-    QObject::connect(manager, &QNetworkAccessManager::finished, &loop, &QEventLoop::quit);
-    QNetworkReply *reply = manager->get(QNetworkRequest(QUrl("https://api.binance.com/api/v1/ticker/price?symbol=RVNBTC")));
-   if (reply->error()) {
-                        labelCurrentPrice->setText("");
-                        qDebug() << reply->errorString();
-                        return;
-}
-    	    
-    }
      
     ui->pushButton_Website->setStatusTip(tr("Visit Help The Homeless Worldwide A NJ Nonprofit Corporation"));
     ui->pushButton_Website_1->setStatusTip(tr("Visit Help The Homeless Coin"));
