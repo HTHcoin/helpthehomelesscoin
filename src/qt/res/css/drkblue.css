@@ -2089,17 +2089,6 @@ QWidget .QFrame#frameBlockchainInfo_2 .QLabel#label_6 {
         font-size:15px;
      }
 
-QWidget .QFrame# .QLabel#labelCurrentName { 
-        background-color:transparent;
-        color:#34bcaa;
-        font-size:15px;
-     }
-
-QWidget .QFrame# .QLabel#labelCurrentPrice { 
-        background-color:transparent;
-        color:#34bcaa;
-        font-size:15px;
-     }
 
 
 /* MODAL OVERLAY */
