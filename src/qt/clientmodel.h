@@ -144,6 +144,7 @@ public Q_SLOTS:
     void updateNetworkActive(bool networkActive);
     void updateAlert(const QString &hash, int status);
     void updateBanlist();
+    float getPriceInfo();
 };
 
 #endif // BITCOIN_QT_CLIENTMODEL_H
