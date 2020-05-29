@@ -265,8 +265,7 @@ float OverviewPage::updatePriceInfo()
 {
 	
    	int PriceInfo = clientModel->getPriceInfo();
-	ui->labelCurrentPrice->setText(QString(PriceInfo).arg(QString(PriceInfo)));
-	connect(ui->labelCurrentPrice, SIGNAL(PriceInfo()), this, SLOT(labelCurrentPrice()));
+	ui->labelCurrentPrice->setText(QString::number(PriceInfo,'f',4));
 	
 }
 
