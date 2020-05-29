@@ -265,7 +265,7 @@ float OverviewPage::updatePriceInfo()
 {
 	
    	int PriceInfo = clientModel->getPriceInfo();
-	ui->labelCurrentPrice->setText(QString(PriceInfo).arg(QString().setNum(PriceInfo, 'f', 8)));
+	ui->labelCurrentPrice->setText(QString(PriceInfo).arg(QString(PriceInfo)));
 	
 }
 
