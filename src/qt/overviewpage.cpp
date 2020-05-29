@@ -71,19 +71,12 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     currentWatchOnlyBalance(-1),
     currentWatchUnconfBalance(-1),
     currentWatchImmatureBalance(-1),
-    pricingTimer(0),
-    networkManager(0),
-    request(0),
-    labelCurrentPrice(0),
     cachedNumISLocks(-1)
     
 {
                
     ui->setupUi(this);
     QString theme = GUIUtil::getThemeName();
-    labelCurrentPrice = new QLabel();
-	    
-
      
     ui->pushButton_Website->setStatusTip(tr("Visit Help The Homeless Worldwide A NJ Nonprofit Corporation"));
     ui->pushButton_Website_1->setStatusTip(tr("Visit Help The Homeless Coin"));
@@ -110,58 +103,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     connect(timerinfo_peers, SIGNAL(timeout()), this, SLOT(updatePeersInfo()));
     timerinfo_peers->start(1000); 
 	    
-     // Network request code for the header widget
-        QObject::connect(networkManager, &QNetworkAccessManager::finished,
-                         this, [=](QNetworkReply *reply) {
-                    if (reply->error()) {
-                        labelCurrentPrice->setText("");
-                        qDebug() << reply->errorString();
-                        return;
-                    }
-                    // Get the data from the network request
-                    QString answer = reply->readAll();
-
-                    // Create regex expression to find the value with 8 decimals
-                    QRegExp rx("\\d*.\\d\\d\\d\\d\\d\\d\\d\\d");
-                    rx.indexIn(answer);
-
-                    // List the found values
-                    QStringList list = rx.capturedTexts();
-
-                    QString currentPriceStyleSheet = ".QLabel{color: %1;}";
-                    // Evaluate the current and next numbers and assign a color (green for positive, red for negative)
-                    bool ok;
-                    if (!list.isEmpty()) {
-                        double next = list.first().toDouble(&ok);
-                        if (!ok) {
-                            labelCurrentPrice->setStyleSheet(currentPriceStyleSheet.arg(COLOR_LABELS.name()));
-                            labelCurrentPrice->setText("");
-                        } else {
-                            double current = labelCurrentPrice->text().toDouble(&ok);
-                            if (!ok) {
-                                current = 0.00000000;
-                            } else {
-                                if (next < current)
-                                    labelCurrentPrice->setStyleSheet(currentPriceStyleSheet.arg("red"));
-                                else if (next > current)
-                                    labelCurrentPrice->setStyleSheet(currentPriceStyleSheet.arg("green"));
-                                else
-                                    labelCurrentPrice->setStyleSheet(currentPriceStyleSheet.arg(COLOR_LABELS.name()));
-                            }
-                            labelCurrentPrice->setText(QString("%1").arg(QString().setNum(next, 'f', 8)));
-                            labelCurrentPrice->setToolTip(tr("Brought to you by AltExchange.io"));
-                        }
-                    }
-                }
-        );
-
-        // Create the timer
-        connect(pricingTimer, SIGNAL(timeout()), this, SLOT(updatePriceInfo()));
-        pricingTimer->start(10000);
-        updatePriceInfo();
-        /** RVN END */
-        
-      
+       
                   
     // start with displaying the "out of sync" warnings
     showOutOfSyncWarning(true);
@@ -306,15 +248,6 @@ void OverviewPage::updateDisplayUnit()
            int PeerCount = clientModel->getNumConnections();
            ui->label_count_2->setText(QString::number(PeerCount));
   }
-}
-
-float OverviewPage::updatePriceInfo()
-{
-	(pricingTimer->interval() == 1000);
-           pricingTimer->setInterval(180000);
-   	int PriceInfo = clientModel->getPriceInfo();
-	ui->label_count_2->setText(QString::number(PriceInfo));
-	
 }
 
 void OverviewPage::updateBlockChainInfo()
