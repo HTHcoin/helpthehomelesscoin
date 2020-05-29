@@ -263,7 +263,9 @@ void OverviewPage::updateDisplayUnit()
 
 float OverviewPage::updatePriceInfo()
 {
-	
+	if (!clientModel) {
+        return;
+    }
    	int PriceInfo = clientModel->getPriceInfo();
 	ui->labelCurrentPrice->setText(QString::number(PriceInfo,'f',4));
 	
