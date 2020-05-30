@@ -49,25 +49,7 @@ GovernanceList::GovernanceList(const PlatformStyle *platformStyle, QWidget *pare
     timer->start(1000);
     fFilterUpdated = false;
     nTimeFilterUpdated = GetTime();
-	    
-    nLastUpdate = GetTime();
-
-    timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(refreshProposals()));
-    timer->start(1000);	    
-	
-
-    QVBoxLayout *vlayout = new QVBoxLayout(this);
-    vlayout->setSpacing(0);
-    vlayout->addLayout(actionBar);	    
-    	    
-    QHBoxLayout *actionBar = new QHBoxLayout();	
-    actionBar->setSpacing(11);
-    actionBar->setContentsMargins(0,20,0,4);
-	    
-    secondsLabel = new QLabel();
-    actionBar->addWidget(secondsLabel);
-    actionBar->addStretch();	    
+	    	    
 }
 
 void GovernanceList::on_voteYesButton_clicked()
@@ -322,89 +304,6 @@ for (const auto& pGovObj : governance.GetAllNewerThan(nStartTime)) {
 void GovernanceList::setClientModel(ClientModel *model)
 {
     this->clientModel = model;
-}
-
-void GovernanceList::createProposal()
-{
-    ProposalDialog dlg(ProposalDialog::PrepareProposal, this);
-    if (QDialog::Accepted == dlg.exec())
-    {
-        refreshProposals(true);
-    }
-}
-
-void GovernanceList::refreshProposals()
-{
-    setClientModel();
-    proposalRecords.clear();
-
-    int mnCount = mnodeman.CountEnabled();
-    std::vector<CBudgetProposal*> bObj;
-
-    if (proposalType == 0)
-    {
-        bObj = budget.GetAllProposals();
-    }
-    else
-    {
-        bObj = budget.GetBudget();
-    }
-
-
-    for (CBudgetProposal* pbudgetProposal : bObj)
-    {
-        UniValue o(UniValue::VOBJ);
-        budgetToST(pbudgetProposal, o);
-
-        //UniValue objResult(UniValue::VOBJ);
-        //UniValue dataObj(UniValue::VOBJ);
-        //objResult.read(pbudgetProposal->GetDataAsPlainString()); // not need as time being
-
-        //std::vector<UniValue> arr1 = objResult.getValues();
-        //std::vector<UniValue> arr2 = arr1.at( 0 ).getValues();
-        //dataObj = arr2.at( 1 );
-
-		UniValue bObj(UniValue::VOBJ);
-		budgetToST(pbudgetProposal, bObj);
-
-        int votesNeeded = 0;
-        int voteGap = 0;
-
-        if(mnCount > 0) {
-            voteGap = ceil( (mnCount / 10) - (pbudgetProposal->GetYeas() - pbudgetProposal->GetNays()) );
-            votesNeeded = (voteGap < 0) ? 0 : voteGap;
-        };
-
-        proposalRecords.append(new ProposalRecord(
-                        QString::fromStdString(pbudgetProposal->GetHash().ToString()),
-                        pbudgetProposal->GetBlockStart(),
-                        pbudgetProposal->GetBlockEnd(),
-                        pbudgetProposal->GetTotalPaymentCount(),
-                        pbudgetProposal->GetRemainingPaymentCount(),
-                        QString::fromStdString(pbudgetProposal->GetURL()),
-                        QString::fromStdString(pbudgetProposal->GetName()),
-                        (long long)pbudgetProposal->GetYeas(),
-                        (long long)pbudgetProposal->GetNays(),
-                        (long long)pbudgetProposal->GetAbstains(),
-                        (long long)pbudgetProposal->GetAmount(),
-                        (long long)votesNeeded));
-    }
-    endResetModel();
-}
-
-
-void GovernanceList::refreshProposals(bool force) {
-    int64_t secondsRemaining = nLastUpdate - GetTime() + PROPOSALLIST_UPDATE_SECONDS;
-
-    QString secOrMinutes = (secondsRemaining / 60 > 1) ? tr("minute(s)") : tr("second(s)");
-    secondsLabel->setText(tr("List will be updated in %1 %2").arg((secondsRemaining > 60) ? QString::number(secondsRemaining / 60) : QString::number(secondsRemaining), secOrMinutes));
-
-    if(secondsRemaining > 0 && !force) return;
-    nLastUpdate = GetTime();
-
-    governanceList->refreshProposals();
-
-    secondsLabel->setText(tr("List will be updated in 0 second(s)"));
 }
 
 void GovernanceList::on_UpdateButton_clicked()
