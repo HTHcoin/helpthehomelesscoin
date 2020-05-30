@@ -303,7 +303,7 @@ void GovernanceList::setClientModel(ClientModel *model)
     this->clientModel = model;
 }
 
-void ProposalList::createProposal()
+void GovernanceList::createProposal()
 {
     ProposalDialog dlg(ProposalDialog::PrepareProposal, this);
     if (QDialog::Accepted == dlg.exec())
@@ -312,7 +312,7 @@ void ProposalList::createProposal()
     }
 }
 
-void ProposalList::refreshProposals(bool force) {
+void GovernanceList::refreshProposals(bool force) {
     int64_t secondsRemaining = nLastUpdate - GetTime() + PROPOSALLIST_UPDATE_SECONDS;
 
     QString secOrMinutes = (secondsRemaining / 60 > 1) ? tr("minute(s)") : tr("second(s)");
