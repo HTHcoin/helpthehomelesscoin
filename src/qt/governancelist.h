@@ -13,6 +13,7 @@
 
 #define GOBJECT_UPDATE_SECONDS                 15
 #define GOBJECT_COOLDOWN_SECONDS               3
+#define PROPOSALLIST_UPDATE_SECONDS 30
 
 namespace Ui {
     class GovernanceList;
@@ -45,6 +46,7 @@ private:
     QMenu *contextMenu;
     int64_t nTimeFilterUpdated;
     bool fFilterUpdated;
+    QLabel *secondsLabel;
 
 public Q_SLOTS:
     void updateGobjects();
