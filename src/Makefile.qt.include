@@ -166,6 +166,7 @@ BITCOIN_QT_H = \
   qt/peertablemodel.h \
   qt/platformstyle.h \
   qt/proposaldialog.h \
+  qt/proposalrecord.h \
   qt/qrdialog.h \
   qt/qvalidatedlineedit.h \
   qt/qvaluecombobox.h \
@@ -511,6 +512,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/overviewpage.cpp \
   qt/privatesendpage.cpp \
   qt/proposaldialog.cpp \
+  qt/proposalrecord.cpp \
   qt/paymentrequestplus.cpp \
   qt/paymentserver.cpp \
   qt/qrdialog.cpp \
