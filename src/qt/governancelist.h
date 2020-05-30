@@ -48,6 +48,7 @@ private:
     int64_t nTimeFilterUpdated;
     bool fFilterUpdated;
     QLabel *secondsLabel;
+    int64_t nLastUpdate = 0;
 
 public Q_SLOTS:
     void updateGobjects();
