@@ -313,6 +313,66 @@ void GovernanceList::createProposal()
     }
 }
 
+void GovernanceList::refreshProposals()
+{
+    beginResetModel();
+    proposalRecords.clear();
+
+    int mnCount = mnodeman.CountEnabled();
+    std::vector<CBudgetProposal*> bObj;
+
+    if (proposalType == 0)
+    {
+        bObj = budget.GetAllProposals();
+    }
+    else
+    {
+        bObj = budget.GetBudget();
+    }
+
+
+    for (CBudgetProposal* pbudgetProposal : bObj)
+    {
+        UniValue o(UniValue::VOBJ);
+        budgetToST(pbudgetProposal, o);
+
+        //UniValue objResult(UniValue::VOBJ);
+        //UniValue dataObj(UniValue::VOBJ);
+        //objResult.read(pbudgetProposal->GetDataAsPlainString()); // not need as time being
+
+        //std::vector<UniValue> arr1 = objResult.getValues();
+        //std::vector<UniValue> arr2 = arr1.at( 0 ).getValues();
+        //dataObj = arr2.at( 1 );
+
+		UniValue bObj(UniValue::VOBJ);
+		budgetToST(pbudgetProposal, bObj);
+
+        int votesNeeded = 0;
+        int voteGap = 0;
+
+        if(mnCount > 0) {
+            voteGap = ceil( (mnCount / 10) - (pbudgetProposal->GetYeas() - pbudgetProposal->GetNays()) );
+            votesNeeded = (voteGap < 0) ? 0 : voteGap;
+        };
+
+        proposalRecords.append(new ProposalRecord(
+                        QString::fromStdString(pbudgetProposal->GetHash().ToString()),
+                        pbudgetProposal->GetBlockStart(),
+                        pbudgetProposal->GetBlockEnd(),
+                        pbudgetProposal->GetTotalPaymentCount(),
+                        pbudgetProposal->GetRemainingPaymentCount(),
+                        QString::fromStdString(pbudgetProposal->GetURL()),
+                        QString::fromStdString(pbudgetProposal->GetName()),
+                        (long long)pbudgetProposal->GetYeas(),
+                        (long long)pbudgetProposal->GetNays(),
+                        (long long)pbudgetProposal->GetAbstains(),
+                        (long long)pbudgetProposal->GetAmount(),
+                        (long long)votesNeeded));
+    }
+    endResetModel();
+}
+
+
 void GovernanceList::refreshProposals(bool force) {
     int64_t secondsRemaining = nLastUpdate - GetTime() + PROPOSALLIST_UPDATE_SECONDS;
 
@@ -322,7 +382,7 @@ void GovernanceList::refreshProposals(bool force) {
     if(secondsRemaining > 0 && !force) return;
     nLastUpdate = GetTime();
 
-    proposalTableModel->refreshProposals();
+    governanceLi->refreshProposals();
 
     secondsLabel->setText(tr("List will be updated in 0 second(s)"));
 }
