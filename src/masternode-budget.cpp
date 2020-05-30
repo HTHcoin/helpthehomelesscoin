@@ -12,7 +12,6 @@
 #include "masternode-sync.h"
 #include "rpc/masternode.h"
 #include "masternode-utils.h"
-#include "obfuscation.h"
 #include "util.h"
 #include "utilmoneystr.h"
 #include <boost/filesystem.hpp>
