@@ -48,7 +48,6 @@ private:
 
 public Q_SLOTS:
     void updateGobjects();
-    void refreshProposals();
     void refreshProposals(bool force = false);
 
 
