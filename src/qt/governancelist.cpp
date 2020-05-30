@@ -1,6 +1,4 @@
 #include "governancelist.h"
-#include "proposaldialog.h"
-#include "proposalrecord.h"
 #include "ui_governancelist.h"
 #include <masternode-sync.h>
 #include <messagesigner.h>
