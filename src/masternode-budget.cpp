@@ -10,7 +10,7 @@
 #include "addrman.h"
 #include "masternode-budget.h"
 #include "masternode-sync.h"
-#include "rpc/masternode.h"
+#include "governance.h"
 #include "masternode-utils.h"
 #include "util.h"
 #include "utilmoneystr.h"
