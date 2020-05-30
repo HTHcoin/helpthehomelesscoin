@@ -303,6 +303,29 @@ void GovernanceList::setClientModel(ClientModel *model)
     this->clientModel = model;
 }
 
+void ProposalList::createProposal()
+{
+    ProposalDialog dlg(ProposalDialog::PrepareProposal, this);
+    if (QDialog::Accepted == dlg.exec())
+    {
+        refreshProposals(true);
+    }
+}
+
+void ProposalList::refreshProposals(bool force) {
+    int64_t secondsRemaining = nLastUpdate - GetTime() + PROPOSALLIST_UPDATE_SECONDS;
+
+    QString secOrMinutes = (secondsRemaining / 60 > 1) ? tr("minute(s)") : tr("second(s)");
+    secondsLabel->setText(tr("List will be updated in %1 %2").arg((secondsRemaining > 60) ? QString::number(secondsRemaining / 60) : QString::number(secondsRemaining), secOrMinutes));
+
+    if(secondsRemaining > 0 && !force) return;
+    nLastUpdate = GetTime();
+
+    proposalTableModel->refreshProposals();
+
+    secondsLabel->setText(tr("List will be updated in 0 second(s)"));
+}
+
 void GovernanceList::on_UpdateButton_clicked()
 {
     updateGobjects();
