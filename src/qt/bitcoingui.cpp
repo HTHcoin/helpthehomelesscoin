@@ -1049,15 +1049,6 @@ void BitcoinGUI::openClicked()
     }
 }
 
-void BitcoinGUI::createProposal()
-{
-    ProposalDialog dlg(ProposalDialog::PrepareProposal, this);
-    if (QDialog::Accepted == dlg.exec())
-    {
-        refreshProposals(true);
-    }
-}
-
 void BitcoinGUI::openDonate()
 {
     openExternalURL("https://helpthehomelessworldwide.org/donate");
