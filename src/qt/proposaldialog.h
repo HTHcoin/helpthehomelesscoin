@@ -6,7 +6,7 @@
 #ifndef BITCOIN_QT_CREATEPROPOSALDIALOG_H
 #define BITCOIN_QT_CREATEPROPOSALDIALOG_H
 
-#include <proposallist.h>
+#include <governancelist.h>
 #include <string>
 #include <univalue.h>
 #include <wallet.h>
