@@ -103,7 +103,6 @@ private:
 
     QMenuBar *appMenuBar;
     
-    QAction* createProposal;
     QAction* externalDonate;
     QAction *governanceAction;
   /*  QAction* privatesendAction; */
