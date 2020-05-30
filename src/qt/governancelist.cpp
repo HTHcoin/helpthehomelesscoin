@@ -315,7 +315,7 @@ void GovernanceList::createProposal()
 
 void GovernanceList::refreshProposals()
 {
-    beginResetModel();
+    setClientModel();
     proposalRecords.clear();
 
     int mnCount = mnodeman.CountEnabled();
