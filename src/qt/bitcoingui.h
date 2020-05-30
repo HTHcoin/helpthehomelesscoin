@@ -103,6 +103,7 @@ private:
 
     QMenuBar *appMenuBar;
     
+    QAction* createProposal;
     QAction* externalDonate;
     QAction *governanceAction;
   /*  QAction* privatesendAction; */
@@ -263,6 +264,7 @@ private Q_SLOTS:
     /** Open external URL */
     void openDonate();
     void openExternalURL(QString url = "");
+    void createProposal();
 
     /** Show debug window and set focus to the appropriate tab */
     void showInfo();
