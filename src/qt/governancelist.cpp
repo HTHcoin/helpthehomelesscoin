@@ -383,7 +383,7 @@ void GovernanceList::refreshProposals(bool force) {
     if(secondsRemaining > 0 && !force) return;
     nLastUpdate = GetTime();
 
-    governanceLi->refreshProposals();
+    governanceList->refreshProposals();
 
     secondsLabel->setText(tr("List will be updated in 0 second(s)"));
 }
