@@ -49,6 +49,11 @@ GovernanceList::GovernanceList(const PlatformStyle *platformStyle, QWidget *pare
     timer->start(1000);
     fFilterUpdated = false;
     nTimeFilterUpdated = GetTime();
+	
+	    
+    QHBoxLayout *actionBar = new QHBoxLayout();	
+    actionBar->setSpacing(11);
+    actionBar->setContentsMargins(0,20,0,4);
 	    
     secondsLabel = new QLabel();
     actionBar->addWidget(secondsLabel);
