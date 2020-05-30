@@ -10,6 +10,7 @@
 #include <QMenu>
 #include <QTimer>
 #include <QWidget>
+#include <QLabel>
 
 #define GOBJECT_UPDATE_SECONDS                 15
 #define GOBJECT_COOLDOWN_SECONDS               3
