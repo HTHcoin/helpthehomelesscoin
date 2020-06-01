@@ -958,6 +958,46 @@ namespace GUIUtil {
 		return QString::fromStdString(path.string(utf8));
 	}
 
+	QString TOQS(std::string s)
+{
+	QString str1 = QString::fromUtf8(s.c_str());
+	return str1;
+}
+
+	QString formatServicesStr(quint64 mask)
+	{
+		QStringList strList;
+
+		// Just scan the last 8 bits for now.
+		for (int i = 0; i < 8; i++) {
+			uint64_t check = 1 << i;
+			if (mask & check)
+			{
+				switch (check)
+				{
+				case NODE_NETWORK:
+					strList.append("NETWORK");
+					break;
+				case NODE_GETUTXO:
+					strList.append("GETUTXO");
+					break;
+				case NODE_BLOOM:
+					strList.append("BLOOM");
+					break;
+				case NODE_XTHIN:
+					strList.append("XTHIN");
+					break;
+				default:
+					strList.append(QString("%1[%2]").arg("UNKNOWN").arg(check));
+				}
+			}
+		}
+
+		if (strList.size())
+			return strList.join(" & ");
+		else
+		
+	
 	QString formatDurationStr(int secs)
 	{
 		QStringList strList;
