@@ -39,6 +39,18 @@ namespace GUIUtil
 	QString TOQS(std::string s);
 	std::string FROMQS(QString qs);
 	
+	// Render ODIN addresses in monospace font
+QFont bitcoinAddressFont();
+
+// Set up widgets for address and amounts
+
+void setupAliasWidget(QValidatedLineEdit* widget, QWidget* parent);
+void setupIPWidget(QValidatedLineEdit* widget, QWidget* parent);
+void setupPrivKeyWidget(QValidatedLineEdit* widget, QWidget* parent);
+void setupTXIDWidget(QValidatedLineEdit* widget, QWidget* parent);
+void setupTXIDIndexWidget(QValidatedLineEdit* widget, QWidget* parent);
+
+	
     // Create human-readable string from date
     QString dateTimeStr(const QDateTime &datetime);
     QString dateTimeStr(qint64 nTime);
