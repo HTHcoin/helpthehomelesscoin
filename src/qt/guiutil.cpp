@@ -89,6 +89,17 @@ namespace GUIUtil {
 	{
 		return dateTimeStr(QDateTime::fromTime_t((qint32)nTime));
 	}
+	
+	QFont bitcoinAddressFont()
+{
+    QFont font("Monospace");
+#if QT_VERSION >= 0x040800
+    font.setStyleHint(QFont::Monospace);
+#else
+    font.setStyleHint(QFont::TypeWriter);
+#endif
+    return font;
+}
 
 	QFont fixedPitchFont()
 	{
