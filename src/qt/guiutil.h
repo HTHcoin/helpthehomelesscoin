@@ -36,21 +36,6 @@ QT_END_NAMESPACE
  */
 namespace GUIUtil
 {
-	QString TOQS(std::string s);
-	std::string FROMQS(QString qs);
-	
-	// Render ODIN addresses in monospace font
-QFont bitcoinAddressFont();
-
-// Set up widgets for address and amounts
-
-void setupAliasWidget(QValidatedLineEdit* widget, QWidget* parent);
-void setupIPWidget(QValidatedLineEdit* widget, QWidget* parent);
-void setupPrivKeyWidget(QValidatedLineEdit* widget, QWidget* parent);
-void setupTXIDWidget(QValidatedLineEdit* widget, QWidget* parent);
-void setupTXIDIndexWidget(QValidatedLineEdit* widget, QWidget* parent);
-
-	
     // Create human-readable string from date
     QString dateTimeStr(const QDateTime &datetime);
     QString dateTimeStr(qint64 nTime);
@@ -80,50 +65,19 @@ void setupTXIDIndexWidget(QValidatedLineEdit* widget, QWidget* parent);
        @param[in] role    Data role to extract from the model
        @see  TransactionView::copyLabel, TransactionView::copyAmount, TransactionView::copyAddress
      */
-    void copyEntryData(QAbstractItemView* view, int column, int role = Qt::EditRole);
+    void copyEntryData(QAbstractItemView *view, int column, int role=Qt::EditRole);
 
-/** Return a field of the currently selected entry as a QString. Does nothing if nothing
+    /** Return a field of the currently selected entry as a QString. Does nothing if nothing
         is selected.
        @param[in] column  Data column to extract from the model
-       @param[in] role    Data role to extract from the model
        @see  TransactionView::copyLabel, TransactionView::copyAmount, TransactionView::copyAddress
      */
-QString getEntryData(QAbstractItemView *view, int column, int role);
-
-void setClipboard(const QString& str);
-
-/** Get save filename, mimics QFileDialog::getSaveFileName, except that it appends a default suffix
-        when no suffix is provided by the user.
-      @param[in] parent  Parent window (or 0)
-      @param[in] caption Window caption (or empty, for default)
-      @param[in] dir     Starting directory (or empty, to default to documents directory)
-      @param[in] filter  Filter specification such as "Comma Separated Files (*.csv)"
-      @param[out] selectedSuffixOut  Pointer to return the suffix (file type) that was selected (or 0).
-                  Can be useful when choosing the save file format based on suffix.
-     */
-QString getSaveFileName(QWidget* parent, const QString& caption, const QString& dir, const QString& filter, QString* selectedSuffixOut);
-
-/** Get open filename, convenience wrapper for QFileDialog::getOpenFileName.
-      @param[in] parent  Parent window (or 0)
-      @param[in] caption Window caption (or empty, for default)
-      @param[in] dir     Starting directory (or empty, to default to documents directory)
-      @param[in] filter  Filter specification such as "Comma Separated Files (*.csv)"
-      @param[out] selectedSuffixOut  Pointer to return the suffix (file type) that was selected (or 0).
-                  Can be useful when choosing the save file format based on suffix.
-     */
-QString getOpenFileName(QWidget* parent, const QString& caption, const QString& dir, const QString& filter, QString* selectedSuffixOut);
-
-/** Get connection type to call object slot in GUI thread with invokeMethod. The call will be blocking.
-       @returns If called from the GUI thread, return a Qt::DirectConnection.
-                If called from another thread, return a Qt::BlockingQueuedConnection.
-    */
     QList<QModelIndex> getEntryData(QAbstractItemView *view, int column);
 
     void setClipboard(const QString& str);
 
     /** Get save filename, mimics QFileDialog::getSaveFileName, except that it appends a default suffix
         when no suffix is provided by the user.
-
       @param[in] parent  Parent window (or 0)
       @param[in] caption Window caption (or empty, for default)
       @param[in] dir     Starting directory (or empty, to default to documents directory)
@@ -136,7 +90,6 @@ QString getOpenFileName(QWidget* parent, const QString& caption, const QString& 
         QString *selectedSuffixOut);
 
     /** Get open filename, convenience wrapper for QFileDialog::getOpenFileName.
-
       @param[in] parent  Parent window (or 0)
       @param[in] caption Window caption (or empty, for default)
       @param[in] dir     Starting directory (or empty, to default to documents directory)
@@ -149,7 +102,6 @@ QString getOpenFileName(QWidget* parent, const QString& caption, const QString& 
         QString *selectedSuffixOut);
 
     /** Get connection type to call object slot in GUI thread with invokeMethod. The call will be blocking.
-
        @returns If called from the GUI thread, return a Qt::DirectConnection.
                 If called from another thread, return a Qt::BlockingQueuedConnection.
     */
@@ -198,49 +150,34 @@ QString getOpenFileName(QWidget* parent, const QString& caption, const QString& 
      * This helper object takes care of this issue.
      *
      */
-   class TableViewLastColumnResizingFixer : public QObject
-{
-    Q_OBJECT
+    class TableViewLastColumnResizingFixer: public QObject
+    {
+        Q_OBJECT
 
-public:
-    TableViewLastColumnResizingFixer(QTableView* table, int lastColMinimumWidth, int allColsMinimumWidth);
-    void stretchColumnWidth(int column);
+        public:
+            TableViewLastColumnResizingFixer(QTableView* table, int lastColMinimumWidth, int allColsMinimumWidth, QObject *parent);
+            void stretchColumnWidth(int column);
 
-private:
-    QTableView* tableView;
-    int lastColumnMinimumWidth;
-    int allColumnsMinimumWidth;
-    int lastColumnIndex;
-    int columnCount;
-    int secondToLastColumnIndex;
+        private:
+            QTableView* tableView;
+            int lastColumnMinimumWidth;
+            int allColumnsMinimumWidth;
+            int lastColumnIndex;
+            int columnCount;
+            int secondToLastColumnIndex;
 
-    void adjustTableColumnsWidth();
-    int getAvailableWidthForColumn(int column);
-    int getColumnsWidth();
-    void connectViewHeadersSignals();
-    void disconnectViewHeadersSignals();
-    void setViewHeaderResizeMode(int logicalIndex, QHeaderView::ResizeMode resizeMode);
-    void resizeColumn(int nColumnIndex, int width);
+            void adjustTableColumnsWidth();
+            int getAvailableWidthForColumn(int column);
+            int getColumnsWidth();
+            void connectViewHeadersSignals();
+            void disconnectViewHeadersSignals();
+            void setViewHeaderResizeMode(int logicalIndex, QHeaderView::ResizeMode resizeMode);
+            void resizeColumn(int nColumnIndex, int width);
 
-private Q_SLOTS:
-    void on_sectionResized(int logicalIndex, int oldSize, int newSize);
-    void on_geometriesChanged();
-};
-
-/**
-     * Extension to QTableWidgetItem that facilitates proper ordering for "DHMS"
-     * strings (primarily used in the masternode's "active" listing).
-     */
-class DHMSTableWidgetItem : public QTableWidgetItem
-{
-public:
-    DHMSTableWidgetItem(const int64_t seconds);
-    virtual bool operator<(QTableWidgetItem const& item) const;
-
-private:
-    // Private backing value for DHMS string, used for sorting.
-    int64_t value;
-};
+        private Q_SLOTS:
+            void on_sectionResized(int logicalIndex, int oldSize, int newSize);
+            void on_geometriesChanged();
+    };
 
     bool GetStartOnSystemStartup();
     bool SetStartOnSystemStartup(bool fAutoStart);
@@ -264,7 +201,6 @@ private:
 
     /* Convert OS specific boost path to QString through UTF-8 */
     QString boostPathToQString(const boost::filesystem::path &path);
-	
 
     /* Convert seconds into a QString with days, hours, mins, secs */
     QString formatDurationStr(int secs);
