@@ -9,7 +9,7 @@
 #include <governancelist.h>
 #include <string>
 #include <univalue.h>
-#include <wallet.h>
+#include <wallet/wallet.h>
 
 #include <QAction>
 #include <QDialog>
