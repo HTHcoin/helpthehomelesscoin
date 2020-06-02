@@ -48,12 +48,12 @@ class IrcServer : public QTcpSocket
         QString motd;
         QString nick;
 
-	signals:
+	Q_SIGNALS:
 		void pseudoChanged(QString newPseudo);
 		void joinTab();
         void tabJoined();
 
-	public slots:
+	public Q_SLOTS:
         void readServeur();
 		void errorSocket(QAbstractSocket::SocketError);
         void connected();
