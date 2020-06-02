@@ -41,7 +41,7 @@ QT_FORMS_UI = \
   qt/forms/intro.ui \
   qt/forms/messagepage.ui \
   qt/forms/sendmessagesdialog.ui \
-  qt/forms/sendmessageentry.ui \
+  qt/forms/sendmessagesentry.ui \
   qt/forms/modaloverlay.ui \
   qt/forms/masternodelist.ui \
   qt/forms/qrdialog.ui \
