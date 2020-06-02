@@ -1037,23 +1037,6 @@ void BitcoinGUI::openClicked()
     }
 }
 
-void BitcoinGUI::setMessageModel(MessageModel *messageModel)
-{
-    this->messageModel = messageModel;
-    if(messageModel)
-    {
-        // Report errors from message thread
-        connect(messageModel, SIGNAL(error(QString,QString,bool)), this, SLOT(error(QString,QString,bool)));
-
-        // Put transaction list in tabs
-        messagePage->setModel(messageModel);
-
-        // Balloon pop-up for new message
-        connect(messageModel, SIGNAL(rowsInserted(QModelIndex,int,int)),
-                this, SLOT(incomingMessage(QModelIndex,int,int)));
-    }
-}
-
 void BitcoinGUI::openDonate()
 {
     openExternalURL("https://helpthehomelessworldwide.org/donate");
