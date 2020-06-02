@@ -112,7 +112,8 @@ QT_MOC_CPP = \
   qt/moc_utilitydialog.cpp \
   qt/moc_walletframe.cpp \
   qt/moc_walletmodel.cpp \
-  qt/moc_walletview.cpp
+  qt/moc_walletview.cpp \
+  qt/moc_qvalidatetextedit.cpp
 
 BITCOIN_MM = \
   qt/macdockiconhandler.mm \
@@ -200,7 +201,8 @@ BITCOIN_QT_H = \
   qt/walletmodeltransaction.h \
   qt/walletview.h \
   qt/winshutdownmonitor.h \
-  qt/plugins/mrichtexteditor/mrichtextedit.h
+  qt/plugins/mrichtexteditor/mrichtextedit.h \
+  qt/qvalidatetextedit.h
 
 RES_ICONS = \
   qt/res/icons/bitcoin.ico \
@@ -498,6 +500,7 @@ BITCOIN_QT_BASE_CPP = \
   qt/peertablemodel.cpp \
   qt/platformstyle.cpp \
   qt/qvalidatedlineedit.cpp \
+  qt/qvalidatetextedit.cpp \
   qt/qvaluecombobox.cpp \
   qt/rpcconsole.cpp \
   qt/splashscreen.cpp \
@@ -543,7 +546,8 @@ BITCOIN_QT_WALLET_CPP = \
   qt/walletmodel.cpp \
   qt/walletmodeltransaction.cpp \
   qt/walletview.cpp \
-  qt/plugins/mrichtexteditor/mrichtextedit.cpp
+  qt/plugins/mrichtexteditor/mrichtextedit.cpp \
+  qt/qvalidatetextedit
 
 BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
 if TARGET_WINDOWS
