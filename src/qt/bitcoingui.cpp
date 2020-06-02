@@ -22,7 +22,6 @@
 #include "platformstyle.h"
 #include "rpcconsole.h"
 #include "utilitydialog.h"
-#include "chatwindow.h"
 
 #ifdef ENABLE_WALLET
 #include "privatesend-client.h"
@@ -601,15 +600,7 @@ void BitcoinGUI::createActions()
     // HTHW Donate
     externalDonate = new QAction(QIcon(":/icons/" + theme + "/about"), tr("Donate To HTHW"), this);
     externalDonate->setStatusTip(tr("Donate to Help The Homeless Worldwide"));	
-	
-    // HTH CHAT
-	
-    chatPage = new ChatWindow();
-    centralWidget->addWidget(chatPage);	
-	
-    chatAction = new QAction(QIcon(":/icons/chat"), tr("&HTH Chat"), this);	
-    chatAction->setStatusTip(tr("HTH IRC Chat"));	
-	
+		
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
     connect(aboutQtAction, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
@@ -621,11 +612,7 @@ void BitcoinGUI::createActions()
 	
      // HTHW Donate
     connect(externalDonate, SIGNAL(triggered()), this, SLOT(openDonate()));	
-	
-    // HTH CHAT
-	
-    connect(chatAction, SIGNAL(triggered()), this, SLOT(goChat()));	
-		
+
     // Jump directly to tabs in RPC-console
     connect(openInfoAction, SIGNAL(triggered()), this, SLOT(showInfo()));
     connect(openRPCConsoleAction, SIGNAL(triggered()), this, SLOT(showConsole()));
@@ -725,9 +712,6 @@ void BitcoinGUI::createMenuBar()
 	
     QMenu* donate = appMenuBar->addMenu(tr("&Donate"));
     donate->addAction(externalDonate);	
-    
-    QMenu* chat = appMenuBar->addMenu(tr("&HTH Chat"));	
-    chat->addAction(chatAction);	
 	
 }
 
@@ -1051,15 +1035,6 @@ void BitcoinGUI::openClicked()
     {
         Q_EMIT receivedURI(dlg.getURI());
     }
-}
-
-void BitcoinGUI::goChat()
-{
-    chatAction->setChecked(true);
-    centralWidget->setCurrentWidget(chatPage);
-
-    exportAction->setEnabled(false);
-    disconnect(exportAction, SIGNAL(triggered()), 0, 0);
 }
 
 void BitcoinGUI::openDonate()
