@@ -91,6 +91,7 @@ protected:
 private:
     ClientModel *clientModel;
     WalletFrame *walletFrame;
+    
     UnitDisplayStatusBarControl *unitDisplayControl;
     QLabel *labelWalletEncryptionIcon;
     QLabel *labelWalletHDStatusIcon;
@@ -100,8 +101,8 @@ private:
     QProgressBar *progressBar;
     QProgressDialog *progressDialog;
 
-
     QMenuBar *appMenuBar;
+    
     QAction* externalDonate;
     QAction *governanceAction;
   /*  QAction* privatesendAction; */
@@ -205,6 +206,7 @@ public Q_SLOTS:
                             @see CClientUIInterface::MessageBoxFlags
        @param[in] ret       pointer to a bool that will be modified to whether Ok was clicked (modal only)
     */
+    void message(const QString &title, const QString &message, unsigned int style, bool *ret = NULL);
        
 #ifdef ENABLE_WALLET
     /** Set the hd-enabled status as shown in the UI.
@@ -228,7 +230,7 @@ public Q_SLOTS:
 private Q_SLOTS:
 #ifdef ENABLE_WALLET
  	
-		
+
     /** Switch to masternode page */
     void gotoGovernancePage();
     /** Switch to private send page */
@@ -248,7 +250,6 @@ private Q_SLOTS:
     void gotoSignMessageTab(QString addr = "");
     /** Show Sign/Verify Message dialog and switch to verify message tab */
     void gotoVerifyMessageTab(QString addr = "");
-
 
     /** Show open dialog */
     void openClicked();
