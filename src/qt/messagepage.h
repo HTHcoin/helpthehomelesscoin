@@ -37,7 +37,7 @@ public:
 private:
     void setupTextActions();
 
-public slots:
+public Q_SLOTS:
     void exportClicked();
 
 private:
@@ -54,7 +54,7 @@ private:
     MessageViewDelegate *msgdelegate;
     MRichTextEdit *messageTextEdit;
 
-private slots:
+private Q_SLOTS:
     void on_sendButton_clicked();
     void on_newButton_clicked();
     void on_copyFromAddressButton_clicked();
