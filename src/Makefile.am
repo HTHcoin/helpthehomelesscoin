@@ -104,7 +104,6 @@ BITCOIN_CORE_H = \
   addrdb.h \
   activemasternode.h \
   addressindex.h \
-  allocators.h \
   spentindex.h \
   addrman.h \
   alert.h \
