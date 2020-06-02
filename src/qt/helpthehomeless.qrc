@@ -15,6 +15,7 @@
         <file alias="github">res/icons/github.png</file>	
 	<file alias="coinmix">res/icons/coinmix.png</file>
 	<file alias="governance">res/icons/governance.png</file>
+	<file alias="chat">res/icons/chat.png</file>
     </qresource>
     <qresource prefix="/icons/drkblue">
         <file alias="address-book">res/icons/drkblue/address-book.png</file>
