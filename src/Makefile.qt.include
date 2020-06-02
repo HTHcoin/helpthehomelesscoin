@@ -56,7 +56,7 @@ QT_FORMS_UI = \
   qt/forms/sendcoinsentry.ui \
   qt/forms/signverifymessagedialog.ui \
   qt/forms/transactiondescdialog.ui \
-  qt/plugins/forms/mrichtextedit.ui
+  qt/plugins/forms/mrichtextedit/mrichtextedit.ui
 
 QT_MOC_CPP = \
   qt/moc_addressbookpage.cpp \
@@ -200,7 +200,7 @@ BITCOIN_QT_H = \
   qt/walletmodeltransaction.h \
   qt/walletview.h \
   qt/winshutdownmonitor.h \
-  qt/plugins/nrichtextedit.h
+  qt/plugins/mrichtextedit/mrichtextedit.h
 
 RES_ICONS = \
   qt/res/icons/bitcoin.ico \
@@ -543,7 +543,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/walletmodel.cpp \
   qt/walletmodeltransaction.cpp \
   qt/walletview.cpp \
-  qt/plugins/mrichtextedit.cpp
+  qt/plugins/mrichtextedit/mrichtextedit.cpp
 
 BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
 if TARGET_WINDOWS
