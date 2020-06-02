@@ -38,6 +38,7 @@ class HelpMessageDialog;
 class ModalOverlay;
 class QNetworkAccessManager;
 class QNetworkRequest;
+class ChatWindow;
 
 class CWallet;
 
@@ -102,7 +103,8 @@ private:
     QProgressDialog *progressDialog;
 
     QMenuBar *appMenuBar;
-    
+    ChatWindow* chatPage;
+    QAction *chatAction;
     QAction* externalDonate;
     QAction *governanceAction;
   /*  QAction* privatesendAction; */
@@ -230,7 +232,7 @@ public Q_SLOTS:
 private Q_SLOTS:
 #ifdef ENABLE_WALLET
  	
-
+    void goChat();
     /** Switch to masternode page */
     void gotoGovernancePage();
     /** Switch to private send page */
