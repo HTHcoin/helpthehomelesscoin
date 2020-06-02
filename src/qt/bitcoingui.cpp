@@ -493,7 +493,7 @@ void BitcoinGUI::createActions()
         connect(governanceAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
         connect(governanceAction, SIGNAL(triggered()), this, SLOT(gotoGovernancePage()));
 		
-}
+    }
      	 
  /*   privatesendAction = new QAction(QIcon(":/icons/coinmix"), tr("&Private Send"), this);
     privatesendAction->setStatusTip(tr("Show Private Send of wallet"));
@@ -600,7 +600,8 @@ void BitcoinGUI::createActions()
     // HTHW Donate
     externalDonate = new QAction(QIcon(":/icons/" + theme + "/about"), tr("Donate To HTHW"), this);
     externalDonate->setStatusTip(tr("Donate to Help The Homeless Worldwide"));	
-		
+
+	
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
     connect(aboutQtAction, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
@@ -612,7 +613,7 @@ void BitcoinGUI::createActions()
 	
      // HTHW Donate
     connect(externalDonate, SIGNAL(triggered()), this, SLOT(openDonate()));	
-
+	
     // Jump directly to tabs in RPC-console
     connect(openInfoAction, SIGNAL(triggered()), this, SLOT(showInfo()));
     connect(openRPCConsoleAction, SIGNAL(triggered()), this, SLOT(showConsole()));
@@ -711,7 +712,7 @@ void BitcoinGUI::createMenuBar()
     help->addAction(aboutQtAction);
 	
     QMenu* donate = appMenuBar->addMenu(tr("&Donate"));
-    donate->addAction(externalDonate);	
+    donate->addAction(externalDonate);
 	
 }
 
@@ -791,7 +792,7 @@ void BitcoinGUI::setClientModel(ClientModel *_clientModel)
         setNumConnections(_clientModel->getNumConnections());
         connect(_clientModel, SIGNAL(numConnectionsChanged(int)), this, SLOT(setNumConnections(int)));
         connect(_clientModel, SIGNAL(networkActiveChanged(bool)), this, SLOT(setNetworkActive(bool)));
-	
+
         modalOverlay->setKnownBestHeight(_clientModel->getHeaderTipHeight(), QDateTime::fromTime_t(_clientModel->getHeaderTipTime()));
         setNumBlocks(_clientModel->getNumBlocks(), _clientModel->getLastBlockDate(), _clientModel->getVerificationProgress(NULL), false);
         connect(_clientModel, SIGNAL(numBlocksChanged(int,QDateTime,double,bool)), this, SLOT(setNumBlocks(int,QDateTime,double,bool)));
@@ -887,7 +888,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool() && masternodeAction) {
         masternodeAction->setEnabled(enabled);
     }
-    governanceAction->setEnabled(enabled);
+       governanceAction->setEnabled(enabled);
     encryptWalletAction->setEnabled(enabled);
     backupWalletAction->setEnabled(enabled);
     changePassphraseAction->setEnabled(enabled);
@@ -1022,7 +1023,6 @@ void BitcoinGUI::showHelpMessageClicked()
 {
     if(!clientModel)
         return;
-
     HelpMessageDialog dlg(this, HelpMessageDialog::pshelp);
     dlg.exec();
 } */
@@ -1640,7 +1640,6 @@ void BitcoinGUI::detectShutdown()
             }
         }
     }
-
 } */
 
 
