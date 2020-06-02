@@ -175,7 +175,7 @@ private:
     void subscribeToCoreSignals();
     void unsubscribeFromCoreSignals();
 
-public slots:
+public Q_SLOTS:
 
     /* Check for new messages */
     void newMessage(const SecMsgStored& smsg);
@@ -187,7 +187,7 @@ public slots:
 
     friend class MessageTablePriv;
 
-signals:
+Q_SIGNALS:
     // Asynchronous error notification
     void error(const QString &title, const QString &message, bool modal);
 };
