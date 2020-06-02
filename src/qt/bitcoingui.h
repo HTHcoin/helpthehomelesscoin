@@ -38,8 +38,6 @@ class HelpMessageDialog;
 class ModalOverlay;
 class QNetworkAccessManager;
 class QNetworkRequest;
-class MessagePage;
-class MessageModel;
 
 class CWallet;
 
@@ -70,7 +68,6 @@ public:
         The client model represents the part of the core that communicates with the P2P network, and is wallet-agnostic.
     */
     void setClientModel(ClientModel *clientModel);
-    void setMessageModel(MessageModel *messageModel);
 
 #ifdef ENABLE_WALLET
     /** Set the wallet model.
@@ -94,7 +91,6 @@ protected:
 private:
     ClientModel *clientModel;
     WalletFrame *walletFrame;
-    MessageModel *messageModel;
     UnitDisplayStatusBarControl *unitDisplayControl;
     QLabel *labelWalletEncryptionIcon;
     QLabel *labelWalletHDStatusIcon;
@@ -103,14 +99,12 @@ private:
     QLabel *progressBarLabel;
     QProgressBar *progressBar;
     QProgressDialog *progressDialog;
-    MessagePage *messagePage;
+
 
     QMenuBar *appMenuBar;
-    QAction *chatAction;
     QAction* externalDonate;
     QAction *governanceAction;
   /*  QAction* privatesendAction; */
-    QAction *messageAction;
     QAction *overviewAction;
     QAction *historyAction;
     QAction *masternodeAction;
@@ -211,7 +205,6 @@ public Q_SLOTS:
                             @see CClientUIInterface::MessageBoxFlags
        @param[in] ret       pointer to a bool that will be modified to whether Ok was clicked (modal only)
     */
-    void message(const QString &title, const QString &message, unsigned int style, bool *ret = NULL);
        
 #ifdef ENABLE_WALLET
     /** Set the hd-enabled status as shown in the UI.
@@ -235,8 +228,7 @@ public Q_SLOTS:
 private Q_SLOTS:
 #ifdef ENABLE_WALLET
  	
-	
-    void gotoMessagePage();	
+		
     /** Switch to masternode page */
     void gotoGovernancePage();
     /** Switch to private send page */
@@ -256,7 +248,7 @@ private Q_SLOTS:
     void gotoSignMessageTab(QString addr = "");
     /** Show Sign/Verify Message dialog and switch to verify message tab */
     void gotoVerifyMessageTab(QString addr = "");
-    void incomingMessage(const QModelIndex & parent, int start, int end);
+
 
     /** Show open dialog */
     void openClicked();
