@@ -39,6 +39,9 @@ QT_FORMS_UI = \
   qt/forms/governancedialog.ui \
   qt/forms/helpmessagedialog.ui \
   qt/forms/intro.ui \
+  qt/forms/messagepage.ui \
+  qt/forms/sendmessagesdialog.ui \
+  qt/forms/sendmessageentry.ui \
   qt/forms/modaloverlay.ui \
   qt/forms/masternodelist.ui \
   qt/forms/qrdialog.ui \
@@ -76,6 +79,10 @@ QT_MOC_CPP = \
   qt/moc_macnotificationhandler.cpp \
   qt/moc_modaloverlay.cpp \
   qt/moc_masternodelist.cpp \
+  qt/moc_messagemodel.cpp \
+  qt/moc_messagepage.cpp \
+  qt/moc_sendmessagesdialog.cpp \
+  qt/moc_sendmessagesentry.cpp \
   qt/moc_notificator.cpp \
   qt/moc_openuridialog.cpp \
   qt/moc_optionsdialog.cpp \
@@ -150,6 +157,10 @@ BITCOIN_QT_H = \
   qt/macdockiconhandler.h \
   qt/macnotificationhandler.h \
   qt/macos_appnap.h \
+  qt/messagepage.h \
+  qt/messagemodel.h \
+  qt/sendmessagesdialog.h \
+  qt/sendmessagesentry.h \
   qt/modaloverlay.h \
   qt/masternodelist.h \
   qt/networkstyle.h \
@@ -504,6 +515,10 @@ BITCOIN_QT_WALLET_CPP = \
   qt/governancelist.cpp \
   qt/governancedialog.cpp \
   qt/masternodelist.cpp \
+  qt/messagemodel.cpp \
+  qt/messagepage.cpp \
+  qt/sendmessagesdialog.cpp \
+  qt/sendmessagesentry.cpp \
   qt/openuridialog.cpp \
   qt/overviewpage.cpp \
   qt/privatesendpage.cpp \
