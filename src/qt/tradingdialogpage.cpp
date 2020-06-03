@@ -815,13 +815,13 @@ void tradingDialogPage::on_UpdateKeys_clicked(bool Save, bool Load)
 
 }
 
-Qstring tradingDialogPage::encryptDecrypt(Qstring toEncrypt, Qstring password) {
+QString tradingDialogPage::encryptDecrypt(QString toEncrypt, QString password) {
 
     char * key = new char [password.size()+1];
     std::strcpy (key, password.c_str());
     key[password.size()] = '\0'; // don't forget the terminating 0
 
-    Qstring output = toEncrypt;
+    QString output = toEncrypt;
 
     for (unsigned int i = 0; i < toEncrypt.size(); i++)
         output[i] = toEncrypt[i] ^ key[i % (sizeof(key) / sizeof(char))];
@@ -835,7 +835,7 @@ void tradingDialogPage::on_SaveKeys_clicked()
     boost::filesystem::ofstream stream (pathConfigFile.string(), ios::out | ios::trunc);
 
     // Qstring to string
-    Qstring password = ui->PasswordInput->text().toUtf8().constData();
+    QString password = ui->PasswordInput->text().toUtf8().constData();
 
     if (password.length() <= 6){
         QMessageBox::information(this,"Error !","Your password is too short !");
@@ -844,10 +844,10 @@ void tradingDialogPage::on_SaveKeys_clicked()
     }
 
     // qstrings to utf8, add to byteArray and convert to const char for stream
-    Qstring Secret = ui->SecretKeyInput->text().toUtf8().constData();
-    Qstring Key = ui->ApiKeyInput->text().toUtf8().constData();
-    Qstring ESecret = "";
-    Qstring EKey = "";
+    QString Secret = ui->SecretKeyInput->text().toUtf8().constData();
+    QString Key = ui->ApiKeyInput->text().toUtf8().constData();
+    QString ESecret = "";
+    QString EKey = "";
 
     if (stream.is_open() && fSuccess)
     {
@@ -871,7 +871,7 @@ void tradingDialogPage::on_LoadKeys_clicked()
     boost::filesystem::ifstream stream (pathConfigFile.string());
 
     // Qstring to string
-    string password = ui->PasswordInput->text().toUtf8().constData();
+    QString password = ui->PasswordInput->text().toUtf8().constData();
 
     if (password.length() <= 6){
         QMessageBox::information(this,"Error !","Your password is too short !");
