@@ -58,7 +58,7 @@ TradingDialogPage::TradingDialogPage(QWidget *parent) :
 
     int Cellwidth =  ui->MarketHistoryTable->width() / 5;
 
-    ui->MarketHistoryTable->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->MarketHistoryTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     ui->MarketHistoryTable->horizontalHeader()->resizeSection(1,Cellwidth); // column 1, width 50
     ui->MarketHistoryTable->horizontalHeader()->resizeSection(2,Cellwidth);
@@ -289,7 +289,7 @@ void TradingDialogPage::CreateOrderBookTables(QTableWidget& Table,QStringList Ta
 
     Table.setRowCount(0);
 
-    Table.horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    Table.horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     Table.horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
     Table.horizontalHeader()->setStyleSheet("QHeaderView::section, QHeaderView::section * { font-weight :bold;}");
 }
@@ -319,7 +319,7 @@ void TradingDialogPage::ParseAndPopulateOpenOrdersTable(QString Response){
 
     ui->OpenOrdersTable->setRowCount(0);
 
-    foreach (const QJsonValue & value, jsonArray)
+    Q_FOREACH (const QJsonValue & value, jsonArray)
         {
             QString str = "";
             obj = value.toObject();
@@ -397,7 +397,7 @@ void TradingDialogPage::ParseAndPopulateAccountHistoryTable(QString Response){
 
     ui->TradeHistoryTable->setRowCount(0);
 
-    foreach (const QJsonValue & value, jsonArray)
+    Q_FOREACH (const QJsonValue & value, jsonArray)
         {
             QString str = "";
             obj = value.toObject();
@@ -451,7 +451,7 @@ void TradingDialogPage::ParseAndPopulateOrderBookTables(QString OrderBook){
 
     ui->AsksTable->setRowCount(0);
 
-    foreach (const QJsonValue & value, SellArray)
+    Q_FOREACH (const QJsonValue & value, SellArray)
     {
         obj = value.toObject();
 
@@ -473,7 +473,7 @@ void TradingDialogPage::ParseAndPopulateOrderBookTables(QString OrderBook){
 
     ui->BidsTable->setRowCount(0);
 
-    foreach (const QJsonValue & value, BuyArray)
+    Q_FOREACH (const QJsonValue & value, BuyArray)
     {
         obj = value.toObject();
 
@@ -512,7 +512,7 @@ void TradingDialogPage::ParseAndPopulateMarketHistoryTable(QString Response){
 
     ui->MarketHistoryTable->setRowCount(0);
 
-    foreach (const QJsonValue & value, jsonArray)
+    Q_FOREACH (const QJsonValue & value, jsonArray)
         {
             QString str = "";
             obj = value.toObject();
@@ -804,7 +804,7 @@ QJsonObject TradingDialogPage::GetResultObjectFromJSONArray(QString response){
     QJsonArray    jsonArraya    = jsonObjecta["result"].toArray();
     QJsonObject   obj;
 
-    foreach (const QJsonValue & value, jsonArraya)
+    Q_FOREACH (const QJsonValue & value, jsonArraya)
         {
         obj = value.toObject();
         }
