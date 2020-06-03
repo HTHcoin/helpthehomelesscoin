@@ -14,11 +14,11 @@
 * License along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA*/
 
-#include "chatwindow.h"
-#include "ui_chatwindow.h"
+#include "chatwindowpage.h"
+#include "ui_chatwindowpage.h"
 
-ChatWindow::ChatWindow(QWidget *parent)
-    : QWidget(parent), ui(new Ui::ChatWindowClass)
+ChatWindowPage::ChatWindowPage(QWidget *parent)
+    : QWidget(parent), ui(new Ui::ChatWindowPage)
 {
     ui->setupUi(this);
     setFixedSize(750,600);
@@ -43,13 +43,13 @@ ChatWindow::ChatWindow(QWidget *parent)
 
 
 
-void ChatWindow::tabChanged(int index)
+void ChatWindowPage::tabChanged(int index)
 {
 	if(index!=0 && joining == false)
 		currentTab()->updateUsersList(ui->tab->tabText(index));
 }
 
-void ChatWindow::tabClosing(int index)
+void ChatWindowPage::tabClosing(int index)
 {
 	currentTab()->leave(ui->tab->tabText(index));
 }
@@ -58,7 +58,7 @@ void ChatWindow::tabClosing(int index)
 	currentTab()->leave(ui->tab->tabText(index));
 }*/
 
-void ChatWindow::disconnectFromServer() {
+void ChatWindowPage::disconnectFromServer() {
 
     QMapIterator<QString, Serveur*> i(serveurs);
 
@@ -79,14 +79,14 @@ void ChatWindow::disconnectFromServer() {
 
 }
 
-Serveur *ChatWindow::currentTab()
+Serveur *ChatWindowPage::currentTab()
 {
 	QString tooltip=ui->tab->tabToolTip(ui->tab->currentIndex());
 	return serveurs[tooltip];
 	//return ui->tab->currentWidget()->findChild<Serveur *>();
 }
 
-void ChatWindow::closeTab()
+void ChatWindowPage::closeTab()
 {
 	QString tooltip=ui->tab->tabToolTip(ui->tab->currentIndex());
 	QString txt=ui->tab->tabText(ui->tab->currentIndex());
@@ -114,7 +114,7 @@ void ChatWindow::closeTab()
 	}
 }
 
-void ChatWindow::sendCommande()
+void ChatWindowPage::sendCommande()
 {
 	QString tooltip=ui->tab->tabToolTip(ui->tab->currentIndex());
 	QString txt=ui->tab->tabText(ui->tab->currentIndex());
@@ -130,16 +130,16 @@ void ChatWindow::sendCommande()
 	ui->lineEdit->setFocus();
 }
 
-void ChatWindow::tabJoined()
+void ChatWindowPage::tabJoined()
 {
 	joining=true;
 }
-void ChatWindow::tabJoining()
+void ChatWindowPage::tabJoining()
 {
 	joining=false;
 }
 
-void ChatWindow::connecte()
+void ChatWindowPage::connecte()
 {
 
     ui->splitter->show();
@@ -174,7 +174,7 @@ void ChatWindow::connecte()
 	ui->tab->setCurrentIndex(ui->tab->count()-1);
 }
 
-void ChatWindow::closeEvent(QCloseEvent *event)
+void ChatWindowPage::closeEvent(QCloseEvent *event)
 {
 	(void) event;
 
@@ -191,13 +191,13 @@ void ChatWindow::closeEvent(QCloseEvent *event)
 		}
 	}
 }
-void ChatWindow ::setModel(ClientModel *model)
+void ChatWindowPage ::setModel(ClientModel *model)
 {
     this->model = model;
 }
 
 
-ChatWindow::~ChatWindow()
+ChatWindowPage::~ChatWindowPage()
 {
     delete ui;
     QMapIterator<QString, Serveur*> i(serveurs);
