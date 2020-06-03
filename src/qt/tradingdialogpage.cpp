@@ -950,7 +950,7 @@ void TradingDialogPage::on_Buy_Max_Amount_clicked()
 
 void TradingDialogPage::on_CS_Max_Amount_clicked()
 {
-    double Quantity = ui->BittrexHMLabel->text().toDouble();
+    double Quantity = ui->BittrexTXLabel->text().toDouble();
     double Received = 0;
     double Qty = 0;
     double Price = 0;
