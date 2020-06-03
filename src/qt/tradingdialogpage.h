@@ -16,11 +16,11 @@
 #include <QJsonArray>
 
 namespace Ui {
-class tradingDialog;
+class tradingDialogPage;
 }
 class WalletModel;
 
-class tradingDialog : public QDialog
+class tradingDialogPage : public QDialog
 {
     Q_OBJECT
 
