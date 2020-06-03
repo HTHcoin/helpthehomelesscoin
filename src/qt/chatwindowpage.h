@@ -14,8 +14,8 @@
 * License along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA*/
 
-#ifndef CHATWINDOW_H
-#define CHATWINDOW_H
+#ifndef CHATWINDOWPAGE_H
+#define CHATWINDOWPAGE_H
 
 #include <QtGui>
 #include <QtNetwork>
@@ -26,7 +26,7 @@
 
 namespace Ui
 {
-    class ChatWindowClass;
+    class ChatWindowPage;
 }
 
 class ChatWindow : public QWidget
@@ -34,8 +34,8 @@ class ChatWindow : public QWidget
     Q_OBJECT
 
 public:
-    ChatWindow(QWidget *parent = 0);
-    ~ChatWindow();
+    ChatWindowPage(QWidget *parent = 0);
+    ~ChatWindowPage();
     void setModel(ClientModel *model);
     Serveur * currentTab();
 	Q_SIGNALS:
@@ -55,7 +55,7 @@ public:
 
 
 private:
-	Ui::ChatWindowClass *ui;
+	Ui::ChatWindowPage *ui;
     ClientModel *model;
     QMap<QString,Serveur *> serveurs;
 	bool joining;
@@ -63,4 +63,4 @@ private:
 
 };
 
-#endif // CHATWINDOW_H
+#endif // CHATWINDOWPAGE_H
