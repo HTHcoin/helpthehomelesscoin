@@ -29,7 +29,7 @@ namespace Ui
     class ChatWindowPage;
 }
 
-class ChatWindow : public QWidget
+class ChatWindowPage : public QWidget
 {
     Q_OBJECT
 
