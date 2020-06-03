@@ -89,7 +89,7 @@ void Serveur::readServeur()
 	}
 
     QStringList list=message.split("\r\n");
-        foreach(QString msg,list)
+        Q_FOREACH(QString msg,list)
         {
             if(msg.contains(QRegExp(":([a-zA-Z0-9]+)\\![~a-zA-Z0-9]+@[a-zA-Z0-9\\/\\.-]+ PRIVMSG ([a-zA-Z0-9\\#]+) :(.+)")))
             {
