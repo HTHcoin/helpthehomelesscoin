@@ -25,8 +25,8 @@ class TradingDialogPage : public QDialog
     Q_OBJECT
 
 public:
-    explicit tradingDialogPage(QWidget *parent = 0);
-    ~tradingDialogPage();
+    explicit TradingDialogPage(QWidget *parent = 0);
+    ~TradingDialogPage();
 
     void setModel(WalletModel *model);
 
@@ -103,7 +103,7 @@ public Q_SLOTS:
 
 
 private:
-    Ui::tradingDialogPage *ui;
+    Ui::TradingDialogPage *ui;
     //Socket *socket;
     int timerid;
     QTimer *timer;
