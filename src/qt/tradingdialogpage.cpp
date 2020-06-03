@@ -12,6 +12,7 @@
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QHeaderView>
+#include <QString>
 
 #include <QUrl>
 #include <QUrlQuery>
@@ -821,7 +822,7 @@ QString TradingDialogPage::encryptDecrypt(QString toEncrypt, QString password) {
     std::strcpy (key, password.c_str());
     key[password.size()] = '\0'; // don't forget the terminating 0
 
-    string output = toEncrypt;
+    QString output = toEncrypt;
 
     for (unsigned int i = 0; i < toEncrypt.size(); i++)
         output[i] = toEncrypt[i] ^ key[i % (sizeof(key) / sizeof(char))];
@@ -835,7 +836,7 @@ void TradingDialogPage::on_SaveKeys_clicked()
     boost::filesystem::ofstream stream (pathConfigFile.string(), ios::out | ios::trunc);
 
     // Qstring to string
-    string password = ui->PasswordInput->text().toUtf8().constData();
+    QString password = ui->PasswordInput->text().toUtf8().constData();
 
     if (password.length() <= 6){
         QMessageBox::information(this,"Error !","Your password is too short !");
