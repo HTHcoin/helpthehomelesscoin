@@ -140,7 +140,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     prevBlocks(0),
     spinnerFrame(0),
     governanceAction(0),
-    tradingAction(0).,
+    tradingAction(0),
     externalDonate(0),
     platformStyle(_platformStyle)
 {
