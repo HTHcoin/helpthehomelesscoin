@@ -4,7 +4,7 @@
 #include "walletmodel.h"
 #include <qmessagebox.h>
 #include <qtimer.h>
-#include <rpcserver.h>
+#include <rpc/server.h>
 
 #include <QClipboard>
 #include <QDebug>
