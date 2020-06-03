@@ -1,5 +1,5 @@
-#include "tradingdialog.h"
-#include "ui_tradingdialog.h"
+#include "tradingdialogpage.h"
+#include "ui_tradingdialogpage.h"
 #include <qmessagebox.h>
 #include <qtimer.h>
 
