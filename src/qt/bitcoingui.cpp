@@ -23,7 +23,7 @@
 #include "rpcconsole.h"
 #include "utilitydialog.h"
 #include "tradingdialogpage.h"
-#include "chatwindow.h"
+#include "chatwindowpage.h"
 
 #ifdef ENABLE_WALLET
 #include "privatesend-client.h"
@@ -143,7 +143,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     governanceAction(0),
     tradingAction(0),
     externalDonate(0),
-    chatWindow(0),
+    chatWindowPage(0),
     platformStyle(_platformStyle)
 {
     /* Open CSS when configured */
@@ -489,9 +489,9 @@ void BitcoinGUI::createActions()
         governanceAction->setToolTip(governanceAction->statusTip());
         governanceAction->setCheckable(true);
 #ifdef Q_OS_MAC
-        governanceAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_5));
+        governanceAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_6));
 #else
-        governanceAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_5));
+        governanceAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_6));
 #endif
         tabGroup->addAction(governanceAction);
         connect(governanceAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
@@ -504,9 +504,9 @@ void BitcoinGUI::createActions()
         tradingAction->setToolTip(tradingAction->statusTip());
         tradingAction->setCheckable(true);
 #ifdef Q_OS_MAC
-        tradingAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_5));
+        tradingAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_7));
 #else
-        tradingAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_5));
+        tradingAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
 #endif
         tabGroup->addAction(tradingAction);
         connect(tradingAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
@@ -620,8 +620,8 @@ void BitcoinGUI::createActions()
     externalDonate->setStatusTip(tr("Donate to Help The Homeless Worldwide"));	
 	
     // HTH Chat
-    chatWindow = new QAction(QIcon(":/icons/" + theme + "/chat"), tr("HTH Chat"), this);
-    chatWindow->setStatusTip(tr("HTH World IRC Chat"));
+    chatWindowPage = new QAction(QIcon(":/icons/" + theme + "/chat"), tr("HTH Chat"), this);
+    chatWindowPage->setStatusTip(tr("HTH World IRC Chat"));
 
 	
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
@@ -637,7 +637,7 @@ void BitcoinGUI::createActions()
     connect(externalDonate, SIGNAL(triggered()), this, SLOT(openDonate()));	
 	
     // HTHW Chat
-    connect(chatWindow, SIGNAL(triggered()), this, SLOT(gotoChatPage()));	
+    connect(chatWindowPage, SIGNAL(triggered()), this, SLOT(gotoChatWindowPage()));	
 	
     // Jump directly to tabs in RPC-console
     connect(openInfoAction, SIGNAL(triggered()), this, SLOT(showInfo()));
@@ -740,7 +740,7 @@ void BitcoinGUI::createMenuBar()
     donate->addAction(externalDonate);
 	
     QMenu* chat = appMenuBar->addMenu(tr("&HTH Chat"));
-    chat->addAction(chatWindow);	
+    chat->addAction(chatWindowPage);	
 	
 }
 
@@ -1069,10 +1069,10 @@ void BitcoinGUI::openClicked()
     }
 }
 
-void BitcoinGUI::gotoChatPage()
+void BitcoinGUI::gotoChatWindowPage()
 {
-    chatWindow->setChecked(true);
-    if (walletFrame) walletFrame->gotoChatPage();
+    chatWindowPage->setChecked(true);
+    if (walletFrame) walletFrame->gotoChatWindowPage();
 }
 
 void BitcoinGUI::gotoTradingDialogPage()
