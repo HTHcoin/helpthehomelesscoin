@@ -822,7 +822,7 @@ QString TradingDialogPage::encryptDecrypt(QString toEncrypt, QString password) {
 
     char * key = new char [password.size()+1];
     char * encryptDecrypt(char * toEncrypt);
-    int string_size = std::strlen(toEncrypt);
+    int password_size = std::strlen(toEncrypt);
     std::strcpy (key, password.toStdString().c_str());
     key[password.size()] = '\0'; // don't forget the terminating 0
 
