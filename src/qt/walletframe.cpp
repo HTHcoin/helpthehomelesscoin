@@ -108,6 +108,16 @@ void WalletFrame::showOutOfSyncWarning(bool fShow)
         i.value()->showOutOfSyncWarning(fShow);
 }
 
+void BitcoinGUI::gotoTradingPage()
+{
+
+     TradingAction->setChecked(true);
+     centralStackedWidget->setCurrentWidget(tradingDialogPage);
+
+  //  exportAction->setEnabled(false);
+  //  disconnect(exportAction, SIGNAL(triggered()), 0, 0);
+}
+
 void WalletFrame::gotoGovernancePage()
 {
     QMap<QString, WalletView*>::const_iterator i;
