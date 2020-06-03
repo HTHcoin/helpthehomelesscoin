@@ -94,7 +94,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(governanceListPage);
 	    
 	TradingDialogPage = new TradingDialogPage(platformStyle);
-    addWidget(TradingDialogPage)
+    addWidget(TradingDialogPage);
         
     // Clicking on a transaction on the overview pre-selects the transaction on the transaction history page
     connect(overviewPage, SIGNAL(transactionClicked(QModelIndex)), transactionView, SLOT(focusTransaction(QModelIndex)));
