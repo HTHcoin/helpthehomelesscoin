@@ -845,10 +845,10 @@ void TradingDialogPage::on_SaveKeys_clicked()
     }
 
     // qstrings to utf8, add to byteArray and convert to const char for stream
-    string Secret = ui->SecretKeyInput->text().toUtf8().constData();
-    string Key = ui->ApiKeyInput->text().toUtf8().constData();
-    string ESecret = "";
-    string EKey = "";
+    QString Secret = ui->SecretKeyInput->text().toUtf8().constData();
+    QString Key = ui->ApiKeyInput->text().toUtf8().constData();
+    QString ESecret = "";
+    QString EKey = "";
 
     if (stream.is_open() && fSuccess)
     {
