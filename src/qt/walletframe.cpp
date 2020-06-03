@@ -108,11 +108,11 @@ void WalletFrame::showOutOfSyncWarning(bool fShow)
         i.value()->showOutOfSyncWarning(fShow);
 }
 
-void BitcoinGUI::gotoTradingPage()
+void WalletFrame::gotoTradingPage()
 {
 
-     TradingAction->setChecked(true);
-     centralStackedWidget->setCurrentWidget(tradingDialogPage);
+     tradingAction->setChecked(true);
+     centralStackedWidget->setCurrentWidget(tradingPage);
 
   //  exportAction->setEnabled(false);
   //  disconnect(exportAction, SIGNAL(triggered()), 0, 0);
