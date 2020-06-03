@@ -8,7 +8,7 @@
 #include "amount.h"
 #include "masternodelist.h"
 #include "governancelist.h"
-#include "tradingdialog.h"
+#include "tradingdialogpage.h"
 
 
 #include <QStackedWidget>
@@ -25,7 +25,7 @@ class WalletModel;
 class AddressBookPage;
 class PrivateSendPage;
 class GovernancePage;
-class TradingPage;
+class TradingDialogPage;
 
 
 QT_BEGIN_NAMESPACE
