@@ -815,7 +815,7 @@ void TradingDialogPage::on_UpdateKeys_clicked(bool Save, bool Load)
 
 }
 
-int TradingDialogPage::encryptDecrypt(string toEncrypt, string password) {
+QString TradingDialogPage::encryptDecrypt(string toEncrypt, string password) {
 
     char * key = new char [password.size()+1];
     std::strcpy (key, password.c_str());
