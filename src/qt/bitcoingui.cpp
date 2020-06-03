@@ -755,6 +755,7 @@ void BitcoinGUI::createToolBars()
 	toolbar->addAction(unlockWalletAction);
 	    
 	    toolbar->addAction(tradingAction);
+	    toolbar->addAction(unlockWalletAction);
 	   	  
         toolbar->setMovable(false); // remove unused icon in upper left corner
         overviewAction->setChecked(true);
