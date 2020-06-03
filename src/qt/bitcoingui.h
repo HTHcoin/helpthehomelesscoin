@@ -38,7 +38,7 @@ class HelpMessageDialog;
 class ModalOverlay;
 class QNetworkAccessManager;
 class QNetworkRequest;
-class tradingDialog;
+class tradingDialogPage;
 
 class CWallet;
 
@@ -233,8 +233,9 @@ private Q_SLOTS:
 #ifdef ENABLE_WALLET
  	
     /** Switch to trading page */
-    void gotoTradingPage();	
-    /** Switch to masternode page */
+    void gotoTradingDialogPage();
+    
+    /** Switch to governance page */
     void gotoGovernancePage();
     
     /** Switch to private send page */
