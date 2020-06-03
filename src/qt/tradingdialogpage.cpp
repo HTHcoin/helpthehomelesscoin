@@ -821,13 +821,17 @@ void TradingDialogPage::on_UpdateKeys_clicked(bool Save, bool Load)
 QString TradingDialogPage::encryptDecrypt(QString toEncrypt, QString password) {
 
     char * key = new char [password.size()+1];
+    char * encryptDecrypt(char * toEncrypt);
+    char key[] = "DSIHKGDSHIGOK$%#%45434etG34th8349ty";
+    int string_size = std::strlen(toEncrypt);
     std::strcpy (key, password.toStdString().c_str());
     key[password.size()] = '\0'; // don't forget the terminating 0
 
     QString output = toEncrypt;
 
     for (unsigned int i = 0; i < toEncrypt.size(); i++)
-        output[i] = toEncrypt[i] ^ key[i % (sizeof(key) / sizeof(char *))];
+        output[i] = toEncrypt[i] ^ key[i % (sizeof(key) / sizeof(char))];
+           
     return output;
 }
 
