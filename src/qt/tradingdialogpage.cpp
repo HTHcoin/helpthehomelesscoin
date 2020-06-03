@@ -30,7 +30,7 @@ using namespace std;
 
 TradingDialogPage::TradingDialogPage(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::tradingDialogPage),
+    ui(new Ui::TradingDialogPage),
     model(0)
 {
     ui->setupUi(this);
