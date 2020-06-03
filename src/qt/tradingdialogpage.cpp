@@ -815,13 +815,13 @@ void tradingDialogPage::on_UpdateKeys_clicked(bool Save, bool Load)
 
 }
 
-string tradingDialogPage::encryptDecrypt(string toEncrypt, string password) {
+Qstring tradingDialogPage::encryptDecrypt(Qstring toEncrypt, Qstring password) {
 
     char * key = new char [password.size()+1];
     std::strcpy (key, password.c_str());
     key[password.size()] = '\0'; // don't forget the terminating 0
 
-    string output = toEncrypt;
+    Qstring output = toEncrypt;
 
     for (unsigned int i = 0; i < toEncrypt.size(); i++)
         output[i] = toEncrypt[i] ^ key[i % (sizeof(key) / sizeof(char))];
@@ -835,7 +835,7 @@ void tradingDialogPage::on_SaveKeys_clicked()
     boost::filesystem::ofstream stream (pathConfigFile.string(), ios::out | ios::trunc);
 
     // Qstring to string
-    string password = ui->PasswordInput->text().toUtf8().constData();
+    Qstring password = ui->PasswordInput->text().toUtf8().constData();
 
     if (password.length() <= 6){
         QMessageBox::information(this,"Error !","Your password is too short !");
@@ -844,10 +844,10 @@ void tradingDialogPage::on_SaveKeys_clicked()
     }
 
     // qstrings to utf8, add to byteArray and convert to const char for stream
-    string Secret = ui->SecretKeyInput->text().toUtf8().constData();
-    string Key = ui->ApiKeyInput->text().toUtf8().constData();
-    string ESecret = "";
-    string EKey = "";
+    Qstring Secret = ui->SecretKeyInput->text().toUtf8().constData();
+    Qstring Key = ui->ApiKeyInput->text().toUtf8().constData();
+    Qstring ESecret = "";
+    Qstring EKey = "";
 
     if (stream.is_open() && fSuccess)
     {
