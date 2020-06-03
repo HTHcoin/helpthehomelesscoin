@@ -121,7 +121,7 @@ TradingDialogPage::TradingDialogPage(QWidget *parent) :
     /*Open Orders Table*/
 }
 
-void tradingDialogPage::InitTrading()
+void TradingDialogPage::InitTrading()
 {       //todo - add internet connection/socket error checking.
 
         //Get default exchange info for the qlabels
