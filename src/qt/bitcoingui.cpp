@@ -140,6 +140,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     prevBlocks(0),
     spinnerFrame(0),
     governanceAction(0),
+    tradingAction(0).,
     externalDonate(0),
     platformStyle(_platformStyle)
 {
@@ -1056,14 +1057,11 @@ void BitcoinGUI::openClicked()
     }
 }
 
-void BitcoinGUI::gotoTradingPage()
+void BitcoinGUI::gotoTradingDialogPage()
 {
 
-     TradingAction->setChecked(true);
-     centralStackedWidget->setCurrentWidget(tradingDialogPage);
-
-  //  exportAction->setEnabled(false);
-  //  disconnect(exportAction, SIGNAL(triggered()), 0, 0);
+    tradingAction->setChecked(true);
+    if (walletFrame) walletFrame->gotoTradingDialogPage();
 }
 
 void BitcoinGUI::openDonate()
