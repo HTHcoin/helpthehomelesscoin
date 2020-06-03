@@ -962,7 +962,7 @@ void TradingDialogPage::on_CS_Max_Amount_clicked()
     QJsonArray  BuyArray  = BuyObject.value("buy").toArray();                //get buy/sell object from result object
 
     // For each buy order
-    foreach (const QJsonValue & value, BuyArray)
+    Q_FOREACH (const QJsonValue & value, BuyArray)
     {
         obj = value.toObject();
 
