@@ -5,7 +5,7 @@
 #include <QDialog>
 #include <QObject>
 #include <stdint.h>
-#include "ui_tradingdialog.h"
+#include "ui_tradingdialogpage.h"
 #include "clientmodel.h"
 #include "walletmodel.h"
 
@@ -25,8 +25,8 @@ class tradingDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit tradingDialog(QWidget *parent = 0);
-    ~tradingDialog();
+    explicit tradingDialogPage(QWidget *parent = 0);
+    ~tradingDialogPage();
 
     void setModel(WalletModel *model);
 
@@ -103,7 +103,7 @@ public Q_SLOTS:
 
 
 private:
-    Ui::tradingDialog *ui;
+    Ui::tradingDialogPage *ui;
     //Socket *socket;
     int timerid;
     QTimer *timer;
