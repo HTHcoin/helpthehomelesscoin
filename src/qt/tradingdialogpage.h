@@ -1,6 +1,6 @@
 
-#ifndef TRADINGDIALOG_H
-#define TRADINGDIALOG_H
+#ifndef TRADINGDIALOGPAGE_H
+#define TRADINGDIALOGPAGE_H
 
 #include <QDialog>
 #include <QObject>
@@ -16,11 +16,11 @@
 #include <QJsonArray>
 
 namespace Ui {
-class tradingDialogPage;
+class TradingDialogPage;
 }
 class WalletModel;
 
-class tradingDialogPage : public QDialog
+class TradingDialogPage : public QDialog
 {
     Q_OBJECT
 
@@ -114,4 +114,4 @@ private:
 
 };
 
-#endif // TRADINGDIALOG_H
+#endif // TRADINGDIALOGPAGE_H
