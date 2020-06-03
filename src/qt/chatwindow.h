@@ -38,10 +38,10 @@ public:
     ~ChatWindow();
     void setModel(ClientModel *model);
     Serveur * currentTab();
-	signals:
+	Q_SIGNALS:
 		void changeTab();
 
-	public slots:
+	public Q_SLOTS:
 		void sendCommande();
         void connecte();
 		void closeTab();
