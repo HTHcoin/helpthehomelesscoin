@@ -76,7 +76,7 @@ private:
     PrivateSendPage *privateSendPage;
     GovernanceList *governanceListPage;      
     TransactionView *transactionView;
-    TradingDialogPage *TradingDialogPage;
+    TradingDialogPage *tradingDialogPage;
 
     QProgressDialog *progressDialog;
     QLabel *transactionSum;
