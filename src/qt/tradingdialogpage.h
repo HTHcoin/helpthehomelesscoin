@@ -94,7 +94,7 @@ private Q_SLOTS:
     QString GetDepositAddress();
     QString HMAC_SHA512_SIGNER(QString UrlToSign,QString Secretkey);
     QString sendRequest(QString url);
-    string encryptDecrypt(QString toEncrypt, QString password);
+    QString encryptDecrypt(QString toEncrypt, QString password);
     QJsonObject GetResultObjectFromJSONObject(QString response);
     QJsonObject GetResultObjectFromJSONArray(QString response);
     QJsonArray  GetResultArrayFromJSONObject(QString response);
