@@ -11,6 +11,7 @@
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
+#include <QHeaderView>
 
 #include <QUrl>
 #include <QUrlQuery>
