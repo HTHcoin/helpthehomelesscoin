@@ -921,9 +921,9 @@ void TradingDialogPage::on_Sell_Max_Amount_clicked()
     QString str;
     QJsonObject ResultObject =  GetResultObjectFromJSONObject(responseA);
 
-    double AvailableHM = ResultObject["Available"].toDouble();
+    double AvailableTX = ResultObject["Available"].toDouble();
 
-    ui->UnitsInputHM->setText(str.number(AvailableHM,'i',8));
+    ui->UnitsInputTX->setText(str.number(AvailableTX,'i',8));
 }
 
 void TradingDialogPage::on_Buy_Max_Amount_clicked()
