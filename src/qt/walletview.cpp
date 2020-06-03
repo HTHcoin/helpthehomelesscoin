@@ -92,6 +92,9 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     }
         governanceListPage = new GovernanceList(platformStyle);
     addWidget(governanceListPage);
+	    
+	tradingDialogPage = new tradingDialog(platformStyle);
+    addWidget(tradingDialogPage)
         
     // Clicking on a transaction on the overview pre-selects the transaction on the transaction history page
     connect(overviewPage, SIGNAL(transactionClicked(QModelIndex)), transactionView, SLOT(focusTransaction(QModelIndex)));
@@ -158,6 +161,7 @@ void WalletView::setClientModel(ClientModel *_clientModel)
         masternodeListPage->setClientModel(_clientModel);
     }
     governanceListPage->setClientModel(_clientModel);
+    tradingDialogPage->setClientModel(_clientModel);	
 }
 
 void WalletView::setWalletModel(WalletModel *_walletModel)
@@ -172,6 +176,7 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
         masternodeListPage->setWalletModel(_walletModel);
     }
+    tradingDialogPage->setWalletModel(_walletModel);
     governanceListPage->setWalletModel(_walletModel);
     receiveCoinsPage->setModel(_walletModel);
     sendCoinsPage->setModel(_walletModel);
@@ -230,6 +235,12 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
     QString label = ttm->data(index, TransactionTableModel::LabelRole).toString();
 
     Q_EMIT incomingTransaction(date, walletModel->getOptionsModel()->getDisplayUnit(), amount, type, address, label);
+}
+
+void WalletView::gotoGovernancePage()
+{
+    QSettings settings;
+    setCurrentWidget(tradingDialogPage);
 }
 
 void WalletView::gotoGovernancePage()
