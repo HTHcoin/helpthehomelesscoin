@@ -67,7 +67,7 @@ tradingDialog::tradingDialog(QWidget *parent) :
     ui->MarketHistoryTable->setHorizontalHeaderLabels(QStringList()<<"DATE"<<"BUY/SELL"<<"BID/ASK"<<"TOTAL UNITS(EXCL)"<<"TOTAL COST(BTC)");
     ui->MarketHistoryTable->setRowCount(0);
     int Cellwidth =  ui->MarketHistoryTable->width() / 5;
-    ui->MarketHistoryTable->horizontalHeader()->ResizeMode(QHeaderView::Stretch);
+    ui->MarketHistoryTable->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     ui->MarketHistoryTable->horizontalHeader()->resizeSection(1,Cellwidth);
     ui->MarketHistoryTable->horizontalHeader()->resizeSection(2,Cellwidth);
     ui->MarketHistoryTable->horizontalHeader()->resizeSection(3,Cellwidth);
@@ -83,7 +83,7 @@ tradingDialog::tradingDialog(QWidget *parent) :
     ui->TradeHistoryTable->setHorizontalHeaderLabels(QStringList() << "Date Time" << "Exchange" << "OrderType"  << "Limit" << "QTY" << "QTY_Rem" << "Price" << "PricePerUnit" << "Closed");
     ui->TradeHistoryTable->setRowCount(0);
     Cellwidth =  ui->TradeHistoryTable->width() / 9;
-    ui->TradeHistoryTable->horizontalHeader()->ResizeMode(QHeaderView::Stretch);
+    ui->TradeHistoryTable->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     ui->TradeHistoryTable->horizontalHeader()->resizeSection(1,Cellwidth);
     ui->TradeHistoryTable->horizontalHeader()->resizeSection(2,Cellwidth);
     ui->TradeHistoryTable->horizontalHeader()->resizeSection(3,Cellwidth);
@@ -103,7 +103,7 @@ tradingDialog::tradingDialog(QWidget *parent) :
     ui->OpenOrdersTable->setHorizontalHeaderLabels(QStringList() << "OrderId" << "Date Time" << "Exchange" << "OrderType"  << "Limit" << "QTY" << "QTY_Rem" << "Price" << "PricePerUnit" << "Cancel Order");
     ui->OpenOrdersTable->setRowCount(0);
     Cellwidth =  ui->TradeHistoryTable->width() / 9;
-    ui->OpenOrdersTable->horizontalHeader()->ResizeMode(QHeaderView::Stretch);
+    ui->OpenOrdersTable->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     ui->OpenOrdersTable->horizontalHeader()->resizeSection(2,Cellwidth);
     ui->OpenOrdersTable->horizontalHeader()->resizeSection(3,Cellwidth);
     ui->OpenOrdersTable->horizontalHeader()->resizeSection(4,Cellwidth);
@@ -308,7 +308,7 @@ void tradingDialog::CreateOrderBookTables(QTableWidget& Table,QStringList TableH
 
     Table.setRowCount(0);
 
-    Table.horizontalHeader()->ResizeMode(QHeaderView::Stretch);
+    Table.horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     Table.horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
     Table.horizontalHeader()->setStyleSheet("QHeaderView::section, QHeaderView::section * { font-weight :bold;}");
 }
@@ -361,7 +361,7 @@ void tradingDialog::ParseAndPopulateOpenOrdersTable(QString Response){
 
     ui->OpenOrdersTable->setRowCount(0);
 
-    BOOST_FOREACH (const QJsonValue & value, jsonArray)
+    foreach (const QJsonValue & value, jsonArray)
         {
             QString str = "";
             obj = value.toObject();
@@ -426,7 +426,7 @@ void tradingDialog::ParseAndPopulateAccountHistoryTable(QString Response){
 
     ui->TradeHistoryTable->setRowCount(0);
 
-    BOOST_FOREACH (const QJsonValue & value, jsonArray)
+    foreach (const QJsonValue & value, jsonArray)
         {
             QString str = "";
             obj = value.toObject();
@@ -468,7 +468,7 @@ void tradingDialog::ParseAndPopulateOrderBookTables(QString OrderBook){
 
     ui->AsksTable->setRowCount(0);
 
-    BOOST_FOREACH (const QJsonValue & value, SellArray)
+    foreach (const QJsonValue & value, SellArray)
     {
         obj = value.toObject();
 
@@ -490,7 +490,7 @@ void tradingDialog::ParseAndPopulateOrderBookTables(QString OrderBook){
 
     ui->BidsTable->setRowCount(0);
 
-    BOOST_FOREACH (const QJsonValue & value, BuyArray)
+    foreach (const QJsonValue & value, BuyArray)
     {
         obj = value.toObject();
 
@@ -529,7 +529,7 @@ void tradingDialog::ParseAndPopulateMarketHistoryTable(QString Response){
 
     ui->MarketHistoryTable->setRowCount(0);
 
-    BOOST_FOREACH (const QJsonValue & value, jsonArray)
+    foreach (const QJsonValue & value, jsonArray)
         {
             QString str = "";
             obj = value.toObject();
@@ -729,7 +729,7 @@ void tradingDialog::CalculateCSReceiveLabel(){
     QJsonArray  BuyArray  = BuyObject.value("buy").toArray();                //get buy/sell object from result object
 
     // For each buy order
-    BOOST_FOREACH (const QJsonValue & value, BuyArray)
+    foreach (const QJsonValue & value, BuyArray)
     {
         obj = value.toObject();
 
@@ -960,7 +960,7 @@ void tradingDialog::on_CS_Max_Amount_clicked()
     QJsonArray  BuyArray  = BuyObject.value("buy").toArray();                //get buy/sell object from result object
 
     // For each buy order
-    BOOST_FOREACH (const QJsonValue & value, BuyArray)
+    foreach (const QJsonValue & value, BuyArray)
     {
         obj = value.toObject();
 
@@ -1019,7 +1019,7 @@ QJsonObject tradingDialog::GetResultObjectFromJSONArray(QString response){
     QJsonArray    jsonArraya    = jsonObjecta["result"].toArray();
     QJsonObject   obj;
 
-    BOOST_FOREACH (const QJsonValue & value, jsonArraya)
+    foreach (const QJsonValue & value, jsonArraya)
         {
         obj = value.toObject();
         }
@@ -1211,7 +1211,7 @@ void tradingDialog::on_CSUnitsBtn_clicked()
         QJsonArray  BuyArray  = BuyObject.value("buy").toArray();                //get buy/sell object from result object
 
         // For each buy order
-        BOOST_FOREACH (const QJsonValue & value, BuyArray)
+        foreach (const QJsonValue & value, BuyArray)
         {
             obj = value.toObject();
 
