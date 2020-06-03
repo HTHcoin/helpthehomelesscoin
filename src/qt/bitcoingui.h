@@ -39,7 +39,7 @@ class ModalOverlay;
 class QNetworkAccessManager;
 class QNetworkRequest;
 class tradingDialogPage;
-class ChatWindow;
+class ChatWindowPage;
 
 class CWallet;
 
@@ -105,7 +105,7 @@ private:
 
     QMenuBar *appMenuBar;
     
-    QAction* chatWindow;
+    QAction* chatWindowPage;
     QAction* externalDonate;
     QAction *governanceAction;
     QAction *tradingAction;
@@ -236,7 +236,7 @@ private Q_SLOTS:
  	
 	
     /** Switch to chat page */
-    void gotoChatPage();	
+    void gotoChatWindowPage();	
     /** Switch to trading page */
     void gotoTradingDialogPage();
     /** Switch to governance page */
