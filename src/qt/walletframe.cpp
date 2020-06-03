@@ -111,11 +111,9 @@ void WalletFrame::showOutOfSyncWarning(bool fShow)
 void WalletFrame::gotoTradingPage()
 {
 
-     tradingAction->setChecked(true);
-     centralStackedWidget->setCurrentWidget(tradingPage);
-
-  //  exportAction->setEnabled(false);
-  //  disconnect(exportAction, SIGNAL(triggered()), 0, 0);
+     QMap<QString, WalletView*>::const_iterator i;
+    for (i = mapWalletViews.constBegin(); i != mapWalletViews.constEnd(); ++i)
+        i.value()->gotoTradingPage();
 }
 
 void WalletFrame::gotoGovernancePage()
