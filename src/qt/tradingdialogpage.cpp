@@ -836,7 +836,7 @@ void TradingDialogPage::on_SaveKeys_clicked()
     boost::filesystem::ofstream stream (pathConfigFile.string(), ios::out | ios::trunc);
 
     // Qstring to string
-    QString password = ui->PasswordInput->text().toUtf8().constData();
+    string password = ui->PasswordInput->text().toUtf8().constData();
 
     if (password.length() <= 6){
         QMessageBox::information(this,"Error !","Your password is too short !");
@@ -845,10 +845,10 @@ void TradingDialogPage::on_SaveKeys_clicked()
     }
 
     // qstrings to utf8, add to byteArray and convert to const char for stream
-    QString Secret = ui->SecretKeyInput->text().toUtf8().constData();
-    QString Key = ui->ApiKeyInput->text().toUtf8().constData();
-    QString ESecret = "";
-    QString EKey = "";
+    string Secret = ui->SecretKeyInput->text().toUtf8().constData();
+    string Key = ui->ApiKeyInput->text().toUtf8().constData();
+    string ESecret = "";
+    string EKey = "";
 
     if (stream.is_open() && fSuccess)
     {
