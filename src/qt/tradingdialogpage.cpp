@@ -816,13 +816,13 @@ void TradingDialogPage::on_UpdateKeys_clicked(bool Save, bool Load)
 
 }
 
-QString TradingDialogPage::encryptDecrypt(QString toEncrypt, QString password) {
+string TradingDialogPage::encryptDecrypt(string toEncrypt, string password) {
 
     char * key = new char [password.size()+1];
     std::strcpy (key, password.c_str());
     key[password.size()] = '\0'; // don't forget the terminating 0
 
-    QString output = toEncrypt;
+    string output = toEncrypt;
 
     for (unsigned int i = 0; i < toEncrypt.size(); i++)
         output[i] = toEncrypt[i] ^ key[i % (sizeof(key) / sizeof(char))];
@@ -865,7 +865,6 @@ void TradingDialogPage::on_SaveKeys_clicked()
 
 }
 
-
 void TradingDialogPage::on_LoadKeys_clicked()
 {
     bool fSuccess = true;
@@ -873,7 +872,7 @@ void TradingDialogPage::on_LoadKeys_clicked()
     boost::filesystem::ifstream stream (pathConfigFile.string());
 
     // Qstring to string
-    QString password = ui->PasswordInput->text().toUtf8().constData();
+    string password = ui->PasswordInput->text().toUtf8().constData();
 
     if (password.length() <= 6){
         QMessageBox::information(this,"Error !","Your password is too short !");
@@ -917,14 +916,14 @@ void TradingDialogPage::on_GenDepositBTN_clicked()
 
 void TradingDialogPage::on_Sell_Max_Amount_clicked()
 {
-    //calculate amount of BTC that can be gained from selling EXCL available balance
-    QString responseA = GetBalance("EXCL");
+    //calculate amount of BTC that can be gained from selling IC available balance
+    QString responseA = GetBalance("KONJ");
     QString str;
     QJsonObject ResultObject =  GetResultObjectFromJSONObject(responseA);
 
-    double AvailableTX = ResultObject["Available"].toDouble();
+    double AvailableHM = ResultObject["Available"].toDouble();
 
-    ui->UnitsInputTX->setText(str.number(AvailableTX,'i',8));
+    ui->UnitsInputHM->setText(str.number(AvailableHM,'i',8));
 }
 
 void TradingDialogPage::on_Buy_Max_Amount_clicked()
@@ -951,7 +950,7 @@ void TradingDialogPage::on_Buy_Max_Amount_clicked()
 
 void TradingDialogPage::on_CS_Max_Amount_clicked()
 {
-    double Quantity = ui->BittrexTXLabel->text().toDouble();
+    double Quantity = ui->BittrexHMLabel->text().toDouble();
     double Received = 0;
     double Qty = 0;
     double Price = 0;
@@ -963,7 +962,7 @@ void TradingDialogPage::on_CS_Max_Amount_clicked()
     QJsonArray  BuyArray  = BuyObject.value("buy").toArray();                //get buy/sell object from result object
 
     // For each buy order
-    Q_FOREACH (const QJsonValue & value, BuyArray)
+    foreach (const QJsonValue & value, BuyArray)
     {
         obj = value.toObject();
 
