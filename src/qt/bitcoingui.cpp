@@ -22,7 +22,7 @@
 #include "platformstyle.h"
 #include "rpcconsole.h"
 #include "utilitydialog.h"
-#include "tradingdialog.h"
+#include "tradingdialogpage.h"
 
 #ifdef ENABLE_WALLET
 #include "privatesend-client.h"
