@@ -1,5 +1,5 @@
-#include "tradingdialog.h"
-#include "ui_tradingdialog.h"
+#include "tradingdialogpage.h"
+#include "ui_tradingdialogpage.h"
 #include "clientmodel.h"
 #include "walletmodel.h"
 #include <qmessagebox.h>
@@ -28,9 +28,9 @@
 
 using namespace std;
 
-tradingDialog::tradingDialog(QWidget *parent) :
+tradingDialogPage::tradingDialogPage(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::tradingDialog),
+    ui(new Ui::tradingDialogPage),
     model(0)
 {
     ui->setupUi(this);
@@ -121,7 +121,7 @@ tradingDialog::tradingDialog(QWidget *parent) :
     /*Open Orders Table*/
 }
 
-void tradingDialog::InitTrading()
+void tradingDialogPage::InitTrading()
 {       //todo - add internet connection/socket error checking.
 
         //Get default exchange info for the qlabels
@@ -138,7 +138,7 @@ void tradingDialog::InitTrading()
 
 }
 
-void tradingDialog::UpdaterFunction(){
+void tradingDialogPage::UpdaterFunction(){
     //TXst get the main exchange info in order to populate qLabels in maindialog. then get data
     //required for the current tab.
 
@@ -149,24 +149,24 @@ void tradingDialog::UpdaterFunction(){
                      }
 }
 
-QString tradingDialog::GetMarketSummary(){
+QString tradingDialogPage::GetMarketSummary(){
 
      QString Response = sendRequest("https://bittrex.com/api/v1.1/public/GetMarketSummary?market=btc-EXCL");
      return Response;
 }
 
-QString tradingDialog::GetOrderBook(){
+QString tradingDialogPage::GetOrderBook(){
 
       QString  Response = sendRequest("https://bittrex.com/api/v1.1/public/getorderbook?market=BTC-EXCL&type=both&depth=50");
       return Response;
 }
 
-QString tradingDialog::GetMarketHistory(){
+QString tradingDialogPage::GetMarketHistory(){
       QString Response = sendRequest("https://bittrex.com/api/v1.1/public/getmarkethistory?market=BTC-EXCL&count=100");
       return Response;
 }
 
-QString tradingDialog::CancelOrder(QString OrderId){
+QString tradingDialogPage::CancelOrder(QString OrderId){
 
         QString URL = "https://bittrex.com/api/v1.1/market/cancel?apikey=";
                 URL += this->ApiKey;
@@ -177,7 +177,7 @@ QString tradingDialog::CancelOrder(QString OrderId){
         return Response;
 }
 
-QString tradingDialog::BuyTX(QString OrderType, double Quantity, double Rate){
+QString tradingDialogPage::BuyTX(QString OrderType, double Quantity, double Rate){
 
     QString str = "";
     QString URL = "https://bittrex.com/api/v1.1/market/";
@@ -193,7 +193,7 @@ QString tradingDialog::BuyTX(QString OrderType, double Quantity, double Rate){
     return Response;
 }
 
-QString tradingDialog::SellTX(QString OrderType, double Quantity, double Rate){
+QString tradingDialogPage::SellTX(QString OrderType, double Quantity, double Rate){
 
     QString str = "";
     QString URL = "https://bittrex.com/api/v1.1/market/";
@@ -209,7 +209,7 @@ QString tradingDialog::SellTX(QString OrderType, double Quantity, double Rate){
     return Response;
 }
 
-QString tradingDialog::Withdraw(double Amount, QString Address, QString Coin){
+QString tradingDialogPage::Withdraw(double Amount, QString Address, QString Coin){
 
     QString str = "";
     QString URL = "https://bittrex.com/api/v1.1/account/withdraw?apikey=";
@@ -226,7 +226,7 @@ QString tradingDialog::Withdraw(double Amount, QString Address, QString Coin){
      return Response;
 }
 
-QString tradingDialog::GetOpenOrders(){
+QString tradingDialogPage::GetOpenOrders(){
     QString URL = "https://bittrex.com/api/v1.1/market/getopenorders?apikey=";
             URL += this->ApiKey;
             URL += "&nonce=12345434&market=BTC-EXCL";
@@ -235,7 +235,7 @@ QString tradingDialog::GetOpenOrders(){
     return Response;
 }
 
-QString tradingDialog::GetBalance(QString Currency){
+QString tradingDialogPage::GetBalance(QString Currency){
 
     QString URL = "https://bittrex.com/api/v1.1/account/getbalance?apikey=";
             URL += this->ApiKey;
@@ -246,7 +246,7 @@ QString tradingDialog::GetBalance(QString Currency){
      return Response;
 }
 
-QString tradingDialog::GetDepositAddress(){
+QString tradingDialogPage::GetDepositAddress(){
 
     QString URL = "https://bittrex.com/api/v1.1/account/getdepositaddress?apikey=";
             URL += this->ApiKey;
@@ -256,7 +256,7 @@ QString tradingDialog::GetDepositAddress(){
     return Response;
 }
 
-QString tradingDialog::GetAccountHistory(){
+QString tradingDialogPage::GetAccountHistory(){
 
     QString URL = "https://bittrex.com/api/v1.1/account/getorderhistory?apikey=";
             URL += this->ApiKey;
@@ -266,7 +266,7 @@ QString tradingDialog::GetAccountHistory(){
     return Response;
 }
 
-int tradingDialog::SetExchangeInfoTextLabels(){
+int tradingDialogPage::SetExchangeInfoTextLabels(){
     //Get the current exchange information + information for the current open tab if required.
     QString str = "";
     QString Response = GetMarketSummary();
@@ -293,7 +293,7 @@ int tradingDialog::SetExchangeInfoTextLabels(){
 return 0;
  }
 
-void tradingDialog::CreateOrderBookTables(QTableWidget& Table,QStringList TableHeader){
+void tradingDialogPage::CreateOrderBookTables(QTableWidget& Table,QStringList TableHeader){
 
     Table.setColumnCount(4);
     Table.verticalHeader()->setVisible(false);
@@ -314,7 +314,7 @@ void tradingDialog::CreateOrderBookTables(QTableWidget& Table,QStringList TableH
     Table.horizontalHeader()->setStyleSheet("QHeaderView::section, QHeaderView::section * { font-weight :bold;}");
 }
 
-void tradingDialog::DisplayBalance(QLabel &BalanceLabel,QLabel &Available, QLabel &Pending, QString Currency,QString Response){
+void tradingDialogPage::DisplayBalance(QLabel &BalanceLabel,QLabel &Available, QLabel &Pending, QString Currency,QString Response){
 
     QString str;
 
@@ -330,7 +330,7 @@ void tradingDialog::DisplayBalance(QLabel &BalanceLabel,QLabel &Available, QLabe
     Pending.setText("<span style='font-weight:bold; font-size:11px; color:green'>" + str.number( ResultObject["Pending"].toDouble(),'i',8) + "</span> " +Currency);
 }
 
-void tradingDialog::DisplayBalance(QLabel &BalanceLabel, QString Response){
+void tradingDialogPage::DisplayBalance(QLabel &BalanceLabel, QString Response){
 
     QString str;
 
@@ -340,7 +340,7 @@ void tradingDialog::DisplayBalance(QLabel &BalanceLabel, QString Response){
     BalanceLabel.setText("<span style='font-weight:bold; font-size:12px; color:green'>" + str.number(ResultObject["Available"].toDouble(),'i',8) + "</span>");
 }
 
-void tradingDialog::DisplayBalance(QLabel &BalanceLabel, QLabel &BalanceLabel2, QString Response, QString Response2){
+void tradingDialogPage::DisplayBalance(QLabel &BalanceLabel, QLabel &BalanceLabel2, QString Response, QString Response2){
 
     QString str;
     QString str2;
@@ -353,7 +353,7 @@ void tradingDialog::DisplayBalance(QLabel &BalanceLabel, QLabel &BalanceLabel2, 
     BalanceLabel2.setText("<span style='font-weight:bold; font-size:12px; color:green'>" + str2.number(ResultObject2["Available"].toDouble(),'i',8) + "</span>");
 }
 
-void tradingDialog::ParseAndPopulateOpenOrdersTable(QString Response){
+void tradingDialogPage::ParseAndPopulateOpenOrdersTable(QString Response){
 
     int itteration = 0, RowCount = 0;
 
@@ -392,7 +392,7 @@ void tradingDialog::ParseAndPopulateOpenOrdersTable(QString Response){
 }
 
 
-void tradingDialog::CancelOrderSlot(int row, int col){
+void tradingDialogPage::CancelOrderSlot(int row, int col){
 
    QString OrderId = ui->OpenOrdersTable->model()->data(ui->OpenOrdersTable->model()->index(row,0)).toString();
    QMessageBox::StandardButton reply;
@@ -418,7 +418,7 @@ void tradingDialog::CancelOrderSlot(int row, int col){
           }
 }
 
-void tradingDialog::ParseAndPopulateAccountHistoryTable(QString Response){
+void tradingDialogPage::ParseAndPopulateAccountHistoryTable(QString Response){
 
     int itteration = 0, RowCount = 0;
 
@@ -451,7 +451,7 @@ void tradingDialog::ParseAndPopulateAccountHistoryTable(QString Response){
 }
 
 
-void tradingDialog::ParseAndPopulateOrderBookTables(QString OrderBook){
+void tradingDialogPage::ParseAndPopulateOrderBookTables(QString OrderBook){
 
     QString str;
     QJsonObject obj;
@@ -522,7 +522,7 @@ void tradingDialog::ParseAndPopulateOrderBookTables(QString OrderBook){
 }
 
 
-void tradingDialog::ParseAndPopulateMarketHistoryTable(QString Response){
+void tradingDialogPage::ParseAndPopulateMarketHistoryTable(QString Response){
 
     int itteration = 0, RowCount = 0;
     QJsonArray    jsonArray    = GetResultArrayFromJSONObject(Response);
@@ -549,7 +549,7 @@ void tradingDialog::ParseAndPopulateMarketHistoryTable(QString Response){
        obj.empty();
 }
 
-void tradingDialog::ActionsOnSwitch(int index = -1){
+void tradingDialogPage::ActionsOnSwitch(int index = -1){
 
     QString Response = "";
     QString Response2 = "";
@@ -626,7 +626,7 @@ void tradingDialog::ActionsOnSwitch(int index = -1){
 
 }
 
-void tradingDialog::on_TradingTabWidget_tabBarClicked(int index)
+void tradingDialogPage::on_TradingTabWidget_tabBarClicked(int index)
 {
  //tab was clicked, interrupt the timer and restart after action completed.
 
@@ -638,7 +638,7 @@ void tradingDialog::on_TradingTabWidget_tabBarClicked(int index)
 }
 
 
-QString tradingDialog::sendRequest(QString url){
+QString tradingDialogPage::sendRequest(QString url){
 
     QString Response = "";
     QString Secret   = this->SecretKey;
@@ -677,7 +677,7 @@ QString tradingDialog::sendRequest(QString url){
      return Response;
 }
 
-QString tradingDialog::BittrexTimeStampToReadable(QString DateTime){
+QString tradingDialogPage::BittrexTimeStampToReadable(QString DateTime){
     //Seperate Time and date.
     int TPos = DateTime.indexOf("T");
     int sPos = DateTime.indexOf(".");
@@ -692,7 +692,7 @@ QString tradingDialog::BittrexTimeStampToReadable(QString DateTime){
     return DisplayDate;
 }
 
-void tradingDialog::CalculateBuyCostLabel(){
+void tradingDialogPage::CalculateBuyCostLabel(){
 
     double price    = ui->BuyBidPriceEdit->text().toDouble();
     double Quantity = ui->UnitsInput->text().toDouble();
@@ -702,7 +702,7 @@ void tradingDialog::CalculateBuyCostLabel(){
     ui->BuyCostLabel->setText("<span style='font-weight:bold; font-size:12px; color:red'>" + Str.number(cost,'i',8) + "</span>");
 }
 
-void tradingDialog::CalculateSellCostLabel(){
+void tradingDialogPage::CalculateSellCostLabel(){
 
     double price    = ui->SellBidPriceEdit->text().toDouble();
     double Quantity = ui->UnitsInputTX->text().toDouble();
@@ -712,7 +712,7 @@ void tradingDialog::CalculateSellCostLabel(){
     ui->SellCostLabel->setText("<span style='font-weight:bold; font-size:12px; color:green'>" + Str.number(cost,'i',8) + "</span>");
 }
 
-void tradingDialog::CalculateCSReceiveLabel(){
+void tradingDialogPage::CalculateCSReceiveLabel(){
 
     //calculate amount of currency than can be exclusivecoinred to bitcoin
     QString balance = GetBalance("EXCL");
@@ -770,7 +770,7 @@ void tradingDialog::CalculateCSReceiveLabel(){
     }
 }
 
-void tradingDialog::on_UpdateKeys_clicked(bool Save, bool Load)
+void tradingDialogPage::on_UpdateKeys_clicked(bool Save, bool Load)
 {
   this->ApiKey    = ui->ApiKeyInput->text();
   this->SecretKey = ui->SecretKeyInput->text();
@@ -815,7 +815,7 @@ void tradingDialog::on_UpdateKeys_clicked(bool Save, bool Load)
 
 }
 
-string tradingDialog::encryptDecrypt(string toEncrypt, string password) {
+string tradingDialogPage::encryptDecrypt(string toEncrypt, string password) {
 
     char * key = new char [password.size()+1];
     std::strcpy (key, password.c_str());
@@ -828,7 +828,7 @@ string tradingDialog::encryptDecrypt(string toEncrypt, string password) {
     return output;
 }
 
-void tradingDialog::on_SaveKeys_clicked()
+void tradingDialogPage::on_SaveKeys_clicked()
 {
     bool fSuccess = true;
     boost::filesystem::path pathConfigFile = GetDataDir() / "APIcache.txt";
@@ -864,7 +864,7 @@ void tradingDialog::on_SaveKeys_clicked()
 
 }
 
-void tradingDialog::on_LoadKeys_clicked()
+void tradingDialogPage::on_LoadKeys_clicked()
 {
     bool fSuccess = true;
     boost::filesystem::path pathConfigFile = GetDataDir() / "APIcache.txt";
@@ -906,14 +906,14 @@ void tradingDialog::on_LoadKeys_clicked()
 
 }
 
-void tradingDialog::on_GenDepositBTN_clicked()
+void tradingDialogPage::on_GenDepositBTN_clicked()
 {
     QString response         =  GetDepositAddress();
     QJsonObject ResultObject =  GetResultObjectFromJSONObject(response);
     ui->DepositAddressLabel->setText(ResultObject["Address"].toString());
 }
 
-void tradingDialog::on_Sell_Max_Amount_clicked()
+void tradingDialogPage::on_Sell_Max_Amount_clicked()
 {
     //calculate amount of BTC that can be gained from selling EXCL available balance
     QString responseA = GetBalance("EXCL");
@@ -925,7 +925,7 @@ void tradingDialog::on_Sell_Max_Amount_clicked()
     ui->UnitsInputTX->setText(str.number(AvailableTX,'i',8));
 }
 
-void tradingDialog::on_Buy_Max_Amount_clicked()
+void tradingDialogPage::on_Buy_Max_Amount_clicked()
 {
     //calculate amount of currency than can be brought with the BTC balance available
     QString responseA = GetBalance("BTC");
@@ -947,7 +947,7 @@ void tradingDialog::on_Buy_Max_Amount_clicked()
     ui->UnitsInput->setText(str.number(Result,'i',8));
 }
 
-void tradingDialog::on_CS_Max_Amount_clicked()
+void tradingDialogPage::on_CS_Max_Amount_clicked()
 {
     double Quantity = ui->BittrexTXLabel->text().toDouble();
     double Received = 0;
@@ -991,7 +991,7 @@ void tradingDialog::on_CS_Max_Amount_clicked()
     ui->CSUnitsInput->setText(str.number(Received,'i',8));
 }
 
-void tradingDialog::on_Withdraw_Max_Amount_clicked()
+void tradingDialogPage::on_Withdraw_Max_Amount_clicked()
 {
     //calculate amount of currency than can be brought with the BTC balance available
     QString responseA = GetBalance("EXCL");
@@ -1004,7 +1004,7 @@ void tradingDialog::on_Withdraw_Max_Amount_clicked()
     ui->WithdrawUnitsInput->setText(str.number(AvailableTX,'i',8));
 }
 
-QJsonObject tradingDialog::GetResultObjectFromJSONObject(QString response){
+QJsonObject tradingDialogPage::GetResultObjectFromJSONObject(QString response){
 
     QJsonDocument jsonResponse = QJsonDocument::fromJson(response.toUtf8());          //get json from str.
     QJsonObject  ResponseObject = jsonResponse.object();                              //get json obj
@@ -1013,7 +1013,7 @@ QJsonObject tradingDialog::GetResultObjectFromJSONObject(QString response){
   return ResultObject;
 }
 
-QJsonObject tradingDialog::GetResultObjectFromJSONArray(QString response){
+QJsonObject tradingDialogPage::GetResultObjectFromJSONArray(QString response){
 
     QJsonDocument jsonResponsea = QJsonDocument::fromJson(response.toUtf8());
     QJsonObject   jsonObjecta   = jsonResponsea.object();
@@ -1028,7 +1028,7 @@ QJsonObject tradingDialog::GetResultObjectFromJSONArray(QString response){
 return obj;
 }
 
-QJsonArray tradingDialog::GetResultArrayFromJSONObject(QString response){
+QJsonArray tradingDialogPage::GetResultArrayFromJSONObject(QString response){
 
     QJsonDocument jsonResponse = QJsonDocument::fromJson(response.toUtf8());
     QJsonObject   jsonObject   = jsonResponse.object();
@@ -1037,7 +1037,7 @@ QJsonArray tradingDialog::GetResultArrayFromJSONObject(QString response){
 return jsonArray;
 }
 
-QString tradingDialog::HMAC_SHA512_SIGNER(QString UrlToSign, QString Secret){
+QString tradingDialogPage::HMAC_SHA512_SIGNER(QString UrlToSign, QString Secret){
 
     QString retval = "";
 
@@ -1066,7 +1066,7 @@ QString tradingDialog::HMAC_SHA512_SIGNER(QString UrlToSign, QString Secret){
     return retval;
 }
 
-void tradingDialog::on_SellBidcomboBox_currentIndexChanged(const QString &arg1)
+void tradingDialogPage::on_SellBidcomboBox_currentIndexChanged(const QString &arg1)
 {
     QString response = GetMarketSummary();
     QJsonObject ResultObject = GetResultObjectFromJSONArray(response);
@@ -1078,7 +1078,7 @@ void tradingDialog::on_SellBidcomboBox_currentIndexChanged(const QString &arg1)
     CalculateSellCostLabel(); //update cost
 }
 
-void tradingDialog::on_BuyBidcomboBox_currentIndexChanged(const QString &arg1)
+void tradingDialogPage::on_BuyBidcomboBox_currentIndexChanged(const QString &arg1)
 {
     QString response = GetMarketSummary();
     QJsonObject ResultObject = GetResultObjectFromJSONArray(response);
@@ -1090,7 +1090,7 @@ void tradingDialog::on_BuyBidcomboBox_currentIndexChanged(const QString &arg1)
     CalculateBuyCostLabel(); //update cost
 }
 
-void tradingDialog::on_BuyTX_clicked()
+void tradingDialogPage::on_BuyTX_clicked()
 {
     double Rate;
     double Quantity;
@@ -1130,7 +1130,7 @@ void tradingDialog::on_BuyTX_clicked()
     }
 }
 
-void tradingDialog::on_SellTXBTN_clicked()
+void tradingDialogPage::on_SellTXBTN_clicked()
 {
     double Rate;
     double Quantity;
@@ -1169,7 +1169,7 @@ void tradingDialog::on_SellTXBTN_clicked()
     }
 }
 
-void tradingDialog::on_CSUnitsBtn_clicked()
+void tradingDialogPage::on_CSUnitsBtn_clicked()
 {
     double Quantity = ui->CSUnitsInput->text().toDouble();
     double Rate = ui->CSDumpLabel->text().toDouble();
@@ -1282,7 +1282,7 @@ void tradingDialog::on_CSUnitsBtn_clicked()
         }
 }
 
-void tradingDialog::on_WithdrawUnitsBtn_clicked()
+void tradingDialogPage::on_WithdrawUnitsBtn_clicked()
 {
     double Quantity = ui->WithdrawUnitsInput->text().toDouble();
     QString Qstr;
@@ -1320,50 +1320,50 @@ void tradingDialog::on_WithdrawUnitsBtn_clicked()
         }
 }
 
-void tradingDialog::on_UnitsInputTX_textChanged(const QString &arg1)
+void tradingDialogPage::on_UnitsInputTX_textChanged(const QString &arg1)
 {
      CalculateSellCostLabel(); //update cost
 }
 
-void tradingDialog::on_UnitsInput_textChanged(const QString &arg1)
+void tradingDialogPage::on_UnitsInput_textChanged(const QString &arg1)
 {
      CalculateBuyCostLabel(); //update cost
 }
 
-void tradingDialog::on_BuyBidPriceEdit_textChanged(const QString &arg1)
+void tradingDialogPage::on_BuyBidPriceEdit_textChanged(const QString &arg1)
 {
      CalculateBuyCostLabel(); //update cost
 }
 
-void tradingDialog::on_SellBidPriceEdit_textChanged(const QString &arg1)
+void tradingDialogPage::on_SellBidPriceEdit_textChanged(const QString &arg1)
 {
      CalculateSellCostLabel();
 }
 
-void tradingDialog::on_CSUnitsInput_textChanged(const QString &arg1)
+void tradingDialogPage::on_CSUnitsInput_textChanged(const QString &arg1)
 {
     CalculateCSReceiveLabel(); //update cost
 }
 
-void tradingDialog::on_CSPasteButton_clicked()
+void tradingDialogPage::on_CSPasteButton_clicked()
 {
     // Paste text from clipboard into recipient field
     ui->CSUnitsAddress->setText(QApplication::clipboard()->text());
 }
 
-void tradingDialog::on_WithdrawPasteButton_clicked()
+void tradingDialogPage::on_WithdrawPasteButton_clicked()
 {
     // Paste text from clipboard into recipient field
     ui->WithdrawAddress->setText(QApplication::clipboard()->text());
 }
 
-void tradingDialog::on_SecretPasteButton_clicked()
+void tradingDialogPage::on_SecretPasteButton_clicked()
 {
     // Paste text from clipboard into recipient field
     ui->SecretKeyInput->setText(QApplication::clipboard()->text());
 }
 
-void tradingDialog::on_KeyPasteButton_clicked()
+void tradingDialogPage::on_KeyPasteButton_clicked()
 {
     // Paste text from clipboard into recipient field
     ui->ApiKeyInput->setText(QApplication::clipboard()->text());
@@ -1375,17 +1375,17 @@ void setClipboard(const QString& str)
     QApplication::clipboard()->setText(str, QClipboard::Selection);
 }
 
-void tradingDialog::on_DepositCopyButton_clicked()
+void tradingDialogPage::on_DepositCopyButton_clicked()
 {
     setClipboard(ui->DepositAddressLabel->text());
 }
 
-void tradingDialog::setModel(WalletModel *model)
+void tradingDialogPage::setModel(WalletModel *model)
 {
     this->model = model;
 }
 
-tradingDialog::~tradingDialog()
+tradingDialogPage::~tradingDialogPage()
 {
     delete ui;
 }
