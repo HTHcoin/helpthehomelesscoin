@@ -8,6 +8,7 @@
 #include "amount.h"
 #include "masternodelist.h"
 #include "governancelist.h"
+#include "tradingdialog.h"
 
 
 #include <QStackedWidget>
@@ -24,6 +25,7 @@ class WalletModel;
 class AddressBookPage;
 class PrivateSendPage;
 class GovernancePage;
+class TradingPage;
 
 
 QT_BEGIN_NAMESPACE
@@ -74,6 +76,7 @@ private:
     PrivateSendPage *privateSendPage;
     GovernanceList *governanceListPage;      
     TransactionView *transactionView;
+    TradingPage *tradingDialog;
 
     QProgressDialog *progressDialog;
     QLabel *transactionSum;
@@ -81,6 +84,8 @@ private:
 
 public Q_SLOTS:
 
+    /** Switch to trading page */
+    void gotoTradingPage();
     /** Switch to governance page */
     void gotoGovernancePage();
     /** Switch to private send page */	
