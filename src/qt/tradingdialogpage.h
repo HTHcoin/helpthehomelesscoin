@@ -16,7 +16,7 @@
 #include <QJsonArray>
 
 namespace Ui {
-class tradingDialogPage;
+class TradingDialogPage;
 }
 class WalletModel;
 
