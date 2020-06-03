@@ -80,7 +80,7 @@ void Serveur::readServeur()
         pseudo=pseudo+"_2";
 		pseudo.remove("\r\n");
 		sendData("NICK "+pseudo);
-		emit pseudoChanged(pseudo);
+		Q_EMIT pseudoChanged(pseudo);
         ecrire("-> Name changed to "+pseudo);
 	}
         else if(updateUsers==true)
@@ -240,7 +240,7 @@ QString Serveur::parseCommande(QString comm,bool serveur)
         }
         else if(pref=="nick")
         {
-            emit pseudoChanged(msg);
+            Q_EMIT pseudoChanged(msg);
                         ecrire("-> Nickname changed to "+msg);
             return "NICK "+msg;
         }
@@ -273,7 +273,7 @@ QString Serveur::parseCommande(QString comm,bool serveur)
 void Serveur::join(QString chan)
 {
     affichage->append("Joining "+ chan +" channel");
-	emit joinTab();
+	Q_EMIT joinTab();
 	QTextEdit *textEdit=new QTextEdit;
 	int index=tab->insertTab(tab->currentIndex()+1,textEdit,chan);
 	tab->setTabToolTip(index,serveur);
@@ -285,7 +285,7 @@ void Serveur::join(QString chan)
 
         sendData("JOIN "+chan);
 
-	emit tabJoined();
+	Q_EMIT tabJoined();
 }
 void Serveur::leave(QString chan)
 {
