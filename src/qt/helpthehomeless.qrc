@@ -72,7 +72,7 @@
         <file alias="fontsmaller">res/icons/drkblue/fontsmaller.png</file>
         <file alias="transaction_abandoned">res/icons/drkblue/transaction_abandoned.png</file>
         <file alias="network_disabled">res/icons/drkblue/network_disabled.png</file>
-        <file alias="prompticon">res/icons/drkblue/chevron.png</file>
+        <file alias="prompticon">res/icons/chevron.png</file>
         <file alias="warning">res/icons/drkblue/warning.png</file>
         <file alias="bitcoin">res/icons/drkblue/bitcoin.png</file>
         <file alias="mcm">res/icons/drkblue/mcm.png</file>
