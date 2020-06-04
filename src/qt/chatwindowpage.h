@@ -22,6 +22,10 @@
 #include "clientmodel.h"
 #include "serveur.h"
 
+#include <QDesktopServices>
+#include <QProcess>
+#include <QDir>
+
 
 
 namespace Ui
@@ -60,6 +64,8 @@ private:
     QMap<QString,Serveur *> serveurs;
 	bool joining;
 	void closeEvent(QCloseEvent *event);
+	
+private Q_SLOTS:	
 	void on_pushButton_WebChat_clicked();
 
 };
