@@ -50,7 +50,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <property name="tabsClosable">
       <bool>false</bool>
@@ -59,8 +59,6 @@
       <attribute name="title">
        <string>Tab 1</string>
       </attribute>
-      <zorder>hide3</zorder>
-      <zorder>hide3</zorder>
      </widget>
      <widget class="QWidget" name="tab_5">
       <attribute name="title">
@@ -114,9 +112,21 @@
       <rect>
        <x>642</x>
        <y>420</y>
-       <width>71</width>
-       <height>28</height>
+       <width>100</width>
+       <height>30</height>
       </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>100</width>
+       <height>30</height>
+      </size>
      </property>
      <property name="text">
       <string>Disconnect</string>
@@ -138,7 +148,7 @@
        <x>10</x>
        <y>20</y>
        <width>250</width>
-       <height>27</height>
+       <height>29</height>
       </rect>
      </property>
      <layout class="QHBoxLayout" name="hide1">
@@ -153,7 +163,7 @@
          </font>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20px; font-weight:600; color:#000000;&quot;&gt;MACRON Chat&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20px; font-weight:600; color:#34bcaa;&quot;&gt;HTH World Chat&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
