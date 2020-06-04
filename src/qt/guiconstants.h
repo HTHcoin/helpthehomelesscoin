@@ -37,6 +37,9 @@ static const bool DEFAULT_SPLASHSCREEN = true;
 /* Transaction list -- TX status decoration - LockedByInstantSend color */
 #define COLOR_TX_STATUS_LOCKED QColor(0, 128, 255)
 
+/* Color of labels */
+#define COLOR_LABELS QColor("#000")
+
 /* Tooltips longer than this (in characters) are converted into rich text,
    so that they can be word-wrapped.
  */

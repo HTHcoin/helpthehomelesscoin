@@ -89,7 +89,7 @@ namespace GUIUtil {
 	{
 		return dateTimeStr(QDateTime::fromTime_t((qint32)nTime));
 	}
-
+	
 	QFont fixedPitchFont()
 	{
 #if QT_VERSION >= 0x50200
@@ -523,22 +523,22 @@ namespace GUIUtil {
 	}
 
 	// We need to disconnect these while handling the resize events, otherwise we can enter infinite loops.
-	void TableViewLastColumnResizingFixer::disconnectViewHeadersSignals()
-	{
-		disconnect(tableView->horizontalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(on_sectionResized(int, int, int)));
-		disconnect(tableView->horizontalHeader(), SIGNAL(geometriesChanged()), this, SLOT(on_geometriesChanged()));
-	}
+void TableViewLastColumnResizingFixer::disconnectViewHeadersSignals()
+{
+    disconnect(tableView->horizontalHeader(), SIGNAL(sectionResized(int,int,int)), this, SLOT(on_sectionResized(int,int,int)));
+    disconnect(tableView->horizontalHeader(), SIGNAL(geometriesChanged()), this, SLOT(on_geometriesChanged()));
+}
 
-	// Setup the resize mode, handles compatibility for Qt5 and below as the method signatures changed.
-	// Refactored here for readability.
-	void TableViewLastColumnResizingFixer::setViewHeaderResizeMode(int logicalIndex, QHeaderView::ResizeMode resizeMode)
-	{
+// Setup the resize mode, handles compatibility for Qt5 and below as the method signatures changed.
+// Refactored here for readability.
+void TableViewLastColumnResizingFixer::setViewHeaderResizeMode(int logicalIndex, QHeaderView::ResizeMode resizeMode)
+{
 #if QT_VERSION < 0x050000
-		tableView->horizontalHeader()->setResizeMode(logicalIndex, resizeMode);
+    tableView->horizontalHeader()->setResizeMode(logicalIndex, resizeMode);
 #else
-		tableView->horizontalHeader()->setSectionResizeMode(logicalIndex, resizeMode);
+    tableView->horizontalHeader()->setSectionResizeMode(logicalIndex, resizeMode);
 #endif
-	}
+}
 
 	void TableViewLastColumnResizingFixer::resizeColumn(int nColumnIndex, int width)
 	{
@@ -957,7 +957,7 @@ namespace GUIUtil {
 	{
 		return QString::fromStdString(path.string(utf8));
 	}
-
+	
 	QString formatDurationStr(int secs)
 	{
 		QStringList strList;
@@ -977,17 +977,13 @@ namespace GUIUtil {
 
 		return strList.join(" ");
 	}
-	std::string FROMQS(QString qs)
-{
-	std::string sOut = qs.toUtf8().constData();
-	return sOut;
-}
 
-QString TOQS(std::string s)
+	QString TOQS(std::string s)
 {
 	QString str1 = QString::fromUtf8(s.c_str());
 	return str1;
 }
+
 
 	QString formatServicesStr(quint64 mask)
 	{

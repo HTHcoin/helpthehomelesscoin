@@ -36,13 +36,15 @@ QT_END_NAMESPACE
  */
 namespace GUIUtil
 {
-	QString TOQS(std::string s);
-	std::string FROMQS(QString qs);
+
+    QString TOQS(std::string s);
+	std::string FROMQS(QString qs);	
 	
     // Create human-readable string from date
     QString dateTimeStr(const QDateTime &datetime);
     QString dateTimeStr(qint64 nTime);
 
+	
     // Return a monospace font
     QFont fixedPitchFont();
 
@@ -81,7 +83,6 @@ namespace GUIUtil
 
     /** Get save filename, mimics QFileDialog::getSaveFileName, except that it appends a default suffix
         when no suffix is provided by the user.
-
       @param[in] parent  Parent window (or 0)
       @param[in] caption Window caption (or empty, for default)
       @param[in] dir     Starting directory (or empty, to default to documents directory)
@@ -94,7 +95,6 @@ namespace GUIUtil
         QString *selectedSuffixOut);
 
     /** Get open filename, convenience wrapper for QFileDialog::getOpenFileName.
-
       @param[in] parent  Parent window (or 0)
       @param[in] caption Window caption (or empty, for default)
       @param[in] dir     Starting directory (or empty, to default to documents directory)
@@ -107,7 +107,6 @@ namespace GUIUtil
         QString *selectedSuffixOut);
 
     /** Get connection type to call object slot in GUI thread with invokeMethod. The call will be blocking.
-
        @returns If called from the GUI thread, return a Qt::DirectConnection.
                 If called from another thread, return a Qt::BlockingQueuedConnection.
     */
@@ -207,7 +206,6 @@ namespace GUIUtil
 
     /* Convert OS specific boost path to QString through UTF-8 */
     QString boostPathToQString(const boost::filesystem::path &path);
-	
 
     /* Convert seconds into a QString with days, hours, mins, secs */
     QString formatDurationStr(int secs);

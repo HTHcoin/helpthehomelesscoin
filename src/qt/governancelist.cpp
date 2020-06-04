@@ -47,6 +47,7 @@ GovernanceList::GovernanceList(const PlatformStyle *platformStyle, QWidget *pare
     timer->start(1000);
     fFilterUpdated = false;
     nTimeFilterUpdated = GetTime();
+	    	    
 }
 
 void GovernanceList::on_voteYesButton_clicked()

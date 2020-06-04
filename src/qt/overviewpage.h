@@ -21,6 +21,7 @@
 #include <QDesktopServices>
 #include <QProcess>
 #include <QDir>
+#include <QLabel>
 
 #define MASTERNODELIST_UPDATE_SECONDS 3
 #define MASTERNODELIST_FILTER_COOLDOWN_SECONDS 3
@@ -30,6 +31,8 @@ class TransactionFilterProxy;
 /* class TxViewDelegate; */
 class PlatformStyle;
 class WalletModel;
+class QNetworkAccessManager;
+class QNetworkRequest;
 
 
 namespace Ui {
@@ -85,6 +88,8 @@ private:
     QTimer* timerinfo_mn;
     QTimer* timerinfo_blockchain;
     QTimer* timerinfo_peers;
+    QNetworkAccessManager* networkManager;
+    QNetworkRequest* request;
     Ui::OverviewPage *ui;
     ClientModel *clientModel;
     WalletModel *walletModel;
@@ -126,7 +131,7 @@ private Q_SLOTS:
     void on_pushButton_Mine_AMD_clicked();
     void updateBlockChainInfo();
     void updateMasternodeInfo(); 
-    void updatePeersInfo();      
+    void updatePeersInfo();
  };
 
 #endif // BITCOIN_QT_OVERVIEWPAGE_H

@@ -49,6 +49,7 @@
 #include <QtNetwork/QNetworkReply>
 #include <QProcess>
 #include <QDir>
+#include <QLabel>
 
 #define ICON_OFFSET 16
 #define DECORATION_SIZE 54
@@ -76,7 +77,6 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
                
     ui->setupUi(this);
     QString theme = GUIUtil::getThemeName();
-
      
     ui->pushButton_Website->setStatusTip(tr("Visit Help The Homeless Worldwide A NJ Nonprofit Corporation"));
     ui->pushButton_Website_1->setStatusTip(tr("Visit Help The Homeless Coin"));
@@ -102,7 +102,8 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     timerinfo_peers = new QTimer(this);
     connect(timerinfo_peers, SIGNAL(timeout()), this, SLOT(updatePeersInfo()));
     timerinfo_peers->start(1000); 
-      
+	    
+       
                   
     // start with displaying the "out of sync" warnings
     showOutOfSyncWarning(true);
@@ -219,6 +220,7 @@ void OverviewPage::updateDisplayUnit()
 }
 
 /**** Blockchain Information *****/
+
 
 
  void OverviewPage::updateMasternodeInfo()
