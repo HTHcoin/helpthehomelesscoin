@@ -84,14 +84,21 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(receiveCoinsPage);
     addWidget(sendCoinsPage);
     addWidget(privateSendPage);
+	    
+   /* tradingDialogPage = new TradingDialogPage();
+    addWidget(tradingDialogPage); */
+	    
+    chatWindowPage = new ChatWindowPage();
+    addWidget(chatWindowPage);	    
 
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
         masternodeListPage = new MasternodeList(platformStyle);
         addWidget(masternodeListPage);
     }
-        governanceListPage = new GovernanceList(platformStyle);
+    governanceListPage = new GovernanceList(platformStyle);
     addWidget(governanceListPage);
+	    
         
     // Clicking on a transaction on the overview pre-selects the transaction on the transaction history page
     connect(overviewPage, SIGNAL(transactionClicked(QModelIndex)), transactionView, SLOT(focusTransaction(QModelIndex)));
@@ -158,6 +165,7 @@ void WalletView::setClientModel(ClientModel *_clientModel)
         masternodeListPage->setClientModel(_clientModel);
     }
     governanceListPage->setClientModel(_clientModel);
+    	
 }
 
 void WalletView::setWalletModel(WalletModel *_walletModel)
@@ -172,6 +180,7 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
         masternodeListPage->setWalletModel(_walletModel);
     }
+    
     governanceListPage->setWalletModel(_walletModel);
     receiveCoinsPage->setModel(_walletModel);
     sendCoinsPage->setModel(_walletModel);
@@ -231,6 +240,16 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
 
     Q_EMIT incomingTransaction(date, walletModel->getOptionsModel()->getDisplayUnit(), amount, type, address, label);
 }
+
+void WalletView::gotoChatWindowPage()
+{
+   setCurrentWidget(chatWindowPage);
+}
+
+/*void WalletView::gotoTradingDialogPage()
+{
+   setCurrentWidget(tradingDialogPage);
+}  */
 
 void WalletView::gotoGovernancePage()
 {

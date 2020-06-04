@@ -10,9 +10,11 @@
 #include <QMenu>
 #include <QTimer>
 #include <QWidget>
+#include <QLabel>
 
 #define GOBJECT_UPDATE_SECONDS                 15
 #define GOBJECT_COOLDOWN_SECONDS               3
+
 
 namespace Ui {
     class GovernanceList;
@@ -45,6 +47,7 @@ private:
     QMenu *contextMenu;
     int64_t nTimeFilterUpdated;
     bool fFilterUpdated;
+
 
 public Q_SLOTS:
     void updateGobjects();

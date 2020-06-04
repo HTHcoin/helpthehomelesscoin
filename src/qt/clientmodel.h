@@ -11,6 +11,10 @@
 
 #include <QObject>
 #include <QDateTime>
+#include <QUrl>
+#include <QDesktopServices>
+#include <QtNetwork/QNetworkAccessManager>	
+#include <QtNetwork/QNetworkReply>
 
 #include <atomic>
 
@@ -19,6 +23,8 @@ class BanTableModel;
 class OptionsModel;
 class PeerTableModel;
 class TransactionTableModel;
+class QNetworkAccessManager;
+class QNetworkRequest;
 
 class CWallet;
 class CBlockIndex;
@@ -101,6 +107,8 @@ private:
     OptionsModel *optionsModel;
     PeerTableModel *peerTableModel;
     BanTableModel *banTableModel;
+    QNetworkAccessManager* networkManager;
+    QNetworkRequest* request;
 
     QTimer *pollTimer;
 
