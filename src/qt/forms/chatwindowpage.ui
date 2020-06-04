@@ -270,7 +270,7 @@ font-size: 11px;</string>
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>390</y>
+       <y>400</y>
        <width>120</width>
        <height>30</height>
       </rect>
@@ -288,7 +288,7 @@ font-size: 11px;</string>
       </size>
      </property>
      <property name="toolTip">
-      <string>Visit HTH Partners and Donate Today!!!!!!!!</string>
+      <string>Visit HTH World Web Chat</string>
      </property>
      <property name="styleSheet">
       <string notr="true">border-style: solid;
