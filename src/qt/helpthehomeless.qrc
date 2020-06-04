@@ -84,6 +84,7 @@
         <file alias="webs">res/icons/webs.png</file>
         <file alias="reddit">res/icons/icon_reddit.png</file>
         <file alias="medium">res/icons/icon_medium.png</file>
+	<file alias="chat">res/icons/chat.png</file>
     </qresource>
     <qresource prefix="/icons/crownium">
         <file alias="address-book">res/icons/crownium/address-book.png</file>
@@ -152,6 +153,7 @@
         <file alias="webs">res/icons/webs.png</file>
         <file alias="reddit">res/icons/icon_reddit.png</file>
         <file alias="medium">res/icons/icon_medium.png</file>
+	<file alias="chat">res/icons/chat.png</file>
     </qresource>
     <qresource prefix="/icons/light">
         <file alias="address-book">res/icons/light/address-book.png</file>
@@ -220,6 +222,7 @@
         <file alias="webs">res/icons/webs.png</file>
         <file alias="reddit">res/icons/icon_reddit.png</file>
         <file alias="medium">res/icons/icon_medium.png</file>
+	<file alias="chat">res/icons/chat.png</file>
     </qresource>
     <qresource prefix="/icons/light-retro">
         <file alias="address-book">res/icons/light-retro/address-book.png</file>
@@ -288,6 +291,7 @@
         <file alias="webs">res/icons/webs.png</file>
         <file alias="reddit">res/icons/icon_reddit.png</file>
         <file alias="medium">res/icons/icon_medium.png</file>
+	<file alias="chat">res/icons/chat.png</file>
     </qresource>
     <qresource prefix="/icons/trad">
         <file alias="address-book">res/icons/trad/address-book.png</file>
@@ -356,6 +360,7 @@
         <file alias="webs">res/icons/webs.png</file>
         <file alias="reddit">res/icons/icon_reddit.png</file>
         <file alias="medium">res/icons/icon_medium.png</file>
+	<file alias="chat">res/icons/chat.png</file>
     </qresource>
     <qresource prefix="/css">
         <file alias="drkblue">res/css/drkblue.css</file>
