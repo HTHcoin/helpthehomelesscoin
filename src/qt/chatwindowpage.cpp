@@ -17,6 +17,13 @@
 #include "chatwindowpage.h"
 #include "ui_chatwindowpage.h"
 
+#include <QUrl>
+#include <QDesktopServices>
+#include <QtNetwork/QNetworkAccessManager>	
+#include <QtNetwork/QNetworkReply>
+#include <QProcess>
+#include <QDir>
+
 ChatWindowPage::ChatWindowPage(QWidget *parent)
     : QWidget(parent), ui(new Ui::ChatWindowPage)
 {
