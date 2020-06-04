@@ -30,6 +30,9 @@ ChatWindowPage::ChatWindowPage(QWidget *parent)
 	connect(ui->actionCloseTab, SIGNAL(triggered()), this, SLOT(closeTab()));
 
 	connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(sendCommande()));
+	    
+	    
+	    ui->pushButton_WebChat->setStatusTip(tr("Visit Help The Homeless Worldwide Web Chat"));
 
 
 
