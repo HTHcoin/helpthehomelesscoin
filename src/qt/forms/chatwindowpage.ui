@@ -6,17 +6,17 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>747</width>
-    <height>514</height>
+    <width>878</width>
+    <height>692</height>
    </rect>
   </property>
   <widget class="QWidget" name="widget_2" native="true">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>0</y>
-     <width>741</width>
-     <height>511</height>
+     <y>50</y>
+     <width>851</width>
+     <height>611</height>
     </rect>
    </property>
    <widget class="QWidget" name="splitter" native="true">
@@ -145,8 +145,8 @@ font-size: 11px;</string>
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>731</width>
-      <height>501</height>
+      <width>851</width>
+      <height>671</height>
      </rect>
     </property>
     <widget class="QWidget" name="layoutWidget">
