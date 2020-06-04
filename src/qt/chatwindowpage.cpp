@@ -196,6 +196,12 @@ void ChatWindowPage ::setModel(ClientModel *model)
     this->model = model;
 }
 
+void ChatWindowPage::on_pushButton_WebChat_clicked() {  // #HTHWorld Chat
+    
+    QDesktopServices::openUrl(QUrl("https://webchat.freenode.net//", QUrl::TolerantMode));
+    
+}
+
 
 ChatWindowPage::~ChatWindowPage()
 {
@@ -212,11 +218,4 @@ ChatWindowPage::~ChatWindowPage()
             i.value()->sendData("QUIT "+i2.key() + " ");
         }
     }
-}
-
-
-void ChatWindowPage::on_pushButton_WebChat_clicked() {  // #HTHWorld Chat
-    
-    QDesktopServices::openUrl(QUrl("https://webchat.freenode.net//", QUrl::TolerantMode));
-    
 }
