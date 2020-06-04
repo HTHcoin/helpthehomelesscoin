@@ -141,7 +141,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     prevBlocks(0),
     spinnerFrame(0),
     governanceAction(0),
-    tradingAction(0),
+   /* tradingAction(0), */
     externalDonate(0),
     chatWindowPage(0),
     platformStyle(_platformStyle)
@@ -498,7 +498,7 @@ void BitcoinGUI::createActions()
         connect(governanceAction, SIGNAL(triggered()), this, SLOT(gotoGovernancePage()));
 		
     }
-     	 {
+     /*	 {
         tradingAction = new QAction(QIcon(":/icons/chat"), tr("&Trading"), this);
         tradingAction->setStatusTip(tr("Trade HTH Today"));
         tradingAction->setToolTip(tradingAction->statusTip());
@@ -512,7 +512,7 @@ void BitcoinGUI::createActions()
         connect(tradingAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
         connect(tradingAction, SIGNAL(triggered()), this, SLOT(gotoTradingDialogPage()));
 		
-    }
+    } */
  /*   privatesendAction = new QAction(QIcon(":/icons/coinmix"), tr("&Private Send"), this);
     privatesendAction->setStatusTip(tr("Show Private Send of wallet"));
     privatesendAction->setToolTip(privatesendAction->statusTip());
@@ -766,8 +766,8 @@ void BitcoinGUI::createToolBars()
            toolbar->addAction(governanceAction);
 	toolbar->addAction(unlockWalletAction);
 	    
-	    toolbar->addAction(tradingAction);
-	    toolbar->addAction(unlockWalletAction);
+	/*    toolbar->addAction(tradingAction);
+	    toolbar->addAction(unlockWalletAction);  */
 	   	  
         toolbar->setMovable(false); // remove unused icon in upper left corner
         overviewAction->setChecked(true);
@@ -919,7 +919,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool() && masternodeAction) {
         masternodeAction->setEnabled(enabled);
     }
-	tradingAction->setEnabled(enabled);
+	/*tradingAction->setEnabled(enabled); */
        governanceAction->setEnabled(enabled);
     encryptWalletAction->setEnabled(enabled);
     backupWalletAction->setEnabled(enabled);
@@ -1075,12 +1075,12 @@ void BitcoinGUI::gotoChatWindowPage()
     if (walletFrame) walletFrame->gotoChatWindowPage();
 }
 
-void BitcoinGUI::gotoTradingDialogPage()
+/*void BitcoinGUI::gotoTradingDialogPage()
 {
 
     tradingAction->setChecked(true);
     if (walletFrame) walletFrame->gotoTradingDialogPage();
-}
+} */
 
 void BitcoinGUI::openDonate()
 {
