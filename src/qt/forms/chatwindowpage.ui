@@ -221,7 +221,7 @@ font-size: 20px;</string>
      <property name="geometry">
       <rect>
        <x>185</x>
-       <y>330</y>
+       <y>275</y>
        <width>151</width>
        <height>41</height>
       </rect>
@@ -251,6 +251,19 @@ font-size: 11px;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>350</y>
+       <width>521</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To Chat on Web, Go to &lt;a href=&quot;https://webchat.freenode.net/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://webchat.freenode.net/&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Enter your Nick&lt;/p&gt;&lt;p&gt;Enter#HTHWorld as Channel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </widget>
