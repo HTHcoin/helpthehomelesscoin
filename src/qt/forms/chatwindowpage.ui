@@ -152,7 +152,7 @@ font-size: 11px;</string>
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>150</x>
+       <x>170</x>
        <y>40</y>
        <width>250</width>
        <height>29</height>
@@ -162,7 +162,7 @@ font-size: 11px;</string>
       <property name="spacing">
        <number>7</number>
       </property>
-      <item alignment="Qt::AlignHCenter">
+      <item>
        <widget class="QLabel" name="label">
         <property name="styleSheet">
          <string notr="true">font-weight: bold;
@@ -240,14 +240,14 @@ font-size: 11px;</string>
     <widget class="QLabel" name="label_10">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>160</x>
        <y>110</y>
-       <width>151</width>
+       <width>251</width>
        <height>20</height>
       </rect>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Connect to #HTHWorld&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Connect to #HTHWorld TrollBox&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </widget>
