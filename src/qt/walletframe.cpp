@@ -116,13 +116,13 @@ void WalletFrame::gotoChatWindowPage()
         i.value()->gotoChatWindowPage();
 }
 
-void WalletFrame::gotoTradingDialogPage()
+/*void WalletFrame::gotoTradingDialogPage()
 {
 
      QMap<QString, WalletView*>::const_iterator i;
     for (i = mapWalletViews.constBegin(); i != mapWalletViews.constEnd(); ++i)
         i.value()->gotoTradingDialogPage();
-}
+} */
 
 void WalletFrame::gotoGovernancePage()
 {
