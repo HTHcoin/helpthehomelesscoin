@@ -38,7 +38,7 @@ class HelpMessageDialog;
 class ModalOverlay;
 class QNetworkAccessManager;
 class QNetworkRequest;
-class tradingDialogPage;
+/*class tradingDialogPage; */
 class ChatWindowPage;
 
 class CWallet;
@@ -108,7 +108,7 @@ private:
     QAction* chatWindowPage;
     QAction* externalDonate;
     QAction *governanceAction;
-    QAction *tradingAction;
+  /*  QAction *tradingAction; */
   /*  QAction* privatesendAction; */
     QAction *overviewAction;
     QAction *historyAction;
@@ -238,7 +238,7 @@ private Q_SLOTS:
     /** Switch to chat page */
     void gotoChatWindowPage();	
     /** Switch to trading page */
-    void gotoTradingDialogPage();
+ /*   void gotoTradingDialogPage();  */
     /** Switch to governance page */
     void gotoGovernancePage();
     /** Switch to private send page */
