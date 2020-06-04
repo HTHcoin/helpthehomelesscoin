@@ -110,7 +110,7 @@
     <widget class="QPushButton" name="disconnect">
      <property name="geometry">
       <rect>
-       <x>642</x>
+       <x>595</x>
        <y>420</y>
        <width>100</width>
        <height>30</height>
