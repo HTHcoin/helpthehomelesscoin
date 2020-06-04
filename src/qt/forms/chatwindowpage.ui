@@ -263,7 +263,7 @@ font-size: 11px;</string>
       </rect>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To Chat on Web, Go to &lt;a href=&quot;https://webchat.freenode.net/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://webchat.freenode.net/&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Enter your Nick&lt;/p&gt;&lt;p&gt;Enter#HTHWorld as Channel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To Chat on Web, Go to &lt;a href=&quot;https://webchat.freenode.net/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://webchat.freenode.net/&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Enter your Nick&lt;/p&gt;&lt;p&gt;Enter #HTHWorld as Channel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </widget>
