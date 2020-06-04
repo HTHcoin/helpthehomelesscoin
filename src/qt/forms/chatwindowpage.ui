@@ -256,14 +256,49 @@ font-size: 11px;</string>
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>350</y>
-       <width>521</width>
-       <height>81</height>
+       <x>200</x>
+       <y>380</y>
+       <width>181</width>
+       <height>61</height>
       </rect>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To Chat on Web, Go to &lt;a href=&quot;https://webchat.freenode.net/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://webchat.freenode.net/&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Enter your Nick&lt;/p&gt;&lt;p&gt;Enter #HTHWorld as Channel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter your Nick&lt;/p&gt;&lt;p&gt;Enter #HTHWorld as Channel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_WebChat">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>390</y>
+       <width>120</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>120</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="toolTip">
+      <string>Visit HTH Partners and Donate Today!!!!!!!!</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-style: solid;
+border-width: 2px;
+border-color: #34bcaa;
+border-radius: 10px;
+font-size: 11px;</string>
+     </property>
+     <property name="text">
+      <string>#HTHWorld</string>
      </property>
     </widget>
    </widget>
