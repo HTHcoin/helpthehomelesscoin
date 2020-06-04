@@ -152,7 +152,7 @@ font-size: 11px;</string>
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>130</x>
+       <x>160</x>
        <y>40</y>
        <width>250</width>
        <height>29</height>
