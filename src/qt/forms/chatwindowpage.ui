@@ -210,7 +210,7 @@ font-size: 11px;</string>
       </rect>
      </property>
      <property name="text">
-      <string>Nickname</string>
+      <string>Nickname:</string>
      </property>
     </widget>
     <widget class="QPushButton" name="buttonConnect">
@@ -230,7 +230,7 @@ border-radius: 10px;
 font-size: 11px;</string>
      </property>
      <property name="text">
-      <string>Click to connect</string>
+      <string>Click to Connect</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_10">
