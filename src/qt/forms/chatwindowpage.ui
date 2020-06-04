@@ -152,9 +152,9 @@ font-size: 11px;</string>
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>170</x>
+       <x>149</x>
        <y>40</y>
-       <width>250</width>
+       <width>271</width>
        <height>29</height>
       </rect>
      </property>
@@ -194,8 +194,8 @@ font-size: 20px;</string>
     <widget class="QLineEdit" name="editPseudo">
      <property name="geometry">
       <rect>
-       <x>170</x>
-       <y>160</y>
+       <x>185</x>
+       <y>210</y>
        <width>151</width>
        <height>22</height>
       </rect>
@@ -208,7 +208,7 @@ font-size: 20px;</string>
      <property name="geometry">
       <rect>
        <x>80</x>
-       <y>160</y>
+       <y>210</y>
        <width>81</width>
        <height>21</height>
       </rect>
@@ -220,8 +220,8 @@ font-size: 20px;</string>
     <widget class="QPushButton" name="buttonConnect">
      <property name="geometry">
       <rect>
-       <x>170</x>
-       <y>225</y>
+       <x>185</x>
+       <y>330</y>
        <width>151</width>
        <height>41</height>
       </rect>
@@ -241,13 +241,16 @@ font-size: 11px;</string>
      <property name="geometry">
       <rect>
        <x>140</x>
-       <y>110</y>
+       <y>142</y>
        <width>251</width>
-       <height>20</height>
+       <height>25</height>
       </rect>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Connect to #HTHWorld TrollBox&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </widget>
