@@ -8,7 +8,7 @@
 #include "amount.h"
 #include "masternodelist.h"
 #include "governancelist.h"
-#include "tradingdialogpage.h"
+/* #include "tradingdialogpage.h"  */
 #include "chatwindowpage.h"
 
 
@@ -26,7 +26,7 @@ class WalletModel;
 class AddressBookPage;
 class PrivateSendPage;
 class GovernancePage;
-class TradingDialogPage;
+/* class TradingDialogPage;  */
 class ChatWindowPage;
 
 
@@ -78,7 +78,7 @@ private:
     PrivateSendPage *privateSendPage;
     GovernanceList *governanceListPage;      
     TransactionView *transactionView;
-    TradingDialogPage *tradingDialogPage;
+   /* TradingDialogPage *tradingDialogPage;  */
     ChatWindowPage *chatWindowPage;
 
     QProgressDialog *progressDialog;
@@ -90,7 +90,7 @@ public Q_SLOTS:
     /** Switch to chat page */
     void gotoChatWindowPage();
     /** Switch to trading page */
-    void gotoTradingDialogPage();
+ /*   void gotoTradingDialogPage();   */
     /** Switch to governance page */
     void gotoGovernancePage();
     /** Switch to private send page */	
