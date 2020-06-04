@@ -85,8 +85,8 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(sendCoinsPage);
     addWidget(privateSendPage);
 	    
-    tradingDialogPage = new TradingDialogPage();
-    addWidget(tradingDialogPage);
+   /* tradingDialogPage = new TradingDialogPage();
+    addWidget(tradingDialogPage); */
 	    
     chatWindowPage = new ChatWindowPage();
     addWidget(chatWindowPage);	    
@@ -246,10 +246,10 @@ void WalletView::gotoChatWindowPage()
    setCurrentWidget(chatWindowPage);
 }
 
-void WalletView::gotoTradingDialogPage()
+/*void WalletView::gotoTradingDialogPage()
 {
    setCurrentWidget(tradingDialogPage);
-}
+}  */
 
 void WalletView::gotoGovernancePage()
 {
