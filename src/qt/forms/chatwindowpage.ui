@@ -128,6 +128,13 @@
        <height>30</height>
       </size>
      </property>
+     <property name="styleSheet">
+      <string notr="true">border-style: solid;
+border-width: 2px;
+border-color: #34bcaa;
+border-radius: 10px;
+font-size: 11px;</string>
+     </property>
      <property name="text">
       <string>Leave</string>
      </property>
@@ -145,8 +152,8 @@
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>20</y>
+       <x>130</x>
+       <y>40</y>
        <width>250</width>
        <height>29</height>
       </rect>
@@ -155,15 +162,10 @@
       <property name="spacing">
        <number>7</number>
       </property>
-      <item>
-       <widget class="QLabel" name="label_9">
-        <property name="font">
-         <font>
-          <family>Open Sans,sans-serif</family>
-         </font>
-        </property>
+      <item alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label">
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20px; font-weight:600; color:#34bcaa;&quot;&gt;HTH World Chat&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>HTH Chat</string>
         </property>
        </widget>
       </item>
@@ -172,66 +174,18 @@
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
         <property name="sizeHint" stdset="0">
          <size>
-          <width>40</width>
+          <width>60</width>
           <height>20</height>
          </size>
         </property>
        </spacer>
       </item>
      </layout>
-    </widget>
-    <widget class="QLabel" name="label">
-     <property name="geometry">
-      <rect>
-       <x>130</x>
-       <y>280</y>
-       <width>71</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;https://twitter.com/MACRON_Team&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;img src=&quot;:/icons/twitter.png&quot;/&gt;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <property name="margin">
-      <number>5</number>
-     </property>
-     <property name="openExternalLinks">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_3">
-     <property name="geometry">
-      <rect>
-       <x>220</x>
-       <y>280</y>
-       <width>53</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://bitcointalk.org/index.php?topic=1083744.0&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;img src=&quot;:/icons/bct.png&quot;/&gt;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <property name="openExternalLinks">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_4">
-     <property name="geometry">
-      <rect>
-       <x>290</x>
-       <y>280</y>
-       <width>41</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://bittrex.com/Market/Index?MarketName=BTC-MACRON&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;img src=&quot;:/icons/yob.png&quot;/&gt;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <property name="openExternalLinks">
-      <bool>true</bool>
-     </property>
     </widget>
     <widget class="QLineEdit" name="editPseudo">
      <property name="geometry">
@@ -262,14 +216,18 @@
     <widget class="QPushButton" name="buttonConnect">
      <property name="geometry">
       <rect>
-       <x>160</x>
-       <y>200</y>
+       <x>170</x>
+       <y>225</y>
        <width>151</width>
        <height>41</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border-radius:40px;border:1px solid grey</string>
+      <string notr="true">border-style: solid;
+border-width: 2px;
+border-color: #34bcaa;
+border-radius: 10px;
+font-size: 11px;</string>
      </property>
      <property name="text">
       <string>Click to connect</string>
@@ -278,8 +236,8 @@
     <widget class="QLabel" name="label_10">
      <property name="geometry">
       <rect>
-       <x>100</x>
-       <y>130</y>
+       <x>183</x>
+       <y>114</y>
        <width>121</width>
        <height>16</height>
       </rect>
