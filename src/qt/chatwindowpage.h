@@ -60,6 +60,7 @@ private:
     QMap<QString,Serveur *> serveurs;
 	bool joining;
 	void closeEvent(QCloseEvent *event);
+	void on_pushButton_WebChat_clicked();
 
 };
 
