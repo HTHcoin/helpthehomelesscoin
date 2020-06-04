@@ -213,3 +213,10 @@ ChatWindowPage::~ChatWindowPage()
         }
     }
 }
+
+
+void ChatWindowPage::on_pushButton_WebChat_clicked() {  // #HTHWorld Chat
+    
+    QDesktopServices::openUrl(QUrl("https://webchat.freenode.net//", QUrl::TolerantMode));
+    
+}
