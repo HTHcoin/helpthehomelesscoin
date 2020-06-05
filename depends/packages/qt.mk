@@ -8,8 +8,8 @@ $(package)_dependencies=openssl zlib
 $(package)_linux_dependencies=freetype fontconfig libxcb libX11 xproto libXext
 $(package)_build_subdir=qtbase
 $(package)_qt_libs=corelib network widgets gui plugins testlib
-$(package)_patches=mac-qmake.conf #mingw-uuidof.patch pidlist_absolute.patch fix-xcb-include-order.patch
-#$(package)_patches+=fix_qt_configure.patch fix_qt_pkgconfig.patch fix-cocoahelpers-macos.patch qfixed-coretext.patch
+$(package)_patches=mac-qmake.conf fix_qt_pkgconfig.patch #mingw-uuidof.patch pidlist_absolute.patch fix-xcb-include-order.patch
+#$(package)_patches+=fix_qt_configure.patch fix-cocoahelpers-macos.patch qfixed-coretext.patch
 # NOTE: fix_qt_configure.patch is only needed for Qt 5.7, newer versions don't have this issue.
 # Remove it after bumping $(package)_version to 5.8+.
 
@@ -60,6 +60,7 @@ $(package)_config_opts += -nomake tests
 $(package)_config_opts += -opensource
 $(package)_config_opts += -optimized-qmake
 $(package)_config_opts += -pch
+$(package)_config_opts += -pkg-config
 $(package)_config_opts += -prefix $(host_prefix)
 $(package)_config_opts += -qt-libpng
 $(package)_config_opts += -qt-libjpeg
@@ -67,6 +68,7 @@ $(package)_config_opts += -qt-pcre
 $(package)_config_opts += -qt-harfbuzz
 $(package)_config_opts += -static
 $(package)_config_opts += -silent
+$(package)_config_opts += -system-zlib
 $(package)_config_opts += -v
 $(package)_config_opts += -no-feature-printer
 $(package)_config_opts += -no-feature-printdialog
@@ -126,6 +128,7 @@ define $(package)_preprocess_cmds
   cp -f qtbase/mkspecs/macx-clang/Info.plist.app qtbase/mkspecs/macx-clang-linux/ &&\
   cp -f qtbase/mkspecs/macx-clang/qplatformdefs.h qtbase/mkspecs/macx-clang-linux/ &&\
   cp -f $($(package)_patch_dir)/mac-qmake.conf qtbase/mkspecs/macx-clang-linux/qmake.conf &&\
+  patch -p1 < $($(package)_patch_dir)/fix_qt_pkgconfig.patch && \
   echo "!host_build: QMAKE_CFLAGS     += $($(package)_cflags) $($(package)_cppflags)" >> qtbase/mkspecs/common/gcc-base.conf && \
   echo "!host_build: QMAKE_CXXFLAGS   += $($(package)_cxxflags) $($(package)_cppflags)" >> qtbase/mkspecs/common/gcc-base.conf && \
   echo "!host_build: QMAKE_LFLAGS     += $($(package)_ldflags)" >> qtbase/mkspecs/common/gcc-base.conf && \
