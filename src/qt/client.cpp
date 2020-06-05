@@ -120,7 +120,7 @@ void Client::readyForUse()
     peers.insert(connection->peerAddress(), connection);
     QString nick = connection->name();
     if (!nick.isEmpty())
-        emit newParticipant(nick);
+        Q_EMIT newParticipant(nick);
 }
 
 void Client::disconnected()
@@ -141,7 +141,7 @@ void Client::removeConnection(Connection *connection)
         peers.remove(connection->peerAddress());
         QString nick = connection->name();
         if (!nick.isEmpty())
-            emit participantLeft(nick);
+            Q_EMIT participantLeft(nick);
     }
     connection->deleteLater();
 }
