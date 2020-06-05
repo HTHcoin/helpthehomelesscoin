@@ -1,231 +1,151 @@
-/*Copyright (C) 2009 Cleriot Simon
-*
-* This program is free software; you can redistribute it and/or
-* modify it under the terms of the GNU Lesser General Public
-* License as published by the Free Software Foundation; either
-* version 2.1 of the License, or (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-* Lesser General Public License for more details.
-*
-* You should have received a copy of the GNU Lesser General Public
-* License along with this program; if not, write to the Free Software
-* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA*/
+/****************************************************************************
+**
+** Copyright (C) 2016 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the examples of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:BSD$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** BSD License Usage
+** Alternatively, you may use this file under the terms of the BSD license
+** as follows:
+**
+** "Redistribution and use in source and binary forms, with or without
+** modification, are permitted provided that the following conditions are
+** met:
+**   * Redistributions of source code must retain the above copyright
+**     notice, this list of conditions and the following disclaimer.
+**   * Redistributions in binary form must reproduce the above copyright
+**     notice, this list of conditions and the following disclaimer in
+**     the documentation and/or other materials provided with the
+**     distribution.
+**   * Neither the name of The Qt Company Ltd nor the names of its
+**     contributors may be used to endorse or promote products derived
+**     from this software without specific prior written permission.
+**
+**
+** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+** "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+** LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+** A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+** OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+** LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+** DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+** THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+**
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+#include <QtWidgets>
 
 #include "chatwindowpage.h"
-#include "ui_chatwindowpage.h"
-
-#include <QUrl>
-#include <QDesktopServices>
-#include <QtNetwork/QNetworkAccessManager>	
-#include <QtNetwork/QNetworkReply>
-#include <QProcess>
-#include <QDir>
 
 ChatWindowPage::ChatWindowPage(QWidget *parent)
-    : QWidget(parent), ui(new Ui::ChatWindowPage)
+    : QDialog(parent)
 {
-    ui->setupUi(this);
-    setFixedSize(750,600);
-    ui->splitter->hide();
+    setupUi(this);
 
-	connect(ui->buttonConnect, SIGNAL(clicked()), this, SLOT(connecte()));
+    lineEdit->setFocusPolicy(Qt::StrongFocus);
+    textEdit->setFocusPolicy(Qt::NoFocus);
+    textEdit->setReadOnly(true);
+    listWidget->setFocusPolicy(Qt::NoFocus);
 
-	connect(ui->actionQuit, SIGNAL(triggered()), this, SLOT(close()));
-	connect(ui->actionCloseTab, SIGNAL(triggered()), this, SLOT(closeTab()));
+    connect(lineEdit, &QLineEdit::returnPressed,
+            this, &ChatDialog::returnPressed);
+    connect(&client, &Client::newMessage,
+            this, &ChatDialog::appendMessage);
+    connect(&client, &Client::newParticipant,
+            this, &ChatDialog::newParticipant);
+    connect(&client, &Client::participantLeft,
+            this, &ChatDialog::participantLeft);
 
-	connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(sendCommande()));
-	    
-	    
-	    ui->pushButton_WebChat->setStatusTip(tr("Visit Help The Homeless Worldwide Web Chat"));
-
-
-
-
-
-    connect(ui->disconnect, SIGNAL(clicked()), this, SLOT(disconnectFromServer()));
-	connect(ui->tab, SIGNAL(currentChanged(int)), this, SLOT(tabChanged(int)) );
-	connect(ui->tab, SIGNAL(tabCloseRequested(int)), this, SLOT(tabClosing(int)) );
-
+    myNickName = client.nickName();
+    newParticipant(myNickName);
+    tableFormat.setBorder(0);
+    QTimer::singleShot(10 * 1000, this, SLOT(showInformation()));
 }
 
-
-
-void ChatWindowPage::tabChanged(int index)
+void ChatWindowPage::appendMessage(const QString &from, const QString &message)
 {
-	if(index!=0 && joining == false)
-		currentTab()->updateUsersList(ui->tab->tabText(index));
+    if (from.isEmpty() || message.isEmpty())
+        return;
+
+    QTextCursor cursor(textEdit->textCursor());
+    cursor.movePosition(QTextCursor::End);
+    QTextTable *table = cursor.insertTable(1, 2, tableFormat);
+    table->cellAt(0, 0).firstCursorPosition().insertText('<' + from + "> ");
+    table->cellAt(0, 1).firstCursorPosition().insertText(message);
+    QScrollBar *bar = textEdit->verticalScrollBar();
+    bar->setValue(bar->maximum());
 }
 
-void ChatWindowPage::tabClosing(int index)
+void ChatWindowPage::returnPressed()
 {
-	currentTab()->leave(ui->tab->tabText(index));
-}
-/*void ChatWindow::tabRemoved(int index)
-{
-	currentTab()->leave(ui->tab->tabText(index));
-}*/
+    QString text = lineEdit->text();
+    if (text.isEmpty())
+        return;
 
-void ChatWindowPage::disconnectFromServer() {
-
-    QMapIterator<QString, Serveur*> i(serveurs);
-
-    while(i.hasNext())
-    {
-        i.next();
-        QMapIterator<QString, QTextEdit*> i2(i.value()->conversations);
-        while(i2.hasNext())
-        {
-            i2.next();
-            i.value()->sendData("QUIT "+i2.key() + " ");
-        }
+    if (text.startsWith(QChar('/'))) {
+        QColor color = textEdit->textColor();
+        textEdit->setTextColor(Qt::red);
+        textEdit->append(tr("! Unknown command: %1")
+                         .arg(text.left(text.indexOf(' '))));
+        textEdit->setTextColor(color);
+    } else {
+        client.sendMessage(text);
+        appendMessage(myNickName, text);
     }
 
-
-    ui->splitter->hide();
-    ui->hide3->show();
-
+    lineEdit->clear();
 }
 
-Serveur *ChatWindowPage::currentTab()
+void ChatWindowPage::newParticipant(const QString &nick)
 {
-	QString tooltip=ui->tab->tabToolTip(ui->tab->currentIndex());
-	return serveurs[tooltip];
-	//return ui->tab->currentWidget()->findChild<Serveur *>();
+    if (nick.isEmpty())
+        return;
+
+    QColor color = textEdit->textColor();
+    textEdit->setTextColor(Qt::gray);
+    textEdit->append(tr("* %1 has joined").arg(nick));
+    textEdit->setTextColor(color);
+    listWidget->addItem(nick);
 }
 
-void ChatWindowPage::closeTab()
+void ChatWindowPage::participantLeft(const QString &nick)
 {
-	QString tooltip=ui->tab->tabToolTip(ui->tab->currentIndex());
-	QString txt=ui->tab->tabText(ui->tab->currentIndex());
+    if (nick.isEmpty())
+        return;
 
-	if(txt==tooltip)
-	{
-		QMapIterator<QString, QTextEdit*> i(serveurs[tooltip]->conversations);
+    QList<QListWidgetItem *> items = listWidget->findItems(nick,
+                                                           Qt::MatchExactly);
+    if (items.isEmpty())
+        return;
 
-		int count=ui->tab->currentIndex()+1;
-
-		while(i.hasNext())
-		{
-			i.next();
-			ui->tab->removeTab(count);
-		}
-
-		currentTab()->abort();
-		ui->tab->removeTab(ui->tab->currentIndex());
-	}
-	else
-	{
-
-        ui->tab->removeTab(ui->tab->currentIndex());
-		currentTab()->conversations.remove(txt);
-	}
+    delete items.at(0);
+    QColor color = textEdit->textColor();
+    textEdit->setTextColor(Qt::gray);
+    textEdit->append(tr("* %1 has left").arg(nick));
+    textEdit->setTextColor(color);
 }
 
-void ChatWindowPage::sendCommande()
+void ChatWindowPage::showInformation()
 {
-	QString tooltip=ui->tab->tabToolTip(ui->tab->currentIndex());
-	QString txt=ui->tab->tabText(ui->tab->currentIndex());
-	if(txt==tooltip)
-	{
-		currentTab()->sendData(currentTab()->parseCommande(ui->lineEdit->text(),true) );
-	}
-	else
-	{
-		currentTab()->sendData(currentTab()->parseCommande(ui->lineEdit->text()) );
-	}
-	ui->lineEdit->clear();
-	ui->lineEdit->setFocus();
-}
-
-void ChatWindowPage::tabJoined()
-{
-	joining=true;
-}
-void ChatWindowPage::tabJoining()
-{
-	joining=false;
-}
-
-void ChatWindowPage::connecte()
-{
-
-    ui->splitter->show();
-	Serveur *serveur=new Serveur;
-    QTextEdit *textEdit=new QTextEdit;
-    ui->hide3->hide();
-
-    ui->tab->addTab(textEdit,"Console/PM");
-    ui->tab->setTabToolTip(ui->tab->count()-1,"irc.freenode.net");
-    // current tab is now the last, therefore remove all but the last
-    for (int i = ui->tab->count(); i > 1; --i) {
-       ui->tab->removeTab(0);
-    }
-
-    serveurs.insert("irc.freenode.net",serveur);
-
-	serveur->pseudo=ui->editPseudo->text();
-    serveur->serveur="irc.freenode.net";
-    serveur->port=6667;
-	serveur->affichage=textEdit;
-    serveur->tab=ui->tab;
-	serveur->userList=ui->userView;
-	serveur->parent=this;
-
-	textEdit->setReadOnly(true);
-
-	connect(serveur, SIGNAL(joinTab()),this, SLOT(tabJoined() ));
-	connect(serveur, SIGNAL(tabJoined()),this, SLOT(tabJoining() ));
-
-    serveur->connectToHost("irc.freenode.net",6667);
-
-	ui->tab->setCurrentIndex(ui->tab->count()-1);
-}
-
-void ChatWindowPage::closeEvent(QCloseEvent *event)
-{
-	(void) event;
-
-	QMapIterator<QString, Serveur*> i(serveurs);
-
-	while(i.hasNext())
-	{
-		i.next();
-		QMapIterator<QString, QTextEdit*> i2(i.value()->conversations);
-		while(i2.hasNext())
-		{
-			i2.next();
-            i.value()->sendData("QUIT "+i2.key() + " ");
-		}
-	}
-}
-void ChatWindowPage ::setModel(ClientModel *model)
-{
-    this->model = model;
-}
-
-void ChatWindowPage::on_pushButton_WebChat_clicked() {  // #HTHWorld Chat
-    
-    QDesktopServices::openUrl(QUrl("https://webchat.freenode.net//", QUrl::TolerantMode));
-    
-}
-
-
-ChatWindowPage::~ChatWindowPage()
-{
-    delete ui;
-    QMapIterator<QString, Serveur*> i(serveurs);
-
-    while(i.hasNext())
-    {
-        i.next();
-        QMapIterator<QString, QTextEdit*> i2(i.value()->conversations);
-        while(i2.hasNext())
-        {
-            i2.next();
-            i.value()->sendData("QUIT "+i2.key() + " ");
-        }
+    if (listWidget->count() == 1) {
+        QMessageBox::information(this, tr("Chat"),
+                                 tr("Launch several instances of this "
+                                    "program on your local network and "
+                                    "start chatting!"));
     }
 }
