@@ -41,6 +41,7 @@ SOURCES       = client.cpp \
                 server.cpp
                 
 QT           += network widgets
+                core
 requires(qtConfig(udpsocket))
 requires(qtConfig(listwidget))
 
