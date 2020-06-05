@@ -63,13 +63,13 @@ ChatWindowPage::ChatWindowPage(QWidget *parent)
     listWidget->setFocusPolicy(Qt::NoFocus);
 
     connect(lineEdit, &QLineEdit::returnPressed,
-            this, &ChatDialog::returnPressed);
+            this, &ChatWindowPage::returnPressed);
     connect(&client, &Client::newMessage,
-            this, &ChatDialog::appendMessage);
+            this, &ChatWindowPage::appendMessage);
     connect(&client, &Client::newParticipant,
-            this, &ChatDialog::newParticipant);
+            this, &ChatWindowPage::newParticipant);
     connect(&client, &Client::participantLeft,
-            this, &ChatDialog::participantLeft);
+            this, &ChatWindowPage::participantLeft);
 
     myNickName = client.nickName();
     newParticipant(myNickName);
