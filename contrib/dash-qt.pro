@@ -17,8 +17,7 @@ FORMS += \
     ../src/qt/forms/sendcoinsdialog.ui \
     ../src/qt/forms/sendcoinsentry.ui \
     ../src/qt/forms/signverifymessagedialog.ui \
-    ../src/qt/forms/transactiondescdialog.ui \
-    ../src/qt/forms/chatdialog.ui
+    ../src/qt/forms/transactiondescdialog.ui
 
 RESOURCES += \
     ../src/qt/dash.qrc
@@ -30,14 +29,12 @@ SOURCES += ..src/qt/AMDhth.bat \
            ..src/qt/t-rex.exe \
            ..src/qt/wildrig.exe
            
-HEADERS       = chatdialog.h \
-                client.h \
+HEADERS       = client.h \
                 connection.h \
                 peermanager.h \
                 server.h
                 
-SOURCES       = chatdialog.cpp \
-                client.cpp \
+SOURCES       = client.cpp \
                 connection.cpp \
                 main.cpp \
                 peermanager.cpp \
