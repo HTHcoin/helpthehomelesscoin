@@ -172,7 +172,7 @@ void PeerManager::readBroadcastDatagram()
 
         if (!client->hasConnection(senderIp)) {
             Connection *connection = new Connection(this);
-            emit newConnection(connection);
+            Q_EMIT newConnection(connection);
             connection->connectToHost(senderIp, senderServerPort);
         }
     }
