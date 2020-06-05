@@ -51,7 +51,7 @@
 #ifndef CONNECTION_H
 #define CONNECTION_H
 
-#include <QtCborCommon>
+#include <QCborStreamReader>
 #include <QCborStreamWriter>
 #include <QElapsedTimer>
 #include <QHostAddress>
