@@ -34,7 +34,6 @@ $(package)_config_opts += -hostprefix $(build_prefix)
 $(package)_config_opts += -no-cups
 $(package)_config_opts += -no-egl
 $(package)_config_opts += -no-eglfs
-$(package)_config_opts += -no-feature-style-windowsce
 $(package)_config_opts += -no-freetype
 $(package)_config_opts += -no-gif
 $(package)_config_opts += -no-glib
