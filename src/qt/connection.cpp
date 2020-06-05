@@ -251,7 +251,7 @@ void Connection::processGreeting()
     pingTimer.start();
     pongTime.start();
     state = ReadyForUse;
-    emit readyForUse();
+    Q_EMIT readyForUse();
 }
 
 void Connection::processData()
