@@ -1,24 +1,24 @@
 PACKAGE=qt
 $(package)_version=5.13.2
-$(package)_download_path=https://download.qt.io/official_releases/qt/5.13/$($(package)_version)/submodules
+$(package)_download_path=https://download.qt.io/official_releases/qt/5.12/$($(package)_version)/submodules
 $(package)_suffix=everywhere-src-$($(package)_version).tar.xz
 $(package)_file_name=qtbase-$($(package)_suffix)
-$(package)_sha256_hash=26b6b686d66a7ad28eaca349e55e2894e5a735f3831e45f2049e93b1daa92121
+$(package)_sha256_hash=19592fbd0a524a17c35e413988fe494251103619ef7dd49aecdf3170973aabd8
 $(package)_dependencies=openssl zlib
 $(package)_linux_dependencies=freetype fontconfig libxcb libX11 xproto libXext
 $(package)_build_subdir=qtbase
 $(package)_qt_libs=corelib network widgets gui plugins testlib
-$(package)_patches=mac-qmake.conf fix_qt_pkgconfig.patch #mingw-uuidof.patch pidlist_absolute.patch fix-xcb-include-order.patch
+$(package)_patches=mac-qmake.conf #fix_qt_pkgconfig.patch mingw-uuidof.patch pidlist_absolute.patch fix-xcb-include-order.patch
 #$(package)_patches+=fix_qt_configure.patch fix-cocoahelpers-macos.patch qfixed-coretext.patch
 # NOTE: fix_qt_configure.patch is only needed for Qt 5.7, newer versions don't have this issue.
 # Remove it after bumping $(package)_version to 5.8+.
 
 $(package)_qttranslations_file_name=qttranslations-$($(package)_suffix)
-$(package)_qttranslations_sha256_hash=25755941a2525de2d7ae48e0011d04db7cc09e4e73fe83293206ceafa0aa82d9
+$(package)_qttranslations_sha256_hash=180ea07c0aff6803ffad214c34f8ed1a77f8cac02e62f6e219bd1ede1dd66b6e
 
 
 $(package)_qttools_file_name=qttools-$($(package)_suffix)
-$(package)_qttools_sha256_hash=919a2713b6d2d7873a09ad85bd93cf4282606e5bf84d5884250f665a253ec06e
+$(package)_qttools_sha256_hash=21347e8e2422689d63a08195e27c637983c0d4261d5205ce6b493a2adfe826b4
 
 $(package)_extra_sources  = $($(package)_qttranslations_file_name)
 $(package)_extra_sources += $($(package)_qttools_file_name)
@@ -128,7 +128,6 @@ define $(package)_preprocess_cmds
   cp -f qtbase/mkspecs/macx-clang/Info.plist.app qtbase/mkspecs/macx-clang-linux/ &&\
   cp -f qtbase/mkspecs/macx-clang/qplatformdefs.h qtbase/mkspecs/macx-clang-linux/ &&\
   cp -f $($(package)_patch_dir)/mac-qmake.conf qtbase/mkspecs/macx-clang-linux/qmake.conf &&\
-  patch -p1 < $($(package)_patch_dir)/fix_qt_pkgconfig.patch && \
   echo "!host_build: QMAKE_CFLAGS     += $($(package)_cflags) $($(package)_cppflags)" >> qtbase/mkspecs/common/gcc-base.conf && \
   echo "!host_build: QMAKE_CXXFLAGS   += $($(package)_cxxflags) $($(package)_cppflags)" >> qtbase/mkspecs/common/gcc-base.conf && \
   echo "!host_build: QMAKE_LFLAGS     += $($(package)_ldflags)" >> qtbase/mkspecs/common/gcc-base.conf && \
