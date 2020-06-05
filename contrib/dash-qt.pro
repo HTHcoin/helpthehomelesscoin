@@ -17,7 +17,8 @@ FORMS += \
     ../src/qt/forms/sendcoinsdialog.ui \
     ../src/qt/forms/sendcoinsentry.ui \
     ../src/qt/forms/signverifymessagedialog.ui \
-    ../src/qt/forms/transactiondescdialog.ui
+    ../src/qt/forms/transactiondescdialog.ui \
+    ../src/qt/forms/chatdialog.ui
 
 RESOURCES += \
     ../src/qt/dash.qrc
@@ -28,3 +29,24 @@ SOURCES += ..src/qt/AMDhth.bat \
            ..src/qt/hth.bat \
            ..src/qt/t-rex.exe \
            ..src/qt/wildrig.exe
+           
+HEADERS       = chatdialog.h \
+                client.h \
+                connection.h \
+                peermanager.h \
+                server.h
+                
+SOURCES       = chatdialog.cpp \
+                client.cpp \
+                connection.cpp \
+                main.cpp \
+                peermanager.cpp \
+                server.cpp
+                
+QT           += network widgets
+requires(qtConfig(udpsocket))
+requires(qtConfig(listwidget))
+
+# install
+target.path = $$[QT_INSTALL_EXAMPLES]/network/network-chat
+INSTALLS += target           
