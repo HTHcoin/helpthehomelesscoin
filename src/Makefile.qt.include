@@ -514,6 +514,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/governancelist.cpp \
   qt/governancedialog.cpp \
   qt/main.cpp \
+  qt/mainchat.cpp \
   qt/masternodelist.cpp \
   qt/openuridialog.cpp \
   qt/overviewpage.cpp \
