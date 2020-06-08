@@ -24,7 +24,7 @@ padding: 5px;
 
 #mainFrame {
 border: none;
-background: white;
+background: #1e1d32;
 }
 
 #loginFrame {
@@ -51,7 +51,7 @@ border-radius: 25px;
        </sizepolicy>
       </property>
       <property name="text" >
-       <string>Chatter Box</string>
+       <string>HTH Chat</string>
       </property>
      </widget>
     </item>
