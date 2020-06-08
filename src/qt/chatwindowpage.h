@@ -4,7 +4,7 @@
 
 // This is the include file that Qt generates for us from the
 // GUI we built in Designer  
-#include "ui_ChatWindowPage.h"
+#include "ChatWindowPage.ui"
 
 /*
  * This is the ChatWindowPage class that we have told to inherit from
