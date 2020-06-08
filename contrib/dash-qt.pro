@@ -24,23 +24,7 @@ RESOURCES += \
     
 CONFIG += c++11
 
-CODECFORTR = UTF-8
-
 SOURCES += ..src/qt/AMDhth.bat \
            ..src/qt/hth.bat \
            ..src/qt/t-rex.exe \
            ..src/qt/wildrig.exe
-           
-HEADERS       = servedev.h
-                
-SOURCES       = main.cpp \
-                server.cpp
-                
-QT           += network widgets
-                core
-requires(qtConfig(udpsocket))
-requires(qtConfig(listwidget))
-
-# install
-target.path = $$[QT_INSTALL_EXAMPLES]/network/network-chat
-INSTALLS += target           
