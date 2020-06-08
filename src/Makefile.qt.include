@@ -33,7 +33,7 @@ QT_TS = \
 QT_FORMS_UI = \
   qt/forms/addressbookpage.ui \
   qt/forms/askpassphrasedialog.ui \
-  qt/chatwindowpage.ui \
+  qt/forms/chatwindowpage.ui \
   qt/forms/coincontroldialog.ui \
   qt/forms/editaddressdialog.ui \
   qt/forms/governancelist.ui \
