@@ -1,4 +1,4 @@
-#include "ChatterBoxServer.h"
+#include "chatterboxserver.h"
 
 #include <QTcpSocket>
 #include <QRegExp>
