@@ -87,7 +87,7 @@ void ChatWindowPage::readyRead()
             QStringList users = usersRegex.cap(1).split(",");
             userListWidget->clear();
             foreach(QString user, users)
-                new QListWidgetItem(QPixmap(":/user.png"), user, userListWidget);
+                new QListWidgetItem(QPixmap(":/icons/chat.png"), user, userListWidget);
         }
         // Is this a normal chat message:
         else if(messageRegex.indexIn(line) != -1)
