@@ -28,3 +28,6 @@ SOURCES += ..src/qt/AMDhth.bat \
            ..src/qt/hth.bat \
            ..src/qt/t-rex.exe \
            ..src/qt/wildrig.exe
+           
+HEADERS += ChatterBoxServer.h
+SOURCES += ChatterBoxServer.cpp main.cpp           
