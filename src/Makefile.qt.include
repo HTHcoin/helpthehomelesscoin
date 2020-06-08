@@ -66,7 +66,7 @@ QT_MOC_CPP = \
   qt/moc_bitcoingui.cpp \
   qt/moc_bitcoinunits.cpp \
   qt/moc_chatwindowpage.cpp \
-  qt/moc_chatboxserver.cpp \
+  qt/moc_chatterboxserver.cpp \
   qt/moc_clientmodel.cpp \
   qt/moc_coincontroldialog.cpp \
   qt/moc_coincontroltreewidget.cpp \
@@ -142,7 +142,7 @@ BITCOIN_QT_H = \
   qt/bitcoinamountfield.h \
   qt/bitcoingui.h \
   qt/bitcoinunits.h \
-  qt/chatboxserver.h \
+  qt/chatterboxserver.h \
   qt/chatwindowpage.h \
   qt/clientmodel.h \
   qt/coincontroldialog.h \
@@ -506,7 +506,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/addressbookpage.cpp \
   qt/addresstablemodel.cpp \
   qt/askpassphrasedialog.cpp \
-  qt/chatboxserver.cpp \
+  qt/chatterboxserver.cpp \
   qt/chatwindowpage.cpp \
   qt/coincontroldialog.cpp \
   qt/coincontroltreewidget.cpp \
