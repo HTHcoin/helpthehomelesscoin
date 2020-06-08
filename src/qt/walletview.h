@@ -79,7 +79,7 @@ private:
     GovernanceList *governanceListPage;      
     TransactionView *transactionView;
    /* TradingDialogPage *tradingDialogPage;  */
-    ChatWindowPage *chatWindowPage;  
+    ChatWindowPage *chatMainWindow;  
 
     QProgressDialog *progressDialog;
     QLabel *transactionSum;
@@ -88,7 +88,7 @@ private:
 public Q_SLOTS:
 
     /** Switch to chat page */
-    void gotoChatWindowPage(); 
+    void gotoMainWindow(); 
     /** Switch to trading page */
  /*   void gotoTradingDialogPage();   */
     /** Switch to governance page */
