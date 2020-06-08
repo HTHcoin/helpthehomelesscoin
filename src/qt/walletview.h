@@ -27,7 +27,7 @@ class AddressBookPage;
 class PrivateSendPage;
 class GovernancePage;
 /* class TradingDialogPage; */ 
-class ChatWindowPage;
+class MainWindow;
 
 
 QT_BEGIN_NAMESPACE
@@ -79,7 +79,7 @@ private:
     GovernanceList *governanceListPage;      
     TransactionView *transactionView;
    /* TradingDialogPage *tradingDialogPage;  */
-    ChatWindowPage *chatMainWindow;  
+    MainWindow *MainWindow;  
 
     QProgressDialog *progressDialog;
     QLabel *transactionSum;
