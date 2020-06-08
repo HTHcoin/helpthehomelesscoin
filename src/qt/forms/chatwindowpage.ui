@@ -14,8 +14,8 @@
   </property>
   <property name="styleSheet" >
    <string notr="true" >#titleLabel {
-background: white;
-color: blue;
+background: #1e1d32;
+color: #34bcaa;
 font-size: 20px;
 border: none;
 border-bottom:  1px solid black;
