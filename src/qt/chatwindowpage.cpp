@@ -86,7 +86,7 @@ void ChatWindowPage::readyRead()
             // If so, udpate our users list on the right:
             QStringList users = usersRegex.cap(1).split(",");
             userListWidget->clear();
-            foreach(QString user, users)
+            Q_FOREACH(QString user, users)
                 new QListWidgetItem(QPixmap(":/icons/chat.png"), user, userListWidget);
         }
         // Is this a normal chat message:
