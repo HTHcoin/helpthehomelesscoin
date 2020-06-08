@@ -88,8 +88,8 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
    /* tradingDialogPage = new TradingDialogPage();
     addWidget(tradingDialogPage); */
 	    
-    chatWindowPage = new ChatWindowPage();
-    addWidget(chatWindowPage);	    
+   /* chatWindowPage = new ChatWindowPage();
+    addWidget(chatWindowPage);	    */
 
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
@@ -241,10 +241,10 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
     Q_EMIT incomingTransaction(date, walletModel->getOptionsModel()->getDisplayUnit(), amount, type, address, label);
 }
 
-void WalletView::gotoChatWindowPage()
+/*void WalletView::gotoChatWindowPage()
 {
    setCurrentWidget(chatWindowPage);
-}
+} */
 
 /*void WalletView::gotoTradingDialogPage()
 {
