@@ -33,7 +33,7 @@ void ChatterBoxServer::readyRead()
         {
             QString user = meRegex.cap(1);
             users[client] = user;
-            foreach(QTcpSocket *client, clients)
+            Q_FOREACH(QTcpSocket *client, clients)
                 client->write(QString("Server:" + user + " has joined.\n").toUtf8());
             sendUserList();
         }
