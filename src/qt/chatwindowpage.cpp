@@ -1,4 +1,4 @@
-#include "ChatWindowPage.h"
+#include "chatwindowpage.h"
 
 // We'll need some regular expression magic in this code:
 #include <QRegExp>
