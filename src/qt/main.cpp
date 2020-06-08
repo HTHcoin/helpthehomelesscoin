@@ -1,4 +1,4 @@
-#include "MainWindow.h"
+#include "ChatWindowPage.h"
 #include <QApplication>
 
 /*
@@ -11,8 +11,8 @@ int main(int argc, char **argv)
 
     // This is your MainWindow that you created with Designer
     // Declare it and show it.
-    MainWindow mainWindow;
-    mainWindow.show();
+    ChatWindowPage chatWindowPage;
+    chatWindowPage.show();
 
     // This will not return until the last window is closed.
     // This runs the GUI's event loop handling painting and
