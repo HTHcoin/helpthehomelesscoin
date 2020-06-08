@@ -17,7 +17,7 @@ public:
     explicit DialogSettings(QWidget *parent = nullptr);
     ~DialogSettings();
 
-private slots:
+private Q_SLOTS:
     // Slot for handling 'Error' signal from the class SettingsReader and SettingsWriter
     void on_Error(const QString &err_msg);
 
