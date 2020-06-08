@@ -512,7 +512,6 @@ BITCOIN_QT_WALLET_CPP = \
   qt/chatwindowpage.cpp \
   qt/coincontroldialog.cpp \
   qt/coincontroltreewidget.cpp \
-  qt/connection.cpp \
   qt/editaddressdialog.cpp \
   qt/governancelist.cpp \
   qt/governancedialog.cpp \
