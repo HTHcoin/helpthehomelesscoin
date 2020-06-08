@@ -88,7 +88,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
    /* tradingDialogPage = new TradingDialogPage();
     addWidget(tradingDialogPage); */
 	    
-    chatMainWindow = new MainWindow();
+    chatMainWindow = new chatMainWindow();
     addWidget(chatMainWindow);	    
 
     QSettings settings;
