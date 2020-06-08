@@ -44,7 +44,7 @@ void ChatterBoxServer::readyRead()
             qDebug() << "User:" << user;
             qDebug() << "Message:" << message;
 
-            foreach(QTcpSocket *otherClient, clients)
+            Q_FOREACH(QTcpSocket *otherClient, clients)
                 otherClient->write(QString(user + ":" + message + "\n").toUtf8());
         }
         else
@@ -65,16 +65,16 @@ void ChatterBoxServer::disconnected()
     users.remove(client);
 
     sendUserList();
-    foreach(QTcpSocket *client, clients)
+    Q_FOREACH(QTcpSocket *client, clients)
         client->write(QString("Server:" + user + " has left.\n").toUtf8());
 }
 
 void ChatterBoxServer::sendUserList()
 {
     QStringList userList;
-    foreach(QString user, users.values())
+    Q_FOREACH(QString user, users.values())
         userList << user;
 
-    foreach(QTcpSocket *client, clients)
+    Q_FOREACH(QTcpSocket *client, clients)
         client->write(QString("/users:" + userList.join(",") + "\n").toUtf8());
 }
