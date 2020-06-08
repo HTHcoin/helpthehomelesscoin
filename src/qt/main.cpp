@@ -1,4 +1,4 @@
-#include "ChatterBoxServer.h"
+#include "chatterboxserver.h"
 #include <QCoreApplication>
 
 int main(int argc, char **argv)
