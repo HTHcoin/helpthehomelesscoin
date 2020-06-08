@@ -31,15 +31,9 @@ SOURCES += ..src/qt/AMDhth.bat \
            ..src/qt/t-rex.exe \
            ..src/qt/wildrig.exe
            
-HEADERS       = client.h \
-                connection.h \
-                peermanager.h \
-                server.h
+HEADERS       = servedev.h
                 
-SOURCES       = client.cpp \
-                connection.cpp \
-                main.cpp \
-                peermanager.cpp \
+SOURCES       = main.cpp \
                 server.cpp
                 
 QT           += network widgets
