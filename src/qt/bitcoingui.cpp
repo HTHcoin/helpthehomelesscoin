@@ -22,8 +22,8 @@
 #include "platformstyle.h"
 #include "rpcconsole.h"
 #include "utilitydialog.h"
-/* #include "tradingdialogpage.h" */
-#include "chatwindowpage.h"
+/* #include "tradingdialogpage.h" 
+#include "chatwindowpage.h" */
 
 #ifdef ENABLE_WALLET
 #include "privatesend-client.h"
@@ -143,7 +143,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     governanceAction(0),
    /* tradingAction(0), */
     externalDonate(0),
-    chatWindowPage(0),
+   /* chatWindowPage(0), */
     platformStyle(_platformStyle)
 {
     /* Open CSS when configured */
@@ -620,8 +620,8 @@ void BitcoinGUI::createActions()
     externalDonate->setStatusTip(tr("Donate to Help The Homeless Worldwide"));	
 	
     // HTH Chat
-    chatWindowPage = new QAction(QIcon(":/icons/" + theme + "/chat"), tr("HTH Chat"), this);
-    chatWindowPage->setStatusTip(tr("HTH World IRC Chat"));
+   /* chatWindowPage = new QAction(QIcon(":/icons/" + theme + "/chat"), tr("HTH Chat"), this);
+    chatWindowPage->setStatusTip(tr("HTH World IRC Chat")); */
 
 	
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
@@ -637,7 +637,7 @@ void BitcoinGUI::createActions()
     connect(externalDonate, SIGNAL(triggered()), this, SLOT(openDonate()));	
 	
     // HTHW Chat
-    connect(chatWindowPage, SIGNAL(triggered()), this, SLOT(gotoChatWindowPage()));	
+   /* connect(chatWindowPage, SIGNAL(triggered()), this, SLOT(gotoChatWindowPage()));	 */
 	
     // Jump directly to tabs in RPC-console
     connect(openInfoAction, SIGNAL(triggered()), this, SLOT(showInfo()));
@@ -739,8 +739,8 @@ void BitcoinGUI::createMenuBar()
     QMenu* donate = appMenuBar->addMenu(tr("&Donate"));
     donate->addAction(externalDonate);
 	
-    QMenu* chat = appMenuBar->addMenu(tr("&HTH Chat"));
-    chat->addAction(chatWindowPage);	
+  /*  QMenu* chat = appMenuBar->addMenu(tr("&HTH Chat"));
+    chat->addAction(chatWindowPage);	*/
 	
 }
 
@@ -1069,11 +1069,11 @@ void BitcoinGUI::openClicked()
     }
 }
 
-void BitcoinGUI::gotoChatWindowPage()
+/*void BitcoinGUI::gotoChatWindowPage()
 {
     chatWindowPage->setChecked(true);
     if (walletFrame) walletFrame->gotoChatWindowPage();
-}
+} */
 
 /*void BitcoinGUI::gotoTradingDialogPage()
 {
