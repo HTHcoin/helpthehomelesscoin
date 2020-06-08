@@ -22,8 +22,8 @@
 #include "platformstyle.h"
 #include "rpcconsole.h"
 #include "utilitydialog.h"
-/* #include "tradingdialogpage.h"  */
-#include "chatwindowpage.h" 
+/* #include "tradingdialogpage.h"
+#include "chatwindowpage.h" */
 
 #ifdef ENABLE_WALLET
 #include "privatesend-client.h"
@@ -637,7 +637,7 @@ void BitcoinGUI::createActions()
     connect(externalDonate, SIGNAL(triggered()), this, SLOT(openDonate()));	
 	
     // HTHW Chat
-    connect(chatWindowPage, SIGNAL(triggered()), this, SLOT(gotoChatWindowPage()));	 
+    connect(chatWindowPage, SIGNAL(triggered()), this, SLOT(gotoMainWindow()));	 
 	
     // Jump directly to tabs in RPC-console
     connect(openInfoAction, SIGNAL(triggered()), this, SLOT(showInfo()));
@@ -1069,10 +1069,10 @@ void BitcoinGUI::openClicked()
     }
 }
 
-void BitcoinGUI::gotoChatWindowPage()
+void BitcoinGUI::gotoMainWindow()
 {
     chatWindowPage->setChecked(true);
-    if (walletFrame) walletFrame->gotoChatWindowPage();
+    if (walletFrame) walletFrame->gotoMainWindow();
 } 
 
 /*void BitcoinGUI::gotoTradingDialogPage()
