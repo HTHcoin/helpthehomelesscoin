@@ -14,7 +14,7 @@ class ChatterBoxServer : public QTcpServer
     public:
         ChatterBoxServer(QObject *parent=0);
 
-    private slots:
+    private Q_SLOTS:
         void readyRead();
         void disconnected();
         void sendUserList();
