@@ -10,6 +10,7 @@
 #include "governancelist.h"
 /* #include "tradingdialogpage.h" */ 
 #include "chatwindowpage.h" 
+#include <mainwindow.h>
 
 
 #include <QStackedWidget>
