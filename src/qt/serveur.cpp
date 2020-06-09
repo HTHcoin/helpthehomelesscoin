@@ -54,6 +54,7 @@ void Serveur::connected()
 	sendData("USER "+pseudo+" localhost "+serveur+" :"+pseudo);
     sendData("NICK "+pseudo);
     affichage->append("Connected to HTHWorld IRC.");
+     affichage->append("Please wait for #HTHWorld Chat Box to Appear before chatting! ");	
 
 }
 
