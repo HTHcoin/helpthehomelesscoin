@@ -1,4 +1,4 @@
-#include "../include/server_data_base.h"
+#include "../qt/Server/include/server_data_base.h"
 
 QVector<QString> ServerDataBase::clients {};
 
