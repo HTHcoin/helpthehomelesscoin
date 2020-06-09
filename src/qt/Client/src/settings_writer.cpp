@@ -19,7 +19,7 @@ void SettingsWriter::SetOutputFile(const char *filename)
 void SettingsWriter::WriteSettings(QMap<QString, QString> &settings)
 {
     if (not output_file.open(QIODevice::WriteOnly)) {
-        emit Error(QString("Could not find the settings file!"));
+        Q_EMIT Error(QString("Could not find the settings file!"));
         return;
     }
 
