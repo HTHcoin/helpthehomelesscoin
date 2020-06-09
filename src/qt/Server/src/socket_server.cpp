@@ -124,7 +124,7 @@ void SocketServer::on_ReadyRead()
             else { // default message recived
                 connected_client->write(QString(user_name + ": " + recived_data).toUtf8());
             }
-            V OutInfo(QString("<-- Sending bytes: %1, to: (addr=%2) -->").arg(recived_data.size()).arg(connected_client->peerAddress().toString()));
+            Q_EMIT OutInfo(QString("<-- Sending bytes: %1, to: (addr=%2) -->").arg(recived_data.size()).arg(connected_client->peerAddress().toString()));
         }
     }
     else {
@@ -137,5 +137,5 @@ void SocketServer::time_command_handler(const QByteArray &data, QTcpSocket *clie
 {
     client->write(data + "\n");
     client->write("Current date and time: " + QDateTime::currentDateTime().toString("dd-MM-yyyy hh:mm:ss").toUtf8());
-    V server_socket->OutInfo(QString("<-- Sending bytes: %1, to: (addr=%2) -->").arg(data.size()).arg(client->peerAddress().toString()));
+    Q_EMIT server_socket->OutInfo(QString("<-- Sending bytes: %1, to: (addr=%2) -->").arg(data.size()).arg(client->peerAddress().toString()));
 }
