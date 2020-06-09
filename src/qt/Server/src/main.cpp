@@ -1,4 +1,4 @@
-#include "../include/mainwindow.h"
+#include "../qt/Server/include/mainwindow.h"
 #include <QApplication>
 
 int main(int argc, char **argv)
