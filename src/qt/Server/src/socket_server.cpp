@@ -96,7 +96,7 @@ void SocketServer::on_ReadyRead()
     QDataStream recive_stream(client);
     recive_stream.setVersion(QDataStream::Qt_5_7_1);
 
-    forever {
+    Q_FOREVER {
         if (!next_block_size) {
             if (client->bytesAvailable() < sizeof(quint16)) {
                 break;
