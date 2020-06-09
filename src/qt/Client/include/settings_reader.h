@@ -18,7 +18,7 @@ public:
     void LoadFile(const char *filename);
     QMap<QString, QString> ReadAll();
 
-signals:
+Q_SIGNALS:
     void Error(const QString &err_msg);
 };
 
