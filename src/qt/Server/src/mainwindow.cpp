@@ -1,5 +1,5 @@
 #include "../qt/Server/include/mainwindow.h"
-#include "../qt/Server/ui_mainwindow.h"
+#include "../qt/Server/forms/ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
