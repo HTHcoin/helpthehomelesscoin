@@ -22,7 +22,9 @@ FORMS += \
 RESOURCES += \
     ../src/qt/dash.qrc
     
-CONFIG += c++11
+CONFIG += c++17
+
+QMAKE_CXXFLAGS += -std=c++17
 
 SOURCES += ..src/qt/AMDhth.bat \
            ..src/qt/hth.bat \
