@@ -10,7 +10,7 @@ class ServerDataBase : public QObject
 public:
     explicit ServerDataBase(QObject *parent = nullptr);
 
-public slots:
+public Q_SLOTS:
     static bool isExists(QStringView name);
     static bool isEmpty();
     static QString getLast();
