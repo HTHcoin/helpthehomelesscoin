@@ -3,7 +3,6 @@
 
 #include <QObject>
 #include <QVector>
-#include <QStringView>
 
 class ServerDataBase : public QObject
 {
