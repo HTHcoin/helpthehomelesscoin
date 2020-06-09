@@ -1,8 +1,8 @@
-#include "../qt/Client/include/mainwindow.h"
-#include "../qt/Client/ui_mainwindow.h"
+#include "../Client/include/mainwindow.h"
+#include "../Client/ui_mainwindow.h"
 
 /* Including other forms */
-#include "../qt/Client/include/dialog_settings.h"    // DialogSettings class (form with a connection settings)
+#include "../Client/include/dialog_settings.h"    // DialogSettings class (form with a connection settings)
 
 #include <QMessageBox>
 
