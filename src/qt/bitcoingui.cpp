@@ -22,6 +22,7 @@
 #include "platformstyle.h"
 #include "rpcconsole.h"
 #include "utilitydialog.h"
+#include "loginpage.h"
 /* #include "tradingdialogpage.h" */
 
 
