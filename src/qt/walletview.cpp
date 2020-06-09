@@ -89,7 +89,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(tradingDialogPage); */
 	    
     MainWindow = new MainWindow();
-    addWidget(mainWindow);	    
+    addWidget(MainWindow);	    
 
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
