@@ -9,7 +9,7 @@
 #include "masternodelist.h"
 #include "governancelist.h"
 /* #include "tradingdialogpage.h" */ 
-#include "chatwindowpage.h" 
+#include "loginpage.h" 
 
 
 
@@ -28,7 +28,7 @@ class AddressBookPage;
 class PrivateSendPage;
 class GovernancePage;
 /* class TradingDialogPage; */ 
-class ChatWindowPage;
+class LoginPage;
 
 
 QT_BEGIN_NAMESPACE
@@ -80,7 +80,7 @@ private:
     GovernanceList *governanceListPage;      
     TransactionView *transactionView;
    /* TradingDialogPage *tradingDialogPage;  */
-    ChatWindowPage *chatWindowPage;  
+    LoginPage *loginPage;  
 
     QProgressDialog *progressDialog;
     QLabel *transactionSum;
@@ -88,8 +88,8 @@ private:
 
 public Q_SLOTS:
 
-    /** Switch to chat page */
-    void gotoChatWindowPage(); 
+    /** Switch to social media page */
+    void gotoLoginPage(); 
     /** Switch to trading page */
  /*   void gotoTradingDialogPage();   */
     /** Switch to governance page */
