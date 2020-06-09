@@ -80,7 +80,7 @@ private:
     GovernanceList *governanceListPage;      
     TransactionView *transactionView;
    /* TradingDialogPage *tradingDialogPage;  */
-    MainWindow *MainWindow;  
+    MainWindow *mainWindow;  
 
     QProgressDialog *progressDialog;
     QLabel *transactionSum;
