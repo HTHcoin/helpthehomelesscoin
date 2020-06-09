@@ -18,7 +18,7 @@ public:
     void SetOutputFile(const char *filename);
     void WriteSettings(QMap<QString, QString> &settings);
 
-signals:
+Q_SIGNALS:
     void Error(const QString &err_msg);
 };
 
