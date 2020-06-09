@@ -243,7 +243,7 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
 
 void WalletView::gotoMainWindow()
 {
-   setCurrentWidget(mainWindow);
+   setCurrentWidget(MainWindow);
 } 
 
 /*void WalletView::gotoTradingDialogPage()
