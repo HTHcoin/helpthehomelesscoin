@@ -54,10 +54,7 @@ QT_FORMS_UI = \
   qt/forms/sendcoinsentry.ui \
   qt/forms/signverifymessagedialog.ui \
   qt/forms/tradingdialogpage.ui \
-  qt/forms/transactiondescdialog.ui \
-  qt/Client/forms/dialog_settings.ui \
-  qt/Client/forms/mainwindow.ui \
-  qt/Server/forms/mainwindow.ui
+  qt/forms/transactiondescdialog.ui
 
 QT_MOC_CPP = \
   qt/moc_addressbookpage.cpp \
@@ -197,15 +194,7 @@ BITCOIN_QT_H = \
   qt/walletmodel.h \
   qt/walletmodeltransaction.h \
   qt/walletview.h \
-  qt/winshutdownmonitor.h \
-  qt/Client/include/dialog_settings.h \
-  qt/Client/include/mainwindow.h \
-  qt/Client/include/settings_reader.h \
-  qt/Client/include/settings_writer.h \
-  qt/Client/include/socket_client.h \
-  qt/Server/include/mainwindow.h \
-  qt/Server/include/server_data_base.h \
-  qt/Server/include/socket_server.h
+  qt/winshutdownmonitor.h
 
 
 RES_ICONS = \
@@ -549,17 +538,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/walletframe.cpp \
   qt/walletmodel.cpp \
   qt/walletmodeltransaction.cpp \
-  qt/walletview.cpp \
-  qt/Client/src/dialog_settings.cpp \
-  qt/Client/src/main.cpp \
-  qt/Client/src/mainwindow.cpp \
-  qt/Client/src/settings_reader.cpp \
-  qt/Client/src/settings_writer.cpp \
-  qt/Client/src/socket_client.cpp \
-  qt/Server/src/main.cpp \
-  qt/Server/src/mainwindow.cpp \
-  qt/Server/src/server_data_base.cpp \
-  qt/Server/src/socket_server.cpp
+  qt/walletview.cpp
 
 BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
 if TARGET_WINDOWS
