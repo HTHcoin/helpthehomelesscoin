@@ -22,10 +22,10 @@ void SocketServer::setPort(const quint16 &port)
 void SocketServer::start()
 {
     if (tcp_serv_socket.listen(QHostAddress::AnyIPv4, serv_port)) {
-        emit OutInfo(QString("<-- Server running on port: %1 -->").arg(serv_port));
+        Q_EMIT OutInfo(QString("<-- Server running on port: %1 -->").arg(serv_port));
     }
     else {
-        emit Error(QString("<-- Could not start the server: (err=%1) -->").arg(tcp_serv_socket.errorString()));
+        Q_EMIT Error(QString("<-- Could not start the server: (err=%1) -->").arg(tcp_serv_socket.errorString()));
     }
 }
 
@@ -40,7 +40,7 @@ void SocketServer::stop()
     connectd_clients_list.clear();
     ServerDataBase::clear();
 
-    emit OutInfo(QString("<-- Server stopped! -->"));
+    Q_EMIT OutInfo(QString("<-- Server stopped! -->"));
 }
 
 void SocketServer::on_ClientConnected()
@@ -52,7 +52,7 @@ void SocketServer::on_ClientConnected()
 
     QString new_client_connected_msg = QString("<-- New client connected: (addr=%1) -->").arg(new_client->peerAddress().toString());
     
-    emit OutInfo(new_client_connected_msg);
+    Q_EMIT OutInfo(new_client_connected_msg);
     
     new_client->write("<---- [ >> Welcome to the Socket-Chat! << ] ---->");
 
@@ -76,7 +76,7 @@ void SocketServer::on_ClientStateChanged(QAbstractSocket::SocketState state)
 
         connectd_clients_list.removeOne(client);
         client->close();
-        emit OutInfo(client_disconnected_msg);
+        Q_EMIT OutInfo(client_disconnected_msg);
 
         for (QTcpSocket *connected_client : connectd_clients_list) {
             connected_client->write(client_disconnected_msg.toUtf8());
@@ -115,7 +115,7 @@ void SocketServer::on_ReadyRead()
     if (not ServerDataBase::isExists(user_name)) {
         ServerDataBase::addClient(user_name);
 
-        emit OutInfo(QString("<-- Recived bytes: %1, from: (addr=%2) -->").arg(recived_data.size()).arg(client->peerAddress().toString()));
+        Q_EMIT OutInfo(QString("<-- Recived bytes: %1, from: (addr=%2) -->").arg(recived_data.size()).arg(client->peerAddress().toString()));
 
         for (QTcpSocket *connected_client : connectd_clients_list) {
             if (command_handler.contains(recived_data)) {
@@ -124,7 +124,7 @@ void SocketServer::on_ReadyRead()
             else { // default message recived
                 connected_client->write(QString(user_name + ": " + recived_data).toUtf8());
             }
-            emit OutInfo(QString("<-- Sending bytes: %1, to: (addr=%2) -->").arg(recived_data.size()).arg(connected_client->peerAddress().toString()));
+            V OutInfo(QString("<-- Sending bytes: %1, to: (addr=%2) -->").arg(recived_data.size()).arg(connected_client->peerAddress().toString()));
         }
     }
     else {
@@ -137,5 +137,5 @@ void SocketServer::time_command_handler(const QByteArray &data, QTcpSocket *clie
 {
     client->write(data + "\n");
     client->write("Current date and time: " + QDateTime::currentDateTime().toString("dd-MM-yyyy hh:mm:ss").toUtf8());
-    emit server_socket->OutInfo(QString("<-- Sending bytes: %1, to: (addr=%2) -->").arg(data.size()).arg(client->peerAddress().toString()));
+    V server_socket->OutInfo(QString("<-- Sending bytes: %1, to: (addr=%2) -->").arg(data.size()).arg(client->peerAddress().toString()));
 }
