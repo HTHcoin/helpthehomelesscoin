@@ -19,7 +19,7 @@ QMap<QString, QString> SettingsReader::ReadAll()
 {
     QMap<QString, QString> settings;
     if (not input_file.open(QIODevice::ReadOnly)) {
-        emit Error(QString("Could not find the settings file!"));
+        Q_EMIT Error(QString("Could not find the settings file!"));
         return settings;
     }
 
