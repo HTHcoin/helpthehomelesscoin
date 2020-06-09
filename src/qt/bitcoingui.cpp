@@ -24,6 +24,7 @@
 #include "utilitydialog.h"
 /* #include "tradingdialogpage.h"
 #include "chatwindowpage.h" */
+#include <Client/include/mainwindow.h>
 
 #ifdef ENABLE_WALLET
 #include "privatesend-client.h"
