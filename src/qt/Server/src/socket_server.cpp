@@ -1,4 +1,4 @@
-#include "../include/socket_server.h"
+#include "../qt/Server/include/socket_server.h"
 
 SocketServer::SocketServer()
 {
