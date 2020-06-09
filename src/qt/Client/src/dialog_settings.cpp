@@ -1,5 +1,5 @@
-#include "../qt/Client/include/dialog_settings.h"
-#include "../qt/Client/ui_dialog_settings.h"
+#include "../Client/include/dialog_settings.h"
+#include "../Client/ui_dialog_settings.h"
 #include <QMessageBox>
 
 static constexpr const char *settings_filename = "settings.json";
