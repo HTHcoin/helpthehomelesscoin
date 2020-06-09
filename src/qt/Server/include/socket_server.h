@@ -20,16 +20,16 @@ public:
     void setPort(const quint16 &port);
     ~SocketServer();
 
-public slots:
+public Q_SLOTS:
     void start();
     void stop();
 
-private slots:
+private Q_SLOTS:
     void on_ClientConnected();
     void on_ClientStateChanged(QAbstractSocket::SocketState state);
     void on_ReadyRead();
 
-signals:
+Q_SIGNALS:
     void addToDataBase(QStringView username);
     void OutInfo(const QString &message);
     void Error(const QString &error_message);
