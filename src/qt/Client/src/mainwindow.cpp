@@ -1,5 +1,5 @@
 #include "../Client/include/mainwindow.h"
-#include "../Client/ui_mainwindow.h"
+#include "../Client/forms/ui_mainwindow.h"
 
 /* Including other forms */
 #include "../Client/include/dialog_settings.h"    // DialogSettings class (form with a connection settings)
