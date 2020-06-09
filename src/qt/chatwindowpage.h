@@ -1,46 +1,73 @@
-// We need to include a couple Qt classes that we'll use:
-#include <QMainWindow>
-#include <QTcpSocket>
+/*Copyright (C) 2009 Cleriot Simon
+*
+* This program is free software; you can redistribute it and/or
+* modify it under the terms of the GNU Lesser General Public
+* License as published by the Free Software Foundation; either
+* version 2.1 of the License, or (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+* Lesser General Public License for more details.
+*
+* You should have received a copy of the GNU Lesser General Public
+* License along with this program; if not, write to the Free Software
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA*/
 
-// This is the include file that Qt generates for us from the
-// GUI we built in Designer  
-#include "ui_chatwindowpage.h"
+#ifndef CHATWINDOWPAGE_H
+#define CHATWINDOWPAGE_H
 
-/*
- * This is the ChatWindowPage class that we have told to inherit from
- * our Designer ChatWindowPage (ui::ChatWindowPage)
- */
-class ChatWindowPage : public QMainWindow, public Ui::ChatWindowPage
+#include <QtGui>
+#include <QtNetwork>
+#include "clientmodel.h"
+#include "serveur.h"
+
+#include <QDesktopServices>
+#include <QProcess>
+#include <QDir>
+
+
+
+namespace Ui
+{
+    class ChatWindowPage;
+}
+
+class ChatWindowPage : public QWidget
 {
     Q_OBJECT
 
-    public:
+public:
+    ChatWindowPage(QWidget *parent = 0);
+    ~ChatWindowPage();
+    void setModel(ClientModel *model);
+    Serveur * currentTab();
+	Q_SIGNALS:
+		void changeTab();
 
-        // Every QWidget needs a constructor, and they should allow
-        // the user to pass a parent QWidget (or not).
-        ChatWindowPage(QWidget *parent=0);
+	public Q_SLOTS:
+		void sendCommande();
+        void connecte();
+		void closeTab();
 
-    private Q_SLOTS:
+		void tabChanged(int index);
 
-        // This function gets called when a user clicks on the
-        // loginButton on the front page (which you placed there
-        // with Designer)
-        void on_loginButton_clicked();
+		void tabJoined();
+		void tabJoining();
+        void disconnectFromServer();
+        void tabClosing(int index);
 
-        // This gets called when you click the sayButton on
-        // the chat page.
-        void on_sayButton_clicked();
 
-        // This is a function we'll connect to a socket's readyRead()
-        // signal, which tells us there's text to be read from the chat
-        // server.
-        void readyRead();
+private:
+	Ui::ChatWindowPage *ui;
+    ClientModel *model;
+    QMap<QString,Serveur *> serveurs;
+	bool joining;
+	void closeEvent(QCloseEvent *event);
+	
+private Q_SLOTS:	
+	void on_pushButton_WebChat_clicked();
 
-        // This function gets called when the socket tells us it's connected.
-        void connected();
-
-    private:
-
-        // This is the socket that will let us communitate with the server.
-        QTcpSocket *socket;
 };
+
+#endif // CHATWINDOWPAGE_H
