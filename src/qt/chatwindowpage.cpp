@@ -158,16 +158,16 @@ void ChatWindowPage::connecte()
     ui->hide3->hide();
 
     ui->tab->addTab(textEdit,"Not a Chat");
-    ui->tab->setTabToolTip(ui->tab->count()-1,"HTH World Chat");
+    ui->tab->setTabToolTip(ui->tab->count()-1,"Not a Chat");
     // current tab is now the last, therefore remove all but the last
     for (int i = ui->tab->count(); i > 1; --i) {
        ui->tab->removeTab(0);
     }
 
-    serveurs.insert("irc.freenode.net",serveur);
+    serveurs.insert("HTH World Chat",serveur);
 
 	serveur->pseudo=ui->editPseudo->text();
-    serveur->serveur="irc.freenode.net";
+    serveur->serveur="HTH World Chat";  /* irc.freenode.net */
     serveur->port=6667;
 	serveur->affichage=textEdit;
     serveur->tab=ui->tab;
