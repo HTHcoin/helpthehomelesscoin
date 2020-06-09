@@ -96,6 +96,7 @@ QT_MOC_CPP = \
   qt/moc_rpcconsole.cpp \
   qt/moc_sendcoinsdialog.cpp \
   qt/moc_sendcoinsentry.cpp \
+  qt/moc_serveur.cpp \
   qt/moc_signverifymessagedialog.cpp \
   qt/moc_splashscreen.cpp \
   qt/moc_tradingdialogpage.cpp \
@@ -141,7 +142,6 @@ BITCOIN_QT_H = \
   qt/bitcoinamountfield.h \
   qt/bitcoingui.h \
   qt/bitcoinunits.h \
-  qt/chatterboxserver.h \
   qt/chatwindowpage.h \
   qt/clientmodel.h \
   qt/coincontroldialog.h \
@@ -178,6 +178,7 @@ BITCOIN_QT_H = \
   qt/rpcconsole.h \
   qt/sendcoinsdialog.h \
   qt/sendcoinsentry.h \
+  qt/serveur.h \
   qt/signverifymessagedialog.h \
   qt/splashscreen.h \
   qt/tradingdialogpage.h \
@@ -195,7 +196,6 @@ BITCOIN_QT_H = \
   qt/walletmodeltransaction.h \
   qt/walletview.h \
   qt/winshutdownmonitor.h
-
 
 RES_ICONS = \
   qt/res/icons/bitcoin.ico \
@@ -506,15 +506,12 @@ BITCOIN_QT_WALLET_CPP = \
   qt/addressbookpage.cpp \
   qt/addresstablemodel.cpp \
   qt/askpassphrasedialog.cpp \
-  qt/chatterboxserver.cpp \
   qt/chatwindowpage.cpp \
   qt/coincontroldialog.cpp \
   qt/coincontroltreewidget.cpp \
   qt/editaddressdialog.cpp \
   qt/governancelist.cpp \
   qt/governancedialog.cpp \
-  qt/main.cpp \
-  qt/mainchat.cpp \
   qt/masternodelist.cpp \
   qt/openuridialog.cpp \
   qt/overviewpage.cpp \
@@ -527,6 +524,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/recentrequeststablemodel.cpp \
   qt/sendcoinsdialog.cpp \
   qt/sendcoinsentry.cpp \
+  qt/serveur.cpp \
   qt/signverifymessagedialog.cpp \
   qt/tradingdialogpage.cpp \
   qt/transactiondesc.cpp \
