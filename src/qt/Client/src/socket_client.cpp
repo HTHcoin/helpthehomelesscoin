@@ -71,7 +71,7 @@ void SocketClient::SendToServer(const QString &nickname, const QString &message)
     QByteArray data_block;
     QDataStream send_stream(&data_block, QIODevice::ReadWrite);
 
-    send_stream.setVersion(QDataStream::Qt_5_14);
+    send_stream.setVersion(QDataStream::Qt_5_7_1);
 
     send_stream << quint16(0) << nickname << message.toUtf8();
     send_stream.device()->seek(0);
