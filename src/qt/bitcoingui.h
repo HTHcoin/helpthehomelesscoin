@@ -236,7 +236,7 @@ private Q_SLOTS:
  	
 	
     /** Switch to chat page */
-    void gotoMainWindow(); 
+    void gotoChatWindowPage(); 
     /** Switch to trading page */
  /*   void gotoTradingDialogPage();  */
     /** Switch to governance page */
