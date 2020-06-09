@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>homepage</class>
+ <widget class="QDialog" name="homepage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>700</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Profile Page</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">font-family:sans-serif;
+font-size:20px;
+font-weight:bold;
+color:#545454;</string>
+  </property>
+  <widget class="QLabel" name="label_welcome">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>20</y>
+     <width>371</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Welcome User</string>
+   </property>
+  </widget>
+  <widget class="QTabWidget" name="tabWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>60</y>
+     <width>681</width>
+     <height>531</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="tab">
+    <attribute name="title">
+     <string>Home</string>
+    </attribute>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>29</y>
+       <width>331</width>
+       <height>451</height>
+      </rect>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>329</width>
+        <height>449</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QLabel" name="label_newsfeed">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>121</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>NewsFeed</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>370</x>
+       <y>30</y>
+       <width>261</width>
+       <height>201</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLabel" name="label_postInfo">
+        <property name="text">
+         <string>What is on your mind?</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTextEdit" name="textEdit_postArena"/>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_post">
+        <property name="text">
+         <string>Post</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_2">
+    <attribute name="title">
+     <string>Profile</string>
+    </attribute>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>310</x>
+       <y>320</y>
+       <width>335</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="pushButton_saveChanges">
+        <property name="text">
+         <string>Save Changes</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_removeAccount">
+        <property name="text">
+         <string>Remove Account</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QLabel" name="label_updateInfo">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>262</y>
+       <width>421</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-family:sans-serif;
+font-size:15px;
+font-weight:none;
+color:#545454;</string>
+     </property>
+     <property name="text">
+      <string>Note: You can only update your password or country</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_Gender">
+     <property name="geometry">
+      <rect>
+       <x>125</x>
+       <y>154</y>
+       <width>235</width>
+       <height>30</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_Birthday">
+     <property name="geometry">
+      <rect>
+       <x>125</x>
+       <y>190</y>
+       <width>235</width>
+       <height>30</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_firstName">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>109</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>First Name</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_username">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>82</y>
+       <width>102</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Username</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_Password">
+     <property name="geometry">
+      <rect>
+       <x>125</x>
+       <y>118</y>
+       <width>235</width>
+       <height>30</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_LastName">
+     <property name="geometry">
+      <rect>
+       <x>125</x>
+       <y>46</y>
+       <width>235</width>
+       <height>30</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_country">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>226</y>
+       <width>80</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Country</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_Username">
+     <property name="geometry">
+      <rect>
+       <x>125</x>
+       <y>82</y>
+       <width>235</width>
+       <height>30</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_Country">
+     <property name="geometry">
+      <rect>
+       <x>125</x>
+       <y>226</y>
+       <width>235</width>
+       <height>30</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_Name">
+     <property name="geometry">
+      <rect>
+       <x>125</x>
+       <y>10</y>
+       <width>235</width>
+       <height>30</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_password">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>118</y>
+       <width>97</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Password</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_gender">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>154</y>
+       <width>74</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Gender</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_lastName">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>46</y>
+       <width>105</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Last Name</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_birthday">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>190</y>
+       <width>87</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Birthday</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_3">
+    <attribute name="title">
+     <string>Search</string>
+    </attribute>
+    <widget class="QLabel" name="label_searchInfo">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>10</y>
+       <width>581</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Search for people, enter their name or search by country</string>
+     </property>
+    </widget>
+    <widget class="QListView" name="listView_searchResult">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>80</y>
+       <width>321</width>
+       <height>401</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_sendFriend">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>250</y>
+       <width>231</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Send Friend Request</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>40</y>
+       <width>361</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLineEdit" name="lineEdit_search"/>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="pushButton_search">
+        <property name="text">
+         <string>Search</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_4">
+    <attribute name="title">
+     <string>Notifications</string>
+    </attribute>
+    <widget class="QListView" name="listView_notifications">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>50</y>
+       <width>411</width>
+       <height>351</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_notifications">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>20</y>
+       <width>281</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Here are your notifications</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>410</y>
+       <width>261</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QPushButton" name="pushButton_acceptNotification">
+        <property name="text">
+         <string>Accept</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_ignoreNotification">
+        <property name="text">
+         <string>Ignore</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_5">
+    <attribute name="title">
+     <string>Friends</string>
+    </attribute>
+    <widget class="QLabel" name="label_FriendsList">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>20</y>
+       <width>321</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>List of Friends</string>
+     </property>
+    </widget>
+    <widget class="QListView" name="listView_friends">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>60</y>
+       <width>301</width>
+       <height>411</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_removeFriend">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>200</y>
+       <width>211</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Remove Friend</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QPushButton" name="pushButton_logout">
+   <property name="geometry">
+    <rect>
+     <x>564</x>
+     <y>20</y>
+     <width>111</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Logout</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
