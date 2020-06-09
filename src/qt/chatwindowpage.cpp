@@ -1,113 +1,231 @@
+/*Copyright (C) 2009 Cleriot Simon
+*
+* This program is free software; you can redistribute it and/or
+* modify it under the terms of the GNU Lesser General Public
+* License as published by the Free Software Foundation; either
+* version 2.1 of the License, or (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+* Lesser General Public License for more details.
+*
+* You should have received a copy of the GNU Lesser General Public
+* License along with this program; if not, write to the Free Software
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA*/
+
 #include "chatwindowpage.h"
+#include "ui_chatwindowpage.h"
 
-// We'll need some regular expression magic in this code:
-#include <QRegExp>
+#include <QUrl>
+#include <QDesktopServices>
+#include <QtNetwork/QNetworkAccessManager>	
+#include <QtNetwork/QNetworkReply>
+#include <QProcess>
+#include <QDir>
 
-// This is our ChatWindowPage constructor (you C++ n00b)
-ChatWindowPage::ChatWindowPage(QWidget *parent) : QMainWindow(parent)
+ChatWindowPage::ChatWindowPage(QWidget *parent)
+    : QWidget(parent), ui(new Ui::ChatWindowPage)
 {
-    // When using Designer, you should always call setupUi(this)
-    // in your constructor. This creates and lays out all the widgets
-    // on the ChatWindowPage that you setup in Designer.
-    setupUi(this);
+    ui->setupUi(this);
+    setFixedSize(750,600);
+    ui->splitter->hide();
 
-    // Make sure that we are showing the login page when we startup:
-    stackedWidget->setCurrentWidget(loginPage);
+	connect(ui->buttonConnect, SIGNAL(clicked()), this, SLOT(connecte()));
 
-    // Instantiate our socket (but don't actually connect to anything
-    // yet until the user clicks the loginButton:
-    socket = new QTcpSocket(this);
+	connect(ui->actionQuit, SIGNAL(triggered()), this, SLOT(close()));
+	connect(ui->actionCloseTab, SIGNAL(triggered()), this, SLOT(closeTab()));
 
-    // This is how we tell Qt to call our readyRead() and connected()
-    // functions when the socket has text ready to be read, and is done
-    // connecting to the server (respectively):
-    connect(socket, SIGNAL(readyRead()), this, SLOT(readyRead()));
-    connect(socket, SIGNAL(connected()), this, SLOT(connected()));
+	connect(ui->lineEdit, SIGNAL(returnPressed()), this, SLOT(sendCommande()));
+	    
+	    
+	    ui->pushButton_WebChat->setStatusTip(tr("Visit Help The Homeless Worldwide Web Chat"));
+
+
+
+
+
+    connect(ui->disconnect, SIGNAL(clicked()), this, SLOT(disconnectFromServer()));
+	connect(ui->tab, SIGNAL(currentChanged(int)), this, SLOT(tabChanged(int)) );
+	connect(ui->tab, SIGNAL(tabCloseRequested(int)), this, SLOT(tabClosing(int)) );
+
 }
 
-// This gets called when the loginButton gets clicked:
-// We didn't have to use connect() to set this up because
-// Qt recognizes the name of this function and knows to set
-// up the signal/slot connection for us.
-void ChatWindowPage::on_loginButton_clicked()
+
+
+void ChatWindowPage::tabChanged(int index)
 {
-    // Start connecting to the chat server (on port 4200).
-    // This returns immediately and then works on connecting
-    // to the server in the background. When it's done, we'll
-    // get a connected() function call (below). If it fails,
-    // we won't get any error message because we didn't connect()
-    // to the error() signal from this socket.
-    socket->connectToHost(serverLineEdit->text(), 4200);
+	if(index!=0 && joining == false)
+		currentTab()->updateUsersList(ui->tab->tabText(index));
 }
 
-// This gets called when the user clicks the sayButton (next to where
-// they type text to send to the chat room):
-void ChatWindowPage::on_sayButton_clicked()
+void ChatWindowPage::tabClosing(int index)
 {
-    // What did they want to say (minus white space around the string):
-    QString message = sayLineEdit->text().trimmed();
+	currentTab()->leave(ui->tab->tabText(index));
+}
+/*void ChatWindow::tabRemoved(int index)
+{
+	currentTab()->leave(ui->tab->tabText(index));
+}*/
 
-    // Only send the text to the chat server if it's not empty:
-    if(!message.isEmpty())
+void ChatWindowPage::disconnectFromServer() {
+
+    QMapIterator<QString, Serveur*> i(serveurs);
+
+    while(i.hasNext())
     {
-        socket->write(QString(message + "\n").toUtf8());
-    }
-
-    // Clear out the input box so they can type something else:
-    sayLineEdit->clear();
-
-    // Put the focus back into the input box so they can type again:
-    sayLineEdit->setFocus();
-}
-
-// This function gets called whenever the chat server has sent us some text:
-void ChatWindowPage::readyRead()
-{
-    // We'll loop over every (complete) line of text that the server has sent us:
-    while(socket->canReadLine())
-    {
-        // Here's the line the of text the server sent us (we use UTF-8 so
-        // that non-English speakers can chat in their native language)
-        QString line = QString::fromUtf8(socket->readLine()).trimmed();
-
-        // These two regular expressions describe the kinds of messages
-        // the server can send us:
-
-        //  Normal messges look like this: "username:The message"
-        QRegExp messageRegex("^([^:]+):(.*)$");
-
-        // Any message that starts with "/users:" is the server sending us a
-        // list of users so we can show that list in our GUI:
-        QRegExp usersRegex("^/users:(.*)$");
-
-        // Is this a users message:
-        if(usersRegex.indexIn(line) != -1)
+        i.next();
+        QMapIterator<QString, QTextEdit*> i2(i.value()->conversations);
+        while(i2.hasNext())
         {
-            // If so, udpate our users list on the right:
-            QStringList users = usersRegex.cap(1).split(",");
-            userListWidget->clear();
-            Q_FOREACH(QString user, users)
-                new QListWidgetItem(QPixmap(":/icons/chat.png"), user, userListWidget);
-        }
-        // Is this a normal chat message:
-        else if(messageRegex.indexIn(line) != -1)
-        {
-            // If so, append this message to our chat box:
-            QString user = messageRegex.cap(1);
-            QString message = messageRegex.cap(2);
-
-            roomTextEdit->append("<b>" + user + "</b>: " + message);
+            i2.next();
+            i.value()->sendData("QUIT "+i2.key() + " ");
         }
     }
+
+
+    ui->splitter->hide();
+    ui->hide3->show();
+
 }
 
-// This function gets called when our socket has successfully connected to the chat
-// server. (see the connect() call in the ChatWindowPage constructor).
-void ChatWindowPage::connected()
+Serveur *ChatWindowPage::currentTab()
 {
-    // Flip over to the chat page:
-    stackedWidget->setCurrentWidget(chatPage);
+	QString tooltip=ui->tab->tabToolTip(ui->tab->currentIndex());
+	return serveurs[tooltip];
+	//return ui->tab->currentWidget()->findChild<Serveur *>();
+}
 
-    // And send our username to the chat server.
-    socket->write(QString("/me:" + userLineEdit->text() + "\n").toUtf8());
+void ChatWindowPage::closeTab()
+{
+	QString tooltip=ui->tab->tabToolTip(ui->tab->currentIndex());
+	QString txt=ui->tab->tabText(ui->tab->currentIndex());
+
+	if(txt==tooltip)
+	{
+		QMapIterator<QString, QTextEdit*> i(serveurs[tooltip]->conversations);
+
+		int count=ui->tab->currentIndex()+1;
+
+		while(i.hasNext())
+		{
+			i.next();
+			ui->tab->removeTab(count);
+		}
+
+		currentTab()->abort();
+		ui->tab->removeTab(ui->tab->currentIndex());
+	}
+	else
+	{
+
+        ui->tab->removeTab(ui->tab->currentIndex());
+		currentTab()->conversations.remove(txt);
+	}
+}
+
+void ChatWindowPage::sendCommande()
+{
+	QString tooltip=ui->tab->tabToolTip(ui->tab->currentIndex());
+	QString txt=ui->tab->tabText(ui->tab->currentIndex());
+	if(txt==tooltip)
+	{
+		currentTab()->sendData(currentTab()->parseCommande(ui->lineEdit->text(),true) );
+	}
+	else
+	{
+		currentTab()->sendData(currentTab()->parseCommande(ui->lineEdit->text()) );
+	}
+	ui->lineEdit->clear();
+	ui->lineEdit->setFocus();
+}
+
+void ChatWindowPage::tabJoined()
+{
+	joining=true;
+}
+void ChatWindowPage::tabJoining()
+{
+	joining=false;
+}
+
+void ChatWindowPage::connecte()
+{
+
+    ui->splitter->show();
+	Serveur *serveur=new Serveur;
+    QTextEdit *textEdit=new QTextEdit;
+    ui->hide3->hide();
+
+    ui->tab->addTab(textEdit,"Console/PM");
+    ui->tab->setTabToolTip(ui->tab->count()-1,"irc.freenode.net");
+    // current tab is now the last, therefore remove all but the last
+    for (int i = ui->tab->count(); i > 1; --i) {
+       ui->tab->removeTab(0);
+    }
+
+    serveurs.insert("irc.freenode.net",serveur);
+
+	serveur->pseudo=ui->editPseudo->text();
+    serveur->serveur="irc.freenode.net";
+    serveur->port=6667;
+	serveur->affichage=textEdit;
+    serveur->tab=ui->tab;
+	serveur->userList=ui->userView;
+	serveur->parent=this;
+
+	textEdit->setReadOnly(true);
+
+	connect(serveur, SIGNAL(joinTab()),this, SLOT(tabJoined() ));
+	connect(serveur, SIGNAL(tabJoined()),this, SLOT(tabJoining() ));
+
+    serveur->connectToHost("irc.freenode.net",6667);
+
+	ui->tab->setCurrentIndex(ui->tab->count()-1);
+}
+
+void ChatWindowPage::closeEvent(QCloseEvent *event)
+{
+	(void) event;
+
+	QMapIterator<QString, Serveur*> i(serveurs);
+
+	while(i.hasNext())
+	{
+		i.next();
+		QMapIterator<QString, QTextEdit*> i2(i.value()->conversations);
+		while(i2.hasNext())
+		{
+			i2.next();
+            i.value()->sendData("QUIT "+i2.key() + " ");
+		}
+	}
+}
+void ChatWindowPage ::setModel(ClientModel *model)
+{
+    this->model = model;
+}
+
+void ChatWindowPage::on_pushButton_WebChat_clicked() {  // #HTHWorld Chat
+    
+    QDesktopServices::openUrl(QUrl("https://webchat.freenode.net//", QUrl::TolerantMode));
+    
+}
+
+
+ChatWindowPage::~ChatWindowPage()
+{
+    delete ui;
+    QMapIterator<QString, Serveur*> i(serveurs);
+
+    while(i.hasNext())
+    {
+        i.next();
+        QMapIterator<QString, QTextEdit*> i2(i.value()->conversations);
+        while(i2.hasNext())
+        {
+            i2.next();
+            i.value()->sendData("QUIT "+i2.key() + " ");
+        }
+    }
 }
