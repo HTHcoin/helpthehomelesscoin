@@ -16,7 +16,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private slots:
+private Q_SLOTS:
     // Slots for handling signals from 'SocketServer' class
     void on_OutInfo(const QString &message);
     void on_Error(const QString &error_message);
