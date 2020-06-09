@@ -23,7 +23,7 @@ void SocketClient::setAddress(const QString &address)
 
 void SocketClient::start()
 {
-    emit started();
+    Q_EMIT started();
     tcp_sock.connectToHost(remote_address, remote_port);
 }
 
@@ -34,34 +34,34 @@ void SocketClient::stop()
 
 void SocketClient::on_Connected()
 {
-    emit connected();
-    emit outInfo(QString("[%1] You connected with: %2:%3!").arg(QDateTime::currentDateTime().toString("dd-MM-yyyy hh:mm:ss"))
+    Q_EMIT connected();
+    Q_EMIT outInfo(QString("[%1] You connected with: %2:%3!").arg(QDateTime::currentDateTime().toString("dd-MM-yyyy hh:mm:ss"))
                  .arg(remote_address).arg(remote_port));
 }
 
 void SocketClient::on_Disconnected()
 {
-    emit disconnected();
-    emit outInfo(QString("[%1] You disconnected from: %2:%3!").arg(QDateTime::currentDateTime().toString("dd-MM-yyyy hh:mm:ss"))
+    Q_EMIT disconnected();
+    Q_EMIT outInfo(QString("[%1] You disconnected from: %2:%3!").arg(QDateTime::currentDateTime().toString("dd-MM-yyyy hh:mm:ss"))
                  .arg(remote_address).arg(remote_port));
 }
 
 void SocketClient::on_ReadyRead()
 {
-    emit outInfo(tcp_sock.readAll());
+    Q_EMIT outInfo(tcp_sock.readAll());
 }
 
 void SocketClient::DisplayError(QAbstractSocket::SocketError error_code)
 {
     switch (error_code) {
     case QAbstractSocket::ConnectionRefusedError:
-        emit Error(QString("Connection refused with: %1:%2!").arg(remote_address).arg(remote_port));
+        Q_EMIT Error(QString("Connection refused with: %1:%2!").arg(remote_address).arg(remote_port));
         break;
     case QAbstractSocket::HostNotFoundError:
-        emit Error(QString("Remote host not found!"));
+        Q_EMIT Error(QString("Remote host not found!"));
         break;
     case QAbstractSocket::RemoteHostClosedError:
-        emit Error(QString("Remote host is closed!"));
+        Q_EMIT Error(QString("Remote host is closed!"));
         break;
     }
 }
