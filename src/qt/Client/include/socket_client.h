@@ -20,17 +20,17 @@ public:
     void setAddress(const QString &address);
     void start();
 
-private slots:
+private Q_SLOTS:
     void on_Connected();
     void on_Disconnected();
     void on_ReadyRead();
     void DisplayError(QAbstractSocket::SocketError error_code);
 
-public slots:
+public Q_SLOTS:
     void SendToServer(const QString &nickname, const QString &message);
     void stop();
 
-signals:
+Q_SIGNALS:
     void outInfo(const QString &message);
     void Error(const QString &message);
     void started();
