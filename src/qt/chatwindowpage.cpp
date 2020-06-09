@@ -157,8 +157,8 @@ void ChatWindowPage::connecte()
     QTextEdit *textEdit=new QTextEdit;
     ui->hide3->hide();
 
-    ui->tab->addTab(textEdit,"Console/PM");
-    ui->tab->setTabToolTip(ui->tab->count()-1,"irc.freenode.net");
+    ui->tab->addTab(textEdit,"Not a Chat");
+    ui->tab->setTabToolTip(ui->tab->count()-1,"HTH World Chat");
     // current tab is now the last, therefore remove all but the last
     for (int i = ui->tab->count(); i > 1; --i) {
        ui->tab->removeTab(0);
