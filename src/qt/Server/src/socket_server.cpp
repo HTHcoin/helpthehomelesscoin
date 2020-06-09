@@ -94,7 +94,7 @@ void SocketServer::on_ReadyRead()
     QString user_name;
 
     QDataStream recive_stream(client);
-    recive_stream.setVersion(QDataStream::Qt_5_14);
+    recive_stream.setVersion(QDataStream::Qt_5_7_1);
 
     forever {
         if (!next_block_size) {
