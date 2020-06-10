@@ -36,7 +36,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_loginButton_clicked()
 {
         int count;
-        string user,pass,u,p;
+        QString user,pass,u,p;
         system("cls");
         cout<<"please enter the following details"<<endl;
         cout<<"USERNAME :";
@@ -71,7 +71,7 @@ void MainWindow::on_loginButton_clicked()
 void MainWindow::on_registrButton_clicked()
 {
 
-        string reguser,regpass,ru,rp;
+        QString reguser,regpass,ru,rp;
         system("cls");
         cout<<"Enter the username :";
         cin>>reguser;
@@ -102,7 +102,7 @@ void MainWindow::on_forgotButton_clicked()
                 case 1:
                 {
                         int count=0;
-                        string searchuser,su,sp;
+                        QString searchuser,su,sp;
                         cout<<"\nEnter your remembered username :";
                         cin>>searchuser;
 
@@ -137,7 +137,7 @@ void MainWindow::on_forgotButton_clicked()
                 case 2:
                 {
                         int count=0;
-                        string searchpass,su2,sp2;
+                        QString searchpass,su2,sp2;
                         cout<<"\nEnter the remembered password :";
                         cin>>searchpass;
 
