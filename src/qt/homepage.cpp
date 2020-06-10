@@ -1,593 +1,441 @@
 #include "homepage.h"
 #include "ui_homepage.h"
+#include "profilepage.h"
+#include "qprocess.h"
+
+//selim includes
 #include "mainwindow.h"
-
-
-homepage::homepage(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::homepage)
+#include "ui_mainwindow.h"
+#include "QHBoxLayout"
+#include "QVBoxLayout"
+#include "QLabel"
+#include "QSpacerItem"
+#include "QPushButton"
+#include <vector>
+#include "posts.h"
+#include "Qstring"
+#include <QTextBrowser>
+#include "QFontMetrics"
+#include "QGroupBox"
+#include "QScrollBar"
+#include "mainwindow.h"
+#include "addcomment.h"
+#include "adminwindow.h"
+#define POSTSNUMBER 100
+#define COMMENTSNUMBER 3
+#define POSTSATATIME 15
+//_____
+HomePage::HomePage(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::HomePage)
 {
     ui->setupUi(this);
+    shownPostsNumber = 0;
+    ui->comboBox->setVisible(false);
+    pagePosts = new QList<Post>;
+    QWidget::setWindowIcon(QIcon(":/new/prefix1/logo.png"));
+    this->showMaximized();
+    this->setWindowTitle("Social Network");
 
-    ui->scrollArea->setWidgetResizable(true);
 }
 
-homepage::~homepage()
+void HomePage::setCurrentSessionUser_Ptr(user *currentSessionUser_ptr)
+{
+    this->currentSessionUser = currentSessionUser_ptr;
+    randomPosts(currentSessionUser_ptr->userName,POSTSATATIME);
+    QString domain = currentSessionUser_ptr->userName.mid(currentSessionUser_ptr->userName.length()-9,9);
+    if( domain!= "admin.com")
+        ui->StatisticsWindow_btn->setVisible(false);
+    viewPosts();
+}
+
+
+void HomePage::viewPosts()
+{
+    unsigned int j,k;
+    static QVBoxLayout *ParentVerticalLayout = new QVBoxLayout;
+    qDebug("now");
+    QList<QObject*> oldPosts = ui->scrollAreaWidgetContents->children();
+    for(int i = 1; i < oldPosts.size(); i++)
+        delete oldPosts[i];
+    for(k = shownPostsNumber; k < pagePosts->size() && shownPostsNumber < k + POSTSATATIME; k++,shownPostsNumber++)
+    {
+        QGroupBox *postframe = new QGroupBox;
+        QVBoxLayout *postLayout = new QVBoxLayout;
+        postframe->setLayout(postLayout);
+        postframe->setStyleSheet("background-color: rgb(255, 255, 255);");
+        QLabel *postOwner = new QLabel((*pagePosts)[shownPostsNumber].getPostOwner()+":");
+        QLabel *postDate = new QLabel((*pagePosts)[shownPostsNumber].getPostOwner()+":"+(*pagePosts)[shownPostsNumber].getPostDate());
+        postLayout->addWidget(postDate);
+        QTextBrowser *postBody = new QTextBrowser;
+        postBody->setText((*pagePosts)[k].getPostText()); /////////// shownPostsNumber
+        QFontMetrics font_metrics(postBody->font());
+        int font_height = font_metrics.height();
+        // Get the height by multiplying number of lines by font height, Maybe add to this a bit for a slight margin? -Added
+        int height = font_height * 6;
+        postBody->setMinimumHeight(height);
+        postBody->setMaximumHeight(height);
+        postLayout->addWidget(postBody);
+        ParentVerticalLayout->addWidget(postframe);
+        QHBoxLayout *likeAndComment = new QHBoxLayout;
+        QPushButton *like = new QPushButton("Like");
+        like->setObjectName("LikeButton"+QString::number(shownPostsNumber));
+        connect(like,SIGNAL(clicked(bool)),this,SLOT(on_LikeButton_clicked()));
+        like->setStyleSheet("background-color: rgb(c0,c6,c8);");
+        QPushButton *comment = new QPushButton("Comment",postframe);
+        comment->setObjectName("CommentButton"+QString::number(shownPostsNumber));
+        connect(comment,SIGNAL(clicked(bool)),this,SLOT(on_CommentButton_clicked()));
+        comment->setStyleSheet("background-color: rgb(c0,c6,c8);");
+        likeAndComment->addWidget(like);
+        likeAndComment->addWidget(comment);
+        postLayout->addLayout(likeAndComment);
+        std::vector<QString>* likesOwnersVector_Ptr = (*pagePosts)[shownPostsNumber].getPostLikesOwnersVectorPtr();
+        for(int cnt = 0; cnt < likesOwnersVector_Ptr->size(); cnt++)
+        {
+            if(currentSessionUser->userName == (*likesOwnersVector_Ptr)[cnt])
+            {
+                like->setEnabled(false);
+                break;
+            }
+        }
+        QPushButton *likesOwners = new QPushButton(QString::number((*pagePosts)[shownPostsNumber].getPostLikesOwnersVectorPtr()->size())
+                                                    +" people are liking this!");
+        likesOwners->setObjectName("likesOwnersButton");
+        connect(likesOwners,SIGNAL(clicked(bool)),this,SLOT(on_likesOwners_clicked()));
+        QHBoxLayout *likesOwnersLayout = new QHBoxLayout;
+        likesOwnersLayout->addWidget(likesOwners);
+        postLayout->addLayout(likesOwnersLayout);
+        for(j = 0; j < (*pagePosts)[shownPostsNumber].getPostCommentsVectorPtr()->size(); j++)
+        {
+            QHBoxLayout *commentLayout = new QHBoxLayout;
+            QLabel *commentOwner = new QLabel ((*((*pagePosts)[shownPostsNumber].getPostCommentsVectorPtr()))[j].getCommentOwner());
+            commentLayout->addWidget(commentOwner);
+            QTextBrowser *commentBody = new QTextBrowser;
+            commentBody->setText((*((*pagePosts)[shownPostsNumber].getPostCommentsVectorPtr()))[j].getCommentText());
+            commentBody->setMinimumHeight(height);
+            commentBody->setMaximumHeight(height);
+            commentLayout->addWidget(commentBody);
+            postLayout->addLayout(commentLayout);
+        }
+        QFrame* line = new QFrame();
+        line->setFrameShape(QFrame::HLine);
+        line->setFrameShadow(QFrame::Sunken);
+        ParentVerticalLayout->addWidget(line);
+    }
+    ParentVerticalLayout->addSpacerItem(new QSpacerItem(20,40,QSizePolicy::Fixed,QSizePolicy::Expanding));
+    ui->scrollAreaWidgetContents->setLayout(ParentVerticalLayout);
+    QScrollBar *verticalScrollBar = ui->PostsArea->verticalScrollBar();
+    connect(verticalScrollBar,SIGNAL(valueChanged(int)),this,SLOT(viewMorePosts(int)));
+}
+void HomePage::on_LikeButton_clicked()
+{
+    QVBoxLayout *postLayout;
+    QPushButton *button = qobject_cast<QPushButton*>( QObject::sender() );
+    button->setEnabled(false);
+    QString name = button->objectName();
+    qDebug(name.toLatin1());
+    QGroupBox *postframe = qobject_cast<QGroupBox*> (QObject::sender()->parent());
+    postLayout = qobject_cast<QVBoxLayout*> (postframe->layout());
+    QObject* labelObject = (postframe->children()[1]);
+    QLabel* commentLabel = qobject_cast<QLabel*> (labelObject);
+    QString labelString  = commentLabel->text();
+    currentSessionUser->userFileManipulator.addLikeByPostDate(labelString.mid(0,labelString.indexOf(":")),
+                                                              labelString.mid(labelString.indexOf(":") + 1) , currentSessionUser->userName);
+    int postsNumber,likesNumber;
+    currentSessionUser->userFileManipulator.getActivity(currentSessionUser->userName,postsNumber,likesNumber);
+    currentSessionUser->userFileManipulator.updateActivity(currentSessionUser->userName,++likesNumber,0);
+}
+void HomePage::on_CommentButton_clicked()
+{
+    QString commentBody;
+    QVBoxLayout *postLayout;
+    AddComment commentWindow;
+    commentWindow.setModal(true);
+    commentWindow.exec();
+    commentBody = commentWindow.getCommentBody();
+    qDebug(commentBody.toLatin1());
+    QGroupBox *postframe = qobject_cast<QGroupBox*> (QObject::sender()->parent());
+    postLayout = qobject_cast<QVBoxLayout*> (postframe->layout());
+    QHBoxLayout *commentLayout = new QHBoxLayout;
+    QString commentOwnerName = currentSessionUser->userFileManipulator.getUserNameByEmail(currentSessionUser->userName);
+    QLabel *commentOwner = new QLabel (commentOwnerName);
+    commentLayout->addWidget(commentOwner);
+    QTextBrowser *commentBodyTextBrowser = new QTextBrowser;
+    commentBodyTextBrowser->setText(commentBody);
+    QFontMetrics font_metrics(commentBodyTextBrowser->font());
+    int font_height = font_metrics.height();
+    // Get the height by multiplying number of lines by font height, Maybe add to this a bit for a slight margin?
+    int height = font_height * 2;
+    commentBodyTextBrowser->setMinimumHeight(height);
+    commentBodyTextBrowser->setMaximumHeight(height);
+    commentLayout->addWidget(commentBodyTextBrowser);
+    postLayout->addLayout(commentLayout);
+    /*QLabel labelInfo = *(qobject_cast<QLabel*>*/QObject* labelObject = (postframe->children()[1]);
+    QLabel* commentLabel = qobject_cast<QLabel*> (labelObject);
+    QString labelString  = commentLabel->text();
+    qDebug(labelString.toLatin1());
+    currentSessionUser->userFileManipulator.addCommentByPostDate(commentBody,labelString.mid(labelString.indexOf(":") + 1,labelString.length())
+                                                                 ,currentSessionUser->userName,labelString.mid(0,labelString.indexOf(":")));
+}
+
+
+void HomePage::on_likesOwners_clicked()
+{
+    QVBoxLayout *postLayout;
+    QPushButton *button = qobject_cast<QPushButton*>( QObject::sender() );
+    QString name = button->objectName();
+    qDebug(name.toLatin1());
+    QGroupBox *postframe = qobject_cast<QGroupBox*> (QObject::sender()->parent());
+    postLayout = qobject_cast<QVBoxLayout*> (postframe->layout());
+    QObject* labelObject = (postframe->children()[1]);
+    QLabel* commentLabel = qobject_cast<QLabel*> (labelObject);
+    QString labelString  = commentLabel->text();
+    QList<Post> *userPosts = currentSessionUser->userFileManipulator.getPosts_new(labelString.mid(0,labelString.indexOf(":")));
+    QScrollArea* likesOwners = new QScrollArea;
+    QVBoxLayout* scrollingAreaLayout = new QVBoxLayout;
+    likesOwners->setLayout(scrollingAreaLayout);
+    for(QList<Post>::iterator it = userPosts->begin(); it != userPosts->end(); it++)
+    {
+        if(it->getPostDate() == labelString.mid(labelString.indexOf(":") + 1))
+        {
+            std::vector<QString>* likesVector = it->getPostLikesOwnersVectorPtr();
+            for(int i = 0; i < likesVector->size(); i++)
+            {
+                QLabel* userLabel = new QLabel((*likesVector)[i]);
+                scrollingAreaLayout->addWidget(userLabel);
+            }
+        }
+    }
+    likesOwners->show();
+}
+
+void HomePage::viewMorePosts(int i)
+{
+    QScrollBar *bar = qobject_cast<QScrollBar*> (QObject::sender());
+    int max = bar ->maximum();
+    if (i > .9 * max && shownPostsNumber != (*pagePosts).size())
+    {
+        viewPosts();
+    }
+}
+
+
+HomePage::~HomePage()
 {
     delete ui;
 }
 
-/*
-method to set up the username
-note that based on the username porvided this is how we extract all out information for the current user from our Database
-since our username attribute is unique for everyone a valid input username will always present the correct profile requested
-*/
-void homepage::setUserName(QString input)
+void HomePage::on_pushButton_clicked()
 {
-    username = input;
-
-    // here we load all the required data for this user into our program
-    loadProfile();
-    loadNewsfeed();
-    loadNotifications();
-    loadFriends();
+    QList<QObject*> oldPosts = ui->scrollAreaWidgetContents->children();
+    for(int i = 1; i < oldPosts.size(); i++)
+        delete oldPosts[i];
+    ProfilePage * profilePageWindow=new ProfilePage;
+    profilePageWindow->show();
+    this->hide();
+    profilePageWindow->setCurrentSessionUser_Ptr(currentSessionUser);
 }
 
-// method to load the profile information for the current user
-void homepage::loadProfile()
+void HomePage::on_Post_btn_clicked()
 {
-    // connect to our database
-    MainWindow database;
-    database.openDatabase();
+    QString postText = ui->newPost_txtEdit->toPlainText();
+    Date Now;
+    Post recentlyAddedPost = Post(currentSessionUser->userName,postText,Now.getDateNow());
+    pagePosts->push_front(recentlyAddedPost);
+    shownPostsNumber = 0;
+    viewPosts();
+    currentSessionUser->userFileManipulator.addPost_new(postText,Now.getDateNow(),currentSessionUser->userName);
 
-    // query to extract the information of the current user
-    QSqlQuery query;
+}
 
-    if (query.exec("select * from User where Username='"+username+"'"))
+void HomePage::on_StatisticsWindow_btn_clicked()
+{
+    AdminWindow *adminWindow = new AdminWindow;
+    adminWindow->show();;
+    this->hide();
+}
+
+
+void HomePage::swap(QString *a,QString *b)
+{
+
+    QString temp=*a;
+    *a=*b;
+    *b=temp;
+}
+
+void HomePage::siftUp(QList<QString>&myList,int index) //O(log(n)
+{
+
+    int  parentIndex= (index%2==0)?(index-2)/2 : (index-1)/2;
+     while(  index!=0 && myList[parentIndex][0]<myList[index][0] )
+       {
+           swap(&myList[parentIndex],&myList[index]);
+           index=parentIndex;
+            parentIndex= (index%2==0)?(index-2)/2 : (index-1)/2;
+       }
+}
+
+void HomePage::siftDown(QList<QString>&myList,int size)  //O(log(n)
+{   int index=0;
+    int leftChild= (2*index)+1; int rightChild=(2*index)+2;
+    while ((leftChild<size|| rightChild<size)&& (myList[index]< myList[leftChild] || myList[index]< myList[rightChild] ) )
     {
-        while(query.next())
+        if(rightChild<size)
         {
-            userId = query.value(0).toString();
-            firstName = query.value(1).toString();
-            lastName = query.value(2).toString();
-            fullName = query.value(3).toString();
-            username = query.value(4).toString();
-            password = query.value(5).toString();
-            birthday = query.value(6).toString();
-            country = query.value(7).toString();
-            gender = query.value(8).toString();
-        }
-
-        // we also update all the profile information to sync with the current user
-        ui->lineEdit_Name->setText(firstName);
-        ui->lineEdit_LastName->setText(lastName);
-        ui->lineEdit_Username->setText(username);
-        ui->lineEdit_Password->setText(password);
-        ui->lineEdit_Birthday->setText(birthday);
-        ui->lineEdit_Gender->setText(gender);
-        ui->lineEdit_Country->setText(country);
-        ui->label_welcome->setText("Welcome: " + fullName);
-
-        database.closeDatabase();
-    }
-    else
-    {
-        qDebug() << "Error loading user data";
-    }
-}
-
-// method to load the newsfeed of the current user
-void homepage::loadNewsfeed()
-{
-    // connect to our database
-    MainWindow database;
-    database.openDatabase();
-
-    // here we load up all the newsfeed history that corresponds to the current user
-    // note that we also insert the post that corresponds to friends of this user
-    // for example if fred is a friend of the current and fred made a post, his post will show in the newsfeed of current user
-    // we also sort them from most recent post to latest
-    mainLayout = new QVBoxLayout();
-
-    QSqlQuery query;
-
-    if (query.exec("select PostInfo from (select PostInfo,PostID from Post where UserId='"+userId+"' union select PostInfo,PostID from Post inner join FriendPair on UserID=User2ID and User1ID='"+userId+"' order by PostID desc)"))
-    {
-        while(query.next())
-        {
-            QTextEdit* label = new QTextEdit(query.value(0).toString());
-            mainLayout->addWidget(label);
-        }
-    }
-    else
-    {
-        qDebug() << "Error loading newsfeed";
-    }
-
-    // placing it inside our scroll area
-    QWidget *mainWidget = new QWidget();
-    mainWidget->setLayout(mainLayout);
-    ui->scrollArea->setWidget(mainWidget);
-
-    database.closeDatabase();
-}
-
-// method to load all the notifications for the current user
-void homepage::loadNotifications()
-{
-    // connect to our database
-    MainWindow database;
-    database.openDatabase();
-
-    // here we load all the notifications that correspond to this user
-    QSqlQueryModel* result = new QSqlQueryModel();
-    QSqlQuery* filter = new QSqlQuery();
-
-    filter->exec("select Info from Notification where ReceiverID='"+userId+"'");
-
-    result->setQuery(*filter);
-
-    ui->listView_notifications->setModel(result);
-
-    database.closeDatabase();
-}
-
-// method to load all the friends corresponding to this user
-void homepage::loadFriends()
-{
-    // connect to our database
-    MainWindow database;
-    database.openDatabase();
-
-    // here we load all the notifications that correspond to this user
-    QSqlQueryModel* result = new QSqlQueryModel();
-    QSqlQuery* filter = new QSqlQuery();
-
-    filter->exec("select FullName from User inner join FriendPair on ID=User2ID where User1ID ='"+userId+"'");
-
-    result->setQuery(*filter);
-
-    ui->listView_friends->setModel(result);
-
-    database.closeDatabase();
-}
-
-// method to exit the account page
-void homepage::on_pushButton_logout_clicked()
-{
-    this->close();
-}
-
-// method operating the post feature
-void homepage::on_pushButton_post_clicked()
-{
-    // we first get the input provided by the user
-    QString postCreated = ui->textEdit_postArena->toPlainText();
-    if (postCreated.isEmpty())
-    {
-        QMessageBox::warning(this,"Warning","Input field is empty, please create a post");
-        return;
-    }
-    else
-    {
-        // editing the post so it includes the author at the start
-        postCreated = fullName + " : " + postCreated;
-    }
-
-    // connect to our database
-    MainWindow database;
-    database.openDatabase();
-
-    // we use a query to insert the new post in the corresponding table
-    QSqlQuery query;
-
-    if (query.exec("insert into Post (PostInfo,UserID) values ('"+postCreated+"','"+userId+"')"))
-    {
-        QTextEdit* newPost = new QTextEdit(postCreated);
-        mainLayout->insertWidget(0, newPost);
-
-        database.closeDatabase();
-    }
-    else
-    {
-        qDebug() << "Error inserting post";
-    }
-}
-
-// method that allows the user to update either their password or country
-void homepage::on_pushButton_saveChanges_clicked()
-{
-    // storing the inputs from the lines to later compare if changes where made
-    QString name2 = ui->lineEdit_Name->text();
-    QString lastName2 = ui->lineEdit_LastName->text();
-    QString username2 = ui->lineEdit_Username->text();
-    QString birthday2 = ui->lineEdit_Birthday->text();
-    QString gender2 = ui->lineEdit_Gender->text();
-
-    // getting the inputs from the password and country fields
-    QString newPassword = ui->lineEdit_Password->text();
-    QString newCountry = ui->lineEdit_Country->text();
-
-
-    // condition to validate that the other fields were not changed
-    if (firstName != name2 || lastName != lastName2 || username != username2 || birthday != birthday2 || gender != gender2)
-    {
-        // we reset the fields back to their defeault and prompt an error message
-        ui->lineEdit_Name->setText(firstName);
-        ui->lineEdit_LastName->setText(lastName);
-        ui->lineEdit_Username->setText(username);
-        ui->lineEdit_Birthday->setText(birthday);
-        ui->lineEdit_Gender->setText(gender);
-        ui->lineEdit_Password->setText(password);
-        ui->lineEdit_Country->setText(country);
-
-        QMessageBox::warning(this,"Warning", "Unable to make changes, you can only change your password or country");
-    }
-    else if (password != newPassword || country != newCountry)
-    {
-        // first we validate the password in the case it was changed
-        // analyzing the password input
-        if (newPassword.length() < 6)
-        {
-            QMessageBox::warning(this,"Warning", "Password must be atleast 6 characters long");
-            ui->lineEdit_Password->setText(password);
-            return;
-        }
-
-        bool hasUppercase = false;
-        bool hasNumber = false;
-        for (int x = 0; x < newPassword.length(); x++)
-        {
-            if ( newPassword[x] >= 'A' &&  newPassword[x] < 'Z')
+            if(leftChild<size)
+           {
+              bool right= ( myList[leftChild]< myList[rightChild] )?true:false;
+             if(right  )
+             {
+               swap(&myList[index],&myList[rightChild]);
+               index=rightChild;
+               leftChild= (2*index)+1;
+               rightChild=(2*index)+2;
+              }
+             else
+              {
+                swap(&myList[index],&myList[leftChild]);
+                index=leftChild;
+                leftChild= (2*index)+1;
+               rightChild=(2*index)+2;
+              }
+             }
+            else  //right child
             {
-                hasUppercase = true;
-            }
-
-            if ( newPassword[x] >= '0' &&  newPassword[x] < '9')
-            {
-                hasNumber = true;
-            }
+              swap(&myList[index],&myList[rightChild]);
+              index=rightChild;
+              leftChild= (2*index)+1;
+              rightChild=(2*index)+2;
+             }
         }
-
-        // condition to check if password met the 2 requirements for including an uppercase letter and a number
-        if (!hasNumber || !hasUppercase)
+        else  // swap with left child
         {
-            QMessageBox::warning(this,"Warning", "Password must include atleast 1 uppercase letter and atleast 1 number");
-            ui->lineEdit_Password->setText(password);
+            swap(&myList[index],&myList[leftChild]);
+            index=leftChild;
+            leftChild= (2*index)+1;
+            rightChild=(2*index)+2;
         }
-        else
-        {
-            // update their information
-            // we also inform the user that they have made a change and update the record in the database
-            password = newPassword;
-            if (!newCountry.isEmpty())
-            {
-                country = newCountry;
-            }
 
-            ui->lineEdit_Password->setText(password);
-            ui->lineEdit_Country->setText(country);
 
-            // connect to our database
-            MainWindow database;
-            database.openDatabase();
-
-            // query to update the country and/or password
-            QSqlQuery query;
-
-            if (query.exec("update User set Password='"+password+"',Country='"+country+"' where Username='"+username+"'"))
-            {
-                 QMessageBox::warning(this,"Warning", "Your account has been updated");
-                 database.closeDatabase();
-            }
-            else
-            {
-                qDebug() << "Failed to make changes";
-            }
-        }
     }
 }
-
-// this method will remove their account from our database and prompt them back to the starting page
-void homepage::on_pushButton_removeAccount_clicked()
+void HomePage::sort(QList<QString>& myList)  //O(n log(n))
 {
-    // connect to our database
-    MainWindow database;
-    database.openDatabase();
 
-    // query to update the country and/or password
-    QSqlQuery query;
-
-    if (query.exec("delete from User where Username='"+username+"'"))
+    int size= myList.count();
+    while(size>1)
     {
-        QMessageBox::warning(this,"Warning","Your account has been removed");
+        swap(&myList[0],&myList[size-1]);
+        size--;
+        siftDown(myList,size);
 
-        // closing the database and returning back to the welcome window
-        database.closeDatabase();
-        this->close();
     }
-    else
-    {
-        qDebug() << "Failed to remove account";
-    }
+
 }
 
-// method to showcase people from our database based on the search input provided by the user
-void homepage::on_pushButton_search_clicked()
-{
-    // first we get the string input from the users present in the search bar
-    QString target = ui->lineEdit_search ->text();
 
-    // condition to check that an input is present before attempting to use the search feature
-    if (target.isEmpty())
+
+void HomePage::internalSearch (QString x,QList<QString> &myList,int begin,int end,QList<QString> &temp)
+{
+
+    if(begin>end)  {temp.append("\0");return  ;} //not found
+    int middle= (begin+end)/2; bool indicator=false;
+    //qDebug()<<test<<endl;
+    while(myList.size() != 0 && middle < myList.size()&& myList[middle].mid(0,x.length())==x)
     {
-        QMessageBox::warning(this,"Warning", "Please enter either a name or country in the search field.");
+
+        if (middle!=0&& indicator==false &&myList[middle-1].mid(0,x.length())==x ) temp.append(myList[middle-1]);
+        temp.append(myList[middle]);
+        myList.removeAt(middle);
+        indicator=true;
+
+    }
+    if(indicator) return ;
+    if(myList[middle][0]> x[0])
+    {
+
+        internalSearch ( x, myList,begin,middle-1,temp);
+    }
+   else
+        internalSearch ( x, myList,middle+1,end,temp);
+
+
+
+}
+
+
+QList<QString> HomePage::search (QString x,QList<QString> & myList)
+{
+    for(int i=1;i<myList.count();i++) // heapify the list O( n log(n) )
+     {
+         siftUp(myList,i);
+     }
+
+      sort(myList);
+      QList<QString> temp;
+      internalSearch(x,myList,0,myList.count()-1,temp);
+      return temp;
+}
+
+
+void HomePage::on_friendSearch_textChanged(const QString &arg1)
+{
+    QString name= ui->friendSearch->text();
+    if(name=="")return;
+    ui->comboBox->setVisible(true);
+    QList<QString> list= currentSessionUser->userFileManipulator.readEmails();           //yomna's list of mails
+    QList<QString >optionsList=search(name,list);
+    ui->comboBox->addItem("Search Results");
+    for(int i=0;i<optionsList.size();i++)
+    {
+        ui->comboBox->addItem(optionsList[i]);
+    }
+
+}
+
+void HomePage::on_comboBox_currentIndexChanged(int index)
+{
+    QList<QObject*> items = ui->comboBox->children();
+    if(index == -1)
+        return ;
+    QString mail = ui->comboBox->itemText(index);
+    if(mail == "Search Results")
         return;
-    }
-    else
-    {
-        // add the wildcard characters to aid in our search filter
-        target.push_front('%');
-        target.push_back('%');
-    }
+    QList<QObject*> oldPosts = ui->scrollAreaWidgetContents->children();
+    for(int i = 1; i < oldPosts.size(); i++)
+        delete oldPosts[i];
+    ProfilePage * profilePageWindow=new ProfilePage;
+    profilePageWindow->show();
+    this->hide();
+    profilePageWindow->setHomePageOwnerMail(currentSessionUser->userName);
+    currentSessionUser->userName = mail;
+    profilePageWindow->setCurrentSessionUser_Ptr(currentSessionUser);
 
-    // connect to our database
-    MainWindow database;
-    database.openDatabase();
-
-    /*
-    for this section we are passing the filtered data as an output for the user
-    the search will find any name or country that has the a similarity to the input provided
-    if no user from our database is found based on the input entered, the user will be informed that no results were found
-    the search will only showcase users that are not currently friends with the current user that is logged in
-    so if mike is already a friend of lucas, and the user enters that same lucas; lucas will not be showned
-    */
-    QSqlQueryModel* result = new QSqlQueryModel();
-    QSqlQuery* filter = new QSqlQuery();
-
-    filter->exec("select FullName from User where (FullName like '"+target+"' or Country like '"+target+"') and (Username!='"+username+"') and (ID not in (select User2ID from FriendPair where User1ID='"+userId+"'))");
-
-    result->setQuery(*filter);
-
-    ui->listView_searchResult->setModel(result);
-
-    // condition to signal that no results where found based on their search input
-    if (ui->listView_searchResult->model()->rowCount() == 0)
-    {
-        QMessageBox::warning(this,"Warning", "No Results Found "+target);
-    }
-
-    database.closeDatabase();
 }
 
-// method to send a friend request to another user in our network
-void homepage::on_pushButton_sendFriend_clicked()
+
+QList<QString> *HomePage::randomPosts(QString mail,int number)
 {
-    // getting the selected user from the search results
-    QModelIndex index = ui->listView_searchResult->currentIndex();
-    QString targetUser = index.data(Qt::DisplayRole).toString();
+   fileman A;
+  QList<QString> friendsMail=A.getFriends( mail);
+  friendsMail.push_front(currentSessionUser->userName);
+  friendsMail.push_front(currentSessionUser->userName);
+  friendsMail.push_front(currentSessionUser->userName);
+  for(int i=1;i<friendsMail.count() - 1;i = i + 3)
+  {
 
-    if (targetUser.isEmpty())
-    {
-        QMessageBox::warning(this,"Warning", "please select a user to send a request to");
-        return;
-    }
-
-    // get the userID for the target user
-    QString targetID;
-
-    // connect to our database
-    MainWindow database;
-    database.openDatabase();
-    QSqlQuery query;
-
-    if (query.exec("select ID from User where FullName='"+targetUser+"'"))
-    {
-        while(query.next())
-        {
-            targetID = query.value(0).toString();
-        }
-
-        // creating the message being send
-        QString request = fullName + " wants to be your friend";
-
-        // here we now create a notification bridge between the 2 users
-        // we also insert the information into our database so the target user can later extract the info from their notification tab
-        if (query.exec("insert into Notification (Info,SenderID,ReceiverID) values ('"+request+"','"+userId+"','"+targetID+"')"))
-        {
-            QMessageBox::warning(this,"Warning", "Your friend request has been sent to " + targetUser);
-        }
-        else
-        {
-            qDebug() << "Error your request was not send";
-        }
-    }
-    else
-    {
-        qDebug() << "Error failed to send friendRequest";
-    }
+      QList<Post> *friendsPosts=currentSessionUser->userFileManipulator.getPosts_new(friendsMail[i]);
+      for(int j=0; j<number ;j++)
+      {
+         if(j < friendsPosts->count())
+          pagePosts->push_back((*friendsPosts)[j]);
+      }
+  }
 }
 
-// method for accepting a friendRequest
-void homepage::on_pushButton_acceptNotification_clicked()
+void HomePage::on_actionLog_Out_triggered()
 {
-    // getting the selecting notification
-    QModelIndex index = ui->listView_notifications->currentIndex();
-    QString currentNotification = index.data(Qt::DisplayRole).toString();
-
-    if (currentNotification.isEmpty())
-    {
-        QMessageBox::warning(this,"Warning", "please select a notification");
-        return;
-    }
-
-    // get the userID and name from the person that sent you this request
-    // we also extract the notification ID to remove it once the request has been answer
-    QString senderID;
-    QString notificationID;
-    QString senderName;
-
-    // connect to our database
-    MainWindow database;
-    database.openDatabase();
-    QSqlQuery query;
-
-    if (query.exec("select NotificationID,SenderID from Notification where Info='"+currentNotification+"' and ReceiverID='"+userId+"'"))
-    {
-        while(query.next())
-        {
-            notificationID = query.value(0).toString();
-            senderID = query.value(1).toString();
-        }
-
-        // query to extract the name of the sender
-        query.first();
-        if (query.exec("select FullName from User where ID='"+senderID+"'"))
-        {
-            while(query.next())
-            {
-                senderName = query.value(0).toString();
-            }
-        }
-        else
-        {
-            qDebug() << "Error failed to retrieve the sender name";
-            return;
-        }
-
-        // we now create a connection between the 2 users
-        // this officially makes them both friends
-        if (query.exec("insert into FriendPair (User1ID,User2ID) values ('"+userId+"','"+senderID+"')"))
-        {
-            QMessageBox::warning(this,"Warning","You are now friends with "+ senderName);
-        }
-        else
-        {
-            qDebug() << "Error unable to accept the friend request";
-            return;
-        }
-
-        // note since this is bi connection we create another record
-        // reason for this is to make it more accesible to extract who is friends with who
-        query.exec("insert into FriendPair (User1ID,User2ID) values ('"+senderID+"','"+userId+"')");
-
-        // we remove the notification from our database
-        if (query.exec("delete from Notification where NotificationID='"+notificationID+"'"))
-        {
-            // we update both our notifications and friends list after accepting the request
-            loadNotifications();
-            loadFriends();
-        }
-        else
-        {
-            qDebug() << "Error failed to remove the notifcation";
-        }
-
-        database.closeDatabase();
-    }
-    else
-    {
-        qDebug() << "Error failed to get the sender ID";
-    }
-}
-
-// method for ignoring a notification which in the end will delete it from our database
-void homepage::on_pushButton_ignoreNotification_clicked()
-{
-    // getting the current notification selected
-    QModelIndex index = ui->listView_notifications->currentIndex();
-    QString currentNotification = index.data(Qt::DisplayRole).toString();
-
-    if (currentNotification.isEmpty())
-    {
-        QMessageBox::warning(this,"Warning", "please select a notification");
-        return;
-    }
-
-    // get the notification ID to remove it
-    QString senderID;
-    QString notificationID;
-
-    // connect to our database
-    MainWindow database;
-    database.openDatabase();
-    QSqlQuery query;
-
-    if (query.exec("select NotificationID from Notification where Info='"+currentNotification+"' and ReceiverID='"+userId+"'"))
-    {
-        while(query.next())
-        {
-            notificationID = query.value(0).toString();
-        }
-
-        // we remove the notification from our database
-        if (query.exec("delete from Notification where NotificationID='"+notificationID+"'"))
-        {
-            // we update our notification view after deleting it
-            loadNotifications();
-        }
-        else
-        {
-            qDebug() << "Error failed to remove the notifcation";
-        }
-
-        database.closeDatabase();
-    }
-    else
-    {
-        qDebug() << "Error failed to get the notification ID";
-    }
-}
-
-// method to remove a friend from your list
-void homepage::on_pushButton_removeFriend_clicked()
-{
-    // getting the current friend selected
-    QModelIndex index = ui->listView_friends->currentIndex();
-    QString currentFriend = index.data(Qt::DisplayRole).toString();
-
-    if (currentFriend.isEmpty())
-    {
-        QMessageBox::warning(this,"Warning", "please select a friend from your list");
-        return;
-    }
-
-    // get the friend ID to remove it
-    QString friendID;
-
-    // connect to our database
-    MainWindow database;
-    database.openDatabase();
-    QSqlQuery query;
-
-    if (query.exec("select ID from User where FullName='"+currentFriend+"'"))
-    {
-        while(query.next())
-        {
-            friendID = query.value(0).toString();
-        }
-
-        // we remove the pair from our database
-        // once removed there is no connection between the 2 users
-        if (query.exec("delete from FriendPair where User1ID='"+userId+"' and User2ID='"+friendID+"'"))
-        {
-            query.exec("delete from FriendPair where User1ID='"+friendID+"' and User2ID='"+userId+"'");
-
-            QMessageBox::warning(this,"Warning",currentFriend + " has been removed from your list");
-
-            // we update both our friend list and our newsfeed after removing that friend
-            loadNewsfeed();
-            loadFriends();
-        }
-        else
-        {
-            qDebug() << "Error failed to remove the friend";
-        }
-
-        database.closeDatabase();
-    }
-    else
-    {
-        qDebug() << "Error failed to get the friend ID";
-    }
+    qApp->quit();
+    QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
 }
