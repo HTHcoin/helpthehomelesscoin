@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "newAccount.h"
+#include "newaccount.h"
 #include<QDebug>
 #include "homepage.h"
 #include "QMessageBox"
@@ -11,7 +11,7 @@ ui(new Ui::MainWindow)
 {
 ui->setupUi(this);
 ui->signUpLabel->setText("<font color='red'>No account? Create one!</font>");
-QWidget::setWindowIcon(QIcon(":/new/prefix1/logo.png"));
+QWidget::setWindowIcon(QIcon(":/icons/chat"));
 this->setWindowTitle("Social Network");
 
 }
