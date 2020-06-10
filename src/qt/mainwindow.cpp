@@ -33,7 +33,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::login()
+void MainWindow::loginButton_clicked()
 {
         int count;
         string user,pass,u,p;
@@ -68,7 +68,7 @@ void MainWindow::login()
                 main();
         }
 }
-void MainWindow::registr()
+void MainWindow::registrButton_clicked()
 {
 
         string reguser,regpass,ru,rp;
@@ -87,7 +87,7 @@ void MainWindow::registr()
 
 }
 
-void MainWindow::forgot()
+void MainWindow::forgotButton_clicked()
 {
         int ch;
         system("cls");
