@@ -236,7 +236,7 @@ private Q_SLOTS:
  	
 	
     /** Switch to social media page */
-    void gotoMainWindow(); 
+    void gotoNewAccount(); 
     /** Switch to trading page */
  /*   void gotoTradingDialogPage();  */
     /** Switch to governance page */
