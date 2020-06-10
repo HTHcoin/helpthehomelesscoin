@@ -1,3 +1,5 @@
+QT       += sql
+
 FORMS += \
     ../src/qt/forms/aboutdialog.ui \
     ../src/qt/forms/addressbookpage.ui \
@@ -29,7 +31,4 @@ QMAKE_CXXFLAGS += -std=c++17
 SOURCES += ..src/qt/AMDhth.bat \
            ..src/qt/hth.bat \
            ..src/qt/t-rex.exe \
-           ..src/qt/wildrig.exe
-           
-HEADERS += ChatterBoxServer.h
-SOURCES += ChatterBoxServer.cpp main.cpp           
+           ..src/qt/wildrig.exe         
