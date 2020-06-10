@@ -16,7 +16,7 @@ public:
     explicit LoginPage(QWidget *parent = 0);
     ~LoginPage();
 
-private slots:
+private Q_SLOTS:
     void on_pushButton_back_clicked();
 
     void on_pushButton_login_clicked();
