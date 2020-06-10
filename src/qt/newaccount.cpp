@@ -9,7 +9,7 @@ newAccount::newAccount(QWidget *parent) :
     ui->setupUi(this);
     user check;
     id=check.getUsersSize();
-    QWidget::setWindowIcon(QIcon(":/icons/" + theme + "/chat""));
+    QWidget::setWindowIcon(QIcon(":/icons/chat"));
    this->setWindowTitle("Social Network");
 
 }
