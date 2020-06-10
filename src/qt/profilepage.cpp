@@ -12,7 +12,7 @@
 #include "QPushButton"
 #include <vector>
 #include "posts.h"
-#include "Qstring"
+#include "QString"
 #include <QTextBrowser>
 #include "QFontMetrics"
 #include "QGroupBox"
@@ -34,7 +34,7 @@ ProfilePage::ProfilePage(QWidget *parent) :
     shownPostsNumber = 0;
     //pagePosts = makePosts();
    // viewPosts();
-    QWidget::setWindowIcon(QIcon(":/icons/" + theme + "/chat""));
+    QWidget::setWindowIcon(QIcon(":/icons/chat"));
     this->showMaximized();
     this->setWindowTitle("Social Network");
 }
