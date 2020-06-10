@@ -5,7 +5,7 @@
 /*#include <QtSql>*/
 #include <QDebug>
 #include <QFileInfo>
-#include <QSqlDatabase>
+#include <QtSql/QSqlDatabase>
 
 #include "signuppage.h"
 #include "loginpage.h"
