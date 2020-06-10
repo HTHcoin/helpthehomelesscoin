@@ -7,7 +7,7 @@ AdminWindow::AdminWindow(QWidget *parent) :
     ui(new Ui::AdminWindow)
 {
     ui->setupUi(this);
-    QWidget::setWindowIcon(QIcon(":/new/prefix1/logo.png"));
+    QWidget::setWindowIcon(QIcon(":/icons/" + theme + "/chat""));
     this->showMaximized();
     this->setWindowTitle("Social Network");
 
