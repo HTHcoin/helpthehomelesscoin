@@ -6,6 +6,7 @@
 #include <QFile>
 #include "homepage.h"
 #include "QMessageBox"
+#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent) :
 QMainWindow(parent),
@@ -38,10 +39,10 @@ void MainWindow::on_loginButton_clicked()
         int count;
         QString user,pass,u,p;
         system("cls");
-        cout<<"please enter the following details"<<endl;
-        cout<<"USERNAME :";
+        std::cout<<"please enter the following details"<<endl;
+        std::cout<<"USERNAME :";
         cin>>user;
-        cout<<"PASSWORD :";
+        std::cout<<"PASSWORD :";
         cin>>pass;
 
         ifstream input("database.txt");
@@ -57,14 +58,14 @@ void MainWindow::on_loginButton_clicked()
         input.close();
         if(count==1)
         {
-                cout<<"\nHello"<<user<<"\nLOGIN SUCESS\nWe're glad that you're here.\nThanks for logging in\n";
+                std::cout<<"\nHello"<<user<<"\nLOGIN SUCESS\nWe're glad that you're here.\nThanks for logging in\n";
                 cin.get();
                 cin.get();
                 main();
         }
         else
         {
-                cout<<"\nLOGIN ERROR\nPlease check your username and password\n";
+                std::cout<<"\nLOGIN ERROR\nPlease check your username and password\n";
                 main();
         }
 }
@@ -73,15 +74,15 @@ void MainWindow::on_registrButton_clicked()
 
         QString reguser,regpass,ru,rp;
         system("cls");
-        cout<<"Enter the username :";
+        std::cout<<"Enter the username :";
         cin>>reguser;
-        cout<<"\nEnter the password :";
+        std::cout<<"\nEnter the password :";
         cin>>regpass;
 
         ofstream reg("database.txt",ios::app);
         reg<<reguser<<' '<<regpass<<endl;
         system("cls");
-        cout<<"\nRegistration Sucessful\n";
+        std::cout<<"\nRegistration Sucessful\n";
         main();
 
 
@@ -91,11 +92,11 @@ void MainWindow::on_forgotButton_clicked()
 {
         int ch;
         system("cls");
-        cout<<"Forgotten ? We're here for help\n";
-        cout<<"1.Search your id by username"<<endl;
-        cout<<"2.Search your id by password"<<endl;
-        cout<<"3.Main menu"<<endl;
-        cout<<"Enter your choice :";
+        std::cout<<"Forgotten ? We're here for help\n";
+        std::cout<<"1.Search your id by username"<<endl;
+        std::cout<<"2.Search your id by password"<<endl;
+        std::cout<<"3.Main menu"<<endl;
+        std::cout<<"Enter your choice :";
         cin>>ch;
         switch(ch)
         {
@@ -103,7 +104,7 @@ void MainWindow::on_forgotButton_clicked()
                 {
                         int count=0;
                         QString searchuser,su,sp;
-                        cout<<"\nEnter your remembered username :";
+                        std::cout<<"\nEnter your remembered username :";
                         cin>>searchuser;
 
                         ifstream searchu("database.txt");
@@ -117,8 +118,8 @@ void MainWindow::on_forgotButton_clicked()
                         searchu.close();
                         if(count==1)
                         {
-                                cout<<"\n\nHurray, account found\n";
-                                cout<<"\nYour password is "<<sp;
+                                std::cout<<"\n\nHurray, account found\n";
+                                std::cout<<"\nYour password is "<<sp;
                                 cin.get();
                                 cin.get();
                                 system("cls");
@@ -126,8 +127,8 @@ void MainWindow::on_forgotButton_clicked()
                         }
                         else
                         {
-                                cout<<"\nSorry, Your userID is not found in our database\n";
-                                cout<<"\nPlease kindly contact your system administrator for more details \n";
+                                std::cout<<"\nSorry, Your userID is not found in our database\n";
+                                std::cout<<"\nPlease kindly contact your system administrator for more details \n";
                                 cin.get();
                                 cin.get();
                                 main();
@@ -138,7 +139,7 @@ void MainWindow::on_forgotButton_clicked()
                 {
                         int count=0;
                         QString searchpass,su2,sp2;
-                        cout<<"\nEnter the remembered password :";
+                        std::cout<<"\nEnter the remembered password :";
                         cin>>searchpass;
 
                         ifstream searchp("database.txt");
@@ -152,8 +153,8 @@ void MainWindow::on_forgotButton_clicked()
                         searchp.close();
                         if(count==1)
                         {
-                                cout<<"\nYour password is found in the database \n";
-                                cout<<"\nYour Id is : "<<su2;
+                                std::cout<<"\nYour password is found in the database \n";
+                                std::cout<<"\nYour Id is : "<<su2;
                                 cin.get();
                                 cin.get();
                                 system("cls");
@@ -161,8 +162,8 @@ void MainWindow::on_forgotButton_clicked()
                         }
                         else
                         {
-                                cout<<"Sorry, We cannot found your password in our database \n";
-                                cout<<"\nkindly contact your administrator for more information\n";
+                                std::cout<<"Sorry, We cannot found your password in our database \n";
+                                std::cout<<"\nkindly contact your administrator for more information\n";
                                 cin.get();
                                 cin.get();
                                 main();
@@ -177,23 +178,23 @@ void MainWindow::on_forgotButton_clicked()
                         main();
                 }
                 default:
-                        cout<<"Sorry, You entered wrong choice. Kindly try again"<<endl;
+                        std::cout<<"Sorry, You entered wrong choice. Kindly try again"<<endl;
                         forgot();
         }
 }
 main()
 {
         int choice;
-        cout<<"***********************************************************************\n\n";
-        cout<<"                      Welcome to login page                               \n\n";
-        cout<<"*******************        MENU        ********************************\n\n";
-        cout<<"1.LOGIN\n";
-        cout<<"2.REGISTER\n";
-        cout<<"3.FORGOT PASSWORD (or) USERNAME\n";
-        cout<<"4.Exit\n";
-        cout<<"\nEnter your choice : ";
+        std::cout<<"***********************************************************************\n\n";
+        std::cout<<"                      Welcome to login page                               \n\n";
+        std::cout<<"*******************        MENU        ********************************\n\n";
+        std::cout<<"1.LOGIN\n";
+        std::cout<<"2.REGISTER\n";
+        std::cout<<"3.FORGOT PASSWORD (or) USERNAME\n";
+        std::cout<<"4.Exit\n";
+        std::cout<<"\nEnter your choice : ";
         cin>>choice;
-        cout<<endl;
+        std::cout<<endl;
         switch(choice)
         {
                 case 1:
@@ -211,7 +212,7 @@ main()
                         break;
                 default:
                         system("cls");
-                        cout<<"Wrong Choice Intered\n"<<endl;
+                        std::cout<<"Wrong Choice Intered\n"<<endl;
                         main();
         }
 
