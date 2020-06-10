@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <Qt/QtSql>
+#include <QtSql>
 #include <QDebug>
 #include <QFileInfo>
 
