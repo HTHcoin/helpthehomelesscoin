@@ -1,4 +1,4 @@
-QT += core gui sql
+QT += core gui SQL
 
 INCLUDEPATH += /usr/include/QtSql
 LIBS += -lQtSql
