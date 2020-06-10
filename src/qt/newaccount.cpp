@@ -2,6 +2,8 @@
 #include "ui_newaccount.h"
 #include "QMessageBox"
 #include<user.h>
+#include <QWidget>
+
 newAccount::newAccount(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::newAccount)
