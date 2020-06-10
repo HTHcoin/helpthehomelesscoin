@@ -16,7 +16,7 @@ public:
     explicit SignUpPage(QWidget *parent = 0);
     ~SignUpPage();
 
-private slots:
+private Q_SLOTS:
     void on_pushButton_back_clicked();
 
     void on_pushButton_createAccount_clicked();
