@@ -4,16 +4,16 @@
 #include <QMainWindow>
 #include "mainwindow.h"
 namespace Ui {
-class newAccount;
+class NewAccount;
 }
 
-class newAccount : public QMainWindow
+class NewAccount : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit newAccount(QWidget *parent = 0);
-    ~newAccount();
+    explicit NewAccount(QWidget *parent = 0);
+    ~NewAccount();
     int id;
 
 
@@ -28,7 +28,7 @@ private Q_SLOTS:
 
 
 private:
-    Ui::newAccount *ui;
+    Ui::NewAccount *ui;
 
     MainWindow *mainWindowPtr;
 };
