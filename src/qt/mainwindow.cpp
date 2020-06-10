@@ -208,7 +208,7 @@ main()
                         break;
                 case 4:
 
-                        cout<<"Thanks for using this program\nThis program is created by @Thestral9\n\n";
+                        std::cout<<"Thanks for using this program\nThis program is created by @Thestral9\n\n";
                         break;
                 default:
                         system("cls");
