@@ -1,3 +1,5 @@
+QT       += core
+QT       += network
 QT       += sql
 
 FORMS += \
