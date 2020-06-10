@@ -32,14 +32,14 @@ SOURCES += \
 
 HEADERS += \
         mainwindow.h \
-    signuppage.h \
-    loginpage.h \
-    homepage.h
+        signuppage.h \
+        loginpage.h \
+        homepage.h
 
 FORMS += \
-        mainwindow.ui \
-    signuppage.ui \
-    loginpage.ui \
-    homepage.ui
+        forms/mainwindow.ui \
+        forms/signuppage.ui \
+        forms/loginpage.ui \
+        forms/homepage.ui
 
 RESOURCES +=
