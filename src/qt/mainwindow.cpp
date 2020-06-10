@@ -11,7 +11,7 @@ ui(new Ui::MainWindow)
 {
 ui->setupUi(this);
 ui->signUpLabel->setText("<font color='red'>No account? Create one!</font>");
-QWidget::setWindowIcon(QIcon(":/new/prefix1/logo.png"));
+QWidget::setWindowIcon(QIcon(":/icons/" + theme + "/chat""));
 this->setWindowTitle("Social Network");
 
 }
