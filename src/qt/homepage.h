@@ -1,64 +1,84 @@
 #ifndef HOMEPAGE_H
 #define HOMEPAGE_H
 
-#include <QDialog>
-#include <QTextEdit>
-#include <QLabel>
-#include <QVBoxLayout>
-#include <QWidget>
-#include <QMessageBox>
-
+#include <QMainWindow>
+#include "profilepage.h"
+#include "posts.h"
+#include "user.h"
+#include "QList"
+#include "QVBoxLayout"
 namespace Ui {
-class homepage;
+class HomePage;
 }
 
-class homepage : public QDialog
+class HomePage : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit homepage(QWidget *parent = 0);
-    ~homepage();
+    explicit HomePage(QWidget *parent = 0);
 
-    void setUserName(QString);
-    void loadProfile();
-    void loadNewsfeed();
-    void loadNotifications();
-    void loadFriends();
+    void setCurrentSessionUser_Ptr(user *currentSessionUser_ptr);
 
-private Q_SLOTS:
-    void on_pushButton_logout_clicked();
+    friend class ProfilePage;
 
-    void on_pushButton_post_clicked();
+    QList<QString> search(char x, QList<QString> &myList);
 
-    void on_pushButton_saveChanges_clicked();
+    ~HomePage();
 
-    void on_pushButton_removeAccount_clicked();
 
-    void on_pushButton_search_clicked();
+public Q_SLOTS:
+    QList<QString> search(QString x, QList<QString>& myList);
 
-    void on_pushButton_sendFriend_clicked();
+    void internalSearch(QString x, QList<QString> &myList, int begin, int end, QList<QString> &temp);
 
-    void on_pushButton_acceptNotification_clicked();
+    void sort(QList<QString> &myList);
 
-    void on_pushButton_ignoreNotification_clicked();
+    void siftDown(QList<QString> &myList, int size);
 
-    void on_pushButton_removeFriend_clicked();
+    void siftUp(QList<QString> &myList, int index);
+
+    void swap(QString *a, QString *b);
+
+    QList<QString> *randomPosts(QString mail, int number);
+
+    void on_likesOwners_clicked();
+
 
 private:
-    Ui::homepage *ui;
 
-    QString userId;
-    QString firstName;
-    QString lastName;
-    QString username;
-    QString password;
-    QString gender;
-    QString birthday;
-    QString fullName;
-    QString country;
+    Ui::HomePage *ui;
 
-    QVBoxLayout* mainLayout;
+    user *currentSessionUser;
+
+private Q_SLOTS:
+
+    void viewPosts();
+
+    void on_LikeButton_clicked();
+
+    void viewMorePosts(int i);
+
+    void on_CommentButton_clicked();
+
+    void on_Post_btn_clicked();
+
+    void on_pushButton_clicked();
+
+    void on_StatisticsWindow_btn_clicked();
+
+    void on_friendSearch_textChanged(const QString &arg1);
+
+    void on_comboBox_currentIndexChanged(int index);
+
+    void on_actionLog_Out_triggered();
+
+
+private:
+    unsigned int shownPostsNumber;
+
+    QList<Post> *pagePosts;
+
 };
 
 #endif // HOMEPAGE_H
