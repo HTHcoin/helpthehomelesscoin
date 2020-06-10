@@ -18,9 +18,11 @@ public:
     ~MainWindow();
 
 private Q_SLOTS:
-    void on_signUpButton_clicked();
+    void on_registrButton_clicked();
 
-    void on_logInButton_clicked();
+    void on_loginButton_clicked();
+    
+    void on_forgotButton_clicked();
 
 private:
     Ui::MainWindow *ui;
