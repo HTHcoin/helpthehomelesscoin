@@ -26,7 +26,7 @@ public:
     void loadNotifications();
     void loadFriends();
 
-private slots:
+private Q_SLOTS:
     void on_pushButton_logout_clicked();
 
     void on_pushButton_post_clicked();
