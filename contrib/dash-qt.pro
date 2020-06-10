@@ -1,4 +1,4 @@
-@QT += core gui sql@
+QT += core gui sql
 
 FORMS += \
     ../src/qt/forms/aboutdialog.ui \
