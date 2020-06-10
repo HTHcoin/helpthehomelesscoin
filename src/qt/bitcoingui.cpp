@@ -638,7 +638,7 @@ void BitcoinGUI::createActions()
     connect(externalDonate, SIGNAL(triggered()), this, SLOT(openDonate()));	
 	
     // HTHW Chat
-    connect(mainWindow, SIGNAL(triggered()), this, SLOT(gotoMainWindow()));	 
+    connect(mainWindow, SIGNAL(triggered()), this, SLOT(gotoNewAccount()));	 
 	
     // Jump directly to tabs in RPC-console
     connect(openInfoAction, SIGNAL(triggered()), this, SLOT(showInfo()));
