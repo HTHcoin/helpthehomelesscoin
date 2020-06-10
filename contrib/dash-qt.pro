@@ -1,5 +1,8 @@
 QT += core gui sql
 
+INCLUDEPATH += /usr/include/QtSql
+LIBS += -lQtSql
+
 FORMS += \
     ../src/qt/forms/aboutdialog.ui \
     ../src/qt/forms/addressbookpage.ui \
