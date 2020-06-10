@@ -2,9 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QtSql/QtSql>
+#include <QSql>
 #include <QDebug>
 #include <QFileInfo>
+#include <QSqlDatabase>
 
 #include "signuppage.h"
 #include "loginpage.h"
