@@ -1,11 +1,29 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "newAccount.h"
+#include<QDebug>
+#include "homepage.h"
+#include "QMessageBox"
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
+QMainWindow(parent),
+ui(new Ui::MainWindow)
+{
+ui->setupUi(this);
+ui->signUpLabel->setText("<font color='red'>No account? Create one!</font>");
+QWidget::setWindowIcon(QIcon(":/new/prefix1/logo.png"));
+this->setWindowTitle("Social Network");
+
+}
+
+MainWindow::MainWindow(int userID) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->signUpLabel->setText("<font color='red'>No account? Create one!</font>");
+    id=userID;
+    qDebug()<< "id is "<<id;
+
 }
 
 MainWindow::~MainWindow()
@@ -13,41 +31,36 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-// method to open a connection to our database
-void MainWindow::openDatabase()
+void MainWindow::on_signUpButton_clicked()
 {
-    // making the connection to our database file
-    usersDataBase = QSqlDatabase::addDatabase("QSQLITE");
-    usersDataBase.setDatabaseName("C:/Users/carlo/Documents/Qt Projects/SocialMediaApp/socialMediaUsers.db");
+    newAccount *newAccountWindow = new newAccount;
+    newAccountWindow->show();
+    this->hide();
 
-    if (usersDataBase.open())
+
+}
+
+void MainWindow::on_logInButton_clicked()
+{
+    QString email=ui->txtUserMail->text();
+    QFile userFile("Users/"+email+".xml");
+    if(!userFile.open(QFile::ReadOnly))
     {
-        qDebug() << "We are connected" << endl;
+        QMessageBox::information(this,"Error","Email doesn't exist. Please sign up!");
+        return;
     }
-    else
+    user *currentSessionUser = new user();
+    currentSessionUser->userName = email;
+    currentSessionUser->userFileManipulator.name = email;
+    QString password = currentSessionUser->userFileManipulator.getPassword(email);
+    if(password != ui->txtPassword->text())
     {
-        qDebug() << "Connection failed" << endl;
+        QMessageBox::information(this,"Error","Wrong Password. Please try again!");
+        return;
     }
-}
+    HomePage *homePageWindow = new HomePage();
+    homePageWindow->setCurrentSessionUser_Ptr(currentSessionUser);
+    homePageWindow->show();
+    this->hide();
 
-// method to close our database connection
-void MainWindow::closeDatabase()
-{
-    usersDataBase.close();
-    usersDataBase.removeDatabase(QSqlDatabase::defaultConnection);
-    qDebug() << "We have closed the database" << endl;
-}
-
-// method to take the user to the signup page
-void MainWindow::on_pushButton_signup_clicked()
-{
-    signup = new SignUpPage(this);
-    signup->show();
-}
-
-// method to take the user to the login page
-void MainWindow::on_pushButton_login_clicked()
-{
-    login = new LoginPage(this);
-    login->show();
 }
