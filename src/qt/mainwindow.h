@@ -1,66 +1,29 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include "newaccount.h"
-#include<QDebug>
-#include "homepage.h"
-#include "QMessageBox"
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
 
-MainWindow::MainWindow(QWidget *parent) :
-QMainWindow(parent),
-ui(new Ui::MainWindow)
-{
-ui->setupUi(this);
-ui->signUpLabel->setText("<font color='red'>No account? Create one!</font>");
-QWidget::setWindowIcon(QIcon(":/icons/chat"));
-this->setWindowTitle("Social Network");
+#include <QMainWindow>
 
+namespace Ui {
+class MainWindow;
 }
 
-MainWindow::MainWindow(int userID) :
-    ui(new Ui::MainWindow)
+class MainWindow : public QMainWindow
 {
-    ui->setupUi(this);
-    ui->signUpLabel->setText("<font color='red'>No account? Create one!</font>");
-    id=userID;
-    qDebug()<< "id is "<<id;
+    Q_OBJECT
 
-}
+public:
+   explicit MainWindow(QWidget *parent = 0);
+    MainWindow(int userID );
+    int id;
+    ~MainWindow();
 
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
+private Q_SLOTS:
+    void on_signUpButton_clicked();
 
-void MainWindow::on_signUpButton_clicked()
-{
-    newAccount *newAccountWindow = new newAccount;
-    newAccountWindow->show();
-    this->hide();
+    void on_logInButton_clicked();
 
+private:
+    Ui::MainWindow *ui;
+};
 
-}
-
-void MainWindow::on_logInButton_clicked()
-{
-    QString email=ui->txtUserMail->text();
-    QFile userFile("Users/"+email+".xml");
-    if(!userFile.open(QFile::ReadOnly))
-    {
-        QMessageBox::information(this,"Error","Email doesn't exist. Please sign up!");
-        return;
-    }
-    user *currentSessionUser = new user();
-    currentSessionUser->userName = email;
-    currentSessionUser->userFileManipulator.name = email;
-    QString password = currentSessionUser->userFileManipulator.getPassword(email);
-    if(password != ui->txtPassword->text())
-    {
-        QMessageBox::information(this,"Error","Wrong Password. Please try again!");
-        return;
-    }
-    HomePage *homePageWindow = new HomePage();
-    homePageWindow->setCurrentSessionUser_Ptr(currentSessionUser);
-    homePageWindow->show();
-    this->hide();
-
-}
+#endif // MAINWINDOW_H
