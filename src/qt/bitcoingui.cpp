@@ -1072,7 +1072,7 @@ void BitcoinGUI::openClicked()
 
 void BitcoinGUI::gotoNewAccount()
 {
-    mainWindow->setChecked(true);
+    newAccount->setChecked(true);
     if (walletFrame) walletFrame->gotoNewAccount();
 } 
 
