@@ -3717,7 +3717,7 @@ public:
   
   QList<QCPAxis*> selectedAxes() const;
   QList<QCPLegend*> selectedLegends() const;
-  Q_SLOTS: void deselectAll();
+  Q_SLOT void deselectAll();
   
   bool savePdf(const QString &fileName, int width=0, int height=0, QCP::ExportPen exportPen=QCP::epAllowCosmetic, const QString &pdfCreator=QString(), const QString &pdfTitle=QString());
   bool savePng(const QString &fileName, int width=0, int height=0, double scale=1.0, int quality=-1, int resolution=96, QCP::ResolutionUnit resolutionUnit=QCP::ruDotsPerInch);
