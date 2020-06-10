@@ -442,7 +442,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="registrButton">
+         <widget class="QPushButton" name="signUpButton">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -518,7 +518,7 @@
          </layout>
         </item>
         <item alignment="Qt::AlignHCenter">
-         <widget class="QPushButton" name="loginButton">
+         <widget class="QPushButton" name="logInButton">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -536,28 +536,6 @@
           </property>
           <property name="text">
            <string>Log In</string>
-          </property>
-         </widget>
-        </item>
-        <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-         <widget class="QPushButton" name="forgotButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>100</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="cursor">
-           <cursorShape>PointingHandCursor</cursorShape>
-          </property>
-          <property name="text">
-           <string>Forgot Password</string>
           </property>
          </widget>
         </item>
