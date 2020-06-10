@@ -1110,7 +1110,7 @@ public:
   void setBrush(const QBrush &brush);
   
   // non-property methods:
-  Q_SLOTS: void cancel();
+  Q_SLOT void cancel();
   
 Q_SIGNALS:
   void started(QMouseEvent *event);
@@ -2048,8 +2048,8 @@ public:
   QCPGrid *grid() const { return mGrid; }
   
   // setters:
-  Q_SLOTS: void setScaleType(QCPAxis::ScaleType type);
-  Q_SLOTS: void setRange(const QCPRange &range);
+  Q_SLOT void setScaleType(QCPAxis::ScaleType type);
+  Q_SLOT void setRange(const QCPRange &range);
   void setRange(double lower, double upper);
   void setRange(double position, double size, Qt::AlignmentFlag alignment);
   void setRangeLower(double lower);
@@ -2088,8 +2088,8 @@ public:
   void setSelectedBasePen(const QPen &pen);
   void setSelectedTickPen(const QPen &pen);
   void setSelectedSubTickPen(const QPen &pen);
-  Q_SLOTS: void setSelectableParts(const QCPAxis::SelectableParts &selectableParts);
-  Q_SLOTS: void setSelectedParts(const QCPAxis::SelectableParts &selectedParts);
+  Q_SLOT void setSelectableParts(const QCPAxis::SelectableParts &selectableParts);
+  Q_SLOT void setSelectedParts(const QCPAxis::SelectableParts &selectedParts);
   void setLowerEnding(const QCPLineEnding &ending);
   void setUpperEnding(const QCPLineEnding &ending);
   
@@ -3324,8 +3324,8 @@ public:
   void setBrush(const QBrush &brush);
   void setKeyAxis(QCPAxis *axis);
   void setValueAxis(QCPAxis *axis);
-  Q_SLOTS: void setSelectable(QCP::SelectionType selectable);
-  Q_SLOTS: void setSelection(QCPDataSelection selection);
+  Q_SLOT void setSelectable(QCP::SelectionType selectable);
+  Q_SLOT void setSelection(QCPDataSelection selection);
   void setSelectionDecorator(QCPSelectionDecorator *decorator);
 
   // introduced virtual methods:
@@ -3524,8 +3524,8 @@ public:
   // setters:
   void setClipToAxisRect(bool clip);
   void setClipAxisRect(QCPAxisRect *rect);
-  Q_SLOTS: void setSelectable(bool selectable);
-  Q_SLOTS: void setSelected(bool selected);
+  Q_SLOT void setSelectable(bool selectable);
+  Q_SLOT void setSelected(bool selected);
   
   // reimplemented virtual methods:
   virtual double selectTest(const QPointF &pos, bool onlySelectable, QVariant *details=0) const Q_DECL_OVERRIDE = 0;
@@ -3713,7 +3713,7 @@ public:
   QList<QCPAxisRect*> axisRects() const;
   QCPLayoutElement* layoutElementAt(const QPointF &pos) const;
   QCPAxisRect* axisRectAt(const QPointF &pos) const;
-  Q_SLOTS: void rescaleAxes(bool onlyVisiblePlottables=false);
+  Q_SLOT void rescaleAxes(bool onlyVisiblePlottables=false);
   
   QList<QCPAxis*> selectedAxes() const;
   QList<QCPLegend*> selectedLegends() const;
@@ -3726,7 +3726,7 @@ public:
   bool saveRastered(const QString &fileName, int width, int height, double scale, const char *format, int quality=-1, int resolution=96, QCP::ResolutionUnit resolutionUnit=QCP::ruDotsPerInch);
   QPixmap toPixmap(int width=0, int height=0, double scale=1.0);
   void toPainter(QCPPainter *painter, int width=0, int height=0);
-  Q_SLOTS: void replot(QCustomPlot::RefreshPriority refreshPriority=QCustomPlot::rpRefreshHint);
+  Q_SLOT void replot(QCustomPlot::RefreshPriority refreshPriority=QCustomPlot::rpRefreshHint);
   
   QCPAxis *xAxis, *yAxis, *xAxis2, *yAxis2;
   QCPLegend *legend;
@@ -3812,9 +3812,9 @@ protected:
   virtual void updateLayout();
   virtual void axisRemoved(QCPAxis *axis);
   virtual void legendRemoved(QCPLegend *legend);
-  Q_SLOTS: virtual void processRectSelection(QRect rect, QMouseEvent *event);
-  Q_SLOTS: virtual void processRectZoom(QRect rect, QMouseEvent *event);
-  Q_SLOTS: virtual void processPointSelection(QMouseEvent *event);
+  Q_SLOT virtual void processRectSelection(QRect rect, QMouseEvent *event);
+  Q_SLOT virtual void processRectZoom(QRect rect, QMouseEvent *event);
+  Q_SLOT virtual void processPointSelection(QMouseEvent *event);
   
   // non-virtual methods:
   bool registerPlottable(QCPAbstractPlottable *plottable);
@@ -4734,8 +4734,8 @@ public:
   void setTextColor(const QColor &color);
   void setSelectedFont(const QFont &font);
   void setSelectedTextColor(const QColor &color);
-  Q_SLOTS: void setSelectable(bool selectable);
-  Q_SLOTS: void setSelected(bool selected);
+  Q_SLOT void setSelectable(bool selectable);
+  Q_SLOT void setSelected(bool selected);
   
   // reimplemented virtual methods:
   virtual double selectTest(const QPointF &pos, bool onlySelectable, QVariant *details=0) const Q_DECL_OVERRIDE;
@@ -4854,8 +4854,8 @@ public:
   void setIconSize(int width, int height);
   void setIconTextPadding(int padding);
   void setIconBorderPen(const QPen &pen);
-  Q_SLOTS: void setSelectableParts(const SelectableParts &selectableParts);
-  Q_SLOTS: void setSelectedParts(const SelectableParts &selectedParts);
+  Q_SLOT void setSelectableParts(const SelectableParts &selectableParts);
+  Q_SLOT void setSelectedParts(const SelectableParts &selectedParts);
   void setSelectedBorderPen(const QPen &pen);
   void setSelectedIconBorderPen(const QPen &pen);
   void setSelectedBrush(const QBrush &brush);
@@ -4959,8 +4959,8 @@ public:
   void setTextColor(const QColor &color);
   void setSelectedFont(const QFont &font);
   void setSelectedTextColor(const QColor &color);
-  Q_SLOTS: void setSelectable(bool selectable);
-  Q_SLOTS: void setSelected(bool selected);
+  Q_SLOT void setSelectable(bool selectable);
+  Q_SLOT void setSelected(bool selected);
   
   // reimplemented virtual methods:
   virtual double selectTest(const QPointF &pos, bool onlySelectable, QVariant *details=0) const Q_DECL_OVERRIDE;
@@ -5029,8 +5029,8 @@ protected:
   using QCPAxisRect::update;
   virtual void draw(QCPPainter *painter) Q_DECL_OVERRIDE;
   void updateGradientImage();
-  Q_SLOTS: void axisSelectionChanged(QCPAxis::SelectableParts selectedParts);
-  Q_SLOTS: void axisSelectableChanged(QCPAxis::SelectableParts selectableParts);
+  Q_SLOT void axisSelectionChanged(QCPAxis::SelectableParts selectedParts);
+  Q_SLOT void axisSelectableChanged(QCPAxis::SelectableParts selectableParts);
   friend class QCPColorScale;
 };
 
@@ -5065,9 +5065,9 @@ public:
   
   // setters:
   void setType(QCPAxis::AxisType type);
-  Q_SLOTS: void setDataRange(const QCPRange &dataRange);
-  Q_SLOTS: void setDataScaleType(QCPAxis::ScaleType scaleType);
-  Q_SLOTS: void setGradient(const QCPColorGradient &gradient);
+  Q_SLOT void setDataRange(const QCPRange &dataRange);
+  Q_SLOT void setDataScaleType(QCPAxis::ScaleType scaleType);
+  Q_SLOT void setGradient(const QCPColorGradient &gradient);
   void setLabel(const QString &str);
   void setBarWidth(int width);
   void setRangeDrag(bool enabled);
@@ -5760,16 +5760,16 @@ public:
   
   // setters:
   void setData(QCPColorMapData *data, bool copy=false);
-  Q_SLOTS: void setDataRange(const QCPRange &dataRange);
-  Q_SLOTS: void setDataScaleType(QCPAxis::ScaleType scaleType);
-  Q_SLOTS: void setGradient(const QCPColorGradient &gradient);
+  Q_SLOT void setDataRange(const QCPRange &dataRange);
+  Q_SLOT void setDataScaleType(QCPAxis::ScaleType scaleType);
+  Q_SLOT void setGradient(const QCPColorGradient &gradient);
   void setInterpolate(bool enabled);
   void setTightBoundary(bool enabled);
   void setColorScale(QCPColorScale *colorScale);
   
   // non-property methods:
   void rescaleDataRange(bool recalculateDataBounds=false);
-  Q_SLOTS: void updateLegendIcon(Qt::TransformationMode transformMode=Qt::SmoothTransformation, const QSize &thumbSize=QSize(32, 18));
+  Q_SLOT void updateLegendIcon(Qt::TransformationMode transformMode=Qt::SmoothTransformation, const QSize &thumbSize=QSize(32, 18));
   
   // reimplemented virtual methods:
   virtual double selectTest(const QPointF &pos, bool onlySelectable, QVariant *details=0) const Q_DECL_OVERRIDE;
