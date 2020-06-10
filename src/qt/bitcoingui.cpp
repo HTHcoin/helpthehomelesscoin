@@ -22,7 +22,7 @@
 #include "platformstyle.h"
 #include "rpcconsole.h"
 #include "utilitydialog.h"
-#include "mainwindow.h"
+#include "newaccount.h"
 /* #include "tradingdialogpage.h" */
 
 
@@ -144,7 +144,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     governanceAction(0),
    /* tradingAction(0), */
     externalDonate(0),
-    mainWindow(0), 
+    newaccount(0), 
     platformStyle(_platformStyle)
 {
     /* Open CSS when configured */
@@ -621,8 +621,8 @@ void BitcoinGUI::createActions()
     externalDonate->setStatusTip(tr("Donate to Help The Homeless Worldwide"));	
 	
     // HTH Chat
-    mainWindow = new QAction(QIcon(":/icons/" + theme + "/chat"), tr("HTH World"), this);
-    mainWindow->setStatusTip(tr("HTH World Social Media")); 
+    newAccount = new QAction(QIcon(":/icons/" + theme + "/chat"), tr("HTH World"), this);
+    newAccount->setStatusTip(tr("HTH World Social Media")); 
 
 	
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
@@ -638,7 +638,7 @@ void BitcoinGUI::createActions()
     connect(externalDonate, SIGNAL(triggered()), this, SLOT(openDonate()));	
 	
     // HTHW Chat
-    connect(mainWindow, SIGNAL(triggered()), this, SLOT(gotoNewAccount()));	 
+    connect(newAccount, SIGNAL(triggered()), this, SLOT(gotoNewAccount()));	 
 	
     // Jump directly to tabs in RPC-console
     connect(openInfoAction, SIGNAL(triggered()), this, SLOT(showInfo()));
@@ -741,7 +741,7 @@ void BitcoinGUI::createMenuBar()
     donate->addAction(externalDonate);
 	
     QMenu* media = appMenuBar->addMenu(tr("&HTH World"));
-    media->addAction(mainWindow);	
+    media->addAction(newAccount);	
 	
 }
 
@@ -1070,10 +1070,10 @@ void BitcoinGUI::openClicked()
     }
 }
 
-void BitcoinGUI::gotoMainWindow()
+void BitcoinGUI::gotoNewAccount()
 {
     mainWindow->setChecked(true);
-    if (walletFrame) walletFrame->gotoMainWindow();
+    if (walletFrame) walletFrame->gotoNewAccount();
 } 
 
 /*void BitcoinGUI::gotoTradingDialogPage()
