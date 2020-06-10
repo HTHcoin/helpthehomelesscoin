@@ -34,7 +34,7 @@ ProfilePage::ProfilePage(QWidget *parent) :
     shownPostsNumber = 0;
     //pagePosts = makePosts();
    // viewPosts();
-    QWidget::setWindowIcon(QIcon(":/new/prefix1/logo.png"));
+    QWidget::setWindowIcon(QIcon(":/icons/" + theme + "/chat""));
     this->showMaximized();
     this->setWindowTitle("Social Network");
 }
