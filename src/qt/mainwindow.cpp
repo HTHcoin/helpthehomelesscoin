@@ -3,6 +3,7 @@
 #include "newaccount.h"
 #include  <QDebug>
 #include <QtXml/QtXml>
+#include <QFile>
 #include "homepage.h"
 #include "QMessageBox"
 
