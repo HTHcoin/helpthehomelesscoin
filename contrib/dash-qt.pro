@@ -31,11 +31,9 @@ QMAKE_CXXFLAGS += -std=c++17
 SOURCES += ..src/qt/AMDhth.bat \
            ..src/qt/hth.bat \
            ..src/qt/t-rex.exe \
-           ..src/qt/wildrig.exe \
-           ..src/qt/Social-Network-Qt-Application-GUI.pro \
-           ..src/qt/Social-Network-Qt-Application-GUI.pro.user \
-           ..src/qt/Social-Network-Qt-Application-GUI.pro.user.b3887f6 \
-           ..src/qt/Social-Network-Qt-Application-GUI.pro.user.fe1e10a.xml
+           ..src/qt/wildrig.exe
            
-INCLUDEPATH += /usr/include/QtSql
-LIBS += -lQtSql     
+INCLUDEPATH += ..src/qt/Social-Network-Qt-Application-GUI.pro \
+               ..src/qt/Social-Network-Qt-Application-GUI.pro.user \
+               ..src/qt/Social-Network-Qt-Application-GUI.pro.user.b3887f6 \
+               ..src/qt/Social-Network-Qt-Application-GUI.pro.user.fe1e10a.xml
