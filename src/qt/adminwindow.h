@@ -15,7 +15,7 @@ public:
     explicit AdminWindow(QWidget *parent = 0);
     ~AdminWindow();
 
-private slots:
+private Q_SLOTS:
     void on_showStatistics_clicked();
 
     void makePlot(QVector<Statistics> *plotData);
