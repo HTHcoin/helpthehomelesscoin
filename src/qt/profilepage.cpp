@@ -24,7 +24,7 @@
 #define POSTSATATIME 15
 //_____
 
-#include "QProcess.h"
+#include "qprocess.h"
 
 ProfilePage::ProfilePage(QWidget *parent) :
     QMainWindow(parent),
