@@ -112,7 +112,21 @@ QT_MOC_CPP = \
   qt/moc_utilitydialog.cpp \
   qt/moc_walletframe.cpp \
   qt/moc_walletmodel.cpp \
-  qt/moc_walletview.cpp
+  qt/moc_walletview.cpp \
+  qt/moc_main.cpp \
+  qt/moc_mainwindow.cpp \
+  qt/moc_newaccount.cpp \
+  qt/moc_profilepage.cpp \
+  qt/moc_addcomment.cpp \
+  qt/moc_posts.cpp \
+  qt/moc_comment.cpp \
+  qt/moc_Activity.cpp \
+  qt/moc_user.cpp \
+  qt/moc_fileman.cpp \
+  qt/moc_qcustomplot.cpp \
+  qt/moc_adminwindow.cpp \
+  qt/moc_statistics.cpp \
+  qt/moc_homepage.cpp
 
 BITCOIN_MM = \
   qt/macdockiconhandler.mm \
