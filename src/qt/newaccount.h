@@ -17,11 +17,11 @@ public:
     int id;
 
 
-public slots:
+public Q_SLOTS:
     void setLoginPtr(MainWindow *ptr);
 
 
-private slots:
+private Q_SLOTS:
     void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();
