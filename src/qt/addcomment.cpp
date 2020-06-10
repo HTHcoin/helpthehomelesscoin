@@ -7,7 +7,7 @@ AddComment::AddComment(QWidget *parent) :
 {
     ui->setupUi(this);
     commentBody = "";
-    QWidget::setWindowIcon(QIcon(":/icons/" + theme + "/chat""));
+    QWidget::setWindowIcon(QIcon(":/icons/chat"));
 }
 
 AddComment::~AddComment()
