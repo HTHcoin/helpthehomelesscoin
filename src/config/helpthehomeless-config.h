@@ -156,8 +156,8 @@
    don't. */
 #define HAVE_DECL_STRNLEN 1
 
-/* Define to 1 if you have the <dlfcn.h> header file. */
-/* #undef HAVE_DLFCN_H */
+ Define to 1 if you have the <dlfcn.h> header file.
+ #undef HAVE_DLFCN_H
 
 /* Define to 1 if you have the <endian.h> header file. */
 /* #undef HAVE_ENDIAN_H */
