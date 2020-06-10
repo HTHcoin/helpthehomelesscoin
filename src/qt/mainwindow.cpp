@@ -33,7 +33,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_signUpButton_clicked()
 {
-    newAccount *newAccountWindow = new newAccount;
+    NewAccount *newAccountWindow = new NewAccount;
     newAccountWindow->show();
     this->hide();
 
