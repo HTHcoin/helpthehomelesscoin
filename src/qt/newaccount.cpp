@@ -4,9 +4,9 @@
 #include<user.h>
 #include <QWidget>
 
-newAccount::newAccount(QWidget *parent) :
+NewAccount::NewAccount(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::newAccount)
+    ui(new Ui::NewAccount)
 {
     ui->setupUi(this);
     user check;
@@ -16,12 +16,12 @@ newAccount::newAccount(QWidget *parent) :
 
 }
 
-newAccount::~newAccount()
+NewAccount::~NewAccount()
 {
     delete ui;
 }
 
-void newAccount::on_pushButton_clicked()
+void NewAccount::on_pushButton_clicked()
 {
     QString password =ui->lineEdit_2->text();
     QString confirm =ui->lineEdit_3->text();
@@ -42,12 +42,12 @@ void newAccount::on_pushButton_clicked()
 
 }
 
-void newAccount::setLoginPtr(MainWindow *ptr)
+void NewAccount::setLoginPtr(MainWindow *ptr)
 {
     this->mainWindowPtr = ptr;
 }
 
-void newAccount::on_pushButton_2_clicked()
+void NewAccount::on_pushButton_2_clicked()
 {
     MainWindow* newWindow= new MainWindow(id);
     newWindow->show();
