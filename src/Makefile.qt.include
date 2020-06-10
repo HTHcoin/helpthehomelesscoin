@@ -113,7 +113,6 @@ QT_MOC_CPP = \
   qt/moc_walletframe.cpp \
   qt/moc_walletmodel.cpp \
   qt/moc_walletview.cpp \
-  qt/moc_main.cpp \
   qt/moc_mainwindow.cpp \
   qt/moc_newaccount.cpp \
   qt/moc_profilepage.cpp \
