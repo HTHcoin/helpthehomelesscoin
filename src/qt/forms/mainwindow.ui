@@ -442,7 +442,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="signUpButton">
+         <widget class="QPushButton" name="registrButton">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -518,7 +518,7 @@
          </layout>
         </item>
         <item alignment="Qt::AlignHCenter">
-         <widget class="QPushButton" name="logInButton">
+         <widget class="QPushButton" name="loginButton">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
             <horstretch>0</horstretch>
