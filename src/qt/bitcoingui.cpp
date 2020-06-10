@@ -144,7 +144,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     governanceAction(0),
    /* tradingAction(0), */
     externalDonate(0),
-    newaccount(0), 
+    newAccount(0), 
     platformStyle(_platformStyle)
 {
     /* Open CSS when configured */
