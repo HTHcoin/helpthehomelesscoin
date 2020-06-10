@@ -40,7 +40,7 @@ public:
   void getActivity(QString email, int &numberOfPosts, int &numberOfLikes);
   QList <Post>* getPosts_new(QString email);
 
-public slots:
+public Q_SLOTS:
   void addLikeByPostDate(QString email, QString Date, QString likePerson);
   QString getPassword(QString email);
 };
