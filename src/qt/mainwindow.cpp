@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "newaccount.h"
+#include <QtXml>
 #include<QDebug>
 #include "homepage.h"
 #include "QMessageBox"
