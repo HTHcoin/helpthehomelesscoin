@@ -6,13 +6,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "QHBoxLayout"
-#include "QVBoxLayout"
+#include <QVBoxLayout>
 #include "QLabel"
 #include "QSpacerItem"
 #include "QPushButton"
 #include <vector>
 #include "posts.h"
-#include "QString"
+#include <QString>
 #include <QTextBrowser>
 #include "QFontMetrics"
 #include "QGroupBox"
@@ -24,7 +24,7 @@
 #define POSTSATATIME 15
 //_____
 
-#include "qprocess.h"
+#include "QProcess.h"
 
 ProfilePage::ProfilePage(QWidget *parent) :
     QMainWindow(parent),
