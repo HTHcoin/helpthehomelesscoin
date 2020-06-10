@@ -39,7 +39,7 @@ class ModalOverlay;
 class QNetworkAccessManager;
 class QNetworkRequest;
 /*class tradingDialogPage; */
-class MainWindow;
+class NewAccount;
 
 class CWallet;
 
@@ -105,7 +105,7 @@ private:
 
     QMenuBar *appMenuBar;
     
-    QAction* mainWindow; 
+    QAction* newAccount; 
     QAction* externalDonate;
     QAction *governanceAction;
   /*  QAction *tradingAction; */
