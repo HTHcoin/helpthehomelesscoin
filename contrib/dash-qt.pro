@@ -42,7 +42,7 @@ CONFIG(debug, debug|release) {
     win32:QCC_CORE_PREFIX = $$QCC_CORE_PREFIX/release
 }
 
-INCLUDEPATH += ../qcc-core $$ {QCA_INCDIR} / QtCrypto
+INCLUDEPATH += ../qcc-core
 LIBS += -L$$QCC_CORE_PREFIX -lqcc-core
 
 
