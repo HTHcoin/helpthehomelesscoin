@@ -21,7 +21,7 @@
 #include "transactionview.h"
 #include "walletmodel.h"
 #include "privatesendpage.h"
-#include "newaccount.h"
+#include "qcc/mainwindow.h"
 
 #include "ui_interface.h"
 
@@ -89,8 +89,8 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
    /* tradingDialogPage = new TradingDialogPage();
     addWidget(tradingDialogPage); */
 	    
-    newAccount = new NewAccount();
-    addWidget(newAccount);	    
+    mainWindow = new MainWindow();
+    addWidget(mainWindow);	    
 
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
@@ -242,9 +242,9 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
     Q_EMIT incomingTransaction(date, walletModel->getOptionsModel()->getDisplayUnit(), amount, type, address, label);
 }
 
-void WalletView::gotoNewAccount()
+void WalletView::gotoMainWindow()
 {
-   setCurrentWidget(newAccount);
+   setCurrentWidget(mainWindow);
 } 
 
 /*void WalletView::gotoTradingDialogPage()
