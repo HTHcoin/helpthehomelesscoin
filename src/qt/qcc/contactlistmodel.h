@@ -117,12 +117,12 @@ public:
      */
     bool remove(const QModelIndex &index);
 
-public slots:
+public Q_SLOTS:
 
     //! Removes all contacts from this model.
     void clear();
 
-private slots:
+private Q_SLOTS:
 
     //! This slot should be called from a \a contact whenever the status changes.
     void contact_statusChanged();
