@@ -26,7 +26,7 @@
 #include <QMainWindow>
 #include <QTcpSocket>
 #include <QModelIndex>
-#include <QtCrypto>
+#include <QtCrypto/QtCrypto>
 
 class ContactListModel;
 class MessageWindow;
