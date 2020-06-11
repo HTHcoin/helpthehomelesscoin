@@ -112,7 +112,7 @@ public:
      */
     inline bool isOnline() const { return m_status == Online; }
 
-signals:
+Q_SIGNALS:
 
     //! This signal is emitted whenever the user's status changes.
     /*!
@@ -120,7 +120,7 @@ signals:
      */
     void statusChanged();
 
-public slots:
+public Q_SLOTS:
 
     //! Sets the username.
     /*!
