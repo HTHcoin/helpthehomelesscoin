@@ -108,12 +108,12 @@ void WalletFrame::showOutOfSyncWarning(bool fShow)
         i.value()->showOutOfSyncWarning(fShow);
 }
 
-void WalletFrame::gotoNewAccount()
+void WalletFrame::gotoMainWindow()
 {
 
      QMap<QString, WalletView*>::const_iterator i;
     for (i = mapWalletViews.constBegin(); i != mapWalletViews.constEnd(); ++i)
-        i.value()->gotoNewAccount();
+        i.value()->gotoMainWindow();
 } 
 
 /*void WalletFrame::gotoTradingDialogPage()
