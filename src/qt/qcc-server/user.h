@@ -138,7 +138,7 @@ public:
      */
     void writeUser(QXmlStreamWriter &xml);
 
-public slots:
+public Q_SLOTS:
 
     //! Sets the password.
     /*!
