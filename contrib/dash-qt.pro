@@ -1,4 +1,4 @@
-QT += core gui sql xml network
+QT += core gui sql xml network crypto
 
 FORMS += \
     ../src/qt/forms/aboutdialog.ui \
