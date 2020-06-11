@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>icons/offline.png</file>
-        <file>icons/online.png</file>
-        <file>icons/qcc128a.png</file>
-    </qresource>
-</RCC>
