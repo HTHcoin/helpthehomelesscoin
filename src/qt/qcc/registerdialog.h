@@ -61,7 +61,7 @@ public:
      */
     QString password() const;
 
-private slots:
+private Q_SLOTS:
 
     //! Checks if the username and password is valid and closes the window.
     void on_buttonBox_accepted();
