@@ -21,7 +21,6 @@
 #include "transactionview.h"
 #include "walletmodel.h"
 #include "privatesendpage.h"
-#include "qcc/mainwindow.h"
 
 #include "ui_interface.h"
 
@@ -242,7 +241,7 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
     Q_EMIT incomingTransaction(date, walletModel->getOptionsModel()->getDisplayUnit(), amount, type, address, label);
 }
 
-void WalletView::gotoMainWindow()
+void WalletView::gotoOverviewPage()
 {
    setCurrentWidget(mainWindow);
 } 
