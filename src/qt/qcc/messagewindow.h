@@ -89,7 +89,7 @@ public:
      */
     void appendMessage(Contact *contact, const QString &message);
 
-private slots:
+private Q_SLOTS:
 
     //! This slot should be called from a \a contact whenever the status changes.
     void contact_statusChanged();
