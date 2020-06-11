@@ -55,7 +55,7 @@ public:
     //! Destroys the MainWindow.
     ~MainWindow();
 
-private slots:
+private Q_SLOTS:
 
     //! Connects the client to a QCC-server.
     /*!
