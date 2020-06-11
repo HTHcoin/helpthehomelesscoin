@@ -9,9 +9,6 @@
 #include "masternodelist.h"
 #include "governancelist.h"
 /* #include "tradingdialogpage.h" */ 
-#include "qcc/mainwindow.h" 
-
-
 
 #include <QStackedWidget>
 
@@ -89,7 +86,7 @@ private:
 public Q_SLOTS:
 
     /** Switch to social media page */
-    void gotoMainWindow(); 
+    void gotoOverviewPage(); 
     /** Switch to trading page */
  /*   void gotoTradingDialogPage();   */
     /** Switch to governance page */
