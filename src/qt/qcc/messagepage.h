@@ -72,17 +72,17 @@ public:
      */
     void appendMessage(const QString &message, const QColor &color = Qt::black);
 
-signals:
+Q_SIGNALS:
 
     //! This signal is emitted whenever the close button of this page is clicked.
     void closeButtonClicked();
 
-public slots:
+public Q_SLOTS:
 
     //! Sets the focus on the input field of this page.
     void setFocusOnInput();
 
-private slots:
+private Q_SLOTS:
 
     //! Sends the \a message from the input field to the server.
     void on_sendButton_clicked();
