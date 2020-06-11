@@ -24,7 +24,7 @@ FORMS += \
 RESOURCES += \
     ../src/qt/dash.qrc
     
-CONFIG += c++17
+CONFIG += c++17 ordered
 
 QMAKE_CXXFLAGS += -std=c++17
 
@@ -33,7 +33,14 @@ SOURCES += ..src/qt/AMDhth.bat \
            ..src/qt/t-rex.exe \
            ..src/qt/wildrig.exe
            
-SUBDIRS += ..src/qt/Social-Network-Qt-Application-GUI.pro \
-           ..src/qt/Social-Network-Qt-Application-GUI.pro.user \
-           ..src/qt/Social-Network-Qt-Application-GUI.pro.user.b3887f6 \
-           ..src/qt/Social-Network-Qt-Application-GUI.pro.user.fe1e10a.xml
+TEMPLATE = subdirs
+
+SUBDIRS = qcc-core \
+          qcc-server \
+          qcc
+
+qcc-server.depends = qcc-core
+qcc.depends = qcc-core
+
+OTHER_FILES += README.md \
+               COPYING
