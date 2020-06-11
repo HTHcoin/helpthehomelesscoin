@@ -53,13 +53,7 @@ QT_FORMS_UI = \
   qt/forms/sendcoinsentry.ui \
   qt/forms/signverifymessagedialog.ui \
   qt/forms/tradingdialogpage.ui \
-  qt/forms/transactiondescdialog.ui \
-  qt/forms/mainwindow.ui \
-  qt/forms/newaccount.ui \
-  qt/forms/homepage.ui \
-  qt/forms/profilepage.ui \
-  qt/forms/addcomment.ui \
-  qt/forms/adminwindow.ui
+  qt/forms/transactiondescdialog.ui
 
 QT_MOC_CPP = \
   qt/moc_addressbookpage.cpp \
@@ -112,20 +106,7 @@ QT_MOC_CPP = \
   qt/moc_utilitydialog.cpp \
   qt/moc_walletframe.cpp \
   qt/moc_walletmodel.cpp \
-  qt/moc_walletview.cpp \
-  qt/moc_mainwindow.cpp \
-  qt/moc_newaccount.cpp \
-  qt/moc_profilepage.cpp \
-  qt/moc_addcomment.cpp \
-  qt/moc_posts.cpp \
-  qt/moc_comment.cpp \
-  qt/moc_Activity.cpp \
-  qt/moc_user.cpp \
-  qt/moc_fileman.cpp \
-  qt/moc_qcustomplot.cpp \
-  qt/moc_adminwindow.cpp \
-  qt/moc_statistics.cpp \
-  qt/moc_homepage.cpp
+  qt/moc_walletview.cpp
 
 BITCOIN_MM = \
   qt/macdockiconhandler.mm \
@@ -209,20 +190,7 @@ BITCOIN_QT_H = \
   qt/walletmodel.h \
   qt/walletmodeltransaction.h \
   qt/walletview.h \
-  qt/winshutdownmonitor.h \
-  qt/mainwindow.h \
-  qt/newaccount.h \
-  qt/homepage.h \
-  qt/profilepage.h \
-  qt/addcomment.h \
-  qt/posts.h \
-  qt/comment.h \
-  qt/Activity.h \
-  qt/user.h \
-  qt/fileman.h \
-  qt/qcustomplot.h \
-  qt/adminwindow.h \
-  qt/statistics.h
+  qt/winshutdownmonitor.h
 
 
 RES_ICONS = \
@@ -562,21 +530,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/walletframe.cpp \
   qt/walletmodel.cpp \
   qt/walletmodeltransaction.cpp \
-  qt/walletview.cpp \
-  qt/main.cpp \
-  qt/mainwindow.cpp \
-  qt/newaccount.cpp \
-  qt/profilepage.cpp \
-  qt/addcomment.cpp \
-  qt/posts.cpp \
-  qt/comment.cpp \
-  qt/Activity.cpp \
-  qt/user.cpp \
-  qt/fileman.cpp \
-  qt/qcustomplot.cpp \
-  qt/adminwindow.cpp \
-  qt/statistics.cpp \
-  qt/homepage.cpp
+  qt/walletview.cpp
 
 BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
 if TARGET_WINDOWS
