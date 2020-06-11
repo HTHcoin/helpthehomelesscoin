@@ -66,7 +66,7 @@ public:
      */
     void saveUsers();
 
-private slots:
+private Q_SLOTS:
 
     //! This signal is emitted when the client's socket has been disconnected.
     /*!
