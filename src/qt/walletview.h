@@ -25,7 +25,7 @@ class AddressBookPage;
 class PrivateSendPage;
 class GovernancePage;
 /* class TradingDialogPage; */ 
-class MainWindow;
+class ChatDialog;
 
 
 QT_BEGIN_NAMESPACE
@@ -77,7 +77,7 @@ private:
     GovernanceList *governanceListPage;      
     TransactionView *transactionView;
    /* TradingDialogPage *tradingDialogPage;  */
-    MainWindow *mainWindow;  
+    ChatDialog *ChatPage;  
 
     QProgressDialog *progressDialog;
     QLabel *transactionSum;
@@ -85,8 +85,8 @@ private:
 
 public Q_SLOTS:
 
-    /** Switch to social media page */
-    void gotoOverviewPage(); 
+    /** Switch to chat page */
+    void gotoChatPage(); 
     /** Switch to trading page */
  /*   void gotoTradingDialogPage();   */
     /** Switch to governance page */
