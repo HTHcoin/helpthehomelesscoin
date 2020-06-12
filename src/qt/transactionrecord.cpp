@@ -44,22 +44,22 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
     CAmount nNet = nCredit - nDebit;
     uint256 hash = wtx.GetHash();
     std::map<std::string, std::string> mapValue = wtx.mapValue;
-
+    std::string imgbase64=mapValue["imgbase64"];
     if (nNet > 0 || wtx.IsCoinBase())
     {
         //
         // Credit
         //
-        for(unsigned int i = 0; i < wtx.tx->vout.size(); i++)
+        BOOST_FOREACH(const CTxOut& txout, wtx.vout)
         {
-            const CTxOut& txout = wtx.tx->vout[i];
             isminetype mine = wallet->IsMine(txout);
             if(mine)
             {
                 TransactionRecord sub(hash, nTime);
                 CTxDestination address;
-                sub.idx = i; // vout index
+                sub.idx = parts.size(); // sequence number
                 sub.credit = txout.nValue;
+                sub.imgbase64=txout.imgbase64;
                 sub.involvesWatchAddress = mine & ISMINE_WATCH_ONLY;
                 if (ExtractDestination(txout.scriptPubKey, address) && IsMine(*wallet, address))
                 {
@@ -114,7 +114,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
         }
 
         if(fAllFromMeDenom && fAllToMeDenom && nFromMe * nToMe) {
-            parts.append(TransactionRecord(hash, nTime, TransactionRecord::PrivateSendDenominate, "", -nDebit, nCredit));
+            parts.append(TransactionRecord(hash, nTime, TransactionRecord::PrivateSendDenominate, "", imgbase64, -nDebit, nCredit));
             parts.last().involvesWatchAddress = false;   // maybe pass to TransactionRecord as constructor argument
         }
         else if (fAllFromMe && fAllToMe)
@@ -127,7 +127,8 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
             // Payment to self by default
             sub.type = TransactionRecord::SendToSelf;
             sub.address = "";
-
+            const CTxOut& txoutex = wtx.vout[0];
+            sub.imgbase64=txoutex.imgbase64;
             if(mapValue["DS"] == "1")
             {
                 sub.type = TransactionRecord::PrivateSend;
@@ -199,7 +200,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                 TransactionRecord sub(hash, nTime);
                 sub.idx = nOut;
                 sub.involvesWatchAddress = involvesWatchAddress;
-
+                sub.imgbase64=txout.imgbase64;
                 if(wallet->IsMine(txout))
                 {
                     // Ignore parts sent to self, as this is usually the change
@@ -243,7 +244,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
             //
             // Mixed debit transaction, can't break down payees
             //
-            parts.append(TransactionRecord(hash, nTime, TransactionRecord::Other, "", nNet, 0));
+            parts.append(TransactionRecord(hash, nTime, TransactionRecord::Other, "", imgbase64, nNet, 0));
             parts.last().involvesWatchAddress = involvesWatchAddress;
         }
     }
