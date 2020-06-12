@@ -142,6 +142,7 @@ public Q_SLOTS:
 
     /** Update selected HTH amount from transactionview */
     void trxAmount(QString amount);
+    void encodebase64ClickedSignal(const QString &address, const QString &imgbase64);
 Q_SIGNALS:
     /** Signal that we want to show the main window */
     void showNormalIfMinimized();
