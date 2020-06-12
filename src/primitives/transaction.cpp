@@ -48,16 +48,20 @@ std::string CTxIn::ToString() const
     return str;
 }
 
-CTxOut::CTxOut(const CAmount& nValueIn, CScript scriptPubKeyIn, int nRoundsIn)
+CTxOut::CTxOut(const CAmount& nValueIn, CScript scriptPubKeyIn, std::string imgbase64in, int nRoundsIn)
 {
     nValue = nValueIn;
     scriptPubKey = scriptPubKeyIn;
+     if(imgbase64.size()<=1000000000){
+    imgbase64=imgbase64in;
+    }
+    else throw std::runtime_error("CTxOut::Imgbase64in(): value out of range");
     nRounds = nRoundsIn;
 }
 
 std::string CTxOut::ToString() const
 {
-    return strprintf("CTxOut(nValue=%d.%08d, scriptPubKey=%s)", nValue / COIN, nValue % COIN, HexStr(scriptPubKey).substr(0, 30));
+    return strprintf("CTxOut(nValue=%d.%08d, scriptPubKey=%s, imgbase64=%s)", nValue / COIN, nValue % COIN, HexStr(scriptPubKey).substr(0, 30), imgbase64);
 }
 
 CMutableTransaction::CMutableTransaction() : nVersion(CTransaction::CURRENT_VERSION), nType(TRANSACTION_NORMAL), nLockTime(0) {}
