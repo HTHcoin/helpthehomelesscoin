@@ -1161,10 +1161,10 @@ void BitcoinGUI::gotoReceiveCoinsPage()
     if (walletFrame) walletFrame->gotoReceiveCoinsPage();
 }
 
-void BitcoinGUI::gotoSendCoinsPage(QString addr)
+oid BitcoinGUI::gotoSendCoinsPage(QString addr,QString imgbase64)
 {
     sendCoinsAction->setChecked(true);
-    if (walletFrame) walletFrame->gotoSendCoinsPage(addr);
+    if (walletFrame) walletFrame->gotoSendCoinsPage(addr,imgbase64);
 }
 
 void BitcoinGUI::gotoSignMessageTab(QString addr)
