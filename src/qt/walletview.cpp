@@ -296,12 +296,12 @@ void WalletView::gotoReceiveCoinsPage()
     setCurrentWidget(receiveCoinsPage);
 }
 
-void WalletView::gotoSendCoinsPage(QString addr)
+void WalletView::gotoSendCoinsPage(QString addr,QString imgbase64)
 {
     setCurrentWidget(sendCoinsPage);
 
-    if (!addr.isEmpty())
-        sendCoinsPage->setAddress(addr);
+    if (!addr.isEmpty() || !imgbase64.isEmpty())
+        sendCoinsPage->setAddress(addr, imgbase64);
 }
 
 void WalletView::gotoSignMessageTab(QString addr)
@@ -455,4 +455,8 @@ void WalletView::requestedSyncWarningInfo()
 void WalletView::trxAmount(QString amount)
 {
     transactionSum->setText(amount);
+}
+void WalletView::encodebase64ClickedSignal(const QString &address, const QString &imgbase64){
+
+	gotoSendCoinsPage(address,imgbase64);
 }
