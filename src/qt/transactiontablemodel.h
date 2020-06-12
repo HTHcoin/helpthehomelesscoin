@@ -34,6 +34,7 @@ public:
         Date = 3,
         Type = 4,
         ToAddress = 5,
+        Imgbase64 = 5,
         Amount = 6
     };
 
@@ -59,6 +60,7 @@ public:
         AddressRole,
         /** Label of address related to transaction */
         LabelRole,
+        Imgbase64Role,
         /** Net amount of transaction */
         AmountRole,
         /** Unique identifier */
