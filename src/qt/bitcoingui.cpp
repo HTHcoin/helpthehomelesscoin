@@ -143,7 +143,8 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     governanceAction(0),
    /* tradingAction(0), */
     externalDonate(0),
-    mainWindow(0), 
+    chatAction(0), 
+    chatMenuAction(0),
     platformStyle(_platformStyle)
 {
     /* Open CSS when configured */
@@ -619,9 +620,23 @@ void BitcoinGUI::createActions()
     externalDonate = new QAction(QIcon(":/icons/" + theme + "/about"), tr("Donate To HTHW"), this);
     externalDonate->setStatusTip(tr("Donate to Help The Homeless Worldwide"));	
 	
-    // HTH Chat
-    mainWindow = new QAction(QIcon(":/icons/" + theme + "/chat"), tr("HTH World"), this);
-    mainWindow->setStatusTip(tr("HTH World Chat")); 
+    //chat
+
+      chatAction = new QAction(QIcon(":/icons/" + theme + "/overview"), tr("&Messenger"), this);
+      chatAction->setStatusTip(tr("Messenger"));
+      chatAction->setToolTip(chatAction->statusTip());
+      chatAction->setCheckable(true);
+	
+      #ifdef Q_OS_MAC
+      chatAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_6));
+  #else
+      chatAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_6));
+  #endif
+      tabGroup->addAction(chatAction);
+
+      chatMenuAction = new QAction(QIcon(":/icons/" + theme + "/overview"), chatAction->text(), this);
+      chatMenuAction->setStatusTip(chatAction->statusTip());
+      chatMenuAction->setToolTip(chatMenuAction->statusTip());	
 
 	
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
@@ -636,8 +651,11 @@ void BitcoinGUI::createActions()
      // HTHW Donate
     connect(externalDonate, SIGNAL(triggered()), this, SLOT(openDonate()));	
 	
-    // HTHW Chat
-    connect(mainWindow, SIGNAL(triggered()), this, SLOT(gotoOverviewPage()));	 
+    connect(chatAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+    connect(chatAction, SIGNAL(triggered()), this, SLOT(gotoChatPage()));
+
+    connect(chatMenuAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+    connect(chatMenuAction, SIGNAL(triggered()), this, SLOT(gotoChatPage()));
 	
     // Jump directly to tabs in RPC-console
     connect(openInfoAction, SIGNAL(triggered()), this, SLOT(showInfo()));
@@ -740,7 +758,7 @@ void BitcoinGUI::createMenuBar()
     donate->addAction(externalDonate);
 	
     QMenu* media = appMenuBar->addMenu(tr("&HTH World"));
-    media->addAction(mainWindow);	
+    media->addAction(chatAction);	
 	
 }
 
@@ -756,6 +774,7 @@ void BitcoinGUI::createToolBars()
         toolbar->addAction(receiveCoinsAction);
         toolbar->addAction(historyAction);
 /*	toolbar->addAction(privatesendAction); */
+	toolbar->addAction(chatAction);     
 	    
 	      
         QSettings settings;
@@ -929,6 +948,8 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     usedSendingAddressesAction->setEnabled(enabled);
     usedReceivingAddressesAction->setEnabled(enabled);
     openAction->setEnabled(enabled);
+    chatAction->setEnabled(enabled);
+    chatMenuAction->setEnabled(enabled);
 
 }
 
@@ -1069,11 +1090,11 @@ void BitcoinGUI::openClicked()
     }
 }
 
-void BitcoinGUI::gotoOverviewPage()
+void BitcoinGUI::gotoChatPage()
 {
-    mainWindow->setChecked(true);
-    if (walletFrame) walletFrame->gotoOverviewPage();
-} 
+	chatAction->setChecked(true);
+    if (walletFrame) walletFrame->gotoChatPage();
+}
 
 /*void BitcoinGUI::gotoTradingDialogPage()
 {
