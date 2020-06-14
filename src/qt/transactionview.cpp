@@ -119,13 +119,6 @@ TransactionView::TransactionView(const PlatformStyle *platformStyle, QWidget *pa
 #endif
     addressWidget->setObjectName("addressWidget");
     hlayout->addWidget(addressWidget);
-        
-        //    imgbase64Widget = new QLineEdit(this);
-// #if QT_VERSION >= 0x040700
-//    imgbase64Widget->setPlaceholderText(tr("Enter Imgbase64 to search"));
-// #endif
-//     imgbase64Widget->setObjectName("imgbase64Widget");
-//     hlayout->addWidget(imgbase64Widget);
 
     amountWidget = new QLineEdit(this);
 #if QT_VERSION >= 0x040700
@@ -176,7 +169,6 @@ TransactionView::TransactionView(const PlatformStyle *platformStyle, QWidget *pa
     QAction *editLabelAction = new QAction(tr("Edit label"), this);
     QAction *showDetailsAction = new QAction(tr("Show transaction details"), this);
     QAction *showAddressQRCodeAction = new QAction(tr("Show address QR code"), this);
-    QAction *copyImgbase64Action = new QAction(tr("Copy img"), this);
 
     contextMenu = new QMenu(this);
     contextMenu->addAction(copyAddressAction);
@@ -190,7 +182,6 @@ TransactionView::TransactionView(const PlatformStyle *platformStyle, QWidget *pa
     contextMenu->addSeparator();
     contextMenu->addAction(abandonAction);
     contextMenu->addAction(editLabelAction);
-    contextMenu->addAction(copyImgbase64Action);    
 
     mapperThirdPartyTxUrls = new QSignalMapper(this);
 
@@ -203,7 +194,6 @@ TransactionView::TransactionView(const PlatformStyle *platformStyle, QWidget *pa
     connect(instantsendWidget, SIGNAL(activated(int)), this, SLOT(chooseInstantSend(int)));
     connect(addressWidget, SIGNAL(textChanged(QString)), this, SLOT(changedPrefix(QString)));
     connect(amountWidget, SIGNAL(textChanged(QString)), this, SLOT(changedAmount(QString)));
-    //connect(imgbase64Widget, SIGNAL(textChanged(QString)), this, SLOT(changedPrefix(QString)));    
 
     connect(view, SIGNAL(doubleClicked(QModelIndex)), this, SIGNAL(doubleClicked(QModelIndex)));
     connect(view, SIGNAL(clicked(QModelIndex)), this, SLOT(computeSum()));
@@ -219,7 +209,6 @@ TransactionView::TransactionView(const PlatformStyle *platformStyle, QWidget *pa
     connect(editLabelAction, SIGNAL(triggered()), this, SLOT(editLabel()));
     connect(showDetailsAction, SIGNAL(triggered()), this, SLOT(showDetails()));
     connect(showAddressQRCodeAction, SIGNAL(triggered()), this, SLOT(showAddressQRCode()));
-    connect(copyImgbase64Action, SIGNAL(triggered()), this, SLOT(copyImgbase64()));    
 }
 
 void TransactionView::setModel(WalletModel *_model)
@@ -251,7 +240,6 @@ void TransactionView::setModel(WalletModel *_model)
         transactionView->setColumnWidth(TransactionTableModel::Date, DATE_COLUMN_WIDTH);
         transactionView->setColumnWidth(TransactionTableModel::Type, TYPE_COLUMN_WIDTH);
         transactionView->setColumnWidth(TransactionTableModel::Amount, AMOUNT_MINIMUM_COLUMN_WIDTH);
-        transactionView->setColumnWidth(TransactionTableModel::Imgbase64, TYPE_COLUMN_WIDTH);
 
         // Note: it's a good idea to connect this signal AFTER the model is set
         connect(transactionView->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), this, SLOT(computeSum()));
@@ -422,7 +410,6 @@ void TransactionView::exportClicked()
     writer.addColumn(tr("Address"), 0, TransactionTableModel::AddressRole);
     writer.addColumn(BitcoinUnits::getAmountColumnTitle(model->getOptionsModel()->getDisplayUnit()), 0, TransactionTableModel::FormattedAmountRole);
     writer.addColumn(tr("ID"), 0, TransactionTableModel::TxIDRole);
-    writer.addColumn(tr("Imgbase64"), 0, TransactionTableModel::Imgbase64Role);
 
     if(!writer.write()) {
         Q_EMIT message(tr("Exporting Failed"), tr("There was an error trying to save the transaction history to %1.").arg(filename),
@@ -475,11 +462,6 @@ void TransactionView::abandonTx()
 void TransactionView::copyAddress()
 {
     GUIUtil::copyEntryData(transactionView, 0, TransactionTableModel::AddressRole);
-}
-
-void TransactionView::copyImgbase64()
-{
-    GUIUtil::copyEntryData(transactionView, 0, TransactionTableModel::Imgbase64Role);
 }
 
 void TransactionView::copyLabel()
