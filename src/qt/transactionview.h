@@ -70,7 +70,6 @@ private:
     QComboBox *instantsendWidget;
     QLineEdit *addressWidget;
     QLineEdit *amountWidget;
-    QLineEdit *imgbase64Widget;
 
     QMenu *contextMenu;
     QSignalMapper *mapperThirdPartyTxUrls;
@@ -103,7 +102,6 @@ private Q_SLOTS:
     void openThirdPartyTxUrl(QString url);
     void updateWatchOnlyColumn(bool fHaveWatchOnly);
     void abandonTx();
-    void copyImgbase64();
 
 Q_SIGNALS:
     void doubleClicked(const QModelIndex&);
