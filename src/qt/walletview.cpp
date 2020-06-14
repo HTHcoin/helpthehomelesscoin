@@ -20,7 +20,7 @@
 #include "transactiontablemodel.h"
 #include "transactionview.h"
 #include "walletmodel.h"
-#include "overviewapage.h"
+#include "privatesendpage.h"
 
 #include "ui_interface.h"
 
@@ -42,7 +42,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
 {
     // Create tabs
     overviewPage = new OverviewPage(platformStyle);
-    overviewAPage = new OverviewAPage(platformStyle);    
+    privateSendPage = new PrivateSendPage(platformStyle);    
     transactionsPage = new QWidget(this);
     QVBoxLayout *vbox = new QVBoxLayout();
     QHBoxLayout *hbox_buttons = new QHBoxLayout();
@@ -81,7 +81,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(transactionsPage);
     addWidget(receiveCoinsPage);
     addWidget(sendCoinsPage);
-    addWidget(overviewAPage);    
+    addWidget(privateSendPage);    
 
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
@@ -96,8 +96,8 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     connect(overviewPage, SIGNAL(outOfSyncWarningClicked()), this, SLOT(requestedSyncWarningInfo()));
         
     // Clicking on a transaction on the overview pre-selects the transaction on the transaction history page
-    connect(overviewAPage, SIGNAL(transactionClicked(QModelIndex)), transactionView, SLOT(focusTransaction(QModelIndex)));
-    connect(overviewAPage, SIGNAL(outOfSyncWarningClicked()), this, SLOT(requestedSyncWarningInfo()));
+    connect(privateSendPage, SIGNAL(transactionClicked(QModelIndex)), transactionView, SLOT(focusTransaction(QModelIndex)));
+    connect(privateSendPage, SIGNAL(outOfSyncWarningClicked()), this, SLOT(requestedSyncWarningInfo()));
     
 
     // Double-clicking on a transaction on the transaction history page shows details
@@ -128,7 +128,7 @@ void WalletView::setBitcoinGUI(BitcoinGUI *gui)
         connect(overviewPage, SIGNAL(transactionClicked(QModelIndex)), gui, SLOT(gotoHistoryPage()));
         
         // Clicking on a transaction on the overview page simply sends you to transaction history page
-        connect(overviewAPage, SIGNAL(transactionClicked(QModelIndex)), gui, SLOT(gotoHistoryPage()));
+        connect(privateSendPage, SIGNAL(transactionClicked(QModelIndex)), gui, SLOT(gotoHistoryPage()));
 
         // Receive and report messages
         connect(this, SIGNAL(message(QString,QString,unsigned int)), gui, SLOT(message(QString,QString,unsigned int)));
@@ -149,7 +149,7 @@ void WalletView::setClientModel(ClientModel *_clientModel)
     this->clientModel = _clientModel;
 
     overviewPage->setClientModel(_clientModel);
-    overviewAPage->setClientModel(_clientModel);
+    privateSendPage->setClientModel(_clientModel);
     sendCoinsPage->setClientModel(_clientModel);
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
@@ -165,7 +165,7 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
     // Put transaction list in tabs
     transactionView->setModel(_walletModel);
     overviewPage->setWalletModel(_walletModel);
-    overviewAPage->setWalletModel(_walletModel);
+    privateSendPage->setWalletModel(_walletModel);
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
         masternodeListPage->setWalletModel(_walletModel);
@@ -235,9 +235,9 @@ void WalletView::gotoGovernancePage()
     setCurrentWidget(governanceListPage);
 }
 
-void WalletView::gotoOverviewAPage()
+void WalletView::gotoPrivateSendPage()
 {
-    setCurrentWidget(overviewAPage);
+    setCurrentWidget(privateSendPage);
 }
 
 void WalletView::gotoOverviewPage()
