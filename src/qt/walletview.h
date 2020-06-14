@@ -8,7 +8,7 @@
 #include "amount.h"
 #include "masternodelist.h"
 #include "governancelist.h"
-/* #include "tradingdialogpage.h" */ 
+
 
 #include <QStackedWidget>
 
@@ -22,9 +22,9 @@ class SendCoinsRecipient;
 class TransactionView;
 class WalletModel;
 class AddressBookPage;
-class PrivateSendPage;
+class OverviewAPage;
 class GovernancePage;
-/* class TradingDialogPage; */
+
 
 
 QT_BEGIN_NAMESPACE
@@ -72,11 +72,10 @@ private:
     AddressBookPage *usedSendingAddressesPage;
     AddressBookPage *usedReceivingAddressesPage;
     MasternodeList *masternodeListPage;
-    PrivateSendPage *privateSendPage;
-    GovernanceList *governanceListPage;      
+    OverviewAPage *overviewAPage;
+    GovernanceList *governanceListPage;
+    
     TransactionView *transactionView;
-   /* TradingDialogPage *tradingDialogPage;  */
-
 
     QProgressDialog *progressDialog;
     QLabel *transactionSum;
@@ -84,12 +83,10 @@ private:
 
 public Q_SLOTS:
 
-    /** Switch to trading page */
- /*   void gotoTradingDialogPage();   */
     /** Switch to governance page */
     void gotoGovernancePage();
     /** Switch to private send page */	
-    void gotoPrivateSendPage();
+    void gotoOverviewAPage();
     /** Switch to overview (home) page */
     void gotoOverviewPage();
     /** Switch to history (transactions) page */
@@ -98,8 +95,8 @@ public Q_SLOTS:
     void gotoMasternodePage();
     /** Switch to receive coins page */
     void gotoReceiveCoinsPage();
-     /** Switch to send coins page */
-    void gotoSendCoinsPage(QString addr = "",QString imgbase64 = "");
+    /** Switch to send coins page */
+    void gotoSendCoinsPage(QString addr = "");
 
     /** Show Sign/Verify Message dialog and switch to sign message tab */
     void gotoSignMessageTab(QString addr = "");
@@ -107,7 +104,6 @@ public Q_SLOTS:
     void gotoVerifyMessageTab(QString addr = "");
 
     /** Show incoming transaction notification for new transactions.
-
         The new items are those between start and end inclusive, under the given parent item.
     */
     void processNewTransaction(const QModelIndex& parent, int start, int /*end*/);
@@ -139,7 +135,6 @@ public Q_SLOTS:
 
     /** Update selected HTH amount from transactionview */
     void trxAmount(QString amount);
-    void encodebase64ClickedSignal(const QString &address, const QString &imgbase64);
 Q_SIGNALS:
     /** Signal that we want to show the main window */
     void showNormalIfMinimized();
