@@ -1386,15 +1386,6 @@ bool CheckInputs(const CTransaction& tx, CValidationState &state, const CCoinsVi
         if (!Consensus::CheckTxInputs(tx, state, inputs, GetSpendHeight(inputs)))
             return false;
 
-
-        for (unsigned int i = 0; i < tx.vout.size(); i++)
-        {
-        	 if(tx.vout[i].imgbase64.size()>25000000){
-        		 LogPrint("bench", "Large length imgbase64 checkInputs");
-        		 return false;
-        	 }
-        }
-
         if (pvChecks)
             pvChecks->reserve(tx.vin.size());
 
