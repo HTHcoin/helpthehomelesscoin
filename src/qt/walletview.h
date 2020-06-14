@@ -24,8 +24,7 @@ class WalletModel;
 class AddressBookPage;
 class PrivateSendPage;
 class GovernancePage;
-/* class TradingDialogPage; */ 
-class ChatDialog;
+/* class TradingDialogPage; */
 
 
 QT_BEGIN_NAMESPACE
@@ -77,7 +76,7 @@ private:
     GovernanceList *governanceListPage;      
     TransactionView *transactionView;
    /* TradingDialogPage *tradingDialogPage;  */
-    ChatDialog *ChatPage;  
+
 
     QProgressDialog *progressDialog;
     QLabel *transactionSum;
@@ -85,8 +84,6 @@ private:
 
 public Q_SLOTS:
 
-    /** Switch to chat page */
-    void gotoChatPage(); 
     /** Switch to trading page */
  /*   void gotoTradingDialogPage();   */
     /** Switch to governance page */
