@@ -518,8 +518,8 @@ void BitcoinGUI::createActions()
     connect(receiveCoinsMenuAction, SIGNAL(triggered()), this, SLOT(gotoReceiveCoinsPage()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(gotoHistoryPage()));
-    connect(overviewaAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
-    connect(overviewaAction, SIGNAL(triggered()), this, SLOT(gotoPrivateSendPage()));	
+    connect(privateSendAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+    connect(privateSendAction, SIGNAL(triggered()), this, SLOT(gotoPrivateSendPage()));	
         
 #endif // ENABLE_WALLET
 
