@@ -21,7 +21,6 @@
 #include "transactionview.h"
 #include "walletmodel.h"
 #include "privatesendpage.h"
-#include "chatdialog.h"
 
 #include "ui_interface.h"
 
@@ -75,9 +74,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     receiveCoinsPage = new ReceiveCoinsDialog(platformStyle);
     sendCoinsPage = new SendCoinsDialog(platformStyle);
 	    
-    ChatPage = new ChatDialog(platformStyle);	     
-
-	    
+    	    
     usedSendingAddressesPage = new AddressBookPage(platformStyle, AddressBookPage::ForEditing, AddressBookPage::SendingTab, this);
     usedReceivingAddressesPage = new AddressBookPage(platformStyle, AddressBookPage::ForEditing, AddressBookPage::ReceivingTab, this);
 
@@ -86,14 +83,11 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(transactionsPage);
     addWidget(receiveCoinsPage);
     addWidget(sendCoinsPage);
-    addWidget(privateSendPage);
-    addWidget(ChatPage);	    
+    addWidget(privateSendPage);	    
 	    
    /* tradingDialogPage = new TradingDialogPage();
     addWidget(tradingDialogPage); */
-	    
-    chatPagen = new ChatPage();
-    addWidget(chatPage);	    
+	        
 
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
@@ -252,10 +246,6 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
     Q_EMIT incomingTransaction(date, walletModel->getOptionsModel()->getDisplayUnit(), amount, type, address, label);
 }
 
-void WalletView::gotoChatPage()
-{
-    setCurrentWidget(ChatPage);
-}
 
 /*void WalletView::gotoTradingDialogPage()
 {
