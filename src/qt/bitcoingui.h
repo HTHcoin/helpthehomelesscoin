@@ -10,7 +10,6 @@
 #endif
 
 #include "amount.h"
-#include "governancelist.h"
 
 #include <QLabel>
 #include <QMainWindow>
@@ -38,8 +37,6 @@ class HelpMessageDialog;
 class ModalOverlay;
 class QNetworkAccessManager;
 class QNetworkRequest;
-/*class tradingDialogPage; */
-class ChatAction;
 
 class CWallet;
 
@@ -105,12 +102,8 @@ private:
 
     QMenuBar *appMenuBar;
     
-    QAction *chatAction;
-    QAction *chatMenuAction; 
-    QAction* externalDonate;
     QAction *governanceAction;
-  /*  QAction *tradingAction; */
-  /*  QAction* privatesendAction; */
+    QAction* overviewaAction;
     QAction *overviewAction;
     QAction *historyAction;
     QAction *masternodeAction;
@@ -141,8 +134,7 @@ private:
     QAction *showBackupsAction;
     QAction *openAction;
     QAction *showHelpMessageAction;
-/*    QAction *showPrivateSendHelpAction; */
-	
+    QAction *showPrivateSendHelpAction;
      
     QSystemTrayIcon *trayIcon;
     QMenu *trayIconMenu;
@@ -234,18 +226,11 @@ public Q_SLOTS:
 
 private Q_SLOTS:
 #ifdef ENABLE_WALLET
- 	
-	
-   /** Switch to chat coins page */
-    void gotoChatPage();
     
-    /** Switch to trading page */
- /*   void gotoTradingDialogPage();  */
- 
-    /** Switch to governance page */
+    /** Switch to masternode page */
     void gotoGovernancePage();
     /** Switch to private send page */
-    /*   void gotoPrivateSendPage(); */
+    void gotoOverviewAPage();
     /** Switch to overview (home) page */
     void gotoOverviewPage();
     /** Switch to history (transactions) page */
@@ -255,7 +240,7 @@ private Q_SLOTS:
     /** Switch to receive coins page */
     void gotoReceiveCoinsPage();
     /** Switch to send coins page */
-    void gotoSendCoinsPage(QString addr = "", QString imgbase64="");
+    void gotoSendCoinsPage(QString addr = "");
 
     /** Show Sign/Verify Message dialog and switch to sign message tab */
     void gotoSignMessageTab(QString addr = "");
@@ -271,9 +256,6 @@ private Q_SLOTS:
     void aboutClicked();
     /** Show debug window */
     void showDebugWindow();
-    /** Open external URL */
-    void openDonate();
-    void openExternalURL(QString url = "");
 
     /** Show debug window and set focus to the appropriate tab */
     void showInfo();
@@ -290,7 +272,7 @@ private Q_SLOTS:
     /** Show help message dialog */
     void showHelpMessageClicked();
     /** Show PrivateSend help message dialog */
-/*    void showPrivateSendHelpClicked(); */
+    void showPrivateSendHelpClicked();
 #ifndef Q_OS_MAC
     /** Handle tray icon clicked */
     void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
