@@ -22,7 +22,7 @@ class SendCoinsRecipient;
 class TransactionView;
 class WalletModel;
 class AddressBookPage;
-class OverviewAPage;
+class PrivateSendPage;
 class GovernancePage;
 
 
@@ -72,7 +72,7 @@ private:
     AddressBookPage *usedSendingAddressesPage;
     AddressBookPage *usedReceivingAddressesPage;
     MasternodeList *masternodeListPage;
-    OverviewAPage *overviewAPage;
+    PrivateSendPage *privateSendPage;
     GovernanceList *governanceListPage;
     
     TransactionView *transactionView;
@@ -86,7 +86,7 @@ public Q_SLOTS:
     /** Switch to governance page */
     void gotoGovernancePage();
     /** Switch to private send page */	
-    void gotoOverviewAPage();
+    void gotoPrivateSendPage();
     /** Switch to overview (home) page */
     void gotoOverviewPage();
     /** Switch to history (transactions) page */
