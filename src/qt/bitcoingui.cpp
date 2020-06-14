@@ -519,7 +519,7 @@ void BitcoinGUI::createActions()
     connect(historyAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(gotoHistoryPage()));
     connect(overviewaAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
-    connect(overviewaAction, SIGNAL(triggered()), this, SLOT(gotoOverviewAPage()));	
+    connect(overviewaAction, SIGNAL(triggered()), this, SLOT(gotoPrivateSendPage()));	
         
 #endif // ENABLE_WALLET
 
@@ -709,7 +709,7 @@ void BitcoinGUI::createToolBars()
         toolbar->addAction(sendCoinsAction);
         toolbar->addAction(receiveCoinsAction);
         toolbar->addAction(historyAction);
-	toolbar->addAction(overviewaAction);
+	toolbar->addAction(privateSendAction);
 	      
         QSettings settings;
         if (!fLiteMode && settings.value("fShowMasternodesTab").toBool() && masternodeAction)
@@ -1025,10 +1025,10 @@ void BitcoinGUI::gotoGovernancePage()
     if (walletFrame) walletFrame->gotoGovernancePage();
 }
 
-void BitcoinGUI::gotoOverviewAPage()
+void BitcoinGUI::gotoPrivateSendPage()
 {
-    overviewaAction->setChecked(true);
-    if (walletFrame) walletFrame->gotoOverviewAPage();
+    privateSendAction->setChecked(true);
+    if (walletFrame) walletFrame->gotoPrivateSendPage();
 }
 
 void BitcoinGUI::gotoOverviewPage()
