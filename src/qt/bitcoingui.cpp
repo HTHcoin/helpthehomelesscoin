@@ -492,16 +492,16 @@ void BitcoinGUI::createActions()
         connect(governanceAction, SIGNAL(triggered()), this, SLOT(gotoGovernancePage()));
     }
      	 
-    overviewaAction = new QAction(QIcon(":/icons/coinmix"), tr("&Private Send"), this);
-    overviewaAction->setStatusTip(tr("Show Private Send of wallet"));
-    overviewaAction->setToolTip(overviewaAction->statusTip());
-    overviewaAction->setCheckable(true);
+    privateSendAction = new QAction(QIcon(":/icons/coinmix"), tr("&Private Send"), this);
+    privateSendAction->setStatusTip(tr("Show Private Send of wallet"));
+    privateSendAction->setToolTip(privateSendAction->statusTip());
+    privateSendAction->setCheckable(true);
 #ifdef Q_OS_MAC
-    overviewaAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_7));
+    privateSendAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_7));
 #else
-    overviewaAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
+    privateSendAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
 #endif
-    tabGroup->addAction(overviewaAction);
+    tabGroup->addAction(privateSendAction);
 	
 		
     // These showNormalIfMinimized are needed because Send Coins and Receive Coins
