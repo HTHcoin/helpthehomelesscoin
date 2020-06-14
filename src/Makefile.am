@@ -122,7 +122,6 @@ BITCOIN_CORE_H = \
   checkpoints.h \
   checkqueue.h \
   clientversion.h \
-  coincontrol.h \
   coins.h \
   compat.h \
   compat/byteswap.h \
@@ -247,6 +246,7 @@ BITCOIN_CORE_H = \
   zmq/zmqconfig.h\
   zmq/zmqnotificationinterface.h \
   zmq/zmqpublishnotifier.h
+
 
 obj/build.h: FORCE
 	@$(MKDIR_P) $(builddir)/obj
@@ -435,6 +435,7 @@ crypto_libhelpthehomeless_crypto_a_SOURCES = \
   crypto/SWIFFTX/sph_panama.h \
   crypto/SWIFFTX/lane.h \
   crypto/SWIFFTX/blake2s.h
+
 
 # consensus: shared between all executables that validate any consensus rules.
 libhelpthehomeless_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
