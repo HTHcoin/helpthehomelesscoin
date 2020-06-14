@@ -121,10 +121,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
 
     // Pass through messages from transactionView
     connect(transactionView, SIGNAL(message(QString,QString,unsigned int)), this, SIGNAL(message(QString,QString,unsigned int)));
-	    
-    // Pass through messages from ChatPage
-    connect(ChatPage, SIGNAL(message(QString,QString,unsigned int)), this, SIGNAL(message(QString,QString,unsigned int)));
-	    
+	      
 	    
 }
 
@@ -167,8 +164,7 @@ void WalletView::setClientModel(ClientModel *_clientModel)
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
         masternodeListPage->setClientModel(_clientModel);
     }
-    governanceListPage->setClientModel(_clientModel);
-    ChatPage->setClientModel(clientModel);	
+    governanceListPage->setClientModel(_clientModel);	
     	
 }
 
@@ -185,8 +181,7 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
         masternodeListPage->setWalletModel(_walletModel);
     }
     
-    governanceListPage->setWalletModel(_walletModel);
-    ChatPage->setModel(walletModel);	
+    governanceListPage->setWalletModel(_walletModel);	
     receiveCoinsPage->setModel(_walletModel);
     sendCoinsPage->setModel(_walletModel);
     usedReceivingAddressesPage->setModel(_walletModel->getAddressTableModel());
