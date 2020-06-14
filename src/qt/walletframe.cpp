@@ -115,11 +115,11 @@ void WalletFrame::gotoGovernancePage()
         i.value()->gotoGovernancePage();
 }
 
-void WalletFrame::gotoOverviewAPage()
+void WalletFrame::gotoPrivateSendPage()
 {
     QMap<QString, WalletView*>::const_iterator i;
     for (i = mapWalletViews.constBegin(); i != mapWalletViews.constEnd(); ++i)
-        i.value()->gotoOverviewAPage();
+        i.value()->gotoPrivateSendPage();
 }
 
 void WalletFrame::gotoOverviewPage()
