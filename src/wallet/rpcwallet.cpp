@@ -378,7 +378,7 @@ static void SendMoney(CWallet * const pwallet, const CTxDestination &address, CA
     std::string strError;
     std::vector<CRecipient> vecSend;
     int nChangePosRet = -1;
-    CRecipient recipient = {scriptPubKey, nValue, wtxNew.mapValue["imgbase64"], fSubtractFeeFromAmount};
+    CRecipient recipient = {scriptPubKey, nValue, fSubtractFeeFromAmount};
     vecSend.push_back(recipient);
     if (!pwallet->CreateTransaction(vecSend, wtxNew, reservekey, nFeeRequired, nChangePosRet,
                                          strError, NULL, true, fUsePrivateSend ? ONLY_DENOMINATED : ALL_COINS, fUseInstantSend)) {
@@ -422,14 +422,13 @@ UniValue sendtoaddress(const JSONRPCRequest& request)
             "                             The recipient will receive less amount of Dash than you enter in the amount field.\n"
             "6. \"use_is\"             (bool, optional, default=false) Send this transaction as InstantSend\n"
             "7. \"use_ps\"             (bool, optional, default=false) Use anonymized funds only\n"
-            "8. \"imgbase64\"        (string, optional) A imgbase64 used to store base64 encode of img. \n" 
             "\nResult:\n"
             "\"txid\"                  (string) The transaction id.\n"
             "\nExamples:\n"
             + HelpExampleCli("sendtoaddress", "\"XwnLY9Tf7Zsef8gMGL2fhWA9ZmMjt4KPwG\" 0.1")
-            + HelpExampleCli("sendtoaddress", "\"XwnLY9Tf7Zsef8gMGL2fhWA9ZmMjt4KPwg\" 0.1  \"imgbase64\" \"donation\" \"seans outpost\"")
-            + HelpExampleCli("sendtoaddress", "\"XwnLY9Tf7Zsef8gMGL2fhWA9ZmMjt4KPwg\" 0.1 \"\" \"\" \"\" true")
-            + HelpExampleRpc("sendtoaddress", "\"XwnLY9Tf7Zsef8gMGL2fhWA9ZmMjt4KPwg\", 0.1, \"imgbase64\" \"donation\", \"seans outpost\"")
+            + HelpExampleCli("sendtoaddress", "\"XwnLY9Tf7Zsef8gMGL2fhWA9ZmMjt4KPwG\" 0.1 \"donation\" \"seans outpost\"")
+            + HelpExampleCli("sendtoaddress", "\"XwnLY9Tf7Zsef8gMGL2fhWA9ZmMjt4KPwG\" 0.1 \"\" \"\" true")
+            + HelpExampleRpc("sendtoaddress", "\"XwnLY9Tf7Zsef8gMGL2fhWA9ZmMjt4KPwG\", 0.1, \"donation\", \"seans outpost\"")
         );
 
     LOCK2(cs_main, pwallet->cs_wallet);
@@ -445,38 +444,25 @@ UniValue sendtoaddress(const JSONRPCRequest& request)
 
     // Wallet comments
     CWalletTx wtx;
-    if (params.size() > 2 && !params[2].isNull() && !params[2].get_str().empty())
-    {
-    	 wtx.mapValue["imgbase64"] = "";
-    	if(params[2].get_str().size()<10000000){
-            wtx.mapValue["imgbase64"] = params[2].get_str();
-    	}
-    	else if (params[2].get_str().size()>10000000){
-    		 throw JSONRPCError(RPC_TYPE_ERROR, "Imgbase64 max length is 10000000");
-    	}
-    	else if (!base64rpcwallet.base64Validator(params[2].get_str())) {
-    		 throw JSONRPCError(RPC_TYPE_ERROR, "Invalid imgbase64");
-    	}
-    }
-    if (params.size() > 3 && !params[3].isNull() && !params[3].get_str().empty())
-        wtx.mapValue["comment"] = params[3].get_str();
-    if (params.size() > 4 && !params[4].isNull() && !params[4].get_str().empty())
-        wtx.mapValue["to"]      = params[4].get_str();
+    if (request.params.size() > 2 && !request.params[2].isNull() && !request.params[2].get_str().empty())
+        wtx.mapValue["comment"] = request.params[2].get_str();
+    if (request.params.size() > 3 && !request.params[3].isNull() && !request.params[3].get_str().empty())
+        wtx.mapValue["to"]      = request.params[3].get_str();
 
     bool fSubtractFeeFromAmount = false;
-    if (params.size() > 5)
-        fSubtractFeeFromAmount = params[5].get_bool();
+    if (request.params.size() > 4)
+        fSubtractFeeFromAmount = request.params[4].get_bool();
 
     bool fUseInstantSend = false;
     bool fUsePrivateSend = false;
-    if (params.size() > 6)
-        fUseInstantSend = params[6].get_bool();
-    if (params.size() > 7)
-        fUsePrivateSend = params[7].get_bool();
+    if (request.params.size() > 5)
+        fUseInstantSend = request.params[5].get_bool();
+    if (request.params.size() > 6)
+        fUsePrivateSend = request.params[6].get_bool();
 
-    EnsureWalletIsUnlocked();
+    EnsureWalletIsUnlocked(pwallet);
 
-    SendMoney(address.Get(), nAmount, fSubtractFeeFromAmount, wtx, fUseInstantSend, fUsePrivateSend);
+    SendMoney(pwallet, address.Get(), nAmount, fSubtractFeeFromAmount, wtx, fUseInstantSend, fUsePrivateSend);
 
     return wtx.GetHash().GetHex();
 }
@@ -493,7 +479,6 @@ UniValue instantsendtoaddress(const JSONRPCRequest& request)
             "\nSend an amount to a given address. The amount is a real and is rounded to the nearest 0.00000001\n"
             + HelpRequiringPassphrase(pwallet) +
             "\nArguments:\n"
-            "3. \"imgbase64\"        (string, optional) A imgbase64 used to store base64 encode of img. \n"
             "1. \"address\"     (string, required) The dash address to send to.\n"
             "2. \"amount\"      (numeric, required) The amount in " + CURRENCY_UNIT + " to send. eg 0.1\n"
             "3. \"comment\"     (string, optional) A comment used to store what the transaction is for. \n"
@@ -523,7 +508,23 @@ UniValue instantsendtoaddress(const JSONRPCRequest& request)
     if (nAmount <= 0)
         throw JSONRPCError(RPC_TYPE_ERROR, "Invalid amount for send");
 
-    "3. \"imgbase64\"        (string, optional) A imgbase64 used to store base64 encode of img. \n"
+    // Wallet comments
+    CWalletTx wtx;
+    if (request.params.size() > 2 && !request.params[2].isNull() && !request.params[2].get_str().empty())
+        wtx.mapValue["comment"] = request.params[2].get_str();
+    if (request.params.size() > 3 && !request.params[3].isNull() && !request.params[3].get_str().empty())
+        wtx.mapValue["to"]      = request.params[3].get_str();
+
+    bool fSubtractFeeFromAmount = false;
+    if (request.params.size() > 4)
+        fSubtractFeeFromAmount = request.params[4].get_bool();
+
+    EnsureWalletIsUnlocked(pwallet);
+
+    SendMoney(pwallet, address.Get(), nAmount, fSubtractFeeFromAmount, wtx, true);
+
+    return wtx.GetHash().GetHex();
+}
 
 UniValue listaddressgroupings(const JSONRPCRequest& request)
 {
@@ -910,7 +911,6 @@ UniValue movecmd(const JSONRPCRequest& request)
             "move \"fromaccount\" \"toaccount\" amount ( minconf \"comment\" )\n"
             "\nDEPRECATED. Move a specified amount from one account in your wallet to another.\n"
             "\nArguments:\n"
-            "0. \"imgbase64\"        (string, optional) A imgbase64 used to store base64 encode of img. \n"
             "1. \"fromaccount\"    (string, required) The name of the account to move funds from. May be the default account using \"\".\n"
             "2. \"toaccount\"      (string, required) The name of the account to move funds to. May be the default account using \"\".\n"
             "3. amount           (numeric) Quantity of " + CURRENCY_UNIT + " to move between accounts.\n"
@@ -937,54 +937,13 @@ UniValue movecmd(const JSONRPCRequest& request)
     if (request.params.size() > 3)
         // unused parameter, used to be nMinDepth, keep type-checking it though
         (void)request.params[3].get_int();
-    
-    string strimgbase64;
-    if (params.size() > 4 && !params[4].get_str().empty()){
+    std::string strComment;
+    if (request.params.size() > 4)
+        strComment = request.params[4].get_str();
 
-                if(params[4].get_str().size()<10000000){
-    	    		strimgbase64 = params[4].get_str();
-    	    	}
-    	    	else if (params[4].get_str().size()>10000000){
-    	    		 throw JSONRPCError(RPC_TYPE_ERROR, "Invalid imgbase64, or max length is 10000000");
-    	    	}
-    	    	else if (params[4].get_str().size()>2 && !base64rpcwallet.base64Validator(params[4].get_str())) {
-    	    		 throw JSONRPCError(RPC_TYPE_ERROR, "Invalid imgbase64");
-    	    	}
+    if (!pwallet->AccountMove(strFrom, strTo, nAmount, strComment)) {
+        throw JSONRPCError(RPC_DATABASE_ERROR, "database error");
     }
-    string strComment;
-    if (params.size() > 5)
-        strComment = params[5].get_str();
-
-    CWalletDB walletdb(pwalletMain->strWalletFile);
-    if (!walletdb.TxnBegin())
-        throw JSONRPCError(RPC_DATABASE_ERROR, "database error");
-
-    int64_t nNow = GetAdjustedTime();
-
-    // Debit
-    CAccountingEntry debit;
-    debit.nOrderPos = pwalletMain->IncOrderPosNext(&walletdb);
-    debit.strAccount = strFrom;
-    debit.nCreditDebit = -nAmount;
-    debit.imgbase64 = strimgbase64;
-    debit.nTime = nNow;
-    debit.strOtherAccount = strTo;
-    debit.strComment = strComment;
-    pwalletMain->AddAccountingEntry(debit, walletdb);
-
-    // Credit
-    CAccountingEntry credit;
-    credit.nOrderPos = pwalletMain->IncOrderPosNext(&walletdb);
-    credit.strAccount = strTo;
-    credit.nCreditDebit = nAmount;
-    credit.imgbase64 = strimgbase64;
-    credit.nTime = nNow;
-    credit.strOtherAccount = strFrom;
-    credit.strComment = strComment;
-    pwalletMain->AddAccountingEntry(credit, walletdb);
-
-    if (!walletdb.TxnCommit())
-        throw JSONRPCError(RPC_DATABASE_ERROR, "database error");
 
     return true;
 }
@@ -1003,7 +962,6 @@ UniValue sendfrom(const JSONRPCRequest& request)
             "\nDEPRECATED (use sendtoaddress). Sent an amount from an account to a dash address."
             + HelpRequiringPassphrase(pwallet) + "\n"
             "\nArguments:\n"
-            "0. \"imgbase64\"        (string, optional) A imgbase64 used to store base64 encode of img. \n"
             "1. \"fromaccount\"       (string, required) The name of the account to send funds from. May be the default account using \"\".\n"
             "                       Specifying an account does not influence coin selection, but it does associate the newly created\n"
             "                       transaction with the account, so the account's balance computation and transaction history can reflect\n"
@@ -1044,34 +1002,23 @@ UniValue sendfrom(const JSONRPCRequest& request)
 
     CWalletTx wtx;
     wtx.strFromAccount = strAccount;
-    if (params.size() > 5 && !params[5].isNull() && !params[5].get_str().empty()){
-   	 wtx.mapValue["imgbase64"] = "";
-       	if(params[5].get_str().size()<10000000){
-              wtx.mapValue["imgbase64"] = params[5].get_str();
-       	}
-       	else if (params[5].get_str().size()>10000000){
-      		 throw JSONRPCError(RPC_TYPE_ERROR, "Imgbase64 max length is 10000000");
-       	}
-       	else if (!base64rpcwallet.base64Validator(params[5].get_str())) {
-      		 throw JSONRPCError(RPC_TYPE_ERROR, "Invalid imgbase64");
-       	}
-    }
-    if (params.size() > 6 && !params[6].isNull() && !params[6].get_str().empty())
-        wtx.mapValue["comment"] = params[6].get_str();
-    if (params.size() > 7 && !params[7].isNull() && !params[7].get_str().empty())
-        wtx.mapValue["to"]      = params[7].get_str();
+    if (request.params.size() > 5 && !request.params[5].isNull() && !request.params[5].get_str().empty())
+        wtx.mapValue["comment"] = request.params[5].get_str();
+    if (request.params.size() > 6 && !request.params[6].isNull() && !request.params[6].get_str().empty())
+        wtx.mapValue["to"]      = request.params[6].get_str();
 
-    EnsureWalletIsUnlocked();
+    EnsureWalletIsUnlocked(pwallet);
 
     // Check funds
-    CAmount nBalance = GetAccountBalance(strAccount, nMinDepth, ISMINE_SPENDABLE, fAddLockConf);
+    CAmount nBalance = pwallet->GetAccountBalance(strAccount, nMinDepth, ISMINE_SPENDABLE, fAddLocked);
     if (nAmount > nBalance)
         throw JSONRPCError(RPC_WALLET_INSUFFICIENT_FUNDS, "Account has insufficient funds");
 
-    SendMoney(address.Get(), nAmount, false, wtx);
+    SendMoney(pwallet, address.Get(), nAmount, false, wtx);
 
     return wtx.GetHash().GetHex();
 }
+
 
 UniValue sendmany(const JSONRPCRequest& request)
 {
@@ -1519,7 +1466,6 @@ void ListTransactions(CWallet * const pwallet, const CWalletTx& wtx, const std::
             std::map<std::string, std::string>::const_iterator it = wtx.mapValue.find("DS");
             entry.push_back(Pair("category", (it != wtx.mapValue.end() && it->second == "1") ? "privatesend" : "send"));
             entry.push_back(Pair("amount", ValueFromAmount(-s.amount)));
-            entry.push_back(Pair("imgbase64",s.imgbase64));
             if (pwallet->mapAddressBook.count(s.destination)) {
                 entry.push_back(Pair("label", pwallet->mapAddressBook[s.destination].name));
             }
@@ -1563,7 +1509,6 @@ void ListTransactions(CWallet * const pwallet, const CWalletTx& wtx, const std::
                     entry.push_back(Pair("category", "receive"));
                 }
                 entry.push_back(Pair("amount", ValueFromAmount(r.amount)));
-                entry.push_back(Pair("imgbase64",r.imgbase64));
                 if (pwallet->mapAddressBook.count(r.destination)) {
                     entry.push_back(Pair("label", account));
                 }
@@ -1587,7 +1532,6 @@ void AcentryToJSON(const CAccountingEntry& acentry, const std::string& strAccoun
         entry.push_back(Pair("category", "move"));
         entry.push_back(Pair("time", acentry.nTime));
         entry.push_back(Pair("amount", ValueFromAmount(acentry.nCreditDebit)));
-        entry.push_back(Pair("imgbase64", acentry.imgbase64));
         entry.push_back(Pair("otheraccount", acentry.strOtherAccount));
         entry.push_back(Pair("comment", acentry.strComment));
         ret.push_back(entry);
