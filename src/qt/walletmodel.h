@@ -58,6 +58,10 @@ public:
     CAmount amount;
     // If from a payment request, this is used for storing the memo
     QString message;
+   
+	// DAC message or prayer
+	QString txtMessage;
+	bool fDonate;
 
     // If from a payment request, paymentRequest.IsInitialized() will be true
     PaymentRequestPlus paymentRequest;
