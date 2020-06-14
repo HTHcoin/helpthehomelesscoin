@@ -173,14 +173,7 @@ struct CRecipient
 {
     CScript scriptPubKey;
     CAmount nAmount;
-	std::string imgbase64;
     bool fSubtractFeeFromAmount;
-    // DAC:
-	
-	bool fDonate;
-	
-	std::string txtMessage;
-	// END OF DAC
 };
 
 typedef std::map<std::string, std::string> mapValue_t;
@@ -208,7 +201,6 @@ struct COutputEntry
 {
     CTxDestination destination;
     CAmount amount;
-	std::string imgbase64;
     int vout;
 };
 
@@ -600,7 +592,6 @@ class CAccountingEntry
 public:
     std::string strAccount;
     CAmount nCreditDebit;
-	std::string imgbase64;
     int64_t nTime;
     std::string strOtherAccount;
     std::string strComment;
@@ -622,7 +613,6 @@ public:
         strComment.clear();
         nOrderPos = -1;
         nEntryNo = 0;
-	    imgbase64.clear();
     }
 
     ADD_SERIALIZE_METHODS;
@@ -636,7 +626,6 @@ public:
         READWRITE(nCreditDebit);
         READWRITE(nTime);
         READWRITE(LIMITED_STRING(strOtherAccount, 65536));
-	    READWRITE(LIMITED_STRING(imgbase64, 1655366));
 
         if (!ser_action.ForRead())
         {
