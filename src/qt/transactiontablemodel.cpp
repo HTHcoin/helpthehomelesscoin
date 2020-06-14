@@ -37,7 +37,6 @@ static int column_alignments[] = {
         Qt::AlignLeft|Qt::AlignVCenter, /* type */
         Qt::AlignLeft|Qt::AlignVCenter, /* address */
         Qt::AlignRight|Qt::AlignVCenter /* amount */
-        Qt::AlignLeft|Qt::AlignVCenter, /* imgbase64 */        
     };
 
 // Comparison operator for sort/binary search of model tx list
@@ -94,7 +93,6 @@ public:
 
     /* Update our model of the wallet incrementally, to synchronize our model of the wallet
        with that of the core.
-
        Call with transaction that was added, removed or changed.
      */
     void updateWallet(const uint256 &hash, int status, bool showTransaction)
@@ -245,7 +243,7 @@ TransactionTableModel::TransactionTableModel(const PlatformStyle *_platformStyle
         fProcessingQueuedTransactions(false),
         platformStyle(_platformStyle)
 {
-    columns << QString() << QString() << QString() << tr("Date") << tr("Type") << tr("Address / Label") << tr("Imgbase64") << BitcoinUnits::getAmountColumnTitle(walletModel->getOptionsModel()->getDisplayUnit());
+    columns << QString() << QString() << QString() << tr("Date") << tr("Type") << tr("Address / Label") << BitcoinUnits::getAmountColumnTitle(walletModel->getOptionsModel()->getDisplayUnit());
     priv->refreshWallet();
 
     connect(walletModel->getOptionsModel(), SIGNAL(displayUnitChanged(int)), this, SLOT(updateDisplayUnit()));
@@ -611,23 +609,6 @@ QVariant TransactionTableModel::data(const QModelIndex &index, int role) const
             return formatTxType(rec);
         case ToAddress:
             return formatTxToAddress(rec, false);
-        case Imgbase64:{
-        	QString qimgbase64 = QString();
-                 qimgbase64  =  QString::fromStdString(rec->imgbase64);
-        	if(qimgbase64.size()>500){
-
-        		qimgbase64 = qimgbase64.left(499);
-        		qimgbase64 = qimgbase64 + " ...";
-        	}
-
-        	if(qimgbase64.size()>2) {
-        		QString mensage = qimgbase64.section(":", 0, 0, QString::SectionSkipEmpty);
-        	     if(mensage=="m") qimgbase64 = qimgbase64.mid(2);
-        	     if(mensage=="from") qimgbase64 = qimgbase64.mid(40);
-        	}
-
-             return qimgbase64;
-        }
         case Amount:
             return formatTxAmount(rec, true, BitcoinUnits::separatorAlways);
         }
@@ -644,19 +625,10 @@ QVariant TransactionTableModel::data(const QModelIndex &index, int role) const
             return formatTxType(rec);
         case Watchonly:
             return (rec->involvesWatchAddress ? 1 : 0);
+        case InstantSend:
+            return (rec->status.lockedByInstantSend ? 1 : 0);
         case ToAddress:
             return formatTxToAddress(rec, true);
-        case Imgbase64:{
-        	QString qimgbase64 = QString();
-                 qimgbase64  =  QString::fromStdString(rec->imgbase64);
-        	if(qimgbase64.size()>500){
-
-        		qimgbase64 = qimgbase64.left(499);
-        		  //qimgbase64->setText(qimgbase64->toUtf8() + " ...");
-                        qimgbase64 = qimgbase64 + " ...";
-        	}
-             return qimgbase64;
-             }
         case Amount:
             return qint64(rec->credit + rec->debit);
         }
@@ -670,6 +642,10 @@ QVariant TransactionTableModel::data(const QModelIndex &index, int role) const
         if(rec->status.status == TransactionStatus::Abandoned)
         {
             return COLOR_TX_STATUS_DANGER;
+        }
+        if(rec->status.lockedByInstantSend)
+        {
+            return COLOR_TX_STATUS_LOCKED;
         }
         // Non-confirmed (but not immature) as transactions are grey
         if(!rec->status.countsForBalance && rec->status.status != TransactionStatus::Immature)
@@ -693,14 +669,16 @@ QVariant TransactionTableModel::data(const QModelIndex &index, int role) const
         return rec->involvesWatchAddress;
     case WatchonlyDecorationRole:
         return txWatchonlyDecoration(rec);
+    case InstantSendRole:
+        return rec->status.lockedByInstantSend;
+    case InstantSendDecorationRole:
+        return txInstantSendDecoration(rec);
     case LongDescriptionRole:
         return priv->describe(rec, walletModel->getOptionsModel()->getDisplayUnit());
     case AddressRole:
         return QString::fromStdString(rec->address);
     case LabelRole:
         return walletModel->getAddressTableModel()->labelForAddress(QString::fromStdString(rec->address));
-    case Imgbase64Role:
-        return QString::fromStdString(rec->imgbase64);
     case AmountRole:
         return qint64(rec->credit + rec->debit);
     case TxIDRole:
@@ -743,9 +721,7 @@ QVariant TransactionTableModel::data(const QModelIndex &index, int role) const
         return formatTxAmount(rec, false, BitcoinUnits::separatorNever);
     case StatusRole:
         return rec->status.status;
-
     }
-
     return QVariant();
 }
 
