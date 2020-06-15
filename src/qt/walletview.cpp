@@ -85,8 +85,8 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(sendCoinsPage);
     addWidget(privateSendPage);
     
-    proposalPage = new ProposalPage(platformStyle);
-    addWidget(proposalPage);	
+    proposalAddPage = new ProposalAddDialog(platformStyle);
+    addWidget(proposalAddPage);    
 
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
@@ -238,7 +238,7 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
 
 void WalletView::gotoProposalAddPage()
 {
-   setCurrentWidget(proposalPage);
+   setCurrentWidget(proposalAddPage);
 } 
 
 
