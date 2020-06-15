@@ -22,7 +22,7 @@
 #include "platformstyle.h"
 #include "rpcconsole.h"
 #include "utilitydialog.h"
-#include "proposaladd.h"
+#include "proposalpage.h"
 /* #include "tradingdialogpage.h" */
 
 
@@ -144,7 +144,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     governanceAction(0),
    /* tradingAction(0), */
     externalDonate(0),
-    proposalAddAction(0),
+    proposalPage(0),
     platformStyle(_platformStyle)
 {
     /* Open CSS when configured */
@@ -620,8 +620,9 @@ void BitcoinGUI::createActions()
     externalDonate = new QAction(QIcon(":/icons/" + theme + "/about"), tr("Donate To HTHW"), this);
     externalDonate->setStatusTip(tr("Donate to Help The Homeless Worldwide"));	
 	
-    proposalAddAction = new QAction(QIcon(":/icons/" + theme + "/about"), tr("Add Proposal"), this);
-    proposalAddAction->setStatusTip(tr("Submit proposal"));
+    // HTH Submit Proposal
+    proposalPage = new QAction(QIcon(":/icons/" + theme + "/about"), tr("HTH Proposals"), this);
+    proposalPage->setStatusTip(tr("Submit a Proposal Today")); 
 	
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
@@ -636,7 +637,7 @@ void BitcoinGUI::createActions()
     connect(externalDonate, SIGNAL(triggered()), this, SLOT(openDonate()));
 	
     // HTHW ProposalAdd
-    connect(proposalAddAction, SIGNAL(triggered()), walletFrame, SLOT(gotoProposalAddPage()));	
+    connect(proposalPage, SIGNAL(triggered()), walletFrame, SLOT(gotoProposalAddPage()));	
 	
     // Jump directly to tabs in RPC-console
     connect(openInfoAction, SIGNAL(triggered()), this, SLOT(showInfo()));
@@ -738,8 +739,8 @@ void BitcoinGUI::createMenuBar()
     QMenu* donate = appMenuBar->addMenu(tr("&Donate"));
     donate->addAction(externalDonate);
 	
-    QMenu* proposal = appMenuBar->addMenu(tr("&HTH Proposal"));
-    proposal->addAction(proposalAddAction);
+    QMenu* proposal = appMenuBar->addMenu(tr("&HTH Proposals"));
+    proposal->addAction(proposalPage);
 
 }
 
@@ -927,8 +928,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     verifyMessageAction->setEnabled(enabled);
     usedSendingAddressesAction->setEnabled(enabled);
     usedReceivingAddressesAction->setEnabled(enabled);
-    openAction->setEnabled(enabled);
-    proposalAddAction->setEnabled(enabled);	
+    openAction->setEnabled(enabled);	
 
 }
 
