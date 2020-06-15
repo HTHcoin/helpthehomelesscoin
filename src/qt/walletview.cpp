@@ -162,7 +162,7 @@ void WalletView::setClientModel(ClientModel *_clientModel)
         masternodeListPage->setClientModel(_clientModel);
     }
     governanceListPage->setClientModel(_clientModel);
-    proposalAddPage->setClientModel(clientModel);
+    /*proposalAddPage->setClientModel(clientModel);*/
 }
 
 void WalletView::setWalletModel(WalletModel *_walletModel)
