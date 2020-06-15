@@ -25,7 +25,7 @@ class WalletModel;
 class AddressBookPage;
 class PrivateSendPage;
 class GovernancePage;
-class ProposalPage;
+class ProposalAddPage;
 
 
 
@@ -76,7 +76,7 @@ private:
     MasternodeList *masternodeListPage;
     PrivateSendPage *privateSendPage;
     GovernanceList *governanceListPage;
-    ProposalPage *proposalPage;
+    ProposalAddPage *proposalAddPage;
     
     TransactionView *transactionView;
 
