@@ -141,7 +141,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     modalOverlay(0),
     prevBlocks(0),
     spinnerFrame(0),
-    governanceAction(0),
+    proposalsListAction(0),
     proposalAction(0),
     externalDonate(0),
     platformStyle(_platformStyle)
@@ -484,18 +484,18 @@ void BitcoinGUI::createActions()
         connect(masternodeAction, SIGNAL(triggered()), this, SLOT(gotoMasternodePage()));
     }
 	{
-        governanceAction = new QAction(QIcon(":/icons/governance"), tr("&Governance"), this);
-        governanceAction->setStatusTip(tr("Show governance items"));
-        governanceAction->setToolTip(governanceAction->statusTip());
-        governanceAction->setCheckable(true);
+        proposalsListAction = new QAction(QIcon(":/icons/governance"), tr("&Proposals"), this);
+        proposalsListAction->setStatusTip(tr("Show governance items"));
+        proposalsListAction->setToolTip(proposalsListAction->statusTip());
+        proposalsListAction->setCheckable(true);
 #ifdef Q_OS_MAC
-        governanceAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_6));
+        proposalsListAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_6));
 #else
-        governanceAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_6));
+        proposalsListAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_6));
 #endif
-        tabGroup->addAction(governanceAction);
-        connect(governanceAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
-        connect(governanceAction, SIGNAL(triggered()), this, SLOT(gotoGovernancePage()));
+        tabGroup->addAction(proposalsListAction);
+        connect(proposalsListAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+        connect(proposalsListAction, SIGNAL(triggered()), this, SLOT(gotoProposalsListPage()));
 		
     }
      	 {
@@ -908,8 +908,8 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool() && masternodeAction) {
         masternodeAction->setEnabled(enabled);
     }
-	proposalAction->setEnabled(enabled);
-       governanceAction->setEnabled(enabled);
+    proposalAction->setEnabled(enabled);
+    proposalsListAction->setEnabled(enabled);
     encryptWalletAction->setEnabled(enabled);
     backupWalletAction->setEnabled(enabled);
     changePassphraseAction->setEnabled(enabled);
@@ -1082,10 +1082,10 @@ void BitcoinGUI::openExternalURL(QString url)
     }
 }
 
-void BitcoinGUI::gotoGovernancePage()
+void BitcoinGUI::gotoProposalsListPage()
 {
-    governanceAction->setChecked(true);
-    if (walletFrame) walletFrame->gotoGovernancePage();
+    proposalsListAction->setChecked(true);
+    if (walletFrame) walletFrame->proposalsListAction();
 }
 
 /*void BitcoinGUI::gotoPrivateSendPage()
