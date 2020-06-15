@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "proposaladddialog.h"
-#include "ui_proposaladddialog.h"
+#include "proposaladd.h"
+#include "ui_proposaladd.h"
 #include "addressbookpage.h"
 #include "addresstablemodel.h"
 #include "bitcoinunits.h"
@@ -29,9 +29,9 @@
 #include <QScrollBar>
 #include <QTextDocument>
 
-ProposalAddDialog::ProposalAddDialog(const PlatformStyle *platformStyle, QWidget *parent) :
+ProposalAdd::ProposalAdd(const PlatformStyle *platformStyle, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::ProposalAddDialog),
+    ui(new Ui::ProposalAdd),
     model(0),
     platformStyle(platformStyle)
 {
@@ -53,7 +53,7 @@ ProposalAddDialog::ProposalAddDialog(const PlatformStyle *platformStyle, QWidget
  }
 
 
-void ProposalAddDialog::UpdateDisplay()
+void ProposalAdd::UpdateDisplay()
 {
 	int nNextHeight = GetNextSuperblock();
 
@@ -72,7 +72,7 @@ void ProposalAddDialog::UpdateDisplay()
 }
 
 
-void ProposalAddDialog::setModel(WalletModel *model)
+void ProposalAdd::setModel(WalletModel *model)
 {
     this->model = model;
 
@@ -82,12 +82,12 @@ void ProposalAddDialog::setModel(WalletModel *model)
     }
 }
 
-ProposalAddDialog::~ProposalAddDialog()
+ProposalAdd::~ProposalAdd()
 {
     delete ui;
 }
 
-void ProposalAddDialog::clear()
+void ProposalAdd::clear()
 {
     ui->txtName->setText("");
     ui->txtURL->setText("");
@@ -96,7 +96,7 @@ void ProposalAddDialog::clear()
 }
 
 
-void ProposalAddDialog::on_btnSubmit_clicked()
+void ProposalAdd::on_btnSubmit_clicked()
 {
     if(!model || !model->getOptionsModel())
         return;
