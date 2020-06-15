@@ -95,6 +95,8 @@ uint64_t nPruneTarget = 0;
 bool fAlerts = DEFAULT_ALERTS;
 int64_t nMaxTipAge = DEFAULT_MAX_TIP_AGE;
 
+std::map<std::pair<std::string, std::string>, std::pair<std::string, int64_t>> mvApplicationCache;
+
 std::map<std::string, Researcher> mvResearchers;
 
 int nProposalModulus = 0;
