@@ -233,7 +233,7 @@ private Q_SLOTS:
 #ifdef ENABLE_WALLET
  	
      /** Switch to add proposal page */
-    void gotoProposalAddPage();
+    void gotoProposalPage();
     /** Switch to trading page */
  /*   void gotoTradingDialogPage();  */
     /** Switch to governance page */
