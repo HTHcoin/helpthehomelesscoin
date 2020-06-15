@@ -53,7 +53,7 @@ QT_FORMS_UI = \
   qt/forms/sendcoinsentry.ui \
   qt/forms/signverifymessagedialog.ui \
   qt/forms/transactiondescdialog.ui \
-  qt/forms/proposaladddialog.ui
+  qt/forms/proposaladd.ui
 
 QT_MOC_CPP = \
   qt/moc_addressbookpage.cpp \
@@ -110,7 +110,7 @@ QT_MOC_CPP = \
   moc_rpcpog.cpp \
   moc_smartcontract-server.cpp \
   moc_smartcontract-client.cpp \
-  qt/moc_proposaladddialog.cpp
+  qt/moc_proposaladd.cpp
 
 BITCOIN_MM = \
   qt/macdockiconhandler.mm \
@@ -198,7 +198,7 @@ BITCOIN_QT_H = \
   rpcpog.h \
   smartcontract-server.h \
   smartcontract-client.h \
-  qt/proposaladddialog.h
+  qt/proposaladd.h
 
 RES_ICONS = \
   qt/res/icons/bitcoin.ico \
@@ -541,7 +541,7 @@ BITCOIN_QT_WALLET_CPP = \
   rpcpog.cpp \
   smartcontract-server.cpp \
   smartcontract-client.cpp \
-  qt/proposaladddialog.cpp
+  qt/proposaladd.cpp
 
 BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
 if TARGET_WINDOWS
