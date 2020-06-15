@@ -29,11 +29,11 @@
 #include <QScrollBar>
 #include <QTextDocument>
 
-ProposalPage::ProposalPage(/*const PlatformStyle *platformStyle, */ QWidget *parent) :
+ProposalPage::ProposalPage(const PlatformStyle *platformStyle,  QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ProposalPage),
     model(0),
-  /*  platformStyle(platformStyle) */
+    platformStyle(platformStyle)
 {
     ui->setupUi(this);
     QString theme = GUIUtil::getThemeName();
