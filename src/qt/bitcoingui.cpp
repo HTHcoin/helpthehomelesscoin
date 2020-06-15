@@ -750,8 +750,8 @@ void BitcoinGUI::createToolBars()
         {
             toolbar->addAction(masternodeAction);
         }
-           toolbar->addAction(governanceAction);
-	toolbar->addAction(unlockWalletAction);
+      /*     toolbar->addAction(governanceAction);
+	toolbar->addAction(unlockWalletAction); */
 	    
 	 
 	    toolbar->addAction(unlockWalletAction);
