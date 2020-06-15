@@ -85,7 +85,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(sendCoinsPage);
     addWidget(privateSendPage);
     
-    proposalPage = new ProposalPage(platformStyle);
+    proposalPage = new ProposalPage();
     addWidget(proposalPage);	
 
     QSettings settings;
