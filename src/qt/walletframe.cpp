@@ -108,11 +108,11 @@ void WalletFrame::showOutOfSyncWarning(bool fShow)
         i.value()->showOutOfSyncWarning(fShow);
 }
 
-void WalletFrame::gotoProposalAddPage()
+void WalletFrame::gotoProposalAddDialog()
 {
     QMap<QString, WalletView*>::const_iterator i;
     for (i = mapWalletViews.constBegin(); i != mapWalletViews.constEnd(); ++i)
-        i.value()->gotoProposalAddPage();
+        i.value()->gotoProposalAddDialog();
 }
 
 void WalletFrame::gotoGovernancePage()
