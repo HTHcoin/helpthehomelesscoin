@@ -39,6 +39,7 @@ class ModalOverlay;
 class QNetworkAccessManager;
 class QNetworkRequest;
 /*class tradingDialogPage; */
+class ProposalPage;
 
 class CWallet;
 
@@ -104,7 +105,7 @@ private:
 
     QMenuBar *appMenuBar;
     
-    QAction *proposalAddAction;
+    QAction *proposalPage;
     QAction* externalDonate;
     QAction *governanceAction;
   /*  QAction *tradingAction; */
