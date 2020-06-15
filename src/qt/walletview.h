@@ -8,7 +8,7 @@
 #include "amount.h"
 #include "masternodelist.h"
 #include "governancelist.h"
-#include "proposalpage.h"
+#include "proposaladddialog.h"
 
 
 #include <QStackedWidget>
@@ -87,7 +87,7 @@ private:
 public Q_SLOTS:
 
   /** Switch to ProposalAdd page */
-      void gotoProposalPage();
+      void gotoProposalAddPage();
     /** Switch to governance page */
     void gotoGovernancePage();
     /** Switch to private send page */	
