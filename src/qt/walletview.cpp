@@ -239,8 +239,8 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
 
 void WalletView::gotoProposalAddDialog()
 {
-   setCurrentWidget(ProposalAddDialog);
-} 
+    setCurrentWidget(proposalAddDialog);
+}
 
 
 void WalletView::gotoGovernancePage()
