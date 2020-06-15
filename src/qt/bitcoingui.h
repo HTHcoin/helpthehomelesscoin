@@ -104,6 +104,7 @@ private:
 
     QMenuBar *appMenuBar;
     
+    QAction* proposalAdd;
     QAction* externalDonate;
     QAction *governanceAction;
   /*  QAction *tradingAction; */
@@ -232,7 +233,8 @@ public Q_SLOTS:
 private Q_SLOTS:
 #ifdef ENABLE_WALLET
  	
-
+     /** Switch to add proposal page */
+    void gotoProposalAddPage();
     /** Switch to trading page */
  /*   void gotoTradingDialogPage();  */
     /** Switch to governance page */
