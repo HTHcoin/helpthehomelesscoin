@@ -236,7 +236,7 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
     Q_EMIT incomingTransaction(date, walletModel->getOptionsModel()->getDisplayUnit(), amount, type, address, label);
 }
 
-void WalletView::gotoProposalAddPage()
+void WalletView::gotoProposalPage()
 {
    setCurrentWidget(proposalPage);
 } 
