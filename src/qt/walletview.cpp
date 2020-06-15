@@ -34,6 +34,7 @@
 #include <QPushButton>
 #include <QSettings>
 #include <QVBoxLayout>
+#include <QApplication>
 
 WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     QStackedWidget(parent),
