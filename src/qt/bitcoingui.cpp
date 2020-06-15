@@ -142,7 +142,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     prevBlocks(0),
     spinnerFrame(0),
     proposalsListAction(0),
-    proposalAction(0),
+    proposalAddAction(0),
     externalDonate(0),
     platformStyle(_platformStyle)
 {
@@ -483,22 +483,8 @@ void BitcoinGUI::createActions()
         connect(masternodeAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
         connect(masternodeAction, SIGNAL(triggered()), this, SLOT(gotoMasternodePage()));
     }
-	{
-        proposalsListAction = new QAction(QIcon(":/icons/governance"), tr("&Proposals"), this);
-        proposalsListAction->setStatusTip(tr("Show governance items"));
-        proposalsListAction->setToolTip(proposalsListAction->statusTip());
-        proposalsListAction->setCheckable(true);
-#ifdef Q_OS_MAC
-        proposalsListAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_6));
-#else
-        proposalsListAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_6));
-#endif
-        tabGroup->addAction(proposalsListAction);
-        connect(proposalsListAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
-        connect(proposalsListAction, SIGNAL(triggered()), this, SLOT(gotoProposalsListPage()));
-		
-    }
-     	 {
+
+     /*	 {
         proposalAction = new QAction(QIcon(":/icons/about"), tr("&Proposal"), this);
         proposalAction->setStatusTip(tr("Submit A Proposal"));
         proposalAction->setToolTip(proposalAction->statusTip());
@@ -512,7 +498,7 @@ void BitcoinGUI::createActions()
         connect(proposalAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
         connect(proposalAction, SIGNAL(triggered()), this, SLOT(gotoProposalAddDialog()));
 		
-    }
+    } */
  /*   privatesendAction = new QAction(QIcon(":/icons/coinmix"), tr("&Private Send"), this);
     privatesendAction->setStatusTip(tr("Show Private Send of wallet"));
     privatesendAction->setToolTip(privatesendAction->statusTip());
@@ -576,6 +562,11 @@ void BitcoinGUI::createActions()
     signMessageAction->setStatusTip(tr("Sign messages with your HelpTheHomeless addresses to prove you own them"));
     verifyMessageAction = new QAction(QIcon(":/icons/" + theme + "/transaction_0"), tr("&Verify message..."), this);
     verifyMessageAction->setStatusTip(tr("Verify messages to ensure they were signed with specified HelpTheHomeless addresses"));
+	
+    proposalAddAction = new QAction(QIcon(":/icons/" + theme + "/filesave"), tr("Add Proposal"), this);
+    proposalAddAction->setStatusTip(tr("Submit proposal"));
+    proposalsListAction = new QAction(QIcon(":/icons/" + theme + "/edit"), tr("&List Proposals"), this);
+    proposalsListAction->setStatusTip(tr("List all Proposal of Governance System"));	
 
     openInfoAction = new QAction(QApplication::style()->standardIcon(QStyle::SP_MessageBoxInformation), tr("&Information"), this);
     openInfoAction->setStatusTip(tr("Show diagnostic information"));
@@ -618,6 +609,9 @@ void BitcoinGUI::createActions()
     // HTHW Donate
     externalDonate = new QAction(QIcon(":/icons/" + theme + "/about"), tr("Donate To HTHW"), this);
     externalDonate->setStatusTip(tr("Donate to Help The Homeless Worldwide"));	
+
+    connect(proposalAddAction, SIGNAL(triggered()), walletFrame, SLOT(gotoProposalAddPage()));
+    connect(proposalsListAction, SIGNAL(triggered()), walletFrame, SLOT(gotoProposalsListPage()));
 	
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
@@ -718,6 +712,10 @@ void BitcoinGUI::createMenuBar()
         tools->addSeparator();
         tools->addAction(openConfEditorAction);
         tools->addAction(showBackupsAction);
+	 
+       QMenu *proposal = appMenuBar->addMenu(tr("&Proposals"));
+       proposal->addAction(proposalsListAction);
+       proposal->addAction(proposalAddAction);    
 	        
     }
     	
@@ -755,7 +753,7 @@ void BitcoinGUI::createToolBars()
            toolbar->addAction(governanceAction);
 	toolbar->addAction(unlockWalletAction);
 	    
-	    toolbar->addAction(proposalAction);
+	 
 	    toolbar->addAction(unlockWalletAction);
 	   	  
         toolbar->setMovable(false); // remove unused icon in upper left corner
@@ -908,8 +906,8 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool() && masternodeAction) {
         masternodeAction->setEnabled(enabled);
     }
-    proposalAction->setEnabled(enabled);
     proposalsListAction->setEnabled(enabled);
+    proposalAddAction->setEnabled(enabled);
     encryptWalletAction->setEnabled(enabled);
     backupWalletAction->setEnabled(enabled);
     changePassphraseAction->setEnabled(enabled);
@@ -1059,10 +1057,16 @@ void BitcoinGUI::openClicked()
 }
 
 
-void BitcoinGUI::gotoProposalAddDialog()
+void BitcoinGUI::gotoProposalsListPage()
 {
-    proposalAction->setChecked(true);
-    if (walletFrame) walletFrame->gotoProposalAddDialog();
+	//WebWindowAction->setChecked(true);
+    if (walletFrame) walletFrame->gotoProposalsListPage();
+}
+
+void BitcoinGUI::gotoProposalAddPage()
+{
+	//WebWindowAction->setChecked(true);
+    if (walletFrame) walletFrame->gotoProposalAddPage();
 }
 
 void BitcoinGUI::openDonate()
@@ -1080,12 +1084,6 @@ void BitcoinGUI::openExternalURL(QString url)
     if (reply == QMessageBox::Ok) {
         QDesktopServices::openUrl(QUrl(url));
     }
-}
-
-void BitcoinGUI::gotoProposalsListPage()
-{
-    proposalsListAction->setChecked(true);
-    if (walletFrame) walletFrame->proposalsListAction();
 }
 
 /*void BitcoinGUI::gotoPrivateSendPage()
