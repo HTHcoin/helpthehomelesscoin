@@ -22,7 +22,7 @@
 #include "platformstyle.h"
 #include "rpcconsole.h"
 #include "utilitydialog.h"
-#include "proposalpage.h"
+#include "proposaladddialog.h"
 /* #include "tradingdialogpage.h" */
 
 
@@ -510,7 +510,7 @@ void BitcoinGUI::createActions()
 #endif
         tabGroup->addAction(proposalAction);
         connect(proposalAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
-        connect(proposalAction, SIGNAL(triggered()), this, SLOT(gotoProposalPage()));
+        connect(proposalAction, SIGNAL(triggered()), this, SLOT(gotoProposalAddPage()));
 		
     }
  /*   privatesendAction = new QAction(QIcon(":/icons/coinmix"), tr("&Private Send"), this);
@@ -1059,10 +1059,10 @@ void BitcoinGUI::openClicked()
 }
 
 
-void BitcoinGUI::gotoProposalPage()
+void BitcoinGUI::gotoProposalAddPage()
 {
     proposalAction->setChecked(true);
-    if (walletFrame) walletFrame->gotoProposalPage();
+    if (walletFrame) walletFrame->gotoProposalAddPage();
 }
 
 void BitcoinGUI::openDonate()
