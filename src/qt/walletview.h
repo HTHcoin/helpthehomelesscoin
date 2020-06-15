@@ -24,7 +24,7 @@ class TransactionView;
 class WalletModel;
 class AddressBookPage;
 class PrivateSendPage;
-class GovernancePage;
+class Proposals;
 class ProposalAddDialog;
 
 
@@ -75,7 +75,7 @@ private:
     AddressBookPage *usedReceivingAddressesPage;
     MasternodeList *masternodeListPage;
     PrivateSendPage *privateSendPage;
-    GovernanceList *governanceListPage;
+    Proposals *proposalsPage;
     ProposalAddDialog *proposalAddDialog;
     
     TransactionView *transactionView;
@@ -89,7 +89,7 @@ public Q_SLOTS:
   /** Switch to ProposalAdd page */
       void gotoProposalAddDialog();
     /** Switch to governance page */
-    void gotoGovernancePage();
+    void gotoProposalsListPage();
     /** Switch to private send page */	
     void gotoPrivateSendPage();
     /** Switch to overview (home) page */
