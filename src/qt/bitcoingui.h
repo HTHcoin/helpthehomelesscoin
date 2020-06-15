@@ -242,7 +242,7 @@ private Q_SLOTS:
  /*   void gotoTradingDialogPage();  */
  
     /** Switch to governance page */
-    void gotoGovernancePage();
+ /*   void gotoGovernancePage(); */
     
     /** Switch to private send page */
     /*   void gotoPrivateSendPage(); */
