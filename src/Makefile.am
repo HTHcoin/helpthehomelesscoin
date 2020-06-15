@@ -251,7 +251,7 @@ BITCOIN_CORE_H = \
   smartcontract-client.h \
   smartcontract-server.h \
   rpcpodc.h \
-  rpcpog.h
+  rpcpog.h \
   
 obj/build.h: FORCE
 	@$(MKDIR_P) $(builddir)/obj
