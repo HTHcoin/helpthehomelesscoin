@@ -30,7 +30,7 @@
 #include <QTextDocument>
 
 ProposalAddDialog::ProposalAddDialog(const PlatformStyle *platformStyle, QWidget *parent) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::ProposalAddDialog),
     model(0),
     platformStyle(platformStyle) 
