@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_PROPOSALPAGE_H
-#define BITCOIN_QT_PROPOSALPAGE_H
+#ifndef BITCOIN_QT_PROPOSALADDDIALOG_H
+#define BITCOIN_QT_PROPOSALADDDIALOG_H
 
 #include "guiutil.h"
 
@@ -20,7 +20,7 @@ class PlatformStyle;
 class WalletModel;
 
 namespace Ui {
-    class ProposalPage;
+    class ProposalAddDialog;
 }
 
 QT_BEGIN_NAMESPACE
@@ -28,7 +28,7 @@ class QModelIndex;
 QT_END_NAMESPACE
 
 /** Dialog for Adding a Governance Proposal */
-class ProposalPage : public QDialog
+class ProposalAddDialog : public QDialog
 {
     Q_OBJECT
 
@@ -40,8 +40,8 @@ public:
         MINIMUM_COLUMN_WIDTH = 130
     };
 
-    explicit ProposalPage(const PlatformStyle *platformStyle, QWidget *parent = 0);
-    ~ProposalPage();
+    explicit ProposalAddDialog(const PlatformStyle *platformStyle, QWidget *parent = 0);
+    ~ProposalAddDialog();
 
     void setModel(WalletModel *model);
 	void UpdateDisplay();
@@ -53,7 +53,7 @@ protected:
    
 
 private:
-    Ui::ProposalPage *ui;
+    Ui::ProposalAddDialog *ui;
     GUIUtil::TableViewLastColumnResizingFixer *columnResizingFixer;
     WalletModel *model;
     QMenu *contextMenu;
@@ -63,4 +63,4 @@ private Q_SLOTS:
     void on_btnSubmit_clicked();
 };
 
-#endif // BITCOIN_QT_PROPOSALPAGE_H
+#endif // BITCOIN_QT_PROPOSALADDDIALOG_H
