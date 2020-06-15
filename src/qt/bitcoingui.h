@@ -105,7 +105,7 @@ private:
     
     
     QAction* externalDonate;
-    QAction *governanceAction;
+    QAction *proposalsListAction;
     QAction *proposalAction;
   /*  QAction* privatesendAction; */
     QAction *overviewAction;
@@ -233,7 +233,7 @@ private Q_SLOTS:
 #ifdef ENABLE_WALLET
  	
      /** Switch to add proposal page */
-    void gotoProposalAddDialog();
+    void gotoProposalsListPage();
     /** Switch to trading page */
  /*   void gotoTradingDialogPage();  */
     /** Switch to governance page */
