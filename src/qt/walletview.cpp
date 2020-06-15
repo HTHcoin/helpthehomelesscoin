@@ -173,7 +173,7 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
     transactionView->setModel(_walletModel);
     overviewPage->setWalletModel(_walletModel);
     privateSendPage->setWalletModel(_walletModel);
-    proposalAddPage->setModel(_walletModel);
+    /*proposalAddPage->setModel(_walletModel); */
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
         masternodeListPage->setWalletModel(_walletModel);
