@@ -22,6 +22,8 @@
 #include "platformstyle.h"
 #include "rpcconsole.h"
 #include "utilitydialog.h"
+/* #include "tradingdialogpage.h" */
+
 
 #ifdef ENABLE_WALLET
 #include "privatesend-client.h"
@@ -128,7 +130,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     openRPCConsoleAction(0),
     openAction(0),
     showHelpMessageAction(0),
-    showPrivateSendHelpAction(0),
+  /*  showPrivateSendHelpAction(0), */
     trayIcon(0),
     trayIconMenu(0),
     dockIconMenu(0),
@@ -139,6 +141,8 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     prevBlocks(0),
     spinnerFrame(0),
     governanceAction(0),
+   /* tradingAction(0), */
+    externalDonate(0),
     platformStyle(_platformStyle)
 {
     /* Open CSS when configured */
@@ -429,7 +433,7 @@ void BitcoinGUI::createActions()
     sendCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_2));
 #endif
     tabGroup->addAction(sendCoinsAction);
-
+	
     sendCoinsMenuAction = new QAction(QIcon(":/icons/" + theme + "/send"), sendCoinsAction->text(), this);
     sendCoinsMenuAction->setStatusTip(sendCoinsAction->statusTip());
     sendCoinsMenuAction->setToolTip(sendCoinsMenuAction->statusTip());
@@ -448,6 +452,7 @@ void BitcoinGUI::createActions()
     receiveCoinsMenuAction = new QAction(QIcon(":/icons/" + theme + "/receiving_addresses"), receiveCoinsAction->text(), this);
     receiveCoinsMenuAction->setStatusTip(receiveCoinsAction->statusTip());
     receiveCoinsMenuAction->setToolTip(receiveCoinsMenuAction->statusTip());
+	
 
     historyAction = new QAction(QIcon(":/icons/" + theme + "/history"), tr("&Transactions"), this);
     historyAction->setStatusTip(tr("Browse transaction history"));
@@ -483,25 +488,40 @@ void BitcoinGUI::createActions()
         governanceAction->setToolTip(governanceAction->statusTip());
         governanceAction->setCheckable(true);
 #ifdef Q_OS_MAC
-        governanceAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_5));
+        governanceAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_6));
 #else
-        governanceAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_5));
+        governanceAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_6));
 #endif
         tabGroup->addAction(governanceAction);
         connect(governanceAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
         connect(governanceAction, SIGNAL(triggered()), this, SLOT(gotoGovernancePage()));
+		
     }
-     	 
-    privateSendAction = new QAction(QIcon(":/icons/coinmix"), tr("&Private Send"), this);
-    privateSendAction->setStatusTip(tr("Show Private Send of wallet"));
-    privateSendAction->setToolTip(privateSendAction->statusTip());
-    privateSendAction->setCheckable(true);
+     /*	 {
+        tradingAction = new QAction(QIcon(":/icons/chat"), tr("&Trading"), this);
+        tradingAction->setStatusTip(tr("Trade HTH Today"));
+        tradingAction->setToolTip(tradingAction->statusTip());
+        tradingAction->setCheckable(true);
 #ifdef Q_OS_MAC
-    privateSendAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_7));
+        tradingAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_7));
 #else
-    privateSendAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
+        tradingAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
 #endif
-    tabGroup->addAction(privateSendAction);
+        tabGroup->addAction(tradingAction);
+        connect(tradingAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+        connect(tradingAction, SIGNAL(triggered()), this, SLOT(gotoTradingDialogPage()));
+		
+    } */
+ /*   privatesendAction = new QAction(QIcon(":/icons/coinmix"), tr("&Private Send"), this);
+    privatesendAction->setStatusTip(tr("Show Private Send of wallet"));
+    privatesendAction->setToolTip(privatesendAction->statusTip());
+    privatesendAction->setCheckable(true);
+#ifdef Q_OS_MAC
+    privatesendAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_7));
+#else
+    privatesendAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
+#endif
+    tabGroup->addAction(privatesendAction); */
 	
 		
     // These showNormalIfMinimized are needed because Send Coins and Receive Coins
@@ -518,8 +538,8 @@ void BitcoinGUI::createActions()
     connect(receiveCoinsMenuAction, SIGNAL(triggered()), this, SLOT(gotoReceiveCoinsPage()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(gotoHistoryPage()));
-    connect(privateSendAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
-    connect(privateSendAction, SIGNAL(triggered()), this, SLOT(gotoPrivateSendPage()));	
+     /*   connect(privatesendAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+    connect(privatesendAction, SIGNAL(triggered()), this, SLOT(gotoPrivateSendPage()));	 */
         
 #endif // ENABLE_WALLET
 
@@ -576,7 +596,7 @@ void BitcoinGUI::createActions()
     openGraphAction->setEnabled(false);
     openPeersAction->setEnabled(false);
     openRepairAction->setEnabled(false);
-
+		
     usedSendingAddressesAction = new QAction(QIcon(":/icons/" + theme + "/address-book"), tr("&Sending addresses..."), this);
     usedSendingAddressesAction->setStatusTip(tr("Show the list of used sending addresses and labels"));
     usedReceivingAddressesAction = new QAction(QIcon(":/icons/" + theme + "/address-book"), tr("&Receiving addresses..."), this);
@@ -589,18 +609,27 @@ void BitcoinGUI::createActions()
     showHelpMessageAction->setMenuRole(QAction::NoRole);
     showHelpMessageAction->setStatusTip(tr("Show the %1 help message to get a list with possible Dash command-line options").arg(tr(PACKAGE_NAME)));
 
-    showPrivateSendHelpAction = new QAction(QApplication::style()->standardIcon(QStyle::SP_MessageBoxInformation), tr("&PrivateSend information"), this);
+/*    showPrivateSendHelpAction = new QAction(QApplication::style()->standardIcon(QStyle::SP_MessageBoxInformation), tr("&PrivateSend information"), this);
     showPrivateSendHelpAction->setMenuRole(QAction::NoRole);
-    showPrivateSendHelpAction->setStatusTip(tr("Show the PrivateSend basic information"));
-
+    showPrivateSendHelpAction->setStatusTip(tr("Show the PrivateSend basic information")); */
+	
+	
+    // HTHW Donate
+    externalDonate = new QAction(QIcon(":/icons/" + theme + "/about"), tr("Donate To HTHW"), this);
+    externalDonate->setStatusTip(tr("Donate to Help The Homeless Worldwide"));	
+	
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
     connect(aboutQtAction, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
     connect(optionsAction, SIGNAL(triggered()), this, SLOT(optionsClicked()));
     connect(toggleHideAction, SIGNAL(triggered()), this, SLOT(toggleHidden()));
     connect(showHelpMessageAction, SIGNAL(triggered()), this, SLOT(showHelpMessageClicked()));
-    connect(showPrivateSendHelpAction, SIGNAL(triggered()), this, SLOT(showPrivateSendHelpClicked()));
-
+/*    connect(showPrivateSendHelpAction, SIGNAL(triggered()), this, SLOT(showPrivateSendHelpClicked()));  */
+	
+	
+     // HTHW Donate
+    connect(externalDonate, SIGNAL(triggered()), this, SLOT(openDonate()));
+	
     // Jump directly to tabs in RPC-console
     connect(openInfoAction, SIGNAL(triggered()), this, SLOT(showInfo()));
     connect(openRPCConsoleAction, SIGNAL(triggered()), this, SLOT(showConsole()));
@@ -688,14 +717,19 @@ void BitcoinGUI::createMenuBar()
         tools->addSeparator();
         tools->addAction(openConfEditorAction);
         tools->addAction(showBackupsAction);
+	        
     }
-
+    	
     QMenu *help = appMenuBar->addMenu(tr("&Help"));
     help->addAction(showHelpMessageAction);
-    help->addAction(showPrivateSendHelpAction);
+ /*   help->addAction(showPrivateSendHelpAction); */
     help->addSeparator();
     help->addAction(aboutAction);
     help->addAction(aboutQtAction);
+	
+    QMenu* donate = appMenuBar->addMenu(tr("&Donate"));
+    donate->addAction(externalDonate);
+
 }
 
 void BitcoinGUI::createToolBars()
@@ -709,7 +743,8 @@ void BitcoinGUI::createToolBars()
         toolbar->addAction(sendCoinsAction);
         toolbar->addAction(receiveCoinsAction);
         toolbar->addAction(historyAction);
-	toolbar->addAction(privateSendAction);
+/*	toolbar->addAction(privatesendAction); */
+	    
 	      
         QSettings settings;
         if (!fLiteMode && settings.value("fShowMasternodesTab").toBool() && masternodeAction)
@@ -718,7 +753,10 @@ void BitcoinGUI::createToolBars()
         }
            toolbar->addAction(governanceAction);
 	toolbar->addAction(unlockWalletAction);
-	  
+	    
+	/*    toolbar->addAction(tradingAction);
+	    toolbar->addAction(unlockWalletAction);  */
+	   	  
         toolbar->setMovable(false); // remove unused icon in upper left corner
         overviewAction->setChecked(true);
 	       
@@ -869,6 +907,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool() && masternodeAction) {
         masternodeAction->setEnabled(enabled);
     }
+	/*tradingAction->setEnabled(enabled); */
        governanceAction->setEnabled(enabled);
     encryptWalletAction->setEnabled(enabled);
     backupWalletAction->setEnabled(enabled);
@@ -878,6 +917,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     usedSendingAddressesAction->setEnabled(enabled);
     usedReceivingAddressesAction->setEnabled(enabled);
     openAction->setEnabled(enabled);
+
 }
 
 void BitcoinGUI::createTrayIcon(const NetworkStyle *networkStyle)
@@ -999,14 +1039,13 @@ void BitcoinGUI::showHelpMessageClicked()
     helpMessageDialog->show();
 }
 
-void BitcoinGUI::showPrivateSendHelpClicked()
+/*void BitcoinGUI::showPrivateSendHelpClicked()
 {
     if(!clientModel)
         return;
-
     HelpMessageDialog dlg(this, HelpMessageDialog::pshelp);
     dlg.exec();
-}
+} */
 
 #ifdef ENABLE_WALLET
 void BitcoinGUI::openClicked()
@@ -1018,6 +1057,28 @@ void BitcoinGUI::openClicked()
     }
 }
 
+/*void BitcoinGUI::gotoTradingDialogPage()
+{
+    tradingAction->setChecked(true);
+    if (walletFrame) walletFrame->gotoTradingDialogPage();
+} */
+
+void BitcoinGUI::openDonate()
+{
+    openExternalURL("https://helpthehomelessworldwide.org/donate");
+}
+
+void BitcoinGUI::openExternalURL(QString url)
+{
+    QMessageBox::StandardButton reply = QMessageBox::question(this, tr("Notice – External Link"),
+        QStringLiteral("This action will open up the following website in your default browser:<br><br><p>Help The Homeless Worldwide A NJ Nonprofit Corporation's Donation Page</p><br><br>To continue, hit your Enter key or press <b>Ok</b>.<br><b>Remember, never share your personal information or private keys on any social website.</b>").arg(url),
+        QMessageBox::Cancel | QMessageBox::Ok,
+        QMessageBox::Ok);
+
+    if (reply == QMessageBox::Ok) {
+        QDesktopServices::openUrl(QUrl(url));
+    }
+}
 
 void BitcoinGUI::gotoGovernancePage()
 {
@@ -1025,11 +1086,11 @@ void BitcoinGUI::gotoGovernancePage()
     if (walletFrame) walletFrame->gotoGovernancePage();
 }
 
-void BitcoinGUI::gotoPrivateSendPage()
+/*void BitcoinGUI::gotoPrivateSendPage()
 {
-    privateSendAction->setChecked(true);
+    privatesendAction->setChecked(true);
     if (walletFrame) walletFrame->gotoPrivateSendPage();
-}
+} */
 
 void BitcoinGUI::gotoOverviewPage()
 {
@@ -1433,6 +1494,7 @@ void BitcoinGUI::dragEnterEvent(QDragEnterEvent *event)
     // Accept only URIs
     if(event->mimeData()->hasUrls())
         event->acceptProposedAction();
+	
 }
 
 void BitcoinGUI::dropEvent(QDropEvent *event)
@@ -1569,6 +1631,43 @@ void BitcoinGUI::detectShutdown()
         qApp->quit();
     }
 }
+
+
+// Governance - Check to see if we should submit a proposal
+  /*  nProposalModulus++;
+    if (nProposalModulus % 15 == 0 && !fLoadingIndex)
+    {
+        nProposalModulus = 0;
+		if (!msURL.empty())
+		{
+			QString qNav = GUIUtil::TOQS(msURL);
+			msURL = std::string();
+			QDesktopServices::openUrl(QUrl(qNav));
+		}
+        if (fProposalNeedsSubmitted)
+        {
+            nProposalModulus = 0;
+            if(masternodeSync.IsSynced() && chainActive.Tip() && chainActive.Tip()->nHeight > (nProposalPrepareHeight + 6))
+            {
+                fProposalNeedsSubmitted = false;
+                std::string sError;
+                std::string sGovObj;
+                bool fSubmitted = SubmitProposalToNetwork(uTxIdFee, nProposalStartTime, msProposalHex, sError, sGovObj);
+				if (!sError.empty())
+				{
+					LogPrintf("Proposal Submission Problem: %s ", sError);
+				}
+                msProposalResult = fSubmitted ? "Submitted Proposal Successfully <br>( " + sGovObj + " )" : sError;
+                LogPrintf(" Proposal Submission Result:  %s  \n", msProposalResult.c_str());
+            }
+            else
+            {
+                msProposalResult = "Waiting for block " + RoundToString(nProposalPrepareHeight + 6, 0) + " to submit pending proposal. ";
+            }
+        }
+    }
+} */
+
 
 void BitcoinGUI::showProgress(const QString &title, int nProgress)
 {
