@@ -5,7 +5,7 @@
 #include "spork.h"
 #include "utilmoneystr.h"
 #include "masternode-payments.h"
-#include "masternodeconfig.h"
+#include "masternode-utils.h"
 #include "activemasternode.h"
 #include "governance-classes.h"
 #include "masternode-sync.h"
@@ -26,7 +26,7 @@
 
 extern CWallet* pwalletMain;
 
-const std::string CURRENCY_NAME = "IMAGECOIN";
+const std::string CURRENCY_NAME = "HelpTheHomelessCoin";
 
 std::string GetSANDirectory2()
 {
@@ -192,7 +192,7 @@ int64_t GetDCCFileAge()
 
 int GetWCGMemberID(std::string sMemberName, std::string sAuthCode, double& nPoints)
 {
-	std::string sDomain = "https://www.worldcommunitygrid.org";
+	std::string sDomain = "https://www.helpthehomelessworldwide.org";
 	std::string sRestfulURL = "verifyMember.do?name=" + sMemberName + "&code=" + sAuthCode;
 	//std::string sResponse = HTTPSPost(true, 0, "", "", "", sDomain, sRestfulURL, 443, "", 12, 14000, 1);
 	std::string sResponse;
