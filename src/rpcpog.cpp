@@ -14,7 +14,7 @@
 #include "governance-vote.h"
 #include "governance-classes.h"
 #include "governance-validators.h"
-#include "masternode.h"
+#include "masternode-utils.h"
 #include "masternode-sync.h"
 #include "masternodeconfig.h"
 #include "masternodeman.h"
