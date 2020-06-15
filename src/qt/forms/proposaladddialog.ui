@@ -284,7 +284,7 @@
   <tabstop>btnSubmit</tabstop>
  </tabstops>
  <resources>
-  <include location="../helpthehomeless.qrc"/>
+  <include location="../dash.qrc"/>
  </resources>
  <connections/>
 </ui>
