@@ -343,7 +343,6 @@ libhelpthehomeless_server_a_SOURCES = \
   validation.cpp \
   validationinterface.cpp \
   versionbits.cpp \
-  masternodeman.cpp \
   $(BITCOIN_CORE_H)
 
 if ENABLE_ZMQ
@@ -354,6 +353,7 @@ libhelpthehomeless_zmq_a_SOURCES = \
   zmq/zmqnotificationinterface.cpp \
   zmq/zmqpublishnotifier.cpp
 endif
+
 
 # wallet: shared between helpthehomelessd and helpthehomeless-qt, but only linked
 # when wallet enabled
@@ -370,7 +370,7 @@ libhelpthehomeless_wallet_a_SOURCES = \
   wallet/wallet.cpp \
   wallet/walletdb.cpp \
   rpcpodc.cpp \
-  rpcpog.cpp
+  rpcpog.cpp \
   $(BITCOIN_CORE_H)
 
 # crypto primitives library
@@ -658,6 +658,7 @@ DISTCLEANFILES = obj/build.h
 
 EXTRA_DIST = $(CTAES_DIST)
 EXTRA_DIST += $(IMMER_DIST)
+
 
 config/helpthehomeless-config.h: config/stamp-h1
 	@$(MAKE) -C $(top_builddir) $(subdir)/$(@)
