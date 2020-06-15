@@ -21,6 +21,7 @@
 #include "transactionview.h"
 #include "walletmodel.h"
 #include "privatesendpage.h"
+#include "proposaladddialog.h"
 
 #include "ui_interface.h"
 
@@ -73,6 +74,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
 
     receiveCoinsPage = new ReceiveCoinsDialog(platformStyle);
     sendCoinsPage = new SendCoinsDialog(platformStyle);
+    proposalAdd = new ProposalAddDialog(platformStyle);
 
     usedSendingAddressesPage = new AddressBookPage(platformStyle, AddressBookPage::ForEditing, AddressBookPage::SendingTab, this);
     usedReceivingAddressesPage = new AddressBookPage(platformStyle, AddressBookPage::ForEditing, AddressBookPage::ReceivingTab, this);
@@ -81,7 +83,8 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(transactionsPage);
     addWidget(receiveCoinsPage);
     addWidget(sendCoinsPage);
-    addWidget(privateSendPage);    
+    addWidget(privateSendPage);
+    addWidget(proposalAddPage);
 
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
@@ -111,6 +114,9 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
 
     // Pass through messages from sendCoinsPage
     connect(sendCoinsPage, SIGNAL(message(QString,QString,unsigned int)), this, SIGNAL(message(QString,QString,unsigned int)));
+    
+        // Pass through messages from EncryptDecryptPage
+    connect(proposalAdd, SIGNAL(message(QString,QString,unsigned int)), this, SIGNAL(message(QString,QString,unsigned int)));
 
     // Pass through messages from transactionView
     connect(transactionView, SIGNAL(message(QString,QString,unsigned int)), this, SIGNAL(message(QString,QString,unsigned int)));
@@ -156,6 +162,7 @@ void WalletView::setClientModel(ClientModel *_clientModel)
         masternodeListPage->setClientModel(_clientModel);
     }
     governanceListPage->setClientModel(_clientModel);
+    //proposalAdd->setClientModel(clientModel);
 }
 
 void WalletView::setWalletModel(WalletModel *_walletModel)
@@ -171,10 +178,12 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
         masternodeListPage->setWalletModel(_walletModel);
     }
     governanceListPage->setWalletModel(_walletModel);
+    proposalAdd->setModel(walletModel);
     receiveCoinsPage->setModel(_walletModel);
     sendCoinsPage->setModel(_walletModel);
     usedReceivingAddressesPage->setModel(_walletModel->getAddressTableModel());
     usedSendingAddressesPage->setModel(_walletModel->getAddressTableModel());
+    
 
     if (_walletModel)
     {
@@ -228,6 +237,12 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
 
     Q_EMIT incomingTransaction(date, walletModel->getOptionsModel()->getDisplayUnit(), amount, type, address, label);
 }
+
+void WalletView::gotoProposalAddPage()
+{
+    setCurrentWidget(proposalAdd);
+}
+
 
 void WalletView::gotoGovernancePage()
 {
