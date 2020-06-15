@@ -161,7 +161,6 @@ void WalletView::setClientModel(ClientModel *_clientModel)
         masternodeListPage->setClientModel(_clientModel);
     }
     governanceListPage->setClientModel(_clientModel);
-    proposalPage->setClientModel(_clientModel);
     
 }
 
@@ -177,7 +176,6 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
         masternodeListPage->setWalletModel(_walletModel);
     }
-    proposalPage->setWalletModel(_walletModel);
     governanceListPage->setWalletModel(_walletModel);
     receiveCoinsPage->setModel(_walletModel);
     sendCoinsPage->setModel(_walletModel);
