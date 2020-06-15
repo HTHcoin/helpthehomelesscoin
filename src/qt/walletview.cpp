@@ -21,7 +21,7 @@
 #include "transactionview.h"
 #include "walletmodel.h"
 #include "privatesendpage.h"
-#include "proposalpage.h"
+#include "proposaladddialog.h"
 
 #include "ui_interface.h"
 
@@ -236,7 +236,7 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
     Q_EMIT incomingTransaction(date, walletModel->getOptionsModel()->getDisplayUnit(), amount, type, address, label);
 }
 
-void WalletView::gotoProposalPage()
+void WalletView::gotoProposalAddPage()
 {
    setCurrentWidget(proposalPage);
 } 
