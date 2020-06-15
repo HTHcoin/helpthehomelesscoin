@@ -8,7 +8,7 @@
 #include "amount.h"
 #include "masternodelist.h"
 #include "governancelist.h"
-#include "proposaladddialog.h"
+#include "proposaladd.h"
 
 
 #include <QStackedWidget>
@@ -25,7 +25,7 @@ class WalletModel;
 class AddressBookPage;
 class PrivateSendPage;
 class GovernancePage;
-class ProposalAddDialog;
+class ProposalAdd;
 
 
 
@@ -76,7 +76,7 @@ private:
     MasternodeList *masternodeListPage;
     PrivateSendPage *privateSendPage;
     GovernanceList *governanceListPage;
-    ProposalAddDialog *proposalAddPage;
+    ProposalAdd *proposalAddPage;
     
     TransactionView *transactionView;
 
