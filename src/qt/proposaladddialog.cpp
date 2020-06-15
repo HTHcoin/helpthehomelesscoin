@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "proposalpage.h"
-#include "ui_proposalpage.h"
+#include "proposaladddialog.h"
+#include "ui_proposaladddialog.h"
 #include "addressbookpage.h"
 #include "addresstablemodel.h"
 #include "bitcoinunits.h"
@@ -29,9 +29,9 @@
 #include <QScrollBar>
 #include <QTextDocument>
 
-ProposalPage::ProposalPage(const PlatformStyle *platformStyle,  QWidget *parent) :
+ProposalAddDialog::ProposalAddDialog(const PlatformStyle *platformStyle, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::ProposalPage),
+    ui(new Ui::ProposalAddDialog),
     model(0),
     platformStyle(platformStyle)
 {
@@ -41,7 +41,7 @@ ProposalPage::ProposalPage(const PlatformStyle *platformStyle,  QWidget *parent)
     if (!platformStyle->getImagesOnButtons()) {
         ui->btnSubmit->setIcon(QIcon());
     } else {
-        ui->btnSubmit->setIcon(QIcon(":/icons/" + theme + "/about"));
+        ui->btnSubmit->setIcon(QIcon(":/icons/" + theme + "/receiving_addresses"));
     }
 
 	ui->cmbExpenseType->clear();
@@ -53,7 +53,7 @@ ProposalPage::ProposalPage(const PlatformStyle *platformStyle,  QWidget *parent)
  }
 
 
-void ProposalPage::UpdateDisplay()
+void ProposalAddDialog::UpdateDisplay()
 {
 	int nNextHeight = GetNextSuperblock();
 
@@ -72,7 +72,7 @@ void ProposalPage::UpdateDisplay()
 }
 
 
-void ProposalPage::setModel(WalletModel *model)
+void ProposalAddDialog::setModel(WalletModel *model)
 {
     this->model = model;
 
@@ -82,12 +82,12 @@ void ProposalPage::setModel(WalletModel *model)
     }
 }
 
-ProposalPage::~ProposalPage()
+ProposalAddDialog::~ProposalAddDialog()
 {
     delete ui;
 }
 
-void ProposalPage::clear()
+void ProposalAddDialog::clear()
 {
     ui->txtName->setText("");
     ui->txtURL->setText("");
@@ -96,7 +96,7 @@ void ProposalPage::clear()
 }
 
 
-void ProposalPage::on_btnSubmit_clicked()
+void ProposalAddDialog::on_btnSubmit_clicked()
 {
     if(!model || !model->getOptionsModel())
         return;
