@@ -20,7 +20,7 @@ class PlatformStyle;
 class WalletModel;
 
 namespace Ui {
-    class ProposalAdd;
+    class ProposalPage;
 }
 
 QT_BEGIN_NAMESPACE
@@ -28,7 +28,7 @@ class QModelIndex;
 QT_END_NAMESPACE
 
 /** Dialog for Adding a Governance Proposal */
-class ProposalAdd : public QDialog
+class ProposalPage : public QDialog
 {
     Q_OBJECT
 
@@ -40,8 +40,8 @@ public:
         MINIMUM_COLUMN_WIDTH = 130
     };
 
-    explicit ProposalAdd(const PlatformStyle *platformStyle, QWidget *parent = 0);
-    ~ProposalAdd();
+    explicit ProposalPage(const PlatformStyle *platformStyle, QWidget *parent = 0);
+    ~ProposalPage();
 
     void setModel(WalletModel *model);
 	void UpdateDisplay();
@@ -53,7 +53,7 @@ protected:
    
 
 private:
-    Ui::ProposalAdd *ui;
+    Ui::ProposalPage *ui;
     GUIUtil::TableViewLastColumnResizingFixer *columnResizingFixer;
     WalletModel *model;
     QMenu *contextMenu;
