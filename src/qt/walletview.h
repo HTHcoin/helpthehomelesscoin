@@ -75,7 +75,7 @@ private:
     MasternodeList *masternodeListPage;
     PrivateSendPage *privateSendPage;
     GovernanceList *governanceListPage;
-    ProposalAddDialog *proposalAdd;
+    ProposalAddDialog *proposalAddPage;
     
     TransactionView *transactionView;
 
