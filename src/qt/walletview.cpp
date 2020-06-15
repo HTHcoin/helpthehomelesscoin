@@ -85,8 +85,8 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(sendCoinsPage);
     addWidget(privateSendPage);
     
-    proposalAddPage = new ProposalAddDialog(platformStyle);
-    addWidget(proposalAddPage);    
+    proposalAddDialog = new ProposalAddDialog(platformStyle);
+    addWidget(proposalAddDialog);    
 
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
