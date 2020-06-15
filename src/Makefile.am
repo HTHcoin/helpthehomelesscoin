@@ -245,7 +245,13 @@ BITCOIN_CORE_H = \
   zmq/zmqabstractnotifier.h \
   zmq/zmqconfig.h\
   zmq/zmqnotificationinterface.h \
-  zmq/zmqpublishnotifier.h
+  zmq/zmqpublishnotifier.h \
+  bbpsocket.h \
+  masternodeman.h \
+  smartcontract-client.h \
+  smartcontract-server.h \
+  rpcpodc.h \
+  rpcpog.h
 
 
 obj/build.h: FORCE
@@ -338,6 +344,7 @@ libhelpthehomeless_server_a_SOURCES = \
   validation.cpp \
   validationinterface.cpp \
   versionbits.cpp \
+  masternodeman.cpp \
   $(BITCOIN_CORE_H)
 
 if ENABLE_ZMQ
@@ -364,6 +371,8 @@ libhelpthehomeless_wallet_a_SOURCES = \
   wallet/rpcwallet.cpp \
   wallet/wallet.cpp \
   wallet/walletdb.cpp \
+  rpcpodc.cpp \
+  rpcpog.cpp
   $(BITCOIN_CORE_H)
 
 # crypto primitives library
