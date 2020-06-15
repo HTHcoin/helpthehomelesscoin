@@ -75,6 +75,8 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
 
     receiveCoinsPage = new ReceiveCoinsDialog(platformStyle);
     sendCoinsPage = new SendCoinsDialog(platformStyle);
+    proposalsPage = new Proposals(platformStyle);
+    proposalAddDialog = new ProposalAddDialog(platformStyle);
     
 
     usedSendingAddressesPage = new AddressBookPage(platformStyle, AddressBookPage::ForEditing, AddressBookPage::SendingTab, this);
@@ -85,18 +87,16 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(receiveCoinsPage);
     addWidget(sendCoinsPage);
     addWidget(privateSendPage);
-    
-    proposalAddDialog = new ProposalAddDialog(platformStyle);
+    addWidget(proposalsPage);
     addWidget(proposalAddDialog);    
+       
 
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
         masternodeListPage = new MasternodeList(platformStyle);
         addWidget(masternodeListPage);
     }
-        governanceListPage = new GovernanceList(platformStyle);
-    addWidget(governanceListPage);
-        
+              
     // Clicking on a transaction on the overview pre-selects the transaction on the transaction history page
     connect(overviewPage, SIGNAL(transactionClicked(QModelIndex)), transactionView, SLOT(focusTransaction(QModelIndex)));
     connect(overviewPage, SIGNAL(outOfSyncWarningClicked()), this, SLOT(requestedSyncWarningInfo()));
@@ -161,7 +161,6 @@ void WalletView::setClientModel(ClientModel *_clientModel)
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
         masternodeListPage->setClientModel(_clientModel);
     }
-    governanceListPage->setClientModel(_clientModel);
     
 }
 
@@ -177,8 +176,8 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
         masternodeListPage->setWalletModel(_walletModel);
     }
-   /* proposalAddDialog->setModel(walletModel); */
-    governanceListPage->setWalletModel(_walletModel);
+    proposalsPage->setModel(walletModel);
+    proposalAddDialog->setModel(walletModel);
     receiveCoinsPage->setModel(_walletModel);
     sendCoinsPage->setModel(_walletModel);
     usedReceivingAddressesPage->setModel(_walletModel->getAddressTableModel());
@@ -244,10 +243,10 @@ void WalletView::gotoProposalAddDialog()
 }
 
 
-void WalletView::gotoGovernancePage()
+void WalletView::gotoProposalsListPage()
 {
     QSettings settings;
-    setCurrentWidget(governanceListPage);
+    setCurrentWidget(proposalsPage);
 }
 
 void WalletView::gotoPrivateSendPage()
