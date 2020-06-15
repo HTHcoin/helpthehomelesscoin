@@ -110,7 +110,7 @@ QT_MOC_CPP = \
   moc_rpcpog.cpp \
   moc_smartcontract-server.cpp \
   moc_smartcontract-client.cpp \
-  qt/moc_proposaladddialog.cpp \
+  qt/moc_proposaladddialog.cpp
 
 BITCOIN_MM = \
   qt/macdockiconhandler.mm \
