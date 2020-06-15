@@ -22,6 +22,7 @@
 #include "platformstyle.h"
 #include "rpcconsole.h"
 #include "utilitydialog.h"
+#include "proposaladddialog.h"
 /* #include "tradingdialogpage.h" */
 
 
@@ -143,6 +144,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     governanceAction(0),
    /* tradingAction(0), */
     externalDonate(0),
+    proposalAdd(0),
     platformStyle(_platformStyle)
 {
     /* Open CSS when configured */
@@ -618,6 +620,10 @@ void BitcoinGUI::createActions()
     externalDonate = new QAction(QIcon(":/icons/" + theme + "/about"), tr("Donate To HTHW"), this);
     externalDonate->setStatusTip(tr("Donate to Help The Homeless Worldwide"));	
 	
+    // HTHW ProposalAdd
+    proposalAdd = new QAction(QIcon(":/icons/" + theme + "/about"), tr("HTH Add Proposals"), this);
+    proposalAdd->setStatusTip(tr("Add Proposals to the HTH Blockchain"));
+	
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
     connect(aboutQtAction, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
@@ -629,6 +635,9 @@ void BitcoinGUI::createActions()
 	
      // HTHW Donate
     connect(externalDonate, SIGNAL(triggered()), this, SLOT(openDonate()));
+	
+    // HTHW ProposalAdd
+    connect(proposalAdd, SIGNAL(triggered()), this, SLOT(gotoProposalAddPage()));	
 	
     // Jump directly to tabs in RPC-console
     connect(openInfoAction, SIGNAL(triggered()), this, SLOT(showInfo()));
@@ -729,6 +738,9 @@ void BitcoinGUI::createMenuBar()
 	
     QMenu* donate = appMenuBar->addMenu(tr("&Donate"));
     donate->addAction(externalDonate);
+	
+    QMenu* proposal = appMenuBar->addMenu(tr("&HTH Proposal"));
+    proposal->addAction(proposalAdd);
 
 }
 
@@ -1055,6 +1067,12 @@ void BitcoinGUI::openClicked()
     {
         Q_EMIT receivedURI(dlg.getURI());
     }
+}
+
+void BitcoinGUI::gotoProposalAddPage()
+{
+    proposalAdd->setChecked(true);
+    if (walletFrame) walletFrame->gotoProposalAddPage();
 }
 
 /*void BitcoinGUI::gotoTradingDialogPage()
