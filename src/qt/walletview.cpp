@@ -178,7 +178,7 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
         masternodeListPage->setWalletModel(_walletModel);
     }
     governanceListPage->setWalletModel(_walletModel);
-    proposalAdd->setModel(walletModel);
+    /*proposalAdd->setModel(walletModel);*/
     receiveCoinsPage->setModel(_walletModel);
     sendCoinsPage->setModel(_walletModel);
     usedReceivingAddressesPage->setModel(_walletModel->getAddressTableModel());
