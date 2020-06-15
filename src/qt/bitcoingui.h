@@ -104,7 +104,7 @@ private:
 
     QMenuBar *appMenuBar;
     
-    QAction* proposalAdd;
+    QAction *proposalAddAction;
     QAction* externalDonate;
     QAction *governanceAction;
   /*  QAction *tradingAction; */
