@@ -176,7 +176,7 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
         masternodeListPage->setWalletModel(_walletModel);
     }
-    proposalAddPage->setModel(walletModel);
+    proposalAddDialog->setModel(walletModel);
     governanceListPage->setWalletModel(_walletModel);
     receiveCoinsPage->setModel(_walletModel);
     sendCoinsPage->setModel(_walletModel);
@@ -239,7 +239,7 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
 
 void WalletView::gotoProposalAddPage()
 {
-   setCurrentWidget(proposalAddPage);
+   setCurrentWidget(ProposalAddDialog);
 } 
 
 
