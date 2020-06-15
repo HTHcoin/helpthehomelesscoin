@@ -508,7 +508,7 @@ void BitcoinGUI::createActions()
 #else
         proposalAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
 #endif
-        tabGroup->addAction(tradingAction);
+        tabGroup->addAction(proposalAction);
         connect(proposalAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
         connect(proposalAction, SIGNAL(triggered()), this, SLOT(gotoProposalPage()));
 		
