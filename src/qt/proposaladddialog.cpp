@@ -41,7 +41,7 @@ ProposalAddDialog::ProposalAddDialog(const PlatformStyle *platformStyle, QWidget
     if (!platformStyle->getImagesOnButtons()) {
         ui->btnSubmit->setIcon(QIcon());
     } else {
-        ui->btnSubmit->setIcon(QIcon(":/icons/" + theme + "/receiving_addresses"));
+        ui->btnSubmit->setIcon(QIcon(":/icons/" + theme + "/about"));
     }
 
 	ui->cmbExpenseType->clear();
