@@ -18,9 +18,9 @@ extern CMasternodeMan mnodeman;
 class CMasternodeMan
 {
 public:
-    typedef std::pair<arith_uint256, CMasternode*> score_pair_t;
+    typedef std::pair<arith_uint256, CMasternodeMan*> score_pair_t;
     typedef std::vector<score_pair_t> score_pair_vec_t;
-    typedef std::pair<int, CMasternode> rank_pair_t;
+    typedef std::pair<int, CMasternodeMan> rank_pair_t;
     typedef std::vector<rank_pair_t> rank_pair_vec_t;
 
 private:
@@ -49,7 +49,7 @@ private:
     int nCachedBlockHeight;
 
     // map to hold all MNs
-    std::map<COutPoint, CMasternode> mapMasternodes;
+    std::map<COutPoint, CMasternodeMan> mapMasternodes;
     // who's asked for the Masternode list and the last time
     std::map<CNetAddr, int64_t> mAskedUsForMasternodeList;
     // who we asked for the Masternode list and the last time
@@ -76,7 +76,7 @@ private:
 
     friend class CMasternodeSync;
     /// Find an entry
-    CMasternode* Find(const COutPoint& outpoint);
+    CMasternodeMan* Find(const COutPoint& outpoint);
 
     bool GetMasternodeScores(const uint256& nBlockHash, score_pair_vec_t& vecMasternodeScoresRet, int nMinProtocol = 0);
 
@@ -124,7 +124,7 @@ public:
     CMasternodeMan();
 
     /// Add an entry
-    bool Add(CMasternode &mn);
+    bool Add(CMasternodeMan &mn);
 
     /// Ask (source) node for mnb
     void AskForMN(CNode *pnode, const COutPoint& outpoint, CConnman& connman);
@@ -158,7 +158,7 @@ public:
     void DsegUpdate(CNode* pnode, CConnman& connman);
 
     /// Versions of Find that are safe to use from outside the class
-    bool Get(const COutPoint& outpoint, CMasternode& masternodeRet);
+    bool Get(const COutPoint& outpoint, CMasternodeMan& masternodeRet);
     bool Has(const COutPoint& outpoint);
 
     bool GetMasternodeInfo(const COutPoint& outpoint, masternode_info_t& mnInfoRet);
