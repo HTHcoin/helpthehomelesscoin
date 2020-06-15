@@ -253,7 +253,6 @@ BITCOIN_CORE_H = \
   rpcpodc.h \
   rpcpog.h
 
-
 obj/build.h: FORCE
 	@$(MKDIR_P) $(builddir)/obj
 	@$(top_srcdir)/share/genbuild.sh $(abs_top_builddir)/src/obj/build.h \
@@ -356,7 +355,6 @@ libhelpthehomeless_zmq_a_SOURCES = \
   zmq/zmqpublishnotifier.cpp
 endif
 
-
 # wallet: shared between helpthehomelessd and helpthehomeless-qt, but only linked
 # when wallet enabled
 libhelpthehomeless_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
@@ -444,7 +442,6 @@ crypto_libhelpthehomeless_crypto_a_SOURCES = \
   crypto/SWIFFTX/sph_panama.h \
   crypto/SWIFFTX/lane.h \
   crypto/SWIFFTX/blake2s.h
-
 
 # consensus: shared between all executables that validate any consensus rules.
 libhelpthehomeless_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
@@ -661,7 +658,6 @@ DISTCLEANFILES = obj/build.h
 
 EXTRA_DIST = $(CTAES_DIST)
 EXTRA_DIST += $(IMMER_DIST)
-
 
 config/helpthehomeless-config.h: config/stamp-h1
 	@$(MAKE) -C $(top_builddir) $(subdir)/$(@)
