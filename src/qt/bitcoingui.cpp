@@ -510,7 +510,7 @@ void BitcoinGUI::createActions()
 #endif
         tabGroup->addAction(proposalAction);
         connect(proposalAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
-        connect(proposalAction, SIGNAL(triggered()), this, SLOT(gotoProposalAddPage()));
+        connect(proposalAction, SIGNAL(triggered()), this, SLOT(gotoProposalAddDialog()));
 		
     }
  /*   privatesendAction = new QAction(QIcon(":/icons/coinmix"), tr("&Private Send"), this);
@@ -1059,10 +1059,10 @@ void BitcoinGUI::openClicked()
 }
 
 
-void BitcoinGUI::gotoProposalAddPage()
+void BitcoinGUI::gotoProposalAddDialog()
 {
     proposalAction->setChecked(true);
-    if (walletFrame) walletFrame->gotoProposalAddPage();
+    if (walletFrame) walletFrame->gotoProposalAddDialog();
 }
 
 void BitcoinGUI::openDonate()
