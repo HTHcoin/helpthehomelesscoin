@@ -40,7 +40,7 @@ public:
         MINIMUM_COLUMN_WIDTH = 130
     };
 
-    explicit ProposalPage(const PlatformStyle *platformStyle, QWidget *parent = 0);
+    explicit ProposalPage(/*const PlatformStyle *platformStyle, */ QWidget *parent = 0);
     ~ProposalPage();
 
     void setModel(WalletModel *model);
