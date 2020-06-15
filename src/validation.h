@@ -198,6 +198,8 @@ extern std::string msProposalResult;
 
 extern std::map<uint256, int64_t> mapRejectedBlocks;
 
+extern std::map<std::pair<std::string, std::string>, std::pair<std::string, int64_t>> mvApplicationCache;
+
 extern std::atomic<bool> fDIP0001ActiveAtTip;
 
 struct Researcher;
