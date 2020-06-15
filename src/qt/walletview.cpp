@@ -22,6 +22,7 @@
 #include "walletmodel.h"
 #include "privatesendpage.h"
 #include "proposaladddialog.h"
+#include "proposals.h"
 
 #include "ui_interface.h"
 
@@ -76,7 +77,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     receiveCoinsPage = new ReceiveCoinsDialog(platformStyle);
     sendCoinsPage = new SendCoinsDialog(platformStyle);
     proposalsPage = new Proposals(platformStyle);
-    proposalAddDialog = new ProposalAddDialog(platformStyle);
+    proposalAddPage = new ProposalAddDialog(platformStyle);
     
 
     usedSendingAddressesPage = new AddressBookPage(platformStyle, AddressBookPage::ForEditing, AddressBookPage::SendingTab, this);
@@ -88,7 +89,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(sendCoinsPage);
     addWidget(privateSendPage);
     addWidget(proposalsPage);
-    addWidget(proposalAddDialog);    
+    addWidget(proposalAddPage);    
        
 
     QSettings settings;
@@ -176,8 +177,8 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
         masternodeListPage->setWalletModel(_walletModel);
     }
-    proposalsPage->setModel(walletModel);
-    proposalAddDialog->setModel(walletModel);
+   proposalsPage->setModel(walletModel);
+    proposalAddPage->setModel(walletModel);
     receiveCoinsPage->setModel(_walletModel);
     sendCoinsPage->setModel(_walletModel);
     usedReceivingAddressesPage->setModel(_walletModel->getAddressTableModel());
@@ -237,16 +238,14 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
     Q_EMIT incomingTransaction(date, walletModel->getOptionsModel()->getDisplayUnit(), amount, type, address, label);
 }
 
-void WalletView::gotoProposalAddDialog()
-{
-    setCurrentWidget(proposalAddDialog);
-}
-
-
 void WalletView::gotoProposalsListPage()
 {
-    QSettings settings;
     setCurrentWidget(proposalsPage);
+}
+
+void WalletView::gotoProposalAddPage()
+{
+    setCurrentWidget(proposalAddPage);
 }
 
 void WalletView::gotoPrivateSendPage()
