@@ -30,10 +30,9 @@
 #include <QTextDocument>
 
 ProposalAddDialog::ProposalAddDialog(const PlatformStyle *platformStyle, QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::ProposalAddDialog),
-    model(0),
-    platformStyle(platformStyle)
+    ui(new Ui::ProposalAddDialog)
+{
+    ui->setupUi(this);
 {
     ui->setupUi(this);
     QString theme = GUIUtil::getThemeName();
