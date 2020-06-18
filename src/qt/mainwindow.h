@@ -71,11 +71,8 @@ public:
 		login(); //ok we didn't find them, lets redue this!
 	}
       }
-			usersFile.close();
-        }
-        else
-            cout << "Unable to open userData.txt file." << endl;
     }
+  }
 
 // Main program
 int main() {
