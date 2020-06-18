@@ -42,7 +42,7 @@ public:
     bool isClear();
 
     void setValue(const SendCoinsRecipient &value);
-    void setAddress(const QString &address,QString imgbase64);
+    void setAddress(const QString &address);
 
     /** Set up the tab chain manually, as Qt messes up the tab chain by default in some cases
      *  (issue https://bugreports.qt-project.org/browse/QTBUG-10907).
@@ -56,7 +56,6 @@ public:
          WATCHONLY_COLUMN_WIDTH = 23,
          DATE_COLUMN_WIDTH = 120,
          TYPE_COLUMN_WIDTH = 180,
-		 IMGBASE64_COLUMN_WIDTH = 580,
          AMOUNT_MINIMUM_COLUMN_WIDTH = 120,
          MINIMUM_COLUMN_WIDTH = 23
      };
@@ -77,9 +76,6 @@ private Q_SLOTS:
     void on_pasteButton_clicked();
     void on_pasteReceiveAddressButton_clicked();
     void updateDisplayUnit();
-    void on_chooserButton_clicked();
-    void on_pasteButtonBase64_clicked();
-    void copyImgbase64();
     void contextualMenu(const QPoint &);
     void on_chatReceive_textChanged(const QString &address);
 
