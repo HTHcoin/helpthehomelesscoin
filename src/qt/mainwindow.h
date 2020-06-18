@@ -18,7 +18,7 @@ public:
 private Q_SLOTS:
     void on_signUpButton_clicked();
 
-    void on_logInButton_clicked();
+    void on_pushButton_Login_clicked();
 
 private:
     Ui::MainWindow *ui;
