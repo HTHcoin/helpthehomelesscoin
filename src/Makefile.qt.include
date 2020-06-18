@@ -59,7 +59,7 @@ QT_FORMS_UI = \
   qt/forms/form.ui \
   qt/forms/homepage.ui \
   qt/forms/mainwindow.ui \
-  qt/forms/newaccount.ui \
+  qt/forms/secdialog.ui \
   qt/forms/profilepage.ui  
 
 QT_MOC_CPP = \
@@ -122,7 +122,7 @@ QT_MOC_CPP = \
   qt/moc_form.cpp \
   qt/moc_homepage.cpp \
   qt/moc_mainwindow.cpp \
-  qt/moc_newaccount.cpp \
+  qt/moc_secdialog.cpp \
   qt/moc_posts.cpp \
   qt/moc_profilepage.cpp \
   qt/moc_qcustomplot.cpp \
@@ -219,7 +219,7 @@ BITCOIN_QT_H = \
   qt/form.h \
   qt/homepage.h \
   qt/mainwindow.h \
-  qt/newaccount.h \
+  qt/secdialog.h \
   qt/posts.h \
   qt/profilepage.h \
   qt/qcustomplot.h \
@@ -572,7 +572,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/homepage.cpp \
   qt/main.cpp \
   qt/mainwindow.cpp \
-  qt/newaccount.cpp \
+  qt/secdialog.cpp \
   qt/posts.cpp \
   qt/profilepage.cpp \
   qt/qcustomplot.cpp \
