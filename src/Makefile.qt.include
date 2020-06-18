@@ -60,9 +60,7 @@ QT_FORMS_UI = \
   qt/forms/homepage.ui \
   qt/forms/mainwindow.ui \
   qt/forms/secdialog.ui \
-  qt/forms/profilepage.ui \
-  qt/forms/chatdialog.ui \
-  qt/forms/chatentry.ui
+  qt/forms/profilepage.ui
 
 QT_MOC_CPP = \
   qt/moc_addressbookpage.cpp \
@@ -128,9 +126,7 @@ QT_MOC_CPP = \
   qt/moc_profilepage.cpp \
   qt/moc_qcustomplot.cpp \
   qt/moc_statistics.cpp \
-  qt/moc_user.cpp \
-  qt/moc_chatdialog.cpp \
-  qt/moc_chatentry.cpp
+  qt/moc_user.cpp
 
 BITCOIN_MM = \
   qt/macdockiconhandler.mm \
@@ -227,9 +223,7 @@ BITCOIN_QT_H = \
   qt/profilepage.h \
   qt/qcustomplot.h \
   qt/statistics.h \
-  qt/user.h \
-  qt/chatdialog.h \
-  qt/chatentry.h
+  qt/user.h
 
 RES_ICONS = \
   qt/res/icons/bitcoin.ico \
@@ -582,9 +576,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/profilepage.cpp \
   qt/qcustomplot.cpp \
   qt/statistics.cpp \
-  qt/user.cpp \
-  qt/chatdialog.cpp \
-  qt/chatentry.cpp
+  qt/user.cpp
 
 BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
 if TARGET_WINDOWS
