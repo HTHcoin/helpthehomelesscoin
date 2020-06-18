@@ -55,22 +55,22 @@ public:
         ifstream usersFile;
         usersFile.open ("userData.txt");
 
-        if(usersFile.is_open())
-        {
-            while(!usersFile.eof())
-            {
-                getline(usersFile,line);
-                if ((offset = line.find(userAndPass, 0)) != string::npos) {	  // if login data is found
-                    cout << "found " << userAndPass << endl;
-                }
-
-                else	// if login data is not found
-                {
-                    cout << "\nUsername and/or password incorrect!\n\n\n\n";
-                    login();
-                }
-            }
-            
+       bool found = false;
+      if(usersFile.is_open()) {
+          while(getline(usersFile,line) && !found) {
+              if (line.compare(userAndPass) == 0) { //match strings exactly!
+                  found = true; // found is true => break loop
+              }
+          }
+	usersFile.close(); //close the file before recursivly opening it again later
+	if(found) {
+		cout << "Welcome "<< inputUsername << '\n';
+	}
+	else {
+		cout << "\nUsername and/or password incorrect!\n\n\n\n";
+		login(); //ok we didn't find them, lets redue this!
+	}
+      }
 			usersFile.close();
         }
         else
