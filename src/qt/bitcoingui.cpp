@@ -602,10 +602,7 @@ void BitcoinGUI::createActions()
     // HTHW Donate
     externalDonate = new QAction(QIcon(":/icons/" + theme + "/about"), tr("Donate To HTHW"), this);
     externalDonate->setStatusTip(tr("Donate to Help The Homeless Worldwide"));	
-
-    connect(proposalAddAction, SIGNAL(triggered()), walletFrame, SLOT(gotoProposalAddPage()));
-    connect(proposalsListAction, SIGNAL(triggered()), walletFrame, SLOT(gotoProposalsListPage()));
-	
+ 	
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
     connect(aboutQtAction, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
