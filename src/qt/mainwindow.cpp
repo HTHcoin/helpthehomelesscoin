@@ -4,6 +4,7 @@
 #include <QDebug>
 #include "homepage.h"
 #include "QMessageBox"
+#include <QDialog>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
