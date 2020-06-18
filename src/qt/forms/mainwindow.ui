@@ -435,7 +435,7 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <widget class="QLabel" name="signUpLabel">
+         <widget class="QLabel" name="label_pic">
           <property name="text">
            <string>No account? Create one!</string>
           </property>
@@ -460,7 +460,7 @@
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_2">
             <item>
-             <widget class="QLabel" name="txtMail">
+             <widget class="QLabel" name="lineEdit_username">
               <property name="font">
                <font>
                 <pointsize>10</pointsize>
@@ -469,12 +469,12 @@
                </font>
               </property>
               <property name="text">
-               <string>Email</string>
+               <string>User Name</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="passwordLabel">
+             <widget class="QLabel" name="lineEdit_password">
               <property name="font">
                <font>
                 <pointsize>10</pointsize>
@@ -527,7 +527,7 @@
      <x>0</x>
      <y>0</y>
      <width>464</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
