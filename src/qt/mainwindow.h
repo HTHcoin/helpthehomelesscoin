@@ -8,7 +8,7 @@ namespace Ui {
 class MainWindow;
 }
  
-class MainWindow : public QDialog , private Ui::MainWindow
+class MainWindow : public QMainWindow
 
 {
     Q_OBJECT
