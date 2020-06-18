@@ -27,7 +27,7 @@ public:
     ~HomePage();
 
 
-public slots:
+public Q_SLOTS:
     QList<QString> search(QString x, QList<QString>& myList);
 
     void internalSearch(QString x, QList<QString> &myList, int begin, int end, QList<QString> &temp);
@@ -51,7 +51,7 @@ private:
 
     user *currentSessionUser;
 
-private slots:
+private Q_SLOTS:
 
     void viewPosts();
 
