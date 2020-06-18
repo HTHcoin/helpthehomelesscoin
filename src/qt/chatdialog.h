@@ -44,7 +44,7 @@ public:
      */
     QWidget *setupTabChain(QWidget *prev);
 
-    void setAddress(const QString &address, QString imgbase64);
+    void setAddress(const QString &address);
     void pasteEntry(const SendCoinsRecipient &rv);
     bool handlePaymentRequest(const SendCoinsRecipient &recipient);
 
