@@ -20,7 +20,7 @@ public:
 
     ProfilePage(int userID,QString userFile);
 
-private slots:
+private Q_SLOTS:
     void on_pushButton_2_clicked();
 
     void viewPosts();
@@ -36,7 +36,7 @@ private slots:
     void on_actionLog_out_triggered();
 
 
-public slots:
+public Q_SLOTS:
     void setCurrentSessionUser_Ptr(user *currentSessionUser_ptr);
 
     void on_Post_btn_clicked();
