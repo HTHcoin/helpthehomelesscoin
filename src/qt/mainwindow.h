@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
  
 #include <QMainWindow>
+#include <QDialog>
 #include "secdialog.h"
 namespace Ui {
 class MainWindow;
