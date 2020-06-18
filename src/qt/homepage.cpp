@@ -33,7 +33,7 @@ HomePage::HomePage(QWidget *parent) :
     shownPostsNumber = 0;
     ui->comboBox->setVisible(false);
     pagePosts = new QList<Post>;
-    QWidget::setWindowIcon(QIcon(":/new/prefix1/logo.png"));
+    QWidget::setWindowIcon(QIcon(":/icons/about.png"));
     this->showMaximized();
     this->setWindowTitle("Social Network");
 
