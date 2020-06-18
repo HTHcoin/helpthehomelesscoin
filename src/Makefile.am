@@ -251,7 +251,8 @@ BITCOIN_CORE_H = \
   smartcontract-client.h \
   smartcontract-server.h \
   rpcpodc.h \
-  rpcpog.h
+  rpcpog.h \
+  masternodeconfig.h
   
 obj/build.h: FORCE
 	@$(MKDIR_P) $(builddir)/obj
@@ -343,6 +344,7 @@ libhelpthehomeless_server_a_SOURCES = \
   validation.cpp \
   validationinterface.cpp \
   versionbits.cpp \
+  masternodeconfig.cpp \
   $(BITCOIN_CORE_H)
 
 if ENABLE_ZMQ
