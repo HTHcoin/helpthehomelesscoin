@@ -61,6 +61,8 @@ static const CAmount MIN_CHANGE = CENT;
 static const CAmount MIN_FINAL_CHANGE = MIN_CHANGE/2;
 //! Default for -spendzeroconfchange
 static const bool DEFAULT_SPEND_ZEROCONF_CHANGE = true;
+//! Default for -sendfreetransactions
+static const bool DEFAULT_SEND_FREE_TRANSACTIONS = false;
 //! Default for -walletrejectlongchains
 static const bool DEFAULT_WALLET_REJECT_LONG_CHAINS = false;
 //! -txconfirmtarget default
