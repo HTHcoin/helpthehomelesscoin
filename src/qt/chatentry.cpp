@@ -14,7 +14,6 @@
 #include "optionsmodel.h"
 #include "platformstyle.h"
 #include "walletmodel.h"
-#include "base64.h"
 
 #include <QApplication>
 #include <QClipboard>
@@ -131,12 +130,6 @@ void ChatEntry::on_pasteReceiveAddressButton_clicked()
     ui->chatReceive->setText(QApplication::clipboard()->text());
 }
 
-void ChatEntry::on_pasteButtonBase64_clicked()
-{
-    // Paste text from clipboard into recipient field
-    ui->Imgbase64Edit->setText(QApplication::clipboard()->text());
-}
-
 void ChatEntry::on_addressBookButton_clicked()
 {
     if(!model)
@@ -182,7 +175,6 @@ void ChatEntry::checkaddresstransactions(const QString &address)
 
 		  ui->chatTo->setDisabled(true);
 		  ui->chatReceive->setDisabled(true);
-          ui->Imgbase64Edit->setText("Start messaging using to address : " + ui->chatReceive->text() + " and me : " + ui->chatTo->text());
 		  transactionProxyModel = new TransactionFilterProxy(this);
 		  transactionProxyModel->setAddressPrefix(ui->chatTo->text(),ui->chatReceive->text());
 		  transactionProxyModel->setSourceModel(model->getTransactionTableModel());
@@ -193,14 +185,6 @@ void ChatEntry::checkaddresstransactions(const QString &address)
 		   ui->chattableView->setTabKeyNavigation(false);
 		   ui->chattableView->setContextMenuPolicy(Qt::CustomContextMenu);
 		   ui->chattableView->installEventFilter(this);
-
-		   QAction *copyImgbase64Action = new QAction(tr("Copy "), this);
-
-		   contextMenu = new QMenu(this);
-
-		   contextMenu->addAction(copyImgbase64Action);
-
-		   connect(copyImgbase64Action, SIGNAL(triggered()), this, SLOT(copyImgbase64()));
 
 		   connect(ui->chattableView, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(contextualMenu(QPoint)));
 
@@ -218,7 +202,6 @@ void ChatEntry::checkaddresstransactions(const QString &address)
 		   //transactionView->setColumnWidth(TransactionTableModel::Watchonly, WATCHONLY_COLUMN_WIDTH);
 		   transactionView->setColumnWidth(TransactionTableModel::Date, DATE_COLUMN_WIDTH);
 		   transactionView->setColumnWidth(TransactionTableModel::Type, TYPE_COLUMN_WIDTH);
-		   transactionView->setColumnWidth(TransactionTableModel::Imgbase64, IMGBASE64_COLUMN_WIDTH);
 		   //transactionView->setColumnWidth(TransactionTableModel::Amount, AMOUNT_MINIMUM_COLUMN_WIDTH);
 		      // Actions
 
@@ -260,8 +243,6 @@ void ChatEntry::clear()
     ui->chatTo->clear();
     //ui->addAsLabel->clear();
     //ui->payAmount->clear();
-    ui->Imgbase64Edit->clear();
-    ui->Imgbase64Edit->setEnabled(1);
     fileselectedchat=false;
     //ui->checkboxSubtractFeeFromAmount->setCheckState(Qt::Unchecked);
     ui->messageTextLabel->clear();
@@ -278,55 +259,6 @@ void ChatEntry::clear()
 
     // update the display unit, to not use the default ("BTC")
     updateDisplayUnit();
-}
-
-
-void ChatEntry::on_chooserButton_clicked()
-{
-	//clear
-
-	  ui->Imgbase64Edit->setStyleSheet("QLineEdit { background: rgb(255, 255, 255); selection-background-color: rgb(255, 128, 128); }");
-	  ui->Imgbase64Edit->setToolTip("Enter base64 string for this tx. ");
-
-    // Paste text from clipboard into recipient field
-    QFileDialog dialog(this);
-    dialog.setFileMode(QFileDialog::ExistingFiles);
-
-    //dialog.setViewMode(QFileDialog::List);
-    dialog.setOption(QFileDialog::DontUseNativeDialog, false);
-
-    if (dialog.exec()){
-    	QStringList fileNames = dialog.selectedFiles();
-
-         if(fileNames.size()>0){
-
-
-
-      	  QString file = fileNames[0];
-      	  ui->FileNamesTxt->setText(file);
-      	  std::string filestr = file.toUtf8().constData();
-      	  std::string encodedstring = base64chat.encode(filestr);
-      	  QString qsencoded = QString::fromStdString(encodedstring);
-
-        	if(!base64chat.base64Validator(encodedstring)){
-
-        		ui->Imgbase64Edit->setStyleSheet("QLineEdit { background: rgb(220, 20, 60); selection-background-color: rgb(233, 99, 0); }");
-        		ui->Imgbase64Edit->setToolTip("Base64 string not valid.");
-        		ui->Imgbase64Edit->setText("");
-        		 return;
-        	}
-        	if(qsencoded.size()>10000000)
-        	{
-        		 ui->Imgbase64Edit->setStyleSheet("QLineEdit { background: rgb(220, 20, 60); selection-background-color: rgb(233, 99, 0); }");
-        		 ui->Imgbase64Edit->setToolTip("Large file maxSize 8MB ");
-        		 ui->Imgbase64Edit->setText("");
-        		 return;
-        	}
-        	 fileselectedchat=true;
-        	 ui->Imgbase64Edit->setText(qsencoded);
-        	 ui->Imgbase64Edit->setDisabled(1);
-        }
-    }
 }
 
 void ChatEntry::deleteClicked()
@@ -359,39 +291,6 @@ bool ChatEntry::validate()
         retval = false;
     }
 
-
-    ui->Imgbase64Edit->setStyleSheet("QLineEdit { background: rgb(255, 255, 255); selection-background-color: rgb(255, 128, 128); }");
-    ui->Imgbase64Edit->setToolTip("Enter base64 string for this tx. ");
-    if (!ui->Imgbase64Edit->text().isEmpty())
-    {
-
-    	std::string imgbase64=ui->Imgbase64Edit->text().toUtf8().constData();
-
-
-    	if(fileselectedchat)
-    	{
-     	  if(!base64chat.base64Validator(imgbase64)){
-
-    		ui->Imgbase64Edit->setStyleSheet("QLineEdit { background: rgb(220, 20, 60); selection-background-color: rgb(233, 99, 0); }");
-    		ui->Imgbase64Edit->setToolTip("Base64 string not valid.");
-    		ui->Imgbase64Edit->setText("");
-    	    retval = false;
-    	  }
-        }
-
-
-    	if(ui->Imgbase64Edit->text().length()>10000000)
-    	{
-    		 ui->Imgbase64Edit->setStyleSheet("QLineEdit { background: rgb(220, 20, 60); selection-background-color: rgb(233, 99, 0); }");
-    		 ui->Imgbase64Edit->setToolTip("Large file maxSize 8MB ");
-    		 ui->Imgbase64Edit->setText("");
-    		 retval = false;
-    	}
-    }
-    else {
-    	 retval = false;
-    }
-
     if (!ui->payAmount->validate())
     {
         retval = false;
@@ -422,10 +321,6 @@ SendCoinsRecipient ChatEntry::getValue()
     // Normal payment
     recipient.address = ui->chatTo->text();
     //recipient.label = ui->addAsLabel->text();
-    recipient.imgbase64 = ui->Imgbase64Edit->text();
-    if(ui->Imgbase64Edit->text().size()>0 && !fileselectedchat){ //message
-    recipient.imgbase64 ="from:" + ui->chatReceive->text() + ":"+ ui->Imgbase64Edit->text();
-    }
     recipient.amount = ui->payAmount->value();
     recipient.message = ui->messageTextLabel->text();
     recipient.fSubtractFeeFromAmount = false;//(ui->checkboxSubtractFeeFromAmount->checkState() == Qt::Checked);
@@ -458,7 +353,6 @@ void ChatEntry::setValue(const SendCoinsRecipient &value)
             ui->chatTo->setText(recipient.address);
             //ui->memoTextLabel_is->setText(recipient.message);
             ui->payAmount_is->setValue(recipient.amount);
-            ui->Imgbase64Edit->setText(recipient.imgbase64);
             ui->payAmount->setValue(recipient.amount);
             ui->payAmount_is->setReadOnly(true);
             setCurrentWidget(ui->SendCoins_UnauthenticatedPaymentRequest);
@@ -470,7 +364,6 @@ void ChatEntry::setValue(const SendCoinsRecipient &value)
 
             ui->payAmount_s->setValue(recipient.amount);
             ui->payAmount_s->setReadOnly(true);
-            ui->Imgbase64Edit->setText(recipient.imgbase64);
             setCurrentWidget(ui->SendCoins_AuthenticatedPaymentRequest);
         }
     }
@@ -486,14 +379,12 @@ void ChatEntry::setValue(const SendCoinsRecipient &value)
         if (!recipient.label.isEmpty()) // if a label had been set from the addressbook, don't overwrite with an empty label
             ui->labelchatTo->setText(recipient.label);
         ui->payAmount->setValue(recipient.amount);
-        ui->Imgbase64Edit->setText(recipient.imgbase64);
     }
 }
 
-void ChatEntry::setAddress(const QString &address, QString imgbase64)
+void ChatEntry::setAddress(const QString &address)
 {
     ui->chatTo->setText(address);
-    if(!imgbase64.isNull()) ui->Imgbase64Edit->setText(imgbase64);
     //ui->payAmount->setFocus();
 }
 
@@ -550,9 +441,4 @@ void ChatEntry::contextualMenu(const QPoint &point)
     {
         contextMenu->exec(QCursor::pos());
     }
-}
-
-void ChatEntry::copyImgbase64()
-{
-    GUIUtil::copyEntryData(transactionView, 0, TransactionTableModel::Imgbase64Role);
 }
