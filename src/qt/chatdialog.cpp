@@ -16,7 +16,6 @@
 #include "chatentry.h"
 #include "walletmodel.h"
 
-#include "base58.h"
 #include "coincontrol.h"
 #include "validation.h" // mempool and minRelayTxFee
 #include "ui_interface.h"
@@ -515,7 +514,7 @@ QWidget *ChatDialog::setupTabChain(QWidget *prev)
     return ui->addButton;
 }
 
-void ChatDialog::setAddress(const QString &address, QString imgbase64)
+void ChatDialog::setAddress(const QString &address)
 {
     ChatEntry *entry = 0;
     // Replace the first entry if it is still unused
@@ -532,7 +531,7 @@ void ChatDialog::setAddress(const QString &address, QString imgbase64)
         entry = addEntry();
     }
 
-    entry->setAddress(address,imgbase64);
+    entry->setAddress(address);
 }
 
 void ChatDialog::pasteEntry(const SendCoinsRecipient &rv)
