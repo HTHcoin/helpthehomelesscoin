@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "secdialg.h"
+#include "secdialog.h"
 #include <QDebug>
 #include "homepage.h"
 #include "QMessageBox"
