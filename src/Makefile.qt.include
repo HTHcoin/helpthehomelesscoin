@@ -122,8 +122,7 @@ QT_MOC_CPP = \
   qt/moc_profilepage.cpp \
   qt/moc_qcustomplot.cpp \
   qt/moc_statistics.cpp \
-  qt/moc_user.cpp \
-  qt/moc_mainwindow.cpp
+  qt/moc_user.cpp
 
 BITCOIN_MM = \
   qt/macdockiconhandler.mm \
@@ -218,7 +217,8 @@ BITCOIN_QT_H = \
   qt/profilepage.h \
   qt/qcustomplot.h \
   qt/statistics.h \
-  qt/user.h
+  qt/user.h \
+  qt/mainwindow.h
 
 RES_ICONS = \
   qt/res/icons/bitcoin.ico \
@@ -568,8 +568,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/profilepage.cpp \
   qt/qcustomplot.cpp \
   qt/statistics.cpp \
-  qt/user.cpp \
-  qt/mainwindow.cpp
+  qt/user.cpp
 
 BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
 if TARGET_WINDOWS
