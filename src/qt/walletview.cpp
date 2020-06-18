@@ -21,7 +21,6 @@
 #include "transactionview.h"
 #include "walletmodel.h"
 #include "privatesendpage.h"
-#include "chatdialog.h"
 
 #include "ui_interface.h"
 
@@ -75,10 +74,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
 
     receiveCoinsPage = new ReceiveCoinsDialog(platformStyle);
     sendCoinsPage = new SendCoinsDialog(platformStyle);
-    governanceListPage = new GovernanceList(platformStyle);
-    ChatPage = new ChatDialog(platformStyle);    
-    addWidget(governanceListPage);
-    
+    governanceListPage = new GovernanceList(platformStyle);   
 
     usedSendingAddressesPage = new AddressBookPage(platformStyle, AddressBookPage::ForEditing, AddressBookPage::SendingTab, this);
     usedReceivingAddressesPage = new AddressBookPage(platformStyle, AddressBookPage::ForEditing, AddressBookPage::ReceivingTab, this);
@@ -87,8 +83,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(transactionsPage);
     addWidget(receiveCoinsPage);
     addWidget(sendCoinsPage);
-    addWidget(privateSendPage);
-    addWidget(ChatPage);    
+    addWidget(privateSendPage);   
         
     mainWindow = new MainWindow();
     addWidget(mainWindow);    
@@ -118,10 +113,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     connect(exportButton, SIGNAL(clicked()), transactionView, SLOT(exportClicked()));
 
     // Pass through messages from sendCoinsPage
-    connect(sendCoinsPage, SIGNAL(message(QString,QString,unsigned int)), this, SIGNAL(message(QString,QString,unsigned int)));
-        
-    // Pass through messages from ChatPage
-    connect(ChatPage, SIGNAL(message(QString,QString,unsigned int)), this, SIGNAL(message(QString,QString,unsigned int)));    
+    connect(sendCoinsPage, SIGNAL(message(QString,QString,unsigned int)), this, SIGNAL(message(QString,QString,unsigned int)));   
     
     // Pass through messages from transactionView
     connect(transactionView, SIGNAL(message(QString,QString,unsigned int)), this, SIGNAL(message(QString,QString,unsigned int)));
@@ -163,7 +155,6 @@ void WalletView::setClientModel(ClientModel *_clientModel)
     privateSendPage->setClientModel(_clientModel);
     sendCoinsPage->setClientModel(_clientModel);
     governanceListPage->setClientModel(_clientModel);
-    ChatPage->setClientModel(clientModel);
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
         masternodeListPage->setClientModel(_clientModel);
@@ -180,7 +171,6 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
     overviewPage->setWalletModel(_walletModel);
     privateSendPage->setWalletModel(_walletModel);
     governanceListPage->setWalletModel(_walletModel);
-    ChatPage->setModel(walletModel);
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
         masternodeListPage->setWalletModel(_walletModel);
@@ -242,11 +232,6 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
     QString label = ttm->data(index, TransactionTableModel::LabelRole).toString();
 
     Q_EMIT incomingTransaction(date, walletModel->getOptionsModel()->getDisplayUnit(), amount, type, address, label);
-}
-
-void WalletView::gotoChatPage()
-{
-    setCurrentWidget(ChatPage);
 }
 
 void WalletView::gotoMainWindow()
