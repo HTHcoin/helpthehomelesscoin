@@ -11,7 +11,7 @@
 #include <QMessageBox>
 #include <QPixmap>
 MainWindow::MainWindow(QWidget *parent) :
-     QDialog(parent),
+     QMainWindow(parent),
         ui(new Ui::MainWindow),
 {
     ui->setupUi(this);
