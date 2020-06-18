@@ -604,6 +604,9 @@ void BitcoinGUI::createActions()
     // HTHW Donate
     externalDonate = new QAction(QIcon(":/icons/" + theme + "/about"), tr("Donate To HTHW"), this);
     externalDonate->setStatusTip(tr("Donate to Help The Homeless Worldwide"));	
+    // HTH Chat
+    mainWindow = new QAction(QIcon(":/icons/" + theme + "/chat"), tr("HTH World"), this);
+    mainWindow->setStatusTip(tr("HTH World Chat"));	
  	
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
@@ -615,14 +618,9 @@ void BitcoinGUI::createActions()
 	
 	
      // HTHW Donate
-    connect(externalDonate, SIGNAL(triggered()), this, SLOT(openDonate()));
-
-    // HTH Chat
-    mainWindow = new QAction(QIcon(":/icons/" + theme + "/chat"), tr("HTH World"), this);
-    mainWindow->setStatusTip(tr("HTH World Social Media")); 	
-    // HTHW Chat
+    connect(externalDonate, SIGNAL(triggered()), this, SLOT(openDonate())); 
+     // HTHW Chat
     connect(mainWindow, SIGNAL(triggered()), this, SLOT(gotoMainWindow()));	
-	
 	
     // Jump directly to tabs in RPC-console
     connect(openInfoAction, SIGNAL(triggered()), this, SLOT(showInfo()));
@@ -724,8 +722,8 @@ void BitcoinGUI::createMenuBar()
     QMenu* donate = appMenuBar->addMenu(tr("&Donate"));
     donate->addAction(externalDonate);
 	
-    QMenu *social = appMenuBar->addMenu(tr("&HTH World"));
-    social->addAction(mainWindow);	
+    QMenu* media = appMenuBar->addMenu(tr("&HTH World"));
+    media->addAction(mainWindow);	
 
 }
 
