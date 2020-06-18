@@ -35,7 +35,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="pushButton_Login">
           <property name="font">
            <font>
             <family>Times New Roman</family>
@@ -158,7 +158,7 @@
          </layout>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="pushButton_Login">
           <property name="font">
            <font>
             <family>Times New Roman</family>
