@@ -50,6 +50,7 @@ CWallet* pwalletMain = NULL;
 CFeeRate payTxFee(DEFAULT_TRANSACTION_FEE);
 unsigned int nTxConfirmTarget = DEFAULT_TX_CONFIRM_TARGET;
 bool bSpendZeroConfChange = DEFAULT_SPEND_ZEROCONF_CHANGE;
+bool fSendFreeTransactions = DEFAULT_SEND_FREE_TRANSACTIONS;
 bool bBIP69Enabled = true;
 CAmount collateralAmount = 1000000;
 
@@ -3731,6 +3732,7 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend, CWalletT
             strFailReason = _("Transaction has too long of a mempool chain");
             return false;
         }
+        if (!fUseInstantSend && fSendFreeTransactions && nBytes <= MAX_FREE_TRANSACTION_CREATE_SIZE)
     }
     return true;
 }
