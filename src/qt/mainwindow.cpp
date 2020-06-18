@@ -12,10 +12,8 @@
 #include <QPixmap>
 MainWindow::MainWindow(QWidget *parent) :
      QDialog(parent),
-        walletModel(0),
         ui(new Ui::MainWindow),
-        model(0)
-    {
+{
     ui->setupUi(this);
     QPixmap pix(":/icons/chat.png");
     int w = ui->label_pic->width();
