@@ -117,7 +117,6 @@ QT_MOC_CPP = \
   qt/moc_addcomment.cpp \
   qt/moc_adminwindow.cpp \
   qt/moc_comment.cpp \
-  qt/moc_dialog.cpp \
   qt/moc_fileman.cpp \
   qt/moc_form.cpp \
   qt/moc_homepage.cpp \
