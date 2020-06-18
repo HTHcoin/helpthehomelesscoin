@@ -43,7 +43,6 @@
 
 #include <string>
 
-base64 base64chat;
 typedef unsigned char BYTE;
 
 bool fileselectedchat=false;
@@ -70,8 +69,6 @@ ChatEntry::ChatEntry(const PlatformStyle *platformStyle, QWidget *parent) :
     ui->deleteButton->setIcon(QIcon(":/icons/" + theme + "/remove"));
     ui->deleteButton_is->setIcon(QIcon(":/icons/" + theme + "/remove"));
     ui->deleteButton_s->setIcon(QIcon(":/icons/" + theme + "/remove"));
-    //ui->pasteButtonBase64->setIcon(QIcon(":/icons/" + theme + "/editpaste"));
-    ui->Imgbase64Edit->setMaxLength(10000000);
 
     //receive address icons
 
@@ -208,7 +205,7 @@ void ChatEntry::checkaddresstransactions(const QString &address)
 
 		   connect(transactionView->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), this, SLOT(computeSum()));
 
-		   columnResizingFixer = new GUIUtil::TableViewLastColumnResizingFixer(transactionView, IMGBASE64_COLUMN_WIDTH, MINIMUM_COLUMN_WIDTH, this);
+		   columnResizingFixer = new GUIUtil::TableViewLastColumnResizingFixer(transactionView,MINIMUM_COLUMN_WIDTH, this);
 
 
 		   // show/hide column Watch-only
