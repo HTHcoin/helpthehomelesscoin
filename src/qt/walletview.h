@@ -26,6 +26,7 @@ class AddressBookPage;
 class PrivateSendPage;
 class GovernancePage;
 class MainWindow;
+class ChatDialog;
 
 
 
@@ -77,6 +78,7 @@ private:
     PrivateSendPage *privateSendPage;
     GovernanceList *governanceListPage;
     MainWindow *mainWindow;
+    ChatDialog *ChatPage;
     
     TransactionView *transactionView;
 
@@ -86,6 +88,8 @@ private:
 
 public Q_SLOTS:
   
+    /** Switch to chat page */
+    void gotoChatPage(); 
     /** Switch to social media page */
     void gotoMainWindow();
     /** Switch to governance page */
