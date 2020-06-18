@@ -13,7 +13,7 @@
 #include "QPushButton"
 #include <vector>
 #include "posts.h"
-#include "Qstring"
+#include "QString"
 #include <QTextBrowser>
 #include "QFontMetrics"
 #include "QGroupBox"
