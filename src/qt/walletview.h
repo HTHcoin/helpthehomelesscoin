@@ -8,7 +8,7 @@
 #include "amount.h"
 #include "masternodelist.h"
 #include "governancelist.h"
-#inlcude "mainwindow.h"
+#include "mainwindow.h"
 
 
 #include <QStackedWidget>
