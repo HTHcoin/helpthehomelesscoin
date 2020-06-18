@@ -21,8 +21,6 @@
 #include "transactionview.h"
 #include "walletmodel.h"
 #include "privatesendpage.h"
-#include "proposaladddialog.h"
-#include "proposals.h"
 
 #include "ui_interface.h"
 
@@ -76,8 +74,8 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
 
     receiveCoinsPage = new ReceiveCoinsDialog(platformStyle);
     sendCoinsPage = new SendCoinsDialog(platformStyle);
-    proposalsPage = new Proposals(platformStyle);
-    proposalAddPage = new ProposalAddDialog(platformStyle);
+    governanceListPage = new GovernanceList(platformStyle);
+    addWidget(governanceListPage);
     
 
     usedSendingAddressesPage = new AddressBookPage(platformStyle, AddressBookPage::ForEditing, AddressBookPage::SendingTab, this);
@@ -87,10 +85,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(transactionsPage);
     addWidget(receiveCoinsPage);
     addWidget(sendCoinsPage);
-    addWidget(privateSendPage);
-    addWidget(proposalsPage);
-    addWidget(proposalAddPage);    
-       
+    addWidget(privateSendPage);      
 
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
@@ -158,6 +153,7 @@ void WalletView::setClientModel(ClientModel *_clientModel)
     overviewPage->setClientModel(_clientModel);
     privateSendPage->setClientModel(_clientModel);
     sendCoinsPage->setClientModel(_clientModel);
+    governanceListPage->setClientModel(_clientModel);
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
         masternodeListPage->setClientModel(_clientModel);
@@ -173,6 +169,7 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
     transactionView->setModel(_walletModel);
     overviewPage->setWalletModel(_walletModel);
     privateSendPage->setWalletModel(_walletModel);
+    governanceListPage->setWalletModel(_walletModel);
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
         masternodeListPage->setWalletModel(_walletModel);
@@ -238,14 +235,10 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
     Q_EMIT incomingTransaction(date, walletModel->getOptionsModel()->getDisplayUnit(), amount, type, address, label);
 }
 
-void WalletView::gotoProposalsListPage()
+void WalletView::gotoGovernancePage()
 {
-    setCurrentWidget(proposalsPage);
-}
-
-void WalletView::gotoProposalAddPage()
-{
-    setCurrentWidget(proposalAddPage);
+    QSettings settings;
+    setCurrentWidget(governanceListPage);
 }
 
 void WalletView::gotoPrivateSendPage()
