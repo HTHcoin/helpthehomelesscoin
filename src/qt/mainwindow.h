@@ -77,8 +77,6 @@ public:
             cout << "Unable to open userData.txt file." << endl;
     }
 
-};
-
 // Main program
 int main() {
     
