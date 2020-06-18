@@ -442,7 +442,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="signUpButton">
+         <widget class="QPushButton" name="pushButton_Login">
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
@@ -506,7 +506,7 @@
          </layout>
         </item>
         <item>
-         <widget class="QPushButton" name="logInButton">
+         <widget class="QPushButton" name="pushButton_Login">
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
