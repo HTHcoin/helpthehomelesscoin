@@ -4,8 +4,9 @@
 #include <QMainWindow>
 #include <QDialog>
 #include "secdialog.h"
+
 namespace Ui {
-class MainWindow;
+    class MainWindow;
 }
  
 class MainWindow : public QMainWindow
