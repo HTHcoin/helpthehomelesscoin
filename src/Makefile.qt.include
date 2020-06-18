@@ -53,7 +53,6 @@ QT_FORMS_UI = \
   qt/forms/sendcoinsentry.ui \
   qt/forms/signverifymessagedialog.ui \
   qt/forms/transactiondescdialog.ui \
-  qt/forms/activity.ui \
   qt/forms/addcomment.ui \
   qt/forms/adminwindow.ui \
   qt/forms/dialog.ui \
