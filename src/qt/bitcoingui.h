@@ -10,7 +10,7 @@
 #endif
 
 #include "amount.h"
-/*#include "proposals.h" */
+#include "governancelist.h"
 
 #include <QLabel>
 #include <QMainWindow>
@@ -105,8 +105,7 @@ private:
     
     
     QAction* externalDonate;
-    QAction *proposalsListAction;
-    QAction *proposalAddAction;
+    QAction *governanceAction;
   /*  QAction* privatesendAction; */
     QAction *overviewAction;
     QAction *historyAction;
@@ -232,17 +231,11 @@ public Q_SLOTS:
 private Q_SLOTS:
 #ifdef ENABLE_WALLET
  	
-     /** Switch to ProposalsList page */
-      void gotoProposalsListPage();
-
-      /** Switch to ProposalAdd page */
-      void gotoProposalAddPage();
+      /** Switch to masternode page */
+    void gotoGovernancePage();
       
     /** Switch to trading page */
- /*   void gotoTradingDialogPage();  */
- 
-    /** Switch to governance page */
- /*   void gotoGovernancePage(); */
+    /*   void gotoTradingDialogPage();  */
     
     /** Switch to private send page */
     /*   void gotoPrivateSendPage(); */
