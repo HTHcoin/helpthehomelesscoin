@@ -7,8 +7,7 @@
 
 #include "amount.h"
 #include "masternodelist.h"
-/*#include "governancelist.h" */
-#include "proposaladddialog.h"
+#include "governancelist.h"
 
 
 #include <QStackedWidget>
