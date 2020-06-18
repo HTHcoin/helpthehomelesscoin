@@ -561,11 +561,6 @@ void BitcoinGUI::createActions()
     verifyMessageAction = new QAction(QIcon(":/icons/" + theme + "/transaction_0"), tr("&Verify message..."), this);
     verifyMessageAction->setStatusTip(tr("Verify messages to ensure they were signed with specified HelpTheHomeless addresses"));
 	
-    proposalAddAction = new QAction(QIcon(":/icons/" + theme + "/filesave"), tr("Add Proposal"), this);
-    proposalAddAction->setStatusTip(tr("Submit proposal"));
-    proposalsListAction = new QAction(QIcon(":/icons/" + theme + "/edit"), tr("&List Proposals"), this);
-    proposalsListAction->setStatusTip(tr("List all Proposal of Governance System"));	
-
     openInfoAction = new QAction(QApplication::style()->standardIcon(QStyle::SP_MessageBoxInformation), tr("&Information"), this);
     openInfoAction->setStatusTip(tr("Show diagnostic information"));
     openRPCConsoleAction = new QAction(QIcon(":/icons/" + theme + "/debugwindow"), tr("&Debug console"), this);
@@ -1622,43 +1617,6 @@ void BitcoinGUI::detectShutdown()
         qApp->quit();
     }
 }
-
-
-// Governance - Check to see if we should submit a proposal
-    nProposalModulus++;
-    if (nProposalModulus % 15 == 0 && !fLoadingIndex)
-    {
-        nProposalModulus = 0;
-		if (!msURL.empty())
-		{
-			QString qNav = GUIUtil::TOQS(msURL);
-			msURL = std::string();
-			QDesktopServices::openUrl(QUrl(qNav));
-		}
-        if (fProposalNeedsSubmitted)
-        {
-            nProposalModulus = 0;
-            if(masternodeSync.IsSynced() && chainActive.Tip() && chainActive.Tip()->nHeight > (nProposalPrepareHeight + 6))
-            {
-                fProposalNeedsSubmitted = false;
-                std::string sError;
-                std::string sGovObj;
-                bool fSubmitted = SubmitProposalToNetwork(uTxIdFee, nProposalStartTime, msProposalHex, sError, sGovObj);
-				if (!sError.empty())
-				{
-					LogPrintf("Proposal Submission Problem: %s ", sError);
-				}
-                msProposalResult = fSubmitted ? "Submitted Proposal Successfully <br>( " + sGovObj + " )" : sError;
-                LogPrintf(" Proposal Submission Result:  %s  \n", msProposalResult.c_str());
-            }
-            else
-            {
-                msProposalResult = "Waiting for block " + RoundToString(nProposalPrepareHeight + 6, 0) + " to submit pending proposal. ";
-            }
-        }
-    }
-}
-
 
 void BitcoinGUI::showProgress(const QString &title, int nProgress)
 {
