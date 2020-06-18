@@ -143,7 +143,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     spinnerFrame(0),
     externalDonate(0),
     governanceAction(0),
-    socialAction(0),
+    mainWindow(0),
     platformStyle(_platformStyle)
 {
     /* Open CSS when configured */
@@ -618,10 +618,10 @@ void BitcoinGUI::createActions()
     connect(externalDonate, SIGNAL(triggered()), this, SLOT(openDonate()));
 
     // HTH Chat
-    socialAction = new QAction(QIcon(":/icons/" + theme + "/chat"), tr("HTH World"), this);
-    socialAction->setStatusTip(tr("HTH World Social Media")); 	
+    mainWindow = new QAction(QIcon(":/icons/" + theme + "/chat"), tr("HTH World"), this);
+    mainWindow->setStatusTip(tr("HTH World Social Media")); 	
     // HTHW Chat
-    connect(socialAction, SIGNAL(triggered()), this, SLOT(gotoMainWindow()));	
+    connect(mainWindow, SIGNAL(triggered()), this, SLOT(gotoMainWindow()));	
 	
 	
     // Jump directly to tabs in RPC-console
@@ -725,7 +725,7 @@ void BitcoinGUI::createMenuBar()
     donate->addAction(externalDonate);
 	
     QMenu *social = appMenuBar->addMenu(tr("&HTH World"));
-    social->addAction(socialAction);	
+    social->addAction(mainWindow);	
 
 }
 
@@ -1055,7 +1055,7 @@ void BitcoinGUI::openClicked()
 
 void BitcoinGUI::gotoMainWindow()
 {
-    socialAction->setChecked(true);
+    mainWindow->setChecked(true);
     if (walletFrame) walletFrame->gotoMainWindow();
 } 
 
