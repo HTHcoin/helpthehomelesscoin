@@ -562,6 +562,10 @@ void CoinControlDialog::updateLabels(WalletModel *model, QDialog* dialog)
 
         // InstantSend Fee
         if (coinControl->fUseInstantSend) nPayFee = std::max(nPayFee, CTxLockRequest(txDummy).GetMinFee(true));
+        
+        if (fSendFreeTransactions)
+            if (fAllowFree && nBytes <= MAX_FREE_TRANSACTION_CREATE_SIZE)
+                nPayFee = 0;
 
         if (nPayAmount > 0)
         {
