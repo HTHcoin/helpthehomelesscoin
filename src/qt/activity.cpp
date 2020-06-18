@@ -1,4 +1,4 @@
-#include "Activity.h"
+#include "activity.h"
 #include <algorithm>
 #include "posts.h"
 #include"vector"
