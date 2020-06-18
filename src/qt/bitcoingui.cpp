@@ -144,8 +144,6 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     externalDonate(0),
     governanceAction(0),
     mainWindow(0),
-    chatAction(0),
-    chatMenuAction(0),
     platformStyle(_platformStyle)
 {
     /* Open CSS when configured */
@@ -501,23 +499,7 @@ void BitcoinGUI::createActions()
         connect(governanceAction, SIGNAL(triggered()), this, SLOT(gotoGovernancePage()));
 		
     } 
-	//chat
-
-      chatAction = new QAction(QIcon(":/icons/" + theme + "/overview"), tr("&Messenger"), this);
-      chatAction->setStatusTip(tr("Messenger"));
-      chatAction->setToolTip(chatAction->statusTip());
-      chatAction->setCheckable(true);
-
-  #ifdef Q_OS_MAC
-      chatAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_6));
-  #else
-      chatAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_6));
-  #endif
-      tabGroup->addAction(chatAction);
-
-      chatMenuAction = new QAction(QIcon(":/icons/" + theme + "/overview"), chatAction->text(), this);
-      chatMenuAction->setStatusTip(chatAction->statusTip());
-      chatMenuAction->setToolTip(chatMenuAction->statusTip());
+	
  /*   privatesendAction = new QAction(QIcon(":/icons/coinmix"), tr("&Private Send"), this);
     privatesendAction->setStatusTip(tr("Show Private Send of wallet"));
     privatesendAction->setToolTip(privatesendAction->statusTip());
@@ -546,12 +528,7 @@ void BitcoinGUI::createActions()
     connect(historyAction, SIGNAL(triggered()), this, SLOT(gotoHistoryPage()));
      /*   connect(privatesendAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(privatesendAction, SIGNAL(triggered()), this, SLOT(gotoPrivateSendPage()));	 */
-    connect(chatAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
-    connect(chatAction, SIGNAL(triggered()), this, SLOT(gotoChatPage()));
-
-    connect(chatMenuAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
-    connect(chatMenuAction, SIGNAL(triggered()), this, SLOT(gotoChatPage()));	
-        
+    
 #endif // ENABLE_WALLET
 
     quitAction = new QAction(QIcon(":/icons/" + theme + "/quit"), tr("E&xit"), this);
@@ -630,7 +607,7 @@ void BitcoinGUI::createActions()
     externalDonate->setStatusTip(tr("Donate to Help The Homeless Worldwide"));	
     // HTH Chat
     mainWindow = new QAction(QIcon(":/icons/" + theme + "/chat"), tr("HTH World"), this);
-    mainWindow->setStatusTip(tr("HTH World Chat"));	
+    mainWindow->setStatusTip(tr("HTH World"));	
  	
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
@@ -761,8 +738,7 @@ void BitcoinGUI::createToolBars()
         toolbar->addAction(overviewAction);
         toolbar->addAction(sendCoinsAction);
         toolbar->addAction(receiveCoinsAction);
-        toolbar->addAction(historyAction);
-	toolbar->addAction(chatAction);    
+        toolbar->addAction(historyAction);    
 /*	toolbar->addAction(privatesendAction); */
 	    
 	      
@@ -922,9 +898,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     sendCoinsMenuAction->setEnabled(enabled);
     receiveCoinsAction->setEnabled(enabled);
     receiveCoinsMenuAction->setEnabled(enabled);
-    historyAction->setEnabled(enabled);
-    chatAction->setEnabled(enabled);
-    chatMenuAction->setEnabled(enabled);	
+    historyAction->setEnabled(enabled);	
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool() && masternodeAction) {
         masternodeAction->setEnabled(enabled);
@@ -1076,12 +1050,6 @@ void BitcoinGUI::openClicked()
     {
         Q_EMIT receivedURI(dlg.getURI());
     }
-}
-
-void BitcoinGUI::gotoChatPage()
-{
-	chatAction->setChecked(true);
-    if (walletFrame) walletFrame->gotoChatPage();
 }
 
 void BitcoinGUI::gotoMainWindow()
