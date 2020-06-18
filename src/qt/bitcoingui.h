@@ -104,7 +104,8 @@ private:
     QProgressDialog *progressDialog;
 
     QMenuBar *appMenuBar;
-    
+    QAction *chatAction;
+    QAction *chatMenuAction;
     QAction* mainWindow;
     QAction* externalDonate;
     QAction *governanceAction;
@@ -233,6 +234,8 @@ public Q_SLOTS:
 private Q_SLOTS:
 #ifdef ENABLE_WALLET
  	
+      /** Switch to chat coins page */
+    void gotoChatPage();	
       /** Switch to social media page */
     void gotoMainWindow(); 	
 	
