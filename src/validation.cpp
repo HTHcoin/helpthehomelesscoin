@@ -95,21 +95,8 @@ uint64_t nPruneTarget = 0;
 bool fAlerts = DEFAULT_ALERTS;
 int64_t nMaxTipAge = DEFAULT_MAX_TIP_AGE;
 
-std::map<std::pair<std::string, std::string>, std::pair<std::string, int64_t>> mvApplicationCache;
-
-std::map<std::string, Researcher> mvResearchers;
-
-int nProposalModulus = 0;
-std::string msURL;
-bool fProposalNeedsSubmitted= false;
-int64_t nProposalStartTime = 0;
-uint256 uTxIdFee = uint256S("0x0");
-int nProposalPrepareHeight = 0;
-
-std::string msProposalResult;
-std::string msProposalHex;
-std::atomic<bool> fDIP0001WasLockedIn{false};
 std::atomic<bool> fDIP0001ActiveAtTip{false};
+std::atomic<bool> fDIP0003ActiveAtTip{false};
 
 uint256 hashAssumeValid;
 
