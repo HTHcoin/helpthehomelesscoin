@@ -22,7 +22,6 @@
 #include "platformstyle.h"
 #include "rpcconsole.h"
 #include "utilitydialog.h"
-#include "proposaladddialog.h"
 /* #include "tradingdialogpage.h" */
 
 
@@ -141,9 +140,8 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     modalOverlay(0),
     prevBlocks(0),
     spinnerFrame(0),
-    proposalsListAction(0),
-    proposalAddAction(0),
     externalDonate(0),
+    governanceAction(0),
     platformStyle(_platformStyle)
 {
     /* Open CSS when configured */
@@ -484,21 +482,21 @@ void BitcoinGUI::createActions()
         connect(masternodeAction, SIGNAL(triggered()), this, SLOT(gotoMasternodePage()));
     }
 
-     /*	 {
-        proposalAction = new QAction(QIcon(":/icons/about"), tr("&Proposal"), this);
-        proposalAction->setStatusTip(tr("Submit A Proposal"));
-        proposalAction->setToolTip(proposalAction->statusTip());
-        proposalAction->setCheckable(true);
+     	 {
+        governanceAction = new QAction(QIcon(":/icons/about"), tr("&Proposal"), this);
+        governanceAction->setStatusTip(tr("Submit A Proposal"));
+        governanceAction->setToolTip(governanceAction->statusTip());
+        governanceAction->setCheckable(true);
 #ifdef Q_OS_MAC
-        proposalAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_7));
+        governanceAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_7));
 #else
-        proposalAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
+        governanceAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
 #endif
-        tabGroup->addAction(proposalAction);
-        connect(proposalAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
-        connect(proposalAction, SIGNAL(triggered()), this, SLOT(gotoProposalAddDialog()));
+        tabGroup->addAction(governanceAction);
+        connect(governanceAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+        connect(governanceAction, SIGNAL(triggered()), this, SLOT(gotoGovernancePage()));
 		
-    } */
+    } 
  /*   privatesendAction = new QAction(QIcon(":/icons/coinmix"), tr("&Private Send"), this);
     privatesendAction->setStatusTip(tr("Show Private Send of wallet"));
     privatesendAction->setToolTip(privatesendAction->statusTip());
@@ -713,9 +711,9 @@ void BitcoinGUI::createMenuBar()
         tools->addAction(openConfEditorAction);
         tools->addAction(showBackupsAction);
 	 
-       QMenu *proposal = appMenuBar->addMenu(tr("&Proposals"));
-       proposal->addAction(proposalsListAction);
-       proposal->addAction(proposalAddAction);    
+       QMenu *governance = appMenuBar->addMenu(tr("&Proposals"));
+       governance->addAction(governanceAction);
+   
 	        
     }
     	
@@ -750,8 +748,8 @@ void BitcoinGUI::createToolBars()
         {
             toolbar->addAction(masternodeAction);
         }
-      /*     toolbar->addAction(governanceAction);
-	toolbar->addAction(unlockWalletAction); */
+           toolbar->addAction(governanceAction);
+	   toolbar->addAction(unlockWalletAction);
 	    
 	 
 	    toolbar->addAction(unlockWalletAction);
@@ -906,8 +904,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool() && masternodeAction) {
         masternodeAction->setEnabled(enabled);
     }
-    proposalsListAction->setEnabled(enabled);
-    proposalAddAction->setEnabled(enabled);
+    governanceAction->setEnabled(enabled);
     encryptWalletAction->setEnabled(enabled);
     backupWalletAction->setEnabled(enabled);
     changePassphraseAction->setEnabled(enabled);
@@ -1057,16 +1054,10 @@ void BitcoinGUI::openClicked()
 }
 
 
-void BitcoinGUI::gotoProposalsListPage()
+void BitcoinGUI::gotoGovernancePage()
 {
-	//WebWindowAction->setChecked(true);
-    if (walletFrame) walletFrame->gotoProposalsListPage();
-}
-
-void BitcoinGUI::gotoProposalAddPage()
-{
-	//WebWindowAction->setChecked(true);
-    if (walletFrame) walletFrame->gotoProposalAddPage();
+    governanceAction->setChecked(true);
+    if (walletFrame) walletFrame->gotoGovernancePage();
 }
 
 void BitcoinGUI::openDonate()
