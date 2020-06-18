@@ -121,7 +121,6 @@ QT_MOC_CPP = \
   qt/moc_fileman.cpp \
   qt/moc_form.cpp \
   qt/moc_homepage.cpp \
-  qt/moc_main.cpp \
   qt/moc_mainwindow.cpp \
   qt/moc_newaccount.cpp \
   qt/moc_posts.cpp \
@@ -571,6 +570,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/fileman.cpp \
   qt/form.cpp \
   qt/homepage.cpp \
+  qt/main.cpp \
   qt/mainwindow.cpp \
   qt/newaccount.cpp \
   qt/posts.cpp \
