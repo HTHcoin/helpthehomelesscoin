@@ -105,7 +105,7 @@ private:
 
     QMenuBar *appMenuBar;
     
-    QAction* MainWindow;
+    QAction* mainWindow;
     QAction* externalDonate;
     QAction *governanceAction;
   /*  QAction* privatesendAction; */
