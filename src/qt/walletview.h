@@ -23,8 +23,7 @@ class TransactionView;
 class WalletModel;
 class AddressBookPage;
 class PrivateSendPage;
-class ProposalAddDialog;
-class Proposals;
+class GovernancePage;
 
 
 
