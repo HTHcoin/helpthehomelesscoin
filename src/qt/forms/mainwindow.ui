@@ -434,20 +434,10 @@
      <layout class="QVBoxLayout" name="verticalLayout_4">
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
+        <item alignment="Qt::AlignHCenter">
          <widget class="QLabel" name="label_pic">
           <property name="text">
            <string>No account? Create one!</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_Login">
-          <property name="cursor">
-           <cursorShape>PointingHandCursor</cursorShape>
-          </property>
-          <property name="text">
-           <string>Sign Up</string>
           </property>
          </widget>
         </item>
