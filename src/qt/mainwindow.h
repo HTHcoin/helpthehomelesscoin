@@ -15,7 +15,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-private slots:
+private Q_SLOTS:
     void on_signUpButton_clicked();
 
     void on_logInButton_clicked();
