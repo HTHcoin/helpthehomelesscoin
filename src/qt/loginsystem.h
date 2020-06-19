@@ -22,7 +22,7 @@ public:
     QString picDir = QCoreApplication::applicationDirPath()+"/../../LogSys/users/avatar";
     QSqlTableModel* tblMdl;
 
-private slots:
+private Q_SLOTS:
     void on_loginButton_clicked();
 
     void on_logoutButton_clicked();
