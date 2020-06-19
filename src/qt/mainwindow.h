@@ -12,7 +12,9 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+   explicit MainWindow(QWidget *parent = 0);
+    MainWindow(int userID );
+    int id;
     ~MainWindow();
 
 private Q_SLOTS:
