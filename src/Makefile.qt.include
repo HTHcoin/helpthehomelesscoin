@@ -223,7 +223,8 @@ BITCOIN_QT_H = \
   qt/user.h \
   qt/mainwindow.h \
   qt/qsqltablemodel.h \
-  qt/qsqldatabase.h
+  qt/qsqldatabase.h \
+  qt/qsql.h
 
 RES_ICONS = \
   qt/res/icons/bitcoin.ico \
