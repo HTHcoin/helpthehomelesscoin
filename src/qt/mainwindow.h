@@ -2,6 +2,14 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QDialog>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QMessageBox>
+#include "homepage.h"
 
 namespace Ui {
 class MainWindow;
@@ -10,20 +18,24 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-
+ 
 public:
-   explicit MainWindow(QWidget *parent = 0);
-    MainWindow(int userID );
-    int id;
+    MainWindow(QWidget* parent = 0);
     ~MainWindow();
-
+ 
 private Q_SLOTS:
-    void on_signUpButton_clicked();
-
-    void on_logInButton_clicked();
-
+    void OnQuit();
+    void OnLogin();
+ 
 private:
-    Ui::MainWindow *ui;
+    void reject();
+ 
+    QLabel* userLabel;
+    QLabel* passLabel;
+    QLineEdit* userLineEdit;
+    QLineEdit* passLineEdit;
+    QPushButton* loginButton;
+    QPushButton* quitButton;
 };
-
+ 
 #endif // MAINWINDOW_H
