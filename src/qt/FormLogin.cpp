@@ -1,10 +1,8 @@
-#include "mainwindow.h"
-#include  <QDebug>
+#include "formlogin.h"
 #include "homepage.h"
-#include "QMessageBox"
-
-MainWindow::MainWindow(QWidget* parent)
-    : QMainWndow(parent)
+ 
+FormLogin::FormLogin(QWidget* parent)
+    : QDialog(parent)
 {
     setFixedSize(300, 120);
     setWindowTitle("Form Login");
@@ -40,18 +38,18 @@ MainWindow::MainWindow(QWidget* parent)
     connect(loginButton, SIGNAL(clicked()), this, SLOT(OnLogin()));
 }
  
-void MainWindow()
+void FormLogin::reject()
 {
     OnQuit();
 }
  
-void MainWindow()
+void FormLogin::OnQuit()
 {
     this->close();
     parentWidget()->close();
 }
  
-void MainWindow()
+void FormLogin::OnLogin()
 {
     QString username = userLineEdit->text();
     QString password = passLineEdit->text();
@@ -70,4 +68,4 @@ void MainWindow()
 
 }
  
-MainWindow::~MainWindow() {}
+FormLogin::~FormLogin() {}
