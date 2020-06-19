@@ -41,7 +41,7 @@
 #define QSQLTABLEMODEL_H
 
 #include "qsqldatabase.h"
-#include <QtSql/qsqlquerymodel.h>
+#include "qsqlquerymodel.h"
 
 QT_BEGIN_NAMESPACE
 
