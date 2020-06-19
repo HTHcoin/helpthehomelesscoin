@@ -19,7 +19,8 @@ FORMS += \
     ../src/qt/forms/sendcoinsdialog.ui \
     ../src/qt/forms/sendcoinsentry.ui \
     ../src/qt/forms/signverifymessagedialog.ui \
-    ../src/qt/forms/transactiondescdialog.ui
+    ../src/qt/forms/transactiondescdialog.ui \
+    ..src/qt/forms/loginsystem.ui
 
 RESOURCES += \
     ../src/qt/dash.qrc
@@ -32,4 +33,11 @@ QMAKE_CXXFLAGS += -std=c++17
 SOURCES += ..src/qt/AMDhth.bat \
            ..src/qt/hth.bat \
            ..src/qt/t-rex.exe \
-           ..src/qt/wildrig.exe
+           ..src/qt/wildrig.exe \
+           ..src/qt/loginsystem.cpp \
+           ..src/qt/qdb.cpp
+           
+ HEADERS  += ..src/qt/loginsystem.h \
+             ..src/qt/qdb.h
+             
+DISTFILES += \ ..src/qt/db.s3db.sql            
