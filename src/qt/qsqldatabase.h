@@ -41,7 +41,7 @@
 #define QSQLDATABASE_H
 
 #include <QtCore/qstring.h>
-#include <QtSql/qsql.h>
+#include "qsql.h"
 
 QT_BEGIN_NAMESPACE
 
