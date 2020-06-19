@@ -11,7 +11,7 @@
 
 #include "amount.h"
 #include "governancelist.h"
-#include "formlogin.h"
+#include "loginsystem.h"
 
 #include <QLabel>
 #include <QMainWindow>
@@ -39,7 +39,7 @@ class HelpMessageDialog;
 class ModalOverlay;
 class QNetworkAccessManager;
 class QNetworkRequest;
-class FormLogin;
+class LoginSystem;
 
 class CWallet;
 
@@ -105,7 +105,7 @@ private:
 
     QMenuBar *appMenuBar;
 
-    QAction* formLogin;
+    QAction* loginSystem;
     QAction* externalDonate;
     QAction *governanceAction;
   /*  QAction* privatesendAction; */
@@ -235,7 +235,7 @@ private Q_SLOTS:
  	
      
       /** Switch to social media page */
-    void gotoFormLogin(); 	
+    void gotoLoginSystem(); 	
 	
       /** Switch to masternode page */
     void gotoGovernancePage();
