@@ -36,7 +36,7 @@ FormLogin::FormLogin(QWidget* parent)
  
     connect(quitButton, SIGNAL(clicked()), this, SLOT(OnQuit()));
     connect(loginButton, SIGNAL(clicked()), this, SLOT(OnLogin()));
-    connect(OnLogin, SIGNAL(clicked()), this, SLOT(gotoHomePage())); 
+    connect(OnLogin, SIGNAL(clicked()), this, SLOT(HomePage())); 
 }
  
 void FormLogin::reject()
