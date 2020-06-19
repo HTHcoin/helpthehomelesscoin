@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QCoreApplication>
-#include <QSqlTableModel>
+#include "qsqltablemodel.h"
 
 namespace Ui {
 class LoginSystem;
