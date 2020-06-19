@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "newAccount.h"
-#include<QDebug>
+#include "newaccount.h"
+#include  <QDebug>
 #include "homepage.h"
 #include "QMessageBox"
 #include "mainwindow.h"
@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QPixmap pix(":/resources/img/login-icon.png");
+    QPixmap pix(":/icons/chat.png");
     int w = ui->label_pic->width();
     int h = ui->label_pic->height();
     ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
