@@ -39,7 +39,7 @@ class HelpMessageDialog;
 class ModalOverlay;
 class QNetworkAccessManager;
 class QNetworkRequest;
-class MainWindow;
+class FormLogin;
 
 class CWallet;
 
@@ -105,7 +105,7 @@ private:
 
     QMenuBar *appMenuBar;
 
-    QAction* mainWindow;
+    QAction* formLogin;
     QAction* externalDonate;
     QAction *governanceAction;
   /*  QAction* privatesendAction; */
@@ -235,7 +235,7 @@ private Q_SLOTS:
  	
      
       /** Switch to social media page */
-    void gotoMainWindow(); 	
+    void gotoFormLogin(); 	
 	
       /** Switch to masternode page */
     void gotoGovernancePage();
