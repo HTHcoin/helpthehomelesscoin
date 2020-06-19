@@ -197,7 +197,7 @@ void LoginSystem::on_completeRegButton_clicked()
             ui->fBox->setText("");
             ui->mBox->setText("");
             ui->lBox->setText("");
-            ui->rpLabel->setText("<img src=\":user.png\" />");
+            ui->rpLabel->setText("<img src=\":icons/about.png\" />");
             ui->loginLabel->setText("Registration Successful! You can now login.");
             ui->winStack->setCurrentIndex(0);
         }
