@@ -30,7 +30,7 @@
            </font>
           </property>
           <property name="text">
-           <string>if you already have an account ---&gt;</string>
+           <string>If You Already Have An Account ---&gt;</string>
           </property>
          </widget>
         </item>
@@ -68,7 +68,7 @@
                </font>
               </property>
               <property name="text">
-               <string>userName</string>
+               <string>User Name</string>
               </property>
               <property name="buddy">
                <cstring>txtUserMail</cstring>
@@ -104,7 +104,7 @@
                </font>
               </property>
               <property name="text">
-               <string>password</string>
+               <string>Password</string>
               </property>
               <property name="buddy">
                <cstring>lineEdit_2</cstring>
@@ -122,7 +122,7 @@
                </font>
               </property>
               <property name="text">
-               <string>confirm password</string>
+               <string>Confirm Password</string>
               </property>
               <property name="buddy">
                <cstring>lineEdit_3</cstring>
