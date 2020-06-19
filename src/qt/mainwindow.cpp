@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
 #include  <QDebug>
 #include "homepage.h"
 #include "QMessageBox"
@@ -59,7 +58,7 @@ void MainWindow()
  
     // Checking if username or password is empty
     if (username.isEmpty() || password.isEmpty())
-        QMessageBox::information(this, tr("Peringatan!"), "Username atau password tidak boleh kosong");
+        QMessageBox::information(this, tr("Warning!"), "Do Not Leave User Name & Password Blank");
     else
         this->hide();
 	
