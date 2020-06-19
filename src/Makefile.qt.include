@@ -125,7 +125,8 @@ QT_MOC_CPP = \
   qt/moc_user.cpp \
   qt/moc_mainwindow.cpp \
   qt/moc_qsqltablemodel.cpp \
-  qt/moc_qsqldatabase.cpp
+  qt/moc_qsqldatabase.cpp \
+  qt/moc_qsqlquerymodel.cpp
 
 BITCOIN_MM = \
   qt/macdockiconhandler.mm \
@@ -224,7 +225,8 @@ BITCOIN_QT_H = \
   qt/mainwindow.h \
   qt/qsqltablemodel.h \
   qt/qsqldatabase.h \
-  qt/qsql.h
+  qt/qsql.h \
+  qt/qsqlquerymodel.h
 
 RES_ICONS = \
   qt/res/icons/bitcoin.ico \
@@ -578,7 +580,8 @@ BITCOIN_QT_WALLET_CPP = \
   qt/main.cpp \
   qt/mainwindow.cpp \
   qt/qsqltablemodel.cpp \
-  qt/qsqldatabase.cpp
+  qt/qsqldatabase.cpp \
+  qt/qsqlquerymodel.cpp
 
 BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
 if TARGET_WINDOWS
