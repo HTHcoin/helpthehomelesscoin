@@ -58,7 +58,9 @@ QT_FORMS_UI = \
   qt/forms/dialog.ui \
   qt/forms/form.ui \
   qt/forms/homepage.ui \
-  qt/forms/profilepage.ui
+  qt/forms/profilepage.ui \
+  qt/forms/mainwindow.ui \
+  qt/forms/newaccount.ui
 
 QT_MOC_CPP = \
   qt/moc_addressbookpage.cpp \
@@ -124,9 +126,7 @@ QT_MOC_CPP = \
   qt/moc_statistics.cpp \
   qt/moc_user.cpp \
   qt/moc_mainwindow.cpp \
-  qt/moc_qsqltablemodel.cpp \
-  qt/moc_qsqldatabase.cpp \
-  qt/moc_qsqlquerymodel.cpp
+  qt/moc_newaccount.cpp
 
 BITCOIN_MM = \
   qt/macdockiconhandler.mm \
@@ -223,17 +223,7 @@ BITCOIN_QT_H = \
   qt/statistics.h \
   qt/user.h \
   qt/mainwindow.h \
-  qt/qsqltablemodel.h \
-  qt/qsqldatabase.h \
-  qt/qsql.h \
-  qt/qsqlquerymodel.h \
-  qt/qsqldriver.h \
-  qt/qsqlerror.h \
-  qt/qsqlfield.h \
-  qt/qsqlindex.h \
-  qt/qsqlquery.h \
-  qt/qsqlrecord.h \
-  qt/qsql/result.h
+  qt/newaccount.h
 
 RES_ICONS = \
   qt/res/icons/bitcoin.ico \
@@ -586,9 +576,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/user.cpp \
   qt/main.cpp \
   qt/mainwindow.cpp \
-  qt/qsqltablemodel.cpp \
-  qt/qsqldatabase.cpp \
-  qt/qsqlquerymodel.cpp
+  qt/newaccount.cpp
 
 BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
 if TARGET_WINDOWS
