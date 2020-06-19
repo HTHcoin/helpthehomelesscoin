@@ -1,7 +1,6 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
-
-#include <QMainWindow>
+#ifndef FORMLOGIN_H
+#define FORMLOGIN_H
+ 
 #include <QDialog>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -10,18 +9,14 @@
 #include <QPushButton>
 #include <QMessageBox>
 #include "homepage.h"
-
-namespace Ui {
-class MainWindow;
-}
-
-class MainWindow : public QMainWindow
+ 
+class FormLogin : public QDialog
 {
     Q_OBJECT
  
 public:
-    MainWindow(QWidget* parent = 0);
-    ~MainWindow();
+    FormLogin(QWidget* parent = 0);
+    ~FormLogin();
  
 private Q_SLOTS:
     void OnQuit();
@@ -38,4 +33,4 @@ private:
     QPushButton* quitButton;
 };
  
-#endif // MAINWINDOW_H
+#endif // FORMLOGIN_H
