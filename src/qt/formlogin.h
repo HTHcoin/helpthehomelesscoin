@@ -8,6 +8,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QMessageBox>
+#include "homepage.h"
  
 class FormLogin : public QDialog
 {
