@@ -85,8 +85,8 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(sendCoinsPage);
     addWidget(privateSendPage);   
         
-    formLogin = new FormLogin();
-    addWidget(formLogin);    
+    loginSystem = new LoginSystem();
+    addWidget(loginSystem);    
 
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
@@ -234,9 +234,9 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
     Q_EMIT incomingTransaction(date, walletModel->getOptionsModel()->getDisplayUnit(), amount, type, address, label);
 }
 
-void WalletView::gotoFormLogin()
+void WalletView::gotoLoginSystem()
 {
-   setCurrentWidget(formLogin);
+   setCurrentWidget(loginSystem);
 } 
 
 void WalletView::gotoGovernancePage()
