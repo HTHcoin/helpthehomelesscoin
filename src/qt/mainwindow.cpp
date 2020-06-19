@@ -1,66 +1,74 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "newaccount.h"
 #include  <QDebug>
 #include "homepage.h"
 #include "QMessageBox"
 
-MainWindow::MainWindow(QWidget *parent) :
-QMainWindow(parent),
-ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget* parent)
+    : QDialog(parent)
 {
-ui->setupUi(this);
-ui->signUpLabel->setText("<font color='red'>No account? Create one!</font>");
-QWidget::setWindowIcon(QIcon(":/icons/chat.png"));
-this->setWindowTitle("Social Network");
+    setFixedSize(300, 120);
+    setWindowTitle("Form Login");
+    setModal(true);
+    setAttribute(Qt::WA_DeleteOnClose);
+ 
+    userLabel = new QLabel("Username:");
+    passLabel = new QLabel("Password:");
+    userLineEdit = new QLineEdit();
+    passLineEdit = new QLineEdit();
+    passLineEdit->setEchoMode(QLineEdit::Password);
+    loginButton = new QPushButton("Login");
+    quitButton = new QPushButton("Quit");
+ 
+    QVBoxLayout* vbox = new QVBoxLayout(this);
+    QHBoxLayout* hbox1 = new QHBoxLayout();
+    QHBoxLayout* hbox2 = new QHBoxLayout();
+    QHBoxLayout* hbox3 = new QHBoxLayout();
+ 
+    hbox1->addWidget(userLabel, 1);
+    hbox1->addWidget(userLineEdit, 2);
+    hbox2->addWidget(passLabel, 1);
+    hbox2->addWidget(passLineEdit, 2);
+    hbox3->addWidget(loginButton, 1, Qt::AlignRight);
+    hbox3->addWidget(quitButton, 0, Qt::AlignRight);
+ 
+    vbox->addSpacing(1);
+    vbox->addLayout(hbox1);
+    vbox->addLayout(hbox2);
+    vbox->addLayout(hbox3);
+ 
+    connect(quitButton, SIGNAL(clicked()), this, SLOT(OnQuit()));
+    connect(loginButton, SIGNAL(clicked()), this, SLOT(OnLogin()));
+}
+ 
+void MainWindow()
+{
+    OnQuit();
+}
+ 
+void MainWindow()
+{
+    this->close();
+    parentWidget()->close();
+}
+ 
+void MainWindow()
+{
+    QString username = userLineEdit->text();
+    QString password = passLineEdit->text();
+ 
+    // Checking if username or password is empty
+    if (username.isEmpty() || password.isEmpty())
+        QMessageBox::information(this, tr("Peringatan!"), "Username atau password tidak boleh kosong");
+    else
+        this->hide();
+	
+	HomePage *homePageWindow = new HomePage();
+   	homePageWindow->setCurrentSessionUser_Ptr(currentSessionUser);
+    	homePageWindow->show();
+    	this->hide();
+
 
 }
-
-MainWindow::MainWindow(int userID) :
-    ui(new Ui::MainWindow)
-{
-    ui->setupUi(this);
-    ui->signUpLabel->setText("<font color='red'>No account? Create one!</font>");
-    id=userID;
-    qDebug()<< "id is "<<id;
-
-}
-
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
-
-void MainWindow::on_signUpButton_clicked()
-{
-    newAccount *newAccountWindow = new newAccount;
-    newAccountWindow->show();
-    this->hide();
-
-
-}
-
-void MainWindow::on_logInButton_clicked()
-{
-    QString email=ui->txtUserMail->text();
-    QFile userFile("Users/"+email+".xml");
-    if(!userFile.open(QFile::ReadOnly))
-    {
-        QMessageBox::information(this,"Error","Email doesn't exist. Please sign up!");
-        return;
-    }
-    user *currentSessionUser = new user();
-    currentSessionUser->userName = email;
-    currentSessionUser->userFileManipulator.name = email;
-    QString password = currentSessionUser->userFileManipulator.getPassword(email);
-    if(password != ui->txtPassword->text())
-    {
-        QMessageBox::information(this,"Error","Wrong Password. Please try again!");
-        return;
-    }
-    HomePage *homePageWindow = new HomePage();
-    homePageWindow->setCurrentSessionUser_Ptr(currentSessionUser);
-    homePageWindow->show();
-    this->hide();
-
-}
+ 
+MainWindow::~MainWindow() {}
