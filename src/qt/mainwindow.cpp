@@ -4,7 +4,7 @@
 #include "QMessageBox"
 
 MainWindow::MainWindow(QWidget* parent)
-    : QDialog(parent)
+    : QMainWndow(parent)
 {
     setFixedSize(300, 120);
     setWindowTitle("Form Login");
