@@ -621,7 +621,7 @@ void BitcoinGUI::createActions()
      // HTHW Donate
     connect(externalDonate, SIGNAL(triggered()), this, SLOT(openDonate())); 
      // HTHW Chat
-    connect(mainWindow, SIGNAL(triggered()), this, SLOT(gotoMainWindow()));	
+    connect(mainWindow, SIGNAL(triggered()), this, SLOT(gotoFormLogin()));	
 	
     // Jump directly to tabs in RPC-console
     connect(openInfoAction, SIGNAL(triggered()), this, SLOT(showInfo()));
@@ -1052,10 +1052,10 @@ void BitcoinGUI::openClicked()
     }
 }
 
-void BitcoinGUI::gotoMainWindow()
+void BitcoinGUI::gotoFormLogin()
 {
     mainWindow->setChecked(true);
-    if (walletFrame) walletFrame->gotoMainWindow();
+    if (walletFrame) walletFrame->gotoFormLogin();
 } 
 
 void BitcoinGUI::gotoGovernancePage()
