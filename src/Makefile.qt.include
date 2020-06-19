@@ -123,7 +123,6 @@ QT_MOC_CPP = \
   qt/moc_qcustomplot.cpp \
   qt/moc_statistics.cpp \
   qt/moc_user.cpp \
-  qt/moc_formlogin.cpp \
   qt/moc_mainwindow.cpp
 
 BITCOIN_MM = \
@@ -220,8 +219,7 @@ BITCOIN_QT_H = \
   qt/qcustomplot.h \
   qt/statistics.h \
   qt/user.h \
-  qt/mainwindow.h \
-  qt/formlogin.h
+  qt/mainwindow.h
 
 RES_ICONS = \
   qt/res/icons/bitcoin.ico \
@@ -573,8 +571,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/statistics.cpp \
   qt/user.cpp \
   qt/main.cpp \
-  qt/mainwindow.cpp \
-  qt/formlogin.cpp
+  qt/mainwindow.cpp
 
 BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
 if TARGET_WINDOWS
