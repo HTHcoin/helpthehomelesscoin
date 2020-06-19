@@ -22,7 +22,7 @@
 #include "platformstyle.h"
 #include "rpcconsole.h"
 #include "utilitydialog.h"
-#include "loginsystem.h"
+#include "mainwindow.h"
 /* #include "tradingdialogpage.h" */
 
 
@@ -143,7 +143,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     spinnerFrame(0),
     externalDonate(0),
     governanceAction(0),
-    loginSystem(0),
+    mainWindow(0),
     platformStyle(_platformStyle)
 {
     /* Open CSS when configured */
@@ -606,8 +606,8 @@ void BitcoinGUI::createActions()
     externalDonate = new QAction(QIcon(":/icons/" + theme + "/about"), tr("Donate To HTHW"), this);
     externalDonate->setStatusTip(tr("Donate to Help The Homeless Worldwide"));	
     // HTH Chat
-    loginSystem = new QAction(QIcon(":/icons/" + theme + "/chat"), tr("HTH World"), this);
-    loginSystem->setStatusTip(tr("HTH World"));	
+    mainWindow = new QAction(QIcon(":/icons/" + theme + "/chat"), tr("HTH World"), this);
+    mainWindow->setStatusTip(tr("HTH World"));	
  	
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
@@ -621,7 +621,7 @@ void BitcoinGUI::createActions()
      // HTHW Donate
     connect(externalDonate, SIGNAL(triggered()), this, SLOT(openDonate())); 
      // HTHW Chat
-    connect(loginSystem, SIGNAL(triggered()), this, SLOT(gotoLoginSystem()));	
+    connect(mainWindow, SIGNAL(triggered()), this, SLOT(gotoMainWindow()));	
 	
     // Jump directly to tabs in RPC-console
     connect(openInfoAction, SIGNAL(triggered()), this, SLOT(showInfo()));
@@ -723,8 +723,8 @@ void BitcoinGUI::createMenuBar()
     QMenu* donate = appMenuBar->addMenu(tr("&Donate"));
     donate->addAction(externalDonate);
 	
-    QMenu* login = appMenuBar->addMenu(tr("&HTH World"));
-    login->addAction(loginSystem);	
+    QMenu* media = appMenuBar->addMenu(tr("&HTH World"));
+    media->addAction(mainWindow);	
 
 }
 
@@ -1052,10 +1052,10 @@ void BitcoinGUI::openClicked()
     }
 }
 
-void BitcoinGUI::gotoLoginSystem()
+void BitcoinGUI::gotoMainWindow()
 {
-    loginSystem->setChecked(true);
-    if (walletFrame) walletFrame->gotoLoginSystem();
+    mainWindow->setChecked(true);
+    if (walletFrame) walletFrame->gotoMainWindow();
 } 
 
 void BitcoinGUI::gotoGovernancePage()
