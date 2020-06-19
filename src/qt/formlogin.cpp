@@ -53,12 +53,15 @@ void FormLogin::OnLogin()
 {
     QString username = userLineEdit->text();
     QString password = passLineEdit->text();
- 
+  
     // Checking if username or password is empty
     if (username.isEmpty() || password.isEmpty())
         QMessageBox::information(this, tr("Warning!"), "Username or password must not be blank");
     else
-        this->destroy();
+        this->hide();
+        HomePage homepage;
+        homepage.setModal(true);
+        homepage.exec();
 }
  
 FormLogin::~FormLogin() {}
