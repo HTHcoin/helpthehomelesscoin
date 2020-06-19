@@ -11,7 +11,7 @@
 
 #include "amount.h"
 #include "governancelist.h"
-#include "mainWindow.h"
+#include "mainwindow.h"
 
 #include <QLabel>
 #include <QMainWindow>
