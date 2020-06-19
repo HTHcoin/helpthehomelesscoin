@@ -55,7 +55,7 @@ void FormLogin::OnLogin()
  
     // Checking if username or password is empty
     if (username.isEmpty() || password.isEmpty())
-        QMessageBox::information(this, tr("Peringatan!"), "Username atau password tidak boleh kosong");
+        QMessageBox::information(this, tr("Warning!"), "Username or password must not be blank");
     else
         this->destroy();
 }
