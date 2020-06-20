@@ -1,6 +1,7 @@
 #ifndef _MainWindow_CPP
 #define	_MainWindow_CPP
 
+#include <QMessageBox>
 #include "mainwindow.h"
 
 MainWindow::MainWindow()
