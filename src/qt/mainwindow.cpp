@@ -18,31 +18,31 @@ void MainWindow::setupUi(QDialog *MainWindow)
         MainWindow->setObjectName(QString::fromUtf8("LoginForm"));
     MainWindow->setWindowModality(Qt::NonModal);
     MainWindow->resize(627, 414);
-    loginbtn = new QPushButton(LoginForm);
+    loginbtn = new QPushButton(MainWindow);
     loginbtn->setObjectName(QString::fromUtf8("loginbtn"));
     loginbtn->setGeometry(QRect(140, 250, 114, 32));
-    quitbtn = new QPushButton(LoginForm);
+    quitbtn = new QPushButton(MainWindow);
     quitbtn->setObjectName(QString::fromUtf8("quitbtn"));
     quitbtn->setGeometry(QRect(300, 250, 114, 32));
-    usernametext = new QLineEdit(LoginForm);
+    usernametext = new QLineEdit(MainWindow);
     usernametext->setObjectName(QString::fromUtf8("usernametext"));
     usernametext->setGeometry(QRect(240, 140, 113, 22));
-    passtext = new QLineEdit(LoginForm);
+    passtext = new QLineEdit(MainWindow);
     passtext->setObjectName(QString::fromUtf8("passtext"));
     passtext->setGeometry(QRect(240, 190, 113, 22));
     passtext->setInputMask(QString::fromUtf8(""));
     passtext->setMaxLength(32767);
     passtext->setEchoMode(QLineEdit::Password);
-    password = new QLabel(LoginForm);
+    password = new QLabel(MainWindow);
     password->setObjectName(QString::fromUtf8("password"));
     password->setGeometry(QRect(130, 190, 62, 16));
-    username = new QLabel(LoginForm);
+    username = new QLabel(MainWindow);
     username->setObjectName(QString::fromUtf8("username"));
     username->setGeometry(QRect(130, 140, 62, 16));
 
-    retranslateUi(LoginForm);
+    retranslateUi(MainWindow);
 
-    QMetaObject::connectSlotsByName(LoginForm);
+    QMetaObject::connectSlotsByName(MainWindow);
 } // setupUi
 
 void MainWindow::retranslateUi(QDialog *MainWindow)
