@@ -1,6 +1,6 @@
 #ifndef STATISTICS_H
 #define STATISTICS_H
-#include "QString"
+#include <QString>
 
 class Statistics
 {
