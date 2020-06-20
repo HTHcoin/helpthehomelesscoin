@@ -5,7 +5,7 @@
 #include <QFile>
 #include<user.h>
 newAccount::newAccount(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::newAccount)
 {
     ui->setupUi(this);
