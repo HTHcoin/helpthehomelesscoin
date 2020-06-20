@@ -2,6 +2,7 @@
 #define	_MainWindow_CPP
 
 #include <QMessageBox>
+#include <QLineEdit>
 #include "mainwindow.h"
 
 MainWindow::MainWindow()
