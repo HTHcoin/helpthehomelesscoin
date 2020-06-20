@@ -12,13 +12,11 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-   explicit MainWindow(QWidget *parent = 0);
-    MainWindow(int userID );
-    int id;
+    explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
 private Q_SLOTS:
-   void on_signUpButton_clicked();
+    void on_signUpButton_clicked();
 
     void on_logInButton_clicked();
 
