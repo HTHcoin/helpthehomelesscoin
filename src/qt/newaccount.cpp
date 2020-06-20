@@ -37,7 +37,7 @@ void newAccount::on_pushButton_clicked()
         MainWindow* newWindow= new MainWindow(id);
         newWindow->show();
         this->hide();
-//        temp.userFileManipulator.updateActivity(mail,0,0);
+        temp.userFileManipulator.updateActivity(mail,0,0);
     }
 
 }
