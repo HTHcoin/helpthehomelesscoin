@@ -1,5 +1,8 @@
 #include "fileman.h"
 #include<user.h>
+#include <QString>
+#include <QFile>
+#include <QList>
 
 int numberOfUsers=0;
 QList <QString> emailss;
