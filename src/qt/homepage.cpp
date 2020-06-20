@@ -26,7 +26,7 @@
 #define POSTSATATIME 15
 //_____
 HomePage::HomePage(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::HomePage)
 {
     ui->setupUi(this);
