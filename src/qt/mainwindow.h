@@ -18,7 +18,7 @@ public:
     ~MainWindow();
 
 private Q_SLOTS:
-    void on_signUpButton_clicked();
+/*   void on_signUpButton_clicked(); */
 
     void on_logInButton_clicked();
 
