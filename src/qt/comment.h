@@ -1,9 +1,9 @@
 #ifndef COMMENT_H
 #define COMMENT_H
 
-#include "QString"
-#include "QDate"
-#include "QTime"
+#include <QString>
+#include <QDate>
+#include <QTime>
 class Date : public QDate
 {
     QTime timeIsNow;
