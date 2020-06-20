@@ -7,6 +7,7 @@ AddComment::AddComment(QWidget *parent) :
 {
     ui->setupUi(this);
     commentBody = "";
+    QWidget::setWindowIcon(QIcon(":/new/prefix1/logo.png"));
 }
 
 AddComment::~AddComment()
