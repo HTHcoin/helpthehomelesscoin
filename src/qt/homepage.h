@@ -5,8 +5,9 @@
 #include "profilepage.h"
 #include "posts.h"
 #include "user.h"
-#include "QList"
-#include "QVBoxLayout"
+#include <QList>
+#include <QString>
+#include <QVBoxLayout>
 namespace Ui {
 class HomePage;
 }
