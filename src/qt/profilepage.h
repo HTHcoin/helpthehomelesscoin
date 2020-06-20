@@ -9,7 +9,7 @@ namespace Ui {
 class ProfilePage;
 }
 
-class ProfilePage : public QWidget
+class ProfilePage : public QMainWindow
 {
     Q_OBJECT
 
