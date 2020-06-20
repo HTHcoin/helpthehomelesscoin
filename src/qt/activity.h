@@ -4,7 +4,7 @@
 #include <algorithm>
 #include "vector"
 #include "posts.h"
-#include "QList"
+#include <QList>
 class Activity
 {
     unsigned int likesNumbers;
