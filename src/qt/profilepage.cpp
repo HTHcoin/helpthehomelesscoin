@@ -5,18 +5,18 @@
 //selim includes
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "QHBoxLayout"
-#include "QVBoxLayout"
-#include "QLabel"
-#include "QSpacerItem"
-#include "QPushButton"
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QLabel>
+#include <QSpacerItem>
+#include <QPushButton>
 #include <vector>
 #include "posts.h"
-#include "QString"
+#include <QString>
 #include <QTextBrowser>
-#include "QFontMetrics"
-#include "QGroupBox"
-#include "QScrollBar"
+#include <QFontMetrics>
+#include <QGroupBox>
+#include <QScrollBar>
 #include "mainwindow.h"
 #include "addcomment.h"
 #define POSTSNUMBER 100
