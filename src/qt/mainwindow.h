@@ -4,7 +4,7 @@
 #include <QtGui>
 #include <QLabel>
 #include <QPushButton>
-#Include <QString>
+#include <QString>
 
 class MainWindow : public QDialog
 {
