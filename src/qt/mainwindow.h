@@ -5,8 +5,9 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QString>
+#include <QDialog>
 
-class MainWindow : public QMainWindow
+class MainWindow : public QDialog
 {
     Q_OBJECT
 public:
