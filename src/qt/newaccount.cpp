@@ -1,6 +1,8 @@
 #include "newaccount.h"
 #include "ui_newaccount.h"
-#include "QMessageBox"
+#include <QMessageBox>
+#include <QString>
+#include <QFile>
 #include<user.h>
 newAccount::newAccount(QWidget *parent) :
     QMainWindow(parent),
