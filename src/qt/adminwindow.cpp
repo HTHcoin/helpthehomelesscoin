@@ -3,7 +3,7 @@
 #include "statistics.h"
 #include "fileman.h"
 AdminWindow::AdminWindow(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::AdminWindow)
 {
     ui->setupUi(this);
