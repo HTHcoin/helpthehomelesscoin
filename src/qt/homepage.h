@@ -12,7 +12,7 @@ namespace Ui {
 class HomePage;
 }
 
-class HomePage : public QWidget
+class HomePage : public QMainWindow
 {
     Q_OBJECT
 
