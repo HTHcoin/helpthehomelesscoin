@@ -1,84 +1,33 @@
-#ifndef _MainWindow_CPP
-#define	_MainWindow_CPP
-
-#include <QMessageBox>
-#include <QLineEdit>
 #include "mainwindow.h"
-
-MainWindow::MainWindow()
+#include "ui_mainwindow.h"
+#include "newaccount.h"
+#include "homepage.h"
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
 {
-    setupUi(this);
-    connect(loginbtn, SIGNAL(clicked()), this, SLOT(loginclick()));
-    connect(quitbtn, SIGNAL(clicked()), this, SLOT(close()));
+    ui->setupUi(this);
+    ui->signUpLabel->setText("<font color='red'>No account? Create one!</font>");
+
 }
-
-void MainWindow::setupUi(QDialog *MainWindow)
-{
-    if (MainWindow->objectName().isEmpty())
-        MainWindow->setObjectName(QString::fromUtf8("LoginForm"));
-    MainWindow->setWindowModality(Qt::NonModal);
-    MainWindow->resize(627, 414);
-    loginbtn = new QPushButton(MainWindow);
-    loginbtn->setObjectName(QString::fromUtf8("loginbtn"));
-    loginbtn->setGeometry(QRect(140, 250, 114, 32));
-    quitbtn = new QPushButton(MainWindow);
-    quitbtn->setObjectName(QString::fromUtf8("quitbtn"));
-    quitbtn->setGeometry(QRect(300, 250, 114, 32));
-    usernametext = new QLineEdit(MainWindow);
-    usernametext->setObjectName(QString::fromUtf8("usernametext"));
-    usernametext->setGeometry(QRect(240, 140, 113, 22));
-    passtext = new QLineEdit(MainWindow);
-    passtext->setObjectName(QString::fromUtf8("passtext"));
-    passtext->setGeometry(QRect(240, 190, 113, 22));
-    passtext->setInputMask(QString::fromUtf8(""));
-    passtext->setMaxLength(32767);
-    passtext->setEchoMode(QLineEdit::Password);
-    password = new QLabel(MainWindow);
-    password->setObjectName(QString::fromUtf8("password"));
-    password->setGeometry(QRect(130, 190, 62, 16));
-    username = new QLabel(MainWindow);
-    username->setObjectName(QString::fromUtf8("username"));
-    username->setGeometry(QRect(130, 140, 62, 16));
-
-    retranslateUi(MainWindow);
-
-    QMetaObject::connectSlotsByName(MainWindow);
-} // setupUi
-
-void MainWindow::retranslateUi(QDialog *MainWindow)
-{
-    MainWindow->setWindowTitle(QApplication::translate("LoginForm", "User System Login", 0, QApplication::UnicodeUTF8));
-    loginbtn->setText(QApplication::translate("LoginForm", "Login", 0, QApplication::UnicodeUTF8));
-    quitbtn->setText(QApplication::translate("LoginForm", "Quit", 0, QApplication::UnicodeUTF8));
-
-#ifndef QT_NO_TOOLTIP
-    usernametext->setToolTip(QApplication::translate("LoginForm", "Enter Username", 0, QApplication::UnicodeUTF8));
-#endif // QT_NO_TOOLTIP
-
-#ifndef QT_NO_TOOLTIP
-    passtext->setToolTip(QApplication::translate("LoginForm", "Enter Password", 0, QApplication::UnicodeUTF8));
-#endif // QT_NO_TOOLTIP
-
-    passtext->setText(QString());
-    passtext->setPlaceholderText(QString());
-    password->setText(QApplication::translate("LoginForm", "Password", 0, QApplication::UnicodeUTF8));
-    username->setText(QApplication::translate("LoginForm", "Username", 0, QApplication::UnicodeUTF8));
-} // retranslateUi
 
 MainWindow::~MainWindow()
 {
+    delete ui;
 }
 
-void MainWindow::loginclick()
+/*void MainWindow::on_signUpButton_clicked()
 {
-    if (usernametext->text() == "Devilking6105" && passtext->text() == "123456")
-    {
-        QMessageBox::information(this, "Success", "Password Correct");
-    }
-    else
-    {
-        QMessageBox::information(this, "Failure", "Password Incorrect");
-    }
-}
+    newAccount *newAccountWindow = new newAccount;
+    newAccountWindow->show();
+    this->hide();
+    newAccountWindow->setLoginPtr(this);
 
-#endif
+} */
+
+void MainWindow::on_logInButton_clicked()
+{
+    this->hide();
+    HomePage *homePageWindow = new HomePage;
+    homePageWindow->show();
+}
