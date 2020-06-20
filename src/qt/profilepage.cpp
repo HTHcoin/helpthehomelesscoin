@@ -27,7 +27,7 @@
 #include "qprocess.h"
 
 ProfilePage::ProfilePage(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::ProfilePage)
 {
     ui->setupUi(this);
