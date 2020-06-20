@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QString>
 #include <QDialog>
+#include <QLineEdit>
 
 class MainWindow : public QDialog
 {
