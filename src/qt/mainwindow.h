@@ -1,29 +1,27 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef _MainWindow_H
+#define	_MainWindow_H
 
-#include <QMainWindow>
+#include <QtGui>
 
-namespace Ui {
-class MainWindow;
-}
-
-class MainWindow : public QMainWindow
+class MainWindow : public QDialog
 {
     Q_OBJECT
-
 public:
-   explicit MainWindow(QWidget *parent = 0);
-    MainWindow(int userID );
-    int id;
-    ~MainWindow();
-
-private Q_SLOTS:
-    void on_signUpButton_clicked();
-
-    void on_logInButton_clicked();
-
+    MainWindow();
+    QPushButton *loginbtn;
+    QPushButton *quitbtn;
+    QLineEdit *usernametext;
+    QLineEdit *passtext;
+    QLabel *password;
+    QLabel *username;
+    void setupUi(QDialog *MainWindow);
+    void retranslateUi(QDialog *MainWindow);
+    virtual ~MainWindow();
+public Q_SLOTS:
+    void loginclick();
 private:
-    Ui::MainWindow *ui;
+    QString user;
+    QString pass;
 };
 
-#endif // MAINWINDOW_H
+#endif	/* _MainWindow_H */
