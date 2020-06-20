@@ -2,6 +2,9 @@
 #define	_MainWindow_H
 
 #include <QtGui>
+#include <QLabel>
+#include <QPushButton>
+#Include <QString>
 
 class MainWindow : public QDialog
 {
