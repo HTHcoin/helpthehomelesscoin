@@ -7,7 +7,7 @@ namespace Ui {
 class AdminWindow;
 }
 
-class AdminWindow : public QWidget
+class AdminWindow : public QMainWindow
 {
     Q_OBJECT
 
