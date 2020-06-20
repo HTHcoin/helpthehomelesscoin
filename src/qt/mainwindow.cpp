@@ -3,7 +3,7 @@
 #include "newaccount.h"
 #include "homepage.h"
 MainWindow::MainWindow(QWidget *parent) :
-    QWidget(parent),
+    QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
