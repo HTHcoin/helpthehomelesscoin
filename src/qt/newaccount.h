@@ -14,22 +14,16 @@ class newAccount : public QMainWindow
 public:
     explicit newAccount(QWidget *parent = 0);
     ~newAccount();
-    int id;
 
-
-public Q_SLOTS:
+public slots:
     void setLoginPtr(MainWindow *ptr);
-
-
-private Q_SLOTS:
+private slots:
     void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();
 
-
 private:
     Ui::newAccount *ui;
-
     MainWindow *mainWindowPtr;
 };
 
