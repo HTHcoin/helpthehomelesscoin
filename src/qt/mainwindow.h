@@ -6,7 +6,7 @@
 #include <QPushButton>
 #include <QString>
 
-class MainWindow : public QDialog
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 public:
