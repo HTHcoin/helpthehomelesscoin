@@ -16,14 +16,14 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-/*void MainWindow::on_signUpButton_clicked()
+void MainWindow::on_signUpButton_clicked()
 {
     newAccount *newAccountWindow = new newAccount;
     newAccountWindow->show();
     this->hide();
     newAccountWindow->setLoginPtr(this);
 
-} */
+}
 
 void MainWindow::on_logInButton_clicked()
 {
