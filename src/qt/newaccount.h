@@ -7,7 +7,7 @@ namespace Ui {
 class newAccount;
 }
 
-class newAccount : public QMainWindow
+class newAccount : public QWidget
 {
     Q_OBJECT
 
