@@ -8,7 +8,7 @@
 #include <QDialog>
 #include <QLineEdit>
 
-class MainWindow : public MainWindow
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 public:
