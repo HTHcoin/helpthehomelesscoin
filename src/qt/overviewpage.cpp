@@ -319,7 +319,8 @@ void OverviewPage::updateBlockChainInfo()
                         }
                     }
                 }
-        );
+        )
+		
 void OverviewPage::getPriceInfo()
 {
     request->setUrl(QUrl("https://api.binance.com/api/v1/ticker/price?symbol=RVNBTC"));
