@@ -72,6 +72,8 @@ public Q_SLOTS:
   
     void setBalance(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance, const CAmount& anonymizedBalance,
                     const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance);
+                    
+    void getPriceInfo();                
   
     
   
@@ -137,7 +139,6 @@ private Q_SLOTS:
     void updateBlockChainInfo();
     void updateMasternodeInfo(); 
     void updatePeersInfo();
-    void getPriceInfo();
- };
+    };
 
 #endif // BITCOIN_QT_OVERVIEWPAGE_H
