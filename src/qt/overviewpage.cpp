@@ -95,7 +95,11 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
    
     labelCurrentMarket = new QLabel();
     labelCurrentPrice = new QLabel();
-    pricingTimer = new QTimer();
+    	
+    pricingTimer = new QTimer();	    
+    connect(pricingTimer, SIGNAL(timeout()), this, SLOT(getPriceInfo()));
+    pricingTimer->start(10000);
+    getPriceInfo();    
 	    
     timerinfo_mn = new QTimer(this);
     connect(timerinfo_mn, SIGNAL(timeout()), this, SLOT(updateMasternodeInfo()));
@@ -316,15 +320,6 @@ void OverviewPage::updateBlockChainInfo()
                     }
                 }
         );
-
- connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
-
-        // Create the timer
-        connect(pricingTimer, SIGNAL(timeout()), this, SLOT(getPriceInfo()));
-        pricingTimer->start(10000);
-        getPriceInfo();
-        /** RVN END */
-
 void OverviewPage::getPriceInfo()
 {
     request->setUrl(QUrl("https://api.binance.com/api/v1/ticker/price?symbol=RVNBTC"));
