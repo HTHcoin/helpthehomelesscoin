@@ -22,7 +22,6 @@
 #include "platformstyle.h"
 #include "rpcconsole.h"
 #include "utilitydialog.h"
-#include "mainwindow.h"
 /* #include "tradingdialogpage.h" */
 
 
@@ -143,7 +142,6 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     spinnerFrame(0),
     externalDonate(0),
     governanceAction(0),
-    mainWindow(0),
     platformStyle(_platformStyle)
 {
     /* Open CSS when configured */
@@ -605,10 +603,7 @@ void BitcoinGUI::createActions()
     // HTHW Donate
     externalDonate = new QAction(QIcon(":/icons/" + theme + "/about"), tr("Donate To HTHW"), this);
     externalDonate->setStatusTip(tr("Donate to Help The Homeless Worldwide"));	
-    // HTH Chat
-    mainWindow = new QAction(QIcon(":/icons/" + theme + "/chat"), tr("HTH World"), this);
-    mainWindow->setStatusTip(tr("HTH World"));	
- 	
+	
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
     connect(aboutQtAction, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
@@ -619,9 +614,7 @@ void BitcoinGUI::createActions()
 	
 	
      // HTHW Donate
-    connect(externalDonate, SIGNAL(triggered()), this, SLOT(openDonate())); 
-     // HTHW Chat
-    connect(mainWindow, SIGNAL(triggered()), this, SLOT(gotoMainWindow()));	
+    connect(externalDonate, SIGNAL(triggered()), this, SLOT(openDonate())); 	
 	
     // Jump directly to tabs in RPC-console
     connect(openInfoAction, SIGNAL(triggered()), this, SLOT(showInfo()));
@@ -722,9 +715,6 @@ void BitcoinGUI::createMenuBar()
 	
     QMenu* donate = appMenuBar->addMenu(tr("&Donate"));
     donate->addAction(externalDonate);
-	
-    QMenu* media = appMenuBar->addMenu(tr("&HTH World"));
-    media->addAction(mainWindow);	
 
 }
 
@@ -1051,12 +1041,6 @@ void BitcoinGUI::openClicked()
         Q_EMIT receivedURI(dlg.getURI());
     }
 }
-
-void BitcoinGUI::gotoMainWindow()
-{
-    mainWindow->setChecked(true);
-    if (walletFrame) walletFrame->gotoMainWindow();
-} 
 
 void BitcoinGUI::gotoGovernancePage()
 {
