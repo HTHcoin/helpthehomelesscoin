@@ -282,7 +282,7 @@ void OverviewPage::updateBlockChainInfo()
 
 
 // Network request code for the header widget
- bool OverviewPage::connect(networkManager, &QNetworkAccessManager::finished,
+void OverviewPage::connect(networkManager, &QNetworkAccessManager::finished,
                          this, [=](QNetworkReply *reply) {
                     if (reply->error()) {
                         labelCurrentPrice->setText("");
