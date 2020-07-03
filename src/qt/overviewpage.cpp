@@ -324,7 +324,7 @@ void OverviewPage::updateBlockChainInfo()
                         }
                     }
                 }
-        );
+        )
 		
 void OverviewPage::getPriceInfo()
 {
