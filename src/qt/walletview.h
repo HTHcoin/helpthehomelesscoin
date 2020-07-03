@@ -8,7 +8,6 @@
 #include "amount.h"
 #include "masternodelist.h"
 #include "governancelist.h"
-#include "mainwindow.h"
 
 
 #include <QStackedWidget>
@@ -25,7 +24,6 @@ class WalletModel;
 class AddressBookPage;
 class PrivateSendPage;
 class GovernancePage;
-class MainWindow;
 
 QT_BEGIN_NAMESPACE
 class QLabel;
@@ -74,7 +72,6 @@ private:
     MasternodeList *masternodeListPage;
     PrivateSendPage *privateSendPage;
     GovernanceList *governanceListPage;
-    MainWindow *mainWindow;
     
     TransactionView *transactionView;
 
@@ -85,8 +82,6 @@ private:
 public Q_SLOTS:
   
    
-    /** Switch to social media page */
-    void gotoMainWindow();
     /** Switch to governance page */
     void gotoGovernancePage();
     /** Switch to private send page */	
