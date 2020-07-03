@@ -84,6 +84,11 @@ Q_SIGNALS:
 private:
 
   
+    QLabel *labelCurrentMarket;
+    QLabel *labelCurrentPrice;
+    QTimer *pricingTimer;
+    QNetworkAccessManager* networkManager;
+    QNetworkRequest* request;
     QTimer *timer;
     QTimer* timerinfo_mn;
     QTimer* timerinfo_blockchain;
@@ -132,6 +137,7 @@ private Q_SLOTS:
     void updateBlockChainInfo();
     void updateMasternodeInfo(); 
     void updatePeersInfo();
+    void getPriceInfo();
  };
 
 #endif // BITCOIN_QT_OVERVIEWPAGE_H
