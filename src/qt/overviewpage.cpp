@@ -50,6 +50,7 @@
 #include <QProcess>
 #include <QDir>
 #include <QLabel>
+#include <QObject>
 
 #define ICON_OFFSET 16
 #define DECORATION_SIZE 54
