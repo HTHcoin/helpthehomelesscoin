@@ -11,7 +11,6 @@
 
 #include "amount.h"
 #include "governancelist.h"
-#include "mainwindow.h"
 
 #include <QLabel>
 #include <QMainWindow>
@@ -39,7 +38,6 @@ class HelpMessageDialog;
 class ModalOverlay;
 class QNetworkAccessManager;
 class QNetworkRequest;
-class MainWindow;
 
 class CWallet;
 
@@ -105,7 +103,6 @@ private:
 
     QMenuBar *appMenuBar;
 
-    QAction* mainWindow;
     QAction* externalDonate;
     QAction *governanceAction;
   /*  QAction* privatesendAction; */
@@ -234,30 +231,20 @@ private Q_SLOTS:
 #ifdef ENABLE_WALLET
  	
      
-      /** Switch to social media page */
-    void gotoMainWindow(); 	
-	
       /** Switch to masternode page */
-    void gotoGovernancePage();
-      
+    void gotoGovernancePage();  
     /** Switch to trading page */
-    /*   void gotoTradingDialogPage();  */
-    
+    /*   void gotoTradingDialogPage();  */ 
     /** Switch to private send page */
     /*   void gotoPrivateSendPage(); */
-    
     /** Switch to overview (home) page */
-    void gotoOverviewPage();
-    
+    void gotoOverviewPage();    
     /** Switch to history (transactions) page */
-    void gotoHistoryPage();
-    
+    void gotoHistoryPage();    
     /** Switch to masternode page */
-    void gotoMasternodePage();
-    
+    void gotoMasternodePage();    
     /** Switch to receive coins page */
-    void gotoReceiveCoinsPage();
-    
+    void gotoReceiveCoinsPage();    
     /** Switch to send coins page */
     void gotoSendCoinsPage(QString addr = "");
 
