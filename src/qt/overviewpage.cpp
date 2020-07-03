@@ -75,7 +75,9 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     cachedNumISLocks(-1),
     labelCurrentMarket(0),
     labelCurrentPrice(0),
-    pricingTimer(0)
+    pricingTimer(0),
+    networkManager(0),
+    request(0)
     
 {
                
@@ -96,6 +98,8 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
    
     labelCurrentMarket = new QLabel();
     labelCurrentPrice = new QLabel();
+    networkManager = new QNetworkAccessManager();
+    request = new QNetworkRequest();
     	
     pricingTimer = new QTimer();	    
     connect(pricingTimer, SIGNAL(timeout()), this, SLOT(getPriceInfo()));
