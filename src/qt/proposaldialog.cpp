@@ -17,7 +17,7 @@
 #include <chainparams.h>
 #include <interfaces/node.h>
 #include <interfaces/wallet.h>
-#include <key_io.h>
+/*#include <key_io.h> */
 #include <wallet/coincontrol.h>
 #include <wallet/wallet.h>
 
@@ -103,7 +103,7 @@ void ProposalDialog::on_submitButton_clicked()
     if (!clientModel) return;
     if (!model) return;
 
-    CTxDestination destination = DecodeDestination(ui->addressIn->text().toStdString());
+    CTxDestination destination = /* DecodeDestination */(ui->addressIn->text().toStdString());
     if (!IsValidDestination(destination)) {
         ui->statusLabel->setStyleSheet("QLabel { color: red; }");
         ui->statusLabel->setText(tr("The entered address is invalid.") + QString(" ") + tr("Please check the address and try again."));
