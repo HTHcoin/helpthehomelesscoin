@@ -276,7 +276,7 @@ void OverviewPage::updateBlockChainInfo()
         ui->label_Nethash_3->setText(tr("Difficulty:"));
         ui->label_Nethash_value_3->setText(QString::number(CurrentDiff,'f',4));    
     }
-}
+};
 
 /** Price Information **/
 
