@@ -63,7 +63,8 @@ private:
 
 public Q_SLOTS:
 
-
+    /** Show Proposal Generator */
+    void gotoProposalGenerator(QString addr = "");
     /** Switch to social media page */
     void gotoGovernancePage();
     /** Switch to private send page */
