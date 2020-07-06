@@ -231,6 +231,24 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
     Q_EMIT incomingTransaction(date, walletModel->getOptionsModel()->getDisplayUnit(), amount, type, address, label);
 }
 
+void WalletView::gotoProposalGenerator(QString addr)
+{
+    ProposalDialog *proposalDialog = new ProposalDialog(platformStyle, this);
+    proposalDialog->setAttribute(Qt::WA_DeleteOnClose);
+    proposalDialog->setClientModel(clientModel);
+    proposalDialog->setModel(walletModel);
+
+    // Pass through messages from proposalDialog
+    connect(proposalDialog, &ProposalDialog::message, this, &WalletView::message);
+
+    // Highlight transaction after send
+    connect(proposalDialog, &ProposalDialog::coinsSent, transactionView, static_cast<void (TransactionView::*)(const uint256&)>(&TransactionView::focusTransaction));
+
+    if (!addr.isEmpty())
+        proposalDialog->setAddress(addr);
+    proposalDialog->show();
+}
+
 void WalletView::gotoGovernancePage()
 {
     QSettings settings;
