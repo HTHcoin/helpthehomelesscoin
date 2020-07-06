@@ -281,8 +281,8 @@ void OverviewPage::updateBlockChainInfo()
 /** Price Information **/
 
 
-// Network request code for the header widget
-QObject::connect(networkManager, &QNetworkAccessManager::finished,
+ // Network request code for the header widget
+        QObject::connect(networkManager, &QNetworkAccessManager::finished,
                          this, [=](QNetworkReply *reply) {
                     if (reply->error()) {
                         labelCurrentPrice->setText("");
@@ -305,7 +305,7 @@ QObject::connect(networkManager, &QNetworkAccessManager::finished,
                     if (!list.isEmpty()) {
                         double next = list.first().toDouble(&ok);
                         if (!ok) {
-                         /*   labelCurrentPrice->setStyleSheet(currentPriceStyleSheet.arg(COLOR_LABELS.name())); */
+                            labelCurrentPrice->setStyleSheet(currentPriceStyleSheet.arg(COLOR_LABELS.name()));
                             labelCurrentPrice->setText("");
                         } else {
                             double current = labelCurrentPrice->text().toDouble(&ok);
@@ -316,15 +316,15 @@ QObject::connect(networkManager, &QNetworkAccessManager::finished,
                                     labelCurrentPrice->setStyleSheet(currentPriceStyleSheet.arg("red"));
                                 else if (next > current)
                                     labelCurrentPrice->setStyleSheet(currentPriceStyleSheet.arg("green"));
-                              /*  else
-                                    labelCurrentPrice->setStyleSheet(currentPriceStyleSheet.arg(COLOR_LABELS.name())); */
+                                else
+                                    labelCurrentPrice->setStyleSheet(currentPriceStyleSheet.arg(COLOR_LABELS.name()));
                             }
                             labelCurrentPrice->setText(QString("%1").arg(QString().setNum(next, 'f', 8)));
                             labelCurrentPrice->setToolTip(tr("Brought to you by binance.com"));
                         }
                     }
                 }
-	)
+        );
 		
 void OverviewPage::getPriceInfo()
 {
