@@ -103,7 +103,6 @@ private:
 
     QMenuBar *appMenuBar;
 
-    QAction* proposalGeneratorAction = nullptr; 	
     QAction* externalDonate;
     QAction *governanceAction;
   /*  QAction* privatesendAction; */
@@ -231,8 +230,7 @@ public Q_SLOTS:
 private Q_SLOTS:
 #ifdef ENABLE_WALLET
  	
-     /** Show Proposal Generator */
-    void gotoProposalGenerator(QString addr = "");
+
       /** Switch to masternode page */
     void gotoGovernancePage();  
     /** Switch to trading page */
