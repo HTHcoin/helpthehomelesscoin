@@ -561,9 +561,7 @@ void BitcoinGUI::createActions()
     signMessageAction->setStatusTip(tr("Sign messages with your HelpTheHomeless addresses to prove you own them"));
     verifyMessageAction = new QAction(QIcon(":/icons/" + theme + "/transaction_0"), tr("&Verify message..."), this);
     verifyMessageAction->setStatusTip(tr("Verify messages to ensure they were signed with specified HelpTheHomeless addresses"));
-    proposalGeneratorAction = new QAction(QIcon(":/icons/sign"), tr("New Proposal..."), this);
-    proposalGeneratorAction->setStatusTip(tr("Create a proposal and submit it to the network"));	
-	
+    	
     openInfoAction = new QAction(QApplication::style()->standardIcon(QStyle::SP_MessageBoxInformation), tr("&Information"), this);
     openInfoAction->setStatusTip(tr("Show diagnostic information"));
     openRPCConsoleAction = new QAction(QIcon(":/icons/" + theme + "/debugwindow"), tr("&Debug console"), this);
@@ -648,8 +646,7 @@ void BitcoinGUI::createActions()
         connect(usedSendingAddressesAction, SIGNAL(triggered()), walletFrame, SLOT(usedSendingAddresses()));
         connect(usedReceivingAddressesAction, SIGNAL(triggered()), walletFrame, SLOT(usedReceivingAddresses()));
         connect(openAction, SIGNAL(triggered()), this, SLOT(openClicked()));
-	connect(proposalGeneratorAction, &QAction::triggered, [this]{ showNormalIfMinimized(); });
-	connect(proposalGeneratorAction, &QAction::triggered, [this]{ gotoProposalGenerator(); });    
+	 
     }
 #endif // ENABLE_WALLET
 
@@ -681,8 +678,7 @@ void BitcoinGUI::createMenuBar()
         file->addSeparator();
         file->addAction(usedSendingAddressesAction);
         file->addAction(usedReceivingAddressesAction);
-        file->addSeparator();
-	file->addAction(proposalGeneratorAction);    
+        file->addSeparator(); 
     }
     file->addAction(quitAction);
 
@@ -906,8 +902,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     verifyMessageAction->setEnabled(enabled);
     usedSendingAddressesAction->setEnabled(enabled);
     usedReceivingAddressesAction->setEnabled(enabled);
-    openAction->setEnabled(enabled);
-    proposalGeneratorAction->setEnabled(enabled);	
+    openAction->setEnabled(enabled);	
 
 }
 
@@ -942,8 +937,7 @@ void BitcoinGUI::createIconMenu(QMenu *pmenu)
     pmenu->addAction(openConfEditorAction);
     pmenu->addAction(showBackupsAction);
 #ifndef Q_OS_MAC // This is built-in on Mac
-    pmenu->addSeparator();
-    pmenu->addAction(proposalGeneratorAction);	 
+    pmenu->addSeparator();	 
     pmenu->addAction(quitAction);
 #endif
 }
@@ -1047,11 +1041,6 @@ void BitcoinGUI::openClicked()
     {
         Q_EMIT receivedURI(dlg.getURI());
     }
-}
-
-void BitcoinGUI::gotoProposalGenerator(QString addr)
-{
-    if (walletFrame) walletFrame->gotoProposalGenerator(addr);
 }
 
 void BitcoinGUI::gotoGovernancePage()
