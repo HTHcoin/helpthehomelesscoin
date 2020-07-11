@@ -5,8 +5,8 @@
 #ifndef BLOCKNET_QT_BLOCKNETCREATEPROPOSAL2_H
 #define BLOCKNET_QT_BLOCKNETCREATEPROPOSAL2_H
 
-#include <qt/blocknetcreateproposalutil.h>
-#include <qt/blocknetformbtn.h>
+#include <qt/hthcreateproposalutil.h>
+#include <qt/hthformbtn.h>
 
 #include <qt/walletmodel.h>
 
@@ -14,14 +14,14 @@
 #include <QLabel>
 #include <QVBoxLayout>
 
-class BlocknetCreateProposal2 : public BlocknetCreateProposalPage {
+class HTHCreateProposal2 : public HTHCreateProposalPage {
     Q_OBJECT
 public:
-    explicit BlocknetCreateProposal2(int id, QFrame *parent = nullptr);
-    void setModel(const BlocknetCreateProposalPageModel &model);
+    explicit HTHCreateProposal2(int id, QFrame *parent = nullptr);
+    void setModel(const HTHCreateProposalPageModel &model);
     void clear() override;
     bool validated() override;
-    BlocknetCreateProposalPageModel getModel() {
+    HTHCreateProposalPageModel getModel() {
         return model;
     }
 
@@ -47,10 +47,10 @@ private:
     QLabel *feeLbl;
     QLabel *descLbl;
     QLabel *descValLbl;
-    BlocknetFormBtn *backBtn;
-    BlocknetFormBtn *submitBtn;
-    BlocknetFormBtn *cancelBtn;
-    BlocknetCreateProposalPageModel model;
+    HTHFormBtn *backBtn;
+    HTHFormBtn *submitBtn;
+    HTHFormBtn *cancelBtn;
+    HTHCreateProposalPageModel model;
 
     void disableButtons(const bool &disable);
 };
