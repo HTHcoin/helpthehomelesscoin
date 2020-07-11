@@ -298,8 +298,8 @@
      <widget class="QPushButton" name="pushButton_Website_4">
       <property name="geometry">
        <rect>
-        <x>549</x>
-        <y>400</y>
+        <x>470</x>
+        <y>360</y>
         <width>120</width>
         <height>30</height>
        </rect>
@@ -333,8 +333,8 @@ font-size: 11px;</string>
      <widget class="QPushButton" name="pushButton_Website_1">
       <property name="geometry">
        <rect>
-        <x>820</x>
-        <y>400</y>
+        <x>830</x>
+        <y>360</y>
         <width>120</width>
         <height>30</height>
        </rect>
@@ -374,7 +374,7 @@ font-size: 11px;</string>
      <widget class="QPushButton" name="pushButton_Website">
       <property name="geometry">
        <rect>
-        <x>680</x>
+        <x>650</x>
         <y>330</y>
         <width>120</width>
         <height>30</height>
@@ -409,8 +409,8 @@ font-size: 11px;</string>
      <widget class="QPushButton" name="pushButton_Website_3">
       <property name="geometry">
        <rect>
-        <x>679</x>
-        <y>550</y>
+        <x>650</x>
+        <y>540</y>
         <width>120</width>
         <height>30</height>
        </rect>
@@ -444,8 +444,8 @@ font-size: 11px;</string>
      <widget class="QPushButton" name="pushButton_Website_2">
       <property name="geometry">
        <rect>
-        <x>820</x>
-        <y>470</y>
+        <x>830</x>
+        <y>490</y>
         <width>120</width>
         <height>30</height>
        </rect>
@@ -479,8 +479,8 @@ font-size: 11px;</string>
      <widget class="QPushButton" name="pushButton_Website_5">
       <property name="geometry">
        <rect>
-        <x>549</x>
-        <y>470</y>
+        <x>480</x>
+        <y>490</y>
         <width>120</width>
         <height>30</height>
        </rect>
@@ -511,32 +511,13 @@ font-size: 11px;</string>
        <string>NorthernEX</string>
       </property>
      </widget>
-     <widget class="QLabel" name="labelHTHInfo">
-      <property name="geometry">
-       <rect>
-        <x>700</x>
-        <y>430</y>
-        <width>81</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="text">
-       <string>HTH Info</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
      <widget class="QFrame" name="frame_2">
       <property name="geometry">
        <rect>
-        <x>600</x>
-        <y>80</y>
-        <width>371</width>
-        <height>111</height>
+        <x>610</x>
+        <y>390</y>
+        <width>191</width>
+        <height>91</height>
        </rect>
       </property>
       <property name="frameShape">
@@ -1083,6 +1064,148 @@ font-size: 11px;</string>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
+     </widget>
+     <widget class="QFrame" name="frame_News">
+      <property name="geometry">
+       <rect>
+        <x>570</x>
+        <y>10</y>
+        <width>381</width>
+        <height>291</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,0,0">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_News">
+         <item>
+          <widget class="QLabel" name="labelNews">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Latest News</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="labelNewsStatus">
+           <property name="cursor">
+            <cursorShape>WhatsThisCursor</cursorShape>
+           </property>
+           <property name="toolTip">
+            <string>The displayed information may be out of date. Your wallet automatically synchronizes with the SCN network after a connection is established, but this process has not completed yet.</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel { color: red; }</string>
+           </property>
+           <property name="text">
+            <string notr="true">(out of sync)</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_Balance_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="Line" name="line_News">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>1</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>1</height>
+          </size>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QListWidget" name="listNews">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="sizeIncrement">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QListView { background: transparent; }</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="verticalScrollBarPolicy">
+          <enum>Qt::ScrollBarAsNeeded</enum>
+         </property>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAsNeeded</enum>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::NoSelection</enum>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+         <property name="verticalScrollMode">
+          <enum>QAbstractItemView::ScrollPerItem</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>
