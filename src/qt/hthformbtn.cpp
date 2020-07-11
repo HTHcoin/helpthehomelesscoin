@@ -2,11 +2,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <qt/blocknetformbtn.h>
+#include <qt/hthformbtn.h>
 
-#include <qt/blocknetguiutil.h>
+#include <qt/guiutil.h>
 
-BlocknetFormBtn::BlocknetFormBtn(QPushButton *parent) : QPushButton(parent) {
+HTHFormBtn::HTHFormBtn(QPushButton *parent) : QPushButton(parent) {
     this->setFixedSize(BGU::spi(160), BGU::spi(40));
     this->setFlat(true);
     this->setCursor(Qt::PointingHandCursor);
