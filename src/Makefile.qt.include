@@ -104,7 +104,16 @@ QT_MOC_CPP = \
   qt/moc_utilitydialog.cpp \
   qt/moc_walletframe.cpp \
   qt/moc_walletmodel.cpp \
-  qt/moc_walletview.cpp
+  qt/moc_walletview.cpp \
+  qt/moc_hthcreateproposalutil.cpp \
+  qt/moc_hthcreateproposal.cpp \
+  qt/moc_hthtcreateproposal1.cpp \
+  qt/moc_hthcreateproposal2.cpp \
+  qt/moc_hthcreateproposal3.cpp \
+  qt/moc_hthformbtn.cpp \
+  qt/moc_hthhdiv.cpp \
+  qt/moc_hthlineeditwithtitle.cpp \
+  qt/moc_hthproposals.cpp
 
 BITCOIN_MM = \
   qt/macdockiconhandler.mm \
@@ -187,7 +196,16 @@ BITCOIN_QT_H = \
   qt/walletmodel.h \
   qt/walletmodeltransaction.h \
   qt/walletview.h \
-  qt/winshutdownmonitor.h
+  qt/winshutdownmonitor.h \
+  qt/hthcreateproposalutil.h \
+  qt/hthcreateproposal.h \
+  qt/hthtcreateproposal1.h \
+  qt/hthcreateproposal2.h \
+  qt/hthcreateproposal3.h \
+  qt/hthformbtn.h \
+  qt/hthhdiv.h \
+  qt/hthlineeditwithtitle.h \
+  qt/hthproposals.h
 
 RES_ICONS = \
   qt/res/icons/bitcoin.ico \
@@ -525,7 +543,16 @@ BITCOIN_QT_WALLET_CPP = \
   qt/walletframe.cpp \
   qt/walletmodel.cpp \
   qt/walletmodeltransaction.cpp \
-  qt/walletview.cpp
+  qt/walletview.cpp \
+  qt/hthcreateproposalutil.cpp \
+  qt/hthcreateproposal.cpp \
+  qt/hthtcreateproposal1.cpp \
+  qt/hthcreateproposal2.cpp \
+  qt/hthcreateproposal3.cpp \
+  qt/hthformbtn.cpp \
+  qt/hthhdiv.cpp \
+  qt/hthlineeditwithtitle.cpp \
+  qt/hthproposals.cpp
 
 BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
 if TARGET_WINDOWS
