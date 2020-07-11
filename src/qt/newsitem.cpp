@@ -7,7 +7,6 @@
 
 #include <QDebug>
 
-#include "newspage.moc"
 
 NewsItem::NewsItem(const PlatformStyle *platformStyle, QWidget *parent, QDateTime pubDate,QString url,QString title,QString author,QString description) :
     QWidget(parent),
