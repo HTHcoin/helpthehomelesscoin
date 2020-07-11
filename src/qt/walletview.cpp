@@ -21,6 +21,7 @@
 #include "transactionview.h"
 #include "walletmodel.h"
 #include "privatesendpage.h"
+#include "newsitem.h"
 
 #include "ui_interface.h"
 
