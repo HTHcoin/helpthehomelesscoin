@@ -16,7 +16,7 @@
 #include <QMessageBox>
 #include <QWidget>
 
-struct BlocknetCreateProposalPageModel {
+struct HTHCreateProposalPageModel {
     std::string name;
     std::string url;
     std::string description;
@@ -26,10 +26,10 @@ struct BlocknetCreateProposalPageModel {
     uint256 feehash;
 };
 
-class BlocknetCreateProposalPage : public QFrame {
+class HTHCreateProposalPage : public QFrame {
     Q_OBJECT
 public:
-    explicit BlocknetCreateProposalPage(int id, QWidget *parent = nullptr) : QFrame(parent), pageID(id) { }
+    explicit HTHCreateProposalPage(int id, QWidget *parent = nullptr) : QFrame(parent), pageID(id) { }
     virtual void setWalletModel(WalletModel *w) { walletModel = w; };
     virtual void clear() {};
     virtual bool validated() { return true; };
