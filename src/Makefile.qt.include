@@ -106,7 +106,8 @@ QT_MOC_CPP = \
   qt/moc_walletframe.cpp \
   qt/moc_walletmodel.cpp \
   qt/moc_walletview.cpp \
-  qt/moc_newsitem.cpp
+  qt/moc_newsitem.cpp \
+  qt/moc_newspage.cpp
 
 BITCOIN_MM = \
   qt/macdockiconhandler.mm \
@@ -190,7 +191,8 @@ BITCOIN_QT_H = \
   qt/walletmodeltransaction.h \
   qt/walletview.h \
   qt/winshutdownmonitor.h \
-  qt/newsitem.h
+  qt/newsitem.h \
+  qt/newspage.h
 
 RES_ICONS = \
   qt/res/icons/bitcoin.ico \
@@ -529,7 +531,8 @@ BITCOIN_QT_WALLET_CPP = \
   qt/walletmodel.cpp \
   qt/walletmodeltransaction.cpp \
   qt/walletview.cpp \
-  qt/newsitem.cpp
+  qt/newsitem.cpp \
+  qt/newspage.cpp
 
 BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
 if TARGET_WINDOWS
