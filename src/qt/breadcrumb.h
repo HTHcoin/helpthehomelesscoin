@@ -20,11 +20,11 @@ protected:
     void paintEvent(QPaintEvent *event) override;
 };
 
-class BlocknetBreadCrumb : public QFrame {
+class BreadCrumb : public QFrame {
     Q_OBJECT
 public:
-    explicit BlocknetBreadCrumb(QFrame *parent = nullptr);
-    ~BlocknetBreadCrumb() override;
+    explicit BreadCrumb(QFrame *parent = nullptr);
+    ~BreadCrumb() override;
     QSize sizeHint() const override;
     void addCrumb(QString title, int crumb);
     int getCrumb() {
@@ -32,7 +32,7 @@ public:
     }
     bool showCrumb(int crumb);
 
-    struct BlocknetCrumb {
+    struct BreadCrumb {
         int crumb;
         QString title;
     };
