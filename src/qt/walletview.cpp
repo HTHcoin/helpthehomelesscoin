@@ -21,7 +21,7 @@
 #include "transactionview.h"
 #include "walletmodel.h"
 #include "privatesendpage.h"
-#include "newsitem.h"
+
 
 #include "ui_interface.h"
 
@@ -76,7 +76,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     receiveCoinsPage = new ReceiveCoinsDialog(platformStyle);
     sendCoinsPage = new SendCoinsDialog(platformStyle);
     governanceListPage = new GovernanceList(platformStyle);
-    newsPage = new NewsPage(platformStyle);    
+   
 
     usedSendingAddressesPage = new AddressBookPage(platformStyle, AddressBookPage::ForEditing, AddressBookPage::SendingTab, this);
     usedReceivingAddressesPage = new AddressBookPage(platformStyle, AddressBookPage::ForEditing, AddressBookPage::ReceivingTab, this);
@@ -86,7 +86,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(receiveCoinsPage);
     addWidget(sendCoinsPage);
     addWidget(privateSendPage);   
-    addWidget(newsPage);    
+  
 
         QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
@@ -155,7 +155,7 @@ void WalletView::setClientModel(ClientModel *_clientModel)
     privateSendPage->setClientModel(_clientModel);
     sendCoinsPage->setClientModel(_clientModel);
     governanceListPage->setClientModel(_clientModel);
-    newsPage->setClientModel(_clientModel);
+
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
         masternodeListPage->setClientModel(_clientModel);
@@ -172,7 +172,7 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
     overviewPage->setWalletModel(_walletModel);
     privateSendPage->setWalletModel(_walletModel);
     governanceListPage->setWalletModel(_walletModel);
-    newsPage->setWalletModel(_walletModel);
+
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
         masternodeListPage->setWalletModel(_walletModel);
@@ -236,11 +236,6 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
     Q_EMIT incomingTransaction(date, walletModel->getOptionsModel()->getDisplayUnit(), amount, type, address, label);
 }
 
-void WalletView::gotoNewsPage()
-{
-    QSettings settings;
-    setCurrentWidget(newsPage);
-}
 
 void WalletView::gotoGovernancePage()
 {
