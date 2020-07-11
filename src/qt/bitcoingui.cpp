@@ -142,6 +142,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     spinnerFrame(0),
     externalDonate(0),
     governanceAction(0),
+    newsAction(0),
     platformStyle(_platformStyle)
 {
     /* Open CSS when configured */
@@ -495,6 +496,19 @@ void BitcoinGUI::createActions()
         tabGroup->addAction(governanceAction);
         connect(governanceAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
         connect(governanceAction, SIGNAL(triggered()), this, SLOT(gotoGovernancePage()));
+		 
+	newsAction = new QAction(QIcon(":/icons/" + theme + "/announcement"), tr("&News"), this);
+    	newsAction->setStatusTip(tr("Show general overview of wallet"));
+    	newsAction->setToolTip(newsAction->statusTip());
+    	newsAction->setCheckable(true);
+#ifdef Q_OS_MAC
+    	newsAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_8));
+#else
+    	newsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_8));
+#endif
+    	tabGroup->addAction(newsAction);
+	connect(newsAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+        connect(newsAction, SIGNAL(triggered()), this, SLOT(gotoNewsPage()));	 
 		
     } 
 	
@@ -729,7 +743,7 @@ void BitcoinGUI::createToolBars()
         toolbar->addAction(overviewAction);
         toolbar->addAction(sendCoinsAction);
         toolbar->addAction(receiveCoinsAction);
-        toolbar->addAction(historyAction);    
+        toolbar->addAction(historyAction); 
 /*	toolbar->addAction(privatesendAction); */
 	    
 	      
@@ -741,8 +755,8 @@ void BitcoinGUI::createToolBars()
            toolbar->addAction(governanceAction);
 	   toolbar->addAction(unlockWalletAction);
 	    
-	 
-	    toolbar->addAction(unlockWalletAction);
+	   toolbar->addAction(newsAction);
+	   toolbar->addAction(unlockWalletAction);
 	   	  
         toolbar->setMovable(false); // remove unused icon in upper left corner
         overviewAction->setChecked(true);
@@ -895,6 +909,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
         masternodeAction->setEnabled(enabled);
     }
     governanceAction->setEnabled(enabled);
+    newsAction->setEnabled(enabled);	
     encryptWalletAction->setEnabled(enabled);
     backupWalletAction->setEnabled(enabled);
     changePassphraseAction->setEnabled(enabled);
@@ -1047,6 +1062,12 @@ void BitcoinGUI::gotoGovernancePage()
 {
     governanceAction->setChecked(true);
     if (walletFrame) walletFrame->gotoGovernancePage();
+}
+
+void BitcoinGUI::gotoNewsPage()
+{
+    newsAction->setChecked(true);
+    if (walletFrame) walletFrame->gotoNewsPage();
 }
 
 void BitcoinGUI::openDonate()
