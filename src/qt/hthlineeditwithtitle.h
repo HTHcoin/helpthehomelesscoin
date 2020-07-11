@@ -5,17 +5,17 @@
 #ifndef BLOCKNET_QT_BLOCKNETLINEEDITWITHTITLE_H
 #define BLOCKNET_QT_BLOCKNETLINEEDITWITHTITLE_H
 
-#include <qt/blocknetlineedit.h>
+#include <qt/hthlineedit.h>
 
 #include <QBoxLayout>
 #include <QFrame>
 #include <QLabel>
 
-class BlocknetLineEditWithTitle : public QFrame
+class HTHLineEditWithTitle : public QFrame
 {
     Q_OBJECT
 public:
-    explicit BlocknetLineEditWithTitle(QString title = "", QString placeholder = "",
+    explicit HTHLineEditWithTitle(QString title = "", QString placeholder = "",
             int w = BGU::spi(250), QFrame *parent = nullptr);
     void setID(QString id);
     void setError(bool flag = true);
