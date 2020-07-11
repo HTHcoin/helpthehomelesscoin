@@ -2,10 +2,10 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <qt/blocknetcreateproposal2.h>
+#include <qt/hthcreateproposal2.h>
 
-#include <qt/blocknetguiutil.h>
-#include <qt/blocknethdiv.h>
+#include <qt/guiutil.h>
+#include <qt/hthhdiv.h>
 
 #include <qt/bitcoinunits.h>
 
@@ -17,7 +17,7 @@
 #include <QKeyEvent>
 #include <QMessageBox>
 
-BlocknetCreateProposal2::BlocknetCreateProposal2(int id, QFrame *parent) : BlocknetCreateProposalPage(id, parent),
+HTHCreateProposal2::HTHCreateProposal2(int id, QFrame *parent) : HTHCreateProposalPage(id, parent),
                                                                            layout(new QVBoxLayout) {
     this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     this->setLayout(layout);
@@ -29,7 +29,7 @@ BlocknetCreateProposal2::BlocknetCreateProposal2(int id, QFrame *parent) : Block
     subtitleLbl = new QLabel;
     subtitleLbl->setObjectName("h2");
 
-    auto *div1 = new BlocknetHDiv;
+    auto *div1 = new HTHHDiv;
 
     auto *titleGrid = new QFrame;
     auto *titleLayout = new QGridLayout;
@@ -46,7 +46,7 @@ BlocknetCreateProposal2::BlocknetCreateProposal2(int id, QFrame *parent) : Block
     titleLayout->addWidget(proposalTitleLbl, 0, 0);
     titleLayout->addWidget(proposalLbl, 0, 1, Qt::AlignRight);
 
-    auto *div2 = new BlocknetHDiv;
+    auto *div2 = new HTHHDiv;
 
     auto *proposalGrid = new QFrame;
     auto *proposalLayout = new QGridLayout;
@@ -63,7 +63,7 @@ BlocknetCreateProposal2::BlocknetCreateProposal2(int id, QFrame *parent) : Block
     proposalLayout->addWidget(proposalDetailTitleLbl, 0, 0);
     proposalLayout->addWidget(proposalDetailLbl, 0, 1, Qt::AlignRight);
 
-    auto *div3 = new BlocknetHDiv;
+    auto *div3 = new HTHHDiv;
 
     auto *addrGrid = new QFrame;
     auto *addrGridLayout = new QGridLayout;
@@ -77,7 +77,7 @@ BlocknetCreateProposal2::BlocknetCreateProposal2(int id, QFrame *parent) : Block
     addrGridLayout->addWidget(proposalAddrLbl, 0, 0);
     addrGridLayout->addWidget(proposalAddrValLbl, 0, 1, Qt::AlignRight);
 
-    auto *div4 = new BlocknetHDiv;
+    auto *div4 = new HTHHDiv;
 
     auto *urlGrid = new QFrame;
     auto *urlGridLayout = new QGridLayout;
@@ -91,7 +91,7 @@ BlocknetCreateProposal2::BlocknetCreateProposal2(int id, QFrame *parent) : Block
     urlGridLayout->addWidget(urlLbl, 0, 0);
     urlGridLayout->addWidget(urlValLbl, 0, 1, Qt::AlignRight);
 
-    auto *div5 = new BlocknetHDiv;
+    auto *div5 = new HTHHDiv;
 
     auto *feeGrid = new QFrame;
     auto *feeLayout = new QGridLayout;
@@ -108,7 +108,7 @@ BlocknetCreateProposal2::BlocknetCreateProposal2(int id, QFrame *parent) : Block
     feeLayout->addWidget(feeTitleLbl, 0, 0);
     feeLayout->addWidget(feeLbl, 0, 1, Qt::AlignRight);
 
-    auto *div6 = new BlocknetHDiv;
+    auto *div6 = new HTHtHDiv;
 
     auto *descGrid = new QFrame;
     auto *descLayout = new QVBoxLayout;
@@ -126,7 +126,7 @@ BlocknetCreateProposal2::BlocknetCreateProposal2(int id, QFrame *parent) : Block
     descLayout->addWidget(descLbl);
     descLayout->addWidget(descValLbl);
 
-    auto *div7 = new BlocknetHDiv;
+    auto *div7 = new HTHHDiv;
 
     // Cancel/continue buttons
     auto *btnBox = new QFrame;
@@ -135,11 +135,11 @@ BlocknetCreateProposal2::BlocknetCreateProposal2(int id, QFrame *parent) : Block
     btnBoxLayout->setContentsMargins(QMargins());
     btnBoxLayout->setSpacing(BGU::spi(15));
     btnBox->setLayout(btnBoxLayout);
-    backBtn = new BlocknetFormBtn;
+    backBtn = new HTHFormBtn;
     backBtn->setText(tr("Back"));
-    submitBtn = new BlocknetFormBtn;
+    submitBtn = new HTHFormBtn;
     submitBtn->setText(tr("Pay Fee"));
-    cancelBtn = new BlocknetFormBtn;
+    cancelBtn = new HTHFormBtn;
     cancelBtn->setObjectName("cancel");
     cancelBtn->setText(tr("Cancel"));
     btnBoxLayout->addWidget(backBtn, 0, Qt::AlignLeft | Qt::AlignBottom);
@@ -182,12 +182,12 @@ BlocknetCreateProposal2::BlocknetCreateProposal2(int id, QFrame *parent) : Block
     layout->addWidget(btnBox);
     layout->addSpacing(BGU::spi(20));
 
-    connect(submitBtn, &BlocknetFormBtn::clicked, this, &BlocknetCreateProposal2::onSubmit);
-    connect(cancelBtn, &BlocknetFormBtn::clicked, this, &BlocknetCreateProposal2::onCancel);
-    connect(backBtn, &BlocknetFormBtn::clicked, this, &BlocknetCreateProposal2::onBack);
+    connect(submitBtn, &HTHFormBtn::clicked, this, &HTHCreateProposal2::onSubmit);
+    connect(cancelBtn, &HTHFormBtn::clicked, this, &HTHCreateProposal2::onCancel);
+    connect(backBtn, &HTHFormBtn::clicked, this, &HTHCreateProposal2::onBack);
 }
 
-void BlocknetCreateProposal2::setModel(const BlocknetCreateProposalPageModel & m) {
+void HTHCreateProposal2::setModel(const HTHCreateProposalPageModel & m) {
     this->model = m;
     subtitleLbl->setText(tr("Review Proposal (Superblock %1)").arg(model.superblock));
     proposalLbl->setText(QString::fromStdString(model.name));
@@ -198,7 +198,7 @@ void BlocknetCreateProposal2::setModel(const BlocknetCreateProposalPageModel & m
     descValLbl->setText(QString::fromStdString(model.description));
 }
 
-void BlocknetCreateProposal2::keyPressEvent(QKeyEvent *event) {
+void HTHCreateProposal2::keyPressEvent(QKeyEvent *event) {
     QWidget::keyPressEvent(event);
     if (this->isHidden())
         return;
@@ -206,7 +206,7 @@ void BlocknetCreateProposal2::keyPressEvent(QKeyEvent *event) {
         onSubmit();
 }
 
-bool BlocknetCreateProposal2::validated() {
+bool HTHCreateProposal2::validated() {
     gov::Proposal proposal(model.name, model.superblock, model.amount*COIN, EncodeDestination(model.address),
                            model.url, model.description);
     std::string failureReason;
@@ -217,7 +217,7 @@ bool BlocknetCreateProposal2::validated() {
     return true;
 }
 
-void BlocknetCreateProposal2::onSubmit() {
+void HTHCreateProposal2::onSubmit() {
     disableButtons(true);
     if (!validated())
         disableButtons(false);
@@ -260,10 +260,10 @@ void BlocknetCreateProposal2::onSubmit() {
     disableButtons(false);
 }
 
-void BlocknetCreateProposal2::clear() {
+void HTHCreateProposal2::clear() {
 }
 
-void BlocknetCreateProposal2::disableButtons(const bool &disable) {
+void HTHCreateProposal2::disableButtons(const bool &disable) {
     backBtn->setEnabled(!disable);
     submitBtn->setEnabled(!disable);
     cancelBtn->setEnabled(!disable);
