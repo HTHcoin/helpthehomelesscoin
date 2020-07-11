@@ -10,7 +10,7 @@
 #include <QPushButton>
 #include <QtGlobal>
 
-BreadCrumb::BlocknetBreadCrumb(QFrame *parent) : QFrame(parent), layout(new QHBoxLayout) {
+BreadCrumb::BreadCrumb(QFrame *parent) : QFrame(parent), layout(new QHBoxLayout) {
 //    this->setStyleSheet("border: 1px solid red");
     this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
     layout->setContentsMargins(QMargins());
