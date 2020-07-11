@@ -7,11 +7,11 @@
 
 #include <QLabel>
 
-class BlocknetHDiv : public QLabel
+class HTHHDiv : public QLabel
 {
     Q_OBJECT
 public:
-    explicit BlocknetHDiv(QLabel *parent = nullptr);
+    explicit HTHHDiv(QLabel *parent = nullptr);
 
 Q_SIGNALS:
 
