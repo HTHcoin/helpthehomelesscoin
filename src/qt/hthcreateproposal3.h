@@ -5,8 +5,8 @@
 #ifndef BLOCKNET_QT_BLOCKNETCREATEPROPOSAL3_H
 #define BLOCKNET_QT_BLOCKNETCREATEPROPOSAL3_H
 
-#include <qt/blocknetcreateproposalutil.h>
-#include <qt/blocknetformbtn.h>
+#include <qt/hthcreateproposalutil.h>
+#include <qt/hthformbtn.h>
 
 #include <qt/walletmodel.h>
 
@@ -15,11 +15,11 @@
 #include <QTimer>
 #include <QVBoxLayout>
 
-class BlocknetCreateProposal3 : public BlocknetCreateProposalPage {
+class HTHCreateProposal3 : public HTHCreateProposalPage {
     Q_OBJECT
 public:
-    explicit BlocknetCreateProposal3(int id, QFrame *parent = nullptr);
-    void setModel(const BlocknetCreateProposalPageModel &model);
+    explicit HTHCreateProposal3(int id, QFrame *parent = nullptr);
+    void setModel(const HTHCreateProposalPageModel &model);
     void clear() override;
     bool validated() override;
 
@@ -47,8 +47,8 @@ private:
     QLabel *feeHashValLbl;
     QLabel *feeTitleLbl;
     QLabel *feeLbl;
-    BlocknetFormBtn *doneBtn;
-    BlocknetCreateProposalPageModel model;
+    HTHFormBtn *doneBtn;
+    HTHCreateProposalPageModel model;
     QTimer *timer;
 
     int collateralConfirmations();
