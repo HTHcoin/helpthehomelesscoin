@@ -103,7 +103,6 @@ private:
 
     QMenuBar *appMenuBar;
 
-    QAction* newsAction;
     QAction* externalDonate;
     QAction *governanceAction;
   /*  QAction* privatesendAction; */
@@ -231,8 +230,7 @@ public Q_SLOTS:
 private Q_SLOTS:
 #ifdef ENABLE_WALLET
  	
-	 /** Switch to news page */
-    void gotoNewsPage();
+
       /** Switch to masternode page */
     void gotoGovernancePage();  
     /** Switch to trading page */
