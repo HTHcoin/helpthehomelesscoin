@@ -483,8 +483,8 @@ void BitcoinGUI::createActions()
     }
 
      	 {
-        governanceAction = new QAction(QIcon(":/icons/about"), tr("&Proposal"), this);
-        governanceAction->setStatusTip(tr("Submit A Proposal"));
+        governanceAction = new QAction(QIcon(":/icons/about"), tr("&Proposals"), this);
+        governanceAction->setStatusTip(tr("View Proposals"));
         governanceAction->setToolTip(governanceAction->statusTip());
         governanceAction->setCheckable(true);
 #ifdef Q_OS_MAC
