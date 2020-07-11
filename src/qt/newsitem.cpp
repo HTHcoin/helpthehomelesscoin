@@ -9,7 +9,7 @@
 
 #include "newsitem.moc"
 
-NewsItem::NewsItem(QWidget* parent,QDateTime pubDate,QString url,QString title,QString author,QString description) :
+NewsItem::NewsItem(const PlatformStyle *platformStyle, QWidget *parent, QDateTime pubDate,QString url,QString title,QString author,QString description) :
     QWidget(parent),
     pubDate(pubDate),
     ui(new Ui::NewsItem),
