@@ -5,9 +5,9 @@
 #ifndef BLOCKNET_QT_BLOCKNETCREATEPROPOSAL1_H
 #define BLOCKNET_QT_BLOCKNETCREATEPROPOSAL1_H
 
-#include <qt/blocknetcreateproposalutil.h>
-#include <qt/blocknetformbtn.h>
-#include <qt/blocknetlineeditwithtitle.h>
+#include <qt/hthcreateproposalutil.h>
+#include <qt/hthformbtn.h>
+#include <qt/hthlineeditwithtitle.h>
 
 #include <qt/walletmodel.h>
 
@@ -18,12 +18,12 @@
 #include <QLabel>
 #include <QVBoxLayout>
 
-class BlocknetCreateProposal1 : public BlocknetCreateProposalPage {
+class HTHCreateProposal1 : public HTHCreateProposalPage {
     Q_OBJECT
 public:
-    explicit BlocknetCreateProposal1(int id, QFrame *parent = nullptr);
+    explicit HTHCreateProposal1(int id, QFrame *parent = nullptr);
     bool validated() override;
-    BlocknetCreateProposalPageModel getModel() {
+    HTHCreateProposalPageModel getModel() {
         auto proposalAddr = paymentAddrTi->lineEdit->text().toStdString();
         auto proposalDest = DecodeDestination(proposalAddr);
         return {
@@ -52,14 +52,14 @@ private:
     QLabel *feeTitleLbl;
     QLabel *feeLbl;
     QLabel *charCountLbl;
-    BlocknetLineEditWithTitle *proposalTi;
-    BlocknetLineEditWithTitle *urlTi;
-    BlocknetLineEditWithTitle *descriptionTi;
-    BlocknetLineEditWithTitle *superBlockTi;
-    BlocknetLineEditWithTitle *amountTi;
-    BlocknetLineEditWithTitle *paymentAddrTi;
-    BlocknetFormBtn *continueBtn;
-    BlocknetFormBtn *cancelBtn;
+    HTHLineEditWithTitle *proposalTi;
+    HTHLineEditWithTitle *urlTi;
+    HTHLineEditWithTitle *descriptionTi;
+    HTHLineEditWithTitle *superBlockTi;
+    HTHLineEditWithTitle *amountTi;
+    HTHLineEditWithTitle *paymentAddrTi;
+    HTHFormBtn *continueBtn;
+    HTHFormBtn *cancelBtn;
 
     static int nextSuperblock();
 };
