@@ -119,7 +119,7 @@ void OverviewPage::handleOutOfSyncWarningClicks()
 
 OverviewPage::~OverviewPage()
 {
-    // not needed  /*if(timer) disconnect(timer, SIGNAL(timeout()), this, SLOT(privateSendStatus()));
+    /*if(timer) disconnect(timer, SIGNAL(timeout()), this, SLOT(privateSendStatus()));
     delete ui; */ 
   
   delete ui;
