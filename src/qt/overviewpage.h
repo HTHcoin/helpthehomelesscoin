@@ -25,6 +25,8 @@
 #include <QtNetwork/QNetworkAccessManager>	
 #include <QtNetwork/QNetworkReply>
 #include <QUrl>
+#include <QBuffer>
+#include <QXmlStreamReader>
 
 #define MASTERNODELIST_UPDATE_SECONDS 3
 #define MASTERNODELIST_FILTER_COOLDOWN_SECONDS 3
