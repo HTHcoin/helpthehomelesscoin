@@ -10,7 +10,7 @@
 #include <qt/bitcoinunits.h>
 
 #include <chainparams.h>
-#include <governance/governancewallet.h>
+#include <governancewallet.h>
 #include <net.h>
 #include <wallet/wallet.h>
 
