@@ -5,7 +5,7 @@
 #ifndef BLOCKNET_GOVERNANCE_GOVERNANCEWALLET_H
 #define BLOCKNET_GOVERNANCE_GOVERNANCEWALLET_H
 
-#include <governance/governance.h>
+#include <governance.h>
 
 #include <coins.h>
 #include <wallet/wallet.h>
