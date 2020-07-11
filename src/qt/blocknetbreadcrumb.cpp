@@ -2,15 +2,15 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <qt/blocknetbreadcrumb.h>
+#include <qt/breadcrumb.h>
 
-#include <qt/blocknetguiutil.h>
+#include <qt/guiutil.h>
 
 #include <QPainter>
 #include <QPushButton>
 #include <QtGlobal>
 
-BlocknetBreadCrumb::BlocknetBreadCrumb(QFrame *parent) : QFrame(parent), layout(new QHBoxLayout) {
+BreadCrumb::BlocknetBreadCrumb(QFrame *parent) : QFrame(parent), layout(new QHBoxLayout) {
 //    this->setStyleSheet("border: 1px solid red");
     this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
     layout->setContentsMargins(QMargins());
@@ -22,7 +22,7 @@ BlocknetBreadCrumb::BlocknetBreadCrumb(QFrame *parent) : QFrame(parent), layout(
     group = new QButtonGroup;
     group->setExclusive(true);
 
-    connect(group, static_cast<void(QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this, &BlocknetBreadCrumb::goToCrumb);
+    connect(group, static_cast<void(QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this, &BreadCrumb::goToCrumb);
 }
 
 /**
@@ -30,7 +30,7 @@ BlocknetBreadCrumb::BlocknetBreadCrumb(QFrame *parent) : QFrame(parent), layout(
  * @param title
  * @param crumb
  */
-void BlocknetBreadCrumb::addCrumb(QString title, int crumb) {
+void BreadCrumb::addCrumb(QString title, int crumb) {
     crumbs.append({ crumb, std::move(title)});
 
     // Remove buttons from group first
@@ -60,11 +60,11 @@ void BlocknetBreadCrumb::addCrumb(QString title, int crumb) {
     }
 }
 
-void BlocknetBreadCrumb::goToCrumb(int crumb) {
+void BreadCrumb::goToCrumb(int crumb) {
     Q_EMIT crumbChanged(crumb);
 }
 
-bool BlocknetBreadCrumb::showCrumb(int crumb) {
+bool BreadCrumb::showCrumb(int crumb) {
     currentCrumb = crumb;
     QAbstractButton *btn = group->button(crumb);
     if (btn)
@@ -72,7 +72,7 @@ bool BlocknetBreadCrumb::showCrumb(int crumb) {
     return true;
 }
 
-QSize BlocknetBreadCrumb::sizeHint() const {
+QSize BreadCrumb::sizeHint() const {
     QSize r;
     for (int i = 0; i < layout->count(); ++i) {
         QWidget *w = layout->itemAt(i)->widget();
@@ -100,4 +100,4 @@ void BlocknetArrow::paintEvent(QPaintEvent*) {
     painter.fillPath(p, color);
 }
 
-BlocknetBreadCrumb::~BlocknetBreadCrumb() = default;
+BreadCrumb::~BreadCrumb() = default;
