@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>NewsPage</class>
- <widget class="QWidget" name="NewsPage">
+ <class>NewsItem</class>
+ <widget class="QWidget" name="NewsItem">
   <property name="geometry">
    <rect>
     <x>0</x>
