@@ -2,66 +2,66 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <qt/blocknetcreateproposal.h>
+#include <qt/hthcreateproposal.h>
 
-#include <qt/blocknetguiutil.h>
+#include <qt/guiutil.h>
 
 #include <QEvent>
 #include <QLineEdit>
 
-enum BlocknetCreateProposalCrumbs {
+enum HTHCreateProposalCrumbs {
     CREATE = 1,
     REVIEW,
     SUBMIT,
 };
 
-BlocknetCreateProposal::BlocknetCreateProposal(QWidget *parent) : QFrame(parent), layout(new QVBoxLayout) {
+HTHCreateProposal::HTHCreateProposal(QWidget *parent) : QFrame(parent), layout(new QVBoxLayout) {
     this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     layout->setContentsMargins(QMargins());
     this->setLayout(layout);
 
-    page1 = new BlocknetCreateProposal1(CREATE);
-    page2 = new BlocknetCreateProposal2(REVIEW);
-    page3 = new BlocknetCreateProposal3(SUBMIT);
+    page1 = new HTHCreateProposal1(CREATE);
+    page2 = new HTHCreateProposal2(REVIEW);
+    page3 = new HTHCreateProposal3(SUBMIT);
     pages = { page1, page2, page3 };
 
-    breadCrumb = new BlocknetBreadCrumb;
+    breadCrumb = new BreadCrumb;
     breadCrumb->setParent(this);
     breadCrumb->addCrumb(tr("Create Proposal"), CREATE);
     breadCrumb->addCrumb(tr("Pay Submission Fee"), REVIEW);
     breadCrumb->addCrumb(tr("Submit Proposal"), SUBMIT);
     breadCrumb->show();
 
-    connect(breadCrumb, &BlocknetBreadCrumb::crumbChanged, this, &BlocknetCreateProposal::crumbChanged);
-    connect(page1, &BlocknetCreateProposalPage::next, this, &BlocknetCreateProposal::nextCrumb);
-    connect(page2, &BlocknetCreateProposalPage::next, this, &BlocknetCreateProposal::nextCrumb);
-    connect(page3, &BlocknetCreateProposalPage::next, this, &BlocknetCreateProposal::nextCrumb);
-    connect(page2, &BlocknetCreateProposalPage::back, this, &BlocknetCreateProposal::prevCrumb);
-    connect(page1, &BlocknetCreateProposalPage::cancel, this, &BlocknetCreateProposal::onCancel);
-    connect(page2, &BlocknetCreateProposalPage::cancel, this, &BlocknetCreateProposal::onCancel);
-    connect(page3, &BlocknetCreateProposalPage::cancel, this, &BlocknetCreateProposal::onCancel);
-    connect(page3, &BlocknetCreateProposal3::done, this, &BlocknetCreateProposal::onDone);
+    connect(breadCrumb, &BreadCrumb::crumbChanged, this, &HTHCreateProposal::crumbChanged);
+    connect(page1, &HTHCreateProposalPage::next, this, &HTHCreateProposal::nextCrumb);
+    connect(page2, &HTHCreateProposalPage::next, this, &HTHCreateProposal::nextCrumb);
+    connect(page3, &HTHCreateProposalPage::next, this, &HTHCreateProposal::nextCrumb);
+    connect(page2, &HTHCreateProposalPage::back, this, &HTHCreateProposal::prevCrumb);
+    connect(page1, &HTHCreateProposalPage::cancel, this, &HTHCreateProposal::onCancel);
+    connect(page2, &HTHCreateProposalPage::cancel, this, &HTHCreateProposal::onCancel);
+    connect(page3, &HTHCreateProposalPage::cancel, this, &HTHCreateProposal::onCancel);
+    connect(page3, &HTHCreateProposal3::done, this, &HTHCreateProposal::onDone);
 
     // Estimated position
     positionCrumb(QPoint(BGU::spi(175), BGU::spi(-4)));
     breadCrumb->goToCrumb(CREATE);
 }
 
-void BlocknetCreateProposal::focusInEvent(QFocusEvent *event) {
+void HTHCreateProposal::focusInEvent(QFocusEvent *event) {
     QWidget::focusInEvent(event);
     if (screen)
         screen->setFocus();
 }
 
-void BlocknetCreateProposal::showEvent(QShowEvent *event) {
+void HTHCreateProposal::showEvent(QShowEvent *event) {
     QWidget::showEvent(event);
     if (screen)
         screen->setFocus();
 }
 
-void BlocknetCreateProposal::crumbChanged(int crumb) {
+void HTHCreateProposal::crumbChanged(int crumb) {
     // Prevent users from jumping around the crumb widget without validating previous pages
-    auto validatePages = [](const int toPage, const QVector<BlocknetCreateProposalPage*> &pages) -> bool {
+    auto validatePages = [](const int toPage, const QVector<HTHCreateProposalPage*> &pages) -> bool {
         if (toPage - 1 > pages.count())
             return false;
         for (int i = 0; i < toPage - 1; ++i) {
@@ -108,7 +108,7 @@ void BlocknetCreateProposal::crumbChanged(int crumb) {
     screen->setFocus();
 }
 
-void BlocknetCreateProposal::nextCrumb(int crumb) {
+void HTHCreateProposal::nextCrumb(int crumb) {
     if (screen && crumb > breadCrumb->getCrumb() && breadCrumb->showCrumb(breadCrumb->getCrumb()) && !screen->validated())
         return;
     if (crumb >= SUBMIT) // do nothing if at the end
@@ -116,7 +116,7 @@ void BlocknetCreateProposal::nextCrumb(int crumb) {
     breadCrumb->goToCrumb(++crumb);
 }
 
-void BlocknetCreateProposal::prevCrumb(int crumb) {
+void HTHCreateProposal::prevCrumb(int crumb) {
     if (!screen)
         return;
     if (crumb <= CREATE) // do nothing if at the beginning
@@ -124,17 +124,17 @@ void BlocknetCreateProposal::prevCrumb(int crumb) {
     breadCrumb->goToCrumb(--crumb);
 }
 
-void BlocknetCreateProposal::onCancel(int crumb) {
+void HTHCreateProposal::onCancel(int crumb) {
     reset();
     Q_EMIT done();
 }
 
-void BlocknetCreateProposal::onDone() {
+void HTHCreateProposal::onDone() {
     reset();
     Q_EMIT done();
 }
 
-bool BlocknetCreateProposal::event(QEvent *event) {
+bool HTHCreateProposal::event(QEvent *event) {
     if (screen && event->type() == QEvent::LayoutRequest) {
         positionCrumb();
     } else if (event->type() == QEvent::Type::MouseButtonPress) {
@@ -145,13 +145,13 @@ bool BlocknetCreateProposal::event(QEvent *event) {
     return QFrame::event(event);
 }
 
-void BlocknetCreateProposal::reset() {
-    for (BlocknetCreateProposalPage *page : pages)
+void HTHCreateProposal::reset() {
+    for (HTHCreateProposalPage *page : pages)
         page->clear();
     breadCrumb->goToCrumb(CREATE);
 }
 
-void BlocknetCreateProposal::positionCrumb(QPoint pt) {
+void HTHCreateProposal::positionCrumb(QPoint pt) {
     if (pt != QPoint() || pt.x() > BGU::spi(250) || pt.y() > 0) {
         breadCrumb->move(pt);
         breadCrumb->raise();
@@ -164,7 +164,7 @@ void BlocknetCreateProposal::positionCrumb(QPoint pt) {
     breadCrumb->raise();
 }
 
-void BlocknetCreateProposal::goToDone() {
+void HTHCreateProposal::goToDone() {
     layout->removeWidget(screen);
     screen->hide();
 }
