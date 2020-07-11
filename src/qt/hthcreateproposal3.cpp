@@ -2,10 +2,10 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <qt/blocknetcreateproposal3.h>
+#include <qt/hthcreateproposal3.h>
 
-#include <qt/blocknetguiutil.h>
-#include <qt/blocknethdiv.h>
+#include <qt/guiutil.h>
+#include <qt/hthhdiv.h>
 
 #include <qt/bitcoinunits.h>
 
@@ -15,7 +15,7 @@
 #include <QKeyEvent>
 #include <QMessageBox>
 
-BlocknetCreateProposal3::BlocknetCreateProposal3(int id, QFrame *parent) : BlocknetCreateProposalPage(id, parent),
+HTHCreateProposal3::HTHCreateProposal3(int id, QFrame *parent) : HTHCreateProposalPage(id, parent),
                                                                            layout(new QVBoxLayout)
 {
     this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -32,7 +32,7 @@ BlocknetCreateProposal3::BlocknetCreateProposal3(int id, QFrame *parent) : Block
     descLbl->setObjectName("h6");
     descLbl->setWordWrap(true);
 
-    auto *div1 = new BlocknetHDiv;
+    auto *div1 = new HTHtHDiv;
 
     auto *titleGrid = new QFrame;
     auto *titleLayout = new QGridLayout;
@@ -48,7 +48,7 @@ BlocknetCreateProposal3::BlocknetCreateProposal3(int id, QFrame *parent) : Block
     titleLayout->addWidget(proposalTitleLbl, 0, 0);
     titleLayout->addWidget(proposalLbl, 0, 1, Qt::AlignRight);
 
-    auto *div2 = new BlocknetHDiv;
+    auto *div2 = new HTHHDiv;
 
     auto *proposalGrid = new QFrame;
     auto *proposalLayout = new QGridLayout;
@@ -64,7 +64,7 @@ BlocknetCreateProposal3::BlocknetCreateProposal3(int id, QFrame *parent) : Block
     proposalLayout->addWidget(proposalDetailTitleLbl, 0, 0);
     proposalLayout->addWidget(proposalDetailLbl, 0, 1, Qt::AlignRight);
 
-    auto *div3 = new BlocknetHDiv;
+    auto *div3 = new HTHHDiv;
 
     auto *feeGrid = new QFrame;
     auto *feeLayout = new QGridLayout;
@@ -80,7 +80,7 @@ BlocknetCreateProposal3::BlocknetCreateProposal3(int id, QFrame *parent) : Block
     feeLayout->addWidget(feeTitleLbl, 0, 0);
     feeLayout->addWidget(feeLbl, 0, 1, Qt::AlignRight);
 
-    auto *div4 = new BlocknetHDiv;
+    auto *div4 = new HTHHDiv;
 
     auto *feeHashGrid = new QFrame;
     auto *feeHashGridLayout = new QGridLayout;
@@ -94,7 +94,7 @@ BlocknetCreateProposal3::BlocknetCreateProposal3(int id, QFrame *parent) : Block
     feeHashGridLayout->addWidget(feeHashLbl, 0, 0);
     feeHashGridLayout->addWidget(feeHashValLbl, 1, 0);
 
-    auto *div5 = new BlocknetHDiv;
+    auto *div5 = new HTHHDiv;
 
     // Cancel/continue buttons
     auto *btnBox = new QFrame;
@@ -148,7 +148,7 @@ BlocknetCreateProposal3::BlocknetCreateProposal3(int id, QFrame *parent) : Block
     });
 }
 
-void BlocknetCreateProposal3::setModel(const BlocknetCreateProposalPageModel & m) {
+void HTHCreateProposal3::setModel(const HTHCreateProposalPageModel & m) {
     this->model = m;
 
     subtitleLbl->setText(tr("Superblock %1").arg(model.superblock));
@@ -168,7 +168,7 @@ void BlocknetCreateProposal3::setModel(const BlocknetCreateProposalPageModel & m
         timer->start();
 }
 
-void BlocknetCreateProposal3::keyPressEvent(QKeyEvent *event) {
+void HTHCreateProposal3::keyPressEvent(QKeyEvent *event) {
     QWidget::keyPressEvent(event);
     if (this->isHidden())
         return;
@@ -176,11 +176,11 @@ void BlocknetCreateProposal3::keyPressEvent(QKeyEvent *event) {
         onSubmit();
 }
 
-bool BlocknetCreateProposal3::validated() {
+bool HTHCreateProposal3::validated() {
     return true;
 }
 
-void BlocknetCreateProposal3::onCancel() {
+void HTHCreateProposal3::onCancel() {
     QMessageBox::StandardButton retval = QMessageBox::question(this, tr("Cancel Proposal Submission"),
             tr("Are you sure you want to cancel this proposal submission? You will need to use the debug console to "
                "resubmit this proposal later (the command is in your debug.log) otherwise you will forfeit the "
@@ -193,15 +193,15 @@ void BlocknetCreateProposal3::onCancel() {
     Q_EMIT cancel(pageID);
 }
 
-void BlocknetCreateProposal3::onSubmit() {
+void HTHCreateProposal3::onSubmit() {
     Q_EMIT done();
 }
 
-void BlocknetCreateProposal3::clear() {
+void HTHCreateProposal3::clear() {
     timer->stop();
 }
 
-int BlocknetCreateProposal3::collateralConfirmations() {
+int HTHCreateProposal3::collateralConfirmations() {
     CTransactionRef tx;
     uint256 block;
     if (!GetTransaction(model.feehash, tx, Params().GetConsensus(), block))
