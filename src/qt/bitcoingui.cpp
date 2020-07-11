@@ -482,9 +482,9 @@ void BitcoinGUI::createActions()
         connect(masternodeAction, SIGNAL(triggered()), this, SLOT(gotoMasternodePage()));
     }
 
-     	 {
-        governanceAction = new QAction(QIcon(":/icons/about"), tr("&Proposals"), this);
-        governanceAction->setStatusTip(tr("View Proposals"));
+     	{
+        governanceAction = new QAction(QIcon(":/icons/governance"), tr("&Governance"), this);
+        governanceAction->setStatusTip(tr("Show governance items"));
         governanceAction->setToolTip(governanceAction->statusTip());
         governanceAction->setCheckable(true);
 #ifdef Q_OS_MAC
@@ -496,7 +496,7 @@ void BitcoinGUI::createActions()
         connect(governanceAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
         connect(governanceAction, SIGNAL(triggered()), this, SLOT(gotoGovernancePage()));
 		
-    } 
+    }
 	
  /*   privatesendAction = new QAction(QIcon(":/icons/coinmix"), tr("&Private Send"), this);
     privatesendAction->setStatusTip(tr("Show Private Send of wallet"));
