@@ -7,7 +7,7 @@
 
 #define NEWS_URL "https://reecore.org/category/news/feed"
 
-
+#include "newspage.moc"
 
 ui->listNews->setSortingEnabled(true);
 
