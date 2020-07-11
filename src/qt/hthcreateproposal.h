@@ -5,23 +5,23 @@
 #ifndef BLOCKNET_QT_BLOCKNETCREATEPROPOSAL_H
 #define BLOCKNET_QT_BLOCKNETCREATEPROPOSAL_H
 
-#include <qt/blocknetbreadcrumb.h>
-#include <qt/blocknetcreateproposalutil.h>
-#include <qt/blocknetcreateproposal1.h>
-#include <qt/blocknetcreateproposal2.h>
-#include <qt/blocknetcreateproposal3.h>
+#include <qt/breadcrumb.h>
+#include <qt/hthcreateproposalutil.h>
+#include <qt/hthcreateproposal1.h>
+#include <qt/hthcreateproposal2.h>
+#include <qt/hthcreateproposal3.h>
 
 #include <QFrame>
 #include <QSet>
 #include <QVBoxLayout>
 #include <QWidget>
 
-class BlocknetCreateProposal : public QFrame
+class HTHCreateProposal : public QFrame
 {
     Q_OBJECT
 
 public:
-    explicit BlocknetCreateProposal(QWidget *parent = nullptr);
+    explicit HTHCreateProposal(QWidget *parent = nullptr);
     void setWalletModel(WalletModel *w) { walletModel = w; }
     void clear() {
         page1->clear();
@@ -46,15 +46,15 @@ private Q_SLOTS:
     void reset();
 
 private:
-    QVector<BlocknetCreateProposalPage*> pages;
+    QVector<HTHCreateProposalPage*> pages;
     WalletModel *walletModel = nullptr;
 
     QVBoxLayout *layout;
-    BlocknetCreateProposal1 *page1;
-    BlocknetCreateProposal2 *page2;
-    BlocknetCreateProposal3 *page3;
-    BlocknetBreadCrumb *breadCrumb;
-    BlocknetCreateProposalPage *screen = nullptr;
+    HTHCreateProposal1 *page1;
+    HTHCreateProposal2 *page2;
+    HTHCreateProposal3 *page3;
+    BreadCrumb *breadCrumb;
+    HTHCreateProposalPage *screen = nullptr;
 
     void positionCrumb(QPoint pt = QPoint());
     void goToDone();
