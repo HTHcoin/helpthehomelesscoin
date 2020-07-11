@@ -247,7 +247,8 @@ BITCOIN_CORE_H = \
   zmq/zmqnotificationinterface.h \
   zmq/zmqpublishnotifier.h \
   governancewallet.h \
-  key_io.h
+  key_io.h \
+  bech32.h
   
 obj/build.h: FORCE
 	@$(MKDIR_P) $(builddir)/obj
@@ -341,6 +342,7 @@ libhelpthehomeless_server_a_SOURCES = \
   versionbits.cpp \
   governancewallet.cpp \
   key_io.cpp \
+  bech32.cpp \
   $(BITCOIN_CORE_H)
 
 if ENABLE_ZMQ
