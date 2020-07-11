@@ -7,11 +7,11 @@
 
 #include <QPushButton>
 
-class BlocknetFormBtn : public QPushButton
+class HTHFormBtn : public QPushButton
 {
     Q_OBJECT
 public:
-    explicit BlocknetFormBtn(QPushButton *parent = nullptr);
+    explicit HTHFormBtn(QPushButton *parent = nullptr);
     void setID(QString id) { this->id = id; }
     QString getID() { return this->id; }
 Q_SIGNALS:
