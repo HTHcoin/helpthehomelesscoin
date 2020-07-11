@@ -488,9 +488,9 @@ void BitcoinGUI::createActions()
         governanceAction->setToolTip(governanceAction->statusTip());
         governanceAction->setCheckable(true);
 #ifdef Q_OS_MAC
-        governanceAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_7));
+        governanceAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_6));
 #else
-        governanceAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
+        governanceAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_6));
 #endif
         tabGroup->addAction(governanceAction);
         connect(governanceAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
