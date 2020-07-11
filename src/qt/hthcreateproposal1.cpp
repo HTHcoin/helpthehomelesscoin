@@ -2,15 +2,15 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <qt/blocknetcreateproposal1.h>
+#include <qt/hthcreateproposal1.h>
 
-#include <qt/blocknethdiv.h>
-#include <qt/blocknetguiutil.h>
+#include <qt/hthhdiv.h>
+#include <qt/guiutil.h>
 
 #include <qt/bitcoinunits.h>
 
 #include <chainparams.h>
-#include <governance/governance.h>
+#include <governance.h>
 
 #include <boost/lexical_cast.hpp>
 
@@ -18,7 +18,7 @@
 #include <QKeyEvent>
 #include <QMessageBox>
 
-BlocknetCreateProposal1::BlocknetCreateProposal1(int id, QFrame *parent) : BlocknetCreateProposalPage(id, parent),
+HTHCreateProposal1::HTHCreateProposal1(int id, QFrame *parent) : HTHCreateProposalPage(id, parent),
                                                                            layout(new QVBoxLayout) {
     this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     this->setLayout(layout);
@@ -31,20 +31,20 @@ BlocknetCreateProposal1::BlocknetCreateProposal1(int id, QFrame *parent) : Block
     auto *subtitleLbl = new QLabel(tr("Create Proposal"));
     subtitleLbl->setObjectName("h2");
 
-    proposalTi = new BlocknetLineEditWithTitle(tr("Proposal name"), tr("Enter proposal name..."));
+    proposalTi = new HTHLineEditWithTitle(tr("Proposal name"), tr("Enter proposal name..."));
     proposalTi->setObjectName("proposal");
     proposalTi->setExpanding();
     proposalTi->lineEdit->setFocusPolicy(Qt::FocusPolicy::StrongFocus);
     proposalTi->lineEdit->setValidator(new QRegExpValidator(QRegExp("[a-zA-Z0-9-_]+"), this));
     proposalTi->lineEdit->setMaxLength(100);
 
-    urlTi = new BlocknetLineEditWithTitle(tr("URL must start with http:// or https://"), tr("Enter URL..."));
+    urlTi = new HTHLineEditWithTitle(tr("URL must start with http:// or https://"), tr("Enter URL..."));
     urlTi->setObjectName("url");
     urlTi->setExpanding();
     urlTi->lineEdit->setValidator(new QRegExpValidator(QRegExp("https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)"), this));
     urlTi->lineEdit->setMaxLength(120);
 
-    descriptionTi = new BlocknetLineEditWithTitle(tr("Description"), tr("Brief proposal description..."));
+    descriptionTi = new HTHLineEditWithTitle(tr("Description"), tr("Brief proposal description..."));
     descriptionTi->setObjectName("description");
     descriptionTi->setExpanding();
     descriptionTi->lineEdit->setMaxLength(120);
@@ -57,19 +57,19 @@ BlocknetCreateProposal1::BlocknetCreateProposal1(int id, QFrame *parent) : Block
 
     auto superblock = nextSuperblock();
     auto superblockStr = superblock == -1 ? QString() : QString::number(superblock);
-    superBlockTi = new BlocknetLineEditWithTitle(tr("Superblock #: Next is %1").arg(superblockStr), tr("Enter Superblock #..."), BGU::spi(50));
+    superBlockTi = new HTHLineEditWithTitle(tr("Superblock #: Next is %1").arg(superblockStr), tr("Enter Superblock #..."), BGU::spi(50));
     superBlockTi->setObjectName("block");
     superBlockTi->setExpanding();
     superBlockTi->lineEdit->setValidator(new QRegExpValidator(QRegExp("[0-9]+"), this));
     superBlockTi->lineEdit->setText(superblockStr);
 
-    amountTi = new BlocknetLineEditWithTitle(tr("Amount (%1 minimum)").arg(Params().GetConsensus().proposalMinAmount/COIN), tr("Enter amount..."), BGU::spi(50));
+    amountTi = new HTHLineEditWithTitle(tr("Amount (%1 minimum)").arg(Params().GetConsensus().proposalMinAmount/COIN), tr("Enter amount..."), BGU::spi(50));
     amountTi->setObjectName("amount");
     amountTi->setExpanding();
     amountTi->lineEdit->setValidator(new QRegExpValidator(QRegExp("[0-9]+"), this));
     amountTi->lineEdit->setMaxLength(std::to_string(Params().GetConsensus().proposalMaxAmount / COIN).length());
 
-    paymentAddrTi = new BlocknetLineEditWithTitle(tr("Payment address"), tr("Enter payment address..."));
+    paymentAddrTi = new HTHLineEditWithTitle(tr("Payment address"), tr("Enter payment address..."));
     paymentAddrTi->setObjectName("address");
     paymentAddrTi->setExpanding();
     paymentAddrTi->lineEdit->setValidator(new QRegExpValidator(QRegExp("[a-zA-Z0-9]+"), this));
@@ -79,7 +79,7 @@ BlocknetCreateProposal1::BlocknetCreateProposal1(int id, QFrame *parent) : Block
     gridLayout->addWidget(amountTi, 0, 1);
     gridLayout->addWidget(paymentAddrTi, 1, 0, 1, 2);
 
-    auto *div1 = new BlocknetHDiv;
+    auto *div1 = new HTHHDiv;
 
     auto *feeGrid = new QFrame;
     auto *feeLayout = new QGridLayout;
@@ -95,7 +95,7 @@ BlocknetCreateProposal1::BlocknetCreateProposal1(int id, QFrame *parent) : Block
     feeLayout->addWidget(feeTitleLbl, 0, 0);
     feeLayout->addWidget(feeLbl, 0, 1, Qt::AlignRight);
 
-    auto *div2 = new BlocknetHDiv;
+    auto *div2 = new HTHHDiv;
 
     charCountLbl = new QLabel;
     charCountLbl->setObjectName("charcount");
@@ -108,9 +108,9 @@ BlocknetCreateProposal1::BlocknetCreateProposal1(int id, QFrame *parent) : Block
     buttonLayout->setColumnStretch(1, 2);
     buttonGrid->setLayout(buttonLayout);
 
-    continueBtn = new BlocknetFormBtn;
+    continueBtn = new HTHFormBtn;
     continueBtn->setText(tr("Continue"));
-    cancelBtn = new BlocknetFormBtn;
+    cancelBtn = new HTHFormBtn;
     cancelBtn->setObjectName("cancel");
     cancelBtn->setText(tr("Cancel"));
 
@@ -141,15 +141,15 @@ BlocknetCreateProposal1::BlocknetCreateProposal1(int id, QFrame *parent) : Block
     layout->addWidget(buttonGrid);
     layout->addSpacing(BGU::spi(20));
 
-    connect(continueBtn, &BlocknetFormBtn::clicked, this, &BlocknetCreateProposal1::onNext);
-    connect(cancelBtn, &BlocknetFormBtn::clicked, this, &BlocknetCreateProposal1::onCancel);
-    connect(proposalTi->lineEdit, &BlocknetLineEdit::textEdited, this, &BlocknetCreateProposal1::inputChanged);
-    connect(urlTi->lineEdit, &BlocknetLineEdit::textEdited, this, &BlocknetCreateProposal1::inputChanged);
-    connect(descriptionTi->lineEdit, &BlocknetLineEdit::textEdited, this, &BlocknetCreateProposal1::inputChanged);
-    connect(paymentAddrTi->lineEdit, &BlocknetLineEdit::textEdited, this, &BlocknetCreateProposal1::inputChanged);
+    connect(continueBtn, &HTHFormBtn::clicked, this, &HTHCreateProposal1::onNext);
+    connect(cancelBtn, &HTHFormBtn::clicked, this, &HTHCreateProposal1::onCancel);
+    connect(proposalTi->lineEdit, &HTHLineEdit::textEdited, this, &HTHCreateProposal1::inputChanged);
+    connect(urlTi->lineEdit, &HTHLineEdit::textEdited, this, &HTHCreateProposal1::inputChanged);
+    connect(descriptionTi->lineEdit, &HTHLineEdit::textEdited, this, &HTHCreateProposal1::inputChanged);
+    connect(paymentAddrTi->lineEdit, &HTHLineEdit::textEdited, this, &HTHCreateProposal1::inputChanged);
 }
 
-bool BlocknetCreateProposal1::validated() {
+bool HTHCreateProposal1::validated() {
     bool empty = proposalTi->isEmpty()
         || urlTi->isEmpty()
         || descriptionTi->isEmpty()
@@ -229,12 +229,12 @@ bool BlocknetCreateProposal1::validated() {
     return true;
 }
 
-void BlocknetCreateProposal1::focusInEvent(QFocusEvent *event) {
+void HTHCreateProposal1::focusInEvent(QFocusEvent *event) {
     QWidget::focusInEvent(event);
     proposalTi->setFocus();
 }
 
-void BlocknetCreateProposal1::showEvent(QShowEvent *event) {
+void HTHCreateProposal1::showEvent(QShowEvent *event) {
     QWidget::showEvent(event);
     if (superBlockTi->isEmpty()) {
         auto superblock = nextSuperblock();
@@ -244,7 +244,7 @@ void BlocknetCreateProposal1::showEvent(QShowEvent *event) {
     }
 }
 
-void BlocknetCreateProposal1::keyPressEvent(QKeyEvent *event) {
+void HTHCreateProposal1::keyPressEvent(QKeyEvent *event) {
     QWidget::keyPressEvent(event);
     if (this->isHidden())
         return;
@@ -252,7 +252,7 @@ void BlocknetCreateProposal1::keyPressEvent(QKeyEvent *event) {
         onNext();
 }
 
-void BlocknetCreateProposal1::inputChanged(const QString &) {
+void HTHCreateProposal1::inputChanged(const QString &) {
     static int maxCharsForEntryFields = gov::PROPOSAL_USERDEFINED_LIMIT;
     const int totalChars = proposalTi->lineEdit->text().size() + urlTi->lineEdit->text().size() +
                            descriptionTi->lineEdit->text().size() + paymentAddrTi->lineEdit->text().size();
@@ -262,7 +262,7 @@ void BlocknetCreateProposal1::inputChanged(const QString &) {
         charCountLbl->setText(tr("Characters remaining on this proposal: %1").arg(maxCharsForEntryFields - totalChars));
 }
 
-void BlocknetCreateProposal1::clear() {
+void HTHCreateProposal1::clear() {
     proposalTi->lineEdit->clear();
     urlTi->lineEdit->clear();
     descriptionTi->lineEdit->clear();
@@ -272,7 +272,7 @@ void BlocknetCreateProposal1::clear() {
     inputChanged(QString()); // reset remaining proposal char count
 }
 
-int BlocknetCreateProposal1::nextSuperblock() {
+int HTHCreateProposal1::nextSuperblock() {
     int currentHeight{0};
     {
         LOCK(cs_main);
