@@ -85,7 +85,8 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(transactionsPage);
     addWidget(receiveCoinsPage);
     addWidget(sendCoinsPage);
-    addWidget(privateSendPage);   
+    addWidget(privateSendPage);
+    addWidget(governanceListPage);    
   
 
         QSettings settings;
