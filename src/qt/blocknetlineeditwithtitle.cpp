@@ -2,13 +2,13 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <qt/blocknetlineeditwithtitle.h>
+#include <qt/hthlineeditwithtitle.h>
 
-#include <qt/blocknetguiutil.h>
+#include <qt/guiutil.h>
 
 #include <QEvent>
 
-BlocknetLineEditWithTitle::BlocknetLineEditWithTitle(QString title, QString placeholder, int w, QFrame *parent)
+HTHLineEditWithTitle::HTHLineEditWithTitle(QString title, QString placeholder, int w, QFrame *parent)
                                                     : QFrame(parent), layout(new QVBoxLayout)
 {
     this->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
@@ -30,31 +30,31 @@ BlocknetLineEditWithTitle::BlocknetLineEditWithTitle(QString title, QString plac
     this->setFocusProxy(lineEdit);
 }
 
-QSize BlocknetLineEditWithTitle::sizeHint() const {
+QSize HTHLineEditWithTitle::sizeHint() const {
     return { lineEdit->width(), BGU::spi(30) + layout->spacing() + titleLbl->height() };
 }
 
-bool BlocknetLineEditWithTitle::isEmpty() {
+bool HTHLineEditWithTitle::isEmpty() {
     return lineEdit->text().trimmed().isEmpty();
 }
 
-void BlocknetLineEditWithTitle::setID(const QString id) {
+void HTHLineEditWithTitle::setID(const QString id) {
     this->id = id;
 }
 
-QString BlocknetLineEditWithTitle::getID() {
+QString HTHLineEditWithTitle::getID() {
     return this->id;
 }
 
-void BlocknetLineEditWithTitle::setError(bool flag) {
+void HTHLineEditWithTitle::setError(bool flag) {
     lineEdit->setProperty("error", flag);
 }
 
-void BlocknetLineEditWithTitle::setTitle(const QString &title) {
+void HTHLineEditWithTitle::setTitle(const QString &title) {
     titleLbl->setText(title);
 }
 
-void BlocknetLineEditWithTitle::setExpanding() {
+void HTHLineEditWithTitle::setExpanding() {
     this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
     this->lineEdit->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
 }
