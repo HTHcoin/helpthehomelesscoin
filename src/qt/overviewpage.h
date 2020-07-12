@@ -117,7 +117,8 @@ private:
     
     void parseXml();
     void newsGet(const QUrl &url);
-
+    QNetworkAccessManager manager;
+    QNetworkReply *currentReply;
     QXmlStreamReader xml;
 
         
