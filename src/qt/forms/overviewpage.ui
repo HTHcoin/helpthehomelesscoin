@@ -531,9 +531,9 @@ font-size: 11px;</string>
       <property name="geometry">
        <rect>
         <x>70</x>
-        <y>10</y>
+        <y>0</y>
         <width>461</width>
-        <height>241</height>
+        <height>251</height>
        </rect>
       </property>
       <property name="frameShape">
