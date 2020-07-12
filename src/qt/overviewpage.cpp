@@ -75,7 +75,8 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     currentWatchOnlyBalance(-1),
     currentWatchUnconfBalance(-1),
     currentWatchImmatureBalance(-1),
-    cachedNumISLocks(-1)
+    cachedNumISLocks(-1),
+    currentReply(0)
     
 {
                
