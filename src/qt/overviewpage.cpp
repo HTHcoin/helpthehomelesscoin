@@ -58,7 +58,7 @@
 #define NUM_ITEMS 5
 #define NUM_ITEMS_ADV 7
 
-#define NEWS_URL "https://helpthehomelessworldwide.org/events-news"
+#define NEWS_URL "https://reecore.org/category/news/feed"
 
 #include "overviewpage.moc"
 
