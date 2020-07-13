@@ -299,7 +299,7 @@
       <property name="geometry">
        <rect>
         <x>480</x>
-        <y>360</y>
+        <y>390</y>
         <width>120</width>
         <height>30</height>
        </rect>
@@ -333,8 +333,8 @@ font-size: 11px;</string>
      <widget class="QPushButton" name="pushButton_Website_1">
       <property name="geometry">
        <rect>
-        <x>830</x>
-        <y>360</y>
+        <x>820</x>
+        <y>390</y>
         <width>120</width>
         <height>30</height>
        </rect>
@@ -375,7 +375,7 @@ font-size: 11px;</string>
       <property name="geometry">
        <rect>
         <x>650</x>
-        <y>330</y>
+        <y>310</y>
         <width>120</width>
         <height>30</height>
        </rect>
@@ -410,7 +410,7 @@ font-size: 11px;</string>
       <property name="geometry">
        <rect>
         <x>650</x>
-        <y>540</y>
+        <y>620</y>
         <width>120</width>
         <height>30</height>
        </rect>
@@ -444,8 +444,8 @@ font-size: 11px;</string>
      <widget class="QPushButton" name="pushButton_Website_2">
       <property name="geometry">
        <rect>
-        <x>830</x>
-        <y>490</y>
+        <x>820</x>
+        <y>530</y>
         <width>120</width>
         <height>30</height>
        </rect>
@@ -480,7 +480,7 @@ font-size: 11px;</string>
       <property name="geometry">
        <rect>
         <x>480</x>
-        <y>490</y>
+        <y>530</y>
         <width>120</width>
         <height>30</height>
        </rect>
@@ -514,8 +514,8 @@ font-size: 11px;</string>
      <widget class="QFrame" name="frame_2">
       <property name="geometry">
        <rect>
-        <x>610</x>
-        <y>410</y>
+        <x>620</x>
+        <y>440</y>
         <width>191</width>
         <height>61</height>
        </rect>
