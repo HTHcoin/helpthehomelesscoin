@@ -14,6 +14,7 @@
 #include "evo/deterministicmns.h"
 
 class CMasternodePayments;
+class CTxBudgetPayment;
 
 /// TODO: all 4 functions do not belong here really, they should be refactored/moved somewhere (main.cpp ?)
 bool IsBlockValueValid(const CBlock& block, int nBlockHeight, CAmount blockReward, std::string& strErrorRet);
@@ -40,6 +41,22 @@ public:
 
     bool GetMasternodeTxOuts(int nBlockHeight, CAmount blockReward, std::vector<CTxOut>& voutMasternodePaymentsRet) const;
     bool GetBudgetPaymentByBlock(int64_t nBlockHeight, CTxBudgetPayment& payment);
+    
+    
+    class CTxBudgetPayment
+{
+public:
+    uint256 nProposalHash;
+    CScript payee;
+    CAmount nAmount;
+
+    CTxBudgetPayment()
+    {
+        payee = CScript();
+        nAmount = 0;
+        nProposalHash = 0;
+    }
+          
 };
 
 #endif
