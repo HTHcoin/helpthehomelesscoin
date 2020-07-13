@@ -62,7 +62,7 @@ QPushButton *createButton = new QPushButton(this);
     timer->start(1000);
 
 
-void ProposalList::createProposal()
+void GovernanceList::createProposal()
 {
     ProposalDialog dlg(ProposalDialog::PrepareProposal, this);
     if (QDialog::Accepted == dlg.exec())
