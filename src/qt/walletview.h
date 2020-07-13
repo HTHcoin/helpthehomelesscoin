@@ -8,8 +8,7 @@
 #include "amount.h"
 #include "masternodelist.h"
 #include "governancelist.h"
-/* #include "tradingdialogpage.h"  */
-#include "chatwindowpage.h"
+
 
 
 #include <QStackedWidget>
@@ -26,8 +25,6 @@ class WalletModel;
 class AddressBookPage;
 class PrivateSendPage;
 class GovernancePage;
-/* class TradingDialogPage;  */
-class ChatWindowPage;
 
 
 QT_BEGIN_NAMESPACE
@@ -76,21 +73,16 @@ private:
     AddressBookPage *usedReceivingAddressesPage;
     MasternodeList *masternodeListPage;
     PrivateSendPage *privateSendPage;
-    GovernanceList *governanceListPage;      
+    GovernanceList *governanceListPage;
+    
     TransactionView *transactionView;
-   /* TradingDialogPage *tradingDialogPage;  */
-    ChatWindowPage *chatWindowPage;
 
     QProgressDialog *progressDialog;
     QLabel *transactionSum;
     const PlatformStyle *platformStyle;
 
 public Q_SLOTS:
-
-    /** Switch to chat page */
-    void gotoChatWindowPage();
-    /** Switch to trading page */
- /*   void gotoTradingDialogPage();   */
+  
     /** Switch to governance page */
     void gotoGovernancePage();
     /** Switch to private send page */	
@@ -112,7 +104,6 @@ public Q_SLOTS:
     void gotoVerifyMessageTab(QString addr = "");
 
     /** Show incoming transaction notification for new transactions.
-
         The new items are those between start and end inclusive, under the given parent item.
     */
     void processNewTransaction(const QModelIndex& parent, int start, int /*end*/);
