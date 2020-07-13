@@ -23,6 +23,9 @@ std::map<int, std::string> GetRequiredPaymentsStrings(int nStartHeight, int nEnd
 
 extern CMasternodePayments mnpayments;
 
+// Define amount of blocks in budget payment cycle
+int GetBudgetPaymentCycleBlocks();
+
 //
 // Masternode Payments Class
 // Keeps track of who should get paid for which blocks
