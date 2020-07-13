@@ -2134,7 +2134,7 @@ QWidget .QFrame#frame_News .QLabel#labelNews { /* News Label */
     qproperty-alignment: 'AlignVCenter | AlignLeft';
     min-width:180px;
     background-color:transparent;
-    color:#34bcaa;
+    color:#34bcaa !important;
     font-weight:bold;
     font-size:15px;
     margin-right:5px;
@@ -2154,16 +2154,16 @@ QWidget .QFrame#frame_News .QListView#listNews { /* News List */
   font-family: "Oswald";
 	font-weight: bold;
 	font-size: 18px;
-	color: #34bcaa;
+	color: #34bcaa !important;
 }
 
 #newsTitle a:link {
-	color: #debf12;
+	color: #debf12 !important;
   text-decoration: none;
 }
 
 #newsTitle a:hover {
-	color: #debf12;
+	color: #debf12 !important;
   text-decoration: underline;
 }
 
@@ -2171,14 +2171,14 @@ QWidget .QFrame#frame_News .QListView#listNews { /* News List */
 	font-family: "Open Sans";
 	font-weight: lighter;
 	font-size: 12px;
-	color: #34bcaa;
+	color: #34bcaa !important;
 	margin-left: 5px;
 }
 
 QWidget .QFrame#frame_News QListView QToolTip {
   max-width:400px;
 	max-height:250px;
-	background-color: #1e1d32;
-	color:red;
+	background-color: #1e1d32 !important;
+	color: #34bcaa !important;
   white-space:pre;
 }
