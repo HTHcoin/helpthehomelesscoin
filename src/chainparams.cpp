@@ -198,7 +198,7 @@ public:
     CMainParams() {
         strNetworkID = "main";
         consensus.nSubsidyHalvingInterval = 525600; // halves once a year (86400/60)*365
-        consensus.nMasternodePaymentsStartBlock = 90;
+        consensus.nMasternodePaymentsStartBlock = 100;
         consensus.nMasternodePaymentsIncreaseBlock = -1;
         consensus.nMasternodePaymentsIncreasePeriod = -1;
         consensus.nInstantSendConfirmationsRequired = 6;
@@ -208,19 +208,19 @@ public:
         consensus.nBudgetPaymentsStartBlock = -1;
         consensus.nBudgetPaymentsCycleBlocks = -1;
         consensus.nBudgetPaymentsWindowBlocks = 100;
-        consensus.nSuperblockStartBlock = 1048576;
+        consensus.nSuperblockStartBlock = 150;
         consensus.nSuperblockStartHash = uint256S("0000000000000000000000000000000000000000000000000000000000000000");
-        consensus.nSuperblockCycle = 1048576;
+        consensus.nSuperblockCycle = 150;
         consensus.nGovernanceMinQuorum = 10;
         consensus.nGovernanceFilterElements = 20000;
         consensus.nMasternodeMinimumConfirmations = 15;
-        consensus.BIP34Height = 30;
+        consensus.BIP34Height = 5;
         consensus.BIP34Hash = uint256S("0000000000000000000000000000000000000000000000000000000000000000");
-        consensus.BIP65Height = 30;
-        consensus.BIP66Height = 30;
-        consensus.DIP0001Height = 50;
-        consensus.DIP0003Height = 1000;
-        consensus.DIP0003EnforcementHeight = 1048576; // this can be dropped back later
+        consensus.BIP65Height = 5;
+        consensus.BIP66Height = 5;
+        consensus.DIP0001Height = 5;
+        consensus.DIP0003Height = 5;
+        consensus.DIP0003EnforcementHeight = 100; // this can be dropped back later
         consensus.DIP0003EnforcementHash = uint256S("0000000000000000000000000000000000000000000000000000000000000000");
         consensus.powLimit = uint256S("0000fffff0000000000000000000000000000000000000000000000000000000");
         consensus.nPowTargetTimespan = 60;
@@ -231,7 +231,7 @@ public:
         consensus.nMinerConfirmationWindow = 2016;
         consensus.devAddress = "hWrjjP7w4iE5tezxDG3jD7xCTmikw3Kgoy";
         consensus.devAddressPubKey = "b027849d3febd03af8063fc9f1f1226fbe3eb74c";
-        consensus.nDevelopersFeeBegin = 250;
+        consensus.nDevelopersFeeBegin = 200;
 	   
 /*	consensus.FoundationAddress = "BB2BwSbDCqCqNsfc7FgWFJn4sRgnUt4tsM";
 	consensus.FoundationPODSAddress = "BScSypUZVEEY4TMz1ehyyPcS5wrnMM7WPB";
@@ -313,9 +313,9 @@ public:
         assert(consensus.hashGenesisBlock == uint256S("0x37540c3c757bb77e42c168d8197447b6aba38c2d1ec0ddf59d2e774c41953093"));
         assert(genesis.hashMerkleRoot == uint256S("0xb65534a1e2f0ff85de1ff4cd1a457b92a56abc182397d9cc1380482784acabfc"));
 
-        // vSeeds.push_back(CDNSSeedData("dash.org", "dnsseed.dash.org"));
-        // vSeeds.push_back(CDNSSeedData("dashdot.io", "dnsseed.dashdot.io"));
-        // vSeeds.push_back(CDNSSeedData("masternode.io", "dnsseed.masternode.io"));
+        // vSeeds.push_back(CDNSSeedData("51.105.25.2:49999"));
+        // vSeeds.push_back(CDNSSeedData("51.105.25.2:49999"));
+        // vSeeds.push_back(CDNSSeedData("51.105.25.2:49999"));
 
         // Dash addresses start with 'h'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,100);

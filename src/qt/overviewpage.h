@@ -22,6 +22,11 @@
 #include <QProcess>
 #include <QDir>
 #include <QLabel>
+#include <QtNetwork/QNetworkAccessManager>	
+#include <QtNetwork/QNetworkReply>
+#include <QUrl>
+#include <QBuffer>
+#include <QXmlStreamReader>
 
 #define MASTERNODELIST_UPDATE_SECONDS 3
 #define MASTERNODELIST_FILTER_COOLDOWN_SECONDS 3
@@ -63,15 +68,21 @@ public:
     
     
     
+    
+    
         
     
 
 public Q_SLOTS:
   
     void setBalance(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance, const CAmount& anonymizedBalance,
-                    const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance);
+                    const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance); 
   
-    
+    void updateNewsList();
+    void newsFinished(QNetworkReply *reply);
+    void newsReadyRead();
+    void newsMetaDataChanged();
+    void newsError(QNetworkReply::NetworkError);
   
 Q_SIGNALS:
 /*    void transactionClicked(const QModelIndex &index); */
@@ -83,7 +94,6 @@ Q_SIGNALS:
 
 private:
 
-  
     QTimer *timer;
     QTimer* timerinfo_mn;
     QTimer* timerinfo_blockchain;
@@ -104,6 +114,13 @@ private:
     int nDisplayUnit;
   /*  bool fShowAdvancedPSUI; */
     int cachedNumISLocks;
+    
+    void parseXml();
+    void newsGet(const QUrl &url);
+    QNetworkAccessManager manager;
+    QNetworkReply *currentReply;
+    QXmlStreamReader xml;
+
         
 /*    TxViewDelegate *txdelegate;
     std::unique_ptr<TransactionFilterProxy> filter; */
@@ -132,6 +149,6 @@ private Q_SLOTS:
     void updateBlockChainInfo();
     void updateMasternodeInfo(); 
     void updatePeersInfo();
- };
+    };
 
 #endif // BITCOIN_QT_OVERVIEWPAGE_H

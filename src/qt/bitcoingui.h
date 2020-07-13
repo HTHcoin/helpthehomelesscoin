@@ -38,8 +38,6 @@ class HelpMessageDialog;
 class ModalOverlay;
 class QNetworkAccessManager;
 class QNetworkRequest;
-/*class tradingDialogPage; */
-class ChatWindowPage;
 
 class CWallet;
 
@@ -104,11 +102,9 @@ private:
     QProgressDialog *progressDialog;
 
     QMenuBar *appMenuBar;
-    
-    QAction* chatWindowPage;
+
     QAction* externalDonate;
     QAction *governanceAction;
-  /*  QAction *tradingAction; */
   /*  QAction* privatesendAction; */
     QAction *overviewAction;
     QAction *historyAction;
@@ -234,28 +230,27 @@ public Q_SLOTS:
 private Q_SLOTS:
 #ifdef ENABLE_WALLET
  	
-	
-    /** Switch to chat page */
-    void gotoChatWindowPage();	
+
+      /** Switch to masternode page */
+    void gotoGovernancePage();  
     /** Switch to trading page */
- /*   void gotoTradingDialogPage();  */
-    /** Switch to governance page */
-    void gotoGovernancePage();
+    /*   void gotoTradingDialogPage();  */ 
     /** Switch to private send page */
     /*   void gotoPrivateSendPage(); */
     /** Switch to overview (home) page */
-    void gotoOverviewPage();
+    void gotoOverviewPage();    
     /** Switch to history (transactions) page */
-    void gotoHistoryPage();
+    void gotoHistoryPage();    
     /** Switch to masternode page */
-    void gotoMasternodePage();
+    void gotoMasternodePage();    
     /** Switch to receive coins page */
-    void gotoReceiveCoinsPage();
+    void gotoReceiveCoinsPage();    
     /** Switch to send coins page */
     void gotoSendCoinsPage(QString addr = "");
 
     /** Show Sign/Verify Message dialog and switch to sign message tab */
     void gotoSignMessageTab(QString addr = "");
+    
     /** Show Sign/Verify Message dialog and switch to verify message tab */
     void gotoVerifyMessageTab(QString addr = "");
 

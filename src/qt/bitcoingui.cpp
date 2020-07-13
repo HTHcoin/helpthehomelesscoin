@@ -23,7 +23,7 @@
 #include "rpcconsole.h"
 #include "utilitydialog.h"
 /* #include "tradingdialogpage.h" */
-#include "chatwindowpage.h"
+
 
 #ifdef ENABLE_WALLET
 #include "privatesend-client.h"
@@ -140,10 +140,8 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     modalOverlay(0),
     prevBlocks(0),
     spinnerFrame(0),
-    governanceAction(0),
-   /* tradingAction(0), */
     externalDonate(0),
-    chatWindowPage(0),
+    governanceAction(0),
     platformStyle(_platformStyle)
 {
     /* Open CSS when configured */
@@ -483,7 +481,8 @@ void BitcoinGUI::createActions()
         connect(masternodeAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
         connect(masternodeAction, SIGNAL(triggered()), this, SLOT(gotoMasternodePage()));
     }
-	{
+
+     	{
         governanceAction = new QAction(QIcon(":/icons/governance"), tr("&Governance"), this);
         governanceAction->setStatusTip(tr("Show governance items"));
         governanceAction->setToolTip(governanceAction->statusTip());
@@ -498,21 +497,7 @@ void BitcoinGUI::createActions()
         connect(governanceAction, SIGNAL(triggered()), this, SLOT(gotoGovernancePage()));
 		
     }
-     /*	 {
-        tradingAction = new QAction(QIcon(":/icons/chat"), tr("&Trading"), this);
-        tradingAction->setStatusTip(tr("Trade HTH Today"));
-        tradingAction->setToolTip(tradingAction->statusTip());
-        tradingAction->setCheckable(true);
-#ifdef Q_OS_MAC
-        tradingAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_7));
-#else
-        tradingAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
-#endif
-        tabGroup->addAction(tradingAction);
-        connect(tradingAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
-        connect(tradingAction, SIGNAL(triggered()), this, SLOT(gotoTradingDialogPage()));
-		
-    } */
+	
  /*   privatesendAction = new QAction(QIcon(":/icons/coinmix"), tr("&Private Send"), this);
     privatesendAction->setStatusTip(tr("Show Private Send of wallet"));
     privatesendAction->setToolTip(privatesendAction->statusTip());
@@ -541,7 +526,7 @@ void BitcoinGUI::createActions()
     connect(historyAction, SIGNAL(triggered()), this, SLOT(gotoHistoryPage()));
      /*   connect(privatesendAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(privatesendAction, SIGNAL(triggered()), this, SLOT(gotoPrivateSendPage()));	 */
-        
+    
 #endif // ENABLE_WALLET
 
     quitAction = new QAction(QIcon(":/icons/" + theme + "/quit"), tr("E&xit"), this);
@@ -576,7 +561,7 @@ void BitcoinGUI::createActions()
     signMessageAction->setStatusTip(tr("Sign messages with your HelpTheHomeless addresses to prove you own them"));
     verifyMessageAction = new QAction(QIcon(":/icons/" + theme + "/transaction_0"), tr("&Verify message..."), this);
     verifyMessageAction->setStatusTip(tr("Verify messages to ensure they were signed with specified HelpTheHomeless addresses"));
-
+    	
     openInfoAction = new QAction(QApplication::style()->standardIcon(QStyle::SP_MessageBoxInformation), tr("&Information"), this);
     openInfoAction->setStatusTip(tr("Show diagnostic information"));
     openRPCConsoleAction = new QAction(QIcon(":/icons/" + theme + "/debugwindow"), tr("&Debug console"), this);
@@ -619,11 +604,6 @@ void BitcoinGUI::createActions()
     externalDonate = new QAction(QIcon(":/icons/" + theme + "/about"), tr("Donate To HTHW"), this);
     externalDonate->setStatusTip(tr("Donate to Help The Homeless Worldwide"));	
 	
-    // HTH Chat
-    chatWindowPage = new QAction(QIcon(":/icons/" + theme + "/chat"), tr("HTH Chat"), this);
-    chatWindowPage->setStatusTip(tr("HTH World IRC Chat"));
-
-	
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
     connect(aboutQtAction, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
@@ -634,10 +614,7 @@ void BitcoinGUI::createActions()
 	
 	
      // HTHW Donate
-    connect(externalDonate, SIGNAL(triggered()), this, SLOT(openDonate()));	
-	
-    // HTHW Chat
-    connect(chatWindowPage, SIGNAL(triggered()), this, SLOT(gotoChatWindowPage()));	
+    connect(externalDonate, SIGNAL(triggered()), this, SLOT(openDonate())); 	
 	
     // Jump directly to tabs in RPC-console
     connect(openInfoAction, SIGNAL(triggered()), this, SLOT(showInfo()));
@@ -669,6 +646,7 @@ void BitcoinGUI::createActions()
         connect(usedSendingAddressesAction, SIGNAL(triggered()), walletFrame, SLOT(usedSendingAddresses()));
         connect(usedReceivingAddressesAction, SIGNAL(triggered()), walletFrame, SLOT(usedReceivingAddresses()));
         connect(openAction, SIGNAL(triggered()), this, SLOT(openClicked()));
+	 
     }
 #endif // ENABLE_WALLET
 
@@ -700,7 +678,7 @@ void BitcoinGUI::createMenuBar()
         file->addSeparator();
         file->addAction(usedSendingAddressesAction);
         file->addAction(usedReceivingAddressesAction);
-        file->addSeparator();
+        file->addSeparator(); 
     }
     file->addAction(quitAction);
 
@@ -726,7 +704,7 @@ void BitcoinGUI::createMenuBar()
         tools->addSeparator();
         tools->addAction(openConfEditorAction);
         tools->addAction(showBackupsAction);
-	        
+	         
     }
     	
     QMenu *help = appMenuBar->addMenu(tr("&Help"));
@@ -738,10 +716,7 @@ void BitcoinGUI::createMenuBar()
 	
     QMenu* donate = appMenuBar->addMenu(tr("&Donate"));
     donate->addAction(externalDonate);
-	
-    QMenu* chat = appMenuBar->addMenu(tr("&HTH Chat"));
-    chat->addAction(chatWindowPage);	
-	
+
 }
 
 void BitcoinGUI::createToolBars()
@@ -754,7 +729,7 @@ void BitcoinGUI::createToolBars()
         toolbar->addAction(overviewAction);
         toolbar->addAction(sendCoinsAction);
         toolbar->addAction(receiveCoinsAction);
-        toolbar->addAction(historyAction);
+        toolbar->addAction(historyAction); 
 /*	toolbar->addAction(privatesendAction); */
 	    
 	      
@@ -764,10 +739,9 @@ void BitcoinGUI::createToolBars()
             toolbar->addAction(masternodeAction);
         }
            toolbar->addAction(governanceAction);
-	toolbar->addAction(unlockWalletAction);
+	   toolbar->addAction(unlockWalletAction);
 	    
-	/*    toolbar->addAction(tradingAction);
-	    toolbar->addAction(unlockWalletAction);  */
+	   toolbar->addAction(unlockWalletAction);
 	   	  
         toolbar->setMovable(false); // remove unused icon in upper left corner
         overviewAction->setChecked(true);
@@ -914,13 +888,12 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     sendCoinsMenuAction->setEnabled(enabled);
     receiveCoinsAction->setEnabled(enabled);
     receiveCoinsMenuAction->setEnabled(enabled);
-    historyAction->setEnabled(enabled);
+    historyAction->setEnabled(enabled);	
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool() && masternodeAction) {
         masternodeAction->setEnabled(enabled);
     }
-	/*tradingAction->setEnabled(enabled); */
-       governanceAction->setEnabled(enabled);
+    governanceAction->setEnabled(enabled);	
     encryptWalletAction->setEnabled(enabled);
     backupWalletAction->setEnabled(enabled);
     changePassphraseAction->setEnabled(enabled);
@@ -928,7 +901,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     verifyMessageAction->setEnabled(enabled);
     usedSendingAddressesAction->setEnabled(enabled);
     usedReceivingAddressesAction->setEnabled(enabled);
-    openAction->setEnabled(enabled);
+    openAction->setEnabled(enabled);	
 
 }
 
@@ -963,7 +936,7 @@ void BitcoinGUI::createIconMenu(QMenu *pmenu)
     pmenu->addAction(openConfEditorAction);
     pmenu->addAction(showBackupsAction);
 #ifndef Q_OS_MAC // This is built-in on Mac
-    pmenu->addSeparator();
+    pmenu->addSeparator();	 
     pmenu->addAction(quitAction);
 #endif
 }
@@ -1069,18 +1042,12 @@ void BitcoinGUI::openClicked()
     }
 }
 
-void BitcoinGUI::gotoChatWindowPage()
+void BitcoinGUI::gotoGovernancePage()
 {
-    chatWindowPage->setChecked(true);
-    if (walletFrame) walletFrame->gotoChatWindowPage();
+    governanceAction->setChecked(true);
+    if (walletFrame) walletFrame->gotoGovernancePage();
 }
 
-/*void BitcoinGUI::gotoTradingDialogPage()
-{
-
-    tradingAction->setChecked(true);
-    if (walletFrame) walletFrame->gotoTradingDialogPage();
-} */
 
 void BitcoinGUI::openDonate()
 {
@@ -1097,12 +1064,6 @@ void BitcoinGUI::openExternalURL(QString url)
     if (reply == QMessageBox::Ok) {
         QDesktopServices::openUrl(QUrl(url));
     }
-}
-
-void BitcoinGUI::gotoGovernancePage()
-{
-    governanceAction->setChecked(true);
-    if (walletFrame) walletFrame->gotoGovernancePage();
 }
 
 /*void BitcoinGUI::gotoPrivateSendPage()
@@ -1650,43 +1611,6 @@ void BitcoinGUI::detectShutdown()
         qApp->quit();
     }
 }
-
-
-// Governance - Check to see if we should submit a proposal
-  /*  nProposalModulus++;
-    if (nProposalModulus % 15 == 0 && !fLoadingIndex)
-    {
-        nProposalModulus = 0;
-		if (!msURL.empty())
-		{
-			QString qNav = GUIUtil::TOQS(msURL);
-			msURL = std::string();
-			QDesktopServices::openUrl(QUrl(qNav));
-		}
-        if (fProposalNeedsSubmitted)
-        {
-            nProposalModulus = 0;
-            if(masternodeSync.IsSynced() && chainActive.Tip() && chainActive.Tip()->nHeight > (nProposalPrepareHeight + 6))
-            {
-                fProposalNeedsSubmitted = false;
-                std::string sError;
-                std::string sGovObj;
-                bool fSubmitted = SubmitProposalToNetwork(uTxIdFee, nProposalStartTime, msProposalHex, sError, sGovObj);
-				if (!sError.empty())
-				{
-					LogPrintf("Proposal Submission Problem: %s ", sError);
-				}
-                msProposalResult = fSubmitted ? "Submitted Proposal Successfully <br>( " + sGovObj + " )" : sError;
-                LogPrintf(" Proposal Submission Result:  %s  \n", msProposalResult.c_str());
-            }
-            else
-            {
-                msProposalResult = "Waiting for block " + RoundToString(nProposalPrepareHeight + 6, 0) + " to submit pending proposal. ";
-            }
-        }
-    }
-} */
-
 
 void BitcoinGUI::showProgress(const QString &title, int nProgress)
 {
