@@ -39,6 +39,7 @@ public:
     bool IsScheduled(const CDeterministicMNCPtr& dmn, int nNotBlockHeight) const;
 
     bool GetMasternodeTxOuts(int nBlockHeight, CAmount blockReward, std::vector<CTxOut>& voutMasternodePaymentsRet) const;
+    bool GetBudgetPaymentByBlock(int64_t nBlockHeight, CTxBudgetPayment& payment);
 };
 
 #endif
