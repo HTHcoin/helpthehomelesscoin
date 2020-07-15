@@ -21,17 +21,6 @@
 
 CMasternodePayments mnpayments;
 
-int GetBudgetPaymentCycleBlocks()
-{
-    // Amount of blocks in a months period of time (using 1 minutes per block)
-    // estimate 30 blocks an hour * hours in a day * avg. days in a month
-    if (Params().NetworkID() == CBaseChainParams::MAIN)
-      return (60 * 24 * 30);
-
-    // for testing purposes -- every 12 hours
-    return (60 * 12);
-}
-
 bool IsOldBudgetBlockValueValid(const CBlock& block, int nBlockHeight, CAmount blockReward, std::string& strErrorRet) {
     const Consensus::Params& consensusParams = Params().GetConsensus();
     bool isBlockRewardValueMet = (block.vtx[0]->GetValueOut() <= blockReward);
