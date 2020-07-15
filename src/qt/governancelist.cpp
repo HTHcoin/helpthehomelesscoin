@@ -50,27 +50,6 @@ GovernanceList::GovernanceList(const PlatformStyle *platformStyle, QWidget *pare
 	    	    
 }
 
-QPushButton *createButton = new QPushButton(this);
-    createButton->setText("Create Proposal");
-    createButton->setToolTip(tr("Create budget proposal."));
-   
-    headLayout->addWidget(createButton);
-    connect(createButton, SIGNAL(clicked()), this, SLOT(createProposal()));
-
-    timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(refreshProposals()));
-    timer->start(1000);
-
-
-void GovernanceList::createProposal()
-{
-    ProposalDialog dlg(ProposalDialog::PrepareProposal, this);
-    if (QDialog::Accepted == dlg.exec())
-    {
-        refreshProposals(true);
-    }
-}
-
 void GovernanceList::on_voteYesButton_clicked()
 {
     std::string gobjectSingle;
