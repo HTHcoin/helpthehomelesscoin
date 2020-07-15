@@ -75,7 +75,6 @@ private Q_SLOTS:
     void on_voteYesButton_clicked();
     void on_voteNoButton_clicked();
     void on_voteAbstainButton_clicked();
-    void createProposal();
 
 };
 #endif // GOVERNANCELIST_H
