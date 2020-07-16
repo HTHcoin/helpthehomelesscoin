@@ -2163,7 +2163,7 @@ QWidget .QFrame#frame_News .QListView#listNews { /* News List */
 }
 
 #newsTitle a:link {
-	color: #34bcaa;
+	color: #34bcaa !important;
   text-decoration: none;
 }
 
