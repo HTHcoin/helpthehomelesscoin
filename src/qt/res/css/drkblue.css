@@ -2128,3 +2128,61 @@ QWidget#bgWidget .QPushButton#closeButton {
 }
 
 
+/**************************** NEWS ***************************************/
+
+QWidget .QFrame#frame_News .QLabel#labelNews { /* News Label */
+    qproperty-alignment: 'AlignVCenter | AlignLeft';
+    min-width:180px;
+    background-color:transparent;
+    color:#0c306c;
+    font-weight:bold;
+    font-size:20px;
+    margin-right:5px;
+    padding-right:5px;
+}
+
+QWidget .QFrame#frame_News #line_News { /* News Line separator */
+    background-color:#0c306c;
+}
+
+QWidget .QFrame#frame_News > .QLabel {
+    font-weight: normal;
+}
+
+QWidget .QFrame#frame_News .QListView#listNews { /* News List */
+	font-weight:normal;
+	font-size:18px;
+}
+
+#newsTitle {
+  font-family: "Oswald";
+	font-weight: bold;
+	font-size: 18px;
+	color: #003046;
+}
+
+#newsTitle a:link {
+	color: #003046;
+  text-decoration: none;
+}
+
+#newsTitle a:hover {
+	color: #003046;
+  text-decoration: underline;
+}
+
+#newsAuthor {
+	font-family: "Open Sans";
+	font-weight: lighter;
+	font-size: 12px;
+	color: #003046;
+	margin-left: 5px;
+}
+
+QWidget .QFrame#frame_News QListView QToolTip {
+  max-width:400px;
+	max-height:250px;
+	background-color:yellow;
+	color:black;
+  white-space:pre;
+}
