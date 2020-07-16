@@ -2159,11 +2159,11 @@ QWidget .QFrame#frame_News .QListView#listNews { /* News List */
   font-family: "Oswald";
 	font-weight: bold;
 	font-size: 13px;
-	color: #34bcaa;
+	color: #34bcaa; !important
 }
 
 #newsTitle a:link {
-	color: #34bcaa !important;
+	color: #34bcaa; !important
   text-decoration: none;
 }
 
