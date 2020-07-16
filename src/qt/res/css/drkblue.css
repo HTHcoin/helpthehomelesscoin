@@ -2151,13 +2151,13 @@ QWidget .QFrame#frame_News > .QLabel {
 
 QWidget .QFrame#frame_News .QListView#listNews { /* News List */
 	font-weight:normal;
-	font-size:18px;
+	font-size:10px;
 }
 
 #newsTitle {
   font-family: "Oswald";
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 13px;
 	color: #34bcaa;
 }
 
