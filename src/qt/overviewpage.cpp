@@ -58,7 +58,7 @@
 #define NUM_ITEMS 5
 #define NUM_ITEMS_ADV 7
 
-#define NEWS_URL "http://helpthehomelessworldwide.org/news/feed"
+#define NEWS_URL "http://helpthehomelessworldwide.org/news/feed/rss.xml"
 
 #include "overviewpage.moc"
 
