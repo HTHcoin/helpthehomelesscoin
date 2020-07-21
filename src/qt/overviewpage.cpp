@@ -58,7 +58,7 @@
 #define NUM_ITEMS 5
 #define NUM_ITEMS_ADV 7
 
-#define NEWS_URL "https://rss.app/feeds/vhxfW0oSW6WfQJo1.xml"
+#define NEWS_URL "https://politepol.com/fd/dNxLQHHqbAjO"
 
 #include "overviewpage.moc"
 
