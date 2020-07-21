@@ -313,9 +313,9 @@ public:
         assert(consensus.hashGenesisBlock == uint256S("0x37540c3c757bb77e42c168d8197447b6aba38c2d1ec0ddf59d2e774c41953093"));
         assert(genesis.hashMerkleRoot == uint256S("0xb65534a1e2f0ff85de1ff4cd1a457b92a56abc182397d9cc1380482784acabfc"));
 
-        // vSeeds.push_back(CDNSSeedData("47.132.250.203:49999"));
-        // vSeeds.push_back(CDNSSeedData("92.223.73.120:49999"));
-        // vSeeds.push_back(CDNSSeedData("73.150.182.108:49999"));
+        // vSeeds.emplace_back(CDNSSeedData("47.132.250.203:49999", true));
+        // vSeeds.emplace_back(CDNSSeedData("92.223.73.120:49999", true));
+        // vSeeds.emplace_back(CDNSSeedData("73.150.182.108:49999", true));
 
         // Dash addresses start with 'h'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,100);
@@ -482,6 +482,10 @@ public:
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
 
         vSeeds.clear();
+	    
+	vSeeds.emplace_back(CDNSSeedData("47.132.250.203:49999", true));
+        vSeeds.emplace_back(CDNSSeedData("92.223.73.120:49999", true));
+        vSeeds.emplace_back(CDNSSeedData("73.150.182.108:49999", true));
 
         // Testnet Dash addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,140);
@@ -633,10 +637,7 @@ public:
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.push_back(CDNSSeedData("47.132.250.203:49999"));
-        vSeeds.push_back(CDNSSeedData("92.223.73.120:49999"));
-        vSeeds.push_back(CDNSSeedData("73.150.182.108:49999"));
-
+        
         // Testnet Dash addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,140);
         // Testnet Dash script addresses start with '8' or '9'
