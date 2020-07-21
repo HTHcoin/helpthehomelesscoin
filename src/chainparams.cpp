@@ -483,9 +483,9 @@ public:
 
         vSeeds.clear();
 	    
-	vSeeds.emplace_back(CDNSSeedData("47.132.250.203:49999", true));
-        vSeeds.emplace_back(CDNSSeedData("92.223.73.120:49999", true));
-        vSeeds.emplace_back(CDNSSeedData("73.150.182.108:49999", true));
+	//vSeeds.emplace_back(CDNSSeedData("47.132.250.203:49999", true));
+        //vSeeds.emplace_back(CDNSSeedData("92.223.73.120:49999", true));
+        //vSeeds.emplace_back(CDNSSeedData("73.150.182.108:49999", true));
 
         // Testnet Dash addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,140);
