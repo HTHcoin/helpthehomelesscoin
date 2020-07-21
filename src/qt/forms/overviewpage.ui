@@ -1072,8 +1072,8 @@ font-size: 11px;</string>
        <rect>
         <x>570</x>
         <y>30</y>
-        <width>331</width>
-        <height>121</height>
+        <width>371</width>
+        <height>211</height>
        </rect>
       </property>
       <property name="minimumSize">
