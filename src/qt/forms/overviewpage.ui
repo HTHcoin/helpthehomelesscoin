@@ -1070,10 +1070,10 @@ font-size: 11px;</string>
      <widget class="QFrame" name="frame_News">
       <property name="geometry">
        <rect>
-        <x>540</x>
+        <x>570</x>
         <y>30</y>
-        <width>411</width>
-        <height>271</height>
+        <width>371</width>
+        <height>211</height>
        </rect>
       </property>
       <property name="minimumSize">
