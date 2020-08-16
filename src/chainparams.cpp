@@ -231,7 +231,7 @@ public:
         consensus.nMinerConfirmationWindow = 2016;
         consensus.devAddress = "hWrjjP7w4iE5tezxDG3jD7xCTmikw3Kgoy";
         consensus.devAddressPubKey = "b027849d3febd03af8063fc9f1f1226fbe3eb74c";
-        consensus.nDevelopersFeeBegin = 200;
+        consensus.nDevelopersFeeBegin = -1;
 	   
 /*	consensus.FoundationAddress = "BB2BwSbDCqCqNsfc7FgWFJn4sRgnUt4tsM";
 	consensus.FoundationPODSAddress = "BScSypUZVEEY4TMz1ehyyPcS5wrnMM7WPB";
