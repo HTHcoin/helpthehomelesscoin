@@ -233,9 +233,9 @@ public:
         consensus.devAddressPubKey = "b027849d3febd03af8063fc9f1f1226fbe3eb74c";
         consensus.nDevelopersFeeBegin = -1;
 	   
-	consensus.FoundationAddress = "hUjxuAg8PM5ft9eE7kCCMqe1ruTWXSrswx";
-/*	consensus.FoundationPODSAddress = "BScSypUZVEEY4TMz1ehyyPcS5wrnMM7WPB";
-	consensus.FoundationQTAddress = "BDcNYc8tGXmwD7QmLXbR1rk1qteTDVEjUD";
+/*	consensus.FoundationAddress = "hUjxuAg8PM5ft9eE7kCCMqe1ruTWXSrswx"; */
+	consensus.FoundationPODSAddress = "hUjxuAg8PM5ft9eE7kCCMqe1ruTWXSrswx";
+/*	consensus.FoundationQTAddress = "BDcNYc8tGXmwD7QmLXbR1rk1qteTDVEjUD";
 	consensus.BurnAddress = "B4T5ciTCkWauSqVAcVKy88ofjcSasUkSYU";    */
 
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
