@@ -62,7 +62,7 @@
 
 #include "overviewpage.moc"
 
-OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) :
+OverviewPage::OverviewPage(const PlatformStyle *platformStyle, const NetworkStyle *networkStyle, QWidget *parent) :
   
     QWidget(parent),
     timer(nullptr),
@@ -129,6 +129,9 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     connect(timerinfo_peers, SIGNAL(timeout()), this, SLOT(updatePeersInfo()));
     timerinfo_peers->start(1000);   
        
+    connect(pricingTimer, SIGNAL(timeout()), this, SLOT(getPriceInfo()));
+    pricingTimer->start(10000);
+    getPriceInfo();	    
                   
     // start with displaying the "out of sync" warnings
     showOutOfSyncWarning(true);
@@ -579,10 +582,6 @@ void OverviewPage::newsError(QNetworkReply::NetworkError)
                 }
         );
 
- // Create the timer
-        connect(pricingTimer, SIGNAL(timeout()), this, SLOT(getPriceInfo()));
-        pricingTimer->start(10000);
-        getPriceInfo();
 
 
 void OverviewPage::getPriceInfo()
