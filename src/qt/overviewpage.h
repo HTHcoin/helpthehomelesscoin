@@ -83,7 +83,7 @@ public Q_SLOTS:
     void newsReadyRead();
     void newsMetaDataChanged();
     void newsError(QNetworkReply::NetworkError);
-    void getPriceInfo();
+
     
   
 Q_SIGNALS:
@@ -96,9 +96,6 @@ Q_SIGNALS:
 
 private:
     
-    QLabel *labelCurrentMarket;
-    QLabel *labelCurrentPrice;
-    QTimer *pricingTimer;
     QTimer *timer;
     QTimer* timerinfo_mn;
     QTimer* timerinfo_blockchain;
