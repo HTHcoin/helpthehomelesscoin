@@ -592,6 +592,6 @@ void OverviewPage::getPriceInfo()
                         }
                     }
                 }
-        );
+        )
 
 /*** End Pricing Info ***/
