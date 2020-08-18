@@ -498,7 +498,7 @@ font-size: 11px;</string>
        </size>
       </property>
       <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Visit Northern Exchange and Trade Help The Homeless Coin Today!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Visit Coin Gecko for value of Help The Homeless Coin&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="styleSheet">
        <string notr="true">border-style: solid;
@@ -508,7 +508,7 @@ border-radius: 10px;
 font-size: 11px;</string>
       </property>
       <property name="text">
-       <string>NorthernEX</string>
+       <string>Coin Gecko</string>
       </property>
      </widget>
      <widget class="QFrame" name="frame_2">
