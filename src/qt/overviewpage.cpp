@@ -62,7 +62,7 @@
 
 #include "overviewpage.moc"
 
-OverviewPage::OverviewPage(const PlatformStyle *platformStyle, const NetworkStyle *networkStyle, QWidget *parent) :
+OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) :
   
     QWidget(parent),
     timer(nullptr),
