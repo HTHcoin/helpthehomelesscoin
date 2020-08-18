@@ -585,7 +585,7 @@ void OverviewPage::newsError(QNetworkReply::NetworkError)
         getPriceInfo();
 
 
-void RavenGUI::getPriceInfo()
+void OverviewPage::getPriceInfo()
 {
     request->setUrl(QUrl("https://api.coingecko.com/api/v3/simple/price?ids=help-the-homeless-coin&vs_currencies=usd"));
     networkManager->get(*request);
