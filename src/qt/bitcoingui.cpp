@@ -236,23 +236,21 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
 #endif // QT_NO_TOOLTIP
     web->setText(QApplication::translate("OverviewPage", "<a href=\"https://helpthehomelessworldwide.org\"><img src=\":/icons/web\" width=\"21\" height=\"21\"></a>", nullptr));
             
-   
+   End Status Bar Social Links Not Used  ***/
             
-            QLabel* www = new QLabel();
-    www->setObjectName(QStringLiteral("webs"));
-    www->setMinimumSize(QSize(21, 21));
-    www->setMaximumSize(QSize(21, 21));
-    www->setBaseSize(QSize(0, 0));
-    www->setCursor(QCursor(Qt::PointingHandCursor));
-    www->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
-    www->setOpenExternalLinks(true);
+            QLabel* facebook = new QLabel();
+    facebook->setObjectName(QStringLiteral("facebook"));
+    facebook->setMinimumSize(QSize(21, 21));
+    facebook->setMaximumSize(QSize(21, 21));
+    facebook->setBaseSize(QSize(0, 0));
+    facebook->setCursor(QCursor(Qt::PointingHandCursor));
+    facebook->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+    facebook->setOpenExternalLinks(true);
 #ifndef QT_NO_TOOLTIP
-    www->setToolTip(QApplication::translate("OverviewPage", "Visit HTH Explorer.", nullptr));
+    facebook->setToolTip(QApplication::translate("OverviewPage", "Visit HTH Facebook.", nullptr));
 #endif // QT_NO_TOOLTIP
-    www->setText(QApplication::translate("OverviewPage", "<a href=\"https://openchains.info/coin/hth/about/\"><img src=\":/icons/webs\" width=\"21\" height=\"21\"></a>", nullptr));
+    facebook->setText(QApplication::translate("OverviewPage", "<a href=\"https://www.facebook.com/HelptheHomelessCoinOfficial/\"><img src=\":/icons/facebook\" width=\"21\" height=\"21\"></a>", nullptr));
             
-   End Status Bar Social Links Not Used  ***/         
-
             
         QLabel* github = new QLabel();
     github->setObjectName(QStringLiteral("github"));
@@ -304,14 +302,14 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
 #ifndef QT_NO_TOOLTIP
     www->setToolTip(QApplication::translate("OverviewPage", "Where to mine HTH Coin.", nullptr));
 #endif // QT_NO_TOOLTIP
-    www->setText(QApplication::translate("OverviewPage", "<a href=\"https://wheretomine.io/coins/helpthehomeless\"><img src=\":/icons/www\" width=\"21\" height=\"21\"></a>", nullptr));
+    www->setText(QApplication::translate("OverviewPage", "<a href=\"https://miningpoolstats.stream/hthcoin\"><img src=\":/icons/www\" width=\"21\" height=\"21\"></a>", nullptr));
              
     frameSocialLayout->addWidget(www);         
     frameSocialLayout->addWidget(github);
     frameSocialLayout->addWidget(twitter);
     frameSocialLayout->addWidget(discord);
-   /* frameSocialLayout->addWidget(webs);  // Links Not Used
-    frameSocialLayout->addWidget(web); */  // Links Not Used
+    frameSocialLayout->addWidget(facebook);
+  /*  frameSocialLayout->addWidget(web); */  // Links Not Used
             
             
             
