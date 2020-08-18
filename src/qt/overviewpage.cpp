@@ -324,9 +324,9 @@ void OverviewPage::on_pushButton_Website_4_clicked() {  // HTH Partners
 }
 
 
-void OverviewPage::on_pushButton_Website_5_clicked() {  // HTH Partners
+void OverviewPage::on_pushButton_Website_5_clicked() {  // HTH Price
     
-    QDesktopServices::openUrl(QUrl("https://nortexchange.com/exchange/?market=HTH_BTC", QUrl::TolerantMode));
+    QDesktopServices::openUrl(QUrl("https://www.coingecko.com/en/coins/help-the-homeless-coin/usd", QUrl::TolerantMode));
     
 }
 
