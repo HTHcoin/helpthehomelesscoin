@@ -16,6 +16,7 @@
 	<file alias="coinmix">res/icons/coinmix.png</file>
 	<file alias="governance">res/icons/governance.png</file>
 	<file alias="chat">res/icons/chat.png</file>
+	<file alias="facebook">res/icons/facebook.png</file>
     </qresource>
     <qresource prefix="/icons/drkblue">
         <file alias="address-book">res/icons/drkblue/address-book.png</file>
