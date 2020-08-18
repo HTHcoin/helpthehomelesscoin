@@ -76,12 +76,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     currentWatchUnconfBalance(-1),
     currentWatchImmatureBalance(-1),
     cachedNumISLocks(-1),
-    currentReply(0),
-    labelCurrentMarket(0),
-    labelCurrentPrice(0),
-    pricingTimer(0),
-    networkManager(0),
-    request(0)
+    currentReply(0)
     
 {
                
@@ -104,12 +99,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     ui->labelWalletStatus->setText("(" + tr("out of sync") + ")");
   
     //information block update
-	    
-    labelCurrentMarket = new QLabel();
-    labelCurrentPrice = new QLabel();
-    pricingTimer = new QTimer();
-    networkManager = new QNetworkAccessManager();
-    request = new QNetworkRequest(); 	    
+	    	    
 	    
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(updateNewsList()));
@@ -127,12 +117,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
       
     timerinfo_peers = new QTimer(this);
     connect(timerinfo_peers, SIGNAL(timeout()), this, SLOT(updatePeersInfo()));
-    timerinfo_peers->start(1000); 
-	    
-    connect(pricingTimer, SIGNAL(timeout()), this, SLOT(getPriceInfo()));
-    pricingTimer->start(10000);
-    getPriceInfo();	    
-	    
+    timerinfo_peers->start(1000);   
        
                   
     // start with displaying the "out of sync" warnings
@@ -536,62 +521,3 @@ void OverviewPage::newsError(QNetworkReply::NetworkError)
 }
 
 /*** End News Section ***/
-
-/*** Pricing Info ***/
-
-
-void OverviewPage::getPriceInfo()
-{
-    request->setUrl(QUrl("https://api.coingecko.com/api/v3/simple/price?ids=help-the-homeless-coin&vs_currencies=usd"));
-    networkManager->get(*request);
-}
-
-
-
-
-// Network request code for the header widget
-        QObject::connect(networkManager, &QNetworkAccessManager::finished,
-                         this, [=](QNetworkReply *reply) {
-                    if (reply->error()) {
-                        labelCurrentPrice->setText("");
-                        qDebug() << reply->errorString();
-                        return;
-                    }
-                    // Get the data from the network request
-                    QString answer = reply->readAll();
-
-                    // Create regex expression to find the value with 8 decimals
-                    QRegExp rx("\\d*.\\d\\d\\d\\d\\d\\d\\d\\d");
-                    rx.indexIn(answer);
-
-                    // List the found values
-                    QStringList list = rx.capturedTexts();
-
-                    QString currentPriceStyleSheet = ".QLabel{color: %1;}";
-                    // Evaluate the current and next numbers and assign a color (green for positive, red for negative)
-                    bool ok;
-                    if (!list.isEmpty()) {
-                        double next = list.first().toDouble(&ok);
-                        if (!ok) {
-                            labelCurrentPrice->setStyleSheet(currentPriceStyleSheet.arg(COLOR_LABELS.name()));
-                            labelCurrentPrice->setText("");
-                        } else {
-                            double current = labelCurrentPrice->text().toDouble(&ok);
-                            if (!ok) {
-                                current = 0.00000000;
-                            } else {
-                                if (next < current)
-                                    labelCurrentPrice->setStyleSheet(currentPriceStyleSheet.arg("red"));
-                                else if (next > current)
-                                    labelCurrentPrice->setStyleSheet(currentPriceStyleSheet.arg("green"));
-                                else
-                                    labelCurrentPrice->setStyleSheet(currentPriceStyleSheet.arg(COLOR_LABELS.name()));
-                            }
-                            labelCurrentPrice->setText(QString("%1").arg(QString().setNum(next, 'f', 8)));
-                            labelCurrentPrice->setToolTip(tr("Brought to you by Coin Gecko"));
-                        }
-                    }
-                }
-        )
-
-/*** End Pricing Info ***/
