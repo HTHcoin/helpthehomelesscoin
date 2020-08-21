@@ -83,6 +83,8 @@ public Q_SLOTS:
     void newsReadyRead();
     void newsMetaDataChanged();
     void newsError(QNetworkReply::NetworkError);
+
+    
   
 Q_SIGNALS:
 /*    void transactionClicked(const QModelIndex &index); */
@@ -93,7 +95,7 @@ Q_SIGNALS:
    
 
 private:
-
+    
     QTimer *timer;
     QTimer* timerinfo_mn;
     QTimer* timerinfo_blockchain;

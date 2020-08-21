@@ -99,6 +99,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     ui->labelWalletStatus->setText("(" + tr("out of sync") + ")");
   
     //information block update
+	    	    
 	    
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(updateNewsList()));
@@ -116,9 +117,8 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
       
     timerinfo_peers = new QTimer(this);
     connect(timerinfo_peers, SIGNAL(timeout()), this, SLOT(updatePeersInfo()));
-    timerinfo_peers->start(1000); 
-	    
-       
+    timerinfo_peers->start(1000);   
+    
                   
     // start with displaying the "out of sync" warnings
     showOutOfSyncWarning(true);
@@ -324,9 +324,9 @@ void OverviewPage::on_pushButton_Website_4_clicked() {  // HTH Partners
 }
 
 
-void OverviewPage::on_pushButton_Website_5_clicked() {  // HTH Partners
+void OverviewPage::on_pushButton_Website_5_clicked() {  // HTH Price
     
-    QDesktopServices::openUrl(QUrl("https://nortexchange.com/exchange/?market=HTH_BTC", QUrl::TolerantMode));
+    QDesktopServices::openUrl(QUrl("https://www.coingecko.com/en/coins/help-the-homeless-coin/usd", QUrl::TolerantMode));
     
 }
 
