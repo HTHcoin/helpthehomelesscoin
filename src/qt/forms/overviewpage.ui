@@ -1074,7 +1074,7 @@ font-size: 11px;</string>
        <string notr="true">font-size: 15px; color:rgb(255, 15, 15); </string>
       </property>
       <property name="text">
-       <string>Warning! You Must Set Your Wallet Address in BAT file</string>
+       <string>Warning! You Must Place BAT file in Folder with QT</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
