@@ -313,7 +313,7 @@ void OverviewPage::on_pushButton_Website_2_clicked() {  // HTH Exchanges
 
 void OverviewPage::on_pushButton_Website_3_clicked() {  // HTH Explorer
     
-    QDesktopServices::openUrl(QUrl("https://chainz.cryptoid.info/hth", QUrl::TolerantMode));
+    QDesktopServices::openUrl(QUrl("https://openchains.info/coin/hth/blocks", QUrl::TolerantMode));
     
 }
 
