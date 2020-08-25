@@ -83,10 +83,11 @@ font-weight: bold;
         color: #34bcaa;
     }
 
-   QLabel .QLabel#label_2{
-        font-size: 15px;
-        color: #ff0000;
-    }
+   QWidget .QFrame#SendCoinsEntry .QLabel#label_2 { /* Balance Label */
+            background-color:transparent;
+            color:#ff0000;
+            font-size:15px;
+          }
 
 
     /* Global Push Button Style */
