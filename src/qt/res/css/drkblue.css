@@ -1090,6 +1090,12 @@ QWidget .QFrame#frame_3 .QLine#lineWatchBalance {
 
     }
 
+QStackedWidget#SendCoinsEntry .QFrame#SendCoins .QLabel#label_2 {
+
+	font-weight: bold;
+	font: #ff0000 !important;
+    }
+
 /** End Donate Today **/
 
     /*************** ########scrollArea########*****************/
