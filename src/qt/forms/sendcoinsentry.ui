@@ -373,7 +373,7 @@ font-size: 11px;</string>
     <item row="4" column="1">
      <widget class="QLabel" name="label_2">
       <property name="styleSheet">
-       <string notr="true">font-color: #ff0000;</string>
+       <string notr="true">font-color: #ff0000 !important;</string>
       </property>
       <property name="text">
        <string>                                       WARNING!!! PLEASE DOUBLE CHECK YOUR ADDRESS BEFORE SENDING ANY HTH COINS!!!</string>
