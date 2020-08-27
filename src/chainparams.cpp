@@ -125,6 +125,24 @@ static Consensus::LLMQParams llmq5_60 = {
         .keepOldConnections = 3,
 };
 
+static Consensus::LLMQParams llmq20_60 = {
+        .type = Consensus::LLMQ_20_60,
+        .name = "llmq_20_60",
+        .size = 20,
+        .minSize = 5,
+        .threshold = 3,
+
+        .dkgInterval = 24, // one DKG per hour
+        .dkgPhaseBlocks = 2,
+        .dkgMiningWindowStart = 10, // dkgPhaseBlocks * 5 = after finalization
+        .dkgMiningWindowEnd = 18,
+        .dkgBadVotesThreshold = 5,
+
+        .signingActiveQuorumCount = 2, // just a few ones to allow easier testing
+
+        .keepOldConnections = 3,
+};
+
 static Consensus::LLMQParams llmq50_60 = {
         .type = Consensus::LLMQ_50_60,
         .name = "llmq_50_60",
@@ -220,7 +238,7 @@ public:
         consensus.BIP66Height = 5;
         consensus.DIP0001Height = 5;
         consensus.DIP0003Height = 5;
-        consensus.DIP0003EnforcementHeight = 100; // this can be dropped back later
+        consensus.DIP0003EnforcementHeight = 8800;
         consensus.DIP0003EnforcementHash = uint256S("0000000000000000000000000000000000000000000000000000000000000000");
         consensus.powLimit = uint256S("0000fffff0000000000000000000000000000000000000000000000000000000");
         consensus.nPowTargetTimespan = 60;
@@ -334,11 +352,12 @@ public:
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
         // long living quorum params
+        consensus.llmqs[Consensus::LLMQ_20_60] = llmq20_60;
         consensus.llmqs[Consensus::LLMQ_50_60] = llmq50_60;
         consensus.llmqs[Consensus::LLMQ_400_60] = llmq400_60;
         consensus.llmqs[Consensus::LLMQ_400_85] = llmq400_85;
-        consensus.llmqChainLocks = Consensus::LLMQ_400_60;
-        consensus.llmqForInstantSend = Consensus::LLMQ_50_60;
+        consensus.llmqChainLocks = Consensus::LLMQ_20_60;
+        consensus.llmqForInstantSend = Consensus::LLMQ_20_60;
 
         fMiningRequiresPeers = true;
         fDefaultConsistencyChecks = false;
