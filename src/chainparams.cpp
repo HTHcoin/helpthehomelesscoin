@@ -238,7 +238,7 @@ public:
         consensus.BIP66Height = 5;
         consensus.DIP0001Height = 5;
         consensus.DIP0003Height = 5;
-        consensus.DIP0003EnforcementHeight = 8800;
+        consensus.DIP0003EnforcementHeight = 9500;
         consensus.DIP0003EnforcementHash = uint256S("0000000000000000000000000000000000000000000000000000000000000000");
         consensus.powLimit = uint256S("0000fffff0000000000000000000000000000000000000000000000000000000");
         consensus.nPowTargetTimespan = 60;
