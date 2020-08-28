@@ -15,11 +15,10 @@ to operate with no central authority: managing transactions and issuing money
 are carried out collectively by the network. HelpTheHomeless is the name of the open
 source software which enables the use of this currency.
 
-For more information, as well as an immediately useable, binary version of
-the HelpTheHomeless software, visit the discord https://discord.gg/VmRQXme.
+An immediately useable, binary version of the HelpTheHomeless software can be downloaded here: https://github.com/HTHcoin/Help-The-Homeless-Coin-0.14/releases/latest
+For more information visit the HTH discord https://discord.gg/VmRQXme.
 
-THIS REPOSITORY IS TESTNET ONLY. 
-Current x16r blockchain see https://github.com/HTHcoin/HTH-Legacy
+
 
 
 License
