@@ -16,6 +16,7 @@ are carried out collectively by the network. HelpTheHomeless is the name of the 
 source software which enables the use of this currency.
 
 An immediately useable, binary version of the HelpTheHomeless software can be downloaded here: https://github.com/HTHcoin/Help-The-Homeless-Coin-0.14/releases/latest
+
 For more information visit the HTH discord https://discord.gg/VmRQXme.
 
 
@@ -31,7 +32,7 @@ Development Process
 -------------------
 
 The `master` branch is meant to be stable. Development is normally done in separate branches.
-[Tags](https://github.com/HTHcoin/HTH/tags) are created to indicate new official,
+[Tags](https://github.com/HTHcoin/Help-The-Homeless-Coin-0.14/tags) are created to indicate new official,
 stable release versions of HelpTheHomeless.
 
 The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
