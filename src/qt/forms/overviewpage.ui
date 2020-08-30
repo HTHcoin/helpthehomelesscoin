@@ -1069,7 +1069,7 @@ font-size: 11px;</string>
             <cursorShape>WhatsThisCursor</cursorShape>
            </property>
            <property name="toolTip">
-            <string>The displayed information may be out of date. Your wallet automatically synchronizes with the SCN network after a connection is established, but this process has not completed yet.</string>
+            <string>The displayed information may be out of date. Your wallet automatically synchronizes with the HTH network after a connection is established, but this process has not completed yet.</string>
            </property>
            <property name="styleSheet">
             <string notr="true">QLabel { color: red; }</string>
