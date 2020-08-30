@@ -1,7 +1,7 @@
 HelpTheHomeless 0.14.0
 =====================
 
-This is the official reference wallet for HTH digital currency and comprises the backbone of the HTH peer-to-peer network. You can [download HelpTheHomeless](https://www.dash.org/downloads/) or [build it yourself](#building) using the guides below.
+This is the official reference wallet for HTH digital currency and comprises the backbone of the HTH peer-to-peer network. You can [download HelpTheHomeless](https://github.com/HTHcoin/Help-The-Homeless-Coin-0.14/releases/latest) or [build it yourself](#building) using the guides below.
 
 Running
 ---------------------
@@ -12,7 +12,7 @@ The following are some helpful notes on how to run HTH on your native platform.
 Unpack the files into a directory and run:
 
 - `bin/helpthehomeless-qt` (GUI) or
-- `bin/dashd` (headless)
+- `bin/helpthehomelessd` (headless)
 
 ### Windows
 
@@ -61,6 +61,7 @@ The HelpTheHomeless repo's [root README](/README.md) contains relevant informati
 ### Resources
 * Discuss on the [Dash Forum](https://dash.org/forum), in the Development & Technical Discussion board.
 * Discuss on [Dash Nation Discord](http://dashchat.org)
+* Discuss on [HTH Discord](https://discord.gg/r7zKfy5)
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)
