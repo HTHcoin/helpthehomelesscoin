@@ -4,7 +4,7 @@ Some notes on how to build HelpTheHomeless based on the [depends](../depends/REA
 
 Note on old build instructions
 ------------------------------
-In the past, the build documentation contained instructions on how to build Dash with system-wide installed dependencies
+In the past, the build documentation contained instructions on how to build HelpTheHomeless with system-wide installed dependencies
 like BerkeleyDB 4.8, boost and Qt. Building this way is considered deprecated and only building with the `depends` prefix
 is supported today.
 
@@ -15,8 +15,8 @@ Building the dependencies and HelpTheHomeless requires some essential build tool
 
 Building dependencies
 ---------------------
-Dash inherited the `depends` folder from Bitcoin, which contains all dependencies required to build Dash. These
-dependencies must be built before Dash can actually be built. To do so, perform the following:
+HelpTheHomeless inherited the `depends` folder from Bitcoin, which contains all dependencies required to build HelpTheHomeless. These
+dependencies must be built before HelpTheHomeless can actually be built. To do so, perform the following:
 
 ```bash
 $ cd depends
@@ -28,7 +28,7 @@ This will download and build all dependencies required to build HelpTheHomeless.
 the packages are rebuilt which have changed since the last depends build.
 
 It is required to re-run the above commands from time to time when dependencies have been updated or added. If this is
-not done, build failures might occur when building Dash.
+not done, build failures might occur when building HelpTheHomeless.
 
 Please read the [depends](../depends/README.md) documentation for more details on supported hosts and configuration
 options. If no host is specified (as in the above example) when calling `make`, the depends system will default to your
