@@ -2,7 +2,7 @@ Cross-compiliation of HelpTheHomeless
 ===============================
 
 HelpTheHomeless can be cross-compiled on Linux to all other supported host systems. This is done by changing
-the `HOST` parameter when building the dependencies and then specifying another `--prefix` directory when building Dash.
+the `HOST` parameter when building the dependencies and then specifying another `--prefix` directory when building HelpTheHomeless.
 
 The following instructions are only tested on Debian Stretch and Ubuntu Bionic.
 

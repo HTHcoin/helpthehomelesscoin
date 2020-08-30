@@ -20,6 +20,9 @@ port=65000
 
 Restart the wallet, or daemon if it is on VPS. 
 Make sure to open port 65000 in firewall.
+For multiple masternodes on one VPS make a copy of the .helpthehomeless directory, edit the new directory's helpthehomeless.conf, change port, bls key, RPC port and credentials. Add listen=0 and save.
+Start the second daemon with flags helpthehomelessd -datadir=/home/USER/.helpthehomeless2 -conf=helpthehomeless.conf -daemon -shrinkdebugfile
+Make sure to open ports in firewall.
 
 Now lets register the node. 
 
