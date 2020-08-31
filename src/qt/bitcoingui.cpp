@@ -263,7 +263,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
 #ifndef QT_NO_TOOLTIP
     github->setToolTip(QApplication::translate("OverviewPage", "Visit HTH Github.", nullptr));
 #endif // QT_NO_TOOLTIP
-    github->setText(QApplication::translate("OverviewPage", "<a href=\"https://github.com/HTHcoin/HTH-Legacy\"><img src=\":/icons/github\" width=\"21\" height=\"21\"></a>", nullptr));
+    github->setText(QApplication::translate("OverviewPage", "<a href=\"https://github.com/HTHcoin/\"><img src=\":/icons/github\" width=\"21\" height=\"21\"></a>", nullptr));
    
             QLabel* twitter = new QLabel();
     twitter->setObjectName(QStringLiteral("twitter"));
