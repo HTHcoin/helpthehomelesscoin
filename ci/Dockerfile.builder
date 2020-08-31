@@ -16,8 +16,8 @@ RUN apt-get update && apt-get install -y python3-pip
 RUN pip3 install pyzmq # really needed?
 
 # dash_hash
-RUN git clone https://github.com/dashpay/dash_hash
-RUN cd dash_hash && python3 setup.py install
+RUN git clone https://github.com/HTHcoin/Help-The-Homeless-Coin-0.14
+RUN cd Help-The-Homeless-Coin-0.14 && python3 setup.py install
 
 ARG USER_ID=1000
 ARG GROUP_ID=1000
@@ -51,6 +51,6 @@ RUN mkdir /dash-src && \
   chown $USER_ID:$GROUP_ID /dash-src && \
   chown $USER_ID:$GROUP_ID /cache && \
   chown $USER_ID:$GROUP_ID /cache -R
-WORKDIR /dash-src
+WORKDIR /Help-The-Homeless-Coin-0.14-src
 
 USER dash
