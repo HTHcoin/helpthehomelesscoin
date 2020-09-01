@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y python3 python3-dev
 RUN apt-get update && apt-get install -y python3-pip
 
 # Python stuff
-RUN pip3 install pyzmq # is it really needed?
+RUN pip3 install pyzmq # really needed?
 
 # x25x_hash
 RUN git clone https://github.com/HTHcoin/helpthehomeless
