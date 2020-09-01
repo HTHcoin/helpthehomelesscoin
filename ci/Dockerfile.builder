@@ -17,7 +17,7 @@ RUN pip3 install pyzmq # really needed?
 
 # dash_hash
 RUN git clone https://github.com/HTHcoin/HelpTheHomelessCoin
-RUN cd HelpTheHomelessCoin
+RUN cd HelpTheHomelessCoin && python3 setup.py install
 
 ARG USER_ID=1000
 ARG GROUP_ID=1000
