@@ -3,7 +3,7 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $DIR/..
 
-DOCKER_IMAGE=${DOCKER_IMAGE:-Help-The-Homeless-Coin-0.14/HelpTheHomelessd-develop}
+DOCKER_IMAGE=${DOCKER_IMAGE:-HelpTheHomelessCoin/HelpTheHomelessd-develop}
 DOCKER_TAG=${DOCKER_TAG:-latest}
 
 BUILD_DIR=${BUILD_DIR:-.}
