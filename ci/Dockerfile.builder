@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y python3-pip
 # Python stuff
 RUN pip3 install pyzmq # really needed?
 
-# dash_hash
+# x25x_hash
 RUN git clone https://github.com/HTHcoin/HelpTheHomelessCoin
 RUN cd HelpTheHomelessCoin && python3 setup.py install
 
