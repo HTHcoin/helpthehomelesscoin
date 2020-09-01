@@ -3,7 +3,9 @@
 #   IPv6 support
 
 script:
- - chmod +x build_depends.sh
+ - chmod +x ci/build_depends.sh
+ 
+ 
 
 sudo: required
 dist: trusty
