@@ -3,9 +3,6 @@
 #   IPv6 support
 
 
-sudo: semanage permissive -a container_runtime_t
-
- 
  
 
 sudo: required
