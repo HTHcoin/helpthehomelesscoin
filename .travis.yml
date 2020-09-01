@@ -34,9 +34,7 @@ stages:
   - build docker
 
 builddepends: &builddepends
-  stage: build depends
-before_script:
-   chmod +x ci/build_depends.sh  
+  stage: build depends 
   script:
     - $DOCKER_RUN_IN_BUILDER ./ci/build_depends.sh
 
