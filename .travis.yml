@@ -2,8 +2,8 @@
 # - sudo/dist/group are set so as to get Blue Box VMs, necessary for [loopback]
 #   IPv6 support
 
-script:
- git update-index --chmod +x ci/build_depends.sh
+before_script:
+ - chmod +x ci/build_depends.sh
  
  
 
