@@ -7,7 +7,7 @@ export BUILD_TARGET=${BUILD_TARGET:-linux64}
 export PULL_REQUEST=${PULL_REQUEST:-false}
 export JOB_NUMBER=${JOB_NUMBER:-1}
 
-export BUILDER_IMAGE_NAME="dash-builder-$BUILD_TARGET-$JOB_NUMBER"
+export BUILDER_IMAGE_NAME="Help-The-Homeless-Coin-0.14-builder-$BUILD_TARGET-$JOB_NUMBER"
 
 export HOST_SRC_DIR=${HOST_SRC_DIR:-$(pwd)}
 export HOST_CACHE_DIR=${HOST_CACHE_DIR:-$(pwd)/ci-cache-$BUILD_TARGET}
