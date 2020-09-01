@@ -17,7 +17,7 @@ RUN pip3 install pyzmq # really needed?
 
 # x25x_hash
 RUN git clone https://github.com/HTHcoin/HelpTheHomelessCoin
-RUN cd x25x_hash-master && python3 setup.py install
+RUN cd helpthehomeless && python3 setup.py install
 
 ARG USER_ID=1000
 ARG GROUP_ID=1000
