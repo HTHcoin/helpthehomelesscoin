@@ -40,6 +40,8 @@ builddepends: &builddepends
 
 buildsrc: &buildsrc
   stage: build src
+  before_script:
+  - chmod 755 ./ci/build_depends.sh
   script:
     - $DOCKER_RUN_IN_BUILDER ./ci/build_depends.sh
     - $DOCKER_RUN_IN_BUILDER ./ci/build_src.sh
