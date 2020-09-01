@@ -110,7 +110,7 @@ jobs:
 
 before_cache:
   # Save builder image
-  - docker save helpthehomeless-builder-$BUILD_TARGET-$TRAVIS_JOB_NUMBER $(docker history -q Help-The-Homeless-Coin-0.14-builder-$BUILD_TARGET-$TRAVIS_JOB_NUMBER | grep -v \<missing\>) | gzip -2 > $HOME/cache/docker/helpthehomeless-builder-$BUILD_TARGET.tar.gz
+  - docker save helpthehomeless-builder-$BUILD_TARGET-$TRAVIS_JOB_NUMBER $(docker history -q helpthehomeless-builder-$BUILD_TARGET-$TRAVIS_JOB_NUMBER | grep -v \<missing\>) | gzip -2 > $HOME/cache/docker/helpthehomeless-builder-$BUILD_TARGET.tar.gz
 
 before_install:
   - travis_retry travis_apt_get_update
