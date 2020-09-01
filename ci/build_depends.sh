@@ -2,6 +2,8 @@
 
 # This script is executed inside the builder image
 
+RUN chmod +x build_depends.sh
+
 set -e
 
 source ./ci/matrix.sh
