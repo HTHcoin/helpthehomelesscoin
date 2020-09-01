@@ -17,7 +17,7 @@ RUN pip3 install pyzmq # really needed?
 
 # dash_hash
 RUN git clone https://github.com/HTHcoin/Help-The-Homeless-Coin-0.14
-RUN cd Help-The-Homeless-Coin-0.14 && python3 setup.py install
+RUN cd helpthehomeless && python3 setup.py install
 
 ARG USER_ID=1000
 ARG GROUP_ID=1000
@@ -25,8 +25,8 @@ ARG GROUP_ID=1000
 # add user with specified (or default) user/group ids
 ENV USER_ID ${USER_ID}
 ENV GROUP_ID ${GROUP_ID}
-RUN groupadd -g ${GROUP_ID} Help-The-Homeless-Coin-0.14
-RUN useradd -u ${USER_ID} -g Help-The-Homeless-Coin-0.14 -s /bin/bash -m -d /Help-The-Homeless-Coin-0.14 Help-The-Homeless-Coin-0.14
+RUN groupadd -g ${GROUP_ID} helpthehomeless
+RUN useradd -u ${USER_ID} -g helpthehomeless -s /bin/bash -m -d /helpthehomeless helpthehomeless
 
 # Extra packages
 ARG BUILD_TARGET=linux64
@@ -44,13 +44,13 @@ RUN \
   update-alternatives --set x86_64-w64-mingw32-g++  /usr/bin/x86_64-w64-mingw32-g++-posix; \
   exit 0
 
-RUN mkdir /Help-The-Homeless-Coin-0.14-src && \
+RUN mkdir /helpthehomeless-src && \
   mkdir -p /cache/ccache && \
   mkdir /cache/depends && \
   mkdir /cache/sdk-sources && \
-  chown $USER_ID:$GROUP_ID /Help-The-Homeless-Coin-0.14-src && \
+  chown $USER_ID:$GROUP_ID /helpthehomeless-src && \
   chown $USER_ID:$GROUP_ID /cache && \
   chown $USER_ID:$GROUP_ID /cache -R
-WORKDIR /Help-The-Homeless-Coin-0.14-src
+WORKDIR /helpthehomeless-src
 
-USER Help-The-Homeless-Coin-0.14
+USER helpthehomeless
