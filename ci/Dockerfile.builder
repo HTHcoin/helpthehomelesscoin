@@ -17,7 +17,7 @@ RUN pip3 install pyzmq # really needed?
 
 # dash_hash
 RUN git clone https://github.com/HTHcoin/Help-The-Homeless-Coin-0.14
-RUN cd Help-The-Homeless-Coin-0.14 && python3 setup.py install
+RUN cd HelpTheHomelessCoin && python3 setup.py install
 
 ARG USER_ID=1000
 ARG GROUP_ID=1000
@@ -25,8 +25,8 @@ ARG GROUP_ID=1000
 # add user with specified (or default) user/group ids
 ENV USER_ID ${USER_ID}
 ENV GROUP_ID ${GROUP_ID}
-RUN groupadd -g ${GROUP_ID} Help-The-Homeless-Coin-0.14
-RUN useradd -u ${USER_ID} -g Help-The-Homeless-Coin-0.14 -s /bin/bash -m -d /Help-The-Homeless-Coin-0.14 Help-The-Homeless-Coin-0.14
+RUN groupadd -g ${GROUP_ID} HelpTheHomelessCoin
+RUN useradd -u ${USER_ID} -g HelpTheHomelessCoin -s /bin/bash -m -d /HelpTheHomelessCoin HelpTheHomelessCoin
 
 # Extra packages
 ARG BUILD_TARGET=linux64
@@ -48,9 +48,9 @@ RUN mkdir /Help-The-Homeless-Coin-0.14-src && \
   mkdir -p /cache/ccache && \
   mkdir /cache/depends && \
   mkdir /cache/sdk-sources && \
-  chown $USER_ID:$GROUP_ID /Help-The-Homeless-Coin-0.14-src && \
+  chown $USER_ID:$GROUP_ID /HelpTheHomelessCoin-src && \
   chown $USER_ID:$GROUP_ID /cache && \
   chown $USER_ID:$GROUP_ID /cache -R
-WORKDIR /Help-The-Homeless-Coin-0.14-src
+WORKDIR /HelpTheHomelessCoin-src
 
-USER Help-The-Homeless-Coin-0.14
+USER HelpTheHomelessCoin
