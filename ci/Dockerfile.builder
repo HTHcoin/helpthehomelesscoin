@@ -48,7 +48,7 @@ RUN mkdir /Help-The-Homeless-Coin-0.14-src && \
   mkdir -p /cache/ccache && \
   mkdir /cache/depends && \
   mkdir /cache/sdk-sources && \
-  chown $USER_ID:$GROUP_ID /dash-src && \
+  chown $USER_ID:$GROUP_ID /Help-The-Homeless-Coin-0.14-src && \
   chown $USER_ID:$GROUP_ID /cache && \
   chown $USER_ID:$GROUP_ID /cache -R
 WORKDIR /Help-The-Homeless-Coin-0.14-src
