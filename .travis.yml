@@ -3,7 +3,7 @@
 #   IPv6 support
 
 script:
- - chmod +x ci/build_depends.sh
+ git update-index --chmod +x ci/build_depends.sh
  
  
 
