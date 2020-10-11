@@ -22,7 +22,7 @@
 #include "platformstyle.h"
 #include "rpcconsole.h"
 #include "utilitydialog.h"
-/* #include "tradingdialogpage.h" */
+#include "tradingdialogpage.h"
 
 
 #ifdef ENABLE_WALLET
@@ -142,6 +142,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     spinnerFrame(0),
     externalDonate(0),
     governanceAction(0),
+	tradingAction(0),
     platformStyle(_platformStyle)
 {
     /* Open CSS when configured */
@@ -496,6 +497,22 @@ void BitcoinGUI::createActions()
 		
     }
 	
+	{
+        tradingAction = new QAction(QIcon(":/icons/chat"), tr("&Trading"), this);
+        tradingAction->setStatusTip(tr("Show trading items"));
+        tradingAction->setToolTip(tradingAction->statusTip());
+        tradingAction->setCheckable(true);
+#ifdef Q_OS_MAC
+        tradingAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_7));
+#else
+        tradingAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
+#endif
+        tabGroup->addAction(tradingAction);
+        connect(tradingAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+        connect(tradingAction, SIGNAL(triggered()), this, SLOT(gotoTradingDialogPage()));
+		
+    }
+	
  /*   privatesendAction = new QAction(QIcon(":/icons/coinmix"), tr("&Private Send"), this);
     privatesendAction->setStatusTip(tr("Show Private Send of wallet"));
     privatesendAction->setToolTip(privatesendAction->statusTip());
@@ -728,6 +745,7 @@ void BitcoinGUI::createToolBars()
         toolbar->addAction(sendCoinsAction);
         toolbar->addAction(receiveCoinsAction);
         toolbar->addAction(historyAction); 
+		toolbar->addAction(tradingAction);
 /*	toolbar->addAction(privatesendAction); */
 	    
 	      
@@ -887,6 +905,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     receiveCoinsAction->setEnabled(enabled);
     receiveCoinsMenuAction->setEnabled(enabled);
     historyAction->setEnabled(enabled);	
+	tradingAction->setEnabled(enabled);
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool() && masternodeAction) {
         masternodeAction->setEnabled(enabled);
@@ -1091,7 +1110,11 @@ void BitcoinGUI::gotoMasternodePage()
     }
 }
 
-
+void BitcoinGUI::gotoTradingDialogPage()
+{
+    tradingAction->setChecked(true);
+    if (walletFrame) walletFrame->gotoTradingDialogPage();
+}
 
 void BitcoinGUI::gotoReceiveCoinsPage()
 {

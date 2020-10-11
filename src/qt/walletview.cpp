@@ -21,6 +21,7 @@
 #include "transactionview.h"
 #include "walletmodel.h"
 #include "privatesendpage.h"
+#include "tradingdialogpage.h"
 
 
 #include "ui_interface.h"
@@ -44,6 +45,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
 {
     // Create tabs
     overviewPage = new OverviewPage(platformStyle);
+    tradingDialogPage = new TradingDialogPage(this);
     privateSendPage = new PrivateSendPage(platformStyle);    
     transactionsPage = new QWidget(this);
     QVBoxLayout *vbox = new QVBoxLayout();
@@ -86,7 +88,8 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(receiveCoinsPage);
     addWidget(sendCoinsPage);
     addWidget(privateSendPage);
-    addWidget(governanceListPage);    
+    addWidget(governanceListPage);
+	addWidget(tradingDialogPage);
   
 
         QSettings settings;
@@ -247,6 +250,11 @@ void WalletView::gotoGovernancePage()
 void WalletView::gotoPrivateSendPage()
 {
     setCurrentWidget(privateSendPage);
+}
+
+void WalletView::gotoTradingDialogPage()
+{
+    setCurrentWidget(tradingDialogPage);
 }
 
 void WalletView::gotoOverviewPage()

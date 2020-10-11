@@ -25,6 +25,7 @@ class WalletModel;
 class AddressBookPage;
 class PrivateSendPage;
 class GovernancePage;
+class TradingDialogPage;
 
 
 QT_BEGIN_NAMESPACE
@@ -74,6 +75,7 @@ private:
     MasternodeList *masternodeListPage;
     PrivateSendPage *privateSendPage;
     GovernanceList *governanceListPage;
+	TradingDialogPage *tradingDialogPage;
     
     TransactionView *transactionView;
 
@@ -85,6 +87,8 @@ public Q_SLOTS:
   
     /** Switch to governance page */
     void gotoGovernancePage();
+	/** Switch to trading page */
+    void gotoTradingDialogPage();
     /** Switch to private send page */	
     void gotoPrivateSendPage();
     /** Switch to overview (home) page */

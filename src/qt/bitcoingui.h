@@ -103,6 +103,7 @@ private:
 
     QMenuBar *appMenuBar;
 
+	QAction *tradingAction;
     QAction* externalDonate;
     QAction *governanceAction;
   /*  QAction* privatesendAction; */
@@ -234,7 +235,7 @@ private Q_SLOTS:
       /** Switch to masternode page */
     void gotoGovernancePage();  
     /** Switch to trading page */
-    /*   void gotoTradingDialogPage();  */ 
+       void gotoTradingDialogPage(); 
     /** Switch to private send page */
     /*   void gotoPrivateSendPage(); */
     /** Switch to overview (home) page */

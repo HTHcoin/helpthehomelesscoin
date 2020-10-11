@@ -34,7 +34,7 @@ TradingDialogPage::TradingDialogPage(QWidget *parent) :
 
     ui->BuyCostLabel->setPalette(sample_palette);
     ui->SellCostLabel->setPalette(sample_palette);
-    ui->MACRONAvailableLabel->setPalette(sample_palette);
+    ui->HTHAvailableLabel->setPalette(sample_palette);
     ui->BtcAvailableLbl_2->setPalette(sample_palette);
     //Set tabs to inactive
     ui->TradingTabWidget->setTabEnabled(0,false);
@@ -45,15 +45,15 @@ TradingDialogPage::TradingDialogPage(QWidget *parent) :
 
 
     /*OrderBook Table Init*/
-    CreateOrderBookTables(*ui->BidsTable,QStringList() << "TOTAL(BTC)"<< "MACRON(SIZE)" << "BID(BTC)");
-    CreateOrderBookTables(*ui->AsksTable,QStringList() << "ASK(BTC)"  << "MACRON(SIZE)" << "TOTAL(BTC)");
+    CreateOrderBookTables(*ui->BidsTable,QStringList() << "TOTAL(BTC)"<< "HTH(SIZE)" << "BID(BTC)");
+    CreateOrderBookTables(*ui->AsksTable,QStringList() << "ASK(BTC)"  << "HTH(SIZE)" << "TOTAL(BTC)");
     /*OrderBook Table Init*/
 
     /*Market History Table Init*/
     ui->MarketHistoryTable->setColumnCount(5);
     ui->MarketHistoryTable->verticalHeader()->setVisible(false);
 
-    ui->MarketHistoryTable->setHorizontalHeaderLabels(QStringList()<<"DATE"<<"BUY/SELL"<<"BID/ASK"<<"TOTAL UNITS(MACRON)"<<"TOTAL COST(BTC");
+    ui->MarketHistoryTable->setHorizontalHeaderLabels(QStringList()<<"DATE"<<"BUY/SELL"<<"BID/ASK"<<"TOTAL UNITS(HTH)"<<"TOTAL COST(BTC");
     ui->MarketHistoryTable->setRowCount(0);
 
     int Cellwidth =  ui->MarketHistoryTable->width() / 5;
@@ -137,7 +137,7 @@ void TradingDialogPage::InitTrading()
 }
 
 void TradingDialogPage::UpdaterFunction(){
-    //MACRONst get the main exchange info in order to populate qLabels in maindialog. then get data
+    //HTHst get the main exchange info in order to populate qLabels in maindialog. then get data
     //required for the current tab.
 
      int Retval = SetExchangeInfoTextLabels();
@@ -149,24 +149,24 @@ void TradingDialogPage::UpdaterFunction(){
 
 QString TradingDialogPage::GetMarketSummary(){
 
-     QString Response = sendRequest("https://bittrex.com/api/v1.1/public/GetMarketSummary?market=BTC-MACRON");
+     QString Response = sendRequest("https://v2.altmarkets.io/api/v2/peatio/market/trades?market=hthbtc&limit=100&page=1&order_by=desc");
      return Response;
 }
 
 QString TradingDialogPage::GetOrderBook(){
 
-      QString  Response = sendRequest("https://bittrex.com/api/v1.1/public/getorderbook?market=BTC-MACRON&type=both&depth=50");
+      QString  Response = sendRequest("https://v2.altmarkets.io/api/v2/peatio/public/markets/hthbtc/order-book?asks_limit=20&bids_limit=20");
       return Response;
 }
 
 QString TradingDialogPage::GetMarketHistory(){
-      QString Response = sendRequest("https://bittrex.com/api/v1.1/public/getmarkethistory?market=BTC-MACRON&count=100");
+      QString Response = sendRequest("https://v2.altmarkets.io/api/v2/peatio/market/trades?market=hthbtc&limit=100&page=1&order_by=desc");
       return Response;
 }
 
 QString TradingDialogPage::CancelOrder(QString OrderId){
 
-        QString URL = "https://bittrex.com/api/v1.1/market/cancel?apikey=";
+        QString URL = "https://v2.altmarkets.io/api/v2/peatio/market/orders/cancel?apikey=";
                 URL += this->ApiKey;
                 URL += "&nonce=12345434&uuid=";
                 URL += OrderId;
@@ -175,14 +175,14 @@ QString TradingDialogPage::CancelOrder(QString OrderId){
         return Response;
 }
 
-QString TradingDialogPage::BuyMACRON(QString OrderType, double Quantity, double Rate){
+QString TradingDialogPage::BuyHTH(QString OrderType, double Quantity, double Rate){
 
     QString str = "";
-    QString URL = "https://bittrex.com/api/v1.1/market/";
+    QString URL = "https://v2.altmarkets.io/api/v2/peatio/market/orders";
             URL += OrderType;
             URL += "?apikey=";
             URL += this->ApiKey;
-            URL += "&nonce=12345434&market=BTC-MACRON&quantity=";
+            URL += "&nonce=12345434&market=BTC-HTH&quantity=";
             URL += str.number(Quantity,'i',8);
             URL += "&rate=";
             URL += str.number(Rate,'i',8);
@@ -191,14 +191,14 @@ QString TradingDialogPage::BuyMACRON(QString OrderType, double Quantity, double 
     return Response;
 }
 
-QString TradingDialogPage::SellMACRON(QString OrderType, double Quantity, double Rate){
+QString TradingDialogPage::SellHTH(QString OrderType, double Quantity, double Rate){
 
     QString str = "";
-    QString URL = "https://bittrex.com/api/v1.1/market/";
+    QString URL = "https://v2.altmarkets.io/api/v2/peatio/market/orders";
             URL += OrderType;
             URL += "?apikey=";
             URL += this->ApiKey;
-            URL += "&nonce=12345434&market=BTC-MACRON&quantity=";
+            URL += "&nonce=12345434&market=BTC-HTH&quantity=";
             URL += str.number(Quantity,'i',8);
             URL += "&rate=";
             URL += str.number(Rate,'i',8);
@@ -208,9 +208,9 @@ QString TradingDialogPage::SellMACRON(QString OrderType, double Quantity, double
 }
 
 QString TradingDialogPage::GetOpenOrders(){
-    QString URL = "https://bittrex.com/api/v1.1/market/getopenorders?apikey=";
+    QString URL = "https://v2.altmarkets.io/api/v2/peatio/market/orders?apikey=";
             URL += this->ApiKey;
-            URL += "&nonce=12345434&market=MACRON-BTC";
+            URL += "&nonce=12345434&market=HTH-BTC";
 
     QString Response = sendRequest(URL);
     return Response;
@@ -218,9 +218,9 @@ QString TradingDialogPage::GetOpenOrders(){
 
 QString TradingDialogPage::GetBalance(QString Currency){
 
-    QString URL = "https://bittrex.com/api/v1.1/account/getbalance?apikey=";
+    QString URL = "https://v2.altmarkets.io/api/v2/peatio/account/balances/?apikey=";
             URL += this->ApiKey;
-            URL += "&nonce=12345434&currency=MACRON";
+            URL += "&nonce=12345434&currency=HTH";
             URL += Currency;
 
     QString Response = sendRequest(URL);
@@ -229,9 +229,9 @@ QString TradingDialogPage::GetBalance(QString Currency){
 
 QString TradingDialogPage::GetDepositAddress(){
 
-    QString URL = "https://bittrex.com/api/v1.1/account/getdepositaddress?apikey=";
+    QString URL = "https://v2.altmarkets.io/api/v2/peatio/account/deposit_address/?apikey=";
             URL += this->ApiKey;
-            URL += "&nonce=12345434&currency=MACRON";
+            URL += "&nonce=12345434&currency=HTH";
 
     QString Response = sendRequest(URL);
     return Response;
@@ -239,9 +239,9 @@ QString TradingDialogPage::GetDepositAddress(){
 
 QString TradingDialogPage::GetAccountHistory(){
 
-    QString URL = "https://bittrex.com/api/v1.1/account/getorderhistory?apikey=";
+    QString URL = "https://v2.altmarkets.io/api/v2/peatio/account/deposits?apikey=";
             URL += this->ApiKey;
-            URL += "&nonce=12345434&market=MACRON-BTC&count=10";
+            URL += "&nonce=12345434&market=HTH-BTC&count=10";
 
     QString Response = sendRequest(URL);
     return Response;
@@ -265,7 +265,7 @@ int TradingDialogPage::SetExchangeInfoTextLabels(){
 
     ui->Bid->setText("<b>Bid:</b> <span style='font-weight:bold; font-size:14px; color:Green;'>" + str.number(obj["Bid"].toDouble(),'i',8) + "</span> BTC");
 
-    ui->volumet->setText("<b>MACRON Volume:</b> <span style='font-weight:bold; font-size:14px; color:blue;'>" + str.number(obj["Volume"].toDouble(),'i',8) + "</span> MACRON");
+    ui->volumet->setText("<b>HTH Volume:</b> <span style='font-weight:bold; font-size:14px; color:blue;'>" + str.number(obj["Volume"].toDouble(),'i',8) + "</span> HTH");
 
     ui->volumebtc->setText("<b>BTC Volume:</b> <span style='font-weight:bold; font-size:14px; color:blue;'>" + str.number(obj["BaseVolume"].toDouble(),'i',8) + "</span> BTC");
 
@@ -444,8 +444,8 @@ void TradingDialogPage::ParseAndPopulateOrderBookTables(QString OrderBook){
     QJsonArray  BuyArray  = ResultObject.value("buy").toArray();                //get buy/sell object from result object
     QJsonArray  SellArray = ResultObject.value("sell").toArray();               //get buy/sell object from result object
 
-    double MACRONSupply = 0;
-    double MACRONDemand = 0;
+    double HTHSupply = 0;
+    double HTHDemand = 0;
     double BtcSupply  = 0;
     double BtcDemand  = 0;
 
@@ -459,7 +459,7 @@ void TradingDialogPage::ParseAndPopulateOrderBookTables(QString OrderBook){
         double y = obj["Quantity"].toDouble();
         double a = (x * y);
 
-        MACRONSupply = MACRONSupply + y;
+        HTHSupply = HTHSupply + y;
         BtcSupply  = BtcSupply  + a;
 
         AskRows = ui->AsksTable->rowCount();
@@ -481,7 +481,7 @@ void TradingDialogPage::ParseAndPopulateOrderBookTables(QString OrderBook){
         double y = obj["Quantity"].toDouble();
         double a = (x * y);
 
-        MACRONDemand = MACRONDemand + y;
+        HTHDemand = HTHDemand + y;
         BtcDemand  = BtcDemand  + a;
 
         BidRows = ui->BidsTable->rowCount();
@@ -492,12 +492,12 @@ void TradingDialogPage::ParseAndPopulateOrderBookTables(QString OrderBook){
         BuyItteration++;
      }
 
-        ui->MACRONSupply->setText("<b>Supply:</b> <span style='font-weight:bold; font-size:14px; color:blue'>" + str.number(MACRONSupply,'i',8) + "</span><b> MACRON</b>");
+        ui->HTHSupply->setText("<b>Supply:</b> <span style='font-weight:bold; font-size:14px; color:blue'>" + str.number(HTHSupply,'i',8) + "</span><b> HTH</b>");
         ui->BtcSupply->setText("<span style='font-weight:bold; font-size:14px; color:blue'>" + str.number(BtcSupply,'i',8) + "</span><b> BTC</b>");
         ui->AsksCount->setText("<b>Ask's :</b> <span style='font-weight:bold; font-size:14px; color:blue'>" + str.number(ui->AsksTable->rowCount()) + "</span>");
 
 
-        ui->MACRONDemand->setText("<b>Demand:</b> <span style='font-weight:bold; font-size:14px; color:blue'>" + str.number(MACRONDemand,'i',8) + "</span><b> MACRON</b>");
+        ui->HTHDemand->setText("<b>Demand:</b> <span style='font-weight:bold; font-size:14px; color:blue'>" + str.number(HTHDemand,'i',8) + "</span><b> HTH</b>");
         ui->BtcDemand->setText("<span style='font-weight:bold; font-size:14px; color:blue'>" + str.number(BtcDemand,'i',8) + "</span><b> BTC</b>");
         ui->BidsCount->setText("<b>Bid's :</b> <span style='font-weight:bold; font-size:14px; color:blue'>" + str.number(ui->BidsTable->rowCount()) + "</span>");
   obj.empty();
@@ -559,11 +559,11 @@ void TradingDialogPage::ActionsOnSwitch(int index = -1){
                                    Response = GetMarketSummary();
                                    if(Response.size() > 0 && Response != "Error"){
 
-                                       QString balance = GetBalance("MACRON");
+                                       QString balance = GetBalance("HTH");
                                        QString str;
                                        QJsonObject ResultObject =  GetResultObjectFromJSONObject(balance);
 
-                                       ui->MACRONAvailableLabel->setText(str.number(ResultObject["Available"].toDouble(),'i',8));
+                                       ui->HTHAvailableLabel->setText(str.number(ResultObject["Available"].toDouble(),'i',8));
                                      }
 
                 break;
@@ -604,10 +604,10 @@ void TradingDialogPage::ActionsOnSwitch(int index = -1){
                           DisplayBalance(*ui->BitcoinBalanceLabel,*ui->BitcoinAvailableLabel,*ui->BitcoinPendingLabel, QString::fromUtf8("BTC"),Response);
                          }
 
-                         Response = GetBalance("MACRON");
+                         Response = GetBalance("HTH");
 
                        if(Response.size() > 0 && Response != "Error"){
-                         DisplayBalance(*ui->MACRONBalanceLabel,*ui->MACRONAvailableLabel,*ui->MACRONPendingLabel, QString::fromUtf8("MACRON"),Response);
+                         DisplayBalance(*ui->HTHBalanceLabel,*ui->HTHAvailableLabel,*ui->HTHPendingLabel, QString::fromUtf8("HTH"),Response);
                         }
                 break;
 
@@ -698,7 +698,7 @@ void TradingDialogPage::CalculateBuyCostLabel(){
 void TradingDialogPage::CalculateSellCostLabel(){
 
     double price    = ui->SellBidPriceEdit->text().toDouble();
-    double Quantity = ui->UnitsInputMACRON->text().toDouble();
+    double Quantity = ui->UnitsInputHTH->text().toDouble();
     double cost = ((price * Quantity) - ((price * Quantity / 100) * 0.25));
 
     QString Str = "";
@@ -740,14 +740,14 @@ void TradingDialogPage::on_GenDepositBTN_clicked()
 
 void TradingDialogPage::on_Sell_Max_Amount_clicked()
 {
-    //calculate amount of BTC that can be gained from selling MACRON available balance
-    QString responseA = GetBalance("MACRON");
+    //calculate amount of BTC that can be gained from selling HTH available balance
+    QString responseA = GetBalance("HTH");
     QString str;
     QJsonObject ResultObject =  GetResultObjectFromJSONObject(responseA);
 
-    double AvailableMACRON = ResultObject["Available"].toDouble();
+    double AvailableHTH = ResultObject["Available"].toDouble();
 
-    ui->UnitsInputMACRON->setText(str.number(AvailableMACRON,'i',8));
+    ui->UnitsInputHTH->setText(str.number(AvailableHTH,'i',8));
 }
 
 void TradingDialogPage::on_Buy_Max_Amount_clicked()
@@ -873,7 +873,7 @@ void TradingDialogPage::on_BuyBidcomboBox_currentIndexChanged(const QString &arg
     CalculateBuyCostLabel(); //update cost
 }
 
-void TradingDialogPage::on_BuyMACRON_clicked()
+void TradingDialogPage::on_BuyHTH_clicked()
 {
     double Rate;
     double Quantity;
@@ -888,7 +888,7 @@ void TradingDialogPage::on_BuyMACRON_clicked()
 
     QString Msg = "Are you sure you want to buy ";
             Msg += ui->UnitsInput->text();
-            Msg += "MACRON @ ";
+            Msg += "HTH @ ";
             Msg += ui->BuyBidPriceEdit->text();
             Msg += " BTC Each";
 
@@ -897,7 +897,7 @@ void TradingDialogPage::on_BuyMACRON_clicked()
 
             if (reply == QMessageBox::Yes) {
 
-                QString Response =  BuyMACRON(Order,Quantity,Rate);
+                QString Response =  BuyHTH(Order,Quantity,Rate);
 
                 QJsonDocument jsonResponse = QJsonDocument::fromJson(Response.toUtf8());          //get json from str.
                 QJsonObject  ResponseObject = jsonResponse.object();                              //get json obj
@@ -915,13 +915,13 @@ void TradingDialogPage::on_BuyMACRON_clicked()
                  }
 }
 
-void TradingDialogPage::on_SellMACRONBTN_clicked()
+void TradingDialogPage::on_SellHTHBTN_clicked()
 {
     double Rate;
     double Quantity;
 
     Rate     = ui->SellBidPriceEdit->text().toDouble();
-    Quantity = ui->UnitsInputMACRON->text().toDouble();
+    Quantity = ui->UnitsInputHTH->text().toDouble();
 
     QString OrderType = ui->SellOrdertypeCombo->currentText();
     QString Order;
@@ -929,8 +929,8 @@ void TradingDialogPage::on_SellMACRONBTN_clicked()
     if(OrderType == "Limit"){Order = "selllimit";}else if (OrderType == "Market"){ Order = "sellmarket";}
 
     QString Msg = "Are you sure you want to Sell ";
-            Msg += ui->UnitsInputMACRON->text();
-            Msg += " MACRON @ ";
+            Msg += ui->UnitsInputHTH->text();
+            Msg += " HTH @ ";
             Msg += ui->SellBidPriceEdit->text();
             Msg += " BTC Each";
 
@@ -939,7 +939,7 @@ void TradingDialogPage::on_SellMACRONBTN_clicked()
 
             if (reply == QMessageBox::Yes) {
 
-            QString Response =  SellMACRON(Order,Quantity,Rate);
+            QString Response =  SellHTH(Order,Quantity,Rate);
             QJsonDocument jsonResponse = QJsonDocument::fromJson(Response.toUtf8());          //get json from str.
             QJsonObject  ResponseObject = jsonResponse.object();                              //get json obj
 
@@ -976,7 +976,7 @@ void TradingDialogPage::on_AdvancedView_stateChanged(int arg1)
           }
 }
 
-void TradingDialogPage::on_UnitsInputMACRON_textChanged(const QString &arg1)
+void TradingDialogPage::on_UnitsInputHTH_textChanged(const QString &arg1)
 {
      CalculateSellCostLabel(); //update cost
 }
