@@ -234,7 +234,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
 #ifndef QT_NO_TOOLTIP
     web->setToolTip(QApplication::translate("OverviewPage", "Visit HTH Worldwide NonProfit.", nullptr));
 #endif // QT_NO_TOOLTIP
-    web->setText(QApplication::translate("OverviewPage", "<a href=\"https://helpthehomelessworldwide.org\"><img src=\":/icons/web\" width=\"21\" height=\"21\"></a>", nullptr));
+    web->setText(QApplication::translate("OverviewPage", "<a href=\"https://hth.world\"><img src=\":/icons/web\" width=\"21\" height=\"21\"></a>", nullptr));
             
    End Status Bar Social Links Not Used  ***/
             
@@ -1049,7 +1049,7 @@ void BitcoinGUI::gotoGovernancePage()
 
 void BitcoinGUI::openDonate()
 {
-    openExternalURL("https://helpthehomelessworldwide.org/donate");
+    openExternalURL("https://hth.world/nonprofit/");
 }
 
 void BitcoinGUI::openExternalURL(QString url)
