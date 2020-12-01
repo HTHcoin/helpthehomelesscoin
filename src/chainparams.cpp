@@ -251,10 +251,10 @@ public:
         consensus.devAddressPubKey = "b027849d3febd03af8063fc9f1f1226fbe3eb74c";
         consensus.nDevelopersFeeBegin = -1;
 	   
-/*	consensus.FoundationAddress = "hUjxuAg8PM5ft9eE7kCCMqe1ruTWXSrswx"; */
-	    consensus.FoundationPODSAddress = "hUjxuAg8PM5ft9eE7kCCMqe1ruTWXSrswx";
-/*	consensus.FoundationQTAddress = "BDcNYc8tGXmwD7QmLXbR1rk1qteTDVEjUD"; */
-	    consensus.BurnAddress = "hThBurnHTHinvaLidCoinBurNeDXZZGJjn";
+     /*	consensus.FoundationAddress = "hUjxuAg8PM5ft9eE7kCCMqe1ruTWXSrswx"; */
+	consensus.FoundationPODSAddress = "hUjxuAg8PM5ft9eE7kCCMqe1ruTWXSrswx";
+    /*	consensus.FoundationQTAddress = "BDcNYc8tGXmwD7QmLXbR1rk1qteTDVEjUD"; */
+	consensus.BurnAddress = "hThBurnHTHinvaLidCoinBurNeDXZZGJjn";
 
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1544655600;
