@@ -252,9 +252,9 @@ public:
         consensus.nDevelopersFeeBegin = -1;
 	   
 /*	consensus.FoundationAddress = "hUjxuAg8PM5ft9eE7kCCMqe1ruTWXSrswx"; */
-	consensus.FoundationPODSAddress = "hUjxuAg8PM5ft9eE7kCCMqe1ruTWXSrswx";
-/*	consensus.FoundationQTAddress = "BDcNYc8tGXmwD7QmLXbR1rk1qteTDVEjUD";
-	consensus.BurnAddress = "B4T5ciTCkWauSqVAcVKy88ofjcSasUkSYU";    */
+	    consensus.FoundationPODSAddress = "hUjxuAg8PM5ft9eE7kCCMqe1ruTWXSrswx";
+/*	consensus.FoundationQTAddress = "BDcNYc8tGXmwD7QmLXbR1rk1qteTDVEjUD"; */
+	    consensus.BurnAddress = "hThBurnHTHinvaLidCoinBurNeDXZZGJjn";
 
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1544655600;
@@ -294,7 +294,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_DIP0008].nThreshold = 10;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0000000000000000000000000000000000000000000000000000000000000000");
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000001815530b0f131"); // 127107
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0000000000000000000000000000000000000000000000000000000000000000");
@@ -375,16 +375,20 @@ public:
         nMinSporkKeys = 1;
         fBIP9CheckMasternodesUpgraded = true;
 
-        checkpointData = (CCheckpointData) {
-            boost::assign::map_list_of
-            (  0, consensus.hashGenesisBlock)
+         checkpointData = {
+            {
+                {1110, uint256S("0x6d9df73bce159e7d8aa057d87295a1b3696b92e578220b5c25a1a44a94bf7ae9")},
+                {11092, uint256S("0x9df56b7bac29a01cac265d4cb71483cd733bd0571b247c0477f940adc64a45ae")},
+                {27091, uint256S("0x361ca7812cd9ace6361fe3c570495975e6be26f6ceac7653dbd41879a685a330")},
+                {124998, uint256S("0x4d44f99edbb6c5a6999f9a54240192728d7a48e1c1aee5e05d45d1a9901b3b40")},
+            }
         };
 
         chainTxData = ChainTxData{
-            1562732600, // * UNIX timestamp of last known number of transactions (Block 1068571)
-            1,          // * total number of transactions between genesis and that timestamp
+            1605746236, // * UNIX timestamp of last known number of transactions (Block 127107)
+            246969,          // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
-            1           // * estimated number of transactions per second after that timestamp
+            0.05           // * estimated number of transactions per second after that timestamp
         };
     }
 };
