@@ -253,8 +253,8 @@ public:
 	   
 /*	consensus.FoundationAddress = "hUjxuAg8PM5ft9eE7kCCMqe1ruTWXSrswx"; */
 	consensus.FoundationPODSAddress = "hUjxuAg8PM5ft9eE7kCCMqe1ruTWXSrswx";
-/*	consensus.FoundationQTAddress = "BDcNYc8tGXmwD7QmLXbR1rk1qteTDVEjUD";
-	consensus.BurnAddress = "B4T5ciTCkWauSqVAcVKy88ofjcSasUkSYU";    */
+/*	consensus.FoundationQTAddress = "BDcNYc8tGXmwD7QmLXbR1rk1qteTDVEjUD";*/
+	consensus.BurnAddress = "hThBurnHTHinvaLidCoinBurNeDXZZGJjn";    
 
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1544655600;
