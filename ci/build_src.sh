@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # This script is executed inside the builder image
 
 set -e

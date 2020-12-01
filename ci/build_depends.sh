@@ -1,6 +1,5 @@
 <<<<<<< HEAD
 #!/usr/bin/env bash
-
 # This script is executed inside the builder image
 
 set -e
@@ -30,7 +29,6 @@ fi
 make $MAKEJOBS -C depends HOST=$HOST $DEP_OPTS
 =======
 #!/usr/bin/env bash
-
 # This script is executed inside the builder image
 
 
