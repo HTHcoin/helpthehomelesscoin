@@ -27,6 +27,7 @@ Make sure to open ports in firewall.
 
 ----
 You can also install on VPS using an easy script, https://github.com/HTHcoin/helpthehomelesscoin/blob/master/doc/masternode-script.md
+
 ----
 
 Now lets register the node. 
