@@ -11,19 +11,23 @@ Add the secret bls key and your outbound IP to helpthehomeless.conf:
 outbound IP can be found at whatsmyip.com & is your IPv4 Address
 If you set up masternode on a VPS you use its IP and the secret bls key from your controlling wallet in the helpthehomeless.conf on VPS
 
-
+```
 masternodeblsprivkey=  secret key from bls generate
 masternode=1
 listen=1
 externalip=       Outbound IP Address
 port=65000
+```
 
 Restart the wallet, or daemon if it is on VPS. 
 Make sure to open port 65000 in firewall.
-For multiple masternodes on one VPS make a copy of the .helpthehomeless directory, edit the new directory's helpthehomeless.conf, change IP, bls key, RPC port and credentials. Add listen=0 and save.
+For multiple masternodes on one VPS make a copy of the .helpthehomeless directory, edit the new directory's helpthehomeless.conf, change IP, bls key, RPC port and credentials. Add listen=0 and save. Currently each masternode need an unique IPV4 address.
 Start the second daemon with flags helpthehomelessd -datadir=/home/USER/.helpthehomeless2 -conf=helpthehomeless.conf -daemon -shrinkdebugfile
 Make sure to open ports in firewall.
 
+----
+You can also install on VPS using an easy script, https://github.com/HTHcoin/helpthehomelesscoin/blob/master/doc/masternode-script.md
+----
 
 Now lets register the node. 
 
