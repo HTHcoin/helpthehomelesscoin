@@ -9,7 +9,7 @@
 /* #undef AC_APPLE_UNIVERSAL_BUILD */
 
 /* Version Build */
-#define CLIENT_VERSION_BUILD 3
+#define CLIENT_VERSION_BUILD 8
 
 /* Version is release */
 #define CLIENT_VERSION_IS_RELEASE true
@@ -24,16 +24,16 @@
 #define CLIENT_VERSION_REVISION 0
 
 /* Copyright holder(s) before %s replacement */
-#define COPYRIGHT_HOLDERS "The %s developers"
+#define COPYRIGHT_HOLDERS "The %s Developers"
 
 /* Copyright holder(s) */
-#define COPYRIGHT_HOLDERS_FINAL "The HelpTheHomeless developers"
+#define COPYRIGHT_HOLDERS_FINAL "The HelpTheHomeless Developers"
 
 /* Replacement for %s in copyright holders string */
 #define COPYRIGHT_HOLDERS_SUBSTITUTION "HelpTheHomeless"
 
 /* Copyright year */
-#define COPYRIGHT_YEAR 2019
+#define COPYRIGHT_YEAR 2020
 
 /* Define this symbol if in-wallet miner should be enabled */
 #define ENABLE_MINER 1
