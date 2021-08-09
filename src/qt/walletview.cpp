@@ -21,7 +21,6 @@
 #include "transactionview.h"
 #include "walletmodel.h"
 #include "privatesendpage.h"
-#include "tradingdialogpage.h"
 
 
 #include "ui_interface.h"
@@ -45,7 +44,6 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
 {
     // Create tabs
     overviewPage = new OverviewPage(platformStyle);
-    tradingDialogPage = new TradingDialogPage(this);
     privateSendPage = new PrivateSendPage(platformStyle);    
     transactionsPage = new QWidget(this);
     QVBoxLayout *vbox = new QVBoxLayout();
@@ -78,7 +76,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     receiveCoinsPage = new ReceiveCoinsDialog(platformStyle);
     sendCoinsPage = new SendCoinsDialog(platformStyle);
     governanceListPage = new GovernanceList(platformStyle);
-   
+    aboutPage = new AboutPage(platformStyle);
 
     usedSendingAddressesPage = new AddressBookPage(platformStyle, AddressBookPage::ForEditing, AddressBookPage::SendingTab, this);
     usedReceivingAddressesPage = new AddressBookPage(platformStyle, AddressBookPage::ForEditing, AddressBookPage::ReceivingTab, this);
@@ -89,7 +87,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(sendCoinsPage);
     addWidget(privateSendPage);
     addWidget(governanceListPage);
-	addWidget(tradingDialogPage);
+	addWidget(aboutPage);
   
 
         QSettings settings;
@@ -154,11 +152,11 @@ void WalletView::setBitcoinGUI(BitcoinGUI *gui)
 void WalletView::setClientModel(ClientModel *_clientModel)
 {
     this->clientModel = _clientModel;
-
     overviewPage->setClientModel(_clientModel);
     privateSendPage->setClientModel(_clientModel);
     sendCoinsPage->setClientModel(_clientModel);
     governanceListPage->setClientModel(_clientModel);
+	aboutPage->setClientModel(_clientModel);
 
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
@@ -176,6 +174,7 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
     overviewPage->setWalletModel(_walletModel);
     privateSendPage->setWalletModel(_walletModel);
     governanceListPage->setWalletModel(_walletModel);
+	aboutPage->setWalletModel(_walletModel);
 
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
@@ -241,6 +240,12 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
 }
 
 
+void WalletView::gotoAboutPage()
+{
+    QSettings settings;
+    setCurrentWidget(aboutPage);
+}
+
 void WalletView::gotoGovernancePage()
 {
     QSettings settings;
@@ -250,11 +255,6 @@ void WalletView::gotoGovernancePage()
 void WalletView::gotoPrivateSendPage()
 {
     setCurrentWidget(privateSendPage);
-}
-
-void WalletView::gotoTradingDialogPage()
-{
-    setCurrentWidget(tradingDialogPage);
 }
 
 void WalletView::gotoOverviewPage()

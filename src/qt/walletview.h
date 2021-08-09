@@ -8,6 +8,7 @@
 #include "amount.h"
 #include "masternodelist.h"
 #include "governancelist.h"
+#include "qt/aboutpage.h"
 
 
 
@@ -25,7 +26,7 @@ class WalletModel;
 class AddressBookPage;
 class PrivateSendPage;
 class GovernancePage;
-class TradingDialogPage;
+class AboutPage;
 
 
 QT_BEGIN_NAMESPACE
@@ -75,7 +76,7 @@ private:
     MasternodeList *masternodeListPage;
     PrivateSendPage *privateSendPage;
     GovernanceList *governanceListPage;
-	TradingDialogPage *tradingDialogPage;
+	AboutPage *aboutPage;
     
     TransactionView *transactionView;
 
@@ -85,10 +86,10 @@ private:
 
 public Q_SLOTS:
   
+    /** Switch to nonprofit page */
+    void gotoAboutPage();
     /** Switch to governance page */
     void gotoGovernancePage();
-	/** Switch to trading page */
-    void gotoTradingDialogPage();
     /** Switch to private send page */	
     void gotoPrivateSendPage();
     /** Switch to overview (home) page */

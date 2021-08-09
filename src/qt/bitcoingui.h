@@ -11,6 +11,7 @@
 
 #include "amount.h"
 #include "governancelist.h"
+#include "qt/aboutpage.h"
 
 #include <QLabel>
 #include <QMainWindow>
@@ -103,7 +104,8 @@ private:
 
     QMenuBar *appMenuBar;
 
-	QAction *tradingAction;
+	/*QAction *tradingAction;*/
+	QAction *nonprofitAction;
     QAction* externalDonate;
     QAction *governanceAction;
   /*  QAction* privatesendAction; */
@@ -231,11 +233,10 @@ public Q_SLOTS:
 private Q_SLOTS:
 #ifdef ENABLE_WALLET
  	
-
+	 /** Switch to nonprofit page */
+    void gotoAboutPage();  
       /** Switch to masternode page */
     void gotoGovernancePage();  
-    /** Switch to trading page */
-       void gotoTradingDialogPage(); 
     /** Switch to private send page */
     /*   void gotoPrivateSendPage(); */
     /** Switch to overview (home) page */

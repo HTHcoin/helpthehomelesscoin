@@ -108,6 +108,13 @@ void WalletFrame::showOutOfSyncWarning(bool fShow)
         i.value()->showOutOfSyncWarning(fShow);
 }
 
+void WalletFrame::gotoAboutPage()
+{
+    QMap<QString, WalletView*>::const_iterator i;
+    for (i = mapWalletViews.constBegin(); i != mapWalletViews.constEnd(); ++i)
+        i.value()->gotoAboutPage();
+}
+
 void WalletFrame::gotoGovernancePage()
 {
     QMap<QString, WalletView*>::const_iterator i;
@@ -155,13 +162,6 @@ void WalletFrame::gotoSendCoinsPage(QString addr)
     QMap<QString, WalletView*>::const_iterator i;
     for (i = mapWalletViews.constBegin(); i != mapWalletViews.constEnd(); ++i)
         i.value()->gotoSendCoinsPage(addr);
-}
-
-void WalletFrame::gotoTradingDialogPage()
-{
-    QMap<QString, WalletView*>::const_iterator i;
-    for (i = mapWalletViews.constBegin(); i != mapWalletViews.constEnd(); ++i)
-        i.value()->gotoTradingDialogPage();
 }
 
 void WalletFrame::gotoSignMessageTab(QString addr)

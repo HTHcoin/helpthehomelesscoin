@@ -149,7 +149,7 @@ void TradingDialogPage::UpdaterFunction(){
 
 QString TradingDialogPage::GetMarketSummary(){
 
-     QString Response = sendRequest("https://v2.altmarkets.io/api/v2/peatio/market/trades?market=hthbtc&limit=100&page=1&order_by=desc");
+     QString Response = sendRequest("https://altmarkets.io/api/v2/markets");
      return Response;
 }
 
@@ -160,7 +160,7 @@ QString TradingDialogPage::GetOrderBook(){
 }
 
 QString TradingDialogPage::GetMarketHistory(){
-      QString Response = sendRequest("https://v2.altmarkets.io/api/v2/peatio/market/trades?market=hthbtc&limit=100&page=1&order_by=desc");
+      QString Response = sendRequest("https://v2.altmarkets.io/api/v2/peatio/public/markets/hthbtc/depth?limit=300");
       return Response;
 }
 

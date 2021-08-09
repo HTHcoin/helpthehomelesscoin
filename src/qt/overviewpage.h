@@ -78,11 +78,11 @@ public Q_SLOTS:
     void setBalance(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance, const CAmount& anonymizedBalance,
                     const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance); 
   
-    void updateNewsList();
+  /*  void updateNewsList();
     void newsFinished(QNetworkReply *reply);
     void newsReadyRead();
     void newsMetaDataChanged();
-    void newsError(QNetworkReply::NetworkError);
+    void newsError(QNetworkReply::NetworkError);  */
 
     
   
@@ -117,11 +117,11 @@ private:
   /*  bool fShowAdvancedPSUI; */
     int cachedNumISLocks;
     
-    void parseXml();
+  /*  void parseXml();
     void newsGet(const QUrl &url);
     QNetworkAccessManager manager;
     QNetworkReply *currentReply;
-    QXmlStreamReader xml;
+    QXmlStreamReader xml;  */
 
         
 /*    TxViewDelegate *txdelegate;
@@ -140,17 +140,6 @@ private Q_SLOTS:
    /* void updateAlerts(const QString &warnings); */
     void updateWatchOnlyLabels(bool showWatchOnly);
     void handleOutOfSyncWarningClicks();
-    void on_pushButton_Website_clicked();
-    void on_pushButton_Website_1_clicked();
-    void on_pushButton_Website_2_clicked();
-    void on_pushButton_Website_3_clicked();
-    void on_pushButton_Website_4_clicked();
-    void on_pushButton_Website_5_clicked();
-    void on_pushButton_Mine_clicked();
-    void on_pushButton_Mine_AMD_clicked();
-    void updateBlockChainInfo();
-    void updateMasternodeInfo(); 
-    void updatePeersInfo();
     };
 
 #endif // BITCOIN_QT_OVERVIEWPAGE_H

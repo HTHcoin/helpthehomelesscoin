@@ -63,11 +63,10 @@ private:
 
 public Q_SLOTS:
 
-
+	/** Switch to Nonprofit page */
+    void gotoAboutPage();
     /** Switch to Governance page */
     void gotoGovernancePage();
-	/** Switch to Trading page */
-    void gotoTradingDialogPage();
     /** Switch to private send page */
     void gotoPrivateSendPage();
     /** Switch to overview (home) page */

@@ -44,7 +44,7 @@
     <attribute name="title">
      <string>Buy</string>
     </attribute>
-    <widget class="QPushButton" name="BuyMACRON">
+    <widget class="QPushButton" name="BuyHTH">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -54,7 +54,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Buy MACRON</string>
+      <string>Buy HTH</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_3">
@@ -120,7 +120,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>MACRON</string>
+      <string>HTH</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_5">
@@ -1296,10 +1296,10 @@
       </rect>
      </property>
      <property name="text">
-      <string>MACRON</string>
+      <string>HTH</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="UnitsInputMACRON">
+    <widget class="QLineEdit" name="UnitsInputHTH">
      <property name="geometry">
       <rect>
        <x>330</x>
@@ -1333,7 +1333,7 @@
       </font>
      </property>
     </widget>
-    <widget class="QPushButton" name="SellMACRONBTN">
+    <widget class="QPushButton" name="SellHTHBTN">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -1343,7 +1343,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Sell MACRON</string>
+      <string>Sell HTH</string>
      </property>
     </widget>
     <widget class="QWidget" name="layoutWidget">
@@ -1365,12 +1365,12 @@
          </font>
         </property>
         <property name="text">
-         <string>MACRON Available:</string>
+         <string>HTH Available:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="MACRONAvailableLabel">
+       <widget class="QLabel" name="HTHAvailableLabel">
         <property name="palette">
          <palette>
           <active>
@@ -1801,7 +1801,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="labelMACRON">
+       <widget class="QLabel" name="labelHTH">
         <property name="font">
          <font>
           <weight>75</weight>
@@ -1809,7 +1809,7 @@
          </font>
         </property>
         <property name="text">
-         <string> MACRON</string>
+         <string> HTH</string>
         </property>
        </widget>
       </item>
@@ -2352,7 +2352,7 @@
       <string>Asks</string>
      </property>
     </widget>
-    <widget class="QLabel" name="MACRONSupply">
+    <widget class="QLabel" name="HTHSupply">
      <property name="geometry">
       <rect>
        <x>570</x>
@@ -2368,7 +2368,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="MACRONDemand">
+    <widget class="QLabel" name="HTHDemand">
      <property name="geometry">
       <rect>
        <x>160</x>
@@ -2505,7 +2505,7 @@
       <string>TextLabel</string>
      </property>
     </widget>
-    <widget class="QLabel" name="MACRONBalanceLabel">
+    <widget class="QLabel" name="HTHBalanceLabel">
      <property name="geometry">
       <rect>
        <x>120</x>
@@ -2534,7 +2534,7 @@
       </font>
      </property>
      <property name="text">
-      <string>MACRON Balance:</string>
+      <string>HTH Balance:</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_12">
@@ -2556,7 +2556,7 @@
       <string>BTC Balance:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="MACRONAvailableLabel">
+    <widget class="QLabel" name="HTHAvailableLabel">
      <property name="geometry">
       <rect>
        <x>120</x>
@@ -2585,7 +2585,7 @@
       </font>
      </property>
      <property name="text">
-      <string>MACRON Available:</string>
+      <string>HTH Available:</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_14">
@@ -2604,10 +2604,10 @@
       </font>
      </property>
      <property name="text">
-      <string>MACRON Pending:</string>
+      <string>HTH Pending:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="MACRONPendingLabel">
+    <widget class="QLabel" name="HTHPendingLabel">
      <property name="geometry">
       <rect>
        <x>120</x>
@@ -2700,7 +2700,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Bittrex MACRON Deposit Address:</string>
+      <string>Bittrex HTH Deposit Address:</string>
      </property>
     </widget>
     <widget class="QPushButton" name="GenDepositBTN">
@@ -2713,7 +2713,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Generate MACRON Coin Deposit Address</string>
+      <string>Generate HTH Coin Deposit Address</string>
      </property>
     </widget>
     <widget class="QLabel" name="DepositAddressLabel">
