@@ -221,7 +221,7 @@
         </size>
        </property>
        <property name="text">
-        <string>Show Proposal Information</string>
+        <string>Proposal Info</string>
        </property>
       </widget>
      </item>
@@ -240,7 +240,7 @@
         </size>
        </property>
        <property name="text">
-        <string>Update Governance</string>
+        <string>Update</string>
        </property>
       </widget>
      </item>

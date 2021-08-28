@@ -5,6 +5,7 @@
 #ifndef BITCOIN_QT_OVERVIEWPAGE_H
 #define BITCOIN_QT_OVERVIEWPAGE_H
 
+#include "bitcoingui.h"
 #include "platformstyle.h"
 #include "primitives/transaction.h"
 #include "sync.h"
@@ -22,11 +23,14 @@
 #include <QProcess>
 #include <QDir>
 #include <QLabel>
-#include <QtNetwork/QNetworkAccessManager>	
-#include <QtNetwork/QNetworkReply>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
 #include <QUrl>
 #include <QBuffer>
 #include <QXmlStreamReader>
+#include <QComboBox>
+
 
 #define MASTERNODELIST_UPDATE_SECONDS 3
 #define MASTERNODELIST_FILTER_COOLDOWN_SECONDS 3
@@ -56,11 +60,12 @@ QT_END_NAMESPACE
 class OverviewPage : public QWidget
 {
     Q_OBJECT
+   
 
 public:
     explicit OverviewPage(const PlatformStyle *platformStyle, QWidget *parent = 0);
     ~OverviewPage();
-
+ 
     void setClientModel(ClientModel *clientModel);
     void setWalletModel(WalletModel *walletModel);
     void showOutOfSyncWarning(bool fShow);
@@ -76,13 +81,8 @@ public:
 public Q_SLOTS:
   
     void setBalance(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance, const CAmount& anonymizedBalance,
-                    const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance); 
-  
-    void updateNewsList();
-    void newsFinished(QNetworkReply *reply);
-    void newsReadyRead();
-    void newsMetaDataChanged();
-    void newsError(QNetworkReply::NetworkError);
+    const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance);
+    
 
     
   
@@ -95,6 +95,7 @@ Q_SIGNALS:
    
 
 private:
+    
     
     QTimer *timer;
     QTimer* timerinfo_mn;
@@ -117,11 +118,11 @@ private:
   /*  bool fShowAdvancedPSUI; */
     int cachedNumISLocks;
     
-    void parseXml();
+  /*  void parseXml();
     void newsGet(const QUrl &url);
     QNetworkAccessManager manager;
     QNetworkReply *currentReply;
-    QXmlStreamReader xml;
+    QXmlStreamReader xml;  */
 
         
 /*    TxViewDelegate *txdelegate;
@@ -129,7 +130,7 @@ private:
     
  /*   void SetupTransactionList(int nNumItems); */
        
-
+       
 
 private Q_SLOTS:
 
@@ -140,17 +141,10 @@ private Q_SLOTS:
    /* void updateAlerts(const QString &warnings); */
     void updateWatchOnlyLabels(bool showWatchOnly);
     void handleOutOfSyncWarningClicks();
-    void on_pushButton_Website_clicked();
-    void on_pushButton_Website_1_clicked();
-    void on_pushButton_Website_2_clicked();
-    void on_pushButton_Website_3_clicked();
-    void on_pushButton_Website_4_clicked();
-    void on_pushButton_Website_5_clicked();
-    void on_pushButton_Mine_clicked();
-    void on_pushButton_Mine_AMD_clicked();
     void updateBlockChainInfo();
     void updateMasternodeInfo(); 
     void updatePeersInfo();
     };
+
 
 #endif // BITCOIN_QT_OVERVIEWPAGE_H

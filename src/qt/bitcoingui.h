@@ -103,6 +103,7 @@ private:
 
     QMenuBar *appMenuBar;
 
+    QAction *worldAction;
     QAction* externalDonate;
     QAction *governanceAction;
   /*  QAction* privatesendAction; */
@@ -229,12 +230,11 @@ public Q_SLOTS:
 
 private Q_SLOTS:
 #ifdef ENABLE_WALLET
- 	
-
+	
+	/** Switch to hth information page */
+    void gotoWorldPage();
       /** Switch to masternode page */
     void gotoGovernancePage();  
-    /** Switch to trading page */
-    /*   void gotoTradingDialogPage();  */ 
     /** Switch to private send page */
     /*   void gotoPrivateSendPage(); */
     /** Switch to overview (home) page */

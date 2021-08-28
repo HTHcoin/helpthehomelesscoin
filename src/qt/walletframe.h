@@ -63,7 +63,7 @@ private:
 
 public Q_SLOTS:
 
-
+	void gotoWorldPage();
     /** Switch to Governance page */
     void gotoGovernancePage();
     /** Switch to private send page */

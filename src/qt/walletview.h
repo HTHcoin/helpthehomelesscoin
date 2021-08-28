@@ -25,6 +25,7 @@ class WalletModel;
 class AddressBookPage;
 class PrivateSendPage;
 class GovernancePage;
+class WorldPage;
 
 
 QT_BEGIN_NAMESPACE
@@ -74,6 +75,7 @@ private:
     MasternodeList *masternodeListPage;
     PrivateSendPage *privateSendPage;
     GovernanceList *governanceListPage;
+    WorldPage *worldPage;
     
     TransactionView *transactionView;
 
@@ -83,6 +85,8 @@ private:
 
 public Q_SLOTS:
   
+  
+	void gotoWorldPage();
     /** Switch to governance page */
     void gotoGovernancePage();
     /** Switch to private send page */	

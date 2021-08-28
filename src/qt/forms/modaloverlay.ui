@@ -229,7 +229,7 @@
                  <property name="icon">
                   <iconset>
                    <normaloff>:/icons/www</normaloff>
-                   <disabledoff>:/icons/www</disabledoff>:/icons/www</iconset>
+                   <disabledoff>:/icons/www1</disabledoff>:/icons/www1</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
