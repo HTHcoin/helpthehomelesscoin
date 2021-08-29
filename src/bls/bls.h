@@ -11,10 +11,10 @@
 #include "utilstrencodings.h"
 
 #undef ERROR // chia BLS uses relic, which defines ERROR, which in turn causes win32/win64 builds to print many warnings
-#include <chiabls/bls.hpp>
-#include <chiabls/privatekey.hpp>
-#include <chiabls/publickey.hpp>
-#include <chiabls/signature.hpp>
+#include "bls/bls.hpp"
+#include "bls/privatekey.hpp"
+#include "bls/publickey.hpp"
+#include "bls/signature.hpp"
 #undef DOUBLE
 
 #include <array>
