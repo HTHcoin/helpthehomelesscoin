@@ -10,29 +10,6 @@ AM_CXXFLAGS = $(HARDENED_CXXFLAGS) $(ERROR_CXXFLAGS)
 AM_CPPFLAGS = $(HARDENED_CPPFLAGS)
 EXTRA_LIBRARIES =
 
-if ENABLE_STACKTRACES
-if STACKTRACE_WRAPPED_CXX_ABI
-# Wrap internal C++ ABI's so that we can attach stacktraces to exceptions
-LDFLAGS_WRAP_EXCEPTIONS = -Wl,-wrap,__cxa_allocate_exception -Wl,-wrap,__cxa_free_exception
-if TARGET_WINDOWS
-LDFLAGS_WRAP_EXCEPTIONS += -Wl,-wrap,_assert -Wl,-wrap,_wassert
-else
-LDFLAGS_WRAP_EXCEPTIONS += -Wl,-wrap,__assert_fail
-endif
-endif
-
-if RDYNAMIC_SUPPORTED
-# This gives better stacktraces
-AM_CXXFLAGS += -rdynamic
-endif
-
-if TARGET_WINDOWS
-BACKTRACE_LIB = -ldbghelp -lbacktrace
-else
-BACKTRACE_LIB = -lbacktrace
-endif
-endif
-
 if EMBEDDED_UNIVALUE
 LIBUNIVALUE = univalue/libunivalue.la
 
@@ -58,6 +35,7 @@ LIBBITCOIN_UTIL=libhelpthehomeless_util.a
 LIBBITCOIN_CRYPTO=crypto/libhelpthehomeless_crypto.a
 LIBBITCOINQT=qt/libhelpthehomelessqt.a
 LIBSECP256K1=secp256k1/libsecp256k1.la
+LIBCRYPTOPP=cryptopp/libcryptopp.a
 
 if ENABLE_ZMQ
 LIBBITCOIN_ZMQ=libhelpthehomeless_zmq.a
@@ -87,6 +65,7 @@ EXTRA_LIBRARIES += \
 lib_LTLIBRARIES = $(LIBBITCOINCONSENSUS)
 
 bin_PROGRAMS =
+noinst_PROGRAMS =
 TESTS =
 BENCHMARKS =
 
@@ -94,8 +73,16 @@ if BUILD_BITCOIND
   bin_PROGRAMS += helpthehomelessd
 endif
 
-if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += helpthehomeless-cli helpthehomeless-tx
+if BUILD_BITCOIN_CLI
+  bin_PROGRAMS += helpthehomeless-cli
+endif
+if BUILD_BITCOIN_TX
+  bin_PROGRAMS += helpthehomeless-tx
+endif
+if ENABLE_WALLET
+if BUILD_BITCOIN_WALLET
+  bin_PROGRAMS += helpthehomeless-wallet
+endif
 endif
 
 .PHONY: FORCE check-symbols check-security
@@ -564,6 +551,7 @@ helpthehomelessd_LDADD = \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBLEVELDB) \
   $(LIBMEMENV) \
+  $(LIBCRYPTOPP) \
   $(LIBSECP256K1)
 
 helpthehomelessd_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) $(BLS_LIBS)
@@ -582,6 +570,7 @@ helpthehomeless_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
+  $(LIBCRYPTOPP) \
   $(LIBBITCOIN_CRYPTO)
 helpthehomeless_cli_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS) $(BLS_LIBS)
 #
@@ -602,7 +591,8 @@ helpthehomeless_tx_LDADD = \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CONSENSUS) \
   $(LIBBITCOIN_CRYPTO) \
-  $(LIBSECP256K1)
+  $(LIBSECP256K1) \
+  $(LIBCRYPTOPP)
 
 helpthehomeless_tx_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(CRYPTO_LIBS) $(BLS_LIBS)
 #
@@ -664,6 +654,7 @@ clean-local:
 	-$(MAKE) -C secp256k1 clean
 	-$(MAKE) -C univalue clean
 	-rm -f leveldb/*/*.gcda leveldb/*/*.gcno leveldb/helpers/memenv/*.gcda leveldb/helpers/memenv/*.gcno
+	-rm -f cryptopp/*.o
 	-rm -f config.h
 	-rm -rf test/__pycache__
 
@@ -693,8 +684,13 @@ endif
 	$(AM_V_GEN) $(PROTOC) --cpp_out=$(@D) --proto_path=$(<D) $<
 
 if EMBEDDED_LEVELDB
+include Makefile.crc32c.include
 include Makefile.leveldb.include
 endif
+
+include Makefile.cryptopp.include
+include Makefile.test_util.include
+include Makefile.test_fuzz.include
 
 #if ENABLE_TESTS
 #include Makefile.test.include

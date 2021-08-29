@@ -15,3 +15,4 @@
      QWindowSystemInterfacePrivate::TabletEvent::setPlatformSynthesizesMouse(false);
  
      m_javaVM = vm;
+

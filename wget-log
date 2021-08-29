@@ -1,0 +1,16 @@
+--2021-08-28 23:48:33--  https://github.com/codablock/bls-signatures/archive/v20181101.zip
+Resolving github.com (github.com)... 140.82.114.3
+Connecting to github.com (github.com)|140.82.114.3|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://codeload.github.com/codablock/bls-signatures/zip/v20181101 [following]
+--2021-08-28 23:48:34--  https://codeload.github.com/codablock/bls-signatures/zip/v20181101
+Resolving codeload.github.com (codeload.github.com)... 140.82.114.9
+Connecting to codeload.github.com (codeload.github.com)|140.82.114.9|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/zip]
+Saving to: ‘v20181101.zip’
+
+v20181101.zip                     [<=>                                               ]       0  --.-KB/s               v20181101.zip                     [ <=>                                              ]   1.21M  --.-KB/s    in 0.1s    
+
+2021-08-28 23:48:34 (9.67 MB/s) - ‘v20181101.zip’ saved [1264786]
+
