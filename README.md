@@ -6,7 +6,7 @@ HelpTheHomeless staging tree 0.14.0
 https://hth.world
 
 
-What is HelpTheHomeless?
+What is HelpTheHomeless Coin?
 ------------------------
 
 HelpTheHomeless is an experimental digital currency that enables anonymous, instant
