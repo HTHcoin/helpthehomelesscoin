@@ -1,6 +1,7 @@
 <!DOCTYPE RCC><RCC version="1.0">
     <qresource prefix="/icons">
         <file alias="prompticon">res/icons/chevron.png</file>
+	<file alias="youtube">res/icons/youtube.png</file>
         <file alias="warning">res/icons/warning.png</file>
         <file alias="bitcoin">res/icons/bitcoin.png</file>
         <file alias="mcm">res/icons/mcm.png</file>
