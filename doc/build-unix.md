@@ -33,6 +33,15 @@ pkg_add automake # (select highest version, e.g. 1.15)
 pkg_add python # (select highest version, e.g. 3.5)
 ```
 
+To build HelpTheHomeless you need to have bls signatures installed:
+```bash
+$ sudo wget https://github.com/codablock/bls-signatures/archive/v20181101.zip
+$ sudo unzip v20181101.zip
+$ cd bls-signatures-20181101
+$ sudo cmake .
+$ sudo make install
+```
+
 Building
 --------
 

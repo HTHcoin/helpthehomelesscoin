@@ -256,6 +256,7 @@ public:
     /*	consensus.FoundationQTAddress = "BDcNYc8tGXmwD7QmLXbR1rk1qteTDVEjUD"; */
 	consensus.BurnAddress = "hThBurnHTHinvaLidCoinBurNeDXZZGJjn";
 
+
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1544655600;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = NEVER32;
@@ -315,7 +316,7 @@ public:
         // genesis = CreateGenesisBlock(1562732600, 306150, 0x1f00fffff, 1, 50 * COIN);
         // consensus.hashGenesisBlock = genesis.GetHash();
 
-	// just for now
+	/*// just for now
 	uint32_t nTime = 1570073000;
 	uint32_t nNonce = 53681;
 
@@ -325,7 +326,7 @@ public:
 		nNonce++;
 		genesis = CreateGenesisBlock(nTime, nNonce, 0x1f00ffff, 1, 50 * COIN);
 		if (nNonce % 128 == 0) printf("\rnonce %08x", nNonce);
-	}
+	}*/
         genesis = CreateGenesisBlock(1570073000, 53681, 0x1f00ffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x37540c3c757bb77e42c168d8197447b6aba38c2d1ec0ddf59d2e774c41953093"));

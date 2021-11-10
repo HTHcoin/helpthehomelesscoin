@@ -22,8 +22,6 @@
 #include "platformstyle.h"
 #include "rpcconsole.h"
 #include "utilitydialog.h"
-/* #include "tradingdialogpage.h" */
-
 
 #ifdef ENABLE_WALLET
 #include "privatesend-client.h"
@@ -234,7 +232,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
 #ifndef QT_NO_TOOLTIP
     web->setToolTip(QApplication::translate("OverviewPage", "Visit HTH Worldwide NonProfit.", nullptr));
 #endif // QT_NO_TOOLTIP
-    web->setText(QApplication::translate("OverviewPage", "<a href=\"https://helpthehomelessworldwide.org\"><img src=\":/icons/web\" width=\"21\" height=\"21\"></a>", nullptr));
+    web->setText(QApplication::translate("OverviewPage", "<a href=\"https://hth.world\"><img src=\":/icons/web\" width=\"21\" height=\"21\"></a>", nullptr));
             
    End Status Bar Social Links Not Used  ***/
             
@@ -291,24 +289,24 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
 #endif // QT_NO_TOOLTIP
     discord->setText(QApplication::translate("OverviewPage", "<a href=\"https://discord.gg/r7zKfy5\"><img src=\":/icons/discord\" width=\"21\" height=\"21\"></a>", nullptr));
             
-            QLabel* www = new QLabel();
-    www->setObjectName(QStringLiteral("www"));
-    www->setMinimumSize(QSize(21, 21));
-    www->setMaximumSize(QSize(21, 21));
-    www->setBaseSize(QSize(0, 0));
-    www->setCursor(QCursor(Qt::PointingHandCursor));
-    www->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
-    www->setOpenExternalLinks(true);
+            QLabel* youtube = new QLabel();
+    youtube->setObjectName(QStringLiteral("youtube"));
+    youtube->setMinimumSize(QSize(21, 21));
+    youtube->setMaximumSize(QSize(21, 21));
+    youtube->setBaseSize(QSize(0, 0));
+    youtube->setCursor(QCursor(Qt::PointingHandCursor));
+    youtube->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+    youtube->setOpenExternalLinks(true);
 #ifndef QT_NO_TOOLTIP
-    www->setToolTip(QApplication::translate("OverviewPage", "Where to mine HTH Coin.", nullptr));
+    youtube->setToolTip(QApplication::translate("OverviewPage", "HTH YouTube.", nullptr));
 #endif // QT_NO_TOOLTIP
-    www->setText(QApplication::translate("OverviewPage", "<a href=\"https://miningpoolstats.stream/hthcoin\"><img src=\":/icons/www\" width=\"21\" height=\"21\"></a>", nullptr));
+    youtube->setText(QApplication::translate("OverviewPage", "<a href=\"https://youtube.com/c/HelpTheHomelessWorldwide\"><img src=\":/icons/youtube\" width=\"21\" height=\"21\"></a>", nullptr));
              
-    frameSocialLayout->addWidget(www);         
-    frameSocialLayout->addWidget(github);
+    frameSocialLayout->addWidget(youtube);
     frameSocialLayout->addWidget(twitter);
     frameSocialLayout->addWidget(discord);
     frameSocialLayout->addWidget(facebook);
+    frameSocialLayout->addWidget(github);
   /*  frameSocialLayout->addWidget(web); */  // Links Not Used
             
             
@@ -480,7 +478,7 @@ void BitcoinGUI::createActions()
         connect(masternodeAction, SIGNAL(triggered()), this, SLOT(gotoMasternodePage()));
     }
 
-     	{
+     //add if broken	{
         governanceAction = new QAction(QIcon(":/icons/governance"), tr("&Governance"), this);
         governanceAction->setStatusTip(tr("Show governance items"));
         governanceAction->setToolTip(governanceAction->statusTip());
@@ -494,7 +492,20 @@ void BitcoinGUI::createActions()
         connect(governanceAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
         connect(governanceAction, SIGNAL(triggered()), this, SLOT(gotoGovernancePage()));
 		
-    }
+ //add if broken   }
+
+    worldAction = new QAction(QIcon(":/icons/drkblue/hthlogo"), tr("HTH World"), this);
+    worldAction->setStatusTip(tr("HTH Information"));
+    worldAction->setToolTip(worldAction->statusTip());
+    worldAction->setCheckable(true);
+    #ifdef Q_OS_MAC
+        worldAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_7));
+    #else
+        worldAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
+    #endif
+    tabGroup->addAction(worldAction);
+
+	
 	
  /*   privatesendAction = new QAction(QIcon(":/icons/coinmix"), tr("&Private Send"), this);
     privatesendAction->setStatusTip(tr("Show Private Send of wallet"));
@@ -522,6 +533,8 @@ void BitcoinGUI::createActions()
     connect(receiveCoinsMenuAction, SIGNAL(triggered()), this, SLOT(gotoReceiveCoinsPage()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(gotoHistoryPage()));
+    connect(worldAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+    connect(worldAction, SIGNAL(triggered()), this, SLOT(gotoWorldPage()));
      /*   connect(privatesendAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(privatesendAction, SIGNAL(triggered()), this, SLOT(gotoPrivateSendPage()));	 */
     
@@ -601,6 +614,8 @@ void BitcoinGUI::createActions()
     // HTHW Donate
     externalDonate = new QAction(QIcon(":/icons/" + theme + "/about"), tr("Donate To HTHW"), this);
     externalDonate->setStatusTip(tr("Donate to Help The Homeless Worldwide"));	
+    connect(externalDonate, SIGNAL(triggered()), this, SLOT(openDonate())); 
+	
 	
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
@@ -611,8 +626,6 @@ void BitcoinGUI::createActions()
 /*    connect(showPrivateSendHelpAction, SIGNAL(triggered()), this, SLOT(showPrivateSendHelpClicked()));  */
 	
 	
-     // HTHW Donate
-    connect(externalDonate, SIGNAL(triggered()), this, SLOT(openDonate())); 	
 	
     // Jump directly to tabs in RPC-console
     connect(openInfoAction, SIGNAL(triggered()), this, SLOT(showInfo()));
@@ -727,19 +740,18 @@ void BitcoinGUI::createToolBars()
         toolbar->addAction(overviewAction);
         toolbar->addAction(sendCoinsAction);
         toolbar->addAction(receiveCoinsAction);
-        toolbar->addAction(historyAction); 
-/*	toolbar->addAction(privatesendAction); */
-	    
+        toolbar->addAction(historyAction);
+	/*toolbar->addAction(privatesendAction); */
 	      
         QSettings settings;
         if (!fLiteMode && settings.value("fShowMasternodesTab").toBool() && masternodeAction)
         {
             toolbar->addAction(masternodeAction);
         }
-           toolbar->addAction(governanceAction);
+       toolbar->addAction(governanceAction);
 	   toolbar->addAction(unlockWalletAction);
-	    
 	   toolbar->addAction(unlockWalletAction);
+	   toolbar->addAction(worldAction); 
 	   	  
         toolbar->setMovable(false); // remove unused icon in upper left corner
         overviewAction->setChecked(true);
@@ -891,7 +903,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool() && masternodeAction) {
         masternodeAction->setEnabled(enabled);
     }
-    governanceAction->setEnabled(enabled);	
+    governanceAction->setEnabled(enabled);
     encryptWalletAction->setEnabled(enabled);
     backupWalletAction->setEnabled(enabled);
     changePassphraseAction->setEnabled(enabled);
@@ -968,6 +980,7 @@ void BitcoinGUI::aboutClicked()
     HelpMessageDialog dlg(this, HelpMessageDialog::about);
     dlg.exec();
 }
+
 
 void BitcoinGUI::showDebugWindow()
 {
@@ -1049,13 +1062,14 @@ void BitcoinGUI::gotoGovernancePage()
 
 void BitcoinGUI::openDonate()
 {
-    openExternalURL("https://helpthehomelessworldwide.org/donate");
+    openExternalURL("https://www.paypal.com/paypalme/hthworldwide");
+
 }
 
 void BitcoinGUI::openExternalURL(QString url)
 {
     QMessageBox::StandardButton reply = QMessageBox::question(this, tr("Notice – External Link"),
-        QStringLiteral("This action will open up the following website in your default browser:<br><br><p>Help The Homeless Worldwide A NJ Nonprofit Corporation's Donation Page</p><br><br>To continue, hit your Enter key or press <b>Ok</b>.<br><b>Remember, never share your personal information or private keys on any social website.</b>").arg(url),
+        QStringLiteral("This action will open up the following website in your default browser:<br><br><p>Help The Homeless Worldwide A NJ Nonprofit Corporation's PayPal Donation Page</p><br><br>To continue, hit your Enter key or press <b>Ok</b>.<br><b>Remember, never share your personal information or private keys on any social website.</b>").arg(url),
         QMessageBox::Cancel | QMessageBox::Ok,
         QMessageBox::Ok);
 
@@ -1063,6 +1077,7 @@ void BitcoinGUI::openExternalURL(QString url)
         QDesktopServices::openUrl(QUrl(url));
     }
 }
+
 
 /*void BitcoinGUI::gotoPrivateSendPage()
 {
@@ -1074,6 +1089,12 @@ void BitcoinGUI::gotoOverviewPage()
 {
     overviewAction->setChecked(true);
     if (walletFrame) walletFrame->gotoOverviewPage();
+}
+
+void BitcoinGUI::gotoWorldPage()
+{
+    worldAction->setChecked(true);
+    if (walletFrame) walletFrame->gotoWorldPage();
 }
 
 void BitcoinGUI::gotoHistoryPage()
@@ -1090,8 +1111,6 @@ void BitcoinGUI::gotoMasternodePage()
         if (walletFrame) walletFrame->gotoMasternodePage();
     }
 }
-
-
 
 void BitcoinGUI::gotoReceiveCoinsPage()
 {
