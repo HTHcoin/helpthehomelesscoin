@@ -1062,11 +1062,8 @@ void BitcoinGUI::gotoGovernancePage()
 
 void BitcoinGUI::openDonate()
 {
-<<<<<<< HEAD
-    openExternalURL("https://hth.world/nonprofit/");
-=======
     openExternalURL("https://www.paypal.com/paypalme/hthworldwide");
->>>>>>> cc70edf6ad73bde3c561728decff503291918bd3
+
 }
 
 void BitcoinGUI::openExternalURL(QString url)
