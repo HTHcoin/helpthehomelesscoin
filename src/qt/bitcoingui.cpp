@@ -494,7 +494,7 @@ void BitcoinGUI::createActions()
 		
  //add if broken   }
 
-    worldAction = new QAction(QIcon(":/icons/drkblue/hthlogo"), tr("HTH World"), this);
+    worldAction = new QAction(QIcon(":/icons/hthlogo"), tr("HTH World"), this);
     worldAction->setStatusTip(tr("HTH Information"));
     worldAction->setToolTip(worldAction->statusTip());
     worldAction->setCheckable(true);
