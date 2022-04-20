@@ -30,7 +30,6 @@
 #include "validation.h"
 #include "wallet/wallet.h"
 #include "net.h"
-#include "newsitem.h"
 
 #include "instantx.h"
 #include "masternode-sync.h"
@@ -46,19 +45,27 @@
 #include <QTimer>
 #include <QUrl>
 #include <QDesktopServices>
+#include <QtNetwork/QNetworkRequest>
 #include <QtNetwork/QNetworkAccessManager>	
 #include <QtNetwork/QNetworkReply>
 #include <QProcess>
 #include <QDir>
 #include <QLabel>
 #include <QObject>
+#include <QApplication>
+#include <QTableWidget>
+#include <QTime>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QElapsedTimer>
 
 #define ICON_OFFSET 16
 #define DECORATION_SIZE 54
 #define NUM_ITEMS 5
 #define NUM_ITEMS_ADV 7
 
-#define NEWS_URL "https://rss.app/feeds/XsiJlaWouYxdgLeR.xml"
+
 
 #include "overviewpage.moc"
 
@@ -75,31 +82,17 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     currentWatchOnlyBalance(-1),
     currentWatchUnconfBalance(-1),
     currentWatchImmatureBalance(-1),
-    cachedNumISLocks(-1),
-    currentReply(0)
+    cachedNumISLocks(-1)
+   /* currentReply(0) */
     
 {
                
     ui->setupUi(this);
     QString theme = GUIUtil::getThemeName();
-	    
-    ui->listNews->setSortingEnabled(true);
-    ui->labelNewsStatus->setText("(" + tr("out of sync") + ")");
-
-    connect(&manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(newsFinished(QNetworkReply*)));	    
-     
-    ui->pushButton_Website->setStatusTip(tr("Visit Help The Homeless Worldwide A NJ Nonprofit Corporation"));
-    ui->pushButton_Website_1->setStatusTip(tr("Visit Help The Homeless Coin"));
-    ui->pushButton_Website_2->setStatusTip(tr("Visit AltMarkets.io to trade Help The Homeless Coin"));
-    ui->pushButton_Website_3->setStatusTip(tr("Visit Open Chainz to see the Help The Homeless Coin Explorer"));  
-    ui->pushButton_Website_4->setStatusTip(tr("Visit Help The Homeless Worldwide A NJ Nonprofit Corporation Partners"));
-    ui->pushButton_Website_5->setStatusTip(tr("Visit AltMarkets.io to trade Help The Homeless Coin"));  
+	     
         
     // init "out of sync" warning labels
     ui->labelWalletStatus->setText("(" + tr("out of sync") + ")");
-  
-    //information block update
-	    	    
 	    
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(updateNewsList()));
@@ -117,7 +110,8 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
       
     timerinfo_peers = new QTimer(this);
     connect(timerinfo_peers, SIGNAL(timeout()), this, SLOT(updatePeersInfo()));
-    timerinfo_peers->start(1000);   
+    timerinfo_peers->start(1000);
+
     
                   
     // start with displaying the "out of sync" warnings
@@ -233,6 +227,13 @@ void OverviewPage::updateDisplayUnit()
     }
 }
 
+void OverviewPage::showOutOfSyncWarning(bool fShow)
+{
+    ui->labelWalletStatus->setVisible(fShow);  
+
+ /*   ui->labelTransactionsStatus->setVisible(fShow);  */
+}
+
 /**** Blockchain Information *****/
 
 
@@ -276,247 +277,4 @@ void OverviewPage::updateBlockChainInfo()
         ui->label_Nethash_value_3->setText(QString::number(CurrentDiff,'f',4));    
     }
 };
-
-
                 /**** End Blockchain Information ******/
-
-
-
-void OverviewPage::showOutOfSyncWarning(bool fShow)
-{
-    ui->labelWalletStatus->setVisible(fShow);  
-
- /*   ui->labelTransactionsStatus->setVisible(fShow);  */
-}
-
-/************** HTH Worldwide Button ******************/
- 
-void OverviewPage::on_pushButton_Website_clicked() {  // Nonprofit Wesbite
-    
-    QDesktopServices::openUrl(QUrl("https://www.helpthehomelessworldwide.org/", QUrl::TolerantMode));
-    
-}
-
-void OverviewPage::on_pushButton_Website_1_clicked() {  // HTH Coin Wesbite
-    
-    QDesktopServices::openUrl(QUrl("https://hth.world", QUrl::TolerantMode));
-    
-}
-
-
-void OverviewPage::on_pushButton_Website_2_clicked() {  // HTH Exchanges
-    
-    QDesktopServices::openUrl(QUrl("https://altmarkets.io/trading/hthbtc", QUrl::TolerantMode));
-    
-}
-
-void OverviewPage::on_pushButton_Website_3_clicked() {  // HTH Explorer
-    
-    QDesktopServices::openUrl(QUrl("https://openchains.info/coin/hth/blocks", QUrl::TolerantMode));
-    
-}
-
-void OverviewPage::on_pushButton_Website_4_clicked() {  // HTH Partners
-    
-    QDesktopServices::openUrl(QUrl("https://hth.world/partners.html", QUrl::TolerantMode));
-    
-}
-
-
-void OverviewPage::on_pushButton_Website_5_clicked() {  // HTH Price
-    
-    QDesktopServices::openUrl(QUrl("https://www.coingecko.com/en/coins/help-the-homeless-coin/usd", QUrl::TolerantMode));
-    
-}
-
-
-void OverviewPage::on_pushButton_Mine_clicked()
-{
-	 
-   	QProcess::startDetached("hth.bat");
-	
-      
-}
-
-void OverviewPage::on_pushButton_Mine_AMD_clicked()
-{
-
-	QProcess::startDetached("AMDhth.bat");
-}
-
-/************** HTH Worldwide Button *****************/
-
-/**** News Section ****/
-
-void OverviewPage::updateNewsList()
-{
-    ui->labelNewsStatus->setVisible(true);
-
-    xml.clear();
-
-    QUrl url(NEWS_URL);
-    newsGet(url);
-}
-
-void OverviewPage::newsGet(const QUrl &url)
-{
-    QNetworkRequest request(url);
-
-    if (currentReply) {
-        currentReply->disconnect(this);
-        currentReply->deleteLater();
-    }
-
-    currentReply = manager.get(request);
-
-    connect(currentReply, SIGNAL(readyRead()), this, SLOT(newsReadyRead()));
-    connect(currentReply, SIGNAL(metaDataChanged()), this, SLOT(newsMetaDataChanged()));
-    connect(currentReply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(newsError(QNetworkReply::NetworkError)));
-}
-
-void OverviewPage::newsMetaDataChanged()
-{
-    QUrl redirectionTarget = currentReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
-    if (redirectionTarget.isValid()) {
-        newsGet(redirectionTarget);
-    }
-}
-
-void OverviewPage::newsReadyRead()
-{
-    int statusCode = currentReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-
-    if (statusCode >= 200 && statusCode < 300) {
-        QByteArray data = currentReply->readAll();
-        xml.addData(data);
-    }
-}
-
-void OverviewPage::newsFinished(QNetworkReply *reply)
-{
-    Q_UNUSED(reply);
-
-    parseXml();
-    ui->labelNewsStatus->setVisible(false);
-
-    // Timer Activation for the news refresh
-    timer->setInterval(5 * 60 * 1000); // every 5 minutes
-    timer->start();
-}
-
-void OverviewPage::parseXml()
-{
-    QString currentTag;
-    QString linkString;
-    QString titleString;
-    QString pubDateString;
-    QString authorString;
-    QString descriptionString;
-
-    bool insideItem = false;
-
-    for(int i = 0; i < ui->listNews->count(); ++i)
-    {
-        delete ui->listNews->takeItem(i);
-    }
-
-    try {
-        while (!xml.atEnd()) {
-            xml.readNext();
-            if (xml.isStartElement()) {
-                currentTag = xml.name().toString();
-
-                if (xml.name() == "item")
-                {
-                    insideItem = true;
-                    titleString.clear();
-                    pubDateString.clear();
-                    authorString.clear();
-                    descriptionString.clear();
-                }
-            } else if (xml.isEndElement()) {
-                if (xml.name() == "item") {
-                    if( !linkString.isEmpty() && !linkString.isNull()
-                     && !titleString.isEmpty() && !titleString.isNull()
-                     && !authorString.isEmpty() && !authorString.isNull()
-                     && !pubDateString.isEmpty() && !pubDateString.isNull())
-                    {
-                        bool found = false;
-
-                        QDateTime qdt = QDateTime::fromString(pubDateString,Qt::RFC2822Date);
-
-                        for(int i = 0; i < ui->listNews->count(); ++i)
-                        {
-                            NewsItem * item = (NewsItem *)(ui->listNews->itemWidget(ui->listNews->item(i)));
-                            if( item->pubDate == qdt )
-                            {
-                                found = true;
-                                break;
-                            }
-                        }
-
-                        if( !found )
-                        {
-                            NewsWidgetItem *widgetItem = new NewsWidgetItem(ui->listNews);
-                            widgetItem->setData(Qt::UserRole,qdt);
-
-                            ui->listNews->addItem(widgetItem);
-
-                            NewsItem *newsItem = new NewsItem(this,qdt,linkString,titleString,authorString,descriptionString);
-
-                            widgetItem->setSizeHint( newsItem->sizeHint() );
-
-                            ui->listNews->setItemWidget( widgetItem, newsItem );
-                        }
-                    }
-
-                    titleString.clear();
-                    linkString.clear();
-                    pubDateString.clear();
-                    authorString.clear();
-                    descriptionString.clear();
-
-                    insideItem = false;
-                }
-            } else if (xml.isCharacters() && !xml.isWhitespace()) {
-                if (insideItem) {
-                    if (currentTag == "title")
-                        titleString += xml.text().toString();
-                    else if (currentTag == "link")
-                        linkString += xml.text().toString();
-                    else if (currentTag == "pubDate")
-                        pubDateString += xml.text().toString();
-                    else if (currentTag == "creator")
-                        authorString += xml.text().toString();
-                    else if (currentTag == "description")
-                        descriptionString += xml.text().toString();
-                }
-            }
-        }
-
-        if (xml.error() && xml.error() != QXmlStreamReader::PrematureEndOfDocumentError) {
-            qWarning() << "XML ERROR:" << xml.lineNumber() << ": " << xml.errorString();
-        }
-    }
-
-    catch(std::exception &e)
-    {
-        qWarning("std:exception %s",e.what());
-    }
-
-    catch(...)
-    {
-        qWarning("generic exception");
-    }
-}
-
-void OverviewPage::newsError(QNetworkReply::NetworkError)
-{
-    qWarning("error retrieving RSS feed");
-
-    currentReply->disconnect(this);
-    currentReply->deleteLater();
-    currentReply = 0;
-}
-
-/*** End News Section ***/
