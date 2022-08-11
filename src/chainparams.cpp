@@ -331,9 +331,9 @@ public:
         assert(consensus.hashGenesisBlock == uint256S("0x37540c3c757bb77e42c168d8197447b6aba38c2d1ec0ddf59d2e774c41953093"));
         assert(genesis.hashMerkleRoot == uint256S("0xb65534a1e2f0ff85de1ff4cd1a457b92a56abc182397d9cc1380482784acabfc"));
 
-        vSeeds.push_back(CDNSSeedData("73.150.182.108", "155.138.198.71")); 
- 	vSeeds.push_back(CDNSSeedData("67.166.253.246", "82.27.145.78")); 
-	vSeeds.push_back(CDNSSeedData("80.211.84.246", "62.171.128.133")); 
+        vSeeds.push_back(CDNSSeedData("207.180.231.183:65000", "95.216.234.131:65000")); 
+ 	vSeeds.push_back(CDNSSeedData("95.217.95.251:65000", "138.201.4.28:65000")); 
+	vSeeds.push_back(CDNSSeedData("161.35.101.221:65000", "161.35.101.221:65000")); 
 
         // Dash addresses start with 'h'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,100);

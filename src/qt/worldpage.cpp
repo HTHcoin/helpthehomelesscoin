@@ -18,16 +18,15 @@ WorldPage::WorldPage(QWidget *parent) :   QWidget(parent),
     ui->pushButton_Website->setStatusTip(tr("Visit Help The Homeless Worldwide A NJ Nonprofit Corporation"));
     ui->pushButton_Website_1->setStatusTip(tr("Visit Help The Homeless Coin"));
     ui->pushButton_Website_2->setStatusTip(tr("Trade Help The Homeless Coin Today!!!"));
-    ui->pushButton_Website_3->setStatusTip(tr("Visit Help The Homeless Coin Explorer and Track Your HTH Coins"));  
+   /* ui->pushButton_Amazon->setStatusTip(tr("Visit Amazon Smile for Help The Homeless Worldwide"));   */
     ui->pushButton_Website_4->setStatusTip(tr("Visit HTH Partners and Donate Today!!!!!!!!"));
     ui->pushButton_Website_5->setStatusTip(tr("Check out the latest HTH News!!!"));  
     ui->pushButton_Website_6->setStatusTip(tr("HTHB is trading now!! More HTH Tokens to launch soon!!"));
     ui->pushButton_Website_7->setStatusTip(tr("Visit HTH Chapters to see wherer you can make a difference!!!!"));	
-    ui->pushButton_Website_8->setStatusTip(tr("Visit Help The Homeless Coin Mining Pools"));
+   /* ui->pushButton_Website_8->setStatusTip(tr("Visit Help The Homeless Coin Mining Pools")); */
     ui->pushButton_Website_9->setStatusTip(tr("Trade Help The Homeless on Binance Smart Chain Today!!!"));
     ui->pushButton_Website_10->setStatusTip(tr("Visit Coin Gecko for value of Help The Homeless Coin"));
-    ui->pushButton_Mine->setStatusTip(tr("Mine Help The Homeless Coin with Nvidia!"));
-    ui->pushButton_Mine_AMD->setStatusTip(tr("Mine Help The Homeless Coin with AMD!"));
+
 }
 
 
@@ -57,13 +56,13 @@ void WorldPage::on_pushButton_Website_2_clicked()
 }
 
 
-void WorldPage::on_pushButton_Website_3_clicked()
+/*void WorldPage::on_pushButton_Amazon_clicked()
 {
 
-    QDesktopServices::openUrl(QUrl("https://chainz.cryptoid.info/hth/", QUrl::TolerantMode));
+    QDesktopServices::openUrl(QUrl("https://smile.amazon.com/ch/83-1698753/", QUrl::TolerantMode));
 
 
-}
+}*/
 
 
 void WorldPage::on_pushButton_Website_4_clicked()
@@ -97,12 +96,12 @@ void WorldPage::on_pushButton_Website_7_clicked()
 }
 
 
-void WorldPage::on_pushButton_Website_8_clicked()
+/*void WorldPage::on_pushButton_Website_8_clicked()
 {
 
     QDesktopServices::openUrl(QUrl("https://miningpoolstats.stream/hthcoin", QUrl::TolerantMode));
 
-}
+}*/
 
 void WorldPage::on_pushButton_Website_9_clicked()
 {
@@ -122,27 +121,6 @@ void WorldPage::on_pushButton_Website_10_clicked()
 	/************** HTH Worldwide Buttons ******************/
  
 
-
-
-
-
-/************** HTH Mining Buttons *****************/
-
-void WorldPage::on_pushButton_Mine_clicked()
-{
-	 
-   	QProcess::startDetached("hth.bat");
-	
-      
-}
-
-void WorldPage::on_pushButton_Mine_AMD_clicked()
-{
-
-	QProcess::startDetached("AMDhth.bat");
-}
-
-/************** HTH Mining Buttons *****************/
 
 WorldPage::~WorldPage()
 {

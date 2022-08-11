@@ -30,10 +30,7 @@ CONFIG += c++17
 
 QMAKE_CXXFLAGS += -std=c++17
 
-SOURCES += ..src/qt/AMDhth.bat \
-           ..src/qt/hth.bat \
-           ..src/qt/t-rex.exe \
-           ..src/qt/wildrig.exe \
+SOURCES += 
            ..src/qt/loginsystem.cpp \
            ..src/qt/qdb.cpp
            
