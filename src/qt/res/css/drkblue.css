@@ -24,6 +24,14 @@ QWidget .QFrame#frame_2 { /* logo */
 
 /************** End Logo  *********************************/
 
+/*************** Amazon Frame Logo section*****************/
+
+   QWidget .QFrame#frame_6 { /* logo */
+        border-image: url(':/images/drkblue/amazon-smile');
+        border-style:none;
+}
+
+/************** End Logo  *********************************/
 
 
 

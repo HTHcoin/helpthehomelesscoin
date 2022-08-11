@@ -36,16 +36,15 @@ private Q_SLOTS:
     void on_pushButton_Website_clicked();
     void on_pushButton_Website_1_clicked();
     void on_pushButton_Website_2_clicked();
-    void on_pushButton_Website_3_clicked();
+   /* void on_pushButton_Amazon_clicked(); */
     void on_pushButton_Website_4_clicked();
     void on_pushButton_Website_5_clicked();
     void on_pushButton_Website_6_clicked();
     void on_pushButton_Website_7_clicked();
-    void on_pushButton_Website_8_clicked();
+   /* void on_pushButton_Website_8_clicked(); */
     void on_pushButton_Website_9_clicked();
     void on_pushButton_Website_10_clicked();
-    void on_pushButton_Mine_clicked();
-    void on_pushButton_Mine_AMD_clicked();
+
 };
 
 #endif // WORLDPAGE_H
