@@ -1,11 +1,11 @@
-prefix=/home/devilking6105/HelpTheHomelessCoin/depends/x86_64-w64-mingw32
+prefix=/
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
 
 Name: HelpTheHomeless consensus library
 Description: Library for the Bitcoin consensus protocol.
-Version: 0.14.0
+Version: 0.14.1
 Libs: -L${libdir} -ldashconsensus
 Cflags: -I${includedir}
 Requires.private: libcrypto

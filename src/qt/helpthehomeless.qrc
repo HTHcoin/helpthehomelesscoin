@@ -1,6 +1,8 @@
 <!DOCTYPE RCC><RCC version="1.0">
     <qresource prefix="/icons">
+        <file alias="hthlogo">res/icons/hthlogo.png</file>
         <file alias="prompticon">res/icons/chevron.png</file>
+	<file alias="youtube">res/icons/youtube.png</file>
         <file alias="warning">res/icons/warning.png</file>
         <file alias="bitcoin">res/icons/bitcoin.png</file>
         <file alias="mcm">res/icons/mcm.png</file>
@@ -373,6 +375,7 @@
         <file alias="trad">res/css/trad.css</file>
     </qresource>
     <qresource prefix="/images/drkblue">
+	<file alias="amazon-smile">res/images/drkblue/amazon-smile.jpg</file>
         <file alias="about">res/images/drkblue/about.png</file>
         <file alias="dash_logo_horizontal">res/images/drkblue/helpthehomeless_logo_horizontal.png</file>
         <file alias="unchecked">res/images/drkblue/unchecked.png</file>
@@ -389,6 +392,7 @@
         <file alias="splash_testnet">res/images/drkblue/splash_testnet.png</file>
     </qresource>
     <qresource prefix="/images/crownium">
+	<file alias="amazon-smile">res/images/drkblue/amazon-smile.jpg</file>
         <file alias="about">res/images/crownium/about.png</file>
         <file alias="dash_logo_horizontal">res/images/crownium/helpthehomeless_logo_horizontal.png</file>
         <file alias="unchecked">res/images/crownium/unchecked.png</file>
@@ -404,6 +408,7 @@
         <file alias="splash_testnet">res/images/crownium/splash_testnet.png</file>
     </qresource>
     <qresource prefix="/images/light">
+	<file alias="amazon-smile">res/images/drkblue/amazon-smile.jpg</file>
         <file alias="about">res/images/light/about.png</file>
         <file alias="dash_logo_horizontal">res/images/light/helpthehomeless_logo_horizontal.png</file>
         <file alias="unchecked">res/images/light/unchecked.png</file>
@@ -419,6 +424,7 @@
         <file alias="splash_testnet">res/images/light/splash_testnet.png</file>
     </qresource>
     <qresource prefix="/images/light-retro">
+	<file alias="amazon-smile">res/images/drkblue/amazon-smile.jpg</file>
         <file alias="about">res/images/light-retro/about.png</file>
         <file alias="dash_logo_horizontal">res/images/light-retro/helpthehomeless_logo_horizontal.png</file>
         <file alias="unchecked">res/images/light-retro/unchecked.png</file>
@@ -434,6 +440,7 @@
         <file alias="splash_testnet">res/images/light-retro/splash_testnet.png</file>
     </qresource>
     <qresource prefix="/images/trad">
+	<file alias="amazon-smile">res/images/drkblue/amazon-smile.jpg</file>
         <file alias="about">res/images/trad/about.png</file>
         <file alias="dash_logo_horizontal">res/images/trad/helpthehomeless_logo_horizontal.png</file>
         <file alias="drkblue_downArrow">res/images/trad/drkblue_downArrow.png</file>
