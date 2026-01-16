@@ -1,4 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
+#include <boost/bind.hpp>
+using namespace boost::placeholders;
 // Copyright (c) 2009-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2019 The Dash Core developers
 // Distributed under the MIT software license, see the accompanying
@@ -48,6 +50,9 @@
 
 #include "llmq/quorums_instantsend.h"
 #include "llmq/quorums_chainlocks.h"
+
+// HTH EVM Contract Support
+#include "qtum/hthcontract.h"
 
 #include <atomic>
 #include <sstream>
@@ -667,6 +672,11 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState& state, const C
     std::string reason;
     if (fRequireStandard && !IsStandardTx(tx, reason))
         return state.DoS(0, false, REJECT_NONSTANDARD, reason);
+
+    // HTH EVM: Validate contract transactions
+    int nHeight = chainActive.Height() + 1;
+    if (!CheckContractTx(tx, state, nHeight))
+        return false; // state filled in by CheckContractTx
 
     // Only accept nLockTime-using transactions that can be mined in the next
     // block; we don't want our mempool filled up with transactions that can't
@@ -2263,6 +2273,15 @@ static bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockInd
 
     if (fJustCheck)
         return true;
+
+    // HTH EVM: Execute smart contracts in this block (only when actually connecting, not just checking)
+    if (!ExecuteBlockContracts(block, pindex, view, state)) {
+        return error("ConnectBlock(HTH): ExecuteBlockContracts for block %s failed with %s",
+                     pindex->GetBlockHash().ToString(), FormatStateMessage(state));
+    }
+
+    int64_t nTime5_6 = GetTimeMicros();
+    LogPrint("bench", "      - ExecuteBlockContracts: %.2fms\n", 0.001 * (nTime5_6 - nTime5_5));
 
     // Write undo information to disk
     if (pindex->GetUndoPos().IsNull() || !pindex->IsValid(BLOCK_VALID_SCRIPTS))

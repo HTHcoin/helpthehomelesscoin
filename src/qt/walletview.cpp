@@ -22,6 +22,7 @@
 #include "walletmodel.h"
 #include "privatesendpage.h"
 #include "worldpage.h"
+#include "smartcontractspage.h"
 
 
 
@@ -79,6 +80,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     receiveCoinsPage = new ReceiveCoinsDialog(platformStyle);
     sendCoinsPage = new SendCoinsDialog(platformStyle);
     governanceListPage = new GovernanceList(platformStyle);
+    smartContractsPage = new SmartContractsPage(platformStyle);
     
 	
     usedSendingAddressesPage = new AddressBookPage(platformStyle, AddressBookPage::ForEditing, AddressBookPage::SendingTab, this);
@@ -91,6 +93,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(privateSendPage);
     addWidget(governanceListPage);
     addWidget(worldPage);
+    addWidget(smartContractsPage);
 	  
 
         QSettings settings;
@@ -158,6 +161,7 @@ void WalletView::setClientModel(ClientModel *_clientModel)
     privateSendPage->setClientModel(_clientModel);
     sendCoinsPage->setClientModel(_clientModel);
     governanceListPage->setClientModel(_clientModel);
+    smartContractsPage->setClientModel(_clientModel);
 
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
@@ -175,6 +179,7 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
     overviewPage->setWalletModel(_walletModel);
     privateSendPage->setWalletModel(_walletModel);
     governanceListPage->setWalletModel(_walletModel);
+    smartContractsPage->setWalletModel(_walletModel);
 
     QSettings settings;
     if (!fLiteMode && settings.value("fShowMasternodesTab").toBool()) {
@@ -244,6 +249,11 @@ void WalletView::gotoGovernancePage()
 {
     QSettings settings;
     setCurrentWidget(governanceListPage);
+}
+
+void WalletView::gotoSmartContractsPage()
+{
+    setCurrentWidget(smartContractsPage);
 }
 
 void WalletView::gotoPrivateSendPage()

@@ -41,7 +41,11 @@
 #include "masternode-sync.h"
 #include "masternodelist.h"
 
+#include <boost/bind.hpp>
+using namespace boost::placeholders;
+
 #include <iostream>
+using namespace boost::placeholders;
 
 #include <QAction>
 #include <QApplication>
@@ -140,6 +144,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     spinnerFrame(0),
     externalDonate(0),
     governanceAction(0),
+    smartContractsAction(0),
     platformStyle(_platformStyle)
 {
     /* Open CSS when configured */
@@ -494,6 +499,19 @@ void BitcoinGUI::createActions()
 		
  //add if broken   }
 
+    smartContractsAction = new QAction(QIcon(":/icons/" + theme + "/debugwindow"), tr("Smart &Contracts"), this);
+    smartContractsAction->setStatusTip(tr("Create and interact with smart contracts"));
+    smartContractsAction->setToolTip(smartContractsAction->statusTip());
+    smartContractsAction->setCheckable(true);
+#ifdef Q_OS_MAC
+    smartContractsAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_8));
+#else
+    smartContractsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_8));
+#endif
+    tabGroup->addAction(smartContractsAction);
+    connect(smartContractsAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+    connect(smartContractsAction, SIGNAL(triggered()), this, SLOT(gotoSmartContractsPage()));
+
     worldAction = new QAction(QIcon(":/icons/hthlogo"), tr("HTH World"), this);
     worldAction->setStatusTip(tr("HTH Information"));
     worldAction->setToolTip(worldAction->statusTip());
@@ -749,6 +767,7 @@ void BitcoinGUI::createToolBars()
             toolbar->addAction(masternodeAction);
         }
        toolbar->addAction(governanceAction);
+       toolbar->addAction(smartContractsAction);
 	   toolbar->addAction(unlockWalletAction);
 	   toolbar->addAction(unlockWalletAction);
 	   toolbar->addAction(worldAction); 
@@ -904,6 +923,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
         masternodeAction->setEnabled(enabled);
     }
     governanceAction->setEnabled(enabled);
+    smartContractsAction->setEnabled(enabled);
     encryptWalletAction->setEnabled(enabled);
     backupWalletAction->setEnabled(enabled);
     changePassphraseAction->setEnabled(enabled);
@@ -1059,6 +1079,11 @@ void BitcoinGUI::gotoGovernancePage()
     if (walletFrame) walletFrame->gotoGovernancePage();
 }
 
+void BitcoinGUI::gotoSmartContractsPage()
+{
+    smartContractsAction->setChecked(true);
+    if (walletFrame) walletFrame->gotoSmartContractsPage();
+}
 
 void BitcoinGUI::openDonate()
 {

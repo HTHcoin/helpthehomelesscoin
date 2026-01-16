@@ -997,6 +997,34 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
                 }
                 break;
 
+                //////////////////////////////////////////////////////// HTH EVM opcodes
+                case OP_SENDER:
+                {
+                    // OP_SENDER requires the SCRIPT_OUTPUT_SENDER flag
+                    if (!(flags & SCRIPT_OUTPUT_SENDER))
+                        return set_error(serror, SCRIPT_ERR_BAD_OPCODE);
+                }
+                break;
+
+                case OP_SPEND:
+                {
+                    // OP_SPEND marks contract outputs - execution continues at validation layer
+                    return true;
+                }
+                break;
+
+                case OP_CREATE:
+                case OP_CALL:
+                {
+                    // Push remaining script onto stack for contract processing
+                    // Actual EVM execution happens in validation.cpp
+                    valtype scriptRest(pc - 1, pend);
+                    stack.push_back(scriptRest);
+                    return true;
+                }
+                break;
+                ////////////////////////////////////////////////////////
+
                 default:
                     return set_error(serror, SCRIPT_ERR_BAD_OPCODE);
             }

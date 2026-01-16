@@ -33,6 +33,8 @@
 #include <QtNetwork/QNetworkReply>
 #include <QUrl>
 #include <QDesktopServices>
+#include <boost/bind.hpp>
+using namespace boost::placeholders;
 
 class CBlockIndex;
 

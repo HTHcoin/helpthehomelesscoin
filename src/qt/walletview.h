@@ -26,6 +26,7 @@ class AddressBookPage;
 class PrivateSendPage;
 class GovernancePage;
 class WorldPage;
+class SmartContractsPage;
 
 
 QT_BEGIN_NAMESPACE
@@ -76,7 +77,8 @@ private:
     PrivateSendPage *privateSendPage;
     GovernanceList *governanceListPage;
     WorldPage *worldPage;
-    
+    SmartContractsPage *smartContractsPage;
+
     TransactionView *transactionView;
 
     QProgressDialog *progressDialog;
@@ -89,7 +91,9 @@ public Q_SLOTS:
 	void gotoWorldPage();
     /** Switch to governance page */
     void gotoGovernancePage();
-    /** Switch to private send page */	
+    /** Switch to smart contracts page */
+    void gotoSmartContractsPage();
+    /** Switch to private send page */
     void gotoPrivateSendPage();
     /** Switch to overview (home) page */
     void gotoOverviewPage();

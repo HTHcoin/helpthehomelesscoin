@@ -197,6 +197,9 @@ BITCOIN_CORE_H = \
   policy/policy.h \
   pow.h \
   protocol.h \
+  qtum/hthcontract.h \
+  qtum/contractdb.h \
+  qtum/simplevm.h \
   random.h \
   reverselock.h \
   rpc/client.h \
@@ -255,7 +258,7 @@ obj/build.h: FORCE
 libhelpthehomeless_util_a-clientversion.$(OBJEXT): obj/build.h
 
 # server: shared between helpthehomelessd and helpthehomeless-qt
-libhelpthehomeless_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
+libhelpthehomeless_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS) $(ETH_CLIENT_INCLUDES)
 libhelpthehomeless_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libhelpthehomeless_server_a_SOURCES = \
   activemasternode.cpp \
@@ -325,6 +328,7 @@ libhelpthehomeless_server_a_SOURCES = \
   rpc/rawtransaction.cpp \
   rpc/rpcevo.cpp \
   rpc/rpcquorums.cpp \
+  rpc/contract.cpp \
   rpc/server.cpp \
   script/sigcache.cpp \
   script/ismine.cpp \
@@ -338,6 +342,10 @@ libhelpthehomeless_server_a_SOURCES = \
   validation.cpp \
   validationinterface.cpp \
   versionbits.cpp \
+  qtum/hthcontract.cpp \
+  qtum/contractdb.cpp \
+  qtum/simplevm.cpp \
+  $(ETH_CLIENT_CPP) \
   $(BITCOIN_CORE_H)
 
 if ENABLE_ZMQ
@@ -695,6 +703,9 @@ endif
 if EMBEDDED_LEVELDB
 include Makefile.leveldb.include
 endif
+
+# ETH Client libraries for EVM support
+include Makefile.eth.include
 
 #if ENABLE_TESTS
 #include Makefile.test.include

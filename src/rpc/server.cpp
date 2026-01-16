@@ -1,4 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
+#include <boost/bind.hpp>
+using namespace boost::placeholders;
 // Copyright (c) 2009-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2018 The Dash Core developers
 // Distributed under the MIT software license, see the accompanying

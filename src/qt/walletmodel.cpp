@@ -19,6 +19,8 @@
 #include "net.h" // for g_connman
 #include "sync.h"
 #include "ui_interface.h"
+#include <boost/bind.hpp>
+using namespace boost::placeholders;
 #include "util.h" // for GetBoolArg
 #include "wallet/wallet.h"
 #include "wallet/walletdb.h" // for BackupWallet

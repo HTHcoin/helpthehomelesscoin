@@ -168,6 +168,15 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "echojson", 7, "arg7" },
     { "echojson", 8, "arg8" },
     { "echojson", 9, "arg9" },
+
+    // Contract RPC commands
+    { "createcontract", 1, "gaslimit" },
+    { "createcontract", 2, "gasprice" },
+    { "createcontract", 4, "broadcast" },
+    { "sendtocontract", 2, "amount" },
+    { "sendtocontract", 3, "gaslimit" },
+    { "sendtocontract", 4, "gasprice" },
+    { "sendtocontract", 6, "broadcast" },
 };
 
 class CRPCConvertTable

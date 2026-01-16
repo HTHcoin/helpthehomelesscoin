@@ -1,0 +1,152 @@
+# Copyright (c) 2024 The HTH Core developers
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+# ETH Client Libraries for EVM Support
+
+ETH_CLIENT_H = \
+  eth_client/libdevcore/Address.h \
+  eth_client/libdevcore/Assertions.h \
+  eth_client/libdevcore/Common.h \
+  eth_client/libdevcore/CommonData.h \
+  eth_client/libdevcore/CommonIO.h \
+  eth_client/libdevcore/DBFactory.h \
+  eth_client/libdevcore/FileSystem.h \
+  eth_client/libdevcore/FixedHash.h \
+  eth_client/libdevcore/JsonUtils.h \
+  eth_client/libdevcore/LevelDB.h \
+  eth_client/libdevcore/Log.h \
+  eth_client/libdevcore/OverlayDB.h \
+  eth_client/libdevcore/RLP.h \
+  eth_client/libdevcore/SHA3.h \
+  eth_client/libdevcore/StateCacheDB.h \
+  eth_client/libdevcore/TrieCommon.h \
+  eth_client/libdevcore/TrieHash.h \
+  eth_client/libdevcore/vector_ref.h \
+  eth_client/libdevcrypto/Common.h \
+  eth_client/libdevcrypto/Hash.h \
+  eth_client/libethcore/BlockHeader.h \
+  eth_client/libethcore/ChainOperationParams.h \
+  eth_client/libethcore/Common.h \
+  eth_client/libethcore/EVMSchedule.h \
+  eth_client/libethcore/LogEntry.h \
+  eth_client/libethcore/Precompiled.h \
+  eth_client/libethcore/SealEngine.h \
+  eth_client/libethcore/TransactionBase.h \
+  eth_client/libethereum/Account.h \
+  eth_client/libethereum/ChainParams.h \
+  eth_client/libethereum/DatabasePaths.h \
+  eth_client/libethereum/Executive.h \
+  eth_client/libethereum/ExtVM.h \
+  eth_client/libethereum/State.h \
+  eth_client/libethereum/Transaction.h \
+  eth_client/libethereum/TransactionReceipt.h \
+  eth_client/libethereum/ValidationSchemes.h \
+  eth_client/libevm/EVMC.h \
+  eth_client/libevm/ExtVMFace.h \
+  eth_client/libevm/VMFactory.h \
+  eth_client/libevm/VMFace.h \
+  eth_client/libethashseal/GenesisInfo.h \
+  eth_client/utils/json_spirit/json_spirit.h \
+  eth_client/utils/json_spirit/json_spirit_reader.h \
+  eth_client/utils/json_spirit/json_spirit_value.h \
+  eth_client/utils/json_spirit/json_spirit_writer.h
+
+# libdevcore - Basic utilities (RLP encoding, SHA3, etc.)
+LIBDEVCORE_CPP = \
+  eth_client/libdevcore/Address.cpp \
+  eth_client/libdevcore/Common.cpp \
+  eth_client/libdevcore/CommonData.cpp \
+  eth_client/libdevcore/CommonIO.cpp \
+  eth_client/libdevcore/DBFactory.cpp \
+  eth_client/libdevcore/FileSystem.cpp \
+  eth_client/libdevcore/FixedHash.cpp \
+  eth_client/libdevcore/JsonUtils.cpp \
+  eth_client/libdevcore/LevelDB.cpp \
+  eth_client/libdevcore/Log.cpp \
+  eth_client/libdevcore/OverlayDB.cpp \
+  eth_client/libdevcore/RLP.cpp \
+  eth_client/libdevcore/SHA3.cpp \
+  eth_client/libdevcore/StateCacheDB.cpp \
+  eth_client/libdevcore/TrieCommon.cpp \
+  eth_client/libdevcore/TrieHash.cpp
+
+# libdevcrypto - Crypto functions (skip crypto++ dependent files)
+LIBDEVCRYPTO_CPP = \
+  eth_client/libdevcrypto/Blake2.cpp \
+  eth_client/libdevcrypto/Common.cpp \
+  eth_client/libdevcrypto/Hash.cpp
+
+# Skip these as they require crypto++, libff, etc:
+# eth_client/libdevcrypto/CryptoPP.cpp
+# eth_client/libdevcrypto/LibBls.cpp
+# eth_client/libdevcrypto/LibKzg.cpp
+# eth_client/libdevcrypto/LibSnark.cpp
+
+# libethcore - Ethereum core types
+LIBETHCORE_CPP = \
+  eth_client/libethcore/BlockHeader.cpp \
+  eth_client/libethcore/ChainOperationParams.cpp \
+  eth_client/libethcore/Common.cpp \
+  eth_client/libethcore/EVMSchedule.cpp \
+  eth_client/libethcore/LogEntry.cpp \
+  eth_client/libethcore/Precompiled.cpp \
+  eth_client/libethcore/SealEngine.cpp \
+  eth_client/libethcore/TransactionBase.cpp
+
+# libethereum - State management and execution
+LIBETHEREUM_CPP = \
+  eth_client/libethereum/Account.cpp \
+  eth_client/libethereum/ChainParams.cpp \
+  eth_client/libethereum/DatabasePaths.cpp \
+  eth_client/libethereum/Executive.cpp \
+  eth_client/libethereum/ExtVM.cpp \
+  eth_client/libethereum/State.cpp \
+  eth_client/libethereum/Transaction.cpp \
+  eth_client/libethereum/TransactionReceipt.cpp \
+  eth_client/libethereum/ValidationSchemes.cpp
+
+# libevm - EVM interface (EVMC wrapper)
+LIBEVM_CPP = \
+  eth_client/libevm/EVMC.cpp \
+  eth_client/libevm/ExtVMFace.cpp \
+  eth_client/libevm/VMFactory.cpp
+
+# libethashseal - Genesis configuration
+LIBETHASHSEAL_CPP = \
+  eth_client/libethashseal/GenesisInfo.cpp
+
+# json_spirit - JSON parsing
+JSON_SPIRIT_CPP = \
+  eth_client/utils/json_spirit/json_spirit_reader.cpp \
+  eth_client/utils/json_spirit/json_spirit_value.cpp \
+  eth_client/utils/json_spirit/json_spirit_writer.cpp
+
+# QTUM-specific EVM integration
+# Note: These files require newer API and are disabled for now
+# QTUM_EVM_CPP = \
+#   qtum/qtumstate.cpp \
+#   qtum/qtumDGP.cpp \
+#   qtum/qtumdelegation.cpp \
+#   qtum/qtumutils.cpp \
+#   qtum/storageresults.cpp \
+#   qtum/delegationutils.cpp \
+#   qtum/qtumtoken.cpp \
+#   qtum/qtumledger.cpp
+
+# All ETH client sources combined
+# Note: eth_client disabled for now - requires significant adaptation
+# ETH_CLIENT_CPP = \
+#   $(LIBDEVCORE_CPP) \
+#   $(LIBDEVCRYPTO_CPP) \
+#   $(LIBETHCORE_CPP) \
+#   $(LIBETHEREUM_CPP) \
+#   $(LIBEVM_CPP) \
+#   $(LIBETHASHSEAL_CPP) \
+#   $(JSON_SPIRIT_CPP)
+
+# Empty for now - only hthcontract.cpp is included in server sources
+ETH_CLIENT_CPP =
+
+# Include paths for eth_client (not used yet)
+ETH_CLIENT_INCLUDES =

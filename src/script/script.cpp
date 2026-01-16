@@ -138,6 +138,12 @@ const char* GetOpName(opcodetype opcode)
     case OP_NOP9                   : return "OP_NOP9";
     case OP_NOP10                  : return "OP_NOP10";
 
+    // HTH EVM opcodes
+    case OP_CREATE                 : return "OP_CREATE";
+    case OP_CALL                   : return "OP_CALL";
+    case OP_SPEND                  : return "OP_SPEND";
+    case OP_SENDER                 : return "OP_SENDER";
+
     case OP_INVALIDOPCODE          : return "OP_INVALIDOPCODE";
 
     // Note:

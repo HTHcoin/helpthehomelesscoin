@@ -106,6 +106,7 @@ private:
     QAction *worldAction;
     QAction* externalDonate;
     QAction *governanceAction;
+    QAction *smartContractsAction;
   /*  QAction* privatesendAction; */
     QAction *overviewAction;
     QAction *historyAction;
@@ -234,7 +235,9 @@ private Q_SLOTS:
 	/** Switch to hth information page */
     void gotoWorldPage();
       /** Switch to masternode page */
-    void gotoGovernancePage();  
+    void gotoGovernancePage();
+    /** Switch to smart contracts page */
+    void gotoSmartContractsPage();
     /** Switch to private send page */
     /*   void gotoPrivateSendPage(); */
     /** Switch to overview (home) page */

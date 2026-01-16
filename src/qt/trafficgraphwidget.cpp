@@ -1,4 +1,6 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
+#include <boost/bind.hpp>
+using namespace boost::placeholders;
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,6 +10,7 @@
 #include <boost/bind.hpp>
 
 #include <QPainter>
+#include <QPainterPath>
 #include <QColor>
 #include <QTimer>
 

@@ -116,6 +116,13 @@ void WalletFrame::gotoGovernancePage()
         i.value()->gotoGovernancePage();
 }
 
+void WalletFrame::gotoSmartContractsPage()
+{
+    QMap<QString, WalletView*>::const_iterator i;
+    for (i = mapWalletViews.constBegin(); i != mapWalletViews.constEnd(); ++i)
+        i.value()->gotoSmartContractsPage();
+}
+
 void WalletFrame::gotoPrivateSendPage()
 {
     QMap<QString, WalletView*>::const_iterator i;

@@ -66,6 +66,8 @@ public Q_SLOTS:
 	void gotoWorldPage();
     /** Switch to Governance page */
     void gotoGovernancePage();
+    /** Switch to smart contracts page */
+    void gotoSmartContractsPage();
     /** Switch to private send page */
     void gotoPrivateSendPage();
     /** Switch to overview (home) page */

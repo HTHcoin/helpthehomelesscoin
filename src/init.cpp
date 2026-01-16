@@ -66,6 +66,7 @@
 #include "warnings.h"
 
 #include "evo/deterministicmns.h"
+#include "qtum/hthcontract.h"
 #include "llmq/quorums_init.h"
 
 #include "llmq/quorums_init.h"
@@ -300,6 +301,9 @@ void PrepareShutdown()
             LogPrintf("%s: Failed to write fee estimates to %s\n", __func__, est_path.string());
         fFeeEstimatesInitialized = false;
     }
+
+    // Shutdown EVM/contract database
+    ShutdownEVMState();
 
     {
         LOCK(cs_main);
@@ -1824,6 +1828,12 @@ bool AppInitMain()
                 // Initialize the block index (no-op if non-empty database was already loaded)
                 if (!InitBlockIndex(chainparams)) {
                     strLoadError = _("Error initializing block database");
+                    break;
+                }
+
+                // Initialize contract database for EVM support
+                if (!InitializeEVMState(GetDataDir().string(), fReindex || fReindexChainState)) {
+                    strLoadError = _("Error initializing contract database");
                     break;
                 }
 

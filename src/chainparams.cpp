@@ -240,6 +240,10 @@ public:
         consensus.DIP0003Height = 5;
         consensus.DIP0003EnforcementHeight = 9500;
         consensus.DIP0003EnforcementHash = uint256S("0000000000000000000000000000000000000000000000000000000000000000");
+        // HTH Omnichain EVM hard fork activation height
+        // Activation: Block 2,800,000 (~8 weeks from Jan 2026)
+        // All nodes MUST upgrade before this height to support smart contracts
+        consensus.nEVMStartHeight = 2800000;
         consensus.powLimit = uint256S("0000fffff0000000000000000000000000000000000000000000000000000000");
         consensus.nPowTargetTimespan = 60;
         consensus.nPowTargetSpacing = consensus.nPowTargetTimespan;
@@ -422,6 +426,8 @@ public:
         consensus.DIP0003Height = 1000;
         consensus.DIP0003EnforcementHeight = 1048576; // this can be dropped back later
         consensus.DIP0003EnforcementHash = uint256S("0000000000000000000000000000000000000000000000000000000000000000");
+        // HTH Omnichain EVM hard fork - enabled early on testnet for testing
+        consensus.nEVMStartHeight = 5000;  // Enable EVM on testnet at block 5000
         consensus.powLimit = uint256S("0000fffff0000000000000000000000000000000000000000000000000000000");
         consensus.nPowTargetTimespan = 60;
         consensus.nPowTargetSpacing = consensus.nPowTargetTimespan;
@@ -742,6 +748,9 @@ public:
         consensus.nGovernanceMinQuorum = 1;
         consensus.nGovernanceFilterElements = 100;
         consensus.nMasternodeMinimumConfirmations = 1;
+        consensus.devAddress = "yUDp1tj5hnnVYaZxpA94k2ZyDiG3hD46it";  // Same as testnet for regtest
+        consensus.devAddressPubKey = "56b02e0c24998c6d27a7603cc17be9cd62643825";  // Same as testnet for regtest
+        consensus.nDevelopersFeeBegin = -1;  // Disabled for regtest
         consensus.BIP34Height = 100000000; // BIP34 has not activated on regtest (far in the future so block v1 are not rejected in tests)
         consensus.BIP34Hash = uint256();
         consensus.BIP65Height = 1351; // BIP65 activated on regtest (Used in rpc activation tests)
@@ -750,6 +759,8 @@ public:
         consensus.DIP0003Height = 432;
         consensus.DIP0003EnforcementHeight = 500;
         consensus.DIP0003EnforcementHash = uint256();
+        // HTH Omnichain EVM hard fork - enabled immediately on regtest
+        consensus.nEVMStartHeight = 1;  // Enable EVM on regtest from block 1
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 1
         consensus.nPowTargetTimespan = 24 * 60 * 60; // Dash: 1 day
         consensus.nPowTargetSpacing = 2.5 * 60; // Dash: 2.5 minutes
@@ -791,10 +802,11 @@ public:
         nDefaultPort = 19994;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1417713337, 1096447, 0x207fffff, 1, 50 * COIN);
+        // Regtest genesis block - mined with X25X PoW (nNonce=0 works for the high target)
+        genesis = CreateGenesisBlock(1417713337, 0, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        // assert(consensus.hashGenesisBlock == uint256S("0x000008ca1832a4baf228eb1553c03d3a2c8e02399550dd6ea8d65cec3ef23d2e"));
-        // assert(genesis.hashMerkleRoot == uint256S("0xe0028eb9648db56b1ac77cf090b99048a8007e2bb64b68f092c03c7f56a662c7"));
+        assert(consensus.hashGenesisBlock == uint256S("0xfa6a176ad63925f815a12fa36a4334e4d6d5d40987305fdcc3beebfeeedd8406"));
+        assert(genesis.hashMerkleRoot == uint256S("0xb65534a1e2f0ff85de1ff4cd1a457b92a56abc182397d9cc1380482784acabfc"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.

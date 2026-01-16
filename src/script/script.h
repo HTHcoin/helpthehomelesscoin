@@ -177,6 +177,11 @@ enum opcodetype
     OP_NOP9 = 0xb8,
     OP_NOP10 = 0xb9,
 
+    // EVM opcodes (HTH hard fork)
+    OP_CREATE = 0xc1,   // Create a new smart contract
+    OP_CALL = 0xc2,     // Call an existing smart contract
+    OP_SPEND = 0xc3,    // Spend from a smart contract
+    OP_SENDER = 0xc4,   // Get the sender address
 
     // template matching params
     OP_SMALLINTEGER = 0xfa,
@@ -638,6 +643,49 @@ public:
     bool IsUnspendable() const
     {
         return (size() > 0 && *begin() == OP_RETURN) || (size() > MAX_SCRIPT_SIZE);
+    }
+
+    /**
+     * EVM Contract Detection Methods (HTH Hard Fork)
+     * These methods detect contract-related opcodes for the Account Abstraction Layer
+     */
+
+    /** Check if script contains OP_CREATE (contract deployment) */
+    bool HasOpCreate() const
+    {
+        return Find(OP_CREATE) > 0;
+    }
+
+    /** Check if script contains OP_CALL (contract execution) */
+    bool HasOpCall() const
+    {
+        return Find(OP_CALL) > 0;
+    }
+
+    /** Check if script contains OP_SPEND (contract fund transfer) */
+    bool HasOpSpend() const
+    {
+        return Find(OP_SPEND) > 0;
+    }
+
+    /** Check if script contains OP_SENDER (sender address retrieval) */
+    bool HasOpSender() const
+    {
+        return Find(OP_SENDER) > 0;
+    }
+
+    /** Check if this is a contract-related output */
+    bool IsPayToContract() const
+    {
+        return HasOpCreate() || HasOpCall();
+    }
+
+    /** Check if this output can only be spent by a contract (OP_SPEND only) */
+    bool IsContractOutput() const
+    {
+        // Contract outputs start with version byte, then contract address, then OP_SPEND
+        if (size() < 22) return false;  // Minimum: 1 version + 20 address + 1 OP_SPEND
+        return (*this)[size() - 1] == OP_SPEND;
     }
 
     void clear()

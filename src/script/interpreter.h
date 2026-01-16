@@ -90,6 +90,10 @@ enum
     // Signature(s) must be empty vector if an CHECK(MULTI)SIG operation failed
     //
     SCRIPT_VERIFY_NULLFAIL = (1U << 14),
+
+    // HTH EVM support flags
+    // Allow OP_SENDER opcode for contract outputs with sender info
+    SCRIPT_OUTPUT_SENDER = (1U << 29),
 };
 
 bool CheckSignatureEncoding(const std::vector<unsigned char> &vchSig, unsigned int flags, ScriptError* serror);

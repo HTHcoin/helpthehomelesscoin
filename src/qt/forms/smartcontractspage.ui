@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SmartContractsPage</class>
+ <widget class="QWidget" name="SmartContractsPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>900</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Smart Contracts</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <!-- Create Contract Tab -->
+     <widget class="QWidget" name="createTab">
+      <attribute name="title">
+       <string>Create Contract</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="createLayout">
+       <item>
+        <widget class="QLabel" name="createLabel">
+         <property name="text">
+          <string>Deploy a new smart contract to the blockchain</string>
+         </property>
+        </widget>
+       </item>
+       <!-- Solidity Compiler Section -->
+       <item>
+        <widget class="QGroupBox" name="solidityGroup">
+         <property name="title">
+          <string>Solidity Compiler</string>
+         </property>
+         <layout class="QVBoxLayout" name="solidityLayout">
+          <item>
+           <widget class="QTextEdit" name="solidityEditor">
+            <property name="placeholderText">
+             <string>// Enter Solidity source code here
+// Example:
+// pragma solidity ^0.8.0;
+// contract MyContract {
+//     uint256 public value;
+//     function set(uint256 _value) public { value = _value; }
+// }</string>
+            </property>
+            <property name="minimumHeight">
+             <number>150</number>
+            </property>
+            <property name="maximumHeight">
+             <number>200</number>
+            </property>
+            <property name="font">
+             <font>
+              <family>Monospace</family>
+              <pointsize>9</pointsize>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="compileLayout">
+            <item>
+             <widget class="QPushButton" name="compileButton">
+              <property name="text">
+               <string>Compile</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="contractSelector">
+              <property name="minimumWidth">
+               <number>200</number>
+              </property>
+              <property name="placeholderText">
+               <string>Select contract...</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="compilerStatusLabel">
+              <property name="text">
+               <string></string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="compileSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QTextEdit" name="compilerOutput">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>Compiler output will appear here...</string>
+            </property>
+            <property name="maximumHeight">
+             <number>60</number>
+            </property>
+            <property name="font">
+             <font>
+              <family>Monospace</family>
+              <pointsize>8</pointsize>
+             </font>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <!-- Bytecode Section -->
+       <item>
+        <layout class="QFormLayout" name="createFormLayout">
+         <item row="0" column="0">
+          <widget class="QLabel" name="bytecodeLabel">
+           <property name="text">
+            <string>Bytecode:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QTextEdit" name="createBytecodeEdit">
+           <property name="placeholderText">
+            <string>Enter contract bytecode (hex) or compile Solidity above</string>
+           </property>
+           <property name="maximumHeight">
+            <number>80</number>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="gasLimitLabel">
+           <property name="text">
+            <string>Gas Limit:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QSpinBox" name="createGasLimit">
+           <property name="minimum">
+            <number>100000</number>
+           </property>
+           <property name="maximum">
+            <number>50000000</number>
+           </property>
+           <property name="value">
+            <number>2500000</number>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="gasPriceLabel">
+           <property name="text">
+            <string>Gas Price:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QSpinBox" name="createGasPrice">
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>10000</number>
+           </property>
+           <property name="value">
+            <number>40</number>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="senderLabel">
+           <property name="text">
+            <string>Sender Address:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QComboBox" name="createSenderAddress">
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QPushButton" name="createButton">
+         <property name="text">
+          <string>Create Contract</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="createResultGroup">
+         <property name="title">
+          <string>Result</string>
+         </property>
+         <layout class="QVBoxLayout" name="createResultLayout">
+          <item>
+           <widget class="QTextEdit" name="createResultEdit">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="maximumHeight">
+             <number>80</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="createSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <!-- Send To Contract Tab -->
+     <widget class="QWidget" name="sendToTab">
+      <attribute name="title">
+       <string>Send To Contract</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="sendToLayout">
+       <item>
+        <widget class="QLabel" name="sendToLabel">
+         <property name="text">
+          <string>Call a contract function (state-changing)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QFormLayout" name="sendToFormLayout">
+         <item row="0" column="0">
+          <widget class="QLabel" name="contractAddressLabel">
+           <property name="text">
+            <string>Contract Address:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="sendToAddress">
+           <property name="placeholderText">
+            <string>Enter contract address (40 hex characters)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="dataLabel">
+           <property name="text">
+            <string>Data (ABI):</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QTextEdit" name="sendToDataEdit">
+           <property name="placeholderText">
+            <string>Enter function call data (hex)</string>
+           </property>
+           <property name="maximumHeight">
+            <number>80</number>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="amountLabel">
+           <property name="text">
+            <string>Amount:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QDoubleSpinBox" name="sendToAmount">
+           <property name="minimum">
+            <double>0.000000</double>
+           </property>
+           <property name="maximum">
+            <double>100000000.000000</double>
+           </property>
+           <property name="decimals">
+            <number>8</number>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="sendGasLimitLabel">
+           <property name="text">
+            <string>Gas Limit:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QSpinBox" name="sendToGasLimit">
+           <property name="minimum">
+            <number>100000</number>
+           </property>
+           <property name="maximum">
+            <number>50000000</number>
+           </property>
+           <property name="value">
+            <number>250000</number>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="sendGasPriceLabel">
+           <property name="text">
+            <string>Gas Price:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QSpinBox" name="sendToGasPrice">
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>10000</number>
+           </property>
+           <property name="value">
+            <number>40</number>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="sendSenderLabel">
+           <property name="text">
+            <string>Sender Address:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QComboBox" name="sendToSenderAddress">
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QPushButton" name="sendToButton">
+         <property name="text">
+          <string>Send To Contract</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="sendToResultGroup">
+         <property name="title">
+          <string>Result</string>
+         </property>
+         <layout class="QVBoxLayout" name="sendToResultLayout">
+          <item>
+           <widget class="QTextEdit" name="sendToResultEdit">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="maximumHeight">
+             <number>80</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="sendToSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <!-- Call Contract Tab -->
+     <widget class="QWidget" name="callTab">
+      <attribute name="title">
+       <string>Call Contract</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="callLayout">
+       <item>
+        <widget class="QLabel" name="callLabel">
+         <property name="text">
+          <string>Call a contract function (read-only, no transaction)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QFormLayout" name="callFormLayout">
+         <item row="0" column="0">
+          <widget class="QLabel" name="callAddressLabel">
+           <property name="text">
+            <string>Contract Address:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="callAddress">
+           <property name="placeholderText">
+            <string>Enter contract address (40 hex characters)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="callDataLabel">
+           <property name="text">
+            <string>Data (ABI):</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QTextEdit" name="callDataEdit">
+           <property name="placeholderText">
+            <string>Enter function call data (hex) - e.g., 18160ddd for totalSupply()</string>
+           </property>
+           <property name="maximumHeight">
+            <number>80</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QPushButton" name="callButton">
+         <property name="text">
+          <string>Call Contract</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="callResultGroup">
+         <property name="title">
+          <string>Result</string>
+         </property>
+         <layout class="QVBoxLayout" name="callResultLayout">
+          <item>
+           <widget class="QTextEdit" name="callResultEdit">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="maximumHeight">
+             <number>120</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="callSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
