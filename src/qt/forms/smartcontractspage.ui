@@ -78,9 +78,6 @@
               <property name="minimumWidth">
                <number>200</number>
               </property>
-              <property name="placeholderText">
-               <string>Select contract...</string>
-              </property>
              </widget>
             </item>
             <item>
