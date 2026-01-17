@@ -89,21 +89,38 @@ export default function BridgePage() {
     }
   };
 
-  // Fetch balances
+  // Fetch balances with fallback RPCs
   const fetchBalances = useCallback(async () => {
     if (!address) return;
+
+    const fallbackRpcs: Record<string, string[]> = {
+      sepolia: ['https://1rpc.io/sepolia', 'https://ethereum-sepolia-rpc.publicnode.com', 'https://rpc.sepolia.org'],
+      arbitrumSepolia: ['https://sepolia-rollup.arbitrum.io/rpc', 'https://arbitrum-sepolia.blockpi.network/v1/rpc/public'],
+      bscTestnet: ['https://bsc-testnet.public.blastapi.io', 'https://data-seed-prebsc-1-s1.binance.org:8545/', 'https://bsc-testnet-rpc.publicnode.com']
+    };
 
     const newBalances: Record<string, string> = {};
 
     for (const [key, chain] of Object.entries(CHAINS)) {
-      try {
-        const rpcProvider = new ethers.JsonRpcProvider(chain.rpcUrl);
-        const contract = new ethers.Contract(chain.oftAddress, OFT_ABI, rpcProvider);
-        const balance = await contract.balanceOf(address);
-        newBalances[key] = ethers.formatUnits(balance, 8);
-      } catch (error) {
-        console.error(`Failed to fetch balance for ${key}:`, error);
-        newBalances[key] = '0';
+      const rpcs = fallbackRpcs[key] || [chain.rpcUrl];
+      let success = false;
+
+      for (const rpc of rpcs) {
+        if (success) break;
+        try {
+          const rpcProvider = new ethers.JsonRpcProvider(rpc, undefined, { staticNetwork: true });
+          const contract = new ethers.Contract(chain.oftAddress, OFT_ABI, rpcProvider);
+          const balance = await contract.balanceOf(address);
+          newBalances[key] = ethers.formatUnits(balance, 8);
+          success = true;
+        } catch (error) {
+          console.warn(`RPC ${rpc} failed for ${key}, trying next...`);
+        }
+      }
+
+      if (!success) {
+        console.error(`All RPCs failed for ${key}`);
+        newBalances[key] = '?';
       }
     }
 
@@ -112,7 +129,7 @@ export default function BridgePage() {
 
   // Estimate fee
   const estimateFee = useCallback(async () => {
-    if (!amount || parseFloat(amount) <= 0) {
+    if (!amount || parseFloat(amount) <= 0 || fromChain === toChain) {
       setFee('0');
       return;
     }
@@ -121,7 +138,10 @@ export default function BridgePage() {
       const fromChainConfig = CHAINS[fromChain];
       const toChainConfig = CHAINS[toChain];
 
-      const rpcProvider = new ethers.JsonRpcProvider(fromChainConfig.rpcUrl);
+      // Use a fresh provider for fee estimation
+      const rpcProvider = new ethers.JsonRpcProvider(fromChainConfig.rpcUrl, undefined, {
+        staticNetwork: true
+      });
       const contract = new ethers.Contract(fromChainConfig.oftAddress, OFT_ABI, rpcProvider);
 
       const amountWei = ethers.parseUnits(amount, 8);
@@ -136,9 +156,34 @@ export default function BridgePage() {
       );
 
       setFee(ethers.formatEther(nativeFee));
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to estimate fee:', error);
-      setFee('0');
+      // Try with a fallback RPC
+      try {
+        const fromChainConfig = CHAINS[fromChain];
+        const toChainConfig = CHAINS[toChain];
+        const fallbackRpcs: Record<string, string> = {
+          sepolia: 'https://ethereum-sepolia-rpc.publicnode.com',
+          arbitrumSepolia: 'https://arbitrum-sepolia.blockpi.network/v1/rpc/public',
+          bscTestnet: 'https://bsc-testnet.public.blastapi.io'
+        };
+        const fallbackRpc = fallbackRpcs[fromChain] || fromChainConfig.rpcUrl;
+        const rpcProvider = new ethers.JsonRpcProvider(fallbackRpc);
+        const contract = new ethers.Contract(fromChainConfig.oftAddress, OFT_ABI, rpcProvider);
+        const amountWei = ethers.parseUnits(amount, 8);
+        const toAddress = ethers.solidityPacked(['address'], [address || ethers.ZeroAddress]);
+        const [nativeFee] = await contract.estimateBridgeFee(
+          toChainConfig.lzChainId,
+          toAddress,
+          amountWei,
+          false,
+          '0x'
+        );
+        setFee(ethers.formatEther(nativeFee));
+      } catch (e) {
+        console.error('Fallback fee estimation also failed:', e);
+        setFee('~0.0001');
+      }
     }
   }, [amount, fromChain, toChain, address]);
 
