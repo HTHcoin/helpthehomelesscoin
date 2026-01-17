@@ -145,7 +145,7 @@ const DEPLOYMENTS = {
   base: { oft: "" },
   // Testnets
   sepolia: { oft: "0x688b1c1b22aA1bDff449285A6F954aFdC9DE05d9" },  // Native chain with 1M HTH test tokens
-  bscTestnet: { oft: "" },
+  bscTestnet: { oft: "0xcbAddD7bC31A41Fb9acC4f7de961d26d145d1FF6" },
   mumbai: { oft: "" },
   arbitrumSepolia: { oft: "0xcbAddD7bC31A41Fb9acC4f7de961d26d145d1FF6" },
   optimismSepolia: { oft: "" },

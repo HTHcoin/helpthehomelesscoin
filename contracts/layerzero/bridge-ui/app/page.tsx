@@ -287,21 +287,55 @@ export default function BridgePage() {
 
             {/* Chain Selector */}
             <div className="chain-selector">
-              <div
-                className={`chain-box ${chainId === fromChainConfig.id ? 'selected' : ''}`}
-                onClick={() => switchNetwork(fromChainConfig.id)}
-              >
-                <div className="chain-icon">{fromChainConfig.icon}</div>
-                <div className="chain-name">{fromChainConfig.shortName}</div>
+              <div className="chain-select-wrapper">
+                <label>From</label>
+                <select
+                  className="chain-select"
+                  value={fromChain}
+                  onChange={(e) => {
+                    const newFrom = e.target.value;
+                    if (newFrom === toChain) {
+                      setToChain(fromChain);
+                    }
+                    setFromChain(newFrom);
+                  }}
+                >
+                  {Object.entries(CHAINS).map(([key, chain]) => (
+                    <option key={key} value={key}>
+                      {chain.icon} {chain.shortName}
+                    </option>
+                  ))}
+                </select>
+                {chainId !== fromChainConfig.id && (
+                  <button className="switch-network-btn" onClick={() => switchNetwork(fromChainConfig.id)}>
+                    Switch Network
+                  </button>
+                )}
               </div>
 
               <button className="swap-btn" onClick={swapChains}>
                 ⇄
               </button>
 
-              <div className="chain-box">
-                <div className="chain-icon">{toChainConfig.icon}</div>
-                <div className="chain-name">{toChainConfig.shortName}</div>
+              <div className="chain-select-wrapper">
+                <label>To</label>
+                <select
+                  className="chain-select"
+                  value={toChain}
+                  onChange={(e) => {
+                    const newTo = e.target.value;
+                    if (newTo === fromChain) {
+                      setFromChain(toChain);
+                    }
+                    setToChain(newTo);
+                  }}
+                >
+                  {Object.entries(CHAINS).map(([key, chain]) => (
+                    <option key={key} value={key}>
+                      {chain.icon} {chain.shortName}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
 

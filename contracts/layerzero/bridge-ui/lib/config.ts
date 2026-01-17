@@ -34,6 +34,17 @@ export const CHAINS: Record<string, ChainConfig> = {
     oftAddress: "0xcbAddD7bC31A41Fb9acC4f7de961d26d145d1FF6",
     isNative: false,
     icon: "🔵"
+  },
+  bscTestnet: {
+    id: 97,
+    name: "BSC Testnet",
+    shortName: "BSC Test",
+    lzChainId: 10102,
+    rpcUrl: "https://data-seed-prebsc-1-s1.binance.org:8545/",
+    explorer: "https://testnet.bscscan.com",
+    oftAddress: "0xcbAddD7bC31A41Fb9acC4f7de961d26d145d1FF6",
+    isNative: false,
+    icon: "🟡"
   }
 };
 
