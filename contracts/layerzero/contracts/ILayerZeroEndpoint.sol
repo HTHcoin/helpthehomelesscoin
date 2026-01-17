@@ -105,6 +105,31 @@ interface ILayerZeroEndpoint {
      * @notice Get receive version
      */
     function getReceiveVersion(address userApplication) external view returns (uint16);
+
+    /**
+     * @notice Set configuration for a chain
+     */
+    function setConfig(
+        uint16 version,
+        uint16 chainId,
+        uint256 configType,
+        bytes calldata config
+    ) external;
+
+    /**
+     * @notice Set send version
+     */
+    function setSendVersion(uint16 version) external;
+
+    /**
+     * @notice Set receive version
+     */
+    function setReceiveVersion(uint16 version) external;
+
+    /**
+     * @notice Force resume receive
+     */
+    function forceResumeReceive(uint16 srcChainId, bytes calldata srcAddress) external;
 }
 
 /**

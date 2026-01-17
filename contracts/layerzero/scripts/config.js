@@ -144,7 +144,7 @@ const DEPLOYMENTS = {
   fantom: { oft: "" },
   base: { oft: "" },
   // Testnets
-  sepolia: { oft: "" },
+  sepolia: { oft: "0xcbAddD7bC31A41Fb9acC4f7de961d26d145d1FF6" },
   bscTestnet: { oft: "" },
   mumbai: { oft: "" },
   arbitrumSepolia: { oft: "" },
